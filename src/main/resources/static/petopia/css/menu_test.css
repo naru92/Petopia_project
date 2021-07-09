@@ -38,11 +38,11 @@ ul{list-style:none;margin:0;padding:0}
 @media only screen and (min-width: 576px) and (max-width: 767px){.header-area .main-header{padding:22px 0px}}
 @media (max-width: 575px){.header-area .main-header{padding:22px 0px}}
 .header-area .main-header .menu-wrapper{display:flex;align-content:center;justify-content:space-between;flex-wrap:wrap;align-items:center;height: 110px;}
-.header-area .main-header .menu-wrapper .main-menu ul li{display:inline-block;position:relative;}
+.header-area .main-header .menu-wrapper .main-menu ul li{display:inline-block;position:relative;z-index:1}
 .header-area .main-header .menu-wrapper .main-menu ul li a{font-size:18px;font-family: 'NEXON Lv1 Gothic OTF';color:#141517;font-weight:600;
     padding:41px 21px;display:inline-block;text-transform:capitalize;display:block;-webkit-transition:all .3s ease-out 0s;
     -moz-transition:all .3s ease-out 0s;-ms-transition:all .3s ease-out 0s;-o-transition:all .3s ease-out 0s;transition:all .3s ease-out 0s;
-    text-decoration: none;padding-bottom: 20px;z-index:1}
+    text-decoration: none;padding-bottom: 20px;}
 .header-area{display:block;position:fixed;background: #fff;top:0; left: 0;right: 0;border-bottom: #ecedef solid 1px;z-index: 100;}
 
 /* menu hover color */
@@ -72,161 +72,46 @@ footer .container-fluid{position: relative; display: block; text-align: center;}
 footer .container-fluid img{display: block; margin: 0px auto; align-items: center;}
 footer .container-fluid p{margin: 0; font-size: 11px;}
 
+/* main 여백 // footer 때문에 main 부분 짤릴때 넣기 */
+body, main{position: relative; height: 1000px; z-index: -100;}
 
-/*------ login css -----*/
-body {
-  background: #fafafa;
-}
+/*=====================================================================================*/
+/* sidebar base */
+:root{--white:#fff; --black:#000; --textColor:#333;--hove:#2AC1BC;}
+*{box-sizing: inherit;}
+a{text-decoration: none; color: black;}
+@media only screen and (min-width: 1200px) and (max-width: 1600px){.category{margin-left: 30px;}}
+@media only screen and (min-width: 992px) and (max-width: 1199px){.category{margin-left: 30px;}}
+@media only screen and (min-width: 768px) and (max-width: 991px){.category{margin-left: 10px;}}
+@media only screen and (min-width: 576px) and (max-width: 767px){.category{margin-left: 10px;}}
+@media (max-width: 575px){.category{margin-left: 0px;}}
 
-.container{
-  height: 950px;
-}
-.login-form h1 {
-  font-size: 36px;
-  text-align: center;
-  color: #2AC1BC;
-  margin-bottom: 30px;
-  font-weight: normal;
-}
-.login-form .social-icon {
-    width: 100%;
-    font-size: 20px;
-    padding-top: 20px;
-    color: #fff;
-    text-align: center;
-    float: left;
-}
-.login-form {
-    background: #fff;
-    width: 450px;
-    border-radius: 6px;
-    margin: 0 auto;
-    display: table;
-    padding: 15px 30px 30px;
-    box-sizing: border-box;
-    position: relative;
-    top: 200px;
-}
-.form-group {
-  float: left;
-  width: 100%;
-  margin: 0 0 15px;
-  position: relative;
-}
-.login-form input {
-    width: 100%;
-    padding: 5px;
-    height: 56px;
-    border-radius: 74px;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-    font-size: 15px;
-    padding-left: 75px;
-}
-.login-form .form-group .input-icon {
-    font-size: 15px;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: flex;
-    align-items: center;
-    position: absolute;
-    border-radius: 25px;
-    bottom: 0;
-    height: 100%;
-    padding-left: 35px;
-    color: #666;
-}
-.login-form .login-btn {
-  background: #2AC1BC;
-  padding: 11px 50px;
-  border-color: #2AC1BC;
-  color: #fff;
-  text-align: center;
-  margin: 0 auto;
-  font-size: 20px;
-  border: 1px solid #2AC1BC;
-  border-radius: 44px;
-  width: 100%;
-  height: 56px;
-  cursor: pointer;
-}
-.login-form .reset-id,
-.login-form .reset-psw,
-.login-form .sign-up {
-  float: left;
-  width: 100%;
-  text-decoration: none;
-  color: #2AC1BC;
-  font-size: 14px;
-  text-align: center;
-  padding-top: 10px;
-}
+/* side bar */
+.container-side{padding:30px 0px;z-index: -1;}
+.category{background:#fff;border-radius:3px; position: fixed; top: 160px; left:0; width:230px; margin-left: 130px;z-index: -1;}
+.ctghead{padding-bottom: 20px; border-bottom: 1px solid rgba(0, 0, 0, 0.09);}
+.ctghead h3{display: inline-flex; font-weight: bold;margin-left:30px;}
+.ctghead h3 i{font-size:2.9rem; margin-right:7px;}
+.ctgul{margin-top:16px; padding:0 0 16px 0;}
+.ctgulChild{margin: 0 0 0 30px; padding:0 0 10px 0;}
+.ctgliChild{display: block; position: relative; list-style: none; transition:.3s linear; font-size: 14px; height:40px;
+    /* box-shadow: transparent 0px 14px 13px -12px, transparent 0px 26px 32px -22px; */}
+.ctgli:hover{border-left: 4px solid var(--hove); background:#d2ffe221;
+    /* box-shadow: rgba(50, 50, 93, 0.08) 0px 14px 13px -12px, rgba(0, 0, 0, 0.16) 0px 26px 32px -22px; */}
+.ctga, .ctgaChild{width: 100%; display: inline-flex; align-items: center; cursor: pointer; line-height: 2.3rem; color: #333;
+    text-decoration: none; padding: 7px 40px 7px 30px; position: relative; right: 0; transition: right linear .3s; font-weight: 600;}
+.ctga i{margin-right:10px;}
+.ctga:hover, .ctgaChild:hover{/* right:-4px; */ color:var(--hove);}
+.ctgaChild::before {top: 50%; transform:translateY(-50%); left: 20px; position: absolute; border-style: solid;
+    border-color: transparent transparent transparent var(--hove); border-width:4px; content: "";}
+.ctgulChild{display:none; padding: 0x 13px 0px 36px;}
+.ctgli{display: block; position: relative; list-style: none; border-left: 4px solid transparent; transition:.3s linear;}
+.showed{background:#d2ffe221; border-left:4px solid var(--hove)!important;}
+.showed .ctga{color: var(--hove); font-weight:bold;}
+.showed .ctga i{font-weight:bold;}
+.down{position: absolute; font-size:1.3rem; right:10%; top: 50%; transform: translateY(-50%) rotate(360deg);
+   -webkit-transition: .5s ease; transition: .5s ease;}
+.wtok .down {-webkit-transform: translateY(-50%) rotate(180deg); transform: translateY(-50%) rotate(180deg)}
 
-.reset-group{
-    margin-top: 10px;
-    display:flex;
 
-}
-input:focus {
-  outline:none;
-}
-
-.login-form .social-icon button {
-    font-size: 20px;
-    height: 50px;
-    width: 50px;
-    border-radius: 60%;
-    margin: 0px 10px;
-    border: none;
-    cursor: pointer;
-}
-
-.social-icon .naver {
-  background-size : cover;
-  background-image: url(../images/naver.png);
-}
-.social-icon .kakao {
-  background-size: cover;
-  background-image: url(../images/kakao.png);
-}
-
-.login-form button:hover{
-  opacity: 0.9;
-}
-.login-form .seperator {
-  float: left;
-  width: 100%;
-  border-top: 1px solid #ccc;
-  text-align: center;
-  margin: 50px 0 0;
-}
-.login-form .seperator b {
-  width: 40px;
-  height: 40px;
-  font-size: 16px;
-  text-align: center;
-  line-height: 40px;
-  background: #fff;
-  display: inline-block;
-  border: 1px solid #e0e0e0;
-  border-radius: 50%;
-  position: relative;
-  top: -22px;
-  z-index: 1;
-}
-.login-form p {
-  float: left;
-  width: 100%;
-  text-align: center;
-  font-size: 16px;
-  margin: 0 0 10px;
-}
-@media screen and (max-width:767px) {
-.login-form {
-    width: 90%;
-    padding: 15px 15px 30px;
-}
-}
 
