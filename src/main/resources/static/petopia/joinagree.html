@@ -1,0 +1,173 @@
+<!Doctype html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>join agree</title>
+    <link rel="shortcut icon" type="image/x-icon" href="images/petopia_logomini.png">
+    
+    <!-- CSS here -->
+    <link rel="stylesheet" href="css/joinagree_style.css">
+</head>
+<body>
+    <header>
+       <!-- Header Start -->
+       <div class="header-area">
+        <div class="main-header header-sticky">
+            <div class="container-fluid">
+                <div class="menu-wrapper">
+                    <div class="links">
+                        <a href="joinagree.html" class="link_text">회원가입</a>
+                        <a href="login.html" class="link_text">로그인</a>
+                        <a href="#" class="link_text">고객센터</a>
+                      </div>
+                    <!-- Logo -->
+                    <div class="logo">
+                        <a href="shop.html"><img src="images/petopia_logo.png" alt=""></a>
+                    </div>
+                    <!-- Main-menu -->
+                    <div class="main-menu d-none d-lg-block">
+                        <nav>                                                
+                            <ul id="navigation">  
+                                <li><a href="petstagram.html">펫★그램</a></li>
+                                <li><a href="shop.html">펫shop</a></li>
+                                <li><a href="donation.html">기부</a></li>
+                                <li><a href="mypage.html">MY</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <!-- Header Right -->
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="검색어를 입력해주세요." aria-label="Recipient's username" aria-describedby="button-addon2" >
+                        <button class="btn btn-outline-secondary" type="button" id="button-addon2">search</button>
+                      </div>
+                    
+
+                <!-- Mobile Menu -->
+                <div class="col-12">
+                    <div class="mobile_menu d-block d-lg-none"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Header End -->
+    </header>
+
+    <main>
+                <div class="main">
+                    <h3>회원가입</h3>
+                    <div class="result"><span class="blue">서비스 이용약관에 동의</span>해주세요.</div>
+                   <article class="one">
+
+                    <div class="taball">
+                      <div class="tab1">
+                          <img src="https://image.flaticon.com/icons/svg/126/126486.svg"><br>STEP 1<br>가입하기<br>
+                      </div>
+                      <div class="tab2">
+                          <img src="https://image.flaticon.com/icons/svg/1159/1159633.svg"><br>STEP 2<br>약관동의<br>
+                      </div>
+                      <div class="tab3">
+                          <img src="https://image.flaticon.com/icons/svg/839/839860.svg"><br>STEP 3<br>정보입력<br>
+                      </div>
+                      <div class="tab4">
+                          <img src="https://image.flaticon.com/icons/svg/3064/3064197.svg"><br>STEP 4<br>가입완료<br>
+                      </div>
+                  </div>
+
+                    <section>
+                      <input type="checkbox" class="checkall" id="checkall">
+                      <label for="checkall">약관 전체동의</label>
+                    </section>
+                    <section>  
+                      <div class="allcheck">
+                          <input type="checkbox" class="check01" id="check01" name="must-agree">
+                          <label for="check01"> [필수] 서비스 이용약관 </label><br>
+                          <input type="checkbox" class="check02" id="check02" name="must-agree">
+                          <label for="check02"> [필수] 개인정보 처리방침 </label><br>
+                          <input type="checkbox" class="check03" id="check03" name="must-agree">
+                          <label for="check03"> [필수] 개인정보 수집/이용 동의 </label><br>
+                          <input type="checkbox" class="check04" id="check04" name="must-agree">
+                          <label for="check04"> [필수] 만 14세 이상입니다. </label><br>
+                    </div>
+                     <div>
+                       <div class="info">약관 전체동의는 필수 정보에 대한 동의로 이루어지며,
+                           <br> 필수항목에 대해서 동의 거부시 회원가입이 어렵습니다.</div>
+                     </div>
+                     </section>
+                     <section>
+                        <a href="shop.html"><button class="bnt-main">메인으로</button></a>
+                        <a href="join.html"><button class="bnt-next">다음으로</button></a>
+                     </section>
+                        </article>
+                        </div>
+            </main>
+
+    <footer>
+    </footer>
+
+    <script>
+
+
+var allcheck = document.querySelector('.checkall'); // 모두 선택 체크박스
+var checkList = document.querySelectorAll('.allcheck input'); // 그 외의 6개의 체크박스 (전부 선택해주려면 document.querySelectorAll 뿐인듯 해 이것으로 적용해주었습니다)
+
+var count = 0; // 가상의 박스에 초기값 0을 넣어줍니다.
+
+allcheck.addEventListener("change",checkboxClick); // 모두 선택 체크박스가 변경되었을때 이벤트 실행
+		
+function checkboxClick(){
+	if(allcheck.checked){ // 모두 선택 체크박스의 값이 'true' 일때
+		for(var i = 0; i < checkList.length; i++){ 
+			checkList[i].checked = true; // 하단 체크 박스 6개를 모두 check 시켜줌
+      count = checkList.length; // count 값은 ckeckList의 길이값과 동일
+		};
+	}else{
+		for(var i = 0; i < checkList.length; i++){
+			checkList[i].checked = false; // 하단 체크 박스 6개를 모두 uncheck 시켜줌
+      count = 0; // 모든 체크박스가 uncheck 되었으므로 count 값은 0
+		};
+	}
+};
+
+for(var i = 0; i < checkList.length; i++){
+	checkList[i].addEventListener("change",checkboxChecking); // 하단 체크박스의 i 번째가 체크되었을 때 이벤트 실행
+			
+	function checkboxChecking(){
+		if(this.checked){ // 클릭한 값이 체크되었을 때
+      
+      count++; // 카운트 +
+      if(count == checkList.length){ // count 값이 길이값과 동일하게 되었다면
+        allcheck.checked = true; // allcheck 버튼도 체크값으로 변경
+      } else {
+        allcheck.checked = false; // 6이 아니라면 체크값을 없애줍니다
+      }
+    }else {
+        count--; // 카운트 -
+        allcheck.checked = false; // allcheck 버튼 역시 6이 될 수 없으므로 체크값을 없애줍니다.
+      }
+	};
+};
+
+
+// 모두 선택
+$('input[name="must-agree"]').click(function(){
+
+var chk1 = $('#chec01').is(':checked');
+var chk2 = $('#check02').is(':checked');
+var chk3 = $('#check03').is(':checked');
+var chk4 = $('#check04').is(':checked');
+
+if( chk1 == false || chk2 == false || chk3 == false || chk4 == false){
+
+    $('.checkall').prop('checked',false);
+    $('.bnt-next').removeClass('is-active');
+
+}else{
+
+    $('.bnt-next').addClass('is-active');
+
+}
+
+});
+    </script>
+</body>
+</html>

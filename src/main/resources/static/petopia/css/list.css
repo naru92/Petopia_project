@@ -1,0 +1,16 @@
+.filterBox {
+
+  display: flex;
+
+}
+.filterBox .boxtr{
+
+}
+
+.pagination{
+  text-align: center;
+}
+
+.paginationdiv{
+  margin: 0 auto;
+}
