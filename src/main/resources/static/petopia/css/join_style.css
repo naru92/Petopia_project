@@ -1,89 +1,9 @@
-@font-face {
-  font-family: 'NEXON Lv1 Gothic OTF';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv1 Gothic OTF.woff') format('woff');
-  font-weight: normal;  font-style: normal;}
-body{font-family: 'NEXON Lv1 Gothic OTF';}
-
-/* left toggle */
-.leftmenuToggle {display: block;position: relative;margin: 20px 30px 0 0;z-index: 1;-webkit-user-select: none;user-select: none;}
-.leftmenuToggle input{display: block; width: 33px; height: 30px; position: absolute; cursor: pointer; opacity: 0; z-index: 2; -webkit-touch-callout: none;}
-.leftmenuToggle span {display: block; width: 33px; height: 4px; margin-bottom: 7px; position: relative; background: #2AC1BC; border-radius: 3px;
-  z-index: 1; transform-origin: 4px 0px; transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0), 
-  background 0.5s cubic-bezier(0.77,0.2,0.05,1.0), opacity 0.55s ease;}
-.leftmenuToggle span:first-child {transform-origin: 0% 0%;}
-.leftmenuToggle span:nth-last-child(2) {transform-origin: 0% 100%;}
-.leftmenuToggle input:checked ~ span {opacity: 1;transform: rotate(45deg) translate(-2px, -1px);background: #385663;margin-bottom: 5px;}
-.leftmenuToggle input:checked ~ span:nth-last-child(2) {transform: rotate(-45deg) translate(0, -1px);}
-.leftmenuToggle input:checked ~ span:nth-last-child(3) {opacity: 0;transform: rotate(0deg) scale(0.2, 0.2);margin-bottom: 5px;}
-
-/* toggle menu */
-.hoverEvent {display: inline-block; margin-top: 0; position: fixed; left: 0; top: 110px; width: 360px; height: 100%;z-index: 1;
-  padding-top: 150px; border-radius: 0 20px; text-align:center; background: #385663; -webkit-font-smoothing: antialiased;
-  transform-origin: 0% 0%; transform: translate(-300%, 0); transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0); text-decoration: none;}
-.hoverEvent li {padding: 20px 20px;font-size: 20px;}
-.hoverEvent ul {padding: 20px 20px;font-size: 20px;}
-.hoverEvent a {text-decoration: none;color: #fff;}
-.hoverEvent a:hover {color: #2AC1BC; font-weight: bold;}
-.leftmenuToggle input:checked ~ ul {transform: none;}
-.header-nav{display: flex; align-items: center;}
-
-/* ul sort */
-ul{list-style:none;margin:0;padding:0}
-
-/* header */
-.header-area .main-header{padding:0px 120px}
-@media only screen and (min-width: 1200px) and (max-width: 1600px){.header-area .main-header{padding:0px 10px}}
-@media only screen and (min-width: 992px) and (max-width: 1199px){.header-area .main-header{padding:0px 10px}}
-@media only screen and (min-width: 768px) and (max-width: 991px){.header-area .main-header{padding:22px 0px}}
-@media only screen and (min-width: 576px) and (max-width: 767px){.header-area .main-header{padding:22px 0px}}
-@media (max-width: 575px){.header-area .main-header{padding:22px 0px}}
-.header-area .main-header .menu-wrapper{display:flex;align-content:center;justify-content:space-between;flex-wrap:wrap;align-items:center;height: 110px;}
-.header-area .main-header .menu-wrapper .main-menu ul li{display:inline-block;position:relative;z-index:1}
-.header-area .main-header .menu-wrapper .main-menu ul li a{font-size:18px;font-family: 'NEXON Lv1 Gothic OTF';color:#141517;font-weight:600;
-  padding:41px 21px;display:inline-block;text-transform:capitalize;display:block;-webkit-transition:all .3s ease-out 0s;
-  -moz-transition:all .3s ease-out 0s;-ms-transition:all .3s ease-out 0s;-o-transition:all .3s ease-out 0s;transition:all .3s ease-out 0s;
-  text-decoration: none;padding-bottom: 20px;}
-.header-area{display:block;position:fixed;background: #fff;top:0; left: 0;right: 0;border-bottom: #ecedef solid 1px;z-index: 100;}
-
-/* menu hover color */
-.header-area .main-header .menu-wrapper .main-menu ul li:hover>a{color:#2AC1BC;text-decoration: none;}
-
-/* 좌측최상단 회원가입/로그인/고객센터 */
-.links {position: absolute; top: 3px; right: 30px;}
-.link_text {font-size: 11px; margin-left: 5px; text-decoration: none; color: #888;}
-.navigation{display: flex;}
-
-/* nav search */
-.searchBtn {display: inline-block;font-family: 'NEXON Lv1 Gothic OTF';background: none;border: none;color: inherit;padding: 0;
-  cursor: pointer;}
-.searchBtn:hover{color: #2AC1BC;}
-.wishBtn {display: inline-block;font-family: 'NEXON Lv1 Gothic OTF';background: none;border: none;color: inherit;padding: 0;
-  cursor: pointer;margin-left: 30px;}
-.wishBtn:hover{color: #2AC1BC;}
-.cartBtn {display: inline-block;font-family: 'NEXON Lv1 Gothic OTF';background: none;border: none;color: inherit;padding: 0;
-  cursor: pointer;margin-left: 20px;}
-.cartBtn:hover{color: #2AC1BC;}
-.searchForm {border:1px solid #999999; border-radius: 10px; font-size: 7px; width: 180px; height: 30px; padding-left: 10px;}
-.search {margin-top: 15px;}
-
-/* footer */
-footer{bottom: 0; background-color: #385663; color: #fff; padding: 30px 0;}
-footer .container-fluid{position: relative; display: block; text-align: center;}
-footer .container-fluid img{display: block; margin: 0px auto; align-items: center;}
-footer .container-fluid p{margin: 0; font-size: 11px;}
-
-
-
 /*======== css style base =========*/
-.main {
-  clear:both;
-   padding:9rem 0 10rem 0;
+main {
+   position: relative;
+   padding:200px 0 10rem 0;
+   background: #fafafa;
   }
-  
-body {
-  background: #fafafa;
-  line-height: 1rem;
-}
 
 h1 {
 font-size: 4rem;
@@ -121,11 +41,6 @@ line-height: 1rem;
 margin-bottom: 7px;
 }
 
-.main {
-  clear:both;
-  padding:9rem 0 10rem 0;
-
-}
 
 .main h3 {
   color:#222;
@@ -182,7 +97,7 @@ margin-bottom: 7px;
 }
 
 .one {
-  width: 500px;
+  width: 510px;
   height: auto;
   margin: 0 auto;
   text-align: center;
@@ -196,7 +111,7 @@ margin-bottom: 7px;
   color: #777;
   font-size:0.7rem;
   text-align:left;
-  margin: 0 0 30px 20px;
+  margin: 0 0 30px 10px;
 }
 
 #content3 {
@@ -210,24 +125,26 @@ margin-bottom: 7px;
 }
 
 #content3 input {
-  width: 85%;
+  width: 77%;
   padding: 10px;
   margin-bottom: 1rem;
+  font-size:13px;
 }
 
 #content3 .address1{
-  width: 43.5%;
+  width: 39.5%;
   padding: 10px;
   margin-bottom: 1rem;
 }
 
 #content3 select {
-  width: 100px;
-  height: 39px;
+  width: 90px;
+  height: 35px;
+  font-size:13px;
 }
 
 #content3 input[type="email"] {
-  width: 24%;
+  width: 18%;
 }
 
 #content3>:nth-child(2) {
@@ -254,7 +171,7 @@ margin-bottom: 7px;
 }
 
 #content3 .address-btn{
-  width: 40%;
+  width: 30%;
   background: #666;
   border: 1px solid #666;
   color: white;
@@ -311,7 +228,8 @@ margin-bottom: 7px;
 
 .find1>div {
   margin-top: 1rem;
-  padding: 1.5rem 1rem 2.5rem 1rem;
+  padding: 1.5rem 1rem 3.5rem 1rem;
+  font-size: 13px;
 }
 
 .find1>:nth-child(2) {

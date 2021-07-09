@@ -74,15 +74,12 @@ footer .container-fluid p{margin: 0; font-size: 11px;}
 
 
 /*======== css style base =========*/
-.main {
-  clear:both;
-   padding:9rem 0 10rem 0;
-  }
-  
-body {
-  background: #fafafa;
-    line-height: 1rem;
+main {
+   position: relative;
+   padding:200px 0 10rem 0;
+   background: #fafafa;
 }
+
 
 h1 {
 font-size: 4rem;
@@ -119,11 +116,6 @@ font-size: 1rem;
 line-height: 1rem;
 margin-bottom: 7px;
 }
-
-.main {
-  clear:both;
-   padding:9rem 0 10rem 0;
-  }
 
 .main h3 {
   color:#222;

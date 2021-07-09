@@ -73,7 +73,7 @@ footer .container-fluid img{display: block; margin: 0px auto; align-items: cente
 footer .container-fluid p{margin: 0; font-size: 11px;}
 
 /* main 여백 // footer 때문에 main 부분 짤릴때 넣기 */
-body, main{position: relative; height: 1000px; z-index: -100;}
+/* body, main{position: relative; height: 1000px; z-index: -100;} */
 
 /*=====================================================================================*/
 /* sidebar base */

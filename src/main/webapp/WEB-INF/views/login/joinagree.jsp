@@ -68,8 +68,8 @@
 					</div>
 				</section>
 				<section>
-					<a href="main.html"><button class="bnt-main">메인으로</button></a> <a
-						href="join.html"><button class="bnt-next">다음으로</button></a>
+					<a href="main"><button class="bnt-main">메인으로</button></a> 
+					<a href="join"><button class="bnt-next">다음으로</button></a>
 				</section>
 			</article>
 		</div>

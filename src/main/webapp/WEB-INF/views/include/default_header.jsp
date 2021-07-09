@@ -21,10 +21,10 @@
                               <span></span>
                               <ul id="leftmenu" class="hoverEvent">
                                   <div class="adiv">
-                                      <li><a href="petstagram.html">펫★그램</a></li>
-                                      <li><a href="main.html">펫shop</a></li>
-                                      <li><a href="donation.html">기부</a></li>
-                                      <li><a href="mypage.html"><i class="fas fa-paw"></i> MY</a></li>
+                                      <li><a href="petstagram">펫★그램</a></li>
+                                      <li><a href="main">펫shop</a></li>
+                                      <li><a href="donation">기부</a></li>
+                                      <li><a href="mypage"><i class="fas fa-paw"></i> MY</a></li>
                                   </div>
                               </ul>
                           </div>
@@ -38,10 +38,10 @@
                       <div class="main-menu d-none d-lg-block">
                           <nav>                                                
                               <ul id="navigation">  
-                                  <li><a href="petstagram.html">펫★그램</a></li>
-                                  <li><a href="main.html">펫shop</a></li>
-                                  <li><a href="donation.html">기부</a></li>
-                                  <li><a href="mypage.html"><i class="fas fa-paw"></i> MY</a></li>
+                                  <li><a href="petstagram">펫★그램</a></li>
+                                  <li><a href="main">펫shop</a></li>
+                                  <li><a href="donation">기부</a></li>
+                                  <li><a href="mypage"><i class="fas fa-paw"></i> MY</a></li>
                               </ul>
                           </nav>
                       </div>
