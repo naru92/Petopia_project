@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <c:set var='root' value="${pageContext.request.contextPath }/" />
 <!DOCTYPE html>
 <html lang="ko">
@@ -17,6 +19,8 @@
 <title>Petopia - Admin</title>
 
 <c:import url="/WEB-INF/views/include/admin_list_css.jsp" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 </head>
 
@@ -56,34 +60,41 @@
 
 						<div class="card-body filterBox">
 							<div class="boxtr">
-								<form action="${contextPath }/admin/membmer/listMembers.do"
-									method="post" id="frm_search">
+								<form action="${contextPath }/admin/product" method="post" id="frm_search" >
+								
 									<table>
 
 
 
 
-										<tr>
+										<tr >
 											<td colspan="2">상품 구분&nbsp;&nbsp;</td>
-											<td colspan="5" class="pleft"><input type="radio"
-												value="cat" name="member_gender">공통 <input
-												type="radio" value="all" name="member_gender" checked>강아지
-												<input type="radio" value="dog" name="member_gender">고양이
+											<td class= "head" colspan="5" class="pleft">
+											<input type="radio" value="1" name="product_category_id"checked>1.사료
+											<input type="radio" value="2" name="product_category_id" >2.간식
+											<input type="radio" value="3" name="product_category_id">3.위생/배변
+											<input type="radio" value="4" name="product_category_id">4.미용/목욕
+											<input type="radio" value="5" name="product_category_id">5.급식/급슈가
+											<input type="radio" value="6" name="product_category_id">6.장난감/훈련
+											<input type="radio" value="7" name="product_category_id">7.하우스/이동장
+											<input type="radio" value="8" name="product_category_id">8.패션/의류
+											<input type="radio" value="9" name="product_category_id">9.목줄/하네스	
 
 											</td>
 										</tr>
 
 										<tr>
 											<td colspan="2">주문 분류&nbsp;&nbsp;</td>
-											<td colspan="5" class="pleft"><select
-												id="order_lately_date" name="order_lately_date">
-													<option value="" selected>--등록일 분류 선택--</option>
-													<option value="lately_login_desc">최근 상품 등록순</option>
-													<option value="lately_login_asc">오래된 상품 등록순</option>
-											</select> <select id="order_lately_date" name="order_lately_date">
-													<option value="" selected>--상품 분류 선택--</option>
-													<option value="lately_login_desc">재고량 적은 순</option>
-													<option value="lately_login_asc">재고량 많은 순</option>
+											<td colspan="5" class="pleft">
+											<select id="select1" name="product_price">
+													<option value="" selected>--가격--</option>
+													<option value="product_price_asc">가격 낮은 순</option>
+													<option value="product_price_desc">가격 높은 순</option>
+											</select> 
+											<select id="select2" name="product_stock">
+													<option value="" selected>--재고량--</option>
+													<option value="stock_asc">재고량 적은 순</option>
+													<option value="stock_desc">재고량 많은 순</option>
 											</select></td>
 										</tr>
 
@@ -91,13 +102,14 @@
 
 										<tr>
 											<td colspan="7"><input type="button" value="검색"
-												onClick="member_search()" />&nbsp;&nbsp;<input type="reset"
-												value="초기화" /></td>
+												id="search_option" />&nbsp;&nbsp;
+												<input type="reset" value="초기화" /></td>
+												
 										</tr>
 									</table>
+								</form>
 							</div>
 						</div>
-						</form>
 
 						<div class="card-body">
 							<div class="table-responsive">
@@ -114,53 +126,51 @@
 
 										</tr>
 									</thead>
-									<tfoot>
-
-									</tfoot>
+							
+								<c:forEach var='p' items="${productList}">
 									<tbody>
 										<tr>
-											<td>1</td>
-											<td>맛있는 사료</td>
-											<td>강아지</td>
-											<td>18,000</td>
-											<td>30</td>
+											<td>${p.product_idx }</td>
+											<td>${p.product_name }</td>
+											<td>${p.product_category_id }</td>
+											<td>${p.product_price }</td>
+											<td>${p.product_stock }</td>
 
 
 
 										</tr>
-										</tr>
+										
 									</tbody>
+								</c:forEach>
 								</table>
 							</div>
+							<form id='pageActionForm' action="/admin/product" method='get'>
+												<input type='hidden' name='pageNum'
+													value='${pageMaker.cri.pageNum}' /> <input type='hidden'
+													name='amount' value='${pageMaker.cri.amount}' />
+							</form>
 						</div>
+						<input type="hidden" id="size" value="${fn:length(list)}" />
 						<div class="row">
 							<div class="col-sm-12 col-md-5 paginationdiv">
 								<div class="d-none d-md-block page-div">
 									<ul class="pagination justify-content-center">
-										<li class="page-item"><a href="#" class="page-link">이전</a>
-										</li>
-										<li class="page-item"><a href="#" class="page-link">1</a>
-										</li>
-										<li class="page-item"><a href="#" class="page-link">2</a>
-										</li>
-										<li class="page-item"><a href="#" class="page-link">3</a>
-										</li>
-										<li class="page-item"><a href="#" class="page-link">4</a>
-										</li>
-										<li class="page-item"><a href="#" class="page-link">5</a>
-										</li>
-										<li class="page-item"><a href="#" class="page-link">6</a>
-										</li>
-										<li class="page-item"><a href="#" class="page-link">7</a>
-										</li>
-										<li class="page-item"><a href="#" class="page-link">8</a>
-										</li>
-										<li class="page-item"><a href="#" class="page-link">9</a>
-										</li>
-										<li class="page-item"><a href="#" class="page-link">10</a>
-										</li>
-										<li class="page-item"><a href="#" class="page-link">다음</a>
-										</li>
+										<li class="page-item"><c:if test="${pageMaker.prev}">
+												<li class="page-item"><a
+													href="${pageMaker.startPage-1}" class="page-link">이전</a></li>
+											</c:if></li>
+										<c:forEach var="num" begin="${pageMaker.startPage}"
+											end="${pageMaker.endPage }">
+											<li
+												class='page-item numberitem ${pageMaker.cri.pageNum == num ? "active" : "" }'><a
+												href="${num}" class="page-link">${num}</a></li>
+										</c:forEach>
+
+										<c:if test="${pageMaker.next}">
+											<li class="page-item"><a href="${pageMaker.endPage +1}"
+												class="page-link">다음</a></li>
+										</c:if>
+
 									</ul>
 								</div>
 							</div>
@@ -218,6 +228,41 @@
 			</div>
 		</div>
 	</div>
+	
+	<script type="text/javascript">
+	$(document).ready(
+			function() {
+
+				// 페이징 버튼 이벤트
+				var actionForm = $("#pageActionForm");
+
+				$(".numberitem a").on(
+						"click",
+						function(e) {
+
+							e.preventDefault();
+
+							console.log('click');
+
+							actionForm.find("input[name='pageNum']").val(
+									$(this).attr("href"));
+							actionForm.submit();
+						});
+						
+				//필터박스 변경 이벤트
+				$('.filterBox').on('change', function(event) {
+				    if ($(event.target)[0].tagName === 'SELECT') {
+				    	var select1 = $('#select1').val();
+				    	var select2 = $('#select2').val();
+				    
+				    }
+				});
+
+
+			});
+	
+
+	</script>	
 
 		<c:import url="/WEB-INF/views/include/admin_list_js.jsp" />
 

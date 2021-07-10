@@ -1,5 +1,8 @@
 package co.kr.petopia.vo;
 
+import lombok.Data;
+
+@Data
 public class ProductVO {
 	
 	private int product_idx;

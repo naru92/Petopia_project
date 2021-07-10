@@ -10,7 +10,3 @@
 
 	<!-- Page level plugins -->
 	<script src="/petopia/vendor/chart.js/Chart.min.js"></script>
-
-	<!-- Page level custom scripts -->
-	<script src="/petopia/js/demo/chart-area-demo.js"></script>
-	<script src="/petopia/js/demo/chart-pie-demo.js"></script>

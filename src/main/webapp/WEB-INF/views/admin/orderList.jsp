@@ -149,7 +149,8 @@
 									<div class="col-sm-12 col-md-5 paginationdiv">
 										<div class="d-none d-md-block page-div">
 											<ul class="pagination justify-content-center">
-												<li class="page-item"><a href="#" class="page-link">이전</a>
+												<li class="page-item">
+												<a href="#" class="page-link">이전</a>
 												</li>
 												<li class="page-item"><a href="#" class="page-link">1</a>
 												</li>

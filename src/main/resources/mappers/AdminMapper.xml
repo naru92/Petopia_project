@@ -4,11 +4,162 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="co.kr.petopia.mapper.AdminMapper">
+
 	<!-- 회원 리스트 -->
 	<select id="getMemberList" resultType="co.kr.petopia.vo.MemberVO">
 		select * from member
 	</select>
-
-
+	<!-- 회원 상세 정보 -->
+	<select id="getMemberOne" parameterType="java.lang.Integer" resultType="co.kr.petopia.vo.MemberVO">
+		select *
+		from member
+		where member_id=#{member.id}
+	</select>
+	
+	
+	<!-- 상품 리스트 -->
+	<select id="getProductList" resultType="co.kr.petopia.vo.ProductVO">
+	
+		select 
+			product_idx,product_name,product_category_id, product_price, prodcut_stock, product_detail_info, product_image
+ 		from
+ 			 product		
+ 
+	</select>
+	
+	<!-- 상품 정보 -->
+	<select id="getProductOne" resultType="co.kr.petopia.vo.ProductVO">
+	select 
+		product_idx,product_name,product_category_id, product_price, prodcut_stock, product_detail_info, product_image
+	from 
+		product
+	where product_idx = #{product_idx}
+	</select>
+	
+	<!-- 상품 등록 -->
+	<insert id="insertProduct" parameterType ="co.kr.petopia.vo.ProductVO">
+		
+		<![CDATA[
+		insert into content_table(content_idx, content_subject, content_text,
+				content_file, content_writer_idx, content_board_idx, content_date) 
+				values (#{content_idx}, #{content_subject}, #{content_text}, #{content_file, jdbcType=VARCHAR},
+				#{content_writer_idx}, #{content_board_idx}, sysdate)
+		]]>
+	</insert>
+	
+	<!-- 상품 수정 (상품명 ,가격, 컬러옵션,재고량,상세정보, 이미지) -->
+	<update id="updateProduct" parameterType ="co.kr.petopia.vo.ProductVO">
+	
+		<![CDATA[
+		update product
+ 		set
+ 		
+ 			product_name = #{product_name},
+ 			product_price = #{product_price},
+ 			product_coloroption = #{product_coloroption}, 
+ 			product_stock = #{products_stock}, 
+ 			product_detail_info = #{product_detail_info}
+ 			product_image = #{product_image, jdbcType=VARCHAR}
+ 			
+ 		where productsNo = #{productsNo}
+		]]>
+		
+	</update>
+	
+	<!-- 상품 삭제 -->
+	<delete id="deleteProducts">
+	
+		delete product where product_idx = #{product_idx}
+		
+	</delete>
+	
+	
+	<!-- 미처리 배송  --> 
+	<select id="getUnprocessedOrderList" resultType="co.kr.petopia.vo.DeliveryVO">
+	select *
+	from delivery
+	where delivery_state="배송 준비 중"
+	</select>
+	
+	
+	<!-- 금일 매출 -->
+	<select id="getTodayIncome" resultType="java.lang.Integer">
+	select p.product_price * od.order_quantity
+	from product p, order_detail od, order_form o
+	where od.order_idx = o.order_idx 
+		  and o.product_idx = p.product_idx
+		  and o.order_date = sysdate
+	</select>
+		
+	<!-- 현재주문 리스트 -->
+	<select id="getCurrentOrderList" resultType="co.kr.petopia.vo.OrderVO">
+	</select>
+	
+	<!-- 교환,환불 신청처리 -->
+	<select id="getRefundList" resultType="co.kr.petopia.vo.DeliveryVO">
+	select *
+	from delivery
+	where delivery_state= '교환요청' or delivery_state= '배송요청'
+	</select>
+	 
+	 
+	<!--  총 주문량  -->
+	<select id="getTotalOrderList" resultType="java.lang.Integer">
+	select count(*)
+	from order_form
+	</select> 
+	 
+	
+	
+	
+	<!--페이징-->	
+	<!-- 회원수 -->
+	<select id="getTotalMemberCount" resultType="int">
+	
+  		 <![CDATA[
+    	 	select count(*) from member
+  		 ]]>
+  		 
+	</select>
+	 
+	<!-- 페이지만큼 데이터 가져오기 -->
+	<select id="getMemberListWithPaging" parameterType="int" resultType="co.kr.petopia.vo.MemberVO">
+  		 <![CDATA[
+  		 	SELECT * FROM (
+              SELECT ROWNUM AS RNUM, A.* FROM (
+                       SELECT
+                             *
+                         FROM
+                             member
+                         
+                         order by member_id desc  
+             ) A WHERE ROWNUM <= #{pageNum} * #{amount}
+         ) WHERE RNUM > (#{pageNum}-1) * #{amount} 
+  		 ]]>
+	</select>
+	
+	<!-- 상품수 -->
+	<select id="getTotalProductCount" resultType="int">
+	
+  		 <![CDATA[
+    	 	select count(*) from product
+  		 ]]>
+  		 
+	</select>
+		<select id="getProductListWithPaging" parameterType="int" resultType="co.kr.petopia.vo.ProductVO">
+  		 <![CDATA[
+  		 	SELECT * FROM (
+              SELECT ROWNUM AS RNUM, A.* FROM (
+                       SELECT
+                             *
+                         FROM
+                             product
+                         
+                         order by product_idx
+             ) A WHERE ROWNUM <= #{pageNum} * #{amount}
+         ) WHERE RNUM > (#{pageNum}-1) * #{amount} 
+  		 ]]>
+	</select>
+	
 
 </mapper>

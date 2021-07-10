@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var='root' value="${pageContext.request.contextPath }/" />
 <!DOCTYPE html>
@@ -35,12 +35,12 @@
 	<div id="wrapper">
 		
 		
-		<!-- ÁÂÃø ³×ºñ°ÔÀÌ¼Ç ¹Ù -->
+		<!-- ì¢Œì¸¡ ë„¤ë¹„ê²Œì´ì…˜ ë°” -->
 		<c:import url="/WEB-INF/views/include/admin_left_side_bar.jsp" />
 
 
 
-		<!-- »ó´Ü ¸Þ´º ¹Ù -->
+		<!-- ìƒë‹¨ ë©”ë‰´ ë°” -->
 		<c:import url="/WEB-INF/views/include/admin_top_menu.jsp" />
 
 		<!-- Begin Page Content -->
@@ -49,7 +49,7 @@
 			<!-- Page Heading -->
 			<div
 				class="d-sm-flex align-items-center justify-content-between mb-4">
-				<h1 class="h3 mb-0 text-gray-800">¸ÅÃâÇöÈ²</h1>
+				<h1 class="h3 mb-0 text-gray-800">ë§¤ì¶œí˜„í™©</h1>
 
 			</div>
 
@@ -64,7 +64,7 @@
 								<div class="col mr-2">
 									<div
 										class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-										±ÝÀÏ ¸ÅÃâ</div>
+										ê¸ˆì¼ ë§¤ì¶œ</div>
 									<div class="h5 mb-0 font-weight-bold text-gray-800">${getTodayIncome}</div>
 								</div>
 								<div class="col-auto">
@@ -83,7 +83,7 @@
 								<div class="col mr-2">
 									<div
 										class="text-xs font-weight-bold text-success text-uppercase mb-1">
-										±ÝÀÏ ±âºÎ±Ý</div>
+										ê¸ˆì¼ ê¸°ë¶€ê¸ˆ</div>
 									<div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
 								</div>
 								<div class="col-auto">
@@ -104,7 +104,7 @@
 								<div class="col mr-2">
 									<div
 										class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-										½Å±Ô È¸¿ø °¡ÀÔ¼ö (¸í)</div>
+										ì‹ ê·œ íšŒì› ê°€ìž…ìˆ˜ (ëª…)</div>
 									<div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
 								</div>
 								<div class="col-auto">
@@ -118,7 +118,7 @@
 
 			<div
 				class="d-sm-flex align-items-center justify-content-between mb-4">
-				<h1 class="h3 mb-0 text-gray-800">ÁÖ¹®ÇöÈ²</h1>
+				<h1 class="h3 mb-0 text-gray-800">ì£¼ë¬¸í˜„í™©</h1>
 
 			</div>
 			<!--row start-->
@@ -130,7 +130,7 @@
 								<div class="col mr-2">
 									<div
 										class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-										ÇöÀç ÁÖ¹® (°Ç)</div>
+										í˜„ìž¬ ì£¼ë¬¸ (ê±´)</div>
 									<div class="h5 mb-0 font-weight-bold text-gray-800">0</div>
 								</div>
 								<div class="col-auto">
@@ -147,7 +147,7 @@
 								<div class="col mr-2">
 									<div
 										class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-										±³È¯ ½ÅÃ» (°Ç)</div>
+										êµí™˜ ì‹ ì²­ (ê±´)</div>
 									<div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
 								</div>
 								<div class="col-auto">
@@ -164,7 +164,7 @@
 								<div class="col mr-2">
 									<div
 										class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-										È¯ºÒ ½ÅÃ» (°Ç)</div>
+										í™˜ë¶ˆ ì‹ ì²­ (ê±´)</div>
 									<div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
 								</div>
 								<div class="col-auto">
@@ -181,7 +181,7 @@
 								<div class="col mr-2">
 									<div
 										class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-										ÃÑ ÁÖ¹®·® (°Ç)</div>
+										ì´ ì£¼ë¬¸ëŸ‰ (ê±´)</div>
 									<div class="h5 mb-0 font-weight-bold text-gray-800">${getTotalOrderList}</div>
 								</div>
 								<div class="col-auto">
@@ -208,7 +208,7 @@
 						<!-- Card Header - Dropdown -->
 						<div
 							class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-							<h6 class="m-0 font-weight-bold text-primary">È¸¿ø¼ö</h6>
+							<h6 class="m-0 font-weight-bold text-primary">íšŒì›ìˆ˜</h6>
 							<div class="dropdown no-arrow">
 								<a class="dropdown-toggle" href="#" role="button"
 									id="dropdownMenuLink" data-toggle="dropdown"
@@ -291,7 +291,7 @@
 				<div class="col-xl-12 col-lg-12">
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">
-							<h6 class="m-0 font-weight-bold text-primary">¹ÌÃ³¸® ÁÖ¹®</h6>
+							<h6 class="m-0 font-weight-bold text-primary">ë¯¸ì²˜ë¦¬ ì£¼ë¬¸</h6>
 						</div>
 						<div class="card-body">
 							<div class="table-responsive">
@@ -371,7 +371,7 @@
 					<h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
 					<button class="close" type="button" data-dismiss="modal"
 						aria-label="Close">
-						<span aria-hidden="true">¡¿</span>
+						<span aria-hidden="true">Ã—</span>
 					</button>
 				</div>
 				<div class="modal-body">Select "Logout" below if you are ready
