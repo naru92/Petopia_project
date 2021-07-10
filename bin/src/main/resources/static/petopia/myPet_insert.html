@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<p id="demo"></p>
+
+<p>내새꾸를 등록해보세요!</p>
+
+<!-- javaScript-->
+<script> 
+var curKind = '';
+
+    function fnClick() {
+        var kind =  document.getElementById('txtKind').value;
+        
+        document.getElementsByName('rstText').innerHTML = kind;
+        document.getElementsByName('txtGetKind').value = kind;
+    }
+
+
+    function handleClick(objKind) {    
+        curKind = objKind.value;
+        var lblKind = curKind == 'cat' ? '묘종' : '견종';
+        
+        document.getElementById('choiceText').innerHTML = lblKind;
+    }
+
+    
+    function button1_click() {
+	console.log("버튼1을 누르셨습니다.");
+    }
+
+
+
+</script>
+
+
+<!-- 입력 -->
+<span>어떤 반려동물과 함께 하시나요?</span><br>
+<input type="radio" name="kind" onclick="handleClick(this)" value="cat"> 고양이
+<input type="radio" name="kind" onclick="handleClick(this)" value="dog"> 강아지
+
+<div style='width:300px'>
+    <span id='choiceText'></span>
+
+    <span style='float:right;font-size: small;'>* 필수 입력 정보</span>
+    </br>
+    <input type='text' id='txtKind' style='width:250px'></input>
+</div>
+
+<div>
+    <span>이름 *</span><br>
+    <input id = "name" type="text" size="30" maxlenght="20" value="">
+    <input type="submit" value="확인">
+</div>
+
+<div>
+<span>성별 *</span><br>
+<input type="radio" name="gender" onclick="genderClick(this)" value="m">남아
+<input type="radio" name="gender" onclick="genderClick(this)" value="f">여아
+</div>
+
+<div>
+<span>나이 *</span><br>
+<label>생년월일을 선택해주세요.</label><br>
+<input type = "date"> 
+</div>
+<br><br>
+
+<!--몸무게 소수점 1자리까지 입력 설정-->
+<div>
+    <span>몸무게</span><br>
+    <input type ="number" step= "0.1" value= "kg"> 
+    </div>
+
+    <div>
+        <span>중성화 여부</span><br>
+        <span style='float:right;font-size: small;'>* 필수 입력 정보</span>
+        <input type = 'button' id= '중성화 전' onclick='button1_click();' value ="중성화 후"><br> 
+        </div>
+
+        <div>
+            <span>염려질환</span>
+        </div>
+
+<!--버튼-->
+<div>
+    <input type= "button" value="저장" onclick="fnClick();"></input>
+</div>
+
+<div>
+<input type = "button" id= "중성화 전" onclick="button1_click();"" value ="중성화 전"><br> 
+</div>
+
+<!--조회-->
+<div>
+    <input type= "text" id="txtGetKind"></input>
+
+    </br>
+    </br>
+    </br>
+</div>
+
+
+</body>
+</html>

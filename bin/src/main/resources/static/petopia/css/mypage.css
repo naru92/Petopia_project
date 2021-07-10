@@ -1,0 +1,36 @@
+.mypage-sidebar ul{
+    list-style: none;
+    padding-left: 0px;
+    color: black;
+}
+.mypage-sidebar li{
+  color: black;
+  list-style: none;
+}
+
+.mypage-subtitle {
+  margin-top: 50px;
+}
+
+.profile-box{
+    width: 100%;
+    width: 300px;
+    height: 160px;
+    border: 1px solid #bbb;
+    display: inline-block;
+    margin: 5px;
+    line-height: 155px;
+}
+.profile-pic{
+    margin-left: 20px;
+    width: 120px;
+    height: 120px;
+    border-radius: 70%;
+    overflow: hidden;
+    object-fit: cover;
+    text-align: left;
+}
+.profile-box p{
+  height: 10px;
+  line-height: 5px;
+}

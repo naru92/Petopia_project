@@ -1,0 +1,53 @@
+/* 이벤트 탭 */
+.event-tab {
+  width: 100%;
+  padding: 10px;          
+  background: #ffffff;
+}
+section {
+  display: none;
+  padding: 20px 0 0;
+}
+input {
+  display: none;
+}
+label {
+  display: inline-block;
+  padding: 15px 25px;
+  font-weight: 600;
+  color: #bbb;
+  border: 1px solid transparent;
+}
+label:hover {
+  color: #2AC1BC;
+  cursor: pointer;
+}
+input:checked + label {
+  color: #2AC1BC;
+  border-bottom: 1px solid #ffffff;
+}
+#tab1:checked ~ #content1,
+#tab2:checked ~ #content2{
+  display: block;}
+
+
+/* 이벤트 */
+.event-items .single-event-items .event-img{
+  overflow:hidden;
+  margin-bottom:19px;
+  margin-bottom:19px;
+  position:relative;
+  height: 100%;
+  width:100%;
+}
+.event-caption h3 a{
+  color:black;
+  font-weight:700;
+  font-size:24px;
+  margin-bottom:5px
+}
+.event-caption p a{
+  color:#444444;
+  font-size:15px;
+  margin-bottom:12px
+}
