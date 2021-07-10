@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var='root' value="${pageContext.request.contextPath }/" />
 
@@ -69,7 +69,7 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">°ü¸®ÀÚ ¸ðµå</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">ê´€ë¦¬ìž ëª¨ë“œ</span>
                                 <img class="img-profile rounded-circle"
                                     src="/petopia/images/undraw_rocket.svg">
                             </a>
@@ -78,14 +78,14 @@
                                 aria-labelledby="userDropdown">
                                 <a class="dropdown-item" href="#">
                                     <i class="fas fa-home fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    ÆêÅäÇÇ¾Æ ¸ÞÀÎ
+                                    íŽ«í† í”¼ì•„ ë©”ì¸
                                 </a>
                               
                                 
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    ·Î±×¾Æ¿ô
+                                    ë¡œê·¸ì•„ì›ƒ
                                 </a>
                             </div>
                         </li>

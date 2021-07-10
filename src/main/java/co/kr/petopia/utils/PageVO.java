@@ -1,4 +1,4 @@
-package co.kr.petopia.vo;
+package co.kr.petopia.utils;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -6,11 +6,11 @@ import lombok.Setter;
 @Getter @Setter
 public class PageVO {
 	
-	private int startPage;
-	private int endPage;
-	private boolean prev, next;
+	private int startPage; //시작
+	private int endPage; // 끝
+	private boolean prev, next; 
 	
-	private int total;
+	private int total; //총 데이터수
 	private Criteria cri;
 	
 	public PageVO(Criteria cri, int total) {
@@ -25,7 +25,7 @@ public class PageVO {
 		if(realEnd < this.endPage) {
 			this.endPage = realEnd;
 		}
-		
+		//1보다 클경우
 		this.prev = this.startPage > 1;
 		
 		this.next = this.endPage < realEnd;
