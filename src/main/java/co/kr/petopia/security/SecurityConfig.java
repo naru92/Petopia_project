@@ -22,22 +22,34 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired 
 	private UserDetailsService userDetailsService;
 	
+	//로그인 버튼 클릭시 처리 클래스
 	@Autowired
 	AuthProvider authProvider;
 	
+	//로그인 성공시 처리 클래스
 	@Autowired
 	AuthSuccessHandler authSuccessHandler;
 	
+	//로그인 실패시 처리 클래스
 	@Autowired
 	AuthFailureHandler authFailureHandler;
 	
 	
+
+	//정적 파일은 시큐리티 검열 무시
+	@Override
+	public void configure(WebSecurity web) throws Exception {
+		web.ignoring().requestMatchers(PathRequest.toStaticResources().atCommonLocations());
+		
+	}
+	
+	//권한 관리
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {		
 		auth.authenticationProvider(authProvider);
 	}
 	
-	
+	//상세 설정 (리소스접근, 폼로그인 설정, 로그아웃 설정)
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		
@@ -49,14 +61,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http
 				.authorizeRequests()
 						.antMatchers("/member/**").access("hasRole('ROLE_USER')")//맴버만 접근
-						.antMatchers("/admin/**").access("hasRole('ROLE_USER')")
+						.antMatchers("/admin/**").access("hasRole('ROLE_USER')")//어드민만접근
 								
-						.antMatchers("admin/main","/login").permitAll() //공개 할 url
+						.antMatchers("/","admin/main","/loginpage").permitAll() //공개 할 url
 						.antMatchers("/**").authenticated(); //그 밖의 기타경로 인증필요
 		
 		http
 				.formLogin() //폼로그인 방식
-						.loginPage("/login") //로그인 페이지 url설정
+						.loginPage("/loginpage") //로그인 페이지 url설정
 						.loginProcessingUrl("/loginProcess") //로그인 프로세스 경로
 						.usernameParameter("member_id") //아이디 파라미터값 jsp의 input 값과 일치
 						.passwordParameter("member_password")//비밀번호 파라미터값 jsp의 passwor값과 일치
@@ -72,12 +84,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	}
 	
 	
-	//정적 파일은 시큐리티 검열 무시
-	@Override
-	public void configure(WebSecurity web) throws Exception {
-		web.ignoring().requestMatchers(PathRequest.toStaticResources().atCommonLocations());
-		
-	}
 	
 	
 		

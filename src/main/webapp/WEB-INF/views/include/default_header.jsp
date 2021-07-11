@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
+<%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
@@ -9,7 +9,7 @@
                   <div class="menu-wrapper">
                       <div class="links">
                           <a href="joinagree" class="link_text">회원가입</a>
-                          <a href="login" class="link_text">로그인</a>
+                          <a href="loginpage" class="link_text">로그인</a>
                           <a href="#" class="link_text">고객센터</a>
                       </div>
 
