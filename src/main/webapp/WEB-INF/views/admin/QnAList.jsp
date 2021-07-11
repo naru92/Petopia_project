@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var='root' value="${pageContext.request.contextPath }/" />
 
@@ -27,12 +27,12 @@
 	<div id="wrapper">
 
 
-		<!-- ÁÂÃø ³×ºñ°ÔÀÌ¼Ç ¹Ù -->
+		<!-- ì¢Œì¸¡ ë„¤ë¹„ê²Œì´ì…˜ ë°” -->
 		<c:import url="/WEB-INF/views/include/admin_left_side_bar.jsp" />
 
 
 
-		<!-- »ó´Ü ¸Þ´º ¹Ù -->
+		<!-- ìƒë‹¨ ë©”ë‰´ ë°” -->
 		<c:import url="/WEB-INF/views/include/admin_top_menu.jsp" />
 
 		<!-- Begin Page Content -->
@@ -51,7 +51,7 @@
 				<div class="col-xl-12 col-lg-12">
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">
-							<h6 class="m-0 font-weight-bold text-primary">¹®ÀÇ³»¿ª °ü¸®</h6>
+							<h6 class="m-0 font-weight-bold text-primary">ë¬¸ì˜ë‚´ì—­ ê´€ë¦¬</h6>
 						</div>
 
 						<div class="card-body filterBox">
@@ -64,32 +64,32 @@
 
 
 										<tr>
-											<td colspan="2">Ã³¸® »óÅÂ&nbsp;&nbsp;</td>
+											<td colspan="2">ì²˜ë¦¬ ìƒíƒœ&nbsp;&nbsp;</td>
 											<td colspan="5" class="pleft"><input type="radio"
-												value="cat" name="member_gender">ÀüÃ¼ <input
-												type="radio" value="cat" name="member_gender">¹ÌÃ³¸® <input
-												type="radio" value="all" name="member_gender" checked>Ã³¸®¿Ï·á
+												value="cat" name="member_gender">ì „ì²´ <input
+												type="radio" value="cat" name="member_gender">ë¯¸ì²˜ë¦¬ <input
+												type="radio" value="all" name="member_gender" checked>ì²˜ë¦¬ì™„ë£Œ
 
 
 											</td>
 										</tr>
 
 										<tr>
-											<td colspan="2">¹®ÀÇ ºÐ·ù&nbsp;&nbsp;</td>
+											<td colspan="2">ë¬¸ì˜ ë¶„ë¥˜&nbsp;&nbsp;</td>
 											<td colspan="5" class="pleft"><select
 												id="order_lately_date" name="order_lately_date">
-													<option value="" selected>--¹®ÀÇ³»¿ª ºÐ·ù ¼±ÅÃ--</option>
-													<option value="lately_login_desc">ÃÖ±Ù ¹®ÀÇ ¼ø</option>
-													<option value="lately_login_asc">¿À·¡µÈ ¹®ÀÇ ¼ø</option>
+													<option value="" selected>--ë¬¸ì˜ë‚´ì—­ ë¶„ë¥˜ ì„ íƒ--</option>
+													<option value="lately_login_desc">ìµœê·¼ ë¬¸ì˜ ìˆœ</option>
+													<option value="lately_login_asc">ì˜¤ëž˜ëœ ë¬¸ì˜ ìˆœ</option>
 											</select></td>
 										</tr>
 
 
 
 										<tr>
-											<td colspan="7"><input type="button" value="°Ë»ö"
+											<td colspan="7"><input type="button" value="ê²€ìƒ‰"
 												onClick="member_search()" />&nbsp;&nbsp;<input type="reset"
-												value="ÃÊ±âÈ­" /></td>
+												value="ì´ˆê¸°í™”" /></td>
 										</tr>
 									</table>
 							</div>
@@ -103,10 +103,10 @@
 									<thead>
 										<tr>
 
-											<th>¹®ÀÇ¹øÈ£</th>
-											<th>¾ÆÀÌµð</th>
-											<th>³»¿ë</th>
-											<th>Ã³¸®»óÅÂ</th>
+											<th>ë¬¸ì˜ë²ˆí˜¸</th>
+											<th>ì•„ì´ë””</th>
+											<th>ë‚´ìš©</th>
+											<th>ì²˜ë¦¬ìƒíƒœ</th>
 
 										</tr>
 									</thead>
@@ -117,11 +117,11 @@
 										<tr>
 											<td>1</td>
 											<td>ab1233</td>
-											<td>»óÇ°ÀÌ º°·Î¿¡¿ä</td>
+											<td>ìƒí’ˆì´ ë³„ë¡œì—ìš”</td>
 											<td><select id="qna_state" name="qna_state">
 
-													<option value="qna_not">¹ÌÃ³¸®</option>
-													<option value="qna_complete">Ã³¸®¿Ï·á</option>
+													<option value="qna_not">ë¯¸ì²˜ë¦¬</option>
+													<option value="qna_complete">ì²˜ë¦¬ì™„ë£Œ</option>
 											</select></td>
 
 
@@ -134,7 +134,7 @@
 						</div>
 
 						<ul class="pagination justify-content-center">
-							<li class="page-item"><a href="#" class="page-link">ÀÌÀü</a></li>
+							<li class="page-item"><a href="#" class="page-link">ì´ì „</a></li>
 							<li class="page-item"><a href="#" class="page-link">1</a></li>
 							<li class="page-item"><a href="#" class="page-link">2</a></li>
 							<li class="page-item"><a href="#" class="page-link">3</a></li>
@@ -145,7 +145,7 @@
 							<li class="page-item"><a href="#" class="page-link">8</a></li>
 							<li class="page-item"><a href="#" class="page-link">9</a></li>
 							<li class="page-item"><a href="#" class="page-link">10</a></li>
-							<li class="page-item"><a href="#" class="page-link">´ÙÀ½</a></li>
+							<li class="page-item"><a href="#" class="page-link">ë‹¤ìŒ</a></li>
 						</ul>
 					</div>
 				</div>
@@ -186,7 +186,7 @@
 					<h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
 					<button class="close" type="button" data-dismiss="modal"
 						aria-label="Close">
-						<span aria-hidden="true">¡¿</span>
+						<span aria-hidden="true">Ã—</span>
 					</button>
 				</div>
 				<div class="modal-body">Select "Logout" below if you are ready

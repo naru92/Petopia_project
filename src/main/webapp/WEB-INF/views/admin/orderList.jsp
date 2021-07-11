@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var='root' value="${pageContext.request.contextPath }/" />
 <!DOCTYPE html>
@@ -25,12 +25,12 @@
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
-		<!-- абцЬ Ёв╨Я╟тюл╪г ╧ы -->
+		<!-- Л╒▄Л╦║ К└╓К╧└Й╡▄Л²╢Л┘≤ К╟■ -->
 		<c:import url="/WEB-INF/views/include/admin_left_side_bar.jsp" />
 
 
 
-		<!-- ╩С╢э ╦ч╢╨ ╧ы -->
+		<!-- Л┐│К▀╗ К╘■К┴╢ К╟■ -->
 		<c:import url="/WEB-INF/views/include/admin_top_menu.jsp" />
 
 
@@ -61,7 +61,7 @@
 						<div class="col-xl-12 col-lg-12">
 							<div class="card shadow mb-4">
 								<div class="card-header py-3">
-									<h6 class="m-0 font-weight-bold text-primary">аж╧╝╟Э╦╝</h6>
+									<h6 class="m-0 font-weight-bold text-primary">Лё╪К╛╦Й╢─К╕╛</h6>
 								</div>
 
 								<div class="card-body filterBox">
@@ -74,31 +74,31 @@
 
 
 												<tr>
-													<td colspan="2">аж╧╝ ╠╦╨п&nbsp;&nbsp;</td>
+													<td colspan="2">Лё╪К╛╦ Й╣╛К╤└&nbsp;&nbsp;</td>
 													<td colspan="5" class="pleft"><input type="radio"
-														value="cat" name="member_gender">юЭц╪ <input
-														type="radio" value="all" name="member_gender" checked>ют╠щ
-														╢К╠Баъ <input type="radio" value="dog" name="member_gender">ют╠щ©о╥А
+														value="cat" name="member_gender">Л═└Л╡╢ <input
+														type="radio" value="all" name="member_gender" checked>Л·┘Й╦┬
+														К▄─Й╦╟Л╓▒ <input type="radio" value="dog" name="member_gender">Л·┘Й╦┬Л≥└Кё▄
 
 													</td>
 												</tr>
 
 												<tr>
-													<td colspan="2">аж╧╝ ╨п╥Ы&nbsp;&nbsp;</td>
+													<td colspan="2">Лё╪К╛╦ К╤└К╔≤&nbsp;&nbsp;</td>
 													<td colspan="5" class="pleft"><select
 														id="order_lately_date" name="order_lately_date">
-															<option value="" selected>--аж╧╝ ╨п╥Ы ╪╠ец--</option>
-															<option value="lately_login_desc">цж╠ы аж╧╝ ╪Ь</option>
-															<option value="lately_login_asc">©ю╥║╣х аж╧╝ ╪Ь</option>
+															<option value="" selected>--Лё╪К╛╦ К╤└К╔≤ Л└═М┐²--</option>
+															<option value="lately_login_desc">Л╣°Й╥╪ Лё╪К╛╦ Л┬°</option>
+															<option value="lately_login_asc">Л≤╓К·≤К░° Лё╪К╛╦ Л┬°</option>
 													</select></td>
 												</tr>
 
 
 
 												<tr>
-													<td colspan="7"><input type="button" value="╟к╩Ж"
+													<td colspan="7"><input type="button" value="Й╡─Л┐┴"
 														onClick="member_search()" />&nbsp;&nbsp;<input
-														type="reset" value="цй╠Бх╜" /></td>
+														type="reset" value="Л╢┬Й╦╟М≥■" /></td>
 												</tr>
 											</table>
 									</div>
@@ -112,14 +112,14 @@
 											<thead>
 												<tr>
 
-													<th>аж╧╝╧Ьхё</th>
-													<th>╬фюл╣П</th>
-													<th>аж╧╝юз юл╦╖</th>
-													<th>аж╪р</th>
-													<th>аж╧╝╥╝</th>
-													<th>╟Аа╕╠щ╬в</th>
-													<th>аж╧╝юоюз</th>
-													<th>╟Аа╕╧Ф╧Щ</th>
+													<th>Лё╪К╛╦К╡┬М≤╦</th>
+													<th>Л∙└Л²╢К■■</th>
+													<th>Лё╪К╛╦Л·░ Л²╢К╕└</th>
+													<th>Лё╪Л├▄</th>
+													<th>Лё╪К╛╦К÷┴</th>
+													<th>Й╡╟Л═°Й╦┬Л∙║</th>
+													<th>Лё╪К╛╦Л²╪Л·░</th>
+													<th>Й╡╟Л═°К╟╘К╡∙</th>
 												</tr>
 											</thead>
 											<tfoot>
@@ -130,11 +130,11 @@
 													<td>Tiger Nixon</td>
 													<td>System Architect</td>
 													<td>Edinburgh</td>
-													<td>╟Ф╠Б ╨о╨н Ё╡╨н ╣©╨н</td>
-													<td>3╟Ё</td>
-													<td>320,800©Ь</td>
+													<td>Й╡╫Й╦╟ К╤│К╤─ К┌╗К╤─ К▐≥К╤─</td>
+													<td>3Й╟°</td>
+													<td>320,800Л⌡░</td>
 													<td>2011/04/25</td>
-													<td>д╚╣Е</td>
+													<td>Л╧╢К⌠°</td>
 
 
 												</tr>
@@ -150,7 +150,7 @@
 										<div class="d-none d-md-block page-div">
 											<ul class="pagination justify-content-center">
 												<li class="page-item">
-												<a href="#" class="page-link">юлюЭ</a>
+												<a href="#" class="page-link">Л²╢Л═└</a>
 												</li>
 												<li class="page-item"><a href="#" class="page-link">1</a>
 												</li>
@@ -172,7 +172,7 @@
 												</li>
 												<li class="page-item"><a href="#" class="page-link">10</a>
 												</li>
-												<li class="page-item"><a href="#" class="page-link">╢ыю╫</a>
+												<li class="page-item"><a href="#" class="page-link">К▀╓Л²▄</a>
 												</li>
 											</ul>
 										</div>
@@ -217,7 +217,7 @@
 					<h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
 					<button class="close" type="button" data-dismiss="modal"
 						aria-label="Close">
-						<span aria-hidden="true">║©</span>
+						<span aria-hidden="true">ц≈</span>
 					</button>
 				</div>
 				<div class="modal-body">Select "Logout" below if you are ready

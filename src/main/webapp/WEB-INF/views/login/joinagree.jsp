@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>join agree</title>
 <!-- CSS here -->
-<link rel="stylesheet" href="petopia/css/joinagree_style.css">
+<link rel="stylesheet" href="/petopia/css/joinagree_style.css">
 <!-- default_css -->
 <%@include file="../include/default_css.jsp"%>
 </head>

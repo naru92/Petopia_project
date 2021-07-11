@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var='root' value="${pageContext.request.contextPath }/" />
 <!DOCTYPE html>
@@ -26,12 +26,12 @@
 	<div id="wrapper">
 
 
-		<!-- ÁÂÃø ³×ºñ°ÔÀÌ¼Ç ¹Ù -->
+		<!-- ì¢Œì¸¡ ë„¤ë¹„ê²Œì´ì…˜ ë°” -->
 		<c:import url="/WEB-INF/views/include/admin_left_side_bar.jsp" />
 
 
 
-		<!-- »ó´Ü ¸Þ´º ¹Ù -->
+		<!-- ìƒë‹¨ ë©”ë‰´ ë°” -->
 		<c:import url="/WEB-INF/views/include/admin_top_menu.jsp" />
 
 		<!-- Begin Page Content -->
@@ -50,7 +50,7 @@
 				<div class="col-xl-12 col-lg-12">
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">
-							<h6 class="m-0 font-weight-bold text-primary">±âºÎ³»¿ª °ü¸®</h6>
+							<h6 class="m-0 font-weight-bold text-primary">ê¸°ë¶€ë‚´ì—­ ê´€ë¦¬</h6>
 						</div>
 
 						<div class="card-body filterBox">
@@ -63,20 +63,20 @@
 
 
 										<tr>
-											<td colspan="2">Ã³¸® »óÅÂ&nbsp;&nbsp;</td>
+											<td colspan="2">ì²˜ë¦¬ ìƒíƒœ&nbsp;&nbsp;</td>
 											<td colspan="5" class="pleft"><input type="radio"
-												value="cat" name="member_gender">¹ÌÃ³¸® <input
-												type="radio" value="all" name="member_gender" checked>Ã³¸®
+												value="cat" name="member_gender">ë¯¸ì²˜ë¦¬ <input
+												type="radio" value="all" name="member_gender" checked>ì²˜ë¦¬
 
 
 											</td>
 										</tr>
 
 										<tr>
-											<td colspan="2">±âºÎ ºÐ·ù&nbsp;&nbsp;</td>
+											<td colspan="2">ê¸°ë¶€ ë¶„ë¥˜&nbsp;&nbsp;</td>
 											<td colspan="5" class="pleft"><select
 												id="donation_date_year" name="donation_date_year">
-													<option value="" selected>--±âºÎ³»¿ª ³âµµ ¼±ÅÃ--</option>
+													<option value="" selected>--ê¸°ë¶€ë‚´ì—­ ë…„ë„ ì„ íƒ--</option>
 													<option value="donation_year">2021</option>
 													<option value="donation_year">2020</option>
 													<option value="donation_year">2019</option>
@@ -85,24 +85,24 @@
 
 
 											</select> <select id="donation_date_month" name="donation_date_month">
-													<option value="" selected>--±âºÎ³»¿ª ¿ù ¼±ÅÃ--</option>
-													<option value="donation_month">1¿ù</option>
-													<option value="donation_month">2¿ù</option>
-													<option value="donation_month">3¿ù</option>
-													<option value="donation_month">4¿ù</option>
-													<option value="donation_month">5¿ù</option>
-													<option value="donation_month">6¿ù</option>
-													<option value="donation_month">7¿ù</option>
-													<option value="donation_month">8¿ù</option>
-													<option value="donation_month">9¿ù</option>
-													<option value="donation_month">10¿ù</option>
-													<option value="donation_month">11¿ù</option>
-													<option value="donation_month">12¿ù</option>
+													<option value="" selected>--ê¸°ë¶€ë‚´ì—­ ì›” ì„ íƒ--</option>
+													<option value="donation_month">1ì›”</option>
+													<option value="donation_month">2ì›”</option>
+													<option value="donation_month">3ì›”</option>
+													<option value="donation_month">4ì›”</option>
+													<option value="donation_month">5ì›”</option>
+													<option value="donation_month">6ì›”</option>
+													<option value="donation_month">7ì›”</option>
+													<option value="donation_month">8ì›”</option>
+													<option value="donation_month">9ì›”</option>
+													<option value="donation_month">10ì›”</option>
+													<option value="donation_month">11ì›”</option>
+													<option value="donation_month">12ì›”</option>
 
 											</select> <select id="donation_date_today" name="donation_date_today">
-													<option value="" selected>--±âºÎÀÏÀÚ--</option>
+													<option value="" selected>--ê¸°ë¶€ì¼ìž--</option>
 
-													<option value="donation_today">¿À´Ã ±âºÎ º¸±â</option>
+													<option value="donation_today">ì˜¤ëŠ˜ ê¸°ë¶€ ë³´ê¸°</option>
 
 											</select></td>
 										</tr>
@@ -110,9 +110,9 @@
 
 
 										<tr>
-											<td colspan="7"><input type="button" value="°Ë»ö"
+											<td colspan="7"><input type="button" value="ê²€ìƒ‰"
 												onClick="member_search()" />&nbsp;&nbsp;<input type="reset"
-												value="ÃÊ±âÈ­" /></td>
+												value="ì´ˆê¸°í™”" /></td>
 										</tr>
 									</table>
 							</div>
@@ -127,9 +127,9 @@
 										<tr>
 
 
-											<th>¹ÌÃ³¸®±âºÎ±Ý</th>
-											<th>³»¿ë</th>
-											<th>Ã³¸®»óÅÂ</th>
+											<th>ë¯¸ì²˜ë¦¬ê¸°ë¶€ê¸ˆ</th>
+											<th>ë‚´ìš©</th>
+											<th>ì²˜ë¦¬ìƒíƒœ</th>
 
 										</tr>
 									</thead>
@@ -142,8 +142,8 @@
 											<td>ab1233</td>
 											<td><select id="qna_state" name="qna_state">
 
-													<option value="qna_not">¹ÌÃ³¸®</option>
-													<option value="qna_complete">Ã³¸®¿Ï·á</option>
+													<option value="qna_not">ë¯¸ì²˜ë¦¬</option>
+													<option value="qna_complete">ì²˜ë¦¬ì™„ë£Œ</option>
 											</select></td>
 
 
@@ -156,7 +156,7 @@
 						</div>
 
 						<ul class="pagination justify-content-center">
-							<li class="page-item"><a href="#" class="page-link">ÀÌÀü</a></li>
+							<li class="page-item"><a href="#" class="page-link">ì´ì „</a></li>
 							<li class="page-item"><a href="#" class="page-link">1</a></li>
 							<li class="page-item"><a href="#" class="page-link">2</a></li>
 							<li class="page-item"><a href="#" class="page-link">3</a></li>
@@ -167,7 +167,7 @@
 							<li class="page-item"><a href="#" class="page-link">8</a></li>
 							<li class="page-item"><a href="#" class="page-link">9</a></li>
 							<li class="page-item"><a href="#" class="page-link">10</a></li>
-							<li class="page-item"><a href="#" class="page-link">´ÙÀ½</a></li>
+							<li class="page-item"><a href="#" class="page-link">ë‹¤ìŒ</a></li>
 						</ul>
 					</div>
 				</div>
@@ -208,7 +208,7 @@
 					<h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
 					<button class="close" type="button" data-dismiss="modal"
 						aria-label="Close">
-						<span aria-hidden="true">¡¿</span>
+						<span aria-hidden="true">Ã—</span>
 					</button>
 				</div>
 				<div class="modal-body">Select "Logout" below if you are ready

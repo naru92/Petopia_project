@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var='root' value="${pageContext.request.contextPath }/" />
 <!DOCTYPE html>
@@ -25,10 +25,10 @@
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
-		<!-- ���� �׺���̼� �� -->
+		<!-- 좌측 네비게이션 바 -->
 		<c:import url="/WEB-INF/views/include/admin_left_side_bar.jsp" />
 
-		<!-- ��� �޴� �� -->
+		<!-- 상단 메뉴 바 -->
 		<c:import url="/WEB-INF/views/include/admin_top_menu.jsp" />
 
 		<!-- End of Topbar -->
@@ -49,7 +49,7 @@
 				<div class="col-xl-12 col-lg-12">
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">
-							<h6 class="m-0 font-weight-bold text-primary">��۰���</h6>
+							<h6 class="m-0 font-weight-bold text-primary">배송관리</h6>
 						</div>
 
 						<div class="card-body filterBox">
@@ -62,34 +62,34 @@
 
 
 										<tr>
-											<td colspan="2">��� ����&nbsp;&nbsp;</td>
+											<td colspan="2">배송 구분&nbsp;&nbsp;</td>
 											<td colspan="5" class="pleft"><input type="radio"
-												value="all" name="member_gender" checked>��ȸ�� <input
-												type="radio" value="dog" name="member_gender">ȸ��</td>
+												value="all" name="member_gender" checked>비회원 <input
+												type="radio" value="dog" name="member_gender">회원</td>
 										</tr>
 
 										<tr>
-											<td colspan="2">��� �з�&nbsp;&nbsp;</td>
+											<td colspan="2">배송 분류&nbsp;&nbsp;</td>
 											<td colspan="5" class="pleft"><select
 												id="order_lately_date" name="order_lately_date">
-													<option value="" selected>--��� �з� ����--</option>
-													<option value="lately_login_desc">��ü</option>
-													<option value="lately_login_desc">��ó��</option>
-													<option value="lately_login_asc">ó��</option>
+													<option value="" selected>--배송 분류 선택--</option>
+													<option value="lately_login_desc">전체</option>
+													<option value="lately_login_desc">미처리</option>
+													<option value="lately_login_asc">처리</option>
 											</select> <select id="order_total_buy" name="order_total_buy">
-													<option value="" selected>--��� ����--</option>
-													<option value="total_buy_desc">ȯ�ҿ�û</option>
-													<option value="total_buy_asc">��ǰ��û</option>
-													<option value="total_buy_asc">�Ϸ�</option>
+													<option value="" selected>--배송 상태--</option>
+													<option value="total_buy_desc">환불요청</option>
+													<option value="total_buy_asc">반품요청</option>
+													<option value="total_buy_asc">완료</option>
 											</select></td>
 										</tr>
 
 
 
 										<tr>
-											<td colspan="7"><input type="button" value="�˻�"
+											<td colspan="7"><input type="button" value="검색"
 												onClick="member_search()" />&nbsp;&nbsp;<input type="reset"
-												value="�ʱ�ȭ" /></td>
+												value="초기화" /></td>
 										</tr>
 									</table>
 							</div>
@@ -102,14 +102,14 @@
 									cellspacing="0">
 									<thead>
 										<tr>
-											<th>��۹�ȣ</th>
-											<th>��ǰ�̸�</th>
-											<th>�ֹ��� �̸�</th>
-											<th>������ �̸�</th>
-											<th>������ ��ȭ��ȣ</th>
-											<th>������ �ּ�</th>
-											<th>�������</th>
-											<th>���ó������</th>
+											<th>배송번호</th>
+											<th>상품이름</th>
+											<th>주문자 이름</th>
+											<th>수신자 이름</th>
+											<th>수신자 전화번호</th>
+											<th>수신자 주소</th>
+											<th>배송일자</th>
+											<th>배송처리상태</th>
 
 
 										</tr>
@@ -128,8 +128,8 @@
 											<td>$320,800</td>
 											<td><select id="delivery_state" name="delivery_state">
 
-													<option value="delivery_not">��ó��</option>
-													<option value="delivery_complete">ó���Ϸ�</option>
+													<option value="delivery_not">미처리</option>
+													<option value="delivery_complete">처리완료</option>
 											</select></td>
 
 										</tr>
@@ -178,7 +178,7 @@
 					<h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
 					<button class="close" type="button" data-dismiss="modal"
 						aria-label="Close">
-						<span aria-hidden="true">��</span>
+						<span aria-hidden="true">×</span>
 					</button>
 				</div>
 				<div class="modal-body">Select "Logout" below if you are ready

@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var='root' value="${pageContext.request.contextPath }/" />
 
@@ -27,12 +27,12 @@
 	<div id="wrapper">
 
 
-		<!-- ÁÂÃø ³×ºñ°ÔÀÌ¼Ç ¹Ù -->
+		<!-- ì¢Œì¸¡ ë„¤ë¹„ê²Œì´ì…˜ ë°” -->
 		<c:import url="/WEB-INF/views/include/admin_left_side_bar.jsp" />
 
 
 
-		<!-- »ó´Ü ¸Þ´º ¹Ù -->
+		<!-- ìƒë‹¨ ë©”ë‰´ ë°” -->
 		<c:import url="/WEB-INF/views/include/admin_top_menu.jsp" />
 
 
@@ -47,7 +47,7 @@
 
 			<div class="card shadow mb-4">
 				<div class="card-header py-3">
-					<h6 class="m-0 font-weight-bold text-primary">Åë°è</h6>
+					<h6 class="m-0 font-weight-bold text-primary">í†µê³„</h6>
 				</div>
 
 				<div class="col-xl-12">
@@ -97,7 +97,7 @@
 					<h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
 					<button class="close" type="button" data-dismiss="modal"
 						aria-label="Close">
-						<span aria-hidden="true">¡¿</span>
+						<span aria-hidden="true">Ã—</span>
 					</button>
 				</div>
 				<div class="modal-body">Select "Logout" below if you are ready

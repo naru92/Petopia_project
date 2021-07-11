@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
@@ -30,12 +30,12 @@
 	<div id="wrapper">
 
 
-		<!-- ÁÂÃø ³×ºñ°ÔÀÌ¼Ç ¹Ù -->
+		<!-- ì¢Œì¸¡ ë„¤ë¹„ê²Œì´ì…˜ ë°” -->
 		<c:import url="/WEB-INF/views/include/admin_left_side_bar.jsp" />
 
 
 
-		<!-- »ó´Ü ¸Ş´º ¹Ù -->
+		<!-- ìƒë‹¨ ë©”ë‰´ ë°” -->
 		<c:import url="/WEB-INF/views/include/admin_top_menu.jsp" />
 
 
@@ -55,7 +55,7 @@
 				<div class="col-xl-12 col-lg-12">
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">
-							<h6 class="m-0 font-weight-bold text-primary">»óÇ°°ü¸®</h6>
+							<h6 class="m-0 font-weight-bold text-primary">ìƒí’ˆê´€ë¦¬</h6>
 						</div>
 
 						<div class="card-body filterBox">
@@ -68,42 +68,42 @@
 
 
 										<tr >
-											<td colspan="2">»óÇ° ±¸ºĞ&nbsp;&nbsp;</td>
+											<td colspan="2">ìƒí’ˆ êµ¬ë¶„&nbsp;&nbsp;</td>
 											<td class= "head" colspan="5" class="pleft">
-											<input type="radio" value="1" name="product_category_id"checked>1.»ç·á
-											<input type="radio" value="2" name="product_category_id" >2.°£½Ä
-											<input type="radio" value="3" name="product_category_id">3.À§»ı/¹èº¯
-											<input type="radio" value="4" name="product_category_id">4.¹Ì¿ë/¸ñ¿å
-											<input type="radio" value="5" name="product_category_id">5.±Ş½Ä/±Ş½´°¡
-											<input type="radio" value="6" name="product_category_id">6.Àå³­°¨/ÈÆ·Ã
-											<input type="radio" value="7" name="product_category_id">7.ÇÏ¿ì½º/ÀÌµ¿Àå
-											<input type="radio" value="8" name="product_category_id">8.ÆĞ¼Ç/ÀÇ·ù
-											<input type="radio" value="9" name="product_category_id">9.¸ñÁÙ/ÇÏ³×½º	
+											<input type="radio" value="1" name="product_category_id"checked>1.ì‚¬ë£Œ
+											<input type="radio" value="2" name="product_category_id" >2.ê°„ì‹
+											<input type="radio" value="3" name="product_category_id">3.ìœ„ìƒ/ë°°ë³€
+											<input type="radio" value="4" name="product_category_id">4.ë¯¸ìš©/ëª©ìš•
+											<input type="radio" value="5" name="product_category_id">5.ê¸‰ì‹/ê¸‰ìŠˆê°€
+											<input type="radio" value="6" name="product_category_id">6.ì¥ë‚œê°/í›ˆë ¨
+											<input type="radio" value="7" name="product_category_id">7.í•˜ìš°ìŠ¤/ì´ë™ì¥
+											<input type="radio" value="8" name="product_category_id">8.íŒ¨ì…˜/ì˜ë¥˜
+											<input type="radio" value="9" name="product_category_id">9.ëª©ì¤„/í•˜ë„¤ìŠ¤	
 
 											</td>
 										</tr>
 
 										<tr>
-											<td colspan="2">ÁÖ¹® ºĞ·ù&nbsp;&nbsp;</td>
+											<td colspan="2">ì£¼ë¬¸ ë¶„ë¥˜&nbsp;&nbsp;</td>
 											<td colspan="5" class="pleft">
 											<select id="select1" name="product_price">
-													<option value="" selected>--°¡°İ--</option>
-													<option value="product_price_asc">°¡°İ ³·Àº ¼ø</option>
-													<option value="product_price_desc">°¡°İ ³ôÀº ¼ø</option>
+													<option value="" selected>--ê°€ê²©--</option>
+													<option value="product_price_asc">ê°€ê²© ë‚®ì€ ìˆœ</option>
+													<option value="product_price_desc">ê°€ê²© ë†’ì€ ìˆœ</option>
 											</select> 
 											<select id="select2" name="product_stock">
-													<option value="" selected>--Àç°í·®--</option>
-													<option value="stock_asc">Àç°í·® ÀûÀº ¼ø</option>
-													<option value="stock_desc">Àç°í·® ¸¹Àº ¼ø</option>
+													<option value="" selected>--ì¬ê³ ëŸ‰--</option>
+													<option value="stock_asc">ì¬ê³ ëŸ‰ ì ì€ ìˆœ</option>
+													<option value="stock_desc">ì¬ê³ ëŸ‰ ë§ì€ ìˆœ</option>
 											</select></td>
 										</tr>
 
 
 
 										<tr>
-											<td colspan="7"><input type="button" value="°Ë»ö"
+											<td colspan="7"><input type="button" value="ê²€ìƒ‰"
 												id="search_option" />&nbsp;&nbsp;
-												<input type="reset" value="ÃÊ±âÈ­" /></td>
+												<input type="reset" value="ì´ˆê¸°í™”" /></td>
 												
 										</tr>
 									</table>
@@ -118,11 +118,11 @@
 									<thead>
 										<tr>
 
-											<th>»óÇ°¹øÈ£</th>
-											<th>»óÇ°¸í</th>
-											<th>»óÇ°ºĞ·ù</th>
-											<th>°¡°İ</th>
-											<th>Àç°í·®</th>
+											<th>ìƒí’ˆë²ˆí˜¸</th>
+											<th>ìƒí’ˆëª…</th>
+											<th>ìƒí’ˆë¶„ë¥˜</th>
+											<th>ê°€ê²©</th>
+											<th>ì¬ê³ ëŸ‰</th>
 
 										</tr>
 									</thead>
@@ -157,7 +157,7 @@
 									<ul class="pagination justify-content-center">
 										<li class="page-item"><c:if test="${pageMaker.prev}">
 												<li class="page-item"><a
-													href="${pageMaker.startPage-1}" class="page-link">ÀÌÀü</a></li>
+													href="${pageMaker.startPage-1}" class="page-link">ì´ì „</a></li>
 											</c:if></li>
 										<c:forEach var="num" begin="${pageMaker.startPage}"
 											end="${pageMaker.endPage }">
@@ -168,7 +168,7 @@
 
 										<c:if test="${pageMaker.next}">
 											<li class="page-item"><a href="${pageMaker.endPage +1}"
-												class="page-link">´ÙÀ½</a></li>
+												class="page-link">ë‹¤ìŒ</a></li>
 										</c:if>
 
 									</ul>
@@ -215,7 +215,7 @@
 					<h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
 					<button class="close" type="button" data-dismiss="modal"
 						aria-label="Close">
-						<span aria-hidden="true">¡¿</span>
+						<span aria-hidden="true">Ã—</span>
 					</button>
 				</div>
 				<div class="modal-body">Select "Logout" below if you are ready
@@ -232,8 +232,8 @@
 	<script type="text/javascript">
 	$(document).ready(
 			function() {
-
-				// ÆäÀÌÂ¡ ¹öÆ° ÀÌº¥Æ®
+				
+				// í˜ì´ì§• ë²„íŠ¼ ì´ë²¤íŠ¸
 				var actionForm = $("#pageActionForm");
 
 				$(".numberitem a").on(
@@ -248,14 +248,23 @@
 									$(this).attr("href"));
 							actionForm.submit();
 						});
-						
-				//ÇÊÅÍ¹Ú½º º¯°æ ÀÌº¥Æ®
-				$('.filterBox').on('change', function(event) {
-				    if ($(event.target)[0].tagName === 'SELECT') {
+				
+				//í•„í„°ë°•ìŠ¤ ë³€ê²½ ì´ë²¤íŠ¸
+					$('#frm_search').children().children().children('tr')
+					.children().children('#search_option').on('click', function(event) {
+						console.log('click');
+	
+				    	
+				    	
 				    	var select1 = $('#select1').val();
 				    	var select2 = $('#select2').val();
 				    
-				    }
+				    	console.log($('#select1').val())
+				    	console.log($('#select2').val())
+				    	
+				    
+				    	
+				   
 				});
 
 
