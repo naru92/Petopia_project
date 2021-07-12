@@ -66,6 +66,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.authorizeRequests()
 						.antMatchers("/member/**").access("hasRole('ROLE_USER')")//맴버만 접근
 						.antMatchers("/admin/**").access("hasRole('ROLE_USER')")//어드민만접근
+						
+						
 								
 						.antMatchers("/","admin/main","/loginpage").permitAll() //공개 할 url
 						.antMatchers("/**").authenticated(); //그 밖의 기타경로 인증필요

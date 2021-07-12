@@ -1,5 +1,6 @@
 package co.kr.petopia.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,6 +46,12 @@ public class AdminServiceImpl implements AdminService {
 	public int getTotalProductCount(Criteria cri) {
 		
 		return adminMapper.getTotalProductCount(cri);
+	}
+
+	@Override
+	public List<ProductVO> getSelectOptionList(HashMap<String, Object> result) {
+	
+		return adminMapper.getSelectOptionList(result);
 	}
 
 }

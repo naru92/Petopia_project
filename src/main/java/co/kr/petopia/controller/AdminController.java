@@ -1,26 +1,38 @@
 package co.kr.petopia.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.catalina.User;
+import org.apache.ibatis.annotations.ResultMap;
+import org.apache.tomcat.util.json.JSONParser;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonParser;
+
 import co.kr.petopia.service.AdminService;
+import co.kr.petopia.service.MemberSecurtiyService;
 import co.kr.petopia.utils.Criteria;
 import co.kr.petopia.utils.PageVO;
-import co.kr.petopia.vo.MemberVO;
 import co.kr.petopia.vo.ProductVO;
 import lombok.extern.log4j.Log4j2;
 
@@ -32,6 +44,8 @@ public class AdminController {
 	@Autowired
 	private AdminService adminService;
 	
+	@Autowired
+	MemberSecurtiyService memberSecurtiyService;
 	
 	
 	@GetMapping("/main")
@@ -41,7 +55,15 @@ public class AdminController {
 	}
 	
 	@GetMapping("/member")
-	public String getMemberList(Model model, Criteria cri) {
+	public String getMemberList(Model model, Criteria cri, Authentication authenticate ) {
+		SecurityContextHolder.getContext().getAuthentication();
+	
+	String username =	(String)authenticate.getPrincipal();
+	String userpassword = (String)authenticate.getCredentials();
+	
+		log.info("username : " + username );
+		log.info("password " + userpassword);
+		
 		
 		log.info("getMemberList().." + cri);
 		
@@ -70,11 +92,55 @@ public class AdminController {
 	@PostMapping(value = "/product", 
 	consumes = "application/json", 
 	produces = { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
-	public ResponseEntity<String> selectOptionList(@RequestBody String option ) {
-		System.out.println(option);
-		return null;
+	public ResponseEntity<List<ProductVO>> productList(@RequestBody Map<String, Object> options, Criteria cri){
+		ResponseEntity<String> result = null;
+		HashMap<String,Object> result1 = new HashMap<String, Object>();
+		
+//		int totalProduct = adminService.getTotalMemberCount(cri);
+//		result1.put("pageMaker", new PageVO(cri, totalProduct));
+//		result1.put("productList", adminService.getProductListWithPaging(cri));
+		
+		
+		String product_stock= (String)options.get("product_stock");
+		String product_price= (String)options.get("product_price");
+		result1.put("product_stock", product_stock);
+		result1.put("product_price", product_price);
+	
+		
+		
+		
+		log.info(options);
+		log.info(options.get("product_price"));
+		
+		
+		List<ProductVO> productList = adminService.getSelectOptionList(result1);
+	
+//
+//		try {
+//			result = new ResponseEntity<String>(productList,"SUCCESS", HttpStatus.OK);
+//
+//		} catch (Exception e) {
+//
+//			result = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
+//
+//		}
+//
+		
+		
+		return new ResponseEntity<>(productList, HttpStatus.OK);
+		
+				
 	}
 	
+				
+	
+		
+		
+		
+	
+		
+		
+
 	@GetMapping("/order")
 	public String orderPage() {
 

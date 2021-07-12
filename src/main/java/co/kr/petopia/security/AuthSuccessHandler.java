@@ -12,6 +12,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.DefaultRedirectStrategy;
 import org.springframework.security.web.RedirectStrategy;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
@@ -51,7 +53,8 @@ public class AuthSuccessHandler implements AuthenticationSuccessHandler {
 			Authentication auth) throws IOException, ServletException {
 		
 		logger.info("로그인 성공");
-		 
+		
+		
 		String member_id="";
 		
 		try {

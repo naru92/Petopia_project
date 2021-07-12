@@ -1,5 +1,6 @@
 package co.kr.petopia.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import co.kr.petopia.utils.Criteria;
@@ -16,4 +17,6 @@ public interface AdminService {
 	/*상품*/	
 	public List<ProductVO> getProductListWithPaging(Criteria cri);
 	public int getTotalProductCount(Criteria cri);
+	public List<ProductVO> getSelectOptionList(HashMap<String, Object> result);
+	
 }

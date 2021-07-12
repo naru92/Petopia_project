@@ -1,5 +1,6 @@
 package co.kr.petopia.mapper;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
@@ -50,6 +51,9 @@ public interface AdminMapper{
 	public List<DeliveryVO> getUnprocessedOrderList();
 	
 	//문의 답변 등록
-	public BoardVO insertQnA(BoardVO QnA); 
+	public BoardVO insertQnA(BoardVO QnA);
+	
+	//필터검색
+	public List<ProductVO> getSelectOptionList(HashMap<String, Object> result); 
 	
 }

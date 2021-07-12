@@ -252,32 +252,75 @@
 				//필터박스 변경 이벤트
 					$('#frm_search').children().children().children('tr')
 					.children().children('#search_option').on('click', function(event) {
-						console.log('click');
+						
 	
 				    	
 				    	
 				    	var product_price = $('#select1').val();
 				    	var product_stock = $('#select2').val();
-				    
-				    	console.log($('#select1').val())
-				    	console.log($('#select2').val())
+				    	console.log($('#dataTable').html());
+				    	console.log($('#select1').val());
+				    	console.log($('#select2').val());
 				    	
-				    	var option = {
+				    	var options = {
 				    		product_price : product_price,
 				    		product_stock : product_stock
 				    	}
-
+						
+				    	
 				    	$.ajax({
 			    			type: 'post',
 			    			url: '/admin/product',
-			    			data: JSON.stringify(option),
+			    			cache: false,
+			    			data: JSON.stringify(options),
 			    			contentType: "application/json; charset=utf-8",
 			    			dataType: 'json',
-			    			success: function(result, status, xhr) {
-			    			  	console.log('option select' + result);
+			    			success: function(list, status) {
+			    				
+			    			  	console.log('먼가여' + list);
+			    			  	console.log('#dataTable');
+			    				
+			    			  	var htmls = "";
+								
+								$("#dataTable").html("");
+								
+								$("<tr>" , {
+									html : "<td>" + "상품번호" + "</td>"+  // 컬럼명들
+											"<td>" + "상품명" + "</td>"+
+											"<td>" + "상품분류" + "</td>"+
+											"<td>" + "가격" + "</td>"+				
+											"<td>" + "재고량" + "</td>"
+											
+								}).appendTo("#dataTable") // 이것을 테이블에붙임
+								
+								if(list.length < 1){
+									htmls.push("등록된 상품이 없습니다.");
+								} else {
+									
+									$(list).each(function(){
+										console.log(this.product_idx);
+					                    htmls += '<tr>';
+					                    htmls += '<td>'+ this.product_idx + '</td>';
+					                    htmls += '<td>'+ this.product_name + '</td>';
+						                htmls += '<td>'+ this.product_category_id + '</td>'; 
+					                    htmls += '<td>'+ this.product_price + '</td>';
+					                    htmls += '<td>'+ this.product_stock + '</td>';	
+					                    htmls += '</tr>';
+									
+				                	});	//each end
 
-			    			  	
-			    			  }
+				                	htmls+='<tr>';
+				                	htmls+='<td colspan="5"> <a href="${pageContext.request.contextPath}/write_view">글작성</a> </td>';		                	
+				                	htmls+='</tr>';
+									
+								}
+								$("#dataTable").append(htmls);
+			    			  },
+			    			     error:function(request,status,error){
+			    			         alert("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+			    			        }
+
+
 			    		});
 				    	
 								   

@@ -161,5 +161,43 @@
   		 ]]>
 	</select>
 	
-
+	
+	<select id="getSelectOptionList" parameterType="map" resultType="co.kr.petopia.vo.ProductVO">
+		
+		 <if test="product_price.equals('') and product_stock.equals('')">
+		select * from product order by product_idx asc
+		</if>	 
+		
+		<if test="product_price.equals('product_price_asc') and product_stock.equals('stock_asc')">
+		select * from product order by product_price ASC,product_stock ASC
+		</if>
+		<if test="product_price.equals('product_price_asc') and product_stock.equals('stock_desc')">
+		select * from product order by product_price ASC, product_stock DESC
+		</if>
+		<if test="product_price.equals('product_price_desc') and product_stock.equals('stock_asc')">
+		select * from product order by product_price DESC,product_stock ASC
+		</if>	
+		
+		<if test="product_price.equals('product_price_desc') and product_stock.equals('stock_desc')">
+		select * from product order by product_price DESC,product_stock DESC
+		</if>
+			
+		 <if test="product_price.equals('') and product_stock.equals('stock_asc')">
+		select * from product order by product_stock ASC
+		</if>	 
+		  	
+		 <if test="product_price.equals('') and product_stock.equals('stock_desc')">
+		select * from product order by product_stock DESC
+		</if>	 
+		  	
+		 <if test="product_price.equals('product_price_asc') and product_stock.equals('')">
+		select * from product order by product_price ASC
+		</if>	 
+		 	
+		 <if test="product_price.equals('product_price_desc') and product_stock.equals('')">
+		select * from product order by product_price DESC
+		</if>	
+			
+		
+	</select>
 </mapper>
