@@ -256,15 +256,31 @@
 	
 				    	
 				    	
-				    	var select1 = $('#select1').val();
-				    	var select2 = $('#select2').val();
+				    	var product_price = $('#select1').val();
+				    	var product_stock = $('#select2').val();
 				    
 				    	console.log($('#select1').val())
 				    	console.log($('#select2').val())
 				    	
-				    
+				    	var option = {
+				    		product_price : product_price,
+				    		product_stock : product_stock
+				    	}
+
+				    	$.ajax({
+			    			type: 'post',
+			    			url: '/admin/product',
+			    			data: JSON.stringify(option),
+			    			contentType: "application/json; charset=utf-8",
+			    			dataType: 'json',
+			    			success: function(result, status, xhr) {
+			    			  	console.log('option select' + result);
+
+			    			  	
+			    			  }
+			    		});
 				    	
-				   
+								   
 				});
 
 

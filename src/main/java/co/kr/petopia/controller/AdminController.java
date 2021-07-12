@@ -2,16 +2,26 @@ package co.kr.petopia.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import co.kr.petopia.service.AdminService;
 import co.kr.petopia.utils.Criteria;
 import co.kr.petopia.utils.PageVO;
 import co.kr.petopia.vo.MemberVO;
+import co.kr.petopia.vo.ProductVO;
 import lombok.extern.log4j.Log4j2;
 
 @Log4j2
@@ -54,6 +64,15 @@ public class AdminController {
 		
 		return "admin/productList";
 			
+	}
+	
+	@ResponseBody
+	@PostMapping(value = "/product", 
+	consumes = "application/json", 
+	produces = { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
+	public ResponseEntity<String> selectOptionList(@RequestBody String option ) {
+		System.out.println(option);
+		return null;
 	}
 	
 	@GetMapping("/order")

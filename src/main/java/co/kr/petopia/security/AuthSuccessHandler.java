@@ -51,7 +51,7 @@ public class AuthSuccessHandler implements AuthenticationSuccessHandler {
 			Authentication auth) throws IOException, ServletException {
 		
 		logger.info("로그인 성공");
-		
+		 
 		String member_id="";
 		
 		try {
