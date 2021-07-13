@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <c:set var='root' value="${pageContext.request.contextPath }/" />
 <!DOCTYPE html>
 <html lang="ko">
@@ -17,7 +19,8 @@
 <title>Petopia - Admin</title>
 
 <c:import url="/WEB-INF/views/include/admin_list_css.jsp" />
-
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 
 <body id="page-top">
@@ -107,39 +110,52 @@
 
 								<div class="card-body">
 									<div class="table-responsive">
-										<table class="table table-bordered" id="dataTable"
-											width="100%" cellspacing="0">
+										<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+										
 											<thead>
 												<tr>
-
 													<th>주문번호</th>
-													<th>아이디</th>
 													<th>주문자 이름</th>
 													<th>주소</th>
 													<th>주문량</th>
 													<th>결제금액</th>
 													<th>주문일자</th>
 													<th>결제방법</th>
+													
 												</tr>
 											</thead>
-											<tfoot>
-
-											</tfoot>
+											
 								<c:forEach var='o' items="${orderList}">
+							
 										<tbody>
 											<tr>
 											<td>${o.order_idx }</td>
-											<td>${o.order_name }</td>
-											<td>${o.product_category_id }</td>
-											<td>${o.product_price }</td>
-											<td>${o.product_stock }</td>
+											<td>${o.order_receiver_name }</td>
+											<td>${o.order_receiver_address }</td>
+											<td>${o.order_quantity }</td>
+											<td>${o.order_price }</td>
+											<td>${o.order_date }</td>
+											<td>
+											<c:if test="${o.payment_method == 1}" >무통장입금</c:if>
+											<c:if test="${o.payment_method == 2}" >카드결제</c:if>
+											</td>
 											</tr>
-									</tbody>
-								</c:forEach>
+										</tbody>
+										</c:forEach>
 										</table>
 									</div>
+									
+									
+										<form id='pageActionForm' action="/admin/order" method='get'>
+												<input type='hidden' name='pageNum'
+													value='${pageMaker.cri.pageNum}' /> <input type='hidden'
+													name='amount' value='${pageMaker.cri.amount}' />
+									</form>
+									
+									
+									
 								</div>
-
+								<input type="hidden" id="size" value="${fn:length(list)}" />
 								<div class="row">
 									<div class="col-sm-12 col-md-5 paginationdiv">
 										<div class="d-none d-md-block page-div">
@@ -219,7 +235,7 @@
 		<c:import url="/WEB-INF/views/include/admin_list_js.jsp" />
 
 
-		<script type="text/javascript">
+	<script type="text/javascript">
 	$(document).ready(
 			function() {
 				
@@ -232,10 +248,11 @@
 
 							e.preventDefault();
 
-							console.log('click');
-
+							console.log($(this).attr("href"));
+								
 							actionForm.find("input[name='pageNum']").val(
 									$(this).attr("href"));
+							
 							actionForm.submit();
 					});
 				

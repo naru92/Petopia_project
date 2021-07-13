@@ -175,11 +175,14 @@
   		 	SELECT * FROM (
               SELECT ROWNUM AS RNUM, A.* FROM (
                        SELECT
-                             *
+                             o.order_idx as order_idx , od.order_receiver_name as order_receiver_name,
+                             od.order_receiver_address as order_receiver_address, od.order_quantity as order_quantity,
+                             od.order_quantity * p.product_price as order_price, o.order_date as order_date,
+                             o.payment_method as payment_method 
                          FROM
-                             order_form
-                         
-                         order by order_idx ASC
+                             order_form o, order_detail od, product p
+                         where o.order_idx = od.order_idx and o.product_idx = p.product_idx and od.order_idx = p.product_idx
+                         order by o.order_idx ASC
              ) A WHERE ROWNUM <= #{pageNum} * #{amount}
          ) WHERE RNUM > (#{pageNum}-1) * #{amount} 
   		 ]]>
