@@ -67,7 +67,7 @@
 								<div class="card-body filterBox">
 									<div class="boxtr">
 										<form action="${contextPath }/admin/membmer/listMembers.do"
-											method="post" id="frm_search">
+											method="post" id="frm_search"></form>
 											<table>
 
 
@@ -125,22 +125,17 @@
 											<tfoot>
 
 											</tfoot>
-											<tbody>
-												<tr>
-													<td>Tiger Nixon</td>
-													<td>System Architect</td>
-													<td>Edinburgh</td>
-													<td>경기 북부 남부 동부</td>
-													<td>3개</td>
-													<td>320,800원</td>
-													<td>2011/04/25</td>
-													<td>카드</td>
-
-
-												</tr>
-												</tr>
-
-											</tbody>
+								<c:forEach var='o' items="${orderList}">
+										<tbody>
+											<tr>
+											<td>${o.order_idx }</td>
+											<td>${o.order_name }</td>
+											<td>${o.product_category_id }</td>
+											<td>${o.product_price }</td>
+											<td>${o.product_stock }</td>
+											</tr>
+									</tbody>
+								</c:forEach>
 										</table>
 									</div>
 								</div>
@@ -149,31 +144,21 @@
 									<div class="col-sm-12 col-md-5 paginationdiv">
 										<div class="d-none d-md-block page-div">
 											<ul class="pagination justify-content-center">
-												<li class="page-item">
-												<a href="#" class="page-link">이전</a>
-												</li>
-												<li class="page-item"><a href="#" class="page-link">1</a>
-												</li>
-												<li class="page-item"><a href="#" class="page-link">2</a>
-												</li>
-												<li class="page-item"><a href="#" class="page-link">3</a>
-												</li>
-												<li class="page-item"><a href="#" class="page-link">4</a>
-												</li>
-												<li class="page-item"><a href="#" class="page-link">5</a>
-												</li>
-												<li class="page-item"><a href="#" class="page-link">6</a>
-												</li>
-												<li class="page-item"><a href="#" class="page-link">7</a>
-												</li>
-												<li class="page-item"><a href="#" class="page-link">8</a>
-												</li>
-												<li class="page-item"><a href="#" class="page-link">9</a>
-												</li>
-												<li class="page-item"><a href="#" class="page-link">10</a>
-												</li>
-												<li class="page-item"><a href="#" class="page-link">다음</a>
-												</li>
+												<li class="page-item"><c:if test="${pageMaker.prev}">
+												<li class="page-item"><a
+													href="${pageMaker.startPage-1}" class="page-link">이전</a></li>
+											</c:if></li>
+										<c:forEach var="num" begin="${pageMaker.startPage}"
+											end="${pageMaker.endPage }">
+											<li
+												class='page-item numberitem ${pageMaker.cri.pageNum == num ? "active" : "" }'><a
+												href="${num}" class="page-link">${num}</a></li>
+										</c:forEach>
+
+										<c:if test="${pageMaker.next}">
+											<li class="page-item"><a href="${pageMaker.endPage +1}"
+												class="page-link">다음</a></li>
+										</c:if>
 											</ul>
 										</div>
 									</div>
@@ -233,6 +218,29 @@
 
 		<c:import url="/WEB-INF/views/include/admin_list_js.jsp" />
 
+
+		<script type="text/javascript">
+	$(document).ready(
+			function() {
+				
+				// 페이징 버튼 이벤트
+				var actionForm = $("#pageActionForm");
+
+				$(".numberitem a").on(
+						"click",
+						function(e) {
+
+							e.preventDefault();
+
+							console.log('click');
+
+							actionForm.find("input[name='pageNum']").val(
+									$(this).attr("href"));
+							actionForm.submit();
+					});
+				
+			});
+	</script>
 </body>
 
 </html>

@@ -162,24 +162,24 @@
   		 ]]>
 	</select>
 	<!-- 총 주문수  -->
-	<select id="getTotalOrderCount" resultType="int">
+	<select id="getOrderCount" resultType="int">
 	
   		 <![CDATA[
-    	 	select count(*) from product
+    	 	select count(*) from order_form
   		 ]]>
   		 
 	</select>
 	<!-- 주문리스트 페이징 -->
-	<select id="getOrderListWithPaging" parameterType="int" resultType="co.kr.petopia.vo.ProductVO">
+	<select id="getOrderListWithPaging" parameterType="int" resultType="co.kr.petopia.vo.OrderVO">
   		 <![CDATA[
   		 	SELECT * FROM (
               SELECT ROWNUM AS RNUM, A.* FROM (
                        SELECT
                              *
                          FROM
-                             delivery
+                             order_form
                          
-                         order by delivery_idx
+                         order by order_idx ASC
              ) A WHERE ROWNUM <= #{pageNum} * #{amount}
          ) WHERE RNUM > (#{pageNum}-1) * #{amount} 
   		 ]]>
@@ -194,7 +194,7 @@
   		 
 	</select>
 	<!-- 총 배송리스트 페이징 -->
-	<select id="getDeliveryListWithPaging" parameterType="int" resultType="co.kr.petopia.vo.ProductVO">
+	<select id="getDeliveryListWithPaging" parameterType="int" resultType="co.kr.petopia.vo.DeliveryVO">
   		 <![CDATA[
   		 	SELECT * FROM (
               SELECT ROWNUM AS RNUM, A.* FROM (

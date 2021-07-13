@@ -252,9 +252,6 @@
 				//필터박스 이벤트
 					$('#frm_search').children().children().children('tr')
 					.children().children('#search_option').on('click', function(event) {
-						
-	
-				    	
 				    	
 				    	var product_price = $('#select1').val();
 				    	var product_stock = $('#select2').val();
@@ -267,7 +264,6 @@
 				    		product_stock : product_stock
 				    	}
 						
-				    	
 				    	$.ajax({
 			    			type: 'post',
 			    			url: '/admin/product',
@@ -276,7 +272,6 @@
 			    			contentType: "application/json; charset=utf-8",
 			    			dataType: 'json',
 			    			success: function(list, status) {
-			    				
 			    				
 			    			  	var htmls = "";
 								
@@ -307,7 +302,6 @@
 									
 				                	});	//each end
 
-				                	
 									
 								}
 								$("#dataTable").append(htmls);
@@ -315,15 +309,12 @@
 			    			     error:function(request,status,error){
 			    			         alert("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
 			    			        }
-
-
 			    		});
-				    	
-								   
+					});
+
+			
+				
 				});
-
-
-			});
 	
 
 	</script>	
