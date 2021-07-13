@@ -5,9 +5,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-
 <meta name="viewport" content="width=decice-width" initial-scale="1">
-
 <title>Login</title>
 <!-- CSS here -->
 <link rel="stylesheet" href="/petopia/css/login_style.css">
