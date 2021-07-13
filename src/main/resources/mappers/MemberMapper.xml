@@ -6,11 +6,12 @@
 
 <mapper namespace="co.kr.petopia.mapper.MemberMapper">
 
-	<!-- 맴버정보(권한,enalbed포함) 가져오기  -->
+	<!-- 맴버정보(권한, enalbed포함) 가져오기  -->
 	<select id="getSelectMemberInfo" parameterType="String" resultType="co.kr.petopia.vo.MemberVO">
 	select m.member_id as member_id, m.member_password as member_password, m.member_name as member_name,
        a.authority, a.enabled
     FROM member m , authorities a
     WHERE #{member_id} = a.member_id and m.member_id = #{member_id}
 	</select>
+	
 </mapper>

@@ -23,7 +23,8 @@
 <link
 	href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
 	rel="stylesheet">
-
+	 <script
+		src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.4.1/chart.min.js"></script>
 <!-- Custom styles for this template-->
 <link href="/petopia/css/sb-admin-2.min.css" rel="stylesheet">
 
@@ -68,7 +69,7 @@
 									<div class="h5 mb-0 font-weight-bold text-gray-800">${getTodayIncome}</div>
 								</div>
 								<div class="col-auto">
-									<i class="fas fa-calendar fa-2x text-gray-300"></i>
+									<i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
 								</div>
 							</div>
 						</div>
@@ -87,7 +88,7 @@
 									<div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
 								</div>
 								<div class="col-auto">
-									<i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+									<i class="fas fa-hand-holding-usd fa-2x text-gray-300"></i>
 								</div>
 							</div>
 						</div>
@@ -108,7 +109,7 @@
 									<div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
 								</div>
 								<div class="col-auto">
-									<i class="fas fa-comments fa-2x text-gray-300"></i>
+									<i class="fas fa-male fa-2x text-gray-300"></i>
 								</div>
 							</div>
 						</div>
@@ -133,7 +134,7 @@
 										현재 주문 (건)</div>
 									<div class="h5 mb-0 font-weight-bold text-gray-800">0</div>
 								</div>
-								<div class="col-auto">
+									<div class="col-auto">
 									<i class="fas fa-calendar fa-2x text-gray-300"></i>
 								</div>
 							</div>
@@ -184,7 +185,7 @@
 										총 주문량 (건)</div>
 									<div class="h5 mb-0 font-weight-bold text-gray-800">${getTotalOrderList}</div>
 								</div>
-								<div class="col-auto">
+									<div class="col-auto">
 									<i class="fas fa-calendar fa-2x text-gray-300"></i>
 								</div>
 							</div>
@@ -228,9 +229,9 @@
 						</div>
 						<!-- Card Body -->
 						<div class="card-body">
-							<div class="chart-area">
-								<canvas id="myAreaChart"></canvas>
-							</div>
+							
+								<canvas id="userChart" ></canvas>
+						
 						</div>
 					</div>
 				</div>
@@ -241,8 +242,8 @@
 						<!-- Card Header - Dropdown -->
 						<div
 							class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-							<h6 class="m-0 font-weight-bold text-primary">Revenue
-								Sources</h6>
+							<h6 class="m-0 font-weight-bold text-primary">Mypet 비율
+								</h6>
 							<div class="dropdown no-arrow">
 								<a class="dropdown-toggle" href="#" role="button"
 									id="dropdownMenuLink" data-toggle="dropdown"
@@ -261,20 +262,11 @@
 							</div>
 						</div>
 						<!-- Card Body -->
-						<div class="card-body">
-							<div class="chart-pie pt-4 pb-2">
-								<canvas id="myPieChart"></canvas>
-							</div>
-							<div class="mt-4 text-center small">
-								<span class="mr-2"> <i class="fas fa-circle text-primary"></i>
-									Direct
-								</span> <span class="mr-2"> <i
-									class="fas fa-circle text-success"></i> Social
-								</span> <span class="mr-2"> <i class="fas fa-circle text-info"></i>
-									Referral
-								</span>
-							</div>
-						</div>
+						
+								
+								<canvas id="pieChart"></canvas>
+							
+						
 					</div>
 				</div>
 
@@ -368,22 +360,60 @@
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+					<h5 class="modal-title" id="exampleModalLabel">로그아웃</h5>
 					<button class="close" type="button" data-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true">×</span>
 					</button>
 				</div>
-				<div class="modal-body">Select "Logout" below if you are ready
-					to end your current session.</div>
+				<div class="modal-body">"로그아웃"시 Petopia 메인으로 돌아갑니다.</div>
 				<div class="modal-footer">
 					<button class="btn btn-secondary" type="button"
-						data-dismiss="modal">Cancel</button>
-					<a class="btn btn-primary" href="login.html">Logout</a>
+						data-dismiss="modal">취소</button>
+					<a class="btn btn-primary" href="${root }main">로그아웃</a>
 				</div>
 			</div>
 		</div>
 	</div>
+
+<script type="text/javascript">
+	
+	console.log('chart.start')
+	var context = document.getElementById('userChart').getContext('2d');
+	var userChart = new Chart(context, {
+		type: 'line',
+		data :{
+			labels: ['07-10' , '07-11' , '07-12' , '07-13'],
+			datasets : [{
+				label:'유저수',
+				lineTension : 0,
+				data: [101, 200, 94 , 303],
+				backgroundcolor: "rgb(255, 192, 203)"
+			}]
+		}
+	});
+	
+	var context2 = document.getElementById('pieChart').getContext('2d');
+	var userChart = new Chart(context2, {
+		type : 'doughnut',
+		data : {
+		labels : ["강아지" , "고양이"],
+		datasets : [ {
+		backgroundColor : ["#2AC1BC", "#FDD272"],
+		hoverBackgroundColor :["#2AC1BC", "#FDD272"],
+		data : [10, 23]
+		} ]
+		},
+			options : {
+				responsive : false
+			}
+	});
+	
+
+
+
+</script>
+
 
 	<!-- Bootstrap core JavaScript-->
 	<script src="/petopia/vendor/jquery/jquery.min.js"></script>
@@ -395,12 +425,7 @@
 	<!-- Custom scripts for all pages-->
 	<script src="/petopia/js/sb-admin-2.min.js"></script>
 
-	<!-- Page level plugins -->
-	<script src="/petopia/vendor/chart.js/Chart.min.js"></script>
 
-	<!-- Page level custom scripts -->
-	<script src="/petopia/js/demo/chart-area-demo.js"></script>
-	<script src="/petopia/js/demo/chart-pie-demo.js"></script>
 
 </body>
 

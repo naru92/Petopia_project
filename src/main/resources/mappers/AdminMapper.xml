@@ -146,7 +146,8 @@
   		 ]]>
   		 
 	</select>
-		<select id="getProductListWithPaging" parameterType="int" resultType="co.kr.petopia.vo.ProductVO">
+	<!-- 상품 리스트 페이징 -->
+	<select id="getProductListWithPaging" parameterType="int" resultType="co.kr.petopia.vo.ProductVO">
   		 <![CDATA[
   		 	SELECT * FROM (
               SELECT ROWNUM AS RNUM, A.* FROM (
@@ -160,8 +161,83 @@
          ) WHERE RNUM > (#{pageNum}-1) * #{amount} 
   		 ]]>
 	</select>
+	<!-- 총 주문수  -->
+	<select id="getTotalOrderCount" resultType="int">
+	
+  		 <![CDATA[
+    	 	select count(*) from product
+  		 ]]>
+  		 
+	</select>
+	<!-- 주문리스트 페이징 -->
+	<select id="getOrderListWithPaging" parameterType="int" resultType="co.kr.petopia.vo.ProductVO">
+  		 <![CDATA[
+  		 	SELECT * FROM (
+              SELECT ROWNUM AS RNUM, A.* FROM (
+                       SELECT
+                             *
+                         FROM
+                             delivery
+                         
+                         order by delivery_idx
+             ) A WHERE ROWNUM <= #{pageNum} * #{amount}
+         ) WHERE RNUM > (#{pageNum}-1) * #{amount} 
+  		 ]]>
+	</select>
+	
+	<!-- 총 배송수  -->
+	<select id="getTotalDeliveryCount" resultType="int">
+	
+  		 <![CDATA[
+    	 	select count(*) from delivery
+  		 ]]>
+  		 
+	</select>
+	<!-- 총 배송리스트 페이징 -->
+	<select id="getDeliveryListWithPaging" parameterType="int" resultType="co.kr.petopia.vo.ProductVO">
+  		 <![CDATA[
+  		 	SELECT * FROM (
+              SELECT ROWNUM AS RNUM, A.* FROM (
+                       SELECT
+                             *
+                         FROM
+                             product
+                         
+                         order by product_idx
+             ) A WHERE ROWNUM <= #{pageNum} * #{amount}
+         ) WHERE RNUM > (#{pageNum}-1) * #{amount} 
+  		 ]]>
+	</select>
+	<!-- 총 문의글 수  -->
+	<select id="getTotalQnACount" resultType="int">
+	
+  		 <![CDATA[
+    	 select count(*) 
+    	 	from board b , content c 
+    	 	where b.board_id = 2 and b.board_id = c.board_id 
+    	 	
+   		 ]]>
+  		 
+	</select>
+	<!-- 총 문의글 페이징 -->
+	<select id="getQnAListWithPaging" parameterType="int" resultType="co.kr.petopia.vo.ProductVO">
+  		 <![CDATA[
+  		 SELECT * FROM (
+              SELECT ROWNUM AS RNUM, A.* FROM (
+                       SELECT
+                             c.content_idx as content_idx , m.member_id as member_id , c.content_text as content_text 
+                         FROM
+                             content c ,board b, member m
+                         Where b.board_id = 2 and b.board_id = c.board_id and c.member_id = m.member_id 
+                         order by c.content_idx
+             ) A WHERE ROWNUM <= 10 * 1
+         ) WHERE RNUM > 10 * 1 ;
+  		 ]]>
+	</select>
+	<!--페이징 끝-->	
 	
 	
+	<!-- 필터검색 -->
 	<select id="getSelectOptionList" parameterType="map" resultType="co.kr.petopia.vo.ProductVO">
 		
 		 <if test="product_price.equals('') and product_stock.equals('')">
@@ -171,6 +247,7 @@
 		<if test="product_price.equals('product_price_asc') and product_stock.equals('stock_asc')">
 		select * from product order by product_price ASC,product_stock ASC
 		</if>
+		
 		<if test="product_price.equals('product_price_asc') and product_stock.equals('stock_desc')">
 		select * from product order by product_price ASC, product_stock DESC
 		</if>

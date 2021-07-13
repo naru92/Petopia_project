@@ -110,6 +110,31 @@
 			</div>
 		</div>
 	</div>
+	
+	
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	console.log(chart.start)
+	var context = document.getElementById('userChart').getContext('2d');
+	var userChart = new Chart(context, {
+		type: 'line',
+		data :{
+			labels: ['07-10' , '07-11' , '07-12' , '07-13']
+			datasets : [{
+				label:'유저수',
+				lineTension : 0,
+				data [101, 200, 94 , 303],
+				backgroundcolor: "rgb(255, 192, 203)"
+			}]
+		}
+	});
+
+	
+})
+
+
+</script>
 
 	<c:import url="/WEB-INF/views/include/admin_list_js.jsp" />
 	<script

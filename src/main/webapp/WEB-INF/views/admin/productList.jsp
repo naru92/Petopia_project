@@ -249,7 +249,7 @@
 							actionForm.submit();
 						});
 				
-				//필터박스 변경 이벤트
+				//필터박스 이벤트
 					$('#frm_search').children().children().children('tr')
 					.children().children('#search_option').on('click', function(event) {
 						
@@ -277,8 +277,6 @@
 			    			dataType: 'json',
 			    			success: function(list, status) {
 			    				
-			    			  	console.log('먼가여' + list);
-			    			  	console.log('#dataTable');
 			    				
 			    			  	var htmls = "";
 								
@@ -309,9 +307,7 @@
 									
 				                	});	//each end
 
-				                	htmls+='<tr>';
-				                	htmls+='<td colspan="5"> <a href="${pageContext.request.contextPath}/write_view">글작성</a> </td>';		                	
-				                	htmls+='</tr>';
+				                	
 									
 								}
 								$("#dataTable").append(htmls);

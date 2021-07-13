@@ -69,12 +69,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 						
 						
 								
-						.antMatchers("/","admin/main","/loginpage").permitAll() //공개 할 url
+						.antMatchers("/","/admin/main","/loginpage").permitAll() //공개 할 url
 						.antMatchers("/**").authenticated(); //그 밖의 기타경로 인증필요
 		
 		http
 				.formLogin() //폼로그인 방식
-						.loginPage("/loginpage") //로그인 페이지 url설정
+						.loginPage("/member/loginpage") //로그인 페이지 url설정
 						.loginProcessingUrl("/loginProcess") //로그인 프로세스 경로
 						.usernameParameter("member_id") //아이디 파라미터값 jsp의 input 값과 일치
 						.passwordParameter("member_password")//비밀번호 파라미터값 jsp의 passwor값과 일치

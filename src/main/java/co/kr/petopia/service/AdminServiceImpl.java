@@ -8,7 +8,11 @@ import org.springframework.stereotype.Service;
 
 import co.kr.petopia.mapper.AdminMapper;
 import co.kr.petopia.utils.Criteria;
+import co.kr.petopia.vo.ContentVO;
+import co.kr.petopia.vo.DeliveryVO;
+import co.kr.petopia.vo.DonationVO;
 import co.kr.petopia.vo.MemberVO;
+import co.kr.petopia.vo.OrderVO;
 import co.kr.petopia.vo.ProductVO;
 
 
@@ -53,5 +57,90 @@ public class AdminServiceImpl implements AdminService {
 	
 		return adminMapper.getSelectOptionList(result);
 	}
+
+	@Override
+	public List<MemberVO> getTodayMemberList() {
+		return adminMapper.getTodayMemberList();
+	}
+
+	@Override
+	public int getOrderCount(Criteria cri) {
+		return adminMapper.getOrderCount(cri);
+	}
+
+	@Override
+	public List<OrderVO> getOrderListWithPaging(Criteria cri) {
+		return adminMapper.getOrderListWithPaging(cri);
+	}
+
+	@Override
+	public int getTotalOrderList(Criteria cri) {
+		return adminMapper.getTotalOrderList(cri);
+	}
+
+	@Override
+	public int getDeliveryCount(Criteria cri) {
+		return adminMapper.getDeliveryCount(cri);
+	}
+
+	@Override
+	public List<DeliveryVO> getDeliveryListWithPaging(Criteria cri) {
+		return adminMapper.getDeliveryListWithPaging(cri);
+	}
+
+	@Override
+	public List<DeliveryVO> getUnprocessedOrderList() {
+		
+		return adminMapper.getUnprocessedOrderList();
+	}
+
+	@Override
+	public List<DeliveryVO> getRefundList() {
+		return adminMapper.getRefundList();
+	}
+
+	@Override
+	public int getDonationCount(Criteria cri) {
+		return adminMapper.getDonationCount(cri);
+	}
+
+	@Override
+	public List<DonationVO> getDonationWithPaging(Criteria cri) {
+		return adminMapper.getDonationWithPaging(cri);
+	}
+
+	@Override
+	public int getTodayDonation() {
+		return adminMapper.getTodayDonation();
+	}
+
+	@Override
+	public int getTodayIncome() {
+		return adminMapper.getTodayIncome();
+	}
+	
+	//오늘 배송
+	@Override
+	public List<OrderVO> getCurrentOrderList() {
+		return adminMapper.getCurrentOrderList();
+	}
+
+	@Override
+	public int getQnACount(Criteria cri) {
+		// TODO Auto-generated method stub
+		return adminMapper.getQnACount(cri);
+	}
+
+	@Override
+	public List<ContentVO> getQnAListWithPaging(Criteria cri) {
+		
+		return adminMapper.getQnAListWithPaging(cri);
+	}
+
+
+
+	
+
+	
 
 }
