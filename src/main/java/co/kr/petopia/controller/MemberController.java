@@ -7,25 +7,30 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/member")
-public class LoginController {
+public class MemberController {
 
 	@GetMapping("/login")
 	public String login() {
-		return "login/login";
+		return "member/login";
 	}
 		
 	@GetMapping("/joinagree")
 	public String joinagree() {
-		return "login/joinagree";
+		return "member/joinagree";
 	}	
 	
 	@GetMapping("/join")
 	public String join() {
-		return "login/join";
+		return "member/join";
 	}	
 	
 	@GetMapping("/welcome")
 	public String welcome() {
-		return "login/welcome";
+		return "member/welcome";
+	}
+	
+	@GetMapping("/jusoPopup")
+	public String jusoPopup() {
+		return "member/jusoPopup";
 	}
 }

@@ -9,7 +9,7 @@
                   <div class="menu-wrapper">
                       <div class="links">
                           <a href="joinagree" class="link_text">회원가입</a>
-                          <a href="loginpage" class="link_text">로그인</a>
+                          <a href="login" class="link_text">로그인</a>
                           <a href="#" class="link_text">고객센터</a>
                       </div>
 
@@ -30,7 +30,7 @@
                           </div>
                       <!-- Logo -->
                       <div class="logo">
-                          <a href="main.html"><img src="petopia/images/petopia_logo.png" alt=""></a>
+                          <a href="main.html"><img src="/petopia/images/petopia_logo.png" alt=""></a>
                       </div>
                       </nav>
                         

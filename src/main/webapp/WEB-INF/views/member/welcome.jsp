@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
+<%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
@@ -9,7 +9,7 @@
 
 <title>welcome Petopia</title>
 <!-- CSS here -->
-<link rel="stylesheet" href="petopia/css/welcome_style.css">
+<link rel="stylesheet" href="/petopia/css/welcome_style.css">
 <!-- default_css -->
 <%@include file="../include/default_css.jsp"%>
 </head>
