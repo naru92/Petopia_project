@@ -17,6 +17,6 @@ public class OrderController {
 public String getOrderForm(Model model) {
 		
 		
-		return "/order/confirmation";
+		return "/order/checkout";
 	}
 }
