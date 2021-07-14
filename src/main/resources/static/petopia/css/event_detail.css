@@ -1,0 +1,14 @@
+.content{
+  margin-top: 70px;
+  margin-left: 400px;
+  margin-bottom: 100px;
+}
+.subtitle{
+  margin-top: 150px;
+  margin-bottom: 30px;
+}
+
+.content img {
+	width: 1010px;
+    height: 360px;
+}

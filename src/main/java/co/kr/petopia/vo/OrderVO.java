@@ -1,18 +1,18 @@
 package co.kr.petopia.vo;
 
 import java.util.Date;
+import lombok.Getter;
+import lombok.Setter;
 
-import lombok.Data;
-
-
-@Data
+@Getter @Setter
 public class OrderVO {
-
+	
 	private int order_idx;
-	private String order_name;
-	private int member_id;
+	private int product_idx;
+	private String member_id;
 	private Date order_date;
 	private int payment_method;
+	private String user_name;
 	
 	
 	
@@ -24,5 +24,8 @@ public class OrderVO {
 	private int order_price;
 	
 	
+
+	
+
 	
 }

@@ -4,7 +4,7 @@
 
 	<!-- footer -->	
     <div class="container-fluid">
-        <img src="petopia/images/petopia_logomini.png">
+        <img src="/petopia/images/petopia_logomini.png">
         </br>
         <p>PETOPIA</p>
         </br>
