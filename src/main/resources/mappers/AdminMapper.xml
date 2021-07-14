@@ -73,7 +73,10 @@
 		
 	</delete>
 	
-	
+	<!-- 배송리스트 -->
+	<select id="getDeliveryList" resultType="co.kr.petopia.vo.DeliveryVO">
+		select * from delivery
+	</select>
 	<!-- 미처리 배송  --> 
 	<select id="getUnprocessedOrderList" resultType="co.kr.petopia.vo.DeliveryVO">
 	select *
@@ -178,7 +181,7 @@
                              o.order_idx as order_idx , od.order_receiver_name as order_receiver_name,
                              od.order_receiver_address as order_receiver_address, od.order_quantity as order_quantity,
                              od.order_quantity * p.product_price as order_price, o.order_date as order_date,
-                             o.payment_method as payment_method 
+                             o.payment_method as payment_method , od.order_name as order_name
                          FROM
                              order_form o, order_detail od, product p
                          where o.order_idx = od.order_idx and o.product_idx = p.product_idx and od.order_idx = p.product_idx
@@ -201,12 +204,17 @@
   		 <![CDATA[
   		 	SELECT * FROM (
               SELECT ROWNUM AS RNUM, A.* FROM (
-                       SELECT
-                             *
-                         FROM
-                             product
+                      SELECT
+                       		d.delivery_idx as delivery_idx , p.product_name product_name,
+                       		od.order_receiver_name as order_receiver_name, od.order_receiver_phonenumber as order_receiver_phonenumber,
+        			   		od.order_receiver_address as order_receiver_address, o.order_date as order_date, d.delivery_state as delivery_state
+					   FROM 
+					   		delivery d, order_form o, order_detail od, product p
+					   WHERE
+					   		d.order_idx = o.order_idx and o.order_idx = od.order_idx and o.product_idx = p.product_idx
+
                          
-                         order by product_idx
+                         order by delivery_idx
              ) A WHERE ROWNUM <= #{pageNum} * #{amount}
          ) WHERE RNUM > (#{pageNum}-1) * #{amount} 
   		 ]]>
@@ -278,6 +286,154 @@
 		select * from product order by product_price DESC
 		</if>	
 			
-		
 	</select>
+	<!-- 배송 필터리스트 -->
+	<select id="selectOptionDeliveryList" parameterType="map" resultType ="co.kr.petopia.vo.DeliveryVO">
+	
+	<choose>
+	 <when test="is_member == null || is_member.equals('')">
+	 
+	 	<!-- is_member가 null 일시 배송 전체리스트 -->
+	 	SELECT
+	 		d.delivery_idx as delivery_idx , p.product_name product_name,
+            od.order_receiver_name as order_receiver_name, od.order_receiver_phonenumber as order_receiver_phonenumber,
+        	od.order_receiver_address as order_receiver_address, d.delivery_date as delivery_date, d.delivery_state as delivery_state,
+        	od.order_name as order_name
+	 	FROM
+			delivery d, order_form o, order_detail od, product p
+	 	WHERE
+	 		d.order_idx = o.order_idx and o.order_idx = od.order_idx and o.product_idx = p.product_idx
+	 		<trim prefix =" and " prefixOverrides = "and">
+	 		<if test="delivery_state != null and !delivery_state.equals('')">
+	 			<choose>	 				
+	 				<when test ="delivery_state.equals('delivery_state_not')">
+	 				d.delivery_state = '배송처리중'
+	 				</when>
+	 				<when test="delivery_state.equals('delivery_state_complete')">
+	 				d.delivery_state = '배송완료'
+	 				</when>
+	 				
+	 			</choose>
+	 		</if>
+	 		</trim>
+	 		<trim prefix=" and " prefixOverrides="and" >
+	 		<if test="delivery_refund != null and !delivery_state.equals('')">
+	 			<choose>	 				
+	 				<when test="delivery_refund.equals('refund_req')">
+	 				d.delivery_state = '환불요청'
+	 				</when>
+	 				<when test="delivery_refund.equals('return_req')">
+	 				d.delivery_state = '반품요청'
+	 				</when>
+	 				<when test="delivery_refund.equals('req_complete')">
+	 				d.delivery_state = '환불처리완료'
+	 				</when>
+	 			</choose>
+	 		</if>
+	 		</trim>
+	 		
+	 		ORDER BY delivery_date ASC
+	 		
+	 		
+	 		
+	 </when>
+	 
+	 <when test="is_member.equals('member')">
+	 	<!-- is_member가 member 일시 회원 배송 전체리스트 -->
+	 	
+	 	SELECT 
+	 		d.delivery_idx as delivery_idx , p.product_name product_name,
+            od.order_receiver_name as order_receiver_name, od.order_receiver_phonenumber as order_receiver_phonenumber,
+        	od.order_receiver_address as order_receiver_address, d.delivery_state as delivery_state, d.delivery_date as delivery_date,
+        	od.order_name as order_name
+	 	FROM
+	 		delivery d, order_form o, order_detail od, product p, member m
+	 	WHERE
+	 		d.order_idx = o.order_idx and o.order_idx = od.order_idx and o.product_idx = p.product_idx and
+            m.member_id = o.member_id
+            <trim prefix = " and " prefixOverrides = " and ">
+	 		<if test="delivery_state != null and !delivery_state.equals('')">
+	 			<choose>	 				
+	 				<when test="delivery_state.equals('delivery_state_not')">
+	 				d.delivery_state = '배송처리중'
+	 				</when>
+	 				<when test="delivery_state.equals('delivery_state_complete')">
+	 				d.delivery_state = '배송완료'
+	 				</when>
+	 				<when test="">
+	 				</when>
+	 			</choose>
+	 		</if>
+	 		</trim>
+	 		<trim prefix=" and " prefixOverrides="and" >
+	 		<if test="delivery_refund != null and !delivery_state.equals('')">
+	 			<choose>	 				
+	 				<when test="delivery_refund.equals('refund_req')">
+	 				d.delivery_state = '환불요청'
+	 				</when>
+	 				<when test="delivery_refund.equals('return_req')">
+	 				d.delivery_state = '반품요청'
+	 				</when>
+	 				<when test="delivery_refund.equals('req_complete')">
+	 				d.delivery_state = '환불처리완료'
+	 				</when>
+	 			</choose>
+	 		</if>
+	 		</trim>
+	 	 ORDER BY delivery_date ASC
+	 	 
+	 </when>
+	 
+	 <otherwise>
+	 	<!-- is_member가 member_not 일시 비회원 배송 전체리스트 -->
+	 	
+		SELECT DISTINCT
+	 		d.delivery_idx as delivery_idx , p.product_name product_name,
+            od.order_receiver_name as order_receiver_name,
+            od.order_receiver_phonenumber as order_receiver_phonenumber,
+        	od.order_receiver_address as order_receiver_address, 
+            d.delivery_state as delivery_state,d.delivery_date as delivery_date,
+            od.order_name as order_name
+	 	FROM
+			delivery d, order_form o, order_detail od, product p, member m
+	 	WHERE
+           d.order_idx= o.order_idx and o.order_idx = od.order_idx and o.product_idx = p.product_idx 
+           and od.product_idx = p.product_idx and o.member_id is null
+           <trim prefix=" and " prefixOverrides="and">
+	 		<if test="delivery_state != null and !delivery_state.equals('')">
+	 			<choose>	 				
+	 				<when test="delivery_state.equals('delivery_state_not')">
+	 				d.delivery_state = '배송처리중'
+	 				</when>
+	 				<when test="delivery_state.equals('delivery_state_complete')">
+	 				d.delivery_state = '배송완료'
+	 				</when>
+	 				<when test="">
+	 				</when>
+	 			</choose>
+	 		</if>
+	 		</trim>
+	 		<trim prefix=" and " prefixOverrides="and" >
+	 		<if test="delivery_refund != null and !delivery_state.equals('')">
+	 			<choose>	 				
+	 				<when test="delivery_refund.equals('refund_req')">
+	 				d.delivery_state = '환불요청'
+	 				</when>
+	 				<when test="delivery_refund.equals('return_req')">
+	 				d.delivery_state = '반품요청'
+	 				</when>
+	 				<when test="delivery_refund.equals('req_complete')">
+	 				d.delivery_state = '환불처리완료'
+	 				</when>
+	 			</choose>
+	 		</if>
+	 		</trim>
+        ORDER BY delivery_date ASC
+	 </otherwise>
+	 
+	</choose>
+	
+	</select>
+	
+	
 </mapper>

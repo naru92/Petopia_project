@@ -34,6 +34,7 @@ import co.kr.petopia.service.AdminService;
 import co.kr.petopia.service.MemberSecurtiyService;
 import co.kr.petopia.utils.Criteria;
 import co.kr.petopia.utils.PageVO;
+import co.kr.petopia.vo.DeliveryVO;
 import co.kr.petopia.vo.OrderVO;
 import co.kr.petopia.vo.ProductVO;
 import lombok.extern.log4j.Log4j2;
@@ -113,9 +114,9 @@ public class AdminController {
 	@ResponseBody
 	@PostMapping(value = "/product", consumes = "application/json", produces = { MediaType.APPLICATION_XML_VALUE,
 			MediaType.APPLICATION_JSON_VALUE })
-	public ResponseEntity<List<ProductVO>> productList(@RequestBody Map<String, Object> options, Criteria cri) {
-		ResponseEntity<String> result = null;
-		HashMap<String, Object> result1 = new HashMap<String, Object>();
+	public ResponseEntity<List<ProductVO>> selectOptionProductList(@RequestBody Map<String, Object> options, Criteria cri) {
+		ResponseEntity<String> entity = null;
+		HashMap<String, Object> optionMap = new HashMap<String, Object>();
 
 //		int totalProduct = adminService.getTotalMemberCount(cri);
 //		result1.put("pageMaker", new PageVO(cri, totalProduct));
@@ -123,13 +124,13 @@ public class AdminController {
 
 		String product_stock = (String) options.get("product_stock");
 		String product_price = (String) options.get("product_price");
-		result1.put("product_stock", product_stock);
-		result1.put("product_price", product_price);
+		optionMap.put("product_stock", product_stock);
+		optionMap.put("product_price", product_price);
 
 		log.info("options : " + options);
 		log.info("options : " + options.get("product_price"));
 
-		List<ProductVO> productList = adminService.getSelectOptionList(result1);
+		List<ProductVO> productList = adminService.getSelectOptionList(optionMap);
 
 		return new ResponseEntity<>(productList, HttpStatus.OK);
 	}
@@ -158,6 +159,37 @@ public class AdminController {
 		
 		return "admin/deliveryList";
 	}
+	
+	//배송 검색필터
+		@ResponseBody
+		@PostMapping(value = "/delivery", consumes = "application/json", produces = { MediaType.APPLICATION_XML_VALUE,
+				MediaType.APPLICATION_JSON_VALUE })
+		public ResponseEntity<List<DeliveryVO>> selectOptionDeliveryList(@RequestBody Map<String, Object> options, Criteria cri) {
+			ResponseEntity<String> entity = null;
+			HashMap<String, Object> optionMap = new HashMap<String, Object>();
+
+//			int totalProduct = adminService.getTotalMemberCount(cri);
+//			result1.put("pageMaker", new PageVO(cri, totalProduct));
+//			result1.put("productList", adminService.getProductListWithPaging(cri));
+			
+			String delivery_state = (String) options.get("delivery_state");
+			String delivery_refund = (String) options.get("delivery_refund");
+			String is_member = (String) options.get("is_member");
+			
+			optionMap.put("delivery_state", delivery_state);
+			optionMap.put("delivery_refund", delivery_refund);
+			optionMap.put("is_member", is_member);
+			optionMap.put("total_deliveryList", adminService.getDeliveryList());
+		
+
+			log.info("options : " + options);
+			log.info("options : " + options.get("product_price"));
+
+			List<DeliveryVO> deliveryList = adminService.selectOptionDeliveryList(optionMap);
+
+			return new ResponseEntity<>(deliveryList, HttpStatus.OK);
+		}
+		
 
 	@GetMapping("/donation")
 	public String donationPage(Model model , Criteria cri ) {
@@ -170,6 +202,7 @@ public class AdminController {
 		
 		return "admin/donationList";
 	}
+	
 	//@RequestParam( value ="board_idx" ,required = false) int board_idx
 	@GetMapping("/QnA")
 	public String QnAPage(Model model, Criteria cri ) {

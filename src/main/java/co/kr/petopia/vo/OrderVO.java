@@ -15,10 +15,8 @@ public class OrderVO {
 	private int payment_method;
 	
 	
-	private int product_stock;
-	private int product_price;
-	private int product_category_id;
-	private int product_idx;
+	
+
 	private String order_receiver_name;
 	private String order_receiver_phonenumber;
 	private String order_receiver_address;

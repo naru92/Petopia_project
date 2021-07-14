@@ -127,7 +127,6 @@ public class AdminServiceImpl implements AdminService {
 
 	@Override
 	public int getQnACount(Criteria cri) {
-		// TODO Auto-generated method stub
 		return adminMapper.getQnACount(cri);
 	}
 
@@ -135,6 +134,17 @@ public class AdminServiceImpl implements AdminService {
 	public List<ContentVO> getQnAListWithPaging(Criteria cri) {
 		
 		return adminMapper.getQnAListWithPaging(cri);
+	}
+
+	@Override
+	public List<DeliveryVO> selectOptionDeliveryList(HashMap<String, Object> optionMap) {
+		return adminMapper.selectOptionDeliveryList(optionMap);
+	}
+
+	@Override
+	public List<DeliveryVO> getDeliveryList() {
+		
+		return adminMapper.getDeliveryList();
 	}
 
 

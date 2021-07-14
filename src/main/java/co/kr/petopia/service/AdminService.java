@@ -27,13 +27,13 @@ public interface AdminService {
 	/*주문*/
 	public int getOrderCount(Criteria cri);
 	public List<OrderVO> getOrderListWithPaging(Criteria cri);
-
 	
 	/*배송*/
 	public int getDeliveryCount(Criteria cri);
 	public List<DeliveryVO> getDeliveryListWithPaging(Criteria cri);
 	public List<DeliveryVO> getUnprocessedOrderList();//미처리 배송
 	public List<DeliveryVO> getRefundList(); //교환,환불처리
+	public List<DeliveryVO> getDeliveryList();
 	
 	/*기부*/
 	public int getDonationCount(Criteria cri);
@@ -55,6 +55,9 @@ public interface AdminService {
 	
 	//주문 리스트
 	int getTotalOrderList(Criteria cri);
+	//주문 검색 필터
+	public List<DeliveryVO> selectOptionDeliveryList(HashMap<String, Object> optionMap);
+	
 	
 	
 	
