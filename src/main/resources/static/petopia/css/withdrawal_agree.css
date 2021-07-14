@@ -1,0 +1,133 @@
+
+
+/* 상단 약관동의 문구 */
+.result {
+    text-align: center;
+    font-size: 20px;
+    font-weight: 700;
+    padding-bottom: 50px;
+}
+
+.result .blue {
+    color: #2AC1BC;
+}
+h5 .blue {
+    color: #2AC1BC;
+    border-bottom: 1px solid #2AC1BC;
+}
+
+
+
+body {
+    background: #fafafa;
+    font-family: arial;
+  }
+
+h3 {
+  font-size: 1.8rem;
+  line-height: 1.8rem;
+}
+
+h5 {
+  font-size: 1rem;
+  line-height: 1rem;
+  margin-bottom: 7px;
+}
+
+
+
+/* start */
+
+.main {
+clear:both;
+padding:3rem 0 10rem 0;
+margin-top: 50px;
+margin-bottom: 500px;
+}
+
+.main h3 {
+color:#222;
+text-align:center;
+
+}
+
+.one {
+width:1000px;
+height: 600px;
+margin:0 auto;
+margin-top: 30px;
+}
+
+.box{
+  padding: 5px;
+  padding-left: 30px;
+  padding-bottom: 20px;
+  margin-bottom: 60px;
+  background-color: #fff;
+}
+
+.t-list{
+  font-size: 0.8rem;
+  color: #444;
+  margin-bottom: 0.9rem;
+}
+
+.info {
+color: #777;
+font-size:0.8rem;
+text-align:center;
+margin: 0 50px;
+}
+.w-bt{
+  text-align: center;
+}
+
+.one>:last-child  button {
+width:200px;
+padding: 1rem 1rem;
+font-size:0.9rem;
+background: #555555;
+color: #fff;
+transition: 0.5s;
+margin-top:1.5rem;
+border: none;
+border-radius: 10px;
+text-align: center;
+}
+.one>:last-child  button:hover{
+  background: #2AC1BC;
+} 
+
+input[type="checkbox"] {
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    outline: none !important;
+    border: 1px solid #eeeeee;
+    border-radius: 2px;
+    background: #ececec;
+}
+
+input[type="checkbox"]::before {
+    position: absolute;
+    top: 50%;
+    right: 50%;
+    overflow: hidden;
+    line-height: 1;
+}
+
+input[type="checkbox"]:hover {
+    border-color: #adadad;
+}
+
+input[type="checkbox"]:checked {
+    background-color: #2AC1BC;
+    border-color: rgba(255, 255, 255, 0.3);
+    color: white;
+}
+
+input[type="checkbox"]:checked::before {
+    border-radius: 2px;
+    transform: scale(1) translate(-50%, -50%)
+}
