@@ -3,6 +3,20 @@
 
 실행시
 로그인 거쳐야됨(db에 있는 아이디 권한 없으면 authprity에서 권한 넣어서 하나 만들것)
-본인이 만든 페이지 url 경로도 추가해줘야함 security패키지에 SecurityConfig에 authorizeRequests에 
+본인이 만든 페이지 url 경로도 추가해줘야함 security패키지에 SecurityConfig에 authorizeRequests에
                                           .antMatchers(본인이 추가할 url추가할것)
 csrf토큰은 개발단계라 비활성화 시켜뒀음
+
+--어드민 페이지--
+--완료--
+url 연결 완료
+페이징 완료
+필터 검색 완료
+chart.js 셋팅
+
+--해야할 일--
+상품 등록,수정,삭제
+회원 상세보기
+기부금페이지(db에 기부금 필드가 있어야할것같음)
+문의페이지(게시판이 있어야함)
+통계페이지
