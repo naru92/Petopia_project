@@ -16,7 +16,7 @@ public class OrderVO {
 	
 	
 	
-
+	private String order_name;
 	private String order_receiver_name;
 	private String order_receiver_phonenumber;
 	private String order_receiver_address;

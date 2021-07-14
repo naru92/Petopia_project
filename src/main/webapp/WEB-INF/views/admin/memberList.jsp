@@ -97,7 +97,7 @@
 										
 
 											<tr>
-												<td>${m.member_id}</td>
+												<td><a id="member_detail" href="#">${m.member_id}</a></td>
 												<td>${m.member_name}</td>
 												<td>${m.member_phoneNumber}</td>
 												<td>${m.member_address}</td>
@@ -106,7 +106,7 @@
 												<td>${m.member_grade}</td>
 												<td>${m.member_point}</td>
 												<td>${m.member_donation}</td>
-												<td><button type="button" class="btn btn-primary">삭제</button></td>
+												<td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">상세보기</button></td>
 											</tr>
 
 
@@ -203,8 +203,43 @@
 				</div>
 			</div>
 		</div>
+		
+		
+	
 	</div>
-
+	
+	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">회원 정보</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+					<div class="form-group">
+						<label>아이디</label>
+						<input type="text" class="form-control" name='modalReviews' value=''>
+					</div>
+					<div class="form-group">
+						<label>작성자</label>
+						<input type="email" class="form-control" name='modalReviewer' value=''>
+					</div>
+					<div class="form-group">
+						<label>작성날짜</label>
+						<input class="form-control" name='reviewDate' value=''>
+					</div>
+					<br>
+					<strong>상품평을 고치실려면 내용을 바꾸시고 수정버튼을 눌러주세요</strong>
+				</div>
+      <div class="modal-footer">
+       <button id='modalModBtn' type="button" class="btn btn-warning">수정</button>
+		<button id='modalRemoveBtn' type="button" class="btn btn-danger">삭제</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 	<script type="text/javascript">
 		$(document).ready(
@@ -225,6 +260,23 @@
 										$(this).attr("href"));
 								actionForm.submit();
 							});
+				
+						console.log($('#dataTable').children().children().children('td'));
+					
+					// 모달 호출
+				$('#exampleModal').on('show.bs.modal', function (event) {
+						  var button = $(event.relatedTarget) // Button that triggered the modal
+						  var recipient = button.data('whoever') // Extract info from data-* attributes
+						  // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+						  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+						  var modal = $(this)
+						  modal.find('.modal-title').text('Hello message to sadsa')
+						  modal.find('.modal-body input').val('sdsd')
+					});
+						
+						
+					
+					});
 
 				});
 		

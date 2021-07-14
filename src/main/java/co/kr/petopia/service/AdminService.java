@@ -53,10 +53,15 @@ public interface AdminService {
 	//현재주문 리스트
 	public List<OrderVO> getCurrentOrderList();
 	
-	//주문 리스트
+	//주문 리스트(페이징)
 	int getTotalOrderList(Criteria cri);
+	//주문 리스트(노페이징)
+	public List<OrderVO> getOrderList();
+	
 	//주문 검색 필터
 	public List<DeliveryVO> selectOptionDeliveryList(HashMap<String, Object> optionMap);
+	//주문 필터 리스트
+	public List<OrderVO> selectOptionOrderList(HashMap<String, Object> optionMap);
 	
 	
 	

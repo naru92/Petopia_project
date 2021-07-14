@@ -71,9 +71,7 @@ public class AdminController {
 //		//MY_GENDER 비율
 //		
 //		//미처리 주문
-		
-		
-		
+
 		return "admin/adminmain";
 	}
 
@@ -110,11 +108,12 @@ public class AdminController {
 
 	}
 
-	//상품 검색필터
+	// 상품 검색필터
 	@ResponseBody
 	@PostMapping(value = "/product", consumes = "application/json", produces = { MediaType.APPLICATION_XML_VALUE,
 			MediaType.APPLICATION_JSON_VALUE })
-	public ResponseEntity<List<ProductVO>> selectOptionProductList(@RequestBody Map<String, Object> options, Criteria cri) {
+	public ResponseEntity<List<ProductVO>> selectOptionProductList(@RequestBody Map<String, Object> options,
+			Criteria cri) {
 		ResponseEntity<String> entity = null;
 		HashMap<String, Object> optionMap = new HashMap<String, Object>();
 
@@ -134,85 +133,101 @@ public class AdminController {
 
 		return new ResponseEntity<>(productList, HttpStatus.OK);
 	}
-	
-	//총 주문수, 페이징 가져감
+
+	// 총 주문수, 페이징 가져감
 	@GetMapping("/order")
 	public String orderPage(Model model, Criteria cri) {
-		
+
 		int totalOrderList = adminService.getOrderCount(cri);
 		model.addAttribute("pageMaker", new PageVO(cri, totalOrderList));
-		
+
 		model.addAttribute("orderList", adminService.getOrderListWithPaging(cri));
-		
 
 		return "admin/orderList";
 	}
-	
-	//총 배송수, 페이징 가져감
+
+	// 총 배송수, 페이징 가져감
 	@GetMapping("/delivery")
 	public String deliveryPage(Model model, Criteria cri) {
-		
-		int totalDeliveryList = adminService.getOrderCount(cri); 		
+
+		int totalDeliveryList = adminService.getOrderCount(cri);
 		model.addAttribute("pageMaker", new PageVO(cri, totalDeliveryList));
-		
+
 		model.addAttribute("deliveryList", adminService.getDeliveryListWithPaging(cri));
-		
+
 		return "admin/deliveryList";
 	}
-	
-	//배송 검색필터
-		@ResponseBody
-		@PostMapping(value = "/delivery", consumes = "application/json", produces = { MediaType.APPLICATION_XML_VALUE,
-				MediaType.APPLICATION_JSON_VALUE })
-		public ResponseEntity<List<DeliveryVO>> selectOptionDeliveryList(@RequestBody Map<String, Object> options, Criteria cri) {
-			ResponseEntity<String> entity = null;
-			HashMap<String, Object> optionMap = new HashMap<String, Object>();
 
-//			int totalProduct = adminService.getTotalMemberCount(cri);
-//			result1.put("pageMaker", new PageVO(cri, totalProduct));
-//			result1.put("productList", adminService.getProductListWithPaging(cri));
-			
-			String delivery_state = (String) options.get("delivery_state");
-			String delivery_refund = (String) options.get("delivery_refund");
-			String is_member = (String) options.get("is_member");
-			
-			optionMap.put("delivery_state", delivery_state);
-			optionMap.put("delivery_refund", delivery_refund);
-			optionMap.put("is_member", is_member);
-			optionMap.put("total_deliveryList", adminService.getDeliveryList());
+	// 배송 검색필터
+	@ResponseBody
+	@PostMapping(value = "/delivery", consumes = "application/json", produces = { MediaType.APPLICATION_XML_VALUE,
+			MediaType.APPLICATION_JSON_VALUE })
+	public ResponseEntity<List<DeliveryVO>> selectOptionDeliveryList(@RequestBody Map<String, Object> options,
+			Criteria cri) {
+		ResponseEntity<String> entity = null;
+		HashMap<String, Object> optionMap = new HashMap<String, Object>();
+
+		String delivery_state = (String) options.get("delivery_state");
+		String delivery_refund = (String) options.get("delivery_refund");
+		String is_member = (String) options.get("is_member");
+
+		optionMap.put("delivery_state", delivery_state);
+		optionMap.put("delivery_refund", delivery_refund);
+		optionMap.put("is_member", is_member);
+		optionMap.put("total_deliveryList", adminService.getDeliveryList());
+
+		log.info("options : " + options);
+		log.info("options : " + options.get("product_price"));
+
+		List<DeliveryVO> deliveryList = adminService.selectOptionDeliveryList(optionMap);
+
+		return new ResponseEntity<>(deliveryList, HttpStatus.OK);
+	}
+
+	// 주문 검색필터
+	@ResponseBody
+	@PostMapping(value = "/order", consumes = "application/json", produces = { MediaType.APPLICATION_XML_VALUE,
+			MediaType.APPLICATION_JSON_VALUE })
+	public ResponseEntity<List<OrderVO>> selectOptionOrderList(@RequestBody Map<String, Object> options,
+			Criteria cri) {
 		
+		ResponseEntity<String> entity = null;
+		HashMap<String, Object> optionMap = new HashMap<String, Object>();
 
-			log.info("options : " + options);
-			log.info("options : " + options.get("product_price"));
+		String order_date = (String) options.get("order_date");
+		String deposit = (String) options.get("deposit");
 
-			List<DeliveryVO> deliveryList = adminService.selectOptionDeliveryList(optionMap);
+		optionMap.put("order_date", order_date);
+		optionMap.put("deposit", deposit);
+		optionMap.put("total_order_list", adminService.getOrderList());
 
-			return new ResponseEntity<>(deliveryList, HttpStatus.OK);
-		}
-		
+		log.info("options : " + options);
+		log.info("options : " + options.get("product_price"));
+
+		List<OrderVO> orderList = adminService.selectOptionOrderList(optionMap);
+
+		return new ResponseEntity<>(orderList, HttpStatus.OK);
+	}
 
 	@GetMapping("/donation")
-	public String donationPage(Model model , Criteria cri ) {
-		
-		int totalDonationList = adminService.getDonationCount(cri); 		
+	public String donationPage(Model model, Criteria cri) {
+
+		int totalDonationList = adminService.getDonationCount(cri);
 		model.addAttribute("pageMaker", new PageVO(cri, totalDonationList));
-		
+
 		model.addAttribute("donationList", adminService.getDonationWithPaging(cri));
-		
-		
+
 		return "admin/donationList";
 	}
-	
-	//@RequestParam( value ="board_idx" ,required = false) int board_idx
+
 	@GetMapping("/QnA")
-	public String QnAPage(Model model, Criteria cri ) {
-				
-		int totalQnAList = adminService.getQnACount(cri); 		
+	public String QnAPage(Model model, Criteria cri) {
+
+		int totalQnAList = adminService.getQnACount(cri);
 		model.addAttribute("pageMaker", new PageVO(cri, totalQnAList));
-		
+
 		model.addAttribute("QnAList", adminService.getQnAListWithPaging(cri));
-		
-		
+
 		return "admin/QnAList";
 	}
 
@@ -222,25 +237,25 @@ public class AdminController {
 		return "admin/statisticsList";
 	}
 
-	//상품정보
+	// 상품정보
 	public String getProductList(Model model, int product_idx) {
 
 		return "/admin/productList";
 	}
 
-	//배송정보
+	// 배송정보
 	public String getDeliveryList(Model model, int delivery_idx) {
 
 		return "/admin/DeliveryList";
 	}
 
-	//기부정보
+	// 기부정보
 	public String getDonationList(Model model) {
 
 		return "/admin/donationList";
 	}
 
-	//회원수 통계
+	// 회원수 통계
 	public String getMemberStatistics(Model model) {
 
 		return "/admin/statistics";
@@ -252,68 +267,68 @@ public class AdminController {
 
 	}
 
-	//기부액 통계
+	// 기부액 통계
 	public String getDonationStatistics(Model model) {
 
 		return "/admin/statistics";
 	}
 
-	//금일매출
+	// 금일매출
 	public String getTodayIncome(Model model) {
 
 		return "/admin/DonationList";
 	}
 
-	//금일 기부금
+	// 금일 기부금
 	public String getTodayDonation(Model model) {
 
 		return "/admin/DonationList";
 	}
 
-	//신규 가입수
+	// 신규 가입수
 	public String getTodayMemberList(Model model) {
-		
+
 		adminService.getTodayMemberList();
-		
+
 		return "/admin/DonationList";
 	}
 
-	//현재주문수
+	// 현재주문수
 	public String getCurrentOrderList(Model model) {
 
 		return "/admin/DonationList";
 	}
 
-	//교환,환불 신청
+	// 교환,환불 신청
 	public String getRefundList(Model model) {
 
 		return "/admin/DonationList";
 	}
 
-	//총 주문량
+	// 총 주문량
 	public String getTotalOrderList(Model model) {
 
 		return "/admin/DonationList";
 	}
 
-	//미처리주문
+	// 미처리주문
 	public String getUnprocessedOrderList(Model model) {
 
 		return "/admin/DonationList";
 	}
 
-	//총 회원수 
+	// 총 회원수
 	public String getTotalMemberList() {
 
 		return "/admin/DonationList";
 	}
-	
-	/*상품 등록 관련*/
-	
-	//상품 등록
-	
-	//상품 삭제
-	
-	//상품 수정
-	
+
+	/* 상품 등록 관련 */
+
+	// 상품 등록
+
+	// 상품 삭제
+
+	// 상품 수정
+
 }

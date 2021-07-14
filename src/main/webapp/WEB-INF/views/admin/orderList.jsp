@@ -69,8 +69,8 @@
 
 								<div class="card-body filterBox">
 									<div class="boxtr">
-										<form action="${contextPath }/admin/membmer/listMembers.do"
-											method="post" id="frm_search"></form>
+										<form action="${contextPath }/admin/order"
+											method="post" id="frm_search">
 											<table>
 
 
@@ -79,9 +79,9 @@
 												<tr>
 													<td colspan="2">주문 구분&nbsp;&nbsp;</td>
 													<td colspan="5" class="pleft"><input type="radio"
-														value="cat" name="member_gender">전체 <input
-														type="radio" value="all" name="member_gender" checked>입금
-														대기중 <input type="radio" value="dog" name="member_gender">입금완료
+														value="all" name="deposit">전체 <input
+														type="radio" value="deposit_not" name="deposit" checked>입금
+														대기중 <input type="radio" value="deposit_ok" name="deposit">입금완료
 
 													</td>
 												</tr>
@@ -89,10 +89,10 @@
 												<tr>
 													<td colspan="2">주문 분류&nbsp;&nbsp;</td>
 													<td colspan="5" class="pleft"><select
-														id="order_lately_date" name="order_lately_date">
+														id="select1" name="order_date">
 															<option value="" selected>--주문 분류 선택--</option>
-															<option value="lately_login_desc">최근 주문 순</option>
-															<option value="lately_login_asc">오래된 주문 순</option>
+															<option value="order_date_desc">최근 주문 순</option>
+															<option value="order_date_asc">오래된 주문 순</option>
 													</select></td>
 												</tr>
 
@@ -100,13 +100,13 @@
 
 												<tr>
 													<td colspan="7"><input type="button" value="검색"
-														onClick="member_search()" />&nbsp;&nbsp;<input
+														id="search_option" />&nbsp;&nbsp;<input
 														type="reset" value="초기화" /></td>
 												</tr>
 											</table>
+								</form>
 									</div>
 								</div>
-								</form>
 
 								<div class="card-body">
 									<div class="table-responsive">
@@ -239,6 +239,8 @@
 	$(document).ready(
 			function() {
 				
+			
+				
 				// 페이징 버튼 이벤트
 				var actionForm = $("#pageActionForm");
 
@@ -248,13 +250,86 @@
 
 							e.preventDefault();
 
-							console.log($(this).attr("href"));
-								
+							console.log('click');
+
 							actionForm.find("input[name='pageNum']").val(
 									$(this).attr("href"));
-							
 							actionForm.submit();
-					});
+						});
+			
+				
+				console.log($('#frm_search').children().children().children('tr')
+						.children().children('#search_option'));
+				
+				//필터박스 이벤트
+				$('#frm_search').children().children().children('tr')
+				.children().children('#search_option').on('click', function(event) {
+			
+			    	var order_date = $('#select1').val();
+			    	var deposit = $(":input:radio[name=deposit]:checked").val();
+			    	
+			    	
+					console.log($(":input:radio[name=deposit]:checked").val());
+			    	console.log($('#select1').val());
+			    	
+			    	var options = {
+			    			order_date : order_date,
+			    			deposit : deposit
+			    	}
+					
+			    	$.ajax({
+		    			type: 'post',
+		    			url: '/admin/order',
+		    			cache: false,
+		    			data: JSON.stringify(options),
+		    			contentType: "application/json; charset=utf-8",
+		    			dataType: 'json',
+		    			success: function(list, status) {
+		    				
+		    			  	var htmls = "";
+							
+							$("#dataTable").html("");
+							
+							$("<tr>" , {
+								 // 컬럼명들								
+								html : "<td>" + "주문번호" + "</td>"+ 
+										"<td>" + "주문자 이름" + "</td>"+
+										"<td>" + "주소" + "</td>"+
+										"<td>" + "주문량" + "</td>"+				
+										"<td>" + "결제금액" + "</td>"+
+										"<td>" + "주문일자" + "</td>"+
+										"<td>" + "결제방법" + "</td>"
+										
+							}).appendTo("#dataTable") // 이것을 테이블에붙임
+							
+							if($(list).length < 1){
+								alert("등록된 상품이 없습니다.");
+							} else {
+								
+								$(list).each(function(){
+									console.log(this.order_idx);
+				                    htmls += '<tr>';
+				                    htmls += '<td>'+ this.order_idx + '</td>';
+				                    htmls += '<td>'+ this.order_name + '</td>';
+				                    htmls += '<td>'+ this.order_receiver_address + '</td>';
+				                    htmls += '<td>'+ this.order_quantity + '</td>';
+				                    htmls += '<td>'+ this.order_price + '</td>';
+				                    htmls += '<td>'+ this.order_date + '</td>';
+				                    htmls += '<td>'+ this.payment_method+ '</td>';
+				                    htmls += '</tr>';
+				                
+			                	});	//each end
+
+								
+							}
+							
+							$("#dataTable").append(htmls);
+		    			  },
+		    			     error:function(request,status,error){
+		    			         alert("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+		    			        }
+		    		});
+				});
 				
 			});
 	</script>

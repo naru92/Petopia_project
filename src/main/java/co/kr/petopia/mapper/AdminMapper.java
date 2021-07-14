@@ -73,8 +73,12 @@ public interface AdminMapper{
 	public List<ContentVO> getQnAListWithPaging(Criteria cri);
 	//문의수
 	public int getQnACount(Criteria cri); 
-	//배송 검색필터
-	List<DeliveryVO> selectOptionDeliveryList(HashMap<String, Object> optionMap);
-	
+	//주문수(노페이징)
+	public List<OrderVO> getOrderList();
+	//배송수(노페이징)
 	public List<DeliveryVO> getDeliveryList();
+	//배송 검색필터
+	public List<DeliveryVO> selectOptionDeliveryList(HashMap<String, Object> optionMap);
+	//주문 검색필터
+	public List<OrderVO> selectOptionOrderList(HashMap<String, Object> optionMap);
 }

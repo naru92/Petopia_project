@@ -147,6 +147,16 @@ public class AdminServiceImpl implements AdminService {
 		return adminMapper.getDeliveryList();
 	}
 
+	@Override
+	public List<OrderVO> getOrderList() {
+		return adminMapper.getOrderList();
+	}
+
+	@Override
+	public List<OrderVO> selectOptionOrderList(HashMap<String, Object> optionMap) {
+		return adminMapper.selectOptionOrderList(optionMap);
+	}
+
 
 
 	
