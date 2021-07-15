@@ -37,12 +37,6 @@ public class MemberController {
 		return "member/welcome";
 	}
 	
-<<<<<<< Updated upstream
-	@GetMapping("/jusoPopup")
-	public String jusoPopup() {
-		return "member/jusoPopup";
-	}
-	
 	// 마이페이지 메인
 	@GetMapping("/mypage")
 	public String mypage() {
@@ -84,6 +78,5 @@ public class MemberController {
     public String donation() {
         return "member/donation";
     }
-=======
->>>>>>> Stashed changes
+
 }
