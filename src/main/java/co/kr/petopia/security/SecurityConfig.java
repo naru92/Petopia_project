@@ -69,15 +69,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 								
 						.antMatchers("/admin/main","/member/login","/member/joinagree","/member/join","/main","/","/**").permitAll() //공개 할 url
 						.antMatchers("/member/**").access("hasRole('ROLE_USER')")//맴버만 접근
-<<<<<<< Updated upstream
-						.antMatchers("/admin/**").access("hasRole('ROLE_USER')")//어드민만접근
-						.antMatchers("/**").authenticated(); //그 밖의 기타경로 인증필요
-		
-=======
-						.antMatchers("/admin/**").access("hasRole('ROLE_USER')");//어드민만접근
+						.antMatchers("/admin/**").access("hasRole('ROLE_USER')");//어드민만접근근
 						//.antMatchers("/**").authenticated(); //그 밖의 기타경로 인증필요
 						//.and()
->>>>>>> Stashed changes
+
 		http
 				.formLogin() //폼로그인 방식
 						.loginPage("/member/login") //로그인 페이지 url설정
