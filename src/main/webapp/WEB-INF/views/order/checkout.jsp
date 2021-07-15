@@ -82,10 +82,16 @@
 										<th class="tableNumber">주문자 명</th>
 										<td class="tableTitle"><label for="checkName"><input
 												type="text" id="checkName" class="inputBox" /></label><span
-											class="text">주문자 명을 입력해주세요.</span></td>
+											class="text">주문자 이름을 입력해주세요.</span></td>
 									</tr>
 									<tr>
-										<th class="tableNumber">핸드폰</th>
+										<th class="tableNumber">수령자 명</th>
+										<td class="tableTitle"><label for="checkName"><input
+												type="text" id="checkName" class="inputBox" /></label><span
+											class="text">수령자 이름을 입력해주세요.</span></td>
+									</tr>
+									<tr>
+										<th class="tableNumber">수령자 연락처</th>
 										<td class="tableTitle"><label for="checkTel"> <input
 												type="text" id="checkTel" class="inputBox" /> </lable><span
 												class="text">핸드폰 번호를 입력해주세요. (예시: 010-1111-1111)</span></td>
@@ -93,19 +99,18 @@
 									<tr>
 										<th class="tableNumber">우편번호</th>
 										<td class="tableTitle"><label for="PostalCode"><input
-												type="text" id="sample6_postcode" placeholder="우편번호"
+												type="text" id="postcode" placeholder="우편번호"
 												class="inputBox2" readonly> <input type="button"
-												onclick="sample6_execDaumPostcode()" value="우편번호 찾기"
+												onclick="execDaumPostcode()" value="우편번호 찾기"
 												readonly><br></td>
 									</tr>
 									<tr class="address">
 										<th class="tableNumber">주소</th>
 										<td class="tableTitle"><label for="address1"> <input
-												type="text" id="sample6_address" placeholder="주소"
-												class="inputBox" readonly><br> <input
-												type="text" id="sample6_extraAddress" placeholder="참고항목"
-												class="inputBox" readonly> <input type="text"
-												id="sample6_detailAddress" placeholder="상세주소"
+												type="text" id="roadAddress" placeholder="도로명 주소"
+												class="inputBox" readonly><br> 
+												<input type="text"
+												id="detailAddress" placeholder="상세주소"
 												class="inputBox">
 										</label></td>
 									</tr>
@@ -114,7 +119,7 @@
 							</table>
 
 
-
+							
 						</div>
 					</div>
 				</div>
@@ -150,7 +155,7 @@
 
 							<tbody>
 								<tr>
-									<td>바우와우 치즈볼</td>
+									<td>${dto.product_name}</td>
 									<td>2개</td>
 									<td>없음</td>
 									<td>3,800원</td>
@@ -173,7 +178,7 @@
 					</div>
 					<a href="main.html"><button class="homeBtn">결제하기</button></a>
 				</div>
-
+			  </div>
 			</div>
 	</main>
 
@@ -181,6 +186,8 @@
 		<%@include file="../include/default_footer.jsp"%>
 	</footer>
 
+	<%@include file="../include/default_mapApi_js.jsp"%>
+	
 	<script
 		src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script>
