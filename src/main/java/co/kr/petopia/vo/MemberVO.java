@@ -8,10 +8,14 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import co.kr.petopia.vo.MemberAuthVO;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+@AllArgsConstructor
+@NoArgsConstructor
 @Data
 public class MemberVO implements UserDetails {
 	private String member_id;
@@ -33,6 +37,10 @@ public class MemberVO implements UserDetails {
 	private boolean isAccountNonExpired = true;
 	private boolean isAccountNonLocked = true;
 	
+	//통계용 변수
+	private String statistics_join_day;
+	private int statistics_join_count;
+	
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		
@@ -40,32 +48,26 @@ public class MemberVO implements UserDetails {
 	}
 	@Override
 	public String getPassword() {
-		// TODO Auto-generated method stub
 		return this.member_password;
 	}
 	@Override
 	public String getUsername() {
-		// TODO Auto-generated method stub
 		return this.member_id;
 	}
 	@Override
 	public boolean isAccountNonExpired() {
-		// TODO Auto-generated method stub
 		return this.isAccountNonExpired;
 	}
 	@Override
 	public boolean isAccountNonLocked() {
-		// TODO Auto-generated method stub
 		return this.isAccountNonLocked;
 	}
 	@Override
 	public boolean isCredentialsNonExpired() {
-		// TODO Auto-generated method stub
 		return this.isCredentialsNonExpired;
 	}
 	@Override
 	public boolean isEnabled() {
-		// TODO Auto-generated method stub
 		return this.Isenabled;
 	}
 	

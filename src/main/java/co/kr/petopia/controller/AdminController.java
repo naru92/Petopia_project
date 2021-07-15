@@ -1,17 +1,12 @@
 package co.kr.petopia.controller;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
-import org.apache.catalina.User;
-import org.apache.ibatis.annotations.ResultMap;
-import org.apache.tomcat.util.json.JSONParser;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -20,29 +15,28 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonParser;
 
 import co.kr.petopia.service.AdminService;
 import co.kr.petopia.service.MemberSecurtiyService;
 import co.kr.petopia.utils.Criteria;
 import co.kr.petopia.utils.PageVO;
 import co.kr.petopia.vo.DeliveryVO;
+import co.kr.petopia.vo.MemberVO;
 import co.kr.petopia.vo.OrderVO;
 import co.kr.petopia.vo.ProductVO;
-import lombok.extern.log4j.Log4j2;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Controller
-@RequestMapping("/admin/*")
+@RequestMapping("/admin")
 public class AdminController {
 
 	@Autowired
@@ -52,8 +46,22 @@ public class AdminController {
 	MemberSecurtiyService memberSecurtiyService;
 
 	@GetMapping("/main")
-	public String adminMain() {
-
+	public String adminMain(Model model) {
+		
+		Map<String, Object> statisticsMemberMap = new LinkedHashMap<>();
+		
+		LinkedList<MemberVO> getStatisticsMemberCount = adminService.getStatisticsMemberCount();
+		getStatisticsMemberCount.get(0).getStatistics_join_count();
+		statisticsMemberMap.get("statistics_join_count");
+		
+		
+		System.out.println(getStatisticsMemberCount.get(0).getStatistics_join_day());
+		for (MemberVO memberVO : getStatisticsMemberCount) {
+			statisticsMemberMap.put("statistics_join_day" ,memberVO.getStatistics_join_day());
+			statisticsMemberMap.put("statistics_join_count" ,memberVO.getStatistics_join_count());
+		}
+		model.addAttribute("statisticsMemberMap" , statisticsMemberMap);
+		model.addAttribute("getStatisticsMemberCount", getStatisticsMemberCount);
 //		//금일매출
 //		adminService.getTodayIncome();
 //		//금일 기부금
@@ -325,10 +333,33 @@ public class AdminController {
 
 	/* 상품 등록 관련 */
 
-	// 상품 등록
-
+	// 상품 등록 겟
+	@GetMapping("/product/insert")
+	public String insertProduct(@ModelAttribute("insertProductVO") ProductVO insertProductVO) {
+		
+		
+		
+		return "/admin/insertProduct";
+	}
+	//상품 등록 post
+	@PostMapping("/product/insert_pro")
+	public String insertProduct_pro(@ModelAttribute("insertProductVO") ProductVO insertProductVO,
+			BindingResult result) {
+		
+		if(result.hasErrors()) {
+			return "/admin/insertProduct";
+		}
+		adminService.insertProduct(insertProductVO);
+		
+		
+		return "/admin/insertProduct_success";
+	}
 	// 상품 삭제
-
+	public String deleteProduct() {
+		return "admin/deleteProduct";
+	}
 	// 상품 수정
-
+	public String updateProduct() {
+		return "admin/updateProduct";
+	}
 }

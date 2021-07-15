@@ -1,6 +1,7 @@
 package co.kr.petopia.service;
 
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -119,7 +120,6 @@ public class AdminServiceImpl implements AdminService {
 		return adminMapper.getTodayIncome();
 	}
 	
-	//오늘 배송
 	@Override
 	public List<OrderVO> getCurrentOrderList() {
 		return adminMapper.getCurrentOrderList();
@@ -156,6 +156,20 @@ public class AdminServiceImpl implements AdminService {
 	public List<OrderVO> selectOptionOrderList(HashMap<String, Object> optionMap) {
 		return adminMapper.selectOptionOrderList(optionMap);
 	}
+
+	@Override
+	public LinkedList<MemberVO> getStatisticsMemberCount() {
+		
+		return adminMapper.getStatisticsMemberCount();
+	}
+
+	@Override
+	public void insertProduct(ProductVO insertProductVO) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
 
 
 

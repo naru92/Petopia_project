@@ -44,15 +44,19 @@
 		where product_idx = #{product_idx}
 	</select>
 
-	<!-- 상품 등록 -->
+	<!-- 상품 CRUD -->
+
+	
 	<insert id="insertProduct"
 		parameterType="co.kr.petopia.vo.ProductVO">
 		
 		<![CDATA[
-		insert into content_table(content_idx, content_subject, content_text,
-				content_file, content_writer_idx, content_board_idx, content_date) 
-				values (#{content_idx}, #{content_subject}, #{content_text}, #{content_file, jdbcType=VARCHAR},
-				#{content_writer_idx}, #{content_board_idx}, sysdate)
+		INSERT into
+    		product(product_idx, product_category_id, product_price,
+    		product_coloroption, product_stock, product_detail_info, product_image) 
+    	VALUES
+		    (product_seq.nextval, #{ product_category_id}, #{product_price},#{product_coloroption},
+		    #{product_stock},#{product_detail_info}, #{content_file , jdbcType=VARCHAR})
 		]]>
 	</insert>
 
@@ -82,6 +86,8 @@
 		delete product where product_idx = #{product_idx}
 
 	</delete>
+	
+	<!-- CRUD END -->
 
 	<!-- 배송리스트 -->
 	<select id="getDeliveryList"
@@ -125,9 +131,18 @@
 		select count(*)
 		from order_form
 	</select>
-
-
-
+	
+	<!-- 엊 그제 ~ 내일 모레 가입 회원수 (메인페이지 통계용) -->
+	<select id="getStatisticsMemberCount" resultType="co.kr.petopia.vo.MemberVO">
+	
+	 SELECT TO_CHAR(member_joindate, 'yyyy-mm-dd') AS statistics_join_day, COUNT(*) AS statistics_join_count 
+	 FROM member
+ 	 GROUP BY TO_CHAR(member_joindate, 'yyyy-mm-dd'), member_joindate
+ 	 having member_joindate between to_date(sysdate -2 , 'yy-mm-dd') and to_date(sysdate + 3, 'yy-mm-dd')
+ 	 ORDER BY statistics_join_day
+ 	 
+	</select>
+	
 
 	<!--페이징 -->
 	<!-- 회원수 -->

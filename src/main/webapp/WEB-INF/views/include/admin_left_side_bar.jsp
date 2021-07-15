@@ -45,12 +45,12 @@
         </a>
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-
-            <a class="collapse-item" href="${root}admin/product">상품관리</a>
-
-
+            <a class="collapse-item" href="${root}admin/product">상품조회</a>
+			<a class="collapse-item" href="${root}admin/product/insert">상품등록</a>
           </div>
+           
         </div>
+        
       </li>
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities0" aria-expanded="true" aria-controls="collapseUtilities1">
@@ -64,6 +64,8 @@
 
 
           </div>
+          
+          
         </div>
       </li>
 
