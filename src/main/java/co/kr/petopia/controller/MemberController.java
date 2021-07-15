@@ -1,4 +1,4 @@
-	package co.kr.petopia.controller;
+package co.kr.petopia.controller;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,29 +11,28 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import co.kr.petopia.service.MemberService;
 
 @Controller
-@RequestMapping("/member")
 public class MemberController {
 
 	@Autowired
 	private MemberService MemberService;
 	
-	@GetMapping("/login")
+	@GetMapping("member/login")
 	public String login() {
 		return "member/login";
 	}
 		
-	@GetMapping("/joinagree")
-	public String joinagree() {
-		return "member/joinagree";
+	@GetMapping("member/joinAgree")
+	public String joinAgree() {
+		return "member/joinAgree";
 	}	
 	
-	@GetMapping("/join")
+	@GetMapping("member/joinForm")
 	public String join() {
-		return "member/join";
+		return "member/joinForm";
 	}	
 	
-	@PostMapping("/welcome")
-	public String welcome(User user) {
+	@GetMapping("member/welcome")
+	public String welcome() {
 		return "member/welcome";
 	}
 	

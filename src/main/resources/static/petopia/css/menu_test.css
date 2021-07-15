@@ -119,6 +119,7 @@ body {
 .header-nav {
   display: flex;
   align-items: center;
+  
 }
 
 /* ul sort */
@@ -294,6 +295,7 @@ ul {
 
 .search {
   margin-top: 0px;
+  font-size:initial;
 }
 
 /* footer */
@@ -302,6 +304,7 @@ footer {
   background-color: #385663;
   color: #fff;
   padding:0 40px;
+  clear : both;
 }
 
 footer .container-fluid {
@@ -335,6 +338,7 @@ footer .container-fluid p {
 
 * {
   box-sizing: inherit;
+
 }
 
 a {

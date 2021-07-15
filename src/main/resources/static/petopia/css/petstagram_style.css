@@ -12,7 +12,7 @@ img {
 }
 
 .container {
-    max-width: 93.5rem;
+    width: 85rem;
     margin: 0 auto;
     padding: 0 2rem;
     position: relative; top:50px;
@@ -41,9 +41,7 @@ img {
     clip: rect(1px, 1px, 1px, 1px);
 }
 
-.popular-items {
-    padding-bottom: 300px;
-}
+
 /* Profile Section */
 
 .profile {
@@ -136,10 +134,9 @@ img {
 /* Gallery Section */
 
 .gallery {
-    display: flex;
     flex-wrap: wrap;
-    margin: -1rem -1rem;
     padding: 3rem 0;
+    padding-bottom: 300px;
 }
 
 .gallery-item {
@@ -195,18 +192,6 @@ img {
     object-fit: cover;
 }
 
-/* Loader */
-
-.loader {
-    width: 5rem;
-    height: 5rem;
-    border: 0.6rem solid #999;
-    border-bottom-color: transparent;
-    border-radius: 50%;
-    margin: 0 auto;
-    animation: loader 500ms linear infinite;
-    margin-top: 50px;
-}
 
 /* Media Query */
 
@@ -322,7 +307,7 @@ Remove or comment-out the code block below to see how the browser will fall-back
 
     .gallery {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(22rem, 1fr));
+        grid-template-columns: repeat(3, minmax(22rem, 1fr));
         grid-gap: 2rem;
     }
 
