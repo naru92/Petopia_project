@@ -1,6 +1,7 @@
 package co.kr.petopia.service;
 
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 
 import co.kr.petopia.vo.DonationVO;
@@ -45,6 +46,8 @@ public interface AdminService {
 	public List<ContentVO> getQnAListWithPaging(Criteria cri);
 		
 	/*통계(DB수정필요)*/
+	public LinkedList<MemberVO> getStatisticsMemberCount(); //메인페이지 가입수 통계
+	
 	
 	/*기타*/
 	public int getTodayIncome(); //금일 수입
@@ -64,6 +67,11 @@ public interface AdminService {
 	public List<OrderVO> selectOptionOrderList(HashMap<String, Object> optionMap);
 	
 	
+	/*상품 CRUD*/
+	public void insertProduct(ProductVO insertProductVO);
+	
+	
+	/*상품*/
 	
 	
 	

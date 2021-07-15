@@ -1,6 +1,7 @@
 package co.kr.petopia.mapper;
 
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
@@ -32,7 +33,7 @@ public interface AdminMapper{
 	//상품 통계
 	public String getProductStatistics();
 	//상품 등록
-	public ProductVO insertProduct(ProductVO productVO);
+	public void insertProduct(ProductVO productVO);
 	//상품 수정
 	public ProductVO updateProduct(ProductVO productVO);
 	//상품 삭제
@@ -81,4 +82,7 @@ public interface AdminMapper{
 	public List<DeliveryVO> selectOptionDeliveryList(HashMap<String, Object> optionMap);
 	//주문 검색필터
 	public List<OrderVO> selectOptionOrderList(HashMap<String, Object> optionMap);
+	//가입수 메인 통계
+	public LinkedList<MemberVO> getStatisticsMemberCount();
+	
 }

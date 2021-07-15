@@ -17,6 +17,13 @@
 body {
   font-family: 'NEXON Lv1 Gothic OTF';
 }
+
+#container {
+    min-width: 310px;
+    max-width: 800px;
+    height: 400px;
+    margin: 0 auto
+}
 </style>
 <head>
 
@@ -36,8 +43,12 @@ body {
 <link
 	href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
 	rel="stylesheet">
+	<script src="https://code.highcharts.com/highcharts.js"></script>
+	<script src=" https://code.highcharts.com/modules/exporting.js"></script>
 	 <script
 		src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.4.1/chart.min.js"></script>
+
+
 <!-- Custom styles for this template-->
 <link href="/petopia/css/sb-admin-2.min.css" rel="stylesheet">
 
@@ -243,7 +254,7 @@ body {
 						<!-- Card Body -->
 						<div class="card-body">
 							
-								<canvas id="userChart" ></canvas>
+								<div id="container"></div>
 						
 						</div>
 					</div>
@@ -277,7 +288,7 @@ body {
 						<!-- Card Body -->
 						
 								
-								<canvas id="pieChart"></canvas>
+							<canvas id="pieChart"></canvas>
 							
 						
 					</div>
@@ -390,22 +401,52 @@ body {
 	</div>
 
 <script type="text/javascript">
+
 	
 	console.log('chart.start')
-	var context = document.getElementById('userChart').getContext('2d');
-	var userChart = new Chart(context, {
-		type: 'line',
-		data :{
-			labels: ['07-10' , '07-11' , '07-12' , '07-13'],
-			datasets : [{
-				label:'유저수',
-				lineTension : 0,
-				data: [101, 200, 94 , 303],
-				backgroundcolor: "rgb(255, 192, 203)"
-			}]
-		}
-	});
-	
+Highcharts.chart('container', {
+
+    title: {
+        text: '회원수 그래프'
+    },
+
+    subtitle: {
+        text: '오늘 날짜 기준(+-2)'
+    },
+
+    yAxis: {
+        title: {
+            text: '회원수'
+        }
+    },
+    xAxis: {
+ 	categories:[['${getStatisticsMemberCount.get(0).getStatistics_join_day()}'],
+			   ['${getStatisticsMemberCount.get(1).getStatistics_join_day()}'],
+			   ['${getStatisticsMemberCount.get(2).getStatistics_join_day()}'],
+			   ['${getStatisticsMemberCount.get(3).getStatistics_join_day()}'],
+			   ['${getStatisticsMemberCount.get(4).getStatistics_join_day()}']]
+        	
+    },
+    legend: {
+        layout: 'vertical',
+        align: 'right',
+        verticalAlign: 'middle'
+    },
+  
+
+    series: [{
+        name: '회원수',
+        data: [[${getStatisticsMemberCount.get(0).getStatistics_join_count()}],
+        	   [${getStatisticsMemberCount.get(1).getStatistics_join_count()}],
+        	   [${getStatisticsMemberCount.get(2).getStatistics_join_count()}],
+        	   [${getStatisticsMemberCount.get(3).getStatistics_join_count()}],
+        	   [${getStatisticsMemberCount.get(4).getStatistics_join_count()}]]
+        
+       
+    		
+    }]
+});
+
 	var context2 = document.getElementById('pieChart').getContext('2d');
 	var userChart = new Chart(context2, {
 		type : 'doughnut',
@@ -421,9 +462,6 @@ body {
 				responsive : false
 			}
 	});
-	
-
-	
 	
 	
 
