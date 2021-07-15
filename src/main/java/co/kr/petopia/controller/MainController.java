@@ -9,8 +9,13 @@ public class MainController {
 	@GetMapping("/main")
 	public String mainPage() {
 		
-		return "main";
+		return "home/main";
 	}
 
+	@GetMapping("/petstagram")
+	public String petstagram() {
+		
+		return "home/petstagram";
+	}
 	
 }

@@ -9,7 +9,7 @@
 <!-- CSS here -->
 <link rel="stylesheet" href="/petopia/css/joinagree_style.css">
 <!-- default_css -->
-<%@include file="../include/default_css.jsp"%>
+<%@ include file="../include/default_css.jsp"%>
 </head>
 
 <body>
@@ -75,7 +75,7 @@
 	</main>
 
 	<footer>
-		<%@include file="../include/default_footer.jsp"%>
+		<%@ include file="../include/default_footer.jsp"%>
 	</footer>
 
 	<script>
@@ -92,7 +92,7 @@
              checkList[i].checked = true; // 하단 체크 박스 4개를 모두 check 시켜줌
              count = checkList.length; // count 값은 ckeckList의 길이값과 동일
           }
-       	  // 버튼 활성화
+     	  // 버튼 활성화
           $('input[type="checkbox"]').each(function() {
         	    $('.bnt-next').prop('disabled', false);
         	});
@@ -101,8 +101,8 @@
              checkList[i].checked = false; // 하단 체크 박스 4개를 모두 uncheck 시켜줌
              count = 0; // 모든 체크박스가 uncheck 되었으므로 count 값은 0
           }
-      	 // 버튼 비활성화
-          $('input[type="checkbox"]').each(function() {
+			// 버튼 비활성화
+			$('input[type="checkbox"]').each(function() {
       	    $('.bnt-next').prop('disabled', true);
       	});
           
@@ -116,12 +116,24 @@
              count++; // 카운트 +
              if (count == checkList.length) { // count 값이 길이값과 동일하게 되었다면
                 allcheck.checked = true; // allcheck 버튼도 체크값으로 변경
+             	  // 버튼 활성화
+                $('input[type="checkbox"]').each(function() {
+              	    $('.bnt-next').prop('disabled', false);
+              	});
              } else {
                 allcheck.checked = false; // 4이 아니라면 체크값을 없애줍니다
+                // 버튼 비활성화
+                $('input[type="checkbox"]').each(function() {
+            	    $('.bnt-next').prop('disabled', true);
+            	});
              }
           } else {
              count--; // 카운트 -
              allcheck.checked = false; // allcheck 버튼 역시 4가 될 수 없으므로 체크값을 없애준다.
+             // 버튼 비활성화
+             $('input[type="checkbox"]').each(function() {
+         	    $('.bnt-next').prop('disabled', true);
+         	});
           }
        }
        ;

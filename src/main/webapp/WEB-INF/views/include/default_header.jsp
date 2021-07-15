@@ -30,7 +30,7 @@
                           </div>
                       <!-- Logo -->
                       <div class="logo">
-                          <a href="main.html"><img src="/petopia/images/petopia_logo.png" alt=""></a>
+                          <a href="/home/main"><img src="/petopia/images/petopia_logo.png" alt=""></a>
                       </div>
                       </nav>
                         

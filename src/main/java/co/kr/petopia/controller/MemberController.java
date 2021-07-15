@@ -1,14 +1,22 @@
 	package co.kr.petopia.controller;
 
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import co.kr.petopia.service.MemberService;
 
 @Controller
 @RequestMapping("/member")
 public class MemberController {
 
+	@Autowired
+	private MemberService MemberService;
+	
 	@GetMapping("/login")
 	public String login() {
 		return "member/login";
@@ -24,11 +32,12 @@ public class MemberController {
 		return "member/join";
 	}	
 	
-	@GetMapping("/welcome")
-	public String welcome() {
+	@PostMapping("/welcome")
+	public String welcome(User user) {
 		return "member/welcome";
 	}
 	
+<<<<<<< Updated upstream
 	@GetMapping("/jusoPopup")
 	public String jusoPopup() {
 		return "member/jusoPopup";
@@ -75,4 +84,6 @@ public class MemberController {
     public String donation() {
         return "member/donation";
     }
+=======
+>>>>>>> Stashed changes
 }
