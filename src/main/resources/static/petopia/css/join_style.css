@@ -286,19 +286,16 @@ input {
 }
 
 
-input[id="roadAddrPart1"],
-input[id="zipNo"],
-input[id="addrDetail"]:hover{
+input[id="postcode"],
+input[id="roadAddress"]:hover{
 	cursor:default;
 }
-input[id="roadAddrPart1"],
-input[id="zipNo"],
-input[id="addrDetail"]{
+input[id="postcode"],
+input[id="roadAddress"]{
 	background: #eeeeee;
 }
-input[id="roadAddrPart1"],
-input[id="zipNo"],
-input[id="addrDetail"]:focus{
+input[id="postcode"],
+input[id="roadAddress"]:focus{
 	outline:none;
 	cursor:default;
 }

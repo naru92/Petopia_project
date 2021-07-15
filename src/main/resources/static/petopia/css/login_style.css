@@ -77,7 +77,7 @@ footer .container-fluid p{margin: 0; font-size: 11px;}
 body, main{
 	background: #fafafa;
 	position: relative; 
-	height: 1000px; 
+	height: 1300px; 
 	z-index: -100;}
 
 .container{
@@ -85,6 +85,13 @@ body, main{
 }
 .login-form h1 {
   font-size: 36px;
+  text-align: center;
+  color: #2AC1BC;
+  margin-bottom: 30px;
+  font-weight: normal;
+}
+.login-form h3 {
+  font-size: 25px;
   text-align: center;
   color: #2AC1BC;
   margin-bottom: 30px;
