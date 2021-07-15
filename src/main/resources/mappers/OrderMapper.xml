@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="co.kr.petopia.mapper.OrderMapper">
+
+	<!-- 회원 별 장바구니 리스트 -->
+	  <select id="getCartList" resultType="co.kr.petopia.vo.OrderVO">
+		 select product_name, product_coloroption, product_price
+  		 from member m, product p, cart c
+		 where m.member_id = c.member_id and p.product_idx = c.product_idx 
+	</select> 
+		
+			
+</mapper>
