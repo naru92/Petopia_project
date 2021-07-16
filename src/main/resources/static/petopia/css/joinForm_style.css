@@ -219,7 +219,7 @@ margin-bottom: 7px;
   font-size: 0.9rem;
   text-decoration: none;
   text-align: center;
-  background: #555555;
+  background: #2AC1BC;
   padding: 15px;
   width: 200px;
   color: white;
@@ -229,7 +229,7 @@ margin-bottom: 7px;
 
 #content3 .join-btn:not(:disabled):hover {
   text-decoration: none;
-  background: #2AC1BC;
+  opacity: 0.8;
   color: white;
 }
 

@@ -36,7 +36,7 @@
 					<button id ="login-button" class="login-btn" type="submit" name="submit">로그인</button>
 					<div class="reset-group">
 						<a class="reset-id" href="#">아이디찾기</a> <a class="reset-psw"
-							href="#">비밀번호찾기</a> <a class="sign-up" href="joinagree">회원가입</a>
+							href="#">비밀번호찾기</a> <a class="sign-up" href="joinAgree">회원가입</a>
 					</div>
 					
 					<div class="seperator">

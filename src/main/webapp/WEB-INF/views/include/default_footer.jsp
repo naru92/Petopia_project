@@ -10,9 +10,9 @@
         </br>
         <p>서비스 이용약관 | 개인정보 처리방침 | 입점/제휴 문의</p>
         </br>
-        <p>Naru Juhee Gunwoo Ahram Hansol Hana</p>
+        <p>Created by Naru Juhee Gunwoo Ahram Hansol Hana</p>
         <p>Bitcamp Jongno</p>
         </br>
         <p>&copy Creative 2021-08</p>     
     </div>
-    <!--// footer -->
+    <!-- footer -->

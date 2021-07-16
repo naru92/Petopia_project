@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>join agree</title>
 <!-- CSS here -->
-<link rel="stylesheet" href="/petopia/css/joinagree_style.css">
+<link rel="stylesheet" href="/petopia/css/joinAgree_style.css">
 <!-- default_css -->
 <%@ include file="../include/default_css.jsp"%>
 </head>
@@ -68,7 +68,7 @@
 				</section>
 				<section>
 					<a href="main"><button class="bnt-main">메인으로</button></a> 
-					<a href="join"><button class="bnt-next" disabled="disabled">다음으로</button></a> 
+					<a href="joinForm"><button class="bnt-next" disabled="disabled">다음으로</button></a> 
 				</section>
 			</article>
 		</div>
