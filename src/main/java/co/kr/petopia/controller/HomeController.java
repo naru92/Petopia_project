@@ -16,6 +16,9 @@ public class HomeController {
 	public String home(HttpServletRequest request) {
 //		System.out.println(request.getServletContext().getRealPath("/"));  첨부파일경로
 //		System.out.println(loginUserBeanzz);
+		System.out.println("파일 업로드할 경로" + request.getSession().getServletContext().getRealPath("/"));
 		return "redirect:/main";
 	}
 }
+
+

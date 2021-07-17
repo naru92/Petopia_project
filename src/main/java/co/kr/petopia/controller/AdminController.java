@@ -1,5 +1,9 @@
 package co.kr.petopia.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
@@ -54,14 +58,35 @@ public class AdminController {
 		getStatisticsMemberCount.get(0).getStatistics_join_count();
 		statisticsMemberMap.get("statistics_join_count");
 		
+		Date now = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		Calendar cal = Calendar.getInstance();
 		
-		System.out.println(getStatisticsMemberCount.get(0).getStatistics_join_day());
-		for (MemberVO memberVO : getStatisticsMemberCount) {
-			statisticsMemberMap.put("statistics_join_day" ,memberVO.getStatistics_join_day());
-			statisticsMemberMap.put("statistics_join_count" ,memberVO.getStatistics_join_count());
+		MemberVO nullVO = new MemberVO();
+		ArrayList<String> mainStatistics_join_day = new ArrayList<>();
+		
+
+		
+		if(getStatisticsMemberCount.size() != 5) {
+			
+			nullVO.setStatistics_join_count(0);
+			for(int i = getStatisticsMemberCount.size() ;  i < 5 ; i++) {
+			getStatisticsMemberCount.add(i, nullVO);
+				
+			}
 		}
-		model.addAttribute("statisticsMemberMap" , statisticsMemberMap);
+	
+		for(int i =0 ;  i < 5; i++) {
+			cal.add(Calendar.DATE, -1);
+			mainStatistics_join_day.add(sdf.format(cal.getTime()));
+			statisticsMemberMap.put("statistics_join_count" , getStatisticsMemberCount.get(i).getStatistics_join_count());
+		}
+		
+	
+		
+		model.addAttribute("mainStatistics_join_day" , mainStatistics_join_day);
 		model.addAttribute("getStatisticsMemberCount", getStatisticsMemberCount);
+		
 //		//금일매출
 //		adminService.getTodayIncome();
 //		//금일 기부금
@@ -339,7 +364,7 @@ public class AdminController {
 		
 		
 		
-		return "/admin/insertProduct";
+		return "/product/insertProduct";
 	}
 	//상품 등록 post
 	@PostMapping("/product/insert_pro")
@@ -347,7 +372,7 @@ public class AdminController {
 			BindingResult result) {
 		
 		if(result.hasErrors()) {
-			return "/admin/insertProduct";
+			return "/product/insertProduct";
 		}
 		adminService.insertProduct(insertProductVO);
 		

@@ -402,6 +402,7 @@ body {
 
 <script type="text/javascript">
 
+
 	
 	console.log('chart.start')
 Highcharts.chart('container', {
@@ -411,7 +412,7 @@ Highcharts.chart('container', {
     },
 
     subtitle: {
-        text: '오늘 날짜 기준(+-2)'
+        text: '5일전~오늘'
     },
 
     yAxis: {
@@ -420,12 +421,12 @@ Highcharts.chart('container', {
         }
     },
     xAxis: {
- 	categories:[['${getStatisticsMemberCount.get(0).getStatistics_join_day()}'],
-			   ['${getStatisticsMemberCount.get(1).getStatistics_join_day()}'],
-			   ['${getStatisticsMemberCount.get(2).getStatistics_join_day()}'],
-			   ['${getStatisticsMemberCount.get(3).getStatistics_join_day()}'],
-			   ['${getStatisticsMemberCount.get(4).getStatistics_join_day()}']]
-        	
+ 	categories: [['${mainStatistics_join_day.get(0).toString()}'],
+ 	   ['${mainStatistics_join_day.get(1).toString()}'],
+	   ['${mainStatistics_join_day.get(2).toString()}'],
+	   ['${mainStatistics_join_day.get(3).toString()}'],
+	   ['${mainStatistics_join_day.get(4).toString()}']
+	   ]
     },
     legend: {
         layout: 'vertical',
@@ -440,7 +441,8 @@ Highcharts.chart('container', {
         	   [${getStatisticsMemberCount.get(1).getStatistics_join_count()}],
         	   [${getStatisticsMemberCount.get(2).getStatistics_join_count()}],
         	   [${getStatisticsMemberCount.get(3).getStatistics_join_count()}],
-        	   [${getStatisticsMemberCount.get(4).getStatistics_join_count()}]]
+        	   [${getStatisticsMemberCount.get(4).getStatistics_join_count()}]
+        	   ]
         
        
     		
