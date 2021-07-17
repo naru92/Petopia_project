@@ -1,0 +1,197 @@
+package co.kr.petopia.controller;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.nio.file.Files;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.UUID;
+
+import org.apache.tika.Tika;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.util.FileCopyUtils;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+
+import co.kr.petopia.vo.ProductVO;
+import lombok.extern.slf4j.Slf4j;
+import net.coobird.thumbnailator.Thumbnailator;
+@Slf4j
+@Controller
+public class FileUploadController {
+	
+	private String getFolder() {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		Date date = new Date();
+		String str = sdf.format(date);
+		return str.replace("-", File.separator);
+	}
+	
+	private boolean checkImageType(File file) {
+		log.info("이미지 타입인지 확인");
+		
+		try {
+			
+			log.info("check Image Type Function " + file);
+			
+			String contentType = new Tika().detect(file);
+			
+			log.info(contentType);
+			
+			return contentType.startsWith("image");
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+	@PostMapping(value = "/uploadAjaxAction", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<ProductVO>> uploadAjaxPost(MultipartFile[] uploadFile){
+		log.info("update ajax post");
+		
+		List<ProductVO> productVOList = new ArrayList<>();
+		
+		String uploadFolder = "D:/petopia_bit/workspace-spring-tool-suite-4-4.11.0.RELEASE/petopia/src/main/webapp/upload";
+		String uploadFolderPath = getFolder();
+		
+		File uploadPath = new File(uploadFolder, uploadFolderPath);
+		log.info("업로드 경로 : " + uploadPath);
+		
+		if(uploadPath.exists() == false) {
+			uploadPath.mkdirs();
+		}
+		
+		for(MultipartFile multipartFile : uploadFile) {
+			log.info("-------------------");
+			log.info("Upload File Name : " + multipartFile.getOriginalFilename());
+			log.info("Upload File Size: " + multipartFile.getSize());
+			
+			ProductVO productVO = new ProductVO();
+			
+			String uploadFileName = multipartFile.getOriginalFilename();
+			
+			uploadFileName = uploadFileName
+											.substring(uploadFileName.lastIndexOf("\\")+1);
+			productVO.setProduct_image(uploadFileName);
+			UUID uuid = UUID.randomUUID();
+			
+			uploadFileName = uuid.toString() + "_" + uploadFileName;
+			
+			try {
+				File saveFile = new File(uploadPath , uploadFileName);
+				
+				System.out.println(saveFile);
+				
+				multipartFile.transferTo(saveFile);
+				
+				productVO.setUuid(uuid.toString());
+				productVO.setUploadPath(uploadFolderPath);
+			
+				// 파일 타입 체크
+				if(checkImageType(saveFile)) {
+					
+					log.info("check Image Type " + saveFile);
+					
+					productVO.setImageType(true);
+					
+					FileOutputStream thumbnail = 
+							new FileOutputStream(new File(uploadPath, "s_" 
+									+ uploadFileName));
+					
+					FileOutputStream bigThumbnail = 
+							new FileOutputStream(new File(uploadPath, "bs_" 
+					+ uploadFileName));
+					
+					Thumbnailator.createThumbnail(multipartFile.getInputStream(), 
+							thumbnail, 100, 100);
+					
+					Thumbnailator.createThumbnail(multipartFile.getInputStream(), 
+							bigThumbnail, 266, 381);
+					
+					thumbnail.close();
+					bigThumbnail.close();
+				}
+					productVOList.add(productVO);
+					
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return new ResponseEntity<>(productVOList, HttpStatus.OK);
+	}
+	
+	@GetMapping("/display")
+	@ResponseBody
+	public ResponseEntity<byte[]> getFile(String fileName){
+		log.info("fileName : " +  fileName);
+		
+		File file = new File("D:/petopia_bit/workspace-spring-tool-suite-4-4.11.0.RELEASE/petopia/src/main/webapp/upload/" + fileName);
+		
+		log.info("file : " + file);
+		
+		ResponseEntity<byte[]> result = null;
+		
+		try {
+			HttpHeaders header = new HttpHeaders();
+			header.add("Content-Type", Files.probeContentType(file.toPath()));
+			result = new ResponseEntity<>(FileCopyUtils.copyToByteArray(file),header,HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+			
+	}
+	
+	@PostMapping("/delteFile")
+	@ResponseBody
+	public ResponseEntity<String> deleteFile(String fileName, String type){
+		
+		log.info("deleteFile : " + fileName);
+		
+		File file;
+		
+		try {
+			file = new File("D:/petopia_bit/workspace-spring-tool-suite-4-4.11.0.RELEASE/petopia/src/main/webapp/upload/" + URLDecoder.decode(fileName, "UTF-8"));
+			
+			file.delete();
+			
+			if(type.equals("image")) {
+				// 썸네일
+				String largeFileName = file.getAbsolutePath().replace("s_", "");
+				// 뷰에서 받아온 파일 이름을 사용
+				log.info("largeFileName : " + largeFileName);
+
+				file = new File(largeFileName);
+				
+				file.delete();
+				
+				// 빅썸네일 삭제가 안됨
+				String bigFileName = file.getAbsolutePath().replace("bs_", "");
+				// 뷰에서 받아온 파일 이름을 이용해서 bs가 붙은 파일 이름을 만들어야 함
+				log.info("bigFileName : " + bigFileName);
+				
+				file = new File(bigFileName);
+				
+				file.delete();
+
+			}
+			
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+			
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<String>("deleted", HttpStatus.OK);
+	}
+							
+}

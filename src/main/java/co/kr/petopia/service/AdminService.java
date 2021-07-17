@@ -73,7 +73,7 @@ public interface AdminService {
 	
 	/*상품*/
 	
-	
+	/*file*/
 	
 	
 }

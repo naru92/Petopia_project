@@ -16,6 +16,10 @@ public class ProductVO {
 	private String product_colorOption;
 	private String product_stock;
 	private String product_detail_info;
-	private String product_image;
+	private String product_image; //file name
 	private String product_review;
+	
+	private String uuid;
+	private String uploadPath;
+	private boolean imageType;
 }
