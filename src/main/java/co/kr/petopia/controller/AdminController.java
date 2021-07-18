@@ -10,7 +10,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-
+import org.apache.ibatis.annotations.Delete;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -25,14 +25,17 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import co.kr.petopia.service.AdminService;
 import co.kr.petopia.service.MemberSecurtiyService;
 import co.kr.petopia.utils.Criteria;
 import co.kr.petopia.utils.PageVO;
 import co.kr.petopia.vo.DeliveryVO;
+import co.kr.petopia.vo.FileUploadVO;
 import co.kr.petopia.vo.MemberVO;
 import co.kr.petopia.vo.OrderVO;
 import co.kr.petopia.vo.ProductVO;
@@ -360,7 +363,7 @@ public class AdminController {
 
 	// 상품 등록 겟
 	@GetMapping("/product/insert")
-	public String insertProduct(@ModelAttribute("insertProductVO") ProductVO insertProductVO) {
+	public String insertProduct(ProductVO productVO) {
 		
 		
 		
@@ -368,23 +371,41 @@ public class AdminController {
 	}
 	//상품 등록 post
 	@PostMapping("/product/insert_pro")
-	public String insertProduct_pro(@ModelAttribute("insertProductVO") ProductVO insertProductVO,
-			BindingResult result) {
+	public String insertProduct_pro(ProductVO productVO, FileUploadVO fileUploadVO,
+			 RedirectAttributes redirectAttributes) {
 		
-		if(result.hasErrors()) {
-			return "/product/insertProduct";
-		}
-		adminService.insertProduct(insertProductVO);
-		
-		
-		return "/admin/insertProduct_success";
+	log.info("insert_pro()..");
+	log.info("add products : " + productVO);
+
+	if(productVO.getProductVOList() != null) {
+		productVO.getProductVOList().forEach( file ->System.out.println(productVO));
+	}	
+	
+	log.info("========================");
+	
+	
+	adminService.insertProduct(productVO);
+	redirectAttributes.addFlashAttribute("result", productVO.getProduct_idx());
+	
+		//상품 메인으로 리다이렉트 
+		return "redirect:/admin/product";
 	}
 	// 상품 삭제
-	public String deleteProduct() {
+	@PostMapping("admin/product/delete")
+	public String deleteProduct(@RequestParam int product_idx , Criteria cri, RedirectAttributes redirectAttributes ) {
 		return "admin/deleteProduct";
 	}
 	// 상품 수정
 	public String updateProduct() {
 		return "admin/updateProduct";
+	}
+
+	@GetMapping(value = "/getAttachList",
+			produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<FileUploadVO>> getAttachList(int product_idx) {
+		
+		log.info("productVOList " + product_idx);
+		
+		return new ResponseEntity<>(adminService.findByProduct(product_idx), HttpStatus.OK);
 	}
 }

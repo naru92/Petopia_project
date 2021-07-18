@@ -227,11 +227,92 @@
 				</div>
 			</div>
 		</div>
+		
+		<!-- Modal -->
+      <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+        aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal"
+                aria-hidden="true">&times;</button>
+              <h4 class="modal-title" id="myModalLabel">REPLY MODAL</h4>
+            </div>
+            <div class="modal-body">
+			처리 되었습니다.      
+            </div>
+<div class="modal-footer">
+        <button id='modalCloseBtn' type="button" class="btn btn-default">Close</button>
+      </div>          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+      <!-- /.modal -->   
 	</div>
 	
 	<script type="text/javascript">
 	$(document).ready(
 			function() {
+				
+				 var bno = '<c:out value="${productVO.product_idx}"/>';
+				    
+				    /* $.getJSON("/board/getAttachList", {bno: bno}, function(arr){
+				    
+				      console.log(arr);
+				      
+				      
+				    }); *///end getjson
+				    $.getJSON("/admin/getAttachList", {product_idx: product_idx}, function(arr){
+				        
+				       console.log(arr);
+				       
+				       var str = "";
+				       
+				       $(arr).each(function(i, attach){
+				       
+				         //image type
+				         if(attach.fileType){
+				           var fileCallPath =  encodeURIComponent( attach.uploadPath+ "/s_"+attach.uuid +"_"+attach.fileName);
+				           
+				           str += "<li data-path='"+attach.uploadPath+"' data-uuid='"+attach.uuid+"' data-filename='"+attach.fileName+"' data-type='"+attach.fileType+"' ><div>";
+				           str += "<img src='/display?fileName="+fileCallPath+"'>";
+				           str += "</div>";
+				           str +"</li>";
+				         }else{
+				             
+				           str += "<li data-path='"+attach.uploadPath+"' data-uuid='"+attach.uuid+"' data-filename='"+attach.fileName+"' data-type='"+attach.fileType+"' ><div>";
+				           str += "<span> "+ attach.fileName+"</span><br/>";
+				           str += "<img src='/resources/img/attach.png'></a>";
+				           str += "</div>";
+				           str +"</li>";
+				         }
+				       });
+				       
+				       $(".uploadResult ul").html(str);
+				       
+				       
+				     });//end getjson
+				
+				//modal
+				var result = '<c:out value ="${result}"/>';
+				checkModal(result);
+				
+				function checkModal(result){
+					
+					if(result === '' ){
+						return;
+					}
+					if(parseInt(result) > 0 ){
+						$(".modal-body").html("게시글 " + parseInt(result)) + "번이 등록되었습니다.");
+					}
+					
+					$("#myModal").modal("show");
+				} 
+				
+				});
+				//modal end
+				
 				
 				// 페이징 버튼 이벤트
 				var actionForm = $("#pageActionForm");

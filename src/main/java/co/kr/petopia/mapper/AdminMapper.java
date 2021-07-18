@@ -10,6 +10,7 @@ import co.kr.petopia.vo.BoardVO;
 import co.kr.petopia.vo.ContentVO;
 import co.kr.petopia.vo.DeliveryVO;
 import co.kr.petopia.vo.DonationVO;
+import co.kr.petopia.vo.FileUploadVO;
 import co.kr.petopia.vo.OrderVO;
 import co.kr.petopia.vo.ProductVO;
 import co.kr.petopia.utils.Criteria;
@@ -33,7 +34,7 @@ public interface AdminMapper{
 	//상품 통계
 	public String getProductStatistics();
 	//상품 등록
-	public void insertProduct(ProductVO productVO);
+	public void insertProduct(ProductVO insertProductVO);
 	//상품 수정
 	public ProductVO updateProduct(ProductVO productVO);
 	//상품 삭제
@@ -84,5 +85,7 @@ public interface AdminMapper{
 	public List<OrderVO> selectOptionOrderList(HashMap<String, Object> optionMap);
 	//가입수 메인 통계
 	public LinkedList<MemberVO> getStatisticsMemberCount();
+	
+	public List<FileUploadVO> insertProductImage (FileUploadVO fileUploadVO);
 	
 }

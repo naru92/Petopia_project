@@ -1,5 +1,6 @@
 package co.kr.petopia.controller;
 
+import java.io.IOException;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +33,7 @@ public class SocialController {
 	private String redirectUri = "http://localhost:8282/kakao/callback";
 
 	@GetMapping("/kakao/callback")
-	public @ResponseBody String kakaoCallback(String code) { // Data를 리턴해주는 컨트롤러 함수
+	public @ResponseBody String kakaoCallback(String code) throws IOException { // Data를 리턴해주는 컨트롤러 함수
 
 		// POST방식으로 key=value 데이터를 요청 (카카오 쪽으로)
 		RestTemplate rt = new RestTemplate();

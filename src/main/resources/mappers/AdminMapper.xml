@@ -44,21 +44,27 @@
 		product
 		where product_idx = #{product_idx}
 	</select>
-
+	
+	
+	
+	
 	<!-- 상품 CRUD -->
-
 
 	<insert id="insertProduct"
 		parameterType="co.kr.petopia.vo.ProductVO">
 		
-		<![CDATA[
+		<selectKey keyProperty="product_idx" order="BEFORE" resultType="Integer">
+ 			select product_seq.nextval from dual
+ 		</selectKey>
+ 		
+		
 		INSERT into
-    		product(product_idx, product_category_id, product_price,
+    		product(product_idx, product_category_id, product_price, product_name,
     		product_coloroption, product_stock, product_detail_info, product_image) 
     	VALUES
-		    (product_seq.nextval, #{ product_category_id}, #{product_price},#{product_coloroption},
-		    #{product_stock},#{product_detail_info}, #{content_file , jdbcType=VARCHAR})
-		]]>
+		    (#{product_idx}, #{product_category_id}, #{product_price}, #{product_name},#{product_coloroption},
+		    #{product_stock},#{product_detail_info}, #{product_image, jdbcType=VARCHAR})
+		
 	</insert>
 
 	<!-- 상품 수정 (상품명 ,가격, 컬러옵션,재고량,상세정보, 이미지) -->
@@ -189,6 +195,9 @@
   		 ]]>
 
 	</select>
+	
+	
+	
 	<!-- 상품 리스트 페이징 -->
 	<select id="getProductListWithPaging" parameterType="int"
 		resultType="co.kr.petopia.vo.ProductVO">

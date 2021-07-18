@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import co.kr.petopia.vo.FileUploadVO;
 import co.kr.petopia.vo.ProductVO;
 import lombok.extern.slf4j.Slf4j;
 import net.coobird.thumbnailator.Thumbnailator;
@@ -44,7 +45,7 @@ public class FileUploadController {
 			
 			log.info("check Image Type Function " + file);
 			
-			String contentType = new Tika().detect(file);
+			String contentType = Files.probeContentType(file.toPath());
 			
 			log.info(contentType);
 			
@@ -56,10 +57,11 @@ public class FileUploadController {
 		return false;
 	}
 	@PostMapping(value = "/uploadAjaxAction", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<ProductVO>> uploadAjaxPost(MultipartFile[] uploadFile){
+	public ResponseEntity<List<FileUploadVO>> uploadAjaxPost(MultipartFile[] uploadFile){
 		log.info("update ajax post");
 		
-		List<ProductVO> productVOList = new ArrayList<>();
+		List<FileUploadVO> productVOList = new ArrayList<>();
+		
 		
 		String uploadFolder = "D:/petopia_bit/workspace-spring-tool-suite-4-4.11.0.RELEASE/petopia/src/main/webapp/upload";
 		String uploadFolderPath = getFolder();
@@ -75,26 +77,25 @@ public class FileUploadController {
 			log.info("-------------------");
 			log.info("Upload File Name : " + multipartFile.getOriginalFilename());
 			log.info("Upload File Size: " + multipartFile.getSize());
-			
-			ProductVO productVO = new ProductVO();
+			FileUploadVO productVO = new FileUploadVO();
+			ProductVO getProductImage = new ProductVO(); 
+			getProductImage.setProduct_image(multipartFile.getOriginalFilename());
 			
 			String uploadFileName = multipartFile.getOriginalFilename();
-			
 			uploadFileName = uploadFileName
 											.substring(uploadFileName.lastIndexOf("\\")+1);
-			productVO.setProduct_image(uploadFileName);
 			UUID uuid = UUID.randomUUID();
-			
 			uploadFileName = uuid.toString() + "_" + uploadFileName;
-			
+			productVO.setFileName(uploadFileName);
+			getProductImage.setProduct_image(productVO.getFileName());
 			try {
 				File saveFile = new File(uploadPath , uploadFileName);
-				
 				System.out.println(saveFile);
 				
-				multipartFile.transferTo(saveFile);
+//				multipartFile.transferTo(saveFile);
 				
 				productVO.setUuid(uuid.toString());
+				productVO.setProduct_image(uploadFileName);
 				productVO.setUploadPath(uploadFolderPath);
 			
 				// 파일 타입 체크
@@ -103,26 +104,16 @@ public class FileUploadController {
 					log.info("check Image Type " + saveFile);
 					
 					productVO.setImageType(true);
+					getProductImage.setProduct_image(saveFile.getName());
 					
-					FileOutputStream thumbnail = 
-							new FileOutputStream(new File(uploadPath, "s_" 
-									+ uploadFileName));
-					
-					FileOutputStream bigThumbnail = 
-							new FileOutputStream(new File(uploadPath, "bs_" 
-					+ uploadFileName));
-					
-					Thumbnailator.createThumbnail(multipartFile.getInputStream(), 
-							thumbnail, 100, 100);
-					
-					Thumbnailator.createThumbnail(multipartFile.getInputStream(), 
-							bigThumbnail, 266, 381);
-					
+					FileOutputStream thumbnail = new FileOutputStream(new File(uploadPath, "s_" + uploadFileName));
+					Thumbnailator.createThumbnail(multipartFile.getInputStream(), thumbnail, 100, 100);
+
 					thumbnail.close();
-					bigThumbnail.close();
+					
 				}
 					productVOList.add(productVO);
-					
+					log.info(productVOList.toString());
 			}catch (Exception e) {
 				e.printStackTrace();
 			}

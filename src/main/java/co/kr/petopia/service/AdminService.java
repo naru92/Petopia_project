@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import co.kr.petopia.vo.DonationVO;
+import co.kr.petopia.vo.FileUploadVO;
 import co.kr.petopia.utils.Criteria;
 import co.kr.petopia.vo.ContentVO;
 import co.kr.petopia.vo.DeliveryVO;
@@ -74,6 +75,6 @@ public interface AdminService {
 	/*상품*/
 	
 	/*file*/
-	
+	public List<FileUploadVO> findByProduct(int product_idx);
 	
 }

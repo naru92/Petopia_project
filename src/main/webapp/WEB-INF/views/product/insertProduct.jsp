@@ -25,24 +25,28 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 <style>
-.content-area {
-	margin-bottom: 80px;
+.marginclass {
+	padding-left: 0px;
 }
 
 .row {
-	margin-bottom: 80px;
+	margin-bottom: 40px;
 }
 
 #board_file {
 	padding-top: 2px;
 	padding-left: 2px;
 }
+
+.inline-text {
+display :inline;
+}
 </style>
 
 </head>
 
 <body id="page-top">
-
+<section>
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
@@ -57,165 +61,102 @@
 
 
 
-		<!-- Content Wrapper -->
-		<div id="content-wrapper" class="d-flex flex-column">
-
-			<!-- Main Content -->
-			<div id="content">
+	
+    <div class="container">
+        <div class="row">
 
 
-				<!-- End of Topbar -->
+            <div class="col-sm-9 padding-right">
+                <div class="product-information">
+                    <!--/product-information-->
+                    <form id="addForm" action="${root }admin/product/insert_pro" method="post">
+                    
+                        <h2>상품등록</h2>
+                        <hr>
+                    
+                           
+                            <div class="form-group col-sm-2 marginclass">
+                                <select id="prodct_category_id" name="product_category_id">
+                                    <option value="">카테고리</option>
+                                    <option value="1">장난감</option>
+                                    <option value="2">배변 패드</option>
+                                    <option value="3">건강 관리</option>
+                                    <option value="4">미용/목욕</option>
+                                    <option value="5">급식기/급수기</option>
+                                    <option value="6">하우스/울타리</option>
+                                    <option value="7">이동장</option>
+                                    <option value="8">의류</option>
+                                    <option value="9">기타</option>
+                                </select>
+                            </div>
 
-				<!-- Begin Page Content -->
-				<div class="container-fluid">
+                       
+						   <div class="form-group col-sm-4 marginclass">
+                           	  <h5 class= inline-text><b>색상 : </b></h5>
+                              black: <input type="checkbox" name="product_coloroption" value="black">
+             				  white: <input type="checkbox" name="product_coloroption" value="white">
+                			  red: <input type="checkbox" name="product_coloroption" value="red" >
+                           </div>
+                     	
+                     	<br>
+                        <div class="form-group">
+                            <h2><b>상품명 : </b></h2>
+                            <input class="form-control" name='product_name'>
+                        </div>
 
-					<!-- Content Row -->
-					<div class="row">
-						<!-- Content Column -->
-						<div class="col-xl-12 col-lg-12">
-							<div class="card shadow mb-4">
-								<div class="card-header py-3">
-									<h6 class="m-0 font-weight-bold text-primary">상품등록</h6>
-								</div>
+                        <div class="form-group">
+                            <h2><b>가격 : </b></h2>
+                            <input class="form-control" name='product_price'>
+                        </div>
+                        <div class="form-group">
+                            <h2><b>재고량 : </b></h2>
+                            <input class="form-control" name='product_stock'>
+                        </div>
 
-								<div class="row">
-									<div class="container" style="margin-top: 100px">
-										<div class="row">
-											<div class="col-sm-3"></div>
-											<div class="col-sm-6">
-												<div class="card shadow">
-													<div class="card-body content-area">
-														<form:form action="${root}admin/product/insert_pro"
-															method="post" modelAttribute="insertProductVO"
-															enctype="multipart/form-data">
+                        <div class="form-group">
+                            <h2><b>상품 설명</b></h2>
+                            <textarea class="form-control" rows="3" name='product_detail_info'></textarea>
+                        </div>
+                        
+                        
 
-															<div class="form-group">
-																<form:label path="product_name">상품명</form:label>
-																<form:input path="product_name" class="form-control" />
-																<form:errors path="product_name" style='color:red' />
-															</div>
-															<hr>
-															<div class="form-group">
-																<select id="product_category_idx"
-																	name="product_category_idx">
-																	<option value="" selected>--상품분류--</option>
-																	<option value="1">사료</option>
-																	<option value="2">간식</option>
-																	<option value="3">위생/배변</option>
-																	<option value="4">미용/목욕</option>
-																	<option value="5">급식/급수기</option>
-																	<option value="6">장난감/훈련</option>
-																	<option value="7">하우스/이동장</option>
-																	<option value="8">패션/의류</option>
-																	<option value="9">목줄/하네스</option>
-																</select>
+                        <button id="addBtn" type="submit" class="btn btn btn-primary">등록</button>
+                        <button type="reset" class="btn btn-info">초기화</button>
 
-															</div>
-															<hr>
+                    
+                    </form>
+                </div>
+                <!--/product-information-->
+            </div>
+			
+            <div class="col-sm-9 padding-right">
+            <hr>
+                <div class="panel panel-primary" style="margin-top:5px; border-radius:5px;">
+                    <div class="panel-heading">파일 첨부</div>
 
-															<div>
-																<form:label path="product_colorOption">컬러 옵션</form:label>
-																<br> <input type="checkbox" value="red"
-																	name="color_option">빨강&nbsp&nbsp <input
-																	type="checkbox" value="blue" name="color_option">파랑&nbsp&nbsp
-																<input type="checkbox" value="purple"
-																	name="color_option">보라&nbsp&nbsp <input
-																	type="checkbox" value="black" name="color_option">검정&nbsp&nbsp
-																<input type="checkbox" value="white" name="color_option">흰색
-															</div>
-															<hr>
-															<div class="form-group col-6 pl-0">
-																<form:label path="product_price">가격</form:label>
-																<form:input path="product_price" class='form-control' />
-															</div>
-															<hr>
-															<div class="form-group col-6 pl-0">
-																<form:label path="product_stock">재고량</form:label>
-																<form:input path="product_stock" class="form-control" />
-															</div>
-															<div class="form-group">
-																<form:label path="product_detail_info">상세정보</form:label>
-																<form:textarea path="product_detail_info"
-																	class="form-control" rows="10" style="resize: none" />
-															</div>
+                    <div class="panel-body">
+                        <div class="form-group uploadDiv">
+                            <input type="file" name='uploadFile' id="uploadInput" multiple>
+                        </div>
 
-															<div class="form-group">
-																<form:label path="product_image">상품 이미지</form:label>
-																<input type="file" name='uploadFile' id="uploadInput"
-																	multiple>
-															</div>
+                        <div class='uploadResult'>
+                            <ul>
 
-															<div class='uploadResult'>
-																<ul>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- ./panel-body -->
+                </div>
+                <!-- ./panel -->
+            </div>
 
-																</ul>
-															</div>
-															<div class="form-group">
-																<div class="text-right">
-																	<form:button type="submit" class="btn btn-primary">작성하기</form:button>
-																	<form:button type="submit" class="btn btn-danger">취소</form:button>
-																</div>
-															</div>
-
-														</form:form>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- /.container-fluid -->
-
-			</div>
-			<!-- End of Main Content -->
-
-			<!-- Footer -->
-			<footer class="sticky-footer bg-white">
-				<div class="container my-auto">
-					<div class="copyright text-center my-auto">
-						<span>Copyright &copy; Your Website 2021</span>
-					</div>
-				</div>
-			</footer>
-			<!-- End of Footer -->
-
-		</div>
-		<!-- End of Content Wrapper -->
-
-	</div>
-	<!-- End of Page Wrapper -->
-
-	<!-- Scroll to Top Button-->
-	<a class="scroll-to-top rounded" href="#page-top"> <i
-		class="fas fa-angle-up"></i>
-	</a>
-
-	<!-- Logout Modal-->
-	<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
-		aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-					<button class="close" type="button" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">×</span>
-					</button>
-				</div>
-				<div class="modal-body">Select "Logout" below if you are ready
-					to end your current session.</div>
-				<div class="modal-footer">
-					<button class="btn btn-secondary" type="button"
-						data-dismiss="modal">Cancel</button>
-					<a class="btn btn-primary" href="login.html">Logout</a>
-				</div>
-			</div>
-		</div>
-	</div>
+        </div>
+    </div>
+   </div>
+	
+   
+  
+</section>
 
 	<c:import url="/WEB-INF/views/include/admin_list_js.jsp" />
 
@@ -224,13 +165,46 @@
 		//파일 업로드 구현 시작
 		$(document)
 				.ready(
+						
+						
+						
+						
+						
+						//file upload
 						function(e) {
-							var formObj = $("form[role='form']");
-							$(".btn-primary[type='submit']").on('click',
-									function(e) {
-										e.preventDefault();
-										console.log("submit_click!!")
-									});
+							var formObj = $("#addForm");
+							
+							
+							  $("#addBtn").on("click", function(e) {
+
+						            e.preventDefault();
+
+						            console.log("submit clicked");
+
+						            var str = "";
+
+						            $(".uploadResult ul li").each(function(i, obj) {
+
+						                var jobj = $(obj);
+
+						                console.dir(jobj);
+						                console.log(jobj.data("uploadFile"));
+
+						                str += "<input type='hidden' name='productVOList[" + i + "].prdouct_image' value ='" + jobj.data('prdouct_image') + "'>";
+						                str += "<input type='hidden' name='productVOList[" + i + "].filename' value='" + jobj.data('filename') + "'>";
+						                str += "<input type='hidden' name='productVOList[" + i + "].uuid' value='" + jobj.data('uuid') + "'>";
+						                str += "<input type='hidden' name='productVOList[" + i + "].uploadPath' value='" + jobj.data('path') + "'>";
+						                str += "<input type='hidden' name='productVOList[" + i + "].imageType' value='" + jobj.data('type') + "'>";
+						                str += "<input type='hidden' name='product_image' value='" + jobj.data('filename') + "'>";
+						            });
+						            
+						            console.log(str);
+
+						            formObj.append(str).submit();
+
+						            console.log(formObj);
+						        });
+
 
 							const regex = new RegExp("(.*?)\.(exe\sh\zip\alz)$");//파일 확장자 선언
 							const maxSize = 10485760; //10MB로 제한
@@ -255,68 +229,47 @@
 							// 파일 업로드 결과
 							function showUploadResult(uploadResultArr) {
 
-								if (!uploadResultArr
-										|| uploadResultArr.length == 0) {
-									return;
-								}
+            if (!uploadResultArr || uploadResultArr.length == 0) {
+                return;
+            }
 
-								var uploadUL = $(".uploadResult ul");
+            var uploadUL = $(".uploadResult ul");
 
-								var str = "";
+            var str = "";
 
-								$(uploadResultArr)
-										.each(
-												function(i, obj) {
-													if (obj.imageType) {
-														var fileCallPath = encodeURIComponent(obj.uploadPath
-																+ "/s_"
-																+ obj.uuid
-																+ "_"
-																+ obj.fileName);
+            $(uploadResultArr).each(function(i, obj) {
+                if (obj.imageType) {
+                    var fileCallPath = encodeURIComponent(obj.uploadPath + "/s_" + obj.uuid + "_" + obj.fileName);
 
-														str += "<li data-path='" + obj.uploadPath + "' data-uuid='" +
+                    str += "<li data-path='" + obj.uploadPath + "' data-uuid='" +
                         obj.uuid + "' data-filename='" + obj.fileName +
                         "' data-type='" + obj.imageType + "' ><div>";
-														str += "<span> "
-																+ obj.fileName
-																+ "</span>";
-														str += "<button type='button' data-file=\'" + fileCallPath +
+                    str += "<span> " + obj.fileName + "</span>";
+                    str += "<button type='button' data-file=\'" + fileCallPath +
                         "\' data-type='image' class='btn btn-warning btm-circle'> <i class='fa fa-times'></i></button><br>";
-														str += "<img src='/display?fileName="
-																+ fileCallPath
-																+ "'>";
-														str += "</div>";
-														str + "</li>";
-													} else {
-														var fileCallPath = encodeURIComponent(obj.uploadPath
-																+ "/s_"
-																+ obj.uuid
-																+ "_"
-																+ obj.fileName);
-														var fileLink = fileCallPath
-																.replace(
-																		new RegExp(
-																				/\\/g),
-																		"/");
+                    str += "<img src='/display?fileName=" + fileCallPath + "'>";
+                    str += "</div>";
+                    str + "</li>";
+                } else {
+                    var fileCallPath = encodeURIComponent(obj.uploadPath + "/s_" + obj.uuid + "_" + obj.fileName);
+                    var fileLink = fileCallPath.replace(new RegExp(/\\/g), "/");
 
-														str += "<li data-path='" + obj.uploadPath + "' data-uuid='" +
+                    str += "<li data-path='" + obj.uploadPath + "' data-uuid='" +
                         obj.uuid + "' data-filename='" + obj.fileName +
                         "' data-type='" + obj.imageType + "' ><div>";
-														str += "<span> "
-																+ obj.fileName
-																+ "</span>";
-														str += "<button type='button' data-file=\'" + fileCallPath +
+                    str += "<span> " + obj.fileName + "</span>";
+                    str += "<button type='button' data-file=\'" + fileCallPath +
                         "\' data-type='file' class='btn btn-warning btm-circle'> <i class='fa fa-times'></i></button><br>";
-														str += "<img src='../../resources/images/attach.png'>";
-														str += "</div>";
-														str + "</li>";
-													}
-												});
+                    str += "<img src='../../resources/images/attach.png'>";
+                    str += "</div>";
+                    str + "</li>";
+                }
+            });
 
-								uploadUL.append(str);
-							}
+            uploadUL.append(str);
+        }
 							
-							$("input[type='file']")
+						$("input[type='file']")
 							.change(
 									function(e) {
 										var formData = new FormData(); // 폼태그
@@ -338,11 +291,14 @@
 											url : '/uploadAjaxAction',
 											processData : false,
 											contentType : false,
+											cashe: false,
 											data : formData,
 											type : 'POST',
 											dataType : 'json',
 											success : function(result) {
-												console.log('업로드 성공')
+												console.log('업로드 성공');
+												console.log(result);
+												showUploadResult(result);
 											}
 										});
 

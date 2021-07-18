@@ -4,24 +4,32 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.xml.bind.attachment.AttachmentMarshaller;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import co.kr.petopia.mapper.AdminMapper;
+import co.kr.petopia.mapper.ProductAattachMapper;
 import co.kr.petopia.utils.Criteria;
 import co.kr.petopia.vo.ContentVO;
 import co.kr.petopia.vo.DeliveryVO;
 import co.kr.petopia.vo.DonationVO;
+import co.kr.petopia.vo.FileUploadVO;
 import co.kr.petopia.vo.MemberVO;
 import co.kr.petopia.vo.OrderVO;
 import co.kr.petopia.vo.ProductVO;
+import lombok.extern.slf4j.Slf4j;
 
-
+@Slf4j
 @Service
 public class AdminServiceImpl implements AdminService {
 	
 	@Autowired
 	AdminMapper adminMapper;
+	
+	@Autowired
+	ProductAattachMapper productAattachMapper;
 	
 	@Override
 	public List<MemberVO> getMemberList() {
@@ -164,9 +172,29 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
+	
 	public void insertProduct(ProductVO insertProductVO) {
-		// TODO Auto-generated method stub
 		
+		log.info("insertProduct()..");
+		adminMapper.insertProduct(insertProductVO);
+		
+		
+	insertProductVO.getProductVOList().forEach(attach->{
+		
+		attach.setProduct_idx(insertProductVO.getProduct_idx());
+		productAattachMapper.insertProductImage(attach);
+	});
+		
+		
+		
+	}
+
+
+
+	@Override
+	public List<FileUploadVO> findByProduct(int product_idx) {
+		log.info("get Attach list by product_idx" +  product_idx);
+		return productAattachMapper.findByProduct(product_idx);
 	}
 
 
