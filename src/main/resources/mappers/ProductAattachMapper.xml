@@ -7,7 +7,7 @@
 <!--  파일첨부  -->
 	<!-- 첨부파일 추가 -->
 	<insert id ="insertProductImage">
-	insert into tbl_attach (uuid, upaloadpath, filename, filetype, board_id ,product_idx)
+	insert into tbl_attach (uuid, uploadPath, filename, filetype, board_id ,product_idx)
 	values (#{uuid}, #{uploadPath}, #{fileName}, #{imageType}, #{board_id} ,#{product_idx})
 	</insert>
 	
@@ -21,4 +21,7 @@
 	select * from tbl_attach where product_idx = #{product_idx}
 	</select>
 	
+	
+
+		
 </mapper>

@@ -29,6 +29,8 @@ public interface AdminMapper{
 	public List<ProductVO> getProductListWithPaging(Criteria cri);
 	//총 상품수
 	public int getTotalProductCount(Criteria cri);
+	//상품 next.val
+	public int product_seq_next();
 	//상품 정보
 	public ProductVO getProductOne(int product_idx);	
 	//상품 통계
@@ -36,9 +38,9 @@ public interface AdminMapper{
 	//상품 등록
 	public void insertProduct(ProductVO insertProductVO);
 	//상품 수정
-	public ProductVO updateProduct(ProductVO productVO);
+	public int updateProduct(ProductVO productVO);
 	//상품 삭제
-	public void deleteProduct(int product_idx);
+	public int deleteProduct(int product_idx);
 	//금일 매출
 	public int getTodayIncome();
 	//신규 가입수
@@ -85,7 +87,9 @@ public interface AdminMapper{
 	public List<OrderVO> selectOptionOrderList(HashMap<String, Object> optionMap);
 	//가입수 메인 통계
 	public LinkedList<MemberVO> getStatisticsMemberCount();
-	
+	//상품 이미지 등록
 	public List<FileUploadVO> insertProductImage (FileUploadVO fileUploadVO);
+	
+	public int getTotalCount(Criteria cri);
 	
 }

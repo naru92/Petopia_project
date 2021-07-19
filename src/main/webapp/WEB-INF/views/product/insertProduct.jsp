@@ -78,15 +78,15 @@ display :inline;
                             <div class="form-group col-sm-2 marginclass">
                                 <select id="prodct_category_id" name="product_category_id">
                                     <option value="">카테고리</option>
-                                    <option value="1">장난감</option>
-                                    <option value="2">배변 패드</option>
-                                    <option value="3">건강 관리</option>
+                                    <option value="1">사료</option>
+                                    <option value="2">간식</option>
+                                    <option value="3">위생/배변</option>
                                     <option value="4">미용/목욕</option>
                                     <option value="5">급식기/급수기</option>
-                                    <option value="6">하우스/울타리</option>
-                                    <option value="7">이동장</option>
-                                    <option value="8">의류</option>
-                                    <option value="9">기타</option>
+                                    <option value="6">장난감/훈련</option>
+                                    <option value="7">하우스/이동장</option>
+                                    <option value="8">패션/의류</option>
+                                    <option value="9">목줄/하네스</option>
                                 </select>
                             </div>
 
@@ -166,14 +166,9 @@ display :inline;
 		$(document)
 				.ready(
 						
-						
-						
-						
-						
 						//file upload
 						function(e) {
 							var formObj = $("#addForm");
-							
 							
 							  $("#addBtn").on("click", function(e) {
 
@@ -188,10 +183,10 @@ display :inline;
 						                var jobj = $(obj);
 
 						                console.dir(jobj);
-						                console.log(jobj.data("uploadFile"));
+						                console.log(jobj.data("filename"));
 
 						                str += "<input type='hidden' name='productVOList[" + i + "].prdouct_image' value ='" + jobj.data('prdouct_image') + "'>";
-						                str += "<input type='hidden' name='productVOList[" + i + "].filename' value='" + jobj.data('filename') + "'>";
+						                str += "<input type='hidden' name='productVOList[" + i + "].fileName' value='" + jobj.data('filename') + "'>";
 						                str += "<input type='hidden' name='productVOList[" + i + "].uuid' value='" + jobj.data('uuid') + "'>";
 						                str += "<input type='hidden' name='productVOList[" + i + "].uploadPath' value='" + jobj.data('path') + "'>";
 						                str += "<input type='hidden' name='productVOList[" + i + "].imageType' value='" + jobj.data('type') + "'>";

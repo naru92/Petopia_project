@@ -11,10 +11,13 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Delete;
+import org.apache.jasper.tagplugins.jstl.core.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -116,11 +119,11 @@ public class AdminController {
 	public String getMemberList(Model model, Criteria cri, Authentication authenticate) {
 		SecurityContextHolder.getContext().getAuthentication();
 
-		String username = (String) authenticate.getPrincipal();
-		String userpassword = (String) authenticate.getCredentials();
+//		String username = (String) authenticate.getPrincipal();
+//		String userpassword = (String) authenticate.getCredentials();
 
-		log.info("username : " + username);
-		log.info("password " + userpassword);
+//		log.info("username : " + username);
+//		log.info("password " + userpassword);
 
 		log.info("getMemberList().." + cri);
 
@@ -257,7 +260,7 @@ public class AdminController {
 	}
 
 	@GetMapping("/QnA")
-	public String QnAPage(Model model, Criteria cri) {
+	public String QnAPage(Model model, Criteria cri, @RequestParam int board_id) {
 
 		int totalQnAList = adminService.getQnACount(cri);
 		model.addAttribute("pageMaker", new PageVO(cri, totalQnAList));
@@ -369,11 +372,28 @@ public class AdminController {
 		
 		return "/product/insertProduct";
 	}
+	
+	
+	//상품보기
+	@GetMapping("/getProduct")
+	public String get( @RequestParam("product_idx") int product_idx, 
+			@ModelAttribute("cri") Criteria cri, Model model) {
+		
+		
+		/* 해당 페이지 이동 */
+		log.info("getProduct ()");
+		
+		model.addAttribute("productVO", adminService.getProductOne(product_idx));
+		return "/product/getProduct";
+	}
+	
+	
 	//상품 등록 post
 	@PostMapping("/product/insert_pro")
-	public String insertProduct_pro(ProductVO productVO, FileUploadVO fileUploadVO,
+	public String insertProduct_pro(ProductVO productVO,
 			 RedirectAttributes redirectAttributes) {
-		
+			
+			
 	log.info("insert_pro()..");
 	log.info("add products : " + productVO);
 
@@ -390,16 +410,48 @@ public class AdminController {
 		//상품 메인으로 리다이렉트 
 		return "redirect:/admin/product";
 	}
-	// 상품 삭제
-	@PostMapping("admin/product/delete")
-	public String deleteProduct(@RequestParam int product_idx , Criteria cri, RedirectAttributes redirectAttributes ) {
-		return "admin/deleteProduct";
+	//상품수정
+	@PostMapping("/update")
+	public String update(ProductVO productVO, 
+			@ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
+		
+		log.info("updateProducts : " + productVO);
+		
+		if(adminService.updateProduct(productVO)) {
+			rttr.addFlashAttribute("result", "success");
+		}
+		
+		rttr.addAttribute("productsNo", productVO.getProduct_idx());
+		rttr.addAttribute("pageNum", cri.getPageNum());
+		rttr.addAttribute("amount", cri.getAmount());
+		
+		log.info("상품번호 & 페이지 : " +productVO.getProduct_idx() + cri.getPageNum() + cri.getAmount());
+		
+		return "redirect:/products/get";// 수정하면 해당 번호 상품정보로 간다
 	}
-	// 상품 수정
-	public String updateProduct() {
-		return "admin/updateProduct";
+	//상품삭제
+	@PostMapping("product/delete")
+	public String delete(@RequestParam("product_idx") int product_idx,
+			@ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
+		
+		//상품이 삭제되면 이미지도 파일도 날려야한다
+		log.info("deleteProducts : " + product_idx);
+		
+		List<FileUploadVO> attachList = adminService.findByProduct(product_idx);
+		
+		if(adminService.deleteProduct(product_idx)) {
+			
+			
+			
+			rttr.addFlashAttribute("result", "success");
+			}
+		
+		
+		return "redirect:/admin/product" + cri.getListLink();
 	}
-
+	
+	
+	//파일첨부리스트
 	@GetMapping(value = "/getAttachList",
 			produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<FileUploadVO>> getAttachList(int product_idx) {

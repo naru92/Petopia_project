@@ -9,6 +9,7 @@ import javax.xml.bind.attachment.AttachmentMarshaller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import co.kr.petopia.controller.BoardController;
 import co.kr.petopia.mapper.AdminMapper;
 import co.kr.petopia.mapper.ProductAattachMapper;
 import co.kr.petopia.utils.Criteria;
@@ -171,17 +172,28 @@ public class AdminServiceImpl implements AdminService {
 		return adminMapper.getStatisticsMemberCount();
 	}
 
-	@Override
 	
-	public void insertProduct(ProductVO insertProductVO) {
+	@Override
+	public void insertProduct(ProductVO productVO) {
+		
+		int next_val = adminMapper.product_seq_next();
 		
 		log.info("insertProduct()..");
-		adminMapper.insertProduct(insertProductVO);
+		log.info("productVO :" + productVO);
+		
+		productVO.setProduct_idx(next_val);
 		
 		
-	insertProductVO.getProductVOList().forEach(attach->{
+		adminMapper.insertProduct(productVO);
 		
-		attach.setProduct_idx(insertProductVO.getProduct_idx());
+		
+		
+		productVO.getProductVOList().forEach(attach->{
+		log.info("attach : " +attach);
+		attach.setProduct_idx(next_val);
+		attach.setBoard_id(1);
+		
+		
 		productAattachMapper.insertProductImage(attach);
 	});
 		
@@ -190,11 +202,49 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 
-
 	@Override
 	public List<FileUploadVO> findByProduct(int product_idx) {
 		log.info("get Attach list by product_idx" +  product_idx);
 		return productAattachMapper.findByProduct(product_idx);
+	}
+
+	@Override
+	public boolean updateProduct(ProductVO productVO) {
+		log.info("updateProduct " + productVO);
+		
+		productAattachMapper.deleteAllProductImage(productVO.getProduct_idx());
+		
+		//성공실패
+		boolean updateResult = adminMapper.updateProduct(productVO) == 1;
+		
+		//성공 && 첨부파일이 있으면 , 다날림
+		if(updateResult && productVO.getProductVOList().size() > 0) {
+			
+			productVO.getProductVOList().forEach(attach -> {
+				
+				attach.setProduct_idx(productVO.getProduct_idx());
+				
+				productAattachMapper.insertProductImage(attach);
+			});
+		}
+		
+		return updateResult;
+	}
+
+	@Override
+	public boolean deleteProduct(int product_idx) {
+
+		log.info("delete products");
+		
+		productAattachMapper.deleteAllProductImage(product_idx);
+		//성공실패 보여줌
+		return adminMapper.deleteProduct(product_idx) == 1;
+	}
+
+	@Override
+	public ProductVO getProductOne(int product_idx) {
+		
+		return adminMapper.getProductOne(product_idx);
 	}
 
 

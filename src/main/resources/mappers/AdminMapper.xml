@@ -6,6 +6,7 @@
 <mapper namespace="co.kr.petopia.mapper.AdminMapper">
 
 	<!-- 회원 리스트 -->
+	
 	<select id="getMemberList"
 		resultType="co.kr.petopia.vo.MemberVO">
 		select * from member
@@ -39,7 +40,7 @@
 		resultType="co.kr.petopia.vo.ProductVO">
 		select
 		product_idx,product_name,product_category_id,
-		product_price, prodcut_stock, product_detail_info, product_image
+		product_price, product_stock, product_detail_info, product_image
 		from
 		product
 		where product_idx = #{product_idx}
@@ -50,13 +51,12 @@
 	
 	<!-- 상품 CRUD -->
 
-	<insert id="insertProduct"
-		parameterType="co.kr.petopia.vo.ProductVO">
-		
-		<selectKey keyProperty="product_idx" order="BEFORE" resultType="Integer">
+	<select id= "product_seq_next" resultType="int">
  			select product_seq.nextval from dual
- 		</selectKey>
- 		
+ 	</select>
+
+	<insert id="insertProduct" >
+		 		
 		
 		INSERT into
     		product(product_idx, product_category_id, product_price, product_name,

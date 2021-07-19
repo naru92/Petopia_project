@@ -13,6 +13,6 @@ public interface ProductAattachMapper {
 	public void insertProductImage(FileUploadVO fileUploadVO);
 	public void deleteProductImage(String uuid);
 	public List<FileUploadVO> findByProduct(int product_idx);
-	
+	public void deleteAllProductImage(int product_idx);
 	
 }

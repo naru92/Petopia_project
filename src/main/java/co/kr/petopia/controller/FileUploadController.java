@@ -2,9 +2,11 @@ package co.kr.petopia.controller;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -27,6 +29,7 @@ import co.kr.petopia.vo.FileUploadVO;
 import co.kr.petopia.vo.ProductVO;
 import lombok.extern.slf4j.Slf4j;
 import net.coobird.thumbnailator.Thumbnailator;
+import net.coobird.thumbnailator.Thumbnails;
 @Slf4j
 @Controller
 public class FileUploadController {
@@ -63,7 +66,7 @@ public class FileUploadController {
 		List<FileUploadVO> productVOList = new ArrayList<>();
 		
 		
-		String uploadFolder = "D:/petopia_bit/workspace-spring-tool-suite-4-4.11.0.RELEASE/petopia/src/main/webapp/upload";
+		String uploadFolder = "D://petopia_bit//workspace-spring-tool-suite-4-4.11.0.RELEASE//petopia//src//main//webapp//upload";
 		String uploadFolderPath = getFolder();
 		
 		File uploadPath = new File(uploadFolder, uploadFolderPath);
@@ -84,18 +87,19 @@ public class FileUploadController {
 			String uploadFileName = multipartFile.getOriginalFilename();
 			uploadFileName = uploadFileName
 											.substring(uploadFileName.lastIndexOf("\\")+1);
-			UUID uuid = UUID.randomUUID();
-			uploadFileName = uuid.toString() + "_" + uploadFileName;
-			productVO.setFileName(uploadFileName);
+				UUID uuid = UUID.randomUUID();
+				uploadFileName = uuid.toString() + "_" + uploadFileName;
+				productVO.setFileName(uploadFileName);
 			getProductImage.setProduct_image(productVO.getFileName());
 			try {
 				File saveFile = new File(uploadPath , uploadFileName);
 				System.out.println(saveFile);
 				
-//				multipartFile.transferTo(saveFile);
+				multipartFile.transferTo(saveFile);
 				
 				productVO.setUuid(uuid.toString());
 				productVO.setProduct_image(uploadFileName);
+				
 				productVO.setUploadPath(uploadFolderPath);
 			
 				// 파일 타입 체크
@@ -105,15 +109,14 @@ public class FileUploadController {
 					
 					productVO.setImageType(true);
 					getProductImage.setProduct_image(saveFile.getName());
-					
-					FileOutputStream thumbnail = new FileOutputStream(new File(uploadPath, "s_" + uploadFileName));
-					Thumbnailator.createThumbnail(multipartFile.getInputStream(), thumbnail, 100, 100);
+					File thumbnail = new File(uploadPath, "s_" + uploadFileName);
+					Thumbnails.of(saveFile).size(160, 160)
+					.toFile(thumbnail);
 
-					thumbnail.close();
 					
 				}
 					productVOList.add(productVO);
-					log.info(productVOList.toString());
+					log.info("상품첨부파일찍기 :  " +productVOList.toString());
 			}catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -123,21 +126,22 @@ public class FileUploadController {
 	
 	@GetMapping("/display")
 	@ResponseBody
-	public ResponseEntity<byte[]> getFile(String fileName){
+	public ResponseEntity<byte[]> getFile(String fileName) throws IOException{
 		log.info("fileName : " +  fileName);
 		
-		File file = new File("D:/petopia_bit/workspace-spring-tool-suite-4-4.11.0.RELEASE/petopia/src/main/webapp/upload/" + fileName);
+		File file = new File("D://petopia_bit//workspace-spring-tool-suite-4-4.11.0.RELEASE//petopia//src//main//webapp//upload//" + fileName);
 		
 		log.info("file : " + file);
 		
 		ResponseEntity<byte[]> result = null;
-		
+		System.out.println(file.toPath());
 		try {
+			log.info("copy: " + FileCopyUtils.copyToByteArray(file));
 			HttpHeaders header = new HttpHeaders();
 			header.add("Content-Type", Files.probeContentType(file.toPath()));
-			result = new ResponseEntity<>(FileCopyUtils.copyToByteArray(file),header,HttpStatus.OK);
-		} catch (Exception e) {
-			e.printStackTrace();
+			result = new ResponseEntity<>(FileCopyUtils.copyToByteArray(file), header,HttpStatus.OK);
+		} catch (NoSuchFileException e) {
+			log.info(e.getMessage());
 		}
 		return result;
 			

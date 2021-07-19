@@ -252,6 +252,7 @@
 					$('#frm_search').children().children().children('tr')
 					.children().children('#search_option').on('click', function(event) {
 						console.log($(":input:radio[name=is_member]:checked").val());
+						console.log(($('#frm_search').children().children().children());
 
 				    	var delivery_state = $('#select1').val();
 				    	var delivery_refund = $('#select2').val();

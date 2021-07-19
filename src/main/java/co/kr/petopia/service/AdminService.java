@@ -69,8 +69,16 @@ public interface AdminService {
 	
 	
 	/*상품 CRUD*/
-	public void insertProduct(ProductVO insertProductVO);
+	//다음상품
 	
+	//상세조회
+	public ProductVO getProductOne(int product_idx);
+	//등록
+	public void insertProduct(ProductVO insertProductVO);
+	//상품 수정
+	public boolean updateProduct(ProductVO productVO);
+	//상품 삭제
+	public boolean deleteProduct(int product_idx);
 	
 	/*상품*/
 	

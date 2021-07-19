@@ -60,38 +60,38 @@
 
 						<div class="card-body filterBox">
 							<div class="boxtr">
-								<form action="${contextPath }/admin/product" method="post" id="frm_search" >
-								
+								<form action="${contextPath }admin/product" method="post"
+									id="frm_search">
+
 									<table>
 
 
 
 
-										<tr >
+										<tr>
 											<td colspan="2">상품 구분&nbsp;&nbsp;</td>
-											<td class= "head" colspan="5" class="pleft">
-											<input type="radio" value="1" name="product_category_id"checked>1.사료
-											<input type="radio" value="2" name="product_category_id" >2.간식
-											<input type="radio" value="3" name="product_category_id">3.위생/배변
-											<input type="radio" value="4" name="product_category_id">4.미용/목욕
-											<input type="radio" value="5" name="product_category_id">5.급식/급슈가
-											<input type="radio" value="6" name="product_category_id">6.장난감/훈련
-											<input type="radio" value="7" name="product_category_id">7.하우스/이동장
-											<input type="radio" value="8" name="product_category_id">8.패션/의류
-											<input type="radio" value="9" name="product_category_id">9.목줄/하네스	
+											<td class="head" colspan="5" class="pleft"><input
+												type="radio" value="1" name="product_category_id" checked>1.사료
+												<input type="radio" value="2" name="product_category_id">2.간식
+												<input type="radio" value="3" name="product_category_id">3.위생/배변
+												<input type="radio" value="4" name="product_category_id">4.미용/목욕
+												<input type="radio" value="5" name="product_category_id">5.급식기/급수기
+												<input type="radio" value="6" name="product_category_id">6.장난감/훈련
+												<input type="radio" value="7" name="product_category_id">7.하우스/이동장
+												<input type="radio" value="8" name="product_category_id">8.패션/의류
+												<input type="radio" value="9" name="product_category_id">9.목줄/하네스
 
 											</td>
 										</tr>
 
 										<tr>
 											<td colspan="2">주문 분류&nbsp;&nbsp;</td>
-											<td colspan="5" class="pleft">
-											<select id="select1" name="product_price">
+											<td colspan="5" class="pleft"><select id="select1"
+												name="product_price">
 													<option value="" selected>--가격--</option>
 													<option value="product_price_asc">가격 낮은 순</option>
 													<option value="product_price_desc">가격 높은 순</option>
-											</select> 
-											<select id="select2" name="product_stock">
+											</select> <select id="select2" name="product_stock">
 													<option value="" selected>--재고량--</option>
 													<option value="stock_asc">재고량 적은 순</option>
 													<option value="stock_desc">재고량 많은 순</option>
@@ -102,9 +102,9 @@
 
 										<tr>
 											<td colspan="7"><input type="button" value="검색"
-												id="search_option" />&nbsp;&nbsp;
-												<input type="reset" value="초기화" /></td>
-												
+												id="search_option" />&nbsp;&nbsp; <input type="reset"
+												value="초기화" /></td>
+
 										</tr>
 									</table>
 								</form>
@@ -123,31 +123,38 @@
 											<th>상품분류</th>
 											<th>가격</th>
 											<th>재고량</th>
+											<th>상세보기</th>
 
 										</tr>
 									</thead>
-							
-								<c:forEach var='p' items="${productList}">
-									<tbody>
-										<tr>
-											<td>${p.product_idx }</td>
-											<td>${p.product_name }</td>
-											<td>${p.product_category_id }</td>
-											<td>${p.product_price }</td>
-											<td>${p.product_stock }</td>
+
+									<c:forEach var='p' items="${productList}">
+										<tbody>
+											<tr>
+												<td><a
+													href="${root}admin/getProduct?product_idx=${p.product_idx}">${p.product_idx }</a></td>
+												<td>${p.product_name }</td>
+												<td>${p.product_category_id }</td>
+												<td>${p.product_price }</td>
+												<td>${p.product_stock }</td>
+												<td align="center" width="120px">
+													<button type="button" class="btn btn-info"
+														data-toggle="modal" data-target="#myModal">
+														상세보기</button>
+												</td>
 
 
 
-										</tr>
-										
-									</tbody>
-								</c:forEach>
+											</tr>
+
+										</tbody>
+									</c:forEach>
 								</table>
 							</div>
 							<form id='pageActionForm' action="/admin/product" method='get'>
-												<input type='hidden' name='pageNum'
-													value='${pageMaker.cri.pageNum}' /> <input type='hidden'
-													name='amount' value='${pageMaker.cri.amount}' />
+								<input type='hidden' name='pageNum'
+									value='${pageMaker.cri.pageNum}' /> <input type='hidden'
+									name='amount' value='${pageMaker.cri.amount}' />
 							</form>
 						</div>
 						<input type="hidden" id="size" value="${fn:length(list)}" />
@@ -185,6 +192,9 @@
 	</div>
 	<!-- End of Main Content -->
 
+
+
+
 	<!-- Footer -->
 	<footer class="sticky-footer bg-white">
 		<div class="container my-auto">
@@ -202,6 +212,38 @@
 	<!-- End of Page Wrapper -->
 
 	<!-- Scroll to Top Button-->
+	<!-- Modal -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">Modal title</h4>
+				</div>
+				<div class="modal-body">
+					<form>
+						<div class="form-group">
+							<label for="recipient-name" class="control-label">Recipient:</label>
+							<input type="text" class="form-control" id="recipient-name">
+						</div>
+						<div class="form-group">
+							<label for="message-text" class="control-label">Message:</label>
+							<textarea class="form-control" id="message-text"></textarea>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary">Save changes</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
 	<a class="scroll-to-top rounded" href="#page-top"> <i
 		class="fas fa-angle-up"></i>
 	</a>
@@ -227,35 +269,59 @@
 				</div>
 			</div>
 		</div>
-		
+
+
+
 		<!-- Modal -->
-      <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
-        aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal"
-                aria-hidden="true">&times;</button>
-              <h4 class="modal-title" id="myModalLabel">REPLY MODAL</h4>
-            </div>
-            <div class="modal-body">
-			처리 되었습니다.      
-            </div>
-<div class="modal-footer">
-        <button id='modalCloseBtn' type="button" class="btn btn-default">Close</button>
-      </div>          </div>
-          <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-      </div>
-      <!-- /.modal -->   
+		<div class="modal fade" id="myInfoModal" tabindex="-1" role="dialog"
+			aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"
+							aria-hidden="true">&times;</button>
+						<h4 class="modal-title" id="myModalLabel">REPLY MODAL</h4>
+					</div>
+					<div class="modal-body">처리 되었습니다.</div>
+					<div class="modal-footer">
+						<button id='modalCloseBtn' type="button" class="btn btn-default">Close</button>
+					</div>
+				</div>
+				<!-- /.modal-content -->
+			</div>
+			<!-- /.modal-dialog -->
+		</div>
+		<!-- /.modal -->
 	</div>
-	
+
+
+	<!-- Button trigger modal -->
+
+
+
+
 	<script type="text/javascript">
+	
 	$(document).ready(
+			
+			
+			$('.modal-content').resizable({
+			      //alsoResize: ".modal-dialog",
+			      minHeight: 300,
+			      minWidth: 300
+			    });
+			    $('.modal-dialog').draggable();
+
+			    $('#myModal').on('show.bs.modal', function() {
+			      $(this).find('.modal-body').css({
+			        'max-height': '100%'
+			      });
+			    });
+			
+			
 			function() {
 				
-				 var bno = '<c:out value="${productVO.product_idx}"/>';
+				 var product_idx = '<c:out value="${productVO.product_idx}"/>';
 				    
 				    /* $.getJSON("/board/getAttachList", {bno: bno}, function(arr){
 				    
@@ -295,23 +361,23 @@
 				     });//end getjson
 				
 				//modal
-				var result = '<c:out value ="${result}"/>';
-				checkModal(result);
+				//checkModal(result);
 				
-				function checkModal(result){
+			/* 	function checkModal(result){
 					
 					if(result === '' ){
 						return;
 					}
 					if(parseInt(result) > 0 ){
-						$(".modal-body").html("게시글 " + parseInt(result)) + "번이 등록되었습니다.");
+						
+						$(".modal-body").html("게시글 " + parseInt(result) + "번이 등록되었습니다.")
 					}
 					
 					$("#myModal").modal("show");
-				} 
 				
-				});
-				//modal end
+				
+				};
+				//modal end */
 				
 				
 				// 페이징 버튼 이벤트
@@ -333,7 +399,7 @@
 				//필터박스 이벤트
 					$('#frm_search').children().children().children('tr')
 					.children().children('#search_option').on('click', function(event) {
-				    	
+					
 				    	var product_price = $('#select1').val();
 				    	var product_stock = $('#select2').val();
 				    	console.log($('#dataTable').html());
@@ -391,16 +457,44 @@
 			    			         alert("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
 			    			        }
 			    		});
+				    	
+				    	
 					});
+				
+					  $(".uploadResult").on("click", "button", function(e) {
+
+				            console.log("delete file");
+
+				            var targetFile = $(this).data("file");
+				            var type = $(this).data("type");
+
+				            var targetLi = $(this).closest("li");
+
+				            $.ajax({
+				                url: '/deleteFile',
+				                data: {
+				                    fileName: targetFile,
+				                    type: type
+				                },
+				                dataType: 'text',
+				                type: 'POST',
+				                success: function(result) {
+				                    alert(result);
+				                    targetLi.remove();
+				                    $("#uploadInput").val("");
+				                }
+				            });
+				            // $.ajax
+				        });
 
 			
 				
 				});
 	
 
-	</script>	
+	</script>
 
-		<c:import url="/WEB-INF/views/include/admin_list_js.jsp" />
+	<c:import url="/WEB-INF/views/include/admin_list_js.jsp" />
 
 </body>
 
