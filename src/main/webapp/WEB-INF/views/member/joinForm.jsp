@@ -146,6 +146,7 @@
 			});
 		});
 	</script>
+	
 	<script>
 	$(".sendMail").click(function() {// 메일 입력 유효성 검사
 		var mail = $(".email01").val(); //사용자의 이메일 입력값. 

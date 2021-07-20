@@ -3,6 +3,7 @@ package co.kr.petopia.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -24,9 +25,9 @@ public class MemberController {
 		return "member/joinForm";
 	}	
 	
-	@GetMapping("/welcome")
-    public String welcome() {
-        return "member/welcome";
+	@PostMapping("/welcome")
+    public String signUp() {
+        return "redirect:/member/welcome";
     }   
 	
 	// 마이페이지 메인
@@ -52,17 +53,6 @@ public class MemberController {
 	@GetMapping("/withdrawal_success")
     public String withdrawal_success() {
         return "member/withdrawal_success";
-    }
-	
-	// 이벤트 메인
-	@GetMapping("/event")
-    public String event() {
-        return "member/event";
-    }
-	// 이벤트 상세
-	@GetMapping("/event_detail")
-    public String event_detail() {
-        return "member/event_detail";
     }
 	
 	// 기부 메인

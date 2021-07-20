@@ -6,10 +6,13 @@
 <meta http-equiv="Content-type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=decice-width" initial-scale="1">
 <title>Petstagram</title>
-<!-- CSS here -->
-<link rel="stylesheet" href="/petopia/css/petstagram_style.css">
 <!-- default_css -->
 <%@include file="../include/default_css.jsp"%>
+
+<!-- CSS here -->
+<link rel="stylesheet" href="/petopia/css/petstagram_style.css">
+<link rel="stylesheet" href="/petopia/css/contentModal.css">
+
 </head>
 <body>
 	<header>
@@ -33,10 +36,10 @@
 
 				<div class="profile-stats">
 					<ul>
-						<li><a href="petstagram.html"><span class="profile-stat-count">954</span> posts</a></li>
-						<li><a href="#"><span class="profile-stat-count">188</span> new posts</a></li>
-						<li><a href="#"><span class="profile-stat-count">50</span> hot posts</a></li>
-						<li><a href="#"><span class="profile-stat-count">+</span> posting</a></li>
+						<li><a href="petstagram"><span class="profile-stat-count">954</span> posts</a></li>
+						<li><a href=""><span class="profile-stat-count">188</span> new posts</a></li>
+						<li><a href=""><span class="profile-stat-count">50</span> hot posts</a></li>
+						<li><button id="insertBtn" class="profile-stat-count">+ New posting</button></li>
 					</ul>
 				</div>
 
@@ -54,7 +57,7 @@
 		<div class="container">
 
 			<div class="gallery">
-
+				${contentList}
 				<div class="gallery-item" tabindex="0">
 					<img src="https://images.unsplash.com/photo-1511765224389-37f0e77cf0eb?w=500&h=500&fit=crop" class="gallery-image" alt="">
 					<div class="gallery-item-info">
@@ -184,6 +187,35 @@
 	<footer>
 		<%@include file="../include/default_footer.jsp"%>
 	</footer>
+	
+	<!-- Modal -->
+    <div id="myModal" class="modal">
+	<!-- Modal content -->
+	<div class="modal-content">
+		<div class="modal-header">
+			<h3 class="modal-title" id="myModalLabel">새 게시물 작성</h3>
+        	<span class="close">&times;</span>
+		</div>
+		<div class="modal-body">
+			<form>
+				<div class="form-group">
+					<label for="recipient-name" class="control-label">Recipient:</label>
+					<input type="text" class="form-control" id="recipient-name">
+				</div>
+				<div class="form-group">
+					<label for="message-text" class="control-label">Message:</label>
+					<textarea class="form-control" id="message-text"></textarea>
+				</div>
+			</form>
+		</div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			<button type="button" class="btn btn-primary">Save changes</button>
+		</div>
+ 	</div>
+    </div>
 
+	
+	<script src="/petopia/js/contentModal.js"></script>
 </body>
 </html>
