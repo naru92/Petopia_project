@@ -139,11 +139,12 @@ margin-bottom: 7px;
 
 #content3 select {
   width: 90px;
-  height: 35px;
+  height: 33px;
   font-size:13px;
 }
 
-#content3 input[type="email"] {
+#content3 .email01, 
+#content3 .email02 {
   width: 18%;
 }
 
@@ -160,7 +161,8 @@ margin-bottom: 7px;
   margin-top: 6.5rem;
 }
 
-#content3 .doublecheck {
+#content3 .doublecheck,
+#content3 .sendMail{
   background: none;
   padding: 0;
   margin: 0;

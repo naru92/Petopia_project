@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import co.kr.petopia.mapper.AdminMapper;
 import co.kr.petopia.utils.Criteria;
-import co.kr.petopia.vo.ContentVO;
+import co.kr.petopia.vo.BoardVO;
 import co.kr.petopia.vo.DeliveryVO;
 import co.kr.petopia.vo.DonationVO;
 import co.kr.petopia.vo.MemberVO;
@@ -131,7 +131,7 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public List<ContentVO> getQnAListWithPaging(Criteria cri) {
+	public List<BoardVO> getQnAListWithPaging(Criteria cri) {
 		
 		return adminMapper.getQnAListWithPaging(cri);
 	}

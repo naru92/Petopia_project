@@ -6,14 +6,13 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import co.kr.petopia.utils.Criteria;
 import co.kr.petopia.vo.BoardVO;
-import co.kr.petopia.vo.ContentVO;
 import co.kr.petopia.vo.DeliveryVO;
 import co.kr.petopia.vo.DonationVO;
+import co.kr.petopia.vo.MemberVO;
 import co.kr.petopia.vo.OrderVO;
 import co.kr.petopia.vo.ProductVO;
-import co.kr.petopia.utils.Criteria;
-import co.kr.petopia.vo.MemberVO;
 
 @Mapper
 public interface AdminMapper{
@@ -71,7 +70,7 @@ public interface AdminMapper{
 	//오늘 기부금
 	public int getTodayDonation();
 	//문의리스트
-	public List<ContentVO> getQnAListWithPaging(Criteria cri);
+	public List<BoardVO> getQnAListWithPaging(Criteria cri);
 	//문의수
 	public int getQnACount(Criteria cri); 
 	//주문수(노페이징)

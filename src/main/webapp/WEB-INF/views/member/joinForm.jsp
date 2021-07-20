@@ -4,8 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-type" content="text/html; charset=UTF-8">
-<meta name="viewport" content="width=decice-width" initial-scale="1">
-<title>join</title>
+<title>joinForm</title>
 <!-- CSS here -->
 <link rel="stylesheet" href="/petopia/css/joinForm_style.css">
 <!-- default_css -->
@@ -58,33 +57,33 @@
 
 								<div>
 									<form class="inputAll">
-										<input type="text" class="member_id" placeholder="아이디를 입력하세요.">
-										<button class="doublecheck">중복확인</button>
-										<br> <input type="email" class="member_email"> @ <input type="email" class="member_email"> <select size="1">
-											<option>직접입력</option>
-											<option>naver.com</option>
-											<option>gmail.com</option>
-											<option>hanmail.net</option>
-											<option>hotmail.com</option>
-											<option>nate.com</option>
+										<input type="text" name="member_id" class="id" placeholder="아이디를 입력하세요.">
+										<button type="button" class="doublecheck">중복확인</button>
+										<br> <input type="text" name="member_email" class="email01"> @ <input type="text" class="email02"> <select size="1"
+											id="selectEmail">
+											<option value="self">직접입력</option>
+											<option value="naver.com">naver.com</option>
+											<option value="gmail.com">gmail.com</option>
+											<option value="hanmail.net">hanmail.net</option>
+											<option value="hotmail.com">hotmail.com</option>
+											<option value="nate.com">nate.com</option>
 										</select>
-										<button class="doublecheck">중복확인</button>
-										<br> <input type="password" placeholder="영문 + 숫자 + (!,@,#,$,%,^,&,*) 조합 8~12자">
-										<br> <input type="password" placeholder="비밀번호를 다시 한번 입력하세요.">
-										<br> <input type="text" class="memeber_name" placeholder="이름을 입력하세요.">
-										<br> <input type="tel" class="member_phoneNumber" placeholder="예) 010-1234-5678">
-										<button class="doublecheck">중복확인</button>
-										<br> <input type="text" placeholder="우편번호" class="address1" class="member_address" id="postcode" readonly>
-										<button class="address-btn" onClick="execDaumPostcode()">주소검색</button>
-										<br> <input type="text" placeholder="도로명주소" class="member_address" id="roadAddress" readonly>
-										<br> <input type="text" placeholder="상세주소" class="member_address" id="detailAddress">
-										<br> 
-										<br>
+										<button type="button" class="sendMail">인증하기</button>
+										<br> <input type="password" name="member_password" class="password01" placeholder="영문 + 숫자 + (!,@,#,$,%,^,&,*) 조합 8~12자"> <br>
+										<input type="password" class="password02" placeholder="비밀번호를 다시 한번 입력하세요."> <br> <input type="text" name="memeber_name"
+											class="name" placeholder="이름을 입력하세요."> <br> <input type="tel" name="member_phoneNumber" class="phoneNumber"
+											placeholder="예) 010-1234-5678">
+										<button type="button" class="doublecheck">중복확인</button>
+										<br> <input type="text" placeholder="우편번호" name="member_address" class="address1" id="postcode" readonly>
+										<button type="button" class="address-btn" onClick="execDaumPostcode()">주소검색</button>
+										<br> <input type="text" placeholder="도로명주소" name="member_address" class="address2" id="roadAddress" readonly> 
+										<br> <input	type="text" placeholder="상세주소" name="member_address" class="address3" id="detailAddress"> 
+										<br> <br>
 									</form>
 								</div>
 							</div>
 
-							<a href="welcome"><button class="join-btn" disabled="disabled">가입하기</button></a>
+							<a><button type="submit" class="join-btn" disabled="disabled">가입하기</button></a>
 						</section>
 					</div>
 				</article>
@@ -95,35 +94,84 @@
 	<footer>
 		<%@include file="../include/default_footer.jsp"%>
 	</footer>
-
+	<%@include file="../include/default_mapApi_js.jsp"%>
 	<!-- input check 해서 button 활성화/비활성화 하는 js -->
 	<script>
-		$('.member_id').on('input', checkInput);
-		$('.member_email').on('input', checkInput);
-		$('.member_password').on('input', checkInput);
-		$('.member_name').on('input', checkInput);
-		$('.member_phoneNumber').on('input', checkInput);
-		$('.member_address').on('input', checkInput);
+		$('.id').on('input', checkInput);
+		$('.email01').on('input', checkInput);
+		$('.email02').on('input', checkInput);
+		$('.password01').on('input', checkInput);
+		$('.password02').on('input', checkInput);
+		$('.name').on('input', checkInput);
+		$('.phoneNumber').on('input', checkInput);
+		$('.address1').on('input', checkInput);
+		$('.address2').on('input', checkInput);
+		$('.address3').on('input', checkInput);
 
 		function checkInput() {
-			var idCheck = $('.member_id').val();
-			var emailCheck = $('.member_email').val();
-			var passwordCheck = $('.member_password').val();
-			var nameCheck = $('.member_name').val();
-			var phoneNumberCheck = $('.member_phoneNumber').val();
-			var addressCheck = $('.member_address').val();
-			
-			if (idCheck === ''||emailCheck===''||passwordCheck===''||nameCheck===''
-					||phoneNumberCheck===''||addressCheck==='') {
+			var idCheck = $('.id').val();
+			var email01Check = $('.email01').val();
+			var email02Check = $('.email02').val();
+			var password01Check = $('.password01').val();
+			var password02Check = $('.password02').val();
+			var nameCheck = $('.name').val();
+			var phoneNumberCheck = $('.phoneNumber').val();
+			var address1Check = $('.address1').val();
+			var address2Check = $('.address2').val();
+			var address3Check = $('.address3').val();
+
+			if (idCheck === '' || email01Check === '' || email02Check === ''
+					|| password01Check === '' || password02Check === ''
+					|| nameCheck === '' || phoneNumberCheck === ''
+					|| address1Check === ''|| address2Check === ''|| address3Check === '') {
 				$('.join-btn').prop('disabled', true);
 			} else {
 				$('.join-btn').prop('disabled', false);
 			}
 		}
 	</script>
-	
-	<script src="Petopia_project/js/member.js"></script>
-	<%@include file="../include/default_mapApi_js.jsp"%>
+
+	<!-- option을 통한 email 주소값 입력 -->
+	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<script>
+		$('#selectEmail').change(function() {
+			$("#selectEmail option:selected").each(function() {
+				if ($(this).val() == 'self') { //직접입력일 경우 
+					$(".email02").val(''); //값 초기화 
+					$(".email02").attr("disabled", false); //활성화 
+				} else { //직접입력이 아닐경우 
+					$(".email02").val($(this).text()); //선택값 입력 
+					$(".email02").attr("disabled", true); //비활성화
+				}
+			});
+		});
+	</script>
+	<script>
+	$(".sendMail").click(function() {// 메일 입력 유효성 검사
+		var mail = $(".email01").val(); //사용자의 이메일 입력값. 
+		
+		if (mail == "") {
+			alert("메일 주소가 입력되지 않았습니다.");
+		} else {
+			mail = mail+"@"+$(".email02").val(); //셀렉트 박스에 @뒤 값들을 더함.
+			// console.log(mail);
+			
+			$.ajax({
+				type : 'post',
+				url : '/CheckMail',
+				data : {
+					mail:mail
+					},
+				dataType :'json',
+
+			});
+			alert("인증번호가 전송되었습니다.") 
+			isCertification=true; //추후 인증 여부를 알기위한 값
+		}
+	});
+	</script>
+
+	<script src="/petopia/js/member.js"></script>
 
 </body>
 </html>
