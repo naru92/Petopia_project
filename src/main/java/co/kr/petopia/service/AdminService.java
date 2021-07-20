@@ -6,9 +6,11 @@ import java.util.List;
 
 import co.kr.petopia.vo.DonationVO;
 import co.kr.petopia.vo.FileUploadVO;
+
 import co.kr.petopia.utils.Criteria;
-import co.kr.petopia.vo.ContentVO;
+import co.kr.petopia.vo.BoardVO;
 import co.kr.petopia.vo.DeliveryVO;
+import co.kr.petopia.vo.DonationVO;
 import co.kr.petopia.vo.MemberVO;
 import co.kr.petopia.vo.OrderVO;
 import co.kr.petopia.vo.ProductVO;
@@ -44,7 +46,7 @@ public interface AdminService {
 	
 	/*문의게시판*/
 	public int getQnACount(Criteria cri);
-	public List<ContentVO> getQnAListWithPaging(Criteria cri);
+	public List<BoardVO> getQnAListWithPaging(Criteria cri);
 		
 	/*통계(DB수정필요)*/
 	public LinkedList<MemberVO> getStatisticsMemberCount(); //메인페이지 가입수 통계

@@ -274,9 +274,6 @@ ul {
 
 }
 
-.cartBtn svg{
-  padding-top: 16px;
-}
  .nopaddingcard {
   padding: 0;
 }
@@ -294,7 +291,7 @@ ul {
 }
 
 .search {
-  margin-top: 0px;
+  padding-top: 20px;
   font-size:initial;
 }
 

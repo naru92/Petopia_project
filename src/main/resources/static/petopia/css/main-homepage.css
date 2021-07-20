@@ -96,8 +96,6 @@ ul{
   width: 30px;
   height: 20px;
   position: absolute;
-  top: -7px;
-  left: -5px;
 
   cursor: pointer;
 
@@ -316,16 +314,6 @@ padding-right: 30px;
   border: 1px solid green;
 }
 
-
-
-a {
-  all: unset;
-}
-
-a:link {
-  text-decoration: none;
-  color: #3f464d;
-}
 
 a:visited {
   text-decoration: none;
