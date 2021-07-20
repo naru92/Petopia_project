@@ -107,7 +107,7 @@ public class FileUploadController {
 					
 					log.info("check Image Type " + saveFile);
 					
-					productVO.setImageType(true);
+					productVO.setFiletype(true);
 					getProductImage.setProduct_image(saveFile.getName());
 					File thumbnail = new File(uploadPath, "s_" + uploadFileName);
 					Thumbnails.of(saveFile).size(160, 160)

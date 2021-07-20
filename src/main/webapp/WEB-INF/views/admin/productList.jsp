@@ -5,11 +5,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <c:set var='root' value="${pageContext.request.contextPath }/" />
 <!DOCTYPE html>
-<html lang="ko">
 
 <head>
 
-<meta charset="utf-8">
+
+
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -21,6 +21,100 @@
 <c:import url="/WEB-INF/views/include/admin_list_css.jsp" />
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<style type="text/css">
+.footerdiv {height:100%;}
+.logo{margin-bottom:5px;}
+#modal_product_idx{margin-left: ; font-size:70%;}
+<style>
+.uploadResult {
+	width: 100%;
+	background-color: gray;
+}
+
+.uploadResult ul {
+	display: flex;
+	flex-flow: row;
+	justify-content: center;
+	align-items: center;
+}
+
+.uploadResult ul li {
+	list-style: none;
+	padding: 10px;
+}
+
+.uploadResult ul li img {
+	width: 100px;
+}
+
+.uploadResult ul span {
+	display: inline-block;
+	width: 100px;
+	overflow: hidden; 
+	white-space: nowrap;
+	text-overflow: ellipsis; 
+}
+
+.view-product {
+	width: 100%;
+}
+
+.view-product ul {
+	display: flex;
+	flex-flow: row;
+	justify-content: center;
+	align-items: center;
+}
+.view-product ul li {
+	list-style: none;
+	padding: 10px;
+}
+
+.view-product ul li img {
+	width: 100px;
+}
+
+.item {
+	width: 100%;
+}
+
+.item ul {
+	display: flex;
+	flex-flow: row;
+	justify-content: center;
+	align-items: center;
+}
+.item ul li {
+	list-style: none;
+	padding: 10px;
+}
+.item ul li img {
+	width: 100px;
+}
+.bigPictureWrapper {
+  position: absolute;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  top:0%;
+  width:100%;
+  height:100%;
+  background-color: gray;
+  background-color: rgba( 255, 255, 255, 0.5 );
+  z-index: 100;
+}
+.bigPicture {
+  position: relative;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+#animalType, #productsType, #brand {
+  width: auto;
+}
+</style>
+</style>
 
 </head>
 
@@ -128,26 +222,38 @@
 										</tr>
 									</thead>
 
-									<c:forEach var='p' items="${productList}">
+									<c:forEach var='p' varStatus="status" items="${productList}" >
+									<div>
+										<input type="hidden" value="${p.product_detail_info }"></input>
+										<input type="hidden" value="${p.product_image }"></input>
+										<%-- <input type="hidden" id="imageType${status.index}" value="${p.productVOList.get(0).imageType}" />
+										<input type="hidden" id="uuid${status.index}" value="${p.productVOList.get(0).uuid}" />
+										<input type="hidden" id="uploadPath${status.index}" value="${p.productVOList.get(0).uploadPath}" />
+										<input type="hidden" id="fileName${status.index}" value="${p.productVOList.get(0).fileName}" /> --%>
+									</div>
 										<tbody>
 											<tr>
-												<td><a
-													href="${root}admin/getProduct?product_idx=${p.product_idx}">${p.product_idx }</a></td>
-												<td>${p.product_name }</td>
+												<td id="productidxTd">${p.product_idx }</td>
+												<td id="product_name">${p.product_name }</td>
 												<td>${p.product_category_id }</td>
 												<td>${p.product_price }</td>
 												<td>${p.product_stock }</td>
-												<td align="center" width="120px">
-													<button type="button" class="btn btn-info"
-														data-toggle="modal" data-target="#myModal">
-														상세보기</button>
-												</td>
-
-
-
+												<td width="150" align="center">
+												<button class="btn btn-lg btn-info" data-toggle="modal" 
+												data-product_idx="${p.product_idx}"
+												data-product_name ="${p.product_name }" 
+												data-product_category_id = "${p.product_category_id }"
+												data-product_price = "${p.product_price}"
+												data-product_detail_info ="${p.product_detail_info }" 
+												data-product_coloroption = "${p.product_coloroption}"
+												data-product_image = "${p.product_image }"
+												data-target="#largeModal" value="${p.product_idx }">
+													상세보기</button></td>
 											</tr>
-
 										</tbody>
+												
+												
+									
 									</c:forEach>
 								</table>
 							</div>
@@ -199,54 +305,97 @@
 	<footer class="sticky-footer bg-white">
 		<div class="container my-auto">
 			<div class="copyright text-center my-auto">
-				<span>Copyright &copy; Your Website 2021</span>
+				  <div class="container-fluid footerdiv">
+        <img class="logo" src="/petopia/images/petopia_logomini.png">
+      
+        <p>PETOPIA</p>
+        
+        <p>서비스 이용약관 | 개인정보 처리방침 | 입점/제휴 문의</p>
+        <p>Created by Naru Juhee Gunwoo Ahram Hansol Hana</p>
+        <p>Bitcamp Jongno</p>
+        <p>&copy Creative 2021-08</p>     
+    </div>
 			</div>
 		</div>
 	</footer>
 	<!-- End of Footer -->
 
-	</div>
-	<!-- End of Content Wrapper -->
 
-	</div>
-	<!-- End of Page Wrapper -->
 
-	<!-- Scroll to Top Button-->
-	<!-- Modal -->
-	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
-		aria-labelledby="myModalLabel">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-					<h4 class="modal-title" id="myModalLabel">Modal title</h4>
-				</div>
-				<div class="modal-body">
-					<form>
-						<div class="form-group">
-							<label for="recipient-name" class="control-label">Recipient:</label>
-							<input type="text" class="form-control" id="recipient-name">
+	<!-- large modal -->
+	<div class="container">
+		<div class="modal fade" id="largeModal" tabindex="-1" role="dialog"
+			aria-labelledby="basicModal" aria-hidden="true">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title" id="myModalLabel">상품 정보</h4>
+						
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+							
+						</button>
+						
+					</div>
+					
+					<div class="modal-body">
+						
+						<h5 id= modal_product_idx></h5>
+						<div class="card-body">
+							<form action="board_modify.html" method="post">
+								<div class="form-group">
+									<label for="board_writer_name">상품명</label> <input type="text"
+										id="modal_product_name" name="product_name"
+										class="form-control"  readonly="readonly" ></input>
+								</div>
+								<div class="form-group">
+									<label for="board_date">상품가격</label> <input type="text"
+										id="modal_product_price" name="board_date" class="form-control"
+										value="123" readonly="readonly" ></input>
+								</div>
+								<div class="form-group">
+									<label for="product_coloropiton">컬러</label> <input type="text"
+										id="modal_product_coloropiton" name="modal_product_coloropiton" class="form-control"
+										value="" />
+								</div>
+									
+								<div class="form-group">
+									<label for="product_detail_info">내용</label>
+									<textarea id="modal_product_detail_info" name="modal_product_detail_info"
+										class="form-control" rows="10" style="resize: none"></textarea>
+								</div>
+								
+								
+								<div class="form-group uploadDiv">
+								<label for="board_file">첨부 이미지</label> <img src="" width="100%" />
+                            		<input type="file" name='uploadFile' id="modal_product_image" multiple>
+                        		</div>
+                        		
+								
+								<div class="bigPicture">
+									<div class='uploadResult'>
+					                        <ul>
+		
+		        		                   </ul>
+		                    	    </div>
+										
+									
+								</div>
+		                       
+
+							</form>
 						</div>
-						<div class="form-group">
-							<label for="message-text" class="control-label">Message:</label>
-							<textarea class="form-control" id="message-text"></textarea>
-						</div>
-					</form>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary">Save changes</button>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-danger">삭제</button>
+						<button type="button" class="btn btn-info">수정</button>
+						<button type="button" class="btn btn-primary">완료</button>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-
-	<a class="scroll-to-top rounded" href="#page-top"> <i
-		class="fas fa-angle-up"></i>
-	</a>
 
 	<!-- Logout Modal-->
 	<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
@@ -284,7 +433,7 @@
 					</div>
 					<div class="modal-body">처리 되었습니다.</div>
 					<div class="modal-footer">
-						<button id='modalCloseBtn' type="button" class="btn btn-default">Close</button>
+						<button id='modalCloseBtn' type="button" class="btn btn-info">Close</button>
 					</div>
 				</div>
 				<!-- /.modal-content -->
@@ -302,196 +451,228 @@
 
 	<script type="text/javascript">
 	
-	$(document).ready(
-			
-			
-			$('.modal-content').resizable({
-			      //alsoResize: ".modal-dialog",
-			      minHeight: 300,
-			      minWidth: 300
-			    });
-			    $('.modal-dialog').draggable();
-
-			    $('#myModal').on('show.bs.modal', function() {
-			      $(this).find('.modal-body').css({
-			        'max-height': '100%'
-			      });
-			    });
-			
-			
-			function() {
-				
-				 var product_idx = '<c:out value="${productVO.product_idx}"/>';
-				    
-				    /* $.getJSON("/board/getAttachList", {bno: bno}, function(arr){
-				    
-				      console.log(arr);
-				      
-				      
-				    }); *///end getjson
-				    $.getJSON("/admin/getAttachList", {product_idx: product_idx}, function(arr){
-				        
-				       console.log(arr);
-				       
-				       var str = "";
-				       
-				       $(arr).each(function(i, attach){
-				       
-				         //image type
-				         if(attach.fileType){
-				           var fileCallPath =  encodeURIComponent( attach.uploadPath+ "/s_"+attach.uuid +"_"+attach.fileName);
-				           
-				           str += "<li data-path='"+attach.uploadPath+"' data-uuid='"+attach.uuid+"' data-filename='"+attach.fileName+"' data-type='"+attach.fileType+"' ><div>";
-				           str += "<img src='/display?fileName="+fileCallPath+"'>";
-				           str += "</div>";
-				           str +"</li>";
-				         }else{
-				             
-				           str += "<li data-path='"+attach.uploadPath+"' data-uuid='"+attach.uuid+"' data-filename='"+attach.fileName+"' data-type='"+attach.fileType+"' ><div>";
-				           str += "<span> "+ attach.fileName+"</span><br/>";
-				           str += "<img src='/resources/img/attach.png'></a>";
-				           str += "</div>";
-				           str +"</li>";
-				         }
-				       });
-				       
-				       $(".uploadResult ul").html(str);
-				       
-				       
-				     });//end getjson
-				
-				//modal
-				//checkModal(result);
-				
-			/* 	function checkModal(result){
-					
-					if(result === '' ){
-						return;
-					}
-					if(parseInt(result) > 0 ){
+		$(document)
+				.ready(
 						
-						$(".modal-body").html("게시글 " + parseInt(result) + "번이 등록되었습니다.")
-					}
-					
-					$("#myModal").modal("show");
-				
-				
-				};
-				//modal end */
-				
-				
-				// 페이징 버튼 이벤트
-				var actionForm = $("#pageActionForm");
+						function getList() {
+							var url = "${pageContext.request.contextPath}/rest/after.json";
 
-				$(".numberitem a").on(
-						"click",
-						function(e) {
-
-							e.preventDefault();
-
-							console.log('click');
-
-							actionForm.find("input[name='pageNum']").val(
-									$(this).attr("href"));
-							actionForm.submit();
-						});
-				
-				//필터박스 이벤트
-					$('#frm_search').children().children().children('tr')
-					.children().children('#search_option').on('click', function(event) {
-					
-				    	var product_price = $('#select1').val();
-				    	var product_stock = $('#select2').val();
-				    	console.log($('#dataTable').html());
-				    	console.log($('#select1').val());
-				    	console.log($('#select2').val());
-				    	
-				    	var options = {
-				    		product_price : product_price,
-				    		product_stock : product_stock
-				    	}
 						
-				    	$.ajax({
-			    			type: 'post',
-			    			url: '/admin/product',
-			    			cache: false,
-			    			data: JSON.stringify(options),
-			    			contentType: "application/json; charset=utf-8",
-			    			dataType: 'json',
-			    			success: function(list, status) {
-			    				
-			    			  	var htmls = "";
-								
-								$("#dataTable").html("");
-								
-								$("<tr>" , {
-									html : "<td>" + "상품번호" + "</td>"+  // 컬럼명들
-											"<td>" + "상품명" + "</td>"+
-											"<td>" + "상품분류" + "</td>"+
-											"<td>" + "가격" + "</td>"+				
-											"<td>" + "재고량" + "</td>"
+						//모달
+							
+							   $('.btn-info').on('click', function(event) { 
+								  
+						            $("#modal_product_idx").text("상품번호 : "+ $(this).data('product_idx'));
+						            $("#modal_product_name").val($(this).data('product_name'));
+						            $("#modal_product_category_id").val($(this).data('product_category_id'));
+						            $("#modal_product_price").val($(this).data('product_price'));
+						            $("#modal_product_coloropiton").val($(this).data('product_coloroption'));
+						            $("#modal_product_detail_info").val($(this).data('product_detail_info'));
+						          /*   $("#modal_product_image").val($(this).data('product_image')); */
+						            
+						        	var product_idx = $(this).data('product_idx');
+									console.log(product_idx);
+
+									$.getJSON("/admin/getAttachList", {product_idx: product_idx}, function(arr){
+									
+									  console.log(arr);
+									  
+									  var str = "";
+									  
+									  $(arr).each(function(i, attach){
+										  
+										  //이미지 타입만
+										  if(attach.fileType){
+											  var fileCallPathT = encodeURIComponent(obj.uploadPath + "/s_" + obj.uuid + "_" + obj.fileName);
+						    				  var fileCallPathBT = encodeURIComponent(obj.uploadPath + "/bs_" + obj.uuid + "_" + obj.fileName);
+						    				  
+						    				  str += "<li data-path='"+attach.uploadPath+"' data-uuid='"+attach.uuid+"' data-filename='"+attach.fileName+"' data-type='"+attach.fileType+"' ><div>";
+						    		           str += "<img src='/display?fileName="+fileCallPath+"'>";
+						    		           str += "</div>";
+						    		           str +"</li>";
+										  }else{
+											  str += "<li data-path='"+attach.uploadPath+"' data-uuid='"+attach.uuid+"' data-filename='"+attach.fileName+"' data-type='"+attach.fileType+"' ><div>";
+									           str += "<span> "+ attach.fileName+"</span><br/>";
+									           str += "<img src='/petopia/image/petopia.png'></a>";
+									           str += "</div>";
+									           str +"</li>";
 											
-								}).appendTo("#dataTable") // 이것을 테이블에붙임
-								
-								if(list.length < 1){
-									htmls.push("등록된 상품이 없습니다.");
-								} else {
+										  }
+									  });//each end
+									  
+									  $(".uploadResult ul").html(str);
+									}); ///end getjson
 									
-									$(list).each(function(){
-										console.log(this.product_idx);
-					                    htmls += '<tr>';
-					                    htmls += '<td>'+ this.product_idx + '</td>';
-					                    htmls += '<td>'+ this.product_name + '</td>';
-						                htmls += '<td>'+ this.product_category_id + '</td>'; 
-					                    htmls += '<td>'+ this.product_price + '</td>';
-					                    htmls += '<td>'+ this.product_stock + '</td>';	
-					                    htmls += '</tr>';
-									
-				                	});	//each end
 
-									
-								}
-								$("#dataTable").append(htmls);
-			    			  },
-			    			     error:function(request,status,error){
-			    			         alert("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
-			    			        }
-			    		});
-				    	
-				    	
-					});
-				
-					  $(".uploadResult").on("click", "button", function(e) {
+						        });
+							   
+							// 페이징 버튼 이벤트
+							var actionForm = $("#pageActionForm");
 
-				            console.log("delete file");
+							$(".numberitem a").on(
+									"click",
+									function(e) {
 
-				            var targetFile = $(this).data("file");
-				            var type = $(this).data("type");
+										e.preventDefault();
 
-				            var targetLi = $(this).closest("li");
+										console.log('click');
 
-				            $.ajax({
-				                url: '/deleteFile',
-				                data: {
-				                    fileName: targetFile,
-				                    type: type
-				                },
-				                dataType: 'text',
-				                type: 'POST',
-				                success: function(result) {
-				                    alert(result);
-				                    targetLi.remove();
-				                    $("#uploadInput").val("");
-				                }
-				            });
-				            // $.ajax
-				        });
+										actionForm
+												.find("input[name='pageNum']")
+												.val($(this).attr("href"));
+										actionForm.submit();
+									});
 
-			
-				
-				});
-	
+							//필터박스 이벤트
+							$('#frm_search')
+									.children()
+									.children()
+									.children('tr')
+									.children()
+									.children('#search_option')
+									.on(
+											'click',
+											function(event) {
 
+												var product_price = $(
+														'#select1').val();
+												var product_stock = $(
+														'#select2').val();
+												console.log($('#dataTable')
+														.html());
+												console
+														.log($('#select1')
+																.val());
+												console
+														.log($('#select2')
+																.val());
+
+												var options = {
+													product_price : product_price,
+													product_stock : product_stock
+												}
+
+												$
+														.ajax({
+															type : 'post',
+															url : '/admin/product',
+															cache : false,
+															data : JSON
+																	.stringify(options),
+															contentType : "application/json; charset=utf-8",
+															dataType : 'json',
+															success : function(
+																	list,
+																	status) {
+
+																var htmls = "";
+
+																$("#dataTable")
+																		.html(
+																				"");
+
+																$(
+																		"<tr>",
+																		{
+																			html : "<td>"
+																					+ "상품번호"
+																					+ "</td>"
+																					+ // 컬럼명들
+																					"<td>"
+																					+ "상품명"
+																					+ "</td>"
+																					+ "<td>"
+																					+ "상품분류"
+																					+ "</td>"
+																					+ "<td>"
+																					+ "가격"
+																					+ "</td>"
+																					+ "<td>"
+																					+ "재고량"
+																					+ "</td>"
+
+																		})
+																		.appendTo(
+																				"#dataTable") // 이것을 테이블에붙임
+
+																if (list.length < 1) {
+																	htmls
+																			.push("등록된 상품이 없습니다.");
+																} else {
+
+																	$(list)
+																			.each(
+																					function() {
+																						console
+																								.log(this.product_idx);
+																						htmls += '<tr>';
+																						htmls += '<td>'
+																								+ this.product_idx
+																								+ '</td>';
+																						htmls += '<td>'
+																								+ this.product_name
+																								+ '</td>';
+																						htmls += '<td>'
+																								+ this.product_category_id
+																								+ '</td>';
+																						htmls += '<td>'
+																								+ this.product_price
+																								+ '</td>';
+																						htmls += '<td>'
+																								+ this.product_stock
+																								+ '</td>';
+																						htmls += '</tr>';
+
+																					}); //each end
+
+																}
+																$("#dataTable")
+																		.append(
+																				htmls);
+															},
+															error : function(
+																	request,
+																	status,
+																	error) {
+																alert("code = "
+																		+ request.status
+																		+ " message = "
+																		+ request.responseText
+																		+ " error = "
+																		+ error); // 실패 시 처리
+															}
+														});
+
+											});
+
+							$(".uploadResult").on("click", "button",
+									function(e) {
+
+										console.log("delete file");
+
+										var targetFile = $(this).data("file");
+										var type = $(this).data("type");
+
+										var targetLi = $(this).closest("li");
+
+										$.ajax({
+											url : '/deleteFile',
+											data : {
+												fileName : targetFile,
+												type : type
+											},
+											dataType : 'text',
+											type : 'POST',
+											success : function(result) {
+												alert(result);
+												targetLi.remove();
+												$("#uploadInput").val("");
+											}
+										});
+										// $.ajax
+									});
+
+						});
 	</script>
 
 	<c:import url="/WEB-INF/views/include/admin_list_js.jsp" />

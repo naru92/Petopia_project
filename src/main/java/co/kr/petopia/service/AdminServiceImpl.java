@@ -201,10 +201,11 @@ public class AdminServiceImpl implements AdminService {
 		
 	}
 
-
+	
 	@Override
 	public List<FileUploadVO> findByProduct(int product_idx) {
 		log.info("get Attach list by product_idx" +  product_idx);
+		
 		return productAattachMapper.findByProduct(product_idx);
 	}
 

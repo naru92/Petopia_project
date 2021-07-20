@@ -17,11 +17,9 @@
 	</delete>
 	
 	<!-- 첨부파일 가져오기 -->
-	<select id = "findByproduct" resultType="co.kr.petopia.vo.FileUploadVO">
+	<select id = "findByProduct" parameterType="int" resultType="co.kr.petopia.vo.FileUploadVO">
 	select * from tbl_attach where product_idx = #{product_idx}
 	</select>
 	
-	
-
-		
+		 
 </mapper>

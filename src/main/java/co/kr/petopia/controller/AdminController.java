@@ -137,7 +137,10 @@ public class AdminController {
 	// 상품목록(페이징)
 	@GetMapping("/product")
 	public String productPage(Model model, Criteria cri) {
-
+		
+		
+	
+		
 		int totalProduct = adminService.getTotalProductCount(cri);
 		model.addAttribute("pageMaker", new PageVO(cri, totalProduct));
 
@@ -369,22 +372,22 @@ public class AdminController {
 	public String insertProduct(ProductVO productVO) {
 		
 		
-		
 		return "/product/insertProduct";
 	}
 	
 	
-	//상품보기
-	@GetMapping("/getProduct")
-	public String get( @RequestParam("product_idx") int product_idx, 
+	//모달 상품보기
+	@GetMapping("/getModal")
+	public void get( @RequestParam("p.product_idx") int product_idx, 
 			@ModelAttribute("cri") Criteria cri, Model model) {
+		
+		log.info("product_idx : " + product_idx);
 		
 		
 		/* 해당 페이지 이동 */
 		log.info("getProduct ()");
 		
 		model.addAttribute("productVO", adminService.getProductOne(product_idx));
-		return "/product/getProduct";
 	}
 	
 	
@@ -429,6 +432,7 @@ public class AdminController {
 		
 		return "redirect:/products/get";// 수정하면 해당 번호 상품정보로 간다
 	}
+	
 	//상품삭제
 	@PostMapping("product/delete")
 	public String delete(@RequestParam("product_idx") int product_idx,
@@ -452,6 +456,7 @@ public class AdminController {
 	
 	
 	//파일첨부리스트
+	@ResponseBody
 	@GetMapping(value = "/getAttachList",
 			produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<FileUploadVO>> getAttachList(int product_idx) {
