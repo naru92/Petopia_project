@@ -7,12 +7,9 @@ import java.util.List;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import co.kr.petopia.vo.MemberAuthVO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -72,4 +69,5 @@ public class MemberVO implements UserDetails {
 		return this.Isenabled;
 	}
 	
+
 }

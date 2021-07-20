@@ -1,40 +1,33 @@
 package co.kr.petopia.controller;
 
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import co.kr.petopia.service.MemberService;
-
 @Controller
+@RequestMapping("/member")
 public class MemberController {
 
-	@Autowired
-	private MemberService MemberService;
-	
-	@GetMapping("member/login")
+	@GetMapping("/login")
 	public String login() {
 		return "member/login";
 	}
 		
-	@GetMapping("member/joinAgree")
+	@GetMapping("/joinAgree")
 	public String joinAgree() {
 		return "member/joinAgree";
 	}	
 	
-	@GetMapping("member/joinForm")
-	public String join() {
+	@GetMapping("/joinForm")
+	public String joinForm() {
 		return "member/joinForm";
 	}	
 	
-	@GetMapping("member/welcome")
-	public String welcome() {
-		return "member/welcome";
-	}
+	@GetMapping("/welcome")
+    public String welcome() {
+        return "member/welcome";
+    }   
 	
 	// 마이페이지 메인
 	@GetMapping("/mypage")
