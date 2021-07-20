@@ -12,7 +12,7 @@ public class FileUploadVO {
 	private String uuid;
 	private String uploadPath;
 	private String fileName;
-	private boolean imageType;
+	private boolean filetype;
 	private String product_image;
 	
 	

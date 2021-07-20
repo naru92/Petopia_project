@@ -87,4 +87,5 @@ public interface AdminService {
 	/*file*/
 	public List<FileUploadVO> findByProduct(int product_idx);
 	
+	
 }

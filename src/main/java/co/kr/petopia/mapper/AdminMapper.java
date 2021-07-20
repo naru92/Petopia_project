@@ -89,6 +89,8 @@ public interface AdminMapper{
 	//상품 이미지 등록
 	public List<FileUploadVO> insertProductImage (FileUploadVO fileUploadVO);
 	
+	public List<FileUploadVO> findByproduct(int product_idx);
+	
 	public int getTotalCount(Criteria cri);
 	
 }
