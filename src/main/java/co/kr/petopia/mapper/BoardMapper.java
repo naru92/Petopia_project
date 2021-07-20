@@ -10,17 +10,18 @@ import co.kr.petopia.vo.BoardVO;
 public interface BoardMapper {
     
     // list 불러오기
-    List<BoardVO> getPetstagramList();
+    List<BoardVO> getContentList(Long board_id);
     
     // insert
-    void insert(BoardVO board);
+    void contentInsert(BoardVO board);
     
     // content_idx 기준으로 불러오기
-    BoardVO read(Long content_idx);
+    BoardVO contentRead(Long content_idx);
     
     // update
-    int update (BoardVO board);
+    int contentUpdate (BoardVO board);
     
     // delete
-    int delete (Long content_idx);
+    int contentDelete (Long content_idx);
+
 }

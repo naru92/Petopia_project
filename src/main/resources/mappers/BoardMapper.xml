@@ -5,30 +5,35 @@
 
 <mapper namespace="co.kr.petopia.mapper.BoardMapper">
 
-	<select id="getPetstagramList" resultType="co.kr.petopia.vo.BoardVO">
-		select * from content where board_id=4 order by content_idx
+	<select id="getContentList" resultType="co.kr.petopia.vo.BoardVO">
+		select * from content where
+		board_id = #{board_id} order by content_idx
 	</select>
 
-	<insert id="insert">
+	<insert id="contentInsert">
 		insert into content(content_idx, board_id, member_id,
 		CONTENT_DATE,CONTENT_TITLE,CONTENT_TEXT,CONTENT_HIT)
-		values (CONTENT_SEQ.nextval, #{board_id}, #{member_id}, SYSDATE, #{content_title}, #{content_text}, 0)
+		values
+		(CONTENT_SEQ.nextval, #{board_id}, #{member_id}, SYSDATE,
+		#{content_title}, #{content_text}, 0)
 	</insert>
-	
-	<select id="read" resultType="co.kr.petopia.vo.BoardVO">
-	select * from content where content_idx = #{content_idx}
+
+	<select id="contentRead" resultType="co.kr.petopia.vo.BoardVO">
+		select * from content where content_idx = #{content_idx}
 	</select>
-	
-	<delete id="delete">
-	delete from content where content_idx = #{content_idx}
+
+	<delete id="contentDelete">
+		delete from content where content_idx = #{content_idx}
 	</delete>
-	
-	<update id="update">
-	update content
-	set content_title = #{content_title},
-	content_text = #{content_text},
-	content_update = sysdate
-	where content_idx = #{content_idx}
+
+	<update id="contentUpdate">
+		update content
+		set content_title = #{content_title},
+		content_text = #{content_text},
+		content_update = sysdate
+		where content_idx = #{content_idx}
 	</update>
+
 	
+
 </mapper>

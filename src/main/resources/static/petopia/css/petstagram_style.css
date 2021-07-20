@@ -12,7 +12,7 @@ img {
 }
 
 .container {
-    width: 85rem;
+    width: 95rem;
     margin: 0 auto;
     padding: 0 2rem;
     position: relative; top:50px;
@@ -116,6 +116,20 @@ img {
 
 .profile-stats li:last-of-type {
     margin-right: 0;
+}
+
+.profile-stats li #insertBtn {
+	background: #2AC1BC;
+	color: #fff;
+	border-color: #2AC1BC;
+	text-align: center;
+	border: 1px solid #2AC1BC;
+	cursor: pointer;
+  	transition: 0.6s;
+}
+
+.profile-stats li #insertBtn:hover {
+	opacity: 0.7;
 }
 
 .profile-bio {
