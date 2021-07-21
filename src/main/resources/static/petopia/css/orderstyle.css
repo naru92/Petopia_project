@@ -521,7 +521,7 @@ select {
 }
 
 .tableTitle {
-	width: 86%;
+	width: 100%;
 	border-top: 1px solid #b6ada8;
 	vertical-align: middle;
 	padding: 15px 0;
@@ -802,6 +802,10 @@ span.emailAt {
 .homeBtn:active {
 	position:relative;
 	top:1px;
+}
+
+.table-responsive{
+	height : 200px;
 }
 
 .payment {
