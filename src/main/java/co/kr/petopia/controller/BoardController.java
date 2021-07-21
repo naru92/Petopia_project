@@ -35,6 +35,14 @@ public class BoardController {
 
     }
     
+    // 해당 게시물 불러오기 ( jsp 만든 후 string으로 바꿔서 return 해줘야함 )
+    @GetMapping("/notice/get")
+    public void noticeGet(@RequestParam("content_idx") Long content_idx, Model model) {
+        
+        model.addAttribute("board", boardService.getContent(content_idx));
+        
+    }
+    
     // 글 작성
     @PostMapping("/notice/register")
     public String noticeRegister(BoardVO board, RedirectAttributes rttr) {
@@ -76,6 +84,7 @@ public class BoardController {
 
     /****************** 문의하기 **********************/
 
+    // 리스트 불러오기
     @GetMapping("member/inquiry")
     public String inquiryList(Model model) {
 
@@ -85,6 +94,15 @@ public class BoardController {
 
         return "member/inquiry";
 
+    }
+    
+    // 해당 게시물 불러오기 ( jsp 만든 후 string으로 바꿔서 return 해줘야함 )
+    @GetMapping("member/inquiry/get")
+    public String inquiryGet(@RequestParam("content_idx") Long content_idx, Model model) {
+        
+        model.addAttribute("board", boardService.getContent(content_idx));
+        
+        return "member/inquiry";
     }
     
     // 글 작성
@@ -128,6 +146,7 @@ public class BoardController {
 
     /****************** 이벤트 **********************/
 
+    // 리스트 불러오기
     @GetMapping("/event")
     public String eventList(Model model) {
 
@@ -139,10 +158,13 @@ public class BoardController {
 
     }
 
-    // 이벤트 상세
-    @GetMapping("/event_detail")
-    public String event_detail() {
-        return "member/event_detail";
+    // 해당 게시물 불러오기
+    @GetMapping("/event/detail")
+    public String eventGet(@RequestParam("content_idx") Long content_idx, Model model) {
+        
+        model.addAttribute("board", boardService.getContent(content_idx));
+        
+        return "board/event_detail";
     }
     
     // 글 작성
@@ -186,6 +208,7 @@ public class BoardController {
 
     /****************** 펫스타그램 **********************/
 
+    // 리스트 불러오기
     @GetMapping("/petstagram")
     public String petstagramList(Model model) {
 
@@ -195,7 +218,16 @@ public class BoardController {
 
         return "board/petstagram";
     }
+    
+    // 해당 게시물 불러오기
+    @GetMapping("/petstagram/get")
+    public void petstagramGet(@RequestParam("content_idx") Long content_idx, Model model) {
+        
+        model.addAttribute("board", boardService.getContent(content_idx));
+    }
 
+
+    // 글 작성
     @PostMapping("/petstagram/register")
     public String petstagramRegister(BoardVO board, RedirectAttributes rttr) {
 
@@ -208,6 +240,8 @@ public class BoardController {
         return "redirect:/petstagram";
     }
 
+    
+    // 글 수정
     @PostMapping("/petstagram/modify")
     public String petstagramModify(BoardVO board, RedirectAttributes rttr) {
 
@@ -220,6 +254,8 @@ public class BoardController {
         return "redirect:/petstagram";
     }
 
+    
+    // 글 삭제
     @PostMapping("/petstagram/remove")
     public String petstagramRemove(@RequestParam("content_idx") Long content_idx, RedirectAttributes rttr) {
 

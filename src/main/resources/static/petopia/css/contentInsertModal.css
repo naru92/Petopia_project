@@ -20,6 +20,22 @@
 	border: 1px solid #888;
 	width: 50%; /* Could be more or less, depending on screen size */
 }
+
+.img-group{
+	float: left;
+	width: 50%;
+}
+
+.form-group{
+	float: right;
+	width: 47%;
+	margin-right: 3%;
+}
+
+#insertContentText{
+	height: 100px;
+}
+
 /* The Close Button */
 .close {
 	color: #aaa;
@@ -32,4 +48,8 @@
 	color: black;
 	text-decoration: none;
 	cursor: pointer;
+}
+
+#contentModal .form-control{
+	background-color:#fff;
 }

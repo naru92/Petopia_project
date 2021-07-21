@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,7 +13,7 @@
 
 <!-- CSS here -->
 <link rel="stylesheet" href="/petopia/css/petstagram_style.css">
-<link rel="stylesheet" href="/petopia/css/contentModal.css">
+<link rel="stylesheet" href="/petopia/css/contentInsertModal.css">
 
 </head>
 <body>
@@ -57,9 +59,9 @@
 		<div class="container">
 
 			<div class="gallery">
-				${contentList}
-				<div class="gallery-item" tabindex="0">
-					<img src="https://images.unsplash.com/photo-1511765224389-37f0e77cf0eb?w=500&h=500&fit=crop" class="gallery-image" alt="">
+				<c:forEach items="${contentList}" var="petstagram">
+				<div class="gallery-item" id="contentGetImg" tabindex="0">
+					<img src="https://images.unsplash.com/photo-1511765224389-37f0e77cf0eb?w=500&h=500&fit=crop" class="gallery-image">
 					<div class="gallery-item-info">
 						<ul>
 							<li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart" aria-hidden="true"></i> 56</li>
@@ -67,116 +69,8 @@
 						</ul>
 					</div>
 				</div>
+				</c:forEach>
 
-				<div class="gallery-item" tabindex="0">
-					<img src="https://images.unsplash.com/photo-1497445462247-4330a224fdb1?w=500&h=500&fit=crop" class="gallery-image" alt="">
-					<div class="gallery-item-info">
-						<ul>
-							<li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart" aria-hidden="true"></i> 89</li>
-							<li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i class="fas fa-comment" aria-hidden="true"></i> 5</li>
-						</ul>
-					</div>
-				</div>
-
-				<div class="gallery-item" tabindex="0">
-					<img src="https://images.unsplash.com/photo-1426604966848-d7adac402bff?w=500&h=500&fit=crop" class="gallery-image" alt="">
-					<div class="gallery-item-info">
-						<ul>
-							<li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart" aria-hidden="true"></i> 42</li>
-							<li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i class="fas fa-comment" aria-hidden="true"></i> 1</li>
-						</ul>
-					</div>
-				</div>
-
-				<div class="gallery-item" tabindex="0">
-					<img src="https://images.unsplash.com/photo-1502630859934-b3b41d18206c?w=500&h=500&fit=crop" class="gallery-image" alt="">
-					<div class="gallery-item-info">
-						<ul>
-							<li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart" aria-hidden="true"></i> 38</li>
-							<li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i class="fas fa-comment" aria-hidden="true"></i> 0</li>
-						</ul>
-					</div>
-				</div>
-
-				<div class="gallery-item" tabindex="0">
-					<img src="https://images.unsplash.com/photo-1498471731312-b6d2b8280c61?w=500&h=500&fit=crop" class="gallery-image" alt="">
-					<div class="gallery-item-info">
-						<ul>
-							<li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart" aria-hidden="true"></i> 47</li>
-							<li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i class="fas fa-comment" aria-hidden="true"></i> 1</li>
-						</ul>
-					</div>
-				</div>
-
-				<div class="gallery-item" tabindex="0">
-					<img src="https://images.unsplash.com/photo-1515023115689-589c33041d3c?w=500&h=500&fit=crop" class="gallery-image" alt="">
-					<div class="gallery-item-info">
-						<ul>
-							<li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart" aria-hidden="true"></i> 94</li>
-							<li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i class="fas fa-comment" aria-hidden="true"></i> 3</li>
-						</ul>
-					</div>
-				</div>
-
-				<div class="gallery-item" tabindex="0">
-					<img src="https://images.unsplash.com/photo-1504214208698-ea1916a2195a?w=500&h=500&fit=crop" class="gallery-image" alt="">
-					<div class="gallery-item-info">
-						<ul>
-							<li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart" aria-hidden="true"></i> 52</li>
-							<li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i class="fas fa-comment" aria-hidden="true"></i> 4</li>
-						</ul>
-					</div>
-				</div>
-
-				<div class="gallery-item" tabindex="0">
-					<img src="https://images.unsplash.com/photo-1515814472071-4d632dbc5d4a?w=500&h=500&fit=crop" class="gallery-image" alt="">
-					<div class="gallery-item-info">
-						<ul>
-							<li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart" aria-hidden="true"></i> 66</li>
-							<li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i class="fas fa-comment" aria-hidden="true"></i> 2</li>
-						</ul>
-					</div>
-				</div>
-
-				<div class="gallery-item" tabindex="0">
-					<img src="https://images.unsplash.com/photo-1511407397940-d57f68e81203?w=500&h=500&fit=crop" class="gallery-image" alt="">
-					<div class="gallery-item-info">
-						<ul>
-							<li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart" aria-hidden="true"></i> 45</li>
-							<li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i class="fas fa-comment" aria-hidden="true"></i> 0</li>
-						</ul>
-					</div>
-				</div>
-
-				<div class="gallery-item" tabindex="0">
-					<img src="https://images.unsplash.com/photo-1518481612222-68bbe828ecd1?w=500&h=500&fit=crop" class="gallery-image" alt="">
-					<div class="gallery-item-info">
-						<ul>
-							<li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart" aria-hidden="true"></i> 34</li>
-							<li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i class="fas fa-comment" aria-hidden="true"></i> 1</li>
-						</ul>
-					</div>
-				</div>
-
-				<div class="gallery-item" tabindex="0">
-					<img src="https://images.unsplash.com/photo-1505058707965-09a4469a87e4?w=500&h=500&fit=crop" class="gallery-image" alt="">
-					<div class="gallery-item-info">
-						<ul>
-							<li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart" aria-hidden="true"></i> 41</li>
-							<li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i class="fas fa-comment" aria-hidden="true"></i> 0</li>
-						</ul>
-					</div>
-				</div>
-
-				<div class="gallery-item" tabindex="0">
-					<img src="https://images.unsplash.com/photo-1423012373122-fff0a5d28cc9?w=500&h=500&fit=crop" class="gallery-image" alt="">
-					<div class="gallery-item-info">
-						<ul>
-							<li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart" aria-hidden="true"></i> 30</li>
-							<li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i class="fas fa-comment" aria-hidden="true"></i> 2</li>
-						</ul>
-					</div>
-				</div>
 			</div>
 			<!-- End of gallery -->
 		</div>
@@ -188,34 +82,77 @@
 		<%@include file="../include/default_footer.jsp"%>
 	</footer>
 	
-	<!-- Modal -->
-    <div id="myModal" class="modal">
+	<!-- content insert Modal -->
+	<div id="insertModal" class="modal">
 	<!-- Modal content -->
 	<div class="modal-content">
 		<div class="modal-header">
-			<h3 class="modal-title" id="myModalLabel">새 게시물 작성</h3>
+			<h3 class="modal-title" id="insertModalLabel">새 게시물 작성</h3>
         	<span class="close">&times;</span>
 		</div>
 		<div class="modal-body">
-			<form>
-				<div class="form-group">
-					<label for="recipient-name" class="control-label">Recipient:</label>
-					<input type="text" class="form-control" id="recipient-name">
+			<form action="/petstagram/register" method="post" id="insertForm">
+				<input type="hidden" id="inserBoardId" name="board_id" value="4">
+				<input type="hidden" id="insertMemberId" name="member_id" value="dummy91">
+				<div class="img-group">
+					<div class="img_wrap">
+						<img id="contentImg">
+					</div>
+					<input type="file" id="inputImg">
 				</div>
 				<div class="form-group">
-					<label for="message-text" class="control-label">Message:</label>
-					<textarea class="form-control" id="message-text"></textarea>
+					<label for="recipient-name" class="control-label">제목</label>
+					<input type="text" class="form-control" id="insertContentTitle" name="content_title">
+					<br>
+					<label for="message-text" class="control-label">내용</label>
+					<textarea class="form-control" id="insertContentText" name="content_text"></textarea>
+					<br>
 				</div>
 			</form>
 		</div>
 		<div class="modal-footer">
-			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-			<button type="button" class="btn btn-primary">Save changes</button>
+			<button type="submit" id="insertSubmit" class="btn btn-success">게시하기</button>
 		</div>
  	</div>
     </div>
+    <script src="/petopia/js/contentInsertModal.js"></script>
+    
+    
+    <!-- content get Modal -->
+    <div id="contentModal" class="modal">
+	<!-- Modal content -->
+	<div class="modal-content">
+		<div class="modal-header">
+			<h3 class="modal-title" id="contentModalLabel">게시물 보기</h3>
+        	<span class="close">&times;</span>
+		</div>
+		<div class="modal-body">
+			<form>
+				<div class="img-group">
+					<div class="img_wrap">
+						<img id="contentGetImg">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="recipient-name" class="control-label">제목</label>
+					<input type="text" class="form-control" id="insetGetTitle" name="content_title" readonly="readonly" value='<c:out value="${board.content_title}"/>'>
+					<br>
+					<label for="message-text" class="control-label">내용</label>
+					<textarea class="form-control" id="insertGetText" name="content_text" readonly="readonly"><c:out value="${board.content_text}"/></textarea>
+					<br>
+				</div>
+			</form>
+		</div>
+		<div class="modal-footer">
+			<button type="submit" id="insertSubmit" class="btn btn-success">게시하기</button>
+		</div>
+ 	</div>
+    </div>
+    <script src="/petopia/js/contentGetModal.js"></script>
+    
+
 
 	
-	<script src="/petopia/js/contentModal.js"></script>
+	
 </body>
 </html>
