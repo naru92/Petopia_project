@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="UTF-8"%>
-<%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="UTF-8"%>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+
+
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+
 <title>Confirmation</title>
 <!-- CSS here -->
 <link rel="stylesheet" href="petopia/css/orderconfirmation.css">
@@ -83,11 +83,11 @@
 						<br>
 						<tr>
 							<td>주문자명</td>
-							<td>dummy2</td>
+							<td><%= request.getParameter("order_name") %></td>
 						</tr>
 						<tr>
 							<td>연락처</td>
-							<td>010-1111-1111</td>
+							<td><%= request.getParameter("order_receiver_phonenumber") %></td>
 						</tr>
 					</table>
 				</div>
@@ -97,15 +97,15 @@
 						<br>
 						<tr>
 							<td>주문번호</td>
-							<td>1</td>
+							<td><%= request.getParameter("order_idx") %></td>
 						</tr>
 						<tr>
 							<td>주문날짜</td>
-							<td>2021-07-06</td>
+							<td><%= request.getParameter("order_date") %></td>
 						</tr>
 						<tr>
 							<td>결제수단</td>
-							<td>카드결제</td>
+							<td><%= request.getParameter("payment_method") %></td>
 						</tr>
 					</table>
 				</div>
@@ -168,7 +168,9 @@
 		<%@include file="../include/default_footer.jsp"%>
 	</footer>
 
+		
 	<!-- sidebar js -->
+		<%@include file="../include/default_sidebar_js.jsp" %>
 	<script>
 		$(".ctgli:has(.ctgulChild)").click(function(e) {
 			e.preventDefault();
@@ -187,6 +189,9 @@
 			$(this).toggleClass('wtok');
 		});
 	</script>
-	
+
+	 
 </body>
-</html>
+
+
+</html> 
