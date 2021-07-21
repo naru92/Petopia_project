@@ -13,8 +13,9 @@ public class OrderVO {
 	private Date order_date;
 	private int payment_method;
 	private String user_name;
-	
-	
+	private String product_name;
+	private String product_coloroption;
+	private String product_price;	
 	
 	private String order_name;
 	private String order_receiver_name;
