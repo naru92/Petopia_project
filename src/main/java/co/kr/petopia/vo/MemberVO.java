@@ -26,7 +26,7 @@ public class MemberVO implements UserDetails {
 	private int member_point;
 	private int member_donation;
 	private String authority;
-	private int enabled;
+
 	
 	private List<? extends GrantedAuthority> authList;
 	private boolean Isenabled = true;
@@ -69,6 +69,7 @@ public class MemberVO implements UserDetails {
 	public boolean isEnabled() {
 		return this.Isenabled;
 	}
+
 	
 
 }
