@@ -5,37 +5,5 @@
 
 <mapper namespace="co.kr.petopia.mapper.MemberMapper">
 
-	<!-- 마이펫 리스트 -->
-	<select id="getMypetList" resultType="co.kr.petopia.vo.mypetVO">
-		select * from mypet order by mypet_idx desc
-	</select>
-
-	<!-- 마이펫 등록 -->
-	<insert id="mypetInsert">
-		insert into mypet values( #{mypet_idx},
-		#{mypet_imagefile},
-		#{mypet_name}, #{mypet_category}, #{mypet_gender},
-		#{mypet_allergy}, #{mypet_age},
-		#{mypet_weight}, #{mypet_neutering},
-		#{mypet_diseasename} )
-	</insert>
-
-	<!-- 마이펫 삭제 -->
-	<delete id="mypetDelete">
-		delete from mypet where mypet_idx = #{mypet_idx}
-	</delete>
-
-	<!-- 마이펫 정보 수정 -->
-	<update id="mypetUpdate">
-		update mypet set mypet_imagefile = #{mypet_imagefile},
-		mypet_name = #{mypet_name}, 
-		mypet_category = #{mypet_category}, 
-		mypet_gender = #{mypet_gender}, 
-		mypet_allergy = #{mypet_allegry}, 
-		mypet_age = #{mypet_age}, 
-		mypet_weight = #{mypet_weight}, 
-		mypet_neutering = #{mypet_neutering},
-		mypet_deseasename = #{mypet_deseasename}
-	</update>
-
+	
 </mapper>

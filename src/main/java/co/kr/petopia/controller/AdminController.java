@@ -380,10 +380,6 @@ public class AdminController {
 		//회원 - 최근 3개월간 회원수 - 라인차트
 		
 		//기부 - 3개월간 기부금, 1년 기부금
-	
-		
-		
-		
 		
 		String json = null;
 		try {
@@ -397,7 +393,6 @@ public class AdminController {
 		
 		
 
-	
 	
 
 
