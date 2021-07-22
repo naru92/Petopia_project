@@ -25,46 +25,47 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Service
 public class AdminServiceImpl implements AdminService {
-	
+
 	@Autowired
 	AdminMapper adminMapper;
-	
+
 	@Autowired
 	ProductAattachMapper productAattachMapper;
-	
+
 	@Override
 	public List<MemberVO> getMemberList() {
-		
+
 		return adminMapper.getMemberList();
 	}
 
 	@Override
 	public List<MemberVO> getMemberListWithPaging(Criteria cri) {
-		
+
 		return adminMapper.getMemberListWithPaging(cri);
 	}
 
 	@Override
 	public int getTotalMemberCount(Criteria cri) {
-		
+
 		return adminMapper.getTotalMemberCount(cri);
 	}
 
 	@Override
 	public List<ProductVO> getProductListWithPaging(Criteria cri) {
-		
+
 		return adminMapper.getProductListWithPaging(cri);
 	}
 
 	@Override
 	public int getTotalProductCount(Criteria cri) {
-		
+
 		return adminMapper.getTotalProductCount(cri);
 	}
 
 	@Override
 	public List<ProductVO> getSelectOptionList(HashMap<String, Object> result) {
-	
+		log.info("상품 카테고리가 널인지 : " + result.get("select_category_id"));
+
 		return adminMapper.getSelectOptionList(result);
 	}
 
@@ -100,13 +101,13 @@ public class AdminServiceImpl implements AdminService {
 
 	@Override
 	public List<DeliveryVO> getUnprocessedOrderList() {
-		
+
 		return adminMapper.getUnprocessedOrderList();
 	}
 
 	@Override
-	public List<DeliveryVO> getRefundList() {
-		return adminMapper.getRefundList();
+	public int getRefundCount() {
+		return adminMapper.getRefundCount();
 	}
 
 	@Override
@@ -125,23 +126,23 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public int getTodayIncome() {
+	public Integer getTodayIncome() {
 		return adminMapper.getTodayIncome();
-	}
-	
-	@Override
-	public List<OrderVO> getCurrentOrderList() {
-		return adminMapper.getCurrentOrderList();
 	}
 
 	@Override
-	public int getQnACount(Criteria cri) {
-		return adminMapper.getQnACount(cri);
+	public int currentOrderCount() {
+		return adminMapper.currentOrderCount();
+	}
+
+	@Override
+	public int getTotalQnACount(Criteria cri) {
+		return adminMapper.getTotalQnACount(cri);
 	}
 
 	@Override
 	public List<BoardVO> getQnAListWithPaging(Criteria cri) {
-		
+
 		return adminMapper.getQnAListWithPaging(cri);
 	}
 
@@ -152,7 +153,7 @@ public class AdminServiceImpl implements AdminService {
 
 	@Override
 	public List<DeliveryVO> getDeliveryList() {
-		
+
 		return adminMapper.getDeliveryList();
 	}
 
@@ -167,68 +168,60 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public LinkedList<MemberVO> getStatisticsMemberCount() {
-		
-		return adminMapper.getStatisticsMemberCount();
+	public LinkedList<MemberVO> get5DaysStatisticsMemberCount() {
+
+		return adminMapper.get5DaysStatisticsMemberCount();
 	}
 
-	
 	@Override
 	public void insertProduct(ProductVO productVO) {
-		
+
 		int next_val = adminMapper.product_seq_next();
-		
+
 		log.info("insertProduct()..");
 		log.info("productVO :" + productVO);
-		
+
 		productVO.setProduct_idx(next_val);
-		
-		
+
 		adminMapper.insertProduct(productVO);
-		
-		
-		
-		productVO.getProductVOList().forEach(attach->{
-		log.info("attach : " +attach);
-		attach.setProduct_idx(next_val);
-		attach.setBoard_id(1);
-		
-		
-		productAattachMapper.insertProductImage(attach);
-	});
-		
-		
-		
+
+		productVO.getProductVOList().forEach(attach -> {
+			log.info("attach : " + attach);
+			attach.setProduct_idx(next_val);
+			attach.setBoard_id(1);
+
+			productAattachMapper.insertProductImage(attach);
+		});
+
 	}
 
-	
 	@Override
 	public List<FileUploadVO> findByProduct(int product_idx) {
-		log.info("get Attach list by product_idx" +  product_idx);
-		
+		log.info("get Attach list by product_idx" + product_idx);
+
 		return productAattachMapper.findByProduct(product_idx);
 	}
 
 	@Override
 	public boolean updateProduct(ProductVO productVO) {
 		log.info("updateProduct " + productVO);
-		
+
 		productAattachMapper.deleteAllProductImage(productVO.getProduct_idx());
-		
-		//성공실패
+
+		// 성공실패
 		boolean updateResult = adminMapper.updateProduct(productVO) == 1;
-		
-		//성공 && 첨부파일이 있으면 , 다날림
-		if(updateResult && productVO.getProductVOList().size() > 0) {
-			
+
+		// 성공 && 첨부파일이 있으면 , 다날림
+		if (updateResult && productVO.getProductVOList().size() > 0) {
+
 			productVO.getProductVOList().forEach(attach -> {
-				
+
 				attach.setProduct_idx(productVO.getProduct_idx());
-				
+
 				productAattachMapper.insertProductImage(attach);
 			});
 		}
-		
+
 		return updateResult;
 	}
 
@@ -236,24 +229,52 @@ public class AdminServiceImpl implements AdminService {
 	public boolean deleteProduct(int product_idx) {
 
 		log.info("delete products");
-		
+
 		productAattachMapper.deleteAllProductImage(product_idx);
-		//성공실패 보여줌
+		// 성공실패 보여줌
 		return adminMapper.deleteProduct(product_idx) == 1;
 	}
 
 	@Override
 	public ProductVO getProductOne(int product_idx) {
-		
+
 		return adminMapper.getProductOne(product_idx);
 	}
 
+	@Override
+	public int deleteMember(MemberVO memberVO) {
 
+		try {
+			adminMapper.deleteMember(memberVO);
+		} catch (Exception e) {
+			return 0;
+		}
+		adminMapper.deleteMember(memberVO);
+		return 1;
 
+	}
 
+	@Override
+	public int getStatisticsOrderCount() {
+		
+		return adminMapper.getStatisticsOrderCount();
+	}
 
-	
+	@Override
+	public int getTotalMemberCount() {
+		
+		return adminMapper.getTotalMemberCount();
+	}
 
-	
+	@Override
+	public List<DonationVO> selectOptionDonationList(HashMap<String, Object> optionMap) {
+		return adminMapper.selectOptionDonationList(optionMap);
+	}
+
+	@Override
+	public List<BoardVO> selectOptionQnAList(HashMap<String, Object> optionMap) {
+		
+		return adminMapper.selectOptionQnAList(optionMap);
+	}
 
 }

@@ -22,6 +22,7 @@ public interface AdminService {
 	public List<MemberVO> getMemberListWithPaging(Criteria cri);
 	public int getTotalMemberCount(Criteria cri);
 	public List<MemberVO> getTodayMemberList();
+	public int deleteMember(MemberVO vo);
 	
 	/*상품*/	
 	public List<ProductVO> getProductListWithPaging(Criteria cri);
@@ -36,28 +37,30 @@ public interface AdminService {
 	public int getDeliveryCount(Criteria cri);
 	public List<DeliveryVO> getDeliveryListWithPaging(Criteria cri);
 	public List<DeliveryVO> getUnprocessedOrderList();//미처리 배송
-	public List<DeliveryVO> getRefundList(); //교환,환불처리
-	public List<DeliveryVO> getDeliveryList();
+	public int getRefundCount(); //교환,환불처리
+	public List<DeliveryVO> getDeliveryList();//딜리버리 목록
 	
 	/*기부*/
 	public int getDonationCount(Criteria cri);
 	public List<DonationVO> getDonationWithPaging(Criteria cri);
 	public int getTodayDonation();//금일 도네
+	public List<DonationVO> selectOptionDonationList(HashMap<String, Object> optionMap); //필터옵션 도네
 	
 	/*문의게시판*/
-	public int getQnACount(Criteria cri);
+	public int getTotalQnACount(Criteria cri);
 	public List<BoardVO> getQnAListWithPaging(Criteria cri);
-		
+	public List<BoardVO> selectOptionQnAList(HashMap<String, Object> optionMap);	
 	/*통계(DB수정필요)*/
-	public LinkedList<MemberVO> getStatisticsMemberCount(); //메인페이지 가입수 통계
-	
+	public LinkedList<MemberVO> get5DaysStatisticsMemberCount(); //메인페이지 가입수 통계
+	public int getStatisticsOrderCount(); //총주문수 메인
+	public int getTotalMemberCount(); //총맴버 메인
 	
 	/*기타*/
-	public int getTodayIncome(); //금일 수입
+	public Integer getTodayIncome(); //금일 수입
 	
 	
 	//현재주문 리스트
-	public List<OrderVO> getCurrentOrderList();
+	public int currentOrderCount();
 	
 	//주문 리스트(페이징)
 	int getTotalOrderList(Criteria cri);
@@ -86,6 +89,9 @@ public interface AdminService {
 	
 	/*file*/
 	public List<FileUploadVO> findByProduct(int product_idx);
+	
+	
+	
 	
 	
 }

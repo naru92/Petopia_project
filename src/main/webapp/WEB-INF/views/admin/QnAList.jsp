@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <c:set var='root' value="${pageContext.request.contextPath }/" />
 
 <!DOCTYPE html>
@@ -66,9 +68,9 @@
 										<tr>
 											<td colspan="2">처리 상태&nbsp;&nbsp;</td>
 											<td colspan="5" class="pleft"><input type="radio"
-												value="cat" name="member_gender">전체 <input
-												type="radio" value="cat" name="member_gender">미처리 <input
-												type="radio" value="all" name="member_gender" checked>처리완료
+												value="" name="qna_state" checked>전체 <input
+												type="radio" value="not" name="qna_state">미처리 <input
+												type="radio" value="complete" name="qna_state" >처리완료
 
 
 											</td>
@@ -77,10 +79,10 @@
 										<tr>
 											<td colspan="2">문의 분류&nbsp;&nbsp;</td>
 											<td colspan="5" class="pleft"><select
-												id="order_lately_date" name="order_lately_date">
+												id="qna" name="qna_lately_date">
 													<option value="" selected>--문의내역 분류 선택--</option>
-													<option value="lately_login_desc">최근 문의 순</option>
-													<option value="lately_login_asc">오래된 문의 순</option>
+													<option value="qna_lately__asc">최근 문의 순</option>
+													<option value="qna_lately__desc">오래된 문의 순</option>
 											</select></td>
 										</tr>
 
@@ -88,69 +90,78 @@
 
 										<tr>
 											<td colspan="7"><input type="button" value="검색"
-												onClick="member_search()" />&nbsp;&nbsp;<input type="reset"
+												id="search_option" />&nbsp;&nbsp;<input type="reset"
 												value="초기화" /></td>
 										</tr>
 									</table>
+								</form>
 							</div>
 						</div>
-						</form>
-
+											
 						<div class="card-body">
 							<div class="table-responsive">
-								<table class="table table-bordered" id="dataTable" width="100%"
-									cellspacing="0">
-									<thead>
-										<tr>
-
-											<th>문의번호</th>
-											<th>아이디</th>
-											<th>내용</th>
-											<th>처리상태</th>
-
-										</tr>
-									</thead>
-									<tfoot>
-
-									</tfoot>
-									<tbody>
-										<tr>
-											<td>1</td>
-											<td>ab1233</td>
-											<td>상품이 별로에요</td>
-											<td><select id="qna_state" name="qna_state">
-
+									<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+										
+											<thead>
+												<tr>
+													<th>문의번호</th>
+													<th>아이디</th>
+													<th>내용</th>
+													<th>처리상태</th>
+												</tr>
+											</thead>
+											
+								<c:forEach var='q' items="${QnAList}">
+										<tbody>
+											<tr>
+											<td>${q.content_idx }</td>
+											<td>${q.member_id}</td>
+											<td>${q.content_text}</td>
+											<td>
+											<select id="qna_state" name="qna_state">
 													<option value="qna_not">미처리</option>
 													<option value="qna_complete">처리완료</option>
-											</select></td>
+											</select>
+											</td>
+											</tr>
+										</tbody>
+								</c:forEach>
+							</table>
+					  	 </div>
+					  <form id='pageActionForm' action="/admin/order" method='get'>
+												<input type='hidden' name='pageNum'
+													value='${pageMaker.cri.pageNum}' /> <input type='hidden'
+													name='amount' value='${pageMaker.cri.amount}' />
+					 </form>
+				</div>
+						<input type="hidden" id="size" value="${fn:length(list)}" />
+						<div class="row">
+									<div class="col-sm-12 col-md-5 paginationdiv">
+										<div class="d-none d-md-block page-div">
+											<ul class="pagination justify-content-center">
+												<li class="page-item"><c:if test="${pageMaker.prev}">
+												<li class="page-item"><a
+													href="${pageMaker.startPage-1}" class="page-link">이전</a></li>
+											</c:if></li>
+										<c:forEach var="num" begin="${pageMaker.startPage}"
+											end="${pageMaker.endPage }">
+											<li
+												class='page-item numberitem ${pageMaker.cri.pageNum == num ? "active" : "" }'><a
+												href="${num}" class="page-link">${num}</a></li>
+										</c:forEach>
 
-
-										</tr>
-										</tr>
-
-									</tbody>
-								</table>
+										<c:if test="${pageMaker.next}">
+											<li class="page-item"><a href="${pageMaker.endPage +1}"
+												class="page-link">다음</a></li>
+										</c:if>
+											</ul>
+										</div>
+									</div>
+								</div>
 							</div>
 						</div>
-
-						<ul class="pagination justify-content-center">
-							<li class="page-item"><a href="#" class="page-link">이전</a></li>
-							<li class="page-item"><a href="#" class="page-link">1</a></li>
-							<li class="page-item"><a href="#" class="page-link">2</a></li>
-							<li class="page-item"><a href="#" class="page-link">3</a></li>
-							<li class="page-item"><a href="#" class="page-link">4</a></li>
-							<li class="page-item"><a href="#" class="page-link">5</a></li>
-							<li class="page-item"><a href="#" class="page-link">6</a></li>
-							<li class="page-item"><a href="#" class="page-link">7</a></li>
-							<li class="page-item"><a href="#" class="page-link">8</a></li>
-							<li class="page-item"><a href="#" class="page-link">9</a></li>
-							<li class="page-item"><a href="#" class="page-link">10</a></li>
-							<li class="page-item"><a href="#" class="page-link">다음</a></li>
-						</ul>
 					</div>
 				</div>
-			</div>
-		</div>
 		<!-- /.container-fluid -->
 
 	</div>
@@ -201,7 +212,104 @@
 	</div>
 
 		<c:import url="/WEB-INF/views/include/admin_list_js.jsp" />
+	<script type="text/javascript">
+	$(document).ready(
+			function() {
+				
+			
+				
+				// 페이징 버튼 이벤트
+				var actionForm = $("#pageActionForm");
 
+				$(".numberitem a").on(
+						"click",
+						function(e) {
+
+							e.preventDefault();
+
+							console.log('click');
+
+							actionForm.find("input[name='pageNum']").val(
+									$(this).attr("href"));
+							actionForm.submit();
+						});
+			
+				
+				console.log($('#frm_search').children().children().children('tr')
+						.children().children('#search_option'));
+				
+				//필터박스 이벤트
+				$('#frm_search').children().children().children('tr')
+				.children().children('#search_option').on('click', function(event) {
+			
+			    	var qna_state = $(":input:radio[name=qna_state]:checked").val();
+			    	var qna_lately_date = $('#qna_lately_date').val();
+			    	
+			    	
+					console.log($(":input:radio[name=qna_state]:checked").val());
+			    	console.log($('#qna_lately_date').val());
+			    	
+			    	var options = {
+			    			qna_lately_date : qna_lately_date,
+			    			qna_state: qna_state
+			    	}
+					
+			    	$.ajax({
+		    			type: 'post',
+		    			url: '/admin/QnA',
+		    			cache: false,
+		    			data: JSON.stringify(options),
+		    			contentType: "application/json; charset=utf-8",
+		    			dataType: 'json',
+		    			success: function(list, status) {
+		    				
+		    			  	var htmls = "";
+							
+							$("#dataTable").html("");
+							
+							$("<tr>" , {
+								
+								
+								// 컬럼명들								
+								html : "<th>" + "문의번호" + "</th>"+
+									   "<th>" + "아이디" + "</th>"+
+									   "<th>" + "내용" + "</th>"+
+									   "<th>" + "처리상태" + "</th>"
+										
+							}).appendTo("#dataTable") // 이것을 테이블에붙임
+							
+							if($(list).length < 1){
+								alert("등록된 상품이 없습니다.");
+							} else {
+								
+								
+								$(list).each(function(){
+									console.log(this.order_idx);
+				                    htmls += '<tr>';
+				                    htmls += '<td>'+ this.content_idx + '</td>';
+				                    htmls += '<td>'+ this.member_id + '</td>';
+				                    htmls += '<td>'+ this.content_text + '</td>';
+				                    htmls += '<select id="qna_state" name="qna_state">';
+									htmls += '<option value="qna_not">'+ 미처리 +'</option>';
+									htmls += '<option value="qna_complete">'+처리완료+'</option>';
+									htmls += '</select>';
+				                    htmls += '</tr>';
+				                
+			                	});	//each end
+
+								
+							}
+							
+							$("#dataTable").append(htmls);
+		    			  },
+		    			     error:function(request,status,error){
+		    			         alert("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+		    			        }
+		    		});
+				});
+				
+			});
+	</script>
 </body>
 
 </html>

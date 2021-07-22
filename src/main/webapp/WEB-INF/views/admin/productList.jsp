@@ -165,15 +165,15 @@
 										<tr>
 											<td colspan="2">상품 구분&nbsp;&nbsp;</td>
 											<td class="head" colspan="5" class="pleft"><input
-												type="radio" value="1" name="product_category_id" checked>1.사료
-												<input type="radio" value="2" name="product_category_id">2.간식
-												<input type="radio" value="3" name="product_category_id">3.위생/배변
-												<input type="radio" value="4" name="product_category_id">4.미용/목욕
-												<input type="radio" value="5" name="product_category_id">5.급식기/급수기
-												<input type="radio" value="6" name="product_category_id">6.장난감/훈련
-												<input type="radio" value="7" name="product_category_id">7.하우스/이동장
-												<input type="radio" value="8" name="product_category_id">8.패션/의류
-												<input type="radio" value="9" name="product_category_id">9.목줄/하네스
+												type="radio" value="사료" name="select_category_id" >1.사료
+												<input type="radio" value="간식" name="select_category_id">2.간식
+												<input type="radio" value="위생" name="select_category_id">3.위생/배변
+												<input type="radio" value="미용" name="select_category_id">4.미용/목욕
+												<input type="radio" value="급식기" name="select_category_id">5.급식기/급수기
+												<input type="radio" value="장난감" name="select_category_id">6.장난감/훈련
+												<input type="radio" value="하우스" name="select_category_id">7.하우스/이동장
+												<input type="radio" value="패션" name="select_category_id">8.패션/의류
+												<input type="radio" value="목줄" name="select_category_id">9.목줄/하네스
 
 											</td>
 										</tr>
@@ -368,12 +368,12 @@
 								
 								
 								<div class="form-group uploadDiv">
-								<label for="board_file">첨부 이미지</label> <img src="" width="100%" />
+								<label for="board_file">첨부 이미지</label><br> <img src="" width="100%" />
                             		<input type="file" name='uploadFile' id="modal_product_image" multiple>
                         		</div>
                         		
-								
-								<div class="bigPicture">
+								<!-- 썸네일출력장소 -->
+								<div class="row">
 									<div class='uploadResult'>
 					                        <ul>
 		
@@ -381,6 +381,15 @@
 		                    	    </div>
 										
 									
+								</div>
+								
+								<!-- 원본 이미지 출력 장소 -->
+			                    <div class="bigPicturePlace">
+									<div class='bigPictureWrapper'>
+										<div class="bigPicture">
+					
+										</div>
+									</div>
 								</div>
 		                       
 
@@ -454,7 +463,7 @@
 		$(document)
 				.ready(
 						
-						function getList() {
+						function () {
 							var url = "${pageContext.request.contextPath}/rest/after.json";
 
 						
@@ -502,10 +511,44 @@
 									  
 									  $(".uploadResult ul").html(str);
 									}); ///end getjson
-									
+							 // view-product 클릭시 원본 이미지 출력
+						     $(".uploadResult").on("click", function(e) {
+						    			
+						    			console.log("view image");
+						    			
+						    			var imgObj = $(this);
+						    			
+						    			var path = encodeURIComponent(imgObj.data("path") + "/" + imgObj.data("uuid") + "_" + imgObj.data("filename"));
+						    			
+						    			if(imgObj.data("type")) {
+						    				showImage(path.replace(new RegExp(/\\/g), "/"));
+						    			} 
+						    		});	
 
-						        });
-							   
+						    });
+						
+						
+						
+						
+							// 원본 이미지 출력
+					    		function showImage(fileCallPath) {
+					    			
+					    			console.log(fileCallPath);
+					    			
+					    			$(".bigPictureWrapper").css("display", "flex").show();
+					    			
+					    			$(".bigPicture")
+					    			.html("<img src='/display?fileName=" + fileCallPath + "'>")
+					    			.animate({width:'100%', height:'100%'}, 1000);
+					    		}
+					    		
+					      // 원본 이미지 닫기
+					      $(".bigPicturePlace").on("click", function(e) {
+					        	$(".bigPicture").animate({width: '0%', height: '0%'}, 1000);
+					    	       setTimeout(function() {
+					    		     $('.bigPictureWrapper').hide();
+					    	                               }, 1000);
+					      });  
 							// 페이징 버튼 이벤트
 							var actionForm = $("#pageActionForm");
 
@@ -538,8 +581,8 @@
 														'#select1').val();
 												var product_stock = $(
 														'#select2').val();
-												console.log($('#dataTable')
-														.html());
+												var select_category_id = $(":input:radio[name=select_category_id]:checked").val();
+												console.log( $(":input:radio[name=select_category_id]:checked").val());
 												console
 														.log($('#select1')
 																.val());
@@ -549,7 +592,8 @@
 
 												var options = {
 													product_price : product_price,
-													product_stock : product_stock
+													product_stock : product_stock,
+													select_category_id : select_category_id
 												}
 
 												$
@@ -603,8 +647,7 @@
 																	$(list)
 																			.each(
 																					function() {
-																						console
-																								.log(this.product_idx);
+																						
 																						htmls += '<tr>';
 																						htmls += '<td>'
 																								+ this.product_idx
