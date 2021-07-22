@@ -43,18 +43,22 @@
 					onclick="location.href='#';">
 					<img class="profile-pic" src="images/noma.jpg">
 					<div>
-						<h4>노마</h4>
-						<p>여아</p>
-						<p>3년 6개월</p>
-						<p>7kg</p>
+						<c:forEach var='p' items="${mypetList}">
+							<h4>${p.mypet_name}</h4>
+							<p>${p.mypet_gender}아</p>
+							<p>${p.mypet_age}살</p>
+							<p>${p.mypet_weight}kg</p>
+						</c:forEach>
 					</div>
 				</div>
 				<!--등급 정보-->
 				<div class="profile-box" style="cursor: pointer;"
 					onclick="location.href='#';">
 					<div>
-						<p>등급</p>
-						<h4>Friends</h4>
+						<c:forEach var='m' items="${memberList}">
+							<p>등급</p>
+							<h4>${m.member_grade}</h4>
+						</c:forEach>
 					</div>
 				</div>
 			</div>
@@ -62,13 +66,15 @@
 				<!--포인트-->
 				<div class="profile-box" style="cursor: pointer;"
 					onclick="location.href='#';">
-					<p>보유 포인트</p>
-					<h4>5000 Point</h4>
+					<c:forEach var='m' items="${memberList}">
+						<p>보유 포인트</p>
+						<h4>${m.member_point}Point</h4>
+					</c:forEach>
 				</div>
 				<!--기부-->
 				<div class="profile-box" style="cursor: pointer;"
-					onclick="location.href='#';">
-						<h4>기부 내역</h4>
+					onclick="location.href='mypage_donation';">
+					<h4>기부 내역</h4>
 				</div>
 			</div>
 
@@ -153,7 +159,9 @@
 	</footer>
 
 	<script>
-		<%@include file="../include/default_sidebar_js.jsp"%>
+		
+	<%@include file="../include/default_sidebar_js.jsp"%>
+		
 	</script>
 </body>
 

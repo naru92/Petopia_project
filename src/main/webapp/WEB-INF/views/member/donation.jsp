@@ -29,10 +29,10 @@
 				<div class="my-box">
 					<div class="donation-info">
 						<div>
-							<h4>현재까지 나의 총 기부금</h4>
+							<h4>현재까지 나의 총 기부금&nbsp&nbsp</h4>
 						</div>
 						<div>
-							<h1>&nbsp 10,000</h1>
+							<h1 class="number">10000</h1>
 						</div>
 						<div>
 							<h5>&nbsp 원</h5>
@@ -40,7 +40,7 @@
 					</div>
 				</div>
 				<div class="donation-bt">
-					<button class="donationBtn">기부하기</button>
+					<a href="mypage_donation"><button class="donationBtn">기부하기</button></a>
 				</div>
 			</div>
 
@@ -132,9 +132,9 @@
 			</div>
 			<div>
 				<h2>사용 내역</h2>
-				<div class="list-box">2021.07 사용 내역</div>
-				<div class="list-box">2021.06 사용 내역</div>
-				<div class="list-box">2021.05 사용 내역</div>
+				<a href=""><div class="list-box">2021.07 사용 내역</div></a> <a href=""><div
+						class="list-box">2021.06 사용 내역</div></a> <a href=""><div
+						class="list-box">2021.05 사용 내역</div></a>
 			</div>
 		</div>
 	</main>
@@ -143,6 +143,30 @@
 		<%@include file="../include/default_footer.jsp"%>
 	</footer>
 
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js">
+		$(document).ready(function() {
+			$(function() {
+				  var cnt0 = 0;
+
+				  counterFn();
+
+				  function counterFn() {
+
+				    id0 = setInterval(count0Fn, 100);
+
+				    function count0Fn() {
+				      cnt0++;
+				      if (cnt0 > 99) {
+				        clearInterval(id0);
+				      } else {
+				        $(".number").text(cnt0);
+				      }
+				    }
+				  }
+				});
+		});
+	</script>
+	
 	<script>
 	<%@include file="../include/default_sidebar_js.jsp"%>
 	</script>
