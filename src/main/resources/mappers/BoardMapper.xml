@@ -5,9 +5,10 @@
 
 <mapper namespace="co.kr.petopia.mapper.BoardMapper">
 
+	<!-- 해당 게시판에 게시글 불러오는 쿼리문 / idx 내림차순 (최신게 위로) -->
 	<select id="getContentList" resultType="co.kr.petopia.vo.BoardVO">
 		select * from content where
-		board_id = #{board_id} order by content_idx
+		board_id = #{board_id} order by content_idx DESC
 	</select>
 
 	<insert id="contentInsert">
