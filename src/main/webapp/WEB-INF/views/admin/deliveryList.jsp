@@ -205,7 +205,9 @@
 	<a class="scroll-to-top rounded" href="#page-top"> <i
 		class="fas fa-angle-up"></i>
 	</a>
-
+	
+	
+	
 	<!-- Logout Modal-->
 	<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -231,10 +233,12 @@
 		<script type="text/javascript">
 		$(document).ready(
 				function() {
-
+					
 					// 페이징 버튼 이벤트
 					var actionForm = $("#pageActionForm");
-
+					
+					
+					
 					$(".numberitem a").on(
 							"click",
 							function(e) {
@@ -251,8 +255,6 @@
 					//필터박스 이벤트
 					$('#frm_search').children().children().children('tr')
 					.children().children('#search_option').on('click', function(event) {
-						console.log($(":input:radio[name=is_member]:checked").val());
-						console.log(($('#frm_search').children().children().children());
 
 				    	var delivery_state = $('#select1').val();
 				    	var delivery_refund = $('#select2').val();

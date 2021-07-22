@@ -1,5 +1,6 @@
 package co.kr.petopia.controller;
 
+import java.security.Principal;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -10,19 +11,16 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.ibatis.annotations.Delete;
-import org.apache.jasper.tagplugins.jstl.core.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.annotation.Secured;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -33,11 +31,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import co.kr.petopia.service.AdminService;
 import co.kr.petopia.service.MemberSecurtiyService;
 import co.kr.petopia.utils.Criteria;
 import co.kr.petopia.utils.PageVO;
+import co.kr.petopia.vo.BoardVO;
 import co.kr.petopia.vo.DeliveryVO;
+import co.kr.petopia.vo.DonationVO;
 import co.kr.petopia.vo.FileUploadVO;
 import co.kr.petopia.vo.MemberVO;
 import co.kr.petopia.vo.OrderVO;
@@ -60,8 +63,7 @@ public class AdminController {
 		
 		Map<String, Object> statisticsMemberMap = new LinkedHashMap<>();
 		
-		LinkedList<MemberVO> getStatisticsMemberCount = adminService.getStatisticsMemberCount();
-		getStatisticsMemberCount.get(0).getStatistics_join_count();
+		LinkedList<MemberVO> getStatisticsMemberCount = adminService.get5DaysStatisticsMemberCount();
 		statisticsMemberMap.get("statistics_join_count");
 		
 		Date now = new Date();
@@ -72,6 +74,7 @@ public class AdminController {
 		ArrayList<String> mainStatistics_join_day = new ArrayList<>();
 		
 
+		if(getStatisticsMemberCount.size() !=0) {
 		
 		if(getStatisticsMemberCount.size() != 5) {
 			
@@ -88,28 +91,53 @@ public class AdminController {
 			statisticsMemberMap.put("statistics_join_count" , getStatisticsMemberCount.get(i).getStatistics_join_count());
 		}
 		
-	
+		}else {
+			nullVO.setStatistics_join_count(0);
+			for(int i = 0 ;  i < 5 ; i++) {
+			if(i == 0) {
+				cal.add(Calendar.DATE , 0);
+			}else {
+				cal.add(Calendar.DATE, -1);	
+				
+			}	
+				
+			getStatisticsMemberCount.add(i, nullVO);
+			mainStatistics_join_day.add(sdf.format(cal.getTime()));
+			}
+		}
 		
 		model.addAttribute("mainStatistics_join_day" , mainStatistics_join_day);
 		model.addAttribute("getStatisticsMemberCount", getStatisticsMemberCount);
 		
-//		//금일매출
-//		adminService.getTodayIncome();
-//		//금일 기부금
-//		adminService.getTodayDonation();
-//		//신규가입수
-//		adminService.getTodayMemberList(); 
-//		//현재주문
-//		adminService.getCurrentOrderList(); 
-//		//교환&환불 신청
-//		adminService.getRefundList(); 
-//		//총주문량
-//		adminService.getOrderCount(null); 
-//		//회원수 그래프
-//		adminService.getTotalMemberCount(null); 
-//		//MY_GENDER 비율
-//		
-//		//미처리 주문
+		
+		//신규(오늘) 회원 가입
+		int getTodayMemberCount = adminService.getTotalMemberCount();
+		//금일매출
+		Integer todayIncome= adminService.getTodayIncome();
+		//금일 기부금
+		int todayDonation = adminService.getTodayDonation();
+		//교환&환불 신청건수
+		int refundCount = adminService.getRefundCount(); 
+		//현재 주문 건수
+		int currentOrderCount = adminService.currentOrderCount();
+		//미처리 주문(리스트)
+		List<DeliveryVO> getUnprocessedOrderList = adminService.getUnprocessedOrderList();
+		//총주문량
+		int statisticsOrderConut =  adminService.getStatisticsOrderCount(); 
+		//회원수 그래프
+		int statisticsTotalMemberConut = adminService.getTotalMemberCount();
+		
+		model.addAttribute("getTodayMemberCount", getTodayMemberCount);
+		model.addAttribute("todayIncome" , todayIncome);
+		model.addAttribute("todayDonation", todayDonation);
+		model.addAttribute("refundCount", refundCount);
+		model.addAttribute("getUnprocessedOrderList", getUnprocessedOrderList);
+		model.addAttribute("currentOrderCount" , currentOrderCount);
+		model.addAttribute("statisticsOrderConut" , statisticsOrderConut);
+		model.addAttribute("statisticsTotalMemberConut" , statisticsTotalMemberConut);
+		
+		
+		//MY_GENDER 비율		
 
 		return "admin/adminmain";
 	}
@@ -119,11 +147,6 @@ public class AdminController {
 	public String getMemberList(Model model, Criteria cri, Authentication authenticate) {
 		SecurityContextHolder.getContext().getAuthentication();
 
-//		String username = (String) authenticate.getPrincipal();
-//		String userpassword = (String) authenticate.getCredentials();
-
-//		log.info("username : " + username);
-//		log.info("password " + userpassword);
 
 		log.info("getMemberList().." + cri);
 
@@ -138,8 +161,6 @@ public class AdminController {
 	@GetMapping("/product")
 	public String productPage(Model model, Criteria cri) {
 		
-		
-	
 		
 		int totalProduct = adminService.getTotalProductCount(cri);
 		model.addAttribute("pageMaker", new PageVO(cri, totalProduct));
@@ -156,20 +177,22 @@ public class AdminController {
 			MediaType.APPLICATION_JSON_VALUE })
 	public ResponseEntity<List<ProductVO>> selectOptionProductList(@RequestBody Map<String, Object> options,
 			Criteria cri) {
-		ResponseEntity<String> entity = null;
+		
 		HashMap<String, Object> optionMap = new HashMap<String, Object>();
-
-//		int totalProduct = adminService.getTotalMemberCount(cri);
-//		result1.put("pageMaker", new PageVO(cri, totalProduct));
-//		result1.put("productList", adminService.getProductListWithPaging(cri));
 
 		String product_stock = (String) options.get("product_stock");
 		String product_price = (String) options.get("product_price");
+		String select_category_id = String.valueOf(options.get("select_category_id"));
+		
+		
+		log.info("카테고리 값: " + select_category_id);
+		
+		optionMap.put("total_memberList", adminService.getProductListWithPaging(cri));
 		optionMap.put("product_stock", product_stock);
 		optionMap.put("product_price", product_price);
-
+		optionMap.put("select_category_id", select_category_id);
+		
 		log.info("options : " + options);
-		log.info("options : " + options.get("product_price"));
 
 		List<ProductVO> productList = adminService.getSelectOptionList(optionMap);
 
@@ -181,8 +204,8 @@ public class AdminController {
 	public String orderPage(Model model, Criteria cri) {
 
 		int totalOrderList = adminService.getOrderCount(cri);
+		
 		model.addAttribute("pageMaker", new PageVO(cri, totalOrderList));
-
 		model.addAttribute("orderList", adminService.getOrderListWithPaging(cri));
 
 		return "admin/orderList";
@@ -193,8 +216,8 @@ public class AdminController {
 	public String deliveryPage(Model model, Criteria cri) {
 
 		int totalDeliveryList = adminService.getOrderCount(cri);
+		
 		model.addAttribute("pageMaker", new PageVO(cri, totalDeliveryList));
-
 		model.addAttribute("deliveryList", adminService.getDeliveryListWithPaging(cri));
 
 		return "admin/deliveryList";
@@ -250,120 +273,133 @@ public class AdminController {
 
 		return new ResponseEntity<>(orderList, HttpStatus.OK);
 	}
-
+	
+	//기부목록
 	@GetMapping("/donation")
 	public String donationPage(Model model, Criteria cri) {
 
 		int totalDonationList = adminService.getDonationCount(cri);
+		
 		model.addAttribute("pageMaker", new PageVO(cri, totalDonationList));
-
 		model.addAttribute("donationList", adminService.getDonationWithPaging(cri));
 
 		return "admin/donationList";
 	}
+	
+	@ResponseBody
+	@PostMapping(value = "/donation", consumes = "application/json", produces = { MediaType.APPLICATION_XML_VALUE,
+			MediaType.APPLICATION_JSON_VALUE })
+	public ResponseEntity<List<DonationVO>> selectOptionDonationList(@RequestBody Map<String, Object> options,
+			Criteria cri) {
+		
+		HashMap<String, Object> optionMap = new HashMap<String, Object>();
+		
+		String donation_date_year = (String) options.get("donation_date_year");
+		String donation_date_today = (String) options.get("donation_date_today");
+		String donation_state = (String) options.get("donation_state");	
+		
+		optionMap.put("donation_date_year", donation_date_year);
+		optionMap.put("donation_state", donation_state);
+		log.info("options : " + options);
 
+		List<DonationVO> donationList = adminService.selectOptionDonationList(optionMap);
+
+		return new ResponseEntity<>(donationList, HttpStatus.OK);
+	}
+	
+	
+	
+	//문의목록
 	@GetMapping("/QnA")
-	public String QnAPage(Model model, Criteria cri, @RequestParam int board_id) {
+	public String QnAPage(Model model, Criteria cri) {
 
-		int totalQnAList = adminService.getQnACount(cri);
+		int totalQnAList = adminService.getTotalQnACount(cri);
 		model.addAttribute("pageMaker", new PageVO(cri, totalQnAList));
 
 		model.addAttribute("QnAList", adminService.getQnAListWithPaging(cri));
 
 		return "admin/QnAList";
 	}
+	//문의목록 필터
+	@ResponseBody
+	@PostMapping(value = "/QnA", consumes = "application/json", produces = { MediaType.APPLICATION_XML_VALUE,
+			MediaType.APPLICATION_JSON_VALUE })
+	public ResponseEntity<List<BoardVO>> selectOptionQnAList(@RequestBody Map<String, Object> options,
+			Criteria cri) {
+		
+		HashMap<String, Object> optionMap = new HashMap<String, Object>();
+		
+		String qna_lately_date = (String) options.get("qna_lately_date");
+		String qna_state = (String) options.get("qna_lately_date");
+		
+		optionMap.put("qna_lately_date", qna_lately_date);
+		optionMap.put("qna_state", qna_state);
+		
+		log.info("options : " + options);
 
+		List<BoardVO> QnAList = adminService.selectOptionQnAList(optionMap);
+
+		return new ResponseEntity<>(QnAList, HttpStatus.OK);
+	}
+	
+	
+	//회원삭제
+	@DeleteMapping(value = "/deleteMember", 
+			consumes = "application/json", 
+			produces = { MediaType.APPLICATION_XML_VALUE, 
+			MediaType.APPLICATION_JSON_VALUE})
+	@ResponseBody
+	public ResponseEntity<String> deleteMember(MemberVO memberVO, 
+			@RequestBody String member_id) {
+		
+		//성공 실패여부 int값  1 성공 0 실패
+		int count = 0;
+		member_id = member_id.replaceAll("\\\"","");
+		MemberVO vo = new MemberVO();
+		memberVO.setMember_id(member_id);
+		log.info("delete member " + memberVO.getMember_name() + " " + memberVO.getMember_id());
+		count = adminService.deleteMember(memberVO);
+		
+		log.info("삭제 성공시 1이 출력됩니다 :" +count);
+		
+		return count >= 1
+				? new ResponseEntity<> ("success", HttpStatus.OK)
+				: new ResponseEntity<> (HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+	
+	
+	//통계 모음 페이지
 	@GetMapping("/statistics")
-	public String statisticsPage() {
+	@ResponseBody
+	public String statisticsPage(Model model) {
+		
+		Map<String, Object> test = new HashMap<>();
+		
+		//주문 - 최근 3개월간 가장 많이 주문 - 바차트
+		
+		//회원 - 최근 3개월간 회원수 - 라인차트
+		
+		//기부 - 3개월간 기부금, 1년 기부금
+	
+		
+		
+		
+		
+		String json = null;
+		try {
+			json = new ObjectMapper().writeValueAsString(test);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+					
+			return json;
+		}
+		
+		
 
-		return "admin/statisticsList";
-	}
+	
+	
 
-	// 상품정보
-	public String getProductList(Model model, int product_idx) {
-
-		return "/admin/productList";
-	}
-
-	// 배송정보
-	public String getDeliveryList(Model model, int delivery_idx) {
-
-		return "/admin/DeliveryList";
-	}
-
-	// 기부정보
-	public String getDonationList(Model model) {
-
-		return "/admin/donationList";
-	}
-
-	// 회원수 통계
-	public String getMemberStatistics(Model model) {
-
-		return "/admin/statistics";
-	}
-
-	public String getProductStatistics(Model model) {
-
-		return "/admin/statistics";
-
-	}
-
-	// 기부액 통계
-	public String getDonationStatistics(Model model) {
-
-		return "/admin/statistics";
-	}
-
-	// 금일매출
-	public String getTodayIncome(Model model) {
-
-		return "/admin/DonationList";
-	}
-
-	// 금일 기부금
-	public String getTodayDonation(Model model) {
-
-		return "/admin/DonationList";
-	}
-
-	// 신규 가입수
-	public String getTodayMemberList(Model model) {
-
-		adminService.getTodayMemberList();
-
-		return "/admin/DonationList";
-	}
-
-	// 현재주문수
-	public String getCurrentOrderList(Model model) {
-
-		return "/admin/DonationList";
-	}
-
-	// 교환,환불 신청
-	public String getRefundList(Model model) {
-
-		return "/admin/DonationList";
-	}
-
-	// 총 주문량
-	public String getTotalOrderList(Model model) {
-
-		return "/admin/DonationList";
-	}
-
-	// 미처리주문
-	public String getUnprocessedOrderList(Model model) {
-
-		return "/admin/DonationList";
-	}
-
-	// 총 회원수
-	public String getTotalMemberList() {
-
-		return "/admin/DonationList";
-	}
 
 	/* 상품 등록 관련 */
 
@@ -424,6 +460,7 @@ public class AdminController {
 			rttr.addFlashAttribute("result", "success");
 		}
 		
+		
 		rttr.addAttribute("productsNo", productVO.getProduct_idx());
 		rttr.addAttribute("pageNum", cri.getPageNum());
 		rttr.addAttribute("amount", cri.getAmount());
@@ -444,12 +481,8 @@ public class AdminController {
 		List<FileUploadVO> attachList = adminService.findByProduct(product_idx);
 		
 		if(adminService.deleteProduct(product_idx)) {
-			
-			
-			
 			rttr.addFlashAttribute("result", "success");
 			}
-		
 		
 		return "redirect:/admin/product" + cri.getListLink();
 	}

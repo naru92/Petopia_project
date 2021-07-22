@@ -24,6 +24,10 @@ body {
     height: 400px;
     margin: 0 auto
 }
+#goToOrder{
+font-size: 13px;
+}
+
 </style>
 <head>
 
@@ -74,7 +78,7 @@ body {
 			<!-- Page Heading -->
 			<div
 				class="d-sm-flex align-items-center justify-content-between mb-4">
-				<h1 class="h3 mb-0 text-gray-800">매출현황</h1>
+				<h1 class="h3 mb-0 text-gray-800">매출현황&nbsp;&&nbsp;회원수</h1>
 
 			</div>
 
@@ -90,7 +94,7 @@ body {
 									<div
 										class="text-xs font-weight-bold text-primary text-uppercase mb-1">
 										금일 매출</div>
-									<div class="h5 mb-0 font-weight-bold text-gray-800">${getTodayIncome}</div>
+									<div class="h5 mb-0 font-weight-bold text-gray-800">${getTodayIncome} 원</div>
 								</div>
 								<div class="col-auto">
 									<i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -109,7 +113,7 @@ body {
 									<div
 										class="text-xs font-weight-bold text-success text-uppercase mb-1">
 										금일 기부금</div>
-									<div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
+									<div class="h5 mb-0 font-weight-bold text-gray-800">${getTodayDonation} 원</div>
 								</div>
 								<div class="col-auto">
 									<i class="fas fa-hand-holding-usd fa-2x text-gray-300"></i>
@@ -129,8 +133,8 @@ body {
 								<div class="col mr-2">
 									<div
 										class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-										신규 회원 가입수 (명)</div>
-									<div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+										 총 가입자 수</div>
+									<div class="h5 mb-0 font-weight-bold text-gray-800">${statisticsTotalMemberConut} 명</div>
 								</div>
 								<div class="col-auto">
 									<i class="fas fa-male fa-2x text-gray-300"></i>
@@ -148,15 +152,15 @@ body {
 			</div>
 			<!--row start-->
 			<div class="row">
-				<div class="col-xl-3 col-md-6 mb-4">
+				<div class="col-xl-4 col-md-6 mb-4">
 					<div class="card border-left-primary shadow h-100 py-2">
 						<div class="card-body">
 							<div class="row no-gutters align-items-center">
 								<div class="col mr-2">
 									<div
 										class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-										현재 주문 (건)</div>
-									<div class="h5 mb-0 font-weight-bold text-gray-800">0</div>
+										최근 주문 수</div>
+									<div class="h5 mb-0 font-weight-bold text-gray-800">${currentOrderCount} 건</div>
 								</div>
 									<div class="col-auto">
 									<i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -165,15 +169,15 @@ body {
 						</div>
 					</div>
 				</div>
-				<div class="col-xl-3 col-md-6 mb-4">
+				<div class="col-xl-4 col-md-6 mb-4">
 					<div class="card border-left-primary shadow h-100 py-2">
 						<div class="card-body">
 							<div class="row no-gutters align-items-center">
 								<div class="col mr-2">
 									<div
 										class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-										교환 신청 (건)</div>
-									<div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+										교환/환불 신청</div>
+									<div class="h5 mb-0 font-weight-bold text-gray-800">${refundCount} 건</div>
 								</div>
 								<div class="col-auto">
 									<i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -182,24 +186,8 @@ body {
 						</div>
 					</div>
 				</div>
-				<div class="col-xl-3 col-md-6 mb-4">
-					<div class="card border-left-primary shadow h-100 py-2">
-						<div class="card-body">
-							<div class="row no-gutters align-items-center">
-								<div class="col mr-2">
-									<div
-										class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-										환불 신청 (건)</div>
-									<div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
-								</div>
-								<div class="col-auto">
-									<i class="fas fa-calendar fa-2x text-gray-300"></i>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-xl-3 col-md-6 mb-4">
+			
+				<div class="col-xl-4 col-md-6 mb-4">
 					<div class="card border-left-primary shadow h-100 py-2">
 						<div class="card-body">
 							<div class="row no-gutters align-items-center">
@@ -207,7 +195,7 @@ body {
 									<div
 										class="text-xs font-weight-bold text-primary text-uppercase mb-1">
 										총 주문량 (건)</div>
-									<div class="h5 mb-0 font-weight-bold text-gray-800">${getTotalOrderList}</div>
+									<div class="h5 mb-0 font-weight-bold text-gray-800">${statisticsOrderConut}</div>
 								</div>
 									<div class="col-auto">
 									<i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -265,7 +253,7 @@ body {
 					<div class="card shadow mb-4">
 						<!-- Card Header - Dropdown -->
 						<div
-							class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+							class="card-header py-3 d-flex flex-row align-items-center justify-content-between" >
 							<h6 class="m-0 font-weight-bold text-primary">Mypet 비율
 								</h6>
 							<div class="dropdown no-arrow">
@@ -288,7 +276,7 @@ body {
 						<!-- Card Body -->
 						
 								
-							<canvas id="pieChart"></canvas>
+							<canvas id="pieChart" height="440px"></canvas>
 							
 						
 					</div>
@@ -306,45 +294,34 @@ body {
 				<!-- Content Column -->
 				<div class="col-xl-12 col-lg-12">
 					<div class="card shadow mb-4">
-						<div class="card-header py-3">
+						<div class="card-header py-3 justify-content-around">
 							<h6 class="m-0 font-weight-bold text-primary">미처리 주문</h6>
+							
 						</div>
 						<div class="card-body">
+						<a id="goToOrder" href="/admin/order">관리페이지로 이동</a>
 							<div class="table-responsive">
 								<table class="table table-bordered" id="dataTable" width="100%"
 									cellspacing="0">
-									<thead>
-										<tr>
-											<th>Name</th>
-											<th>Position</th>
-											<th>Office</th>
-											<th>Age</th>
-											<th>Start date</th>
-											<th>Salary</th>
-										</tr>
-									</thead>
-									<tfoot>
-										<tr>
-											<th>Name</th>
-											<th>Position</th>
-											<th>Office</th>
-											<th>Age</th>
-											<th>Start date</th>
-											<th>Salary</th>
-										</tr>
-									</tfoot>
+									
+									<c:if test="${fn:length(getUnprocessedOrderList) == 0}">
 									<tbody>
-										<tr>
-											<td>Tiger Nixon</td>
-											<td>System Architect</td>
-											<td>Edinburgh</td>
-											<td>61</td>
-											<td>2011/04/25</td>
-											<td>$320,800</td>
-										</tr>
-										</tr>
-
-									</tbody>
+											<h4 align="center">데이터가 존재하지 않습니다.</h4>
+									</tbody>		
+									</c:if>
+								<c:if test="${fn:length(getUnprocessedOrderList) > 0}">	
+										<c:forEach var='guol' items="${getUnprocessedOrderList}">
+								
+										<tbody>
+										
+											<td>${guol.delivery.idx }</td>
+											<td>${guol.order_idx }</td>
+											<td>${guol.delivery_sate }</td>
+										
+										
+										</tbody>
+								</c:forEach>
+								</c:if>
 								</table>
 							</div>
 						</div>
@@ -421,7 +398,8 @@ Highcharts.chart('container', {
         }
     },
     xAxis: {
- 	categories: [['${mainStatistics_join_day.get(0).toString()}'],
+ 	categories:
+ 		[['${mainStatistics_join_day.get(0).toString()}'],
  	   ['${mainStatistics_join_day.get(1).toString()}'],
 	   ['${mainStatistics_join_day.get(2).toString()}'],
 	   ['${mainStatistics_join_day.get(3).toString()}'],

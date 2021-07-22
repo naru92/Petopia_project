@@ -15,6 +15,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class MemberVO implements UserDetails {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String member_id;
 	private String member_password;
 	private String member_name;

@@ -79,8 +79,8 @@
 												<tr>
 													<td colspan="2">주문 구분&nbsp;&nbsp;</td>
 													<td colspan="5" class="pleft"><input type="radio"
-														value="all" name="deposit">전체 <input
-														type="radio" value="deposit_not" name="deposit" checked>입금
+														value="all" name="deposit" checked>전체 <input
+														type="radio" value="deposit_not" name="deposit" >입금
 														대기중 <input type="radio" value="deposit_ok" name="deposit">입금완료
 
 													</td>
@@ -141,12 +141,12 @@
 											</td>
 											</tr>
 										</tbody>
-										</c:forEach>
+								</c:forEach>
 										</table>
 									</div>
 									
 									
-										<form id='pageActionForm' action="/admin/order" method='get'>
+									<form id='pageActionForm' action="/admin/order" method='get'>
 												<input type='hidden' name='pageNum'
 													value='${pageMaker.cri.pageNum}' /> <input type='hidden'
 													name='amount' value='${pageMaker.cri.amount}' />

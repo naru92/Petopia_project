@@ -94,19 +94,30 @@
 
 								<c:forEach var='m' items="${memberList}">
 									<tbody>
-										
-
 											<tr>
 												<td><a id="member_detail" href="#">${m.member_id}</a></td>
 												<td>${m.member_name}</td>
-												<td>${m.member_phoneNumber}</td>
+												<td id="phone_number"><c:out value="${m.member_phoneNumber}" /></td>
 												<td>${m.member_address}</td>
 												<td>${m.member_email}</td>
 												<td>${m.member_joindate}</td>
 												<td>${m.member_grade}</td>
 												<td>${m.member_point}</td>
 												<td>${m.member_donation}</td>
-												<td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">상세보기</button></td>
+												
+												<td width="150" align="center">
+												<button class="btn btn-lg btn-info" data-toggle="modal" 
+												data-member_id="${m.member_id}" 
+												data-member_name="${m.member_name}"
+												data-member_phoneNumber=<c:out value="${m.member_phoneNumber}" />
+												data-member_address = "${m.member_address }"
+												data-member_email = "${m.member_email}"
+												data-member_joindate ="${m.member_joindate}" 
+												data-member_grade = "${m.member_grade}"
+												data-member_point = "${m.member_point }"
+												data-member_donation = "${m.member_donation }"
+												data-target="#largeModal" value="">상세보기</button></td>
+													
 											</tr>
 
 
@@ -172,11 +183,7 @@
 	</footer>
 	<!-- End of Footer -->
 
-	</div>
-	<!-- End of Content Wrapper -->
 
-	</div>
-	<!-- End of Page Wrapper -->
 
 	<!-- Scroll to Top Button-->
 	<a class="scroll-to-top rounded" href="#page-top"> <i
@@ -208,42 +215,148 @@
 	
 	</div>
 	
-	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">회원 정보</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-					<div class="form-group">
-						<label>아이디</label>
-						<input type="text" class="form-control" name='modalReviews' value=''>
+	<div class="container">
+		<div class="modal fade" id="largeModal" tabindex="-1" role="dialog"
+			aria-labelledby="basicModal" aria-hidden="true">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title" id="myModalLabel">상품 정보</h4>
+						
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+							
+						</button>
+						
 					</div>
-					<div class="form-group">
-						<label>작성자</label>
-						<input type="email" class="form-control" name='modalReviewer' value=''>
+					
+					<div class="modal-body">
+						
+						<h5 id= modal_product_idx></h5>
+						<div class="card-body">
+							<form action="board_modify.html" method="post">
+								<div class="form-group">
+									<label for="modal_member_id">아이디</label> <input type="text"
+										id="modal_member_id" name="modal_member_id"
+										class="form-control"  readonly="readonly" ></input>
+								</div>
+								<div class="form-group">
+									<label for="modal_member_name">이름</label> <input type="text"
+										id="modal_member_name" name="modal_member_name" class="form-control"
+										value="123" readonly="readonly" ></input>
+								</div>
+								<div class="form-group">
+									<label for="modal_member_phoneNumber">전화번호</label> <input type="text"
+										id="modal_member_phoneNumber" name="modal_member_phoneNumber" class="form-control"
+										 readonly="readonly" ></input>
+								</div>
+								<div class="form-group">
+									<label for="modal_member_address">주소</label> <input type="text"
+										id="modal_member_address" name="modal_member_address" class="form-control"
+										 readonly="readonly" ></input>
+								</div>
+								<div class="form-group">
+									<label for="modal_member_email">이메일</label> <input type="text"
+										id="modal_member_email" name="modal_member_email" class="form-control"
+										 readonly="readonly" ></input>
+								</div>
+								<div class="form-group">
+									<label for="modal_member_grade">가입일자</label> <input type="text"
+										id="modal_member_joindate" name="modal_member_grade" class="form-control"
+										value="" />
+								</div>
+								<div class="form-group">
+									<label for="modal_member_grade">등급</label> <input type="text"
+										id="modal_member_grade" name="modal_member_grade" class="form-control"
+										value="" />
+								</div>
+								<div class="form-group">
+									<label for="modal_member_point">포인트</label> <input type="text"
+										id="modal_member_point" name="modal_member_point" class="form-control"
+										value="" />
+								</div>
+								<div class="form-group">
+									<label for="product_coloropiton">기부액</label> <input type="text"
+										id="modal_member_donation" name="modal_member_donation" class="form-control"
+										value="" />
+								</div>	
+							</form>
+						</div>
 					</div>
-					<div class="form-group">
-						<label>작성날짜</label>
-						<input class="form-control" name='reviewDate' value=''>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-danger" id=deleteButton>삭제</button>
+						<button type="button" class="btn btn-primary">완료</button>
 					</div>
-					<br>
-					<strong>상품평을 고치실려면 내용을 바꾸시고 수정버튼을 눌러주세요</strong>
 				</div>
-      <div class="modal-footer">
-       <button id='modalModBtn' type="button" class="btn btn-warning">수정</button>
-		<button id='modalRemoveBtn' type="button" class="btn btn-danger">삭제</button>
-      </div>
-    </div>
-  </div>
-</div>
+			</div>
+		</div>
+	</div>
 
 	<script type="text/javascript">
 		$(document).ready(
 				function() {
+					
+					//모달
+					   $('.btn-info').on('click', function(event) { 
+						   	
+						var member = $(this).data('member_id');
+						  
+				            $("#modal_member_id").val($(this).data('member_id'));
+				            $("#modal_member_name").val($(this).data('member_name'));
+				            $("#modal_member_email").val($(this).data('member_email'));
+				            $("#modal_member_joindate").val($(this).data('member_joindate'));
+				            $("#modal_member_grade").val($(this).data('member_grade'));
+				            $("#modal_member_point").val($(this).data('member_point'));
+				            $("#modal_member_address").val($(this).data('member_address'));
+				            $("#modal_member_donation").val($(this).data('member_donation'));
+				            $("#modal_member_phoneNumber").val($(this).parent().parent().children('#phone_number').text());
+				        
+				        	//회원 삭제
+							$("#deleteButton").on("click", function(e) {
+					
+							e.preventDefault();
+					
+							console.log("click deleteButton");
+					
+							var member_id = member;
+					
+							console.log(member_id);
+							
+							function refreshMemList(){
+								location.reload();
+							}
+					
+					$.ajax({
+						type: 'delete',
+						url: '/admin/deleteMember',
+						data: JSON.stringify(member_id),
+					  	contentType: "application/json; charset=utf-8",
+					  	cache : false,
+					  	dataType: 'text',
+					  	success: function(result, status, xhr) {
+					  		
+					  		console.log("delete member");
+					  		alert('회원 삭제가 완료되었습니다');
+					  		refreshMemList();
+					  		
+					  		/*
+					  		var infoForm = $("#infoForm");
+					  		infoForm.attr("method", "post");
+					  		infoForm.attr("action", "/member/customLogout");
+					  		infoForm.submit();
+					  		*/
+					  	}, error: function() {
+					  		alert('실패'); // 실패 시 처리
+						} 
+					});
+									
+								
+								});
+					  
+							  
+				    });
+					
 
 					// 페이징 버튼 이벤트
 					var actionForm = $("#pageActionForm");
@@ -274,10 +387,11 @@
 						  modal.find('.modal-body input').val('sdsd')
 					});
 						
-						
 					
-					});
-
+					
+			
+	
+				});
 			
 		
 		

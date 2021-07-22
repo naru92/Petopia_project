@@ -45,7 +45,7 @@ public interface AdminMapper{
 	//신규 가입수
 	public List<MemberVO> getTodayMemberList();
 	//현재 주문 리스트
-	public List<OrderVO> getCurrentOrderList();
+	public int currentOrderCount();
 	//총 주문량
 	public int getTotalOrderList();
 	//미처리배송
@@ -65,17 +65,17 @@ public interface AdminMapper{
 	//배송리스트(페이징)
 	public List<DeliveryVO> getDeliveryListWithPaging(Criteria cri);
 	//환불,반품 요청리스트
-	public List<DeliveryVO> getRefundList();
+	public int getRefundCount();
 	//총 기부 수
 	public int getDonationCount(Criteria cri);
 	//기부 리스트(페이징)
 	public List<DonationVO> getDonationWithPaging(Criteria cri);
 	//오늘 기부금
-	public int getTodayDonation();
+	public Integer getTodayDonation();
 	//문의리스트
 	public List<BoardVO> getQnAListWithPaging(Criteria cri);
 	//문의수
-	public int getQnACount(Criteria cri); 
+	public int getTotalQnACount(Criteria cri); 
 	//주문수(노페이징)
 	public List<OrderVO> getOrderList();
 	//배송수(노페이징)
@@ -84,13 +84,24 @@ public interface AdminMapper{
 	public List<DeliveryVO> selectOptionDeliveryList(HashMap<String, Object> optionMap);
 	//주문 검색필터
 	public List<OrderVO> selectOptionOrderList(HashMap<String, Object> optionMap);
+	//도네이션 검색필터
+	public List<DonationVO> selectOptionDonationList(HashMap<String, Object> optionMap);
+	//QnA 필터검색
+	public List<BoardVO> selectOptionQnAList(HashMap<String, Object> optionMap);
 	//가입수 메인 통계
-	public LinkedList<MemberVO> getStatisticsMemberCount();
+	public LinkedList<MemberVO> get5DaysStatisticsMemberCount();
 	//상품 이미지 등록
 	public List<FileUploadVO> insertProductImage (FileUploadVO fileUploadVO);
-	
+	//파일첨부리스트
 	public List<FileUploadVO> findByproduct(int product_idx);
-	
+	//회원삭제
+	public void deleteMember (MemberVO memberVO);
+	//총회원수(통계리스트용 맴버 총 수)
 	public int getTotalCount(Criteria cri);
+	//메인페이지 오더카운트
+	public int getStatisticsOrderCount();
+	//메인페이지 총회원수
+	public int getTotalMemberCount();
+	
 	
 }
