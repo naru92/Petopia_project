@@ -16,9 +16,9 @@
 		m.member_id = #{member_id}
 	</select>
 
-	<!-- 멤버 리스트 가지고 오기 -->
-	<select id="getMemberList" resultType="co.kr.petopia.vo.MemberVO">
-		select * from member order by member_joindate desc
+	<!-- 해당 멤버 정보 가지고 오기 -->
+	<select id="getMemberInfo" resultType="co.kr.petopia.vo.MemberVO">
+		select * from member where member_id = #{member_id}
 	</select>
 
 	<!-- 회원가입 -->
@@ -35,7 +35,7 @@
 
 	<!-- 권한 주입 -->
 	<insert id="memberAuthorities">
-		insert into authorities(member_id, authority, enabled) values(#{member_id}, 'ROLE_MEMBER', 2)
+		insert into authorities(member_id, authority, enabled) values(#{member_id}, 'ROLE_MEMBER', 1)
 	</insert>
 
 	<!-- 권한 삭제 / 회원탈퇴시 먼저 수행 -->
@@ -56,5 +56,17 @@
 		member_email = #{member_email}
 		where member_id = #{member_id}
 	</update>
+	
+	<!-- 회원별 쓴 게시물 불러오는 쿼리문 -->
+	<select id="getMyContentList" resultType="co.kr.petopia.vo.BoardVO">
+		select * from content where
+		member_id = #{member_id} order by content_idx DESC
+	</select>
+	
+	<!-- 회원별 쓴 댓글 불러오는 쿼리문 -->
+	<select id="getMyReplyList" resultType="co.kr.petopia.vo.ReplyVO">
+		select * from reply where
+		member_id = #{member_id} order by reply_idx DESC
+	</select>
 
 </mapper>

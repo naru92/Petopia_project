@@ -27,7 +27,7 @@ import co.kr.petopia.vo.OAuthToken;
 public class SocialController {
 
 	@Autowired
-	private MemberService MemberService;
+	private MemberService memberService;
 	
 	private String clientId = "ff1341405313f721c279ce5cd541bf40";
 	private String redirectUri = "http://localhost:8282/kakao/callback";
