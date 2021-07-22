@@ -17,9 +17,9 @@ public class MemberMapperTests {
 
 
     @Test
-    public void testGetMemberList() {
+    public void testGetMemberInfo() {
 
-        memberMapper.getMemberList();
+        memberMapper.getMemberInfoRead("dummy11");
 
     }
 
@@ -67,5 +67,15 @@ public class MemberMapperTests {
 
         log.info("count: " + memberMapper.memberUpdate(vo));
     }
-
+    
+    @Test
+    public void testGetMyContentList() {
+        memberMapper.getMyContentList("dummy56");
+    }
+    
+    @Test
+    public void testGetMyReplyList() {
+        memberMapper.getMyReplyList("dummy42");
+    }
+    
 }

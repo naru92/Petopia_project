@@ -7,5 +7,5 @@ public class MemberAuthVO {
 	
 	private String member_id;	
 	private String authority;
-	private int enabled;
+	private boolean enabled;
 }

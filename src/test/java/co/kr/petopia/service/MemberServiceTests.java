@@ -23,8 +23,13 @@ public class MemberServiceTests {
     }
     
     @Test
-    public void testGetMemberList() {
-        memberService.getMemberList().forEach(member -> log.info(member));
+    public void testGetMemberInfo() {
+        memberService.getMemberInfo("dummy98");
+    }
+    
+    @Test
+    public void testGetSelectMemberInfo() {
+        memberService.getSelectMemberInfo("dummy23");
     }
     
     @Test
@@ -65,6 +70,16 @@ public class MemberServiceTests {
     public void getMemberRemove() {
         
         memberService.memberRemove("test07");
+    }
+    
+    @Test
+    public void testGetMyContentList() {
+        memberService.getMyContentList("dummy56");
+    }
+    
+    @Test
+    public void testGetMyReplyList() {
+        memberService.getMyReplyList("dummy42");
     }
     
 }
