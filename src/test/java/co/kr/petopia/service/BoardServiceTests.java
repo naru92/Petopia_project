@@ -22,6 +22,6 @@ public class BoardServiceTests {
     
     @Test
     public void testGetContentList() {
-        boardService.getContentList(4L).forEach(board -> log.info(board));;
+        boardService.getContentList(4L).forEach(board -> log.info(board));
     }
 }
