@@ -53,17 +53,22 @@ ul{
   margin-top: 30px;
 }
 
-/* ë©”ì¸ - ì˜†ì— ë”°ë¼ë‹¤ë‹ˆëŠ” ë©”ë‰´ */
-.maginContainer > .quick {
-    border: 1px solid;
-    position:fixed;
-    top:67%;
-    right:30px;
-    margin-left:30px;
+/* ¸ŞÀÎ - ¿·¿¡ µû¶ó´Ù´Ï´Â ¸Ş´º */
+.quick {
+
+  width: 40px;
+  height: 40px;
+  text-align: center;
+
+  border-radius: 20px;
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  top: 67%;
     width:60px;
     white-space:nowrap;
 }
-.maginContainer > .quick span {
+.quick span {
     font-size:10px;
 }
 
@@ -72,14 +77,14 @@ ul{
 
 }
 
-/*ì™¼ìª½ë©”ë‰´ í† ê¸€*/
+/*¿ŞÂÊ¸Ş´º Åä±Û*/
 .leftmenuToggle {
   display: block;
   position: relative;
   padding-top: 20px;
 
-  top: 10px;
-  left: 40px;
+  top: -10px;
+  right:  -10px;
   z-index: 1;
   -webkit-user-select: none;
   user-select: none;
@@ -146,6 +151,9 @@ ul{
   transform: rotate(-45deg) translate(0, -1px);
 }
 
+.cartBtn{
+  margin-top: 5px;
+}
 
 
 .hoverEvent {
@@ -157,7 +165,7 @@ ul{
   width: 250px;
   height: 100%;
   line-height: -35vh;
-  margin: -32px 100px -210px -210px;
+  margin: -20px 220px -210px -130px;
   padding-top: 150px;
   text-align:center;
 
@@ -214,7 +222,7 @@ ul{
 
 
 
-  /* íšŒì›ê°€ì… */
+  /* È¸¿ø°¡ÀÔ */
 
 
 .login-bar{
@@ -335,11 +343,11 @@ a:hover {
 }
 
 .inner {
-  width: 100%; /* ê°€ë¡œ ì‚¬ì´ì¦ˆê°€ 1200px ë„˜ëŠ” í•´ìƒë„ì—ì„œëŠ” max-width ì„¤ì • */
-  height: 100%; /* align-items ë“±ìœ¼ë¡œ ìˆ˜ì§ ê°€ìš´ë° ì •ë ¬ì„ ìœ„í•´, ì•Œë§ì€ height ì„¤ì •ì´ í•„ìš”í•¨ */
-  margin: 0 auto; /* ê°€ìš´ë° ì •ë ¬: ë™ì¼ ìš”ì†Œì— width ê°€ ì„¤ì •ë˜ì–´ ìˆì„ ë•Œì—ë§Œ ì ìš© */
-  padding: 0rem 2rem; /* ì¢Œìš° padding ì„ ì‚´ì§ ì£¼ì–´ì„œ, ì¢Œìš°ì— ë”± ë¶™ì§€ ì•Šë„ë¡ í•¨ */
-  overflow: hidden; /* ë„˜ì¹˜ëŠ” ì˜ì—­ì— ëŒ€í•´ì„œëŠ” í‘œì‹œì•ˆë˜ë„ë¡ ì‘ì„±í•´ì•¼ í•¨ */
+  width: 100%; /* °¡·Î »çÀÌÁî°¡ 1200px ³Ñ´Â ÇØ»óµµ¿¡¼­´Â max-width ¼³Á¤ */
+  height: 100%; /* align-items µîÀ¸·Î ¼öÁ÷ °¡¿îµ¥ Á¤·ÄÀ» À§ÇØ, ¾Ë¸ÂÀº height ¼³Á¤ÀÌ ÇÊ¿äÇÔ */
+  margin: 0 auto; /* °¡¿îµ¥ Á¤·Ä: µ¿ÀÏ ¿ä¼Ò¿¡ width °¡ ¼³Á¤µÇ¾î ÀÖÀ» ¶§¿¡¸¸ Àû¿ë */
+ /* ÁÂ¿ì padding À» »ìÂ¦ ÁÖ¾î¼­, ÁÂ¿ì¿¡ µü ºÙÁö ¾Êµµ·Ï ÇÔ */
+  overflow: hidden; /* ³ÑÄ¡´Â ¿µ¿ª¿¡ ´ëÇØ¼­´Â Ç¥½Ã¾ÈµÇµµ·Ï ÀÛ¼ºÇØ¾ß ÇÔ */
 }
 
 
@@ -352,22 +360,22 @@ section {
 }
 
 .main {
-  height: 360px; /* í™”ë©´ ì´ë¯¸ì§€ ê³ ì • */
+  height: 360px; /* È­¸é ÀÌ¹ÌÁö °íÁ¤ */
   background-image: url("https://www.fun-coding.org/assets_lms/images/photodune-4161018-group-of-students-m.jpg");
   background-size: cover;
-  background-position: center 10%; /* ì´ë¯¸ì§€ ìœ„ì¹˜ë¥¼ ì‚´ì§ ìœ„ë¡œ ì˜¬ë¦¬ê¸° ìœ„í•œ position ì„¤ì • */
+  background-position: center 10%; /* ÀÌ¹ÌÁö À§Ä¡¸¦ »ìÂ¦ À§·Î ¿Ã¸®±â À§ÇÑ position ¼³Á¤ */
   background-repeat: no-repeat;
   z-index: 1;
 }
 
-/* ë°°ê²½ ì´ë¯¸ì§€ì— ìƒ‰ìƒì„ ì–´ë‘¡ê²Œ í•˜ê¸° ìœ„í•´, ì–´ë‘ìš´ ìƒ‰ìƒìœ¼ë¡œ ì´ë¯¸ì§€ ìƒìœ„ì— íˆ¬ëª…ë„ë¥¼ ì£¼ì–´ ë®ì–´ì”Œì›€ */
+/* ¹è°æ ÀÌ¹ÌÁö¿¡ »ö»óÀ» ¾îµÓ°Ô ÇÏ±â À§ÇØ, ¾îµÎ¿î »ö»óÀ¸·Î ÀÌ¹ÌÁö »óÀ§¿¡ Åõ¸íµµ¸¦ ÁÖ¾î µ¤¾î¾º¿ò */
 .main-container {
   width: 100%;
   height: 100%;
   background-color: rgb(47, 48, 89);
   opacity: 0.8;
   z-index: 2;
-  margin-top: 60px; /* position ì´ fixed ì¼ ê²½ìš°, ë¬¸ì„œ íë¦„ì—ì„œ ë¹ ì§€ë¯€ë¡œ, ì´ ë¶€ë¶„ì€ margin ìœ¼ë¡œ ì ìš© */
+  margin-top: 60px; /* position ÀÌ fixed ÀÏ °æ¿ì, ¹®¼­ Èå¸§¿¡¼­ ºüÁö¹Ç·Î, ÀÌ ºÎºĞÀº margin À¸·Î Àû¿ë */
 }
 
 .title-container {
@@ -406,7 +414,7 @@ section {
   border-radius: 9px;
   padding: 0.5rem 1rem;
   margin: 0 1rem;
-  /* box-shadow: ë¸”ëŸ­ì— ê·¸ë¦¼ìë¥¼ ì ìš©í•˜ëŠ” CSS ê¸°ëŠ¥
+  /* box-shadow: ºí·°¿¡ ±×¸²ÀÚ¸¦ Àû¿ëÇÏ´Â CSS ±â´É
      https://developer.mozilla.org/ko/docs/Web/CSS/box-shadow
      offset-x | offset-y | blur-radius | spread-radius | color */
   box-shadow: 10px 10px 10px -5px rgba(25, 42, 70, 0.2);
@@ -511,14 +519,14 @@ section {
 }
 .class-card {
   width: 240px;
-  /* box-shadow: ë¸”ëŸ­ì— ê·¸ë¦¼ìë¥¼ ì ìš©í•˜ëŠ” CSS ê¸°ëŠ¥
+  /* box-shadow: ºí·°¿¡ ±×¸²ÀÚ¸¦ Àû¿ëÇÏ´Â CSS ±â´É
      https://developer.mozilla.org/ko/docs/Web/CSS/box-shadow
      offset-x | offset-y | blur-radius | spread-radius | color */
   box-shadow: 10px 10px 10px -5px rgba(25, 42, 70, 0.2);
   border-radius: 8px;
   margin: 0 10px;
   transition: 0.4s;
-  /* IE11 ì—ì„œëŠ” flex ì„¤ì •ì‹œ, ë””í´íŠ¸ë¡œ flex ì•„ì´í…œë“¤ì— ê³ ì • ë„ˆë¹„ë¥¼ ë¬´ì‹œ */
+  /* IE11 ¿¡¼­´Â flex ¼³Á¤½Ã, µğÆúÆ®·Î flex ¾ÆÀÌÅÛµé¿¡ °íÁ¤ ³Êºñ¸¦ ¹«½Ã */
   flex-shrink: 0;
 }
 
@@ -528,10 +536,10 @@ section {
 }
 
 .class-image {
-  /* ì‚¬ì´ì¦ˆê°€ í° ì´ë¯¸ì§€ë¥¼ ì‘ì€ ë¸”ëŸ­ ë‚´ì— ë„£ì„ ë•Œ í˜¸í™˜ì„±ì„ ìœ„í•´ max-width/max-height ë¥¼ ì‚¬ìš©í•´ì•¼ í•¨ */
+  /* »çÀÌÁî°¡ Å« ÀÌ¹ÌÁö¸¦ ÀÛÀº ºí·° ³»¿¡ ³ÖÀ» ¶§ È£È¯¼ºÀ» À§ÇØ max-width/max-height ¸¦ »ç¿ëÇØ¾ß ÇÔ */
   max-width: 240px;
 
-  /* border-radius: ë¸”ëŸ­ ëª¨ì„œë¦¬ë¥¼ ë‘¥ê¸€ê²Œ í•˜ëŠ” CSS ê¸°ëŠ¥
+  /* border-radius: ºí·° ¸ğ¼­¸®¸¦ µÕ±Û°Ô ÇÏ´Â CSS ±â´É
      top-left | top-right | bottom-right | bottom-left */
   border-radius: 8px 8px 0 0;
 }
@@ -592,18 +600,7 @@ li a:hover {
   padding: 0 0;
 }
 
-footer {
-  height: 20%;
-  display: block;
-  position: fixed;
-  border-top: 1px solid #e4e4e4;
-  background-color: #f8f9fa;
-  padding: 1rem 0;
-  margin: 1rem 0;
-  position: relative;
-  padding: 88px 20px 45px;
-  font-size: 20%;
-}
+
 
 .footer-message {
   font-weight: bold;
@@ -638,10 +635,10 @@ footer {
   z-index: 999;
 }
 
-/* ì•„ì´ì½˜ ì ìš© ë°©ë²•
-  1. ::after (ìš”ì†Œ ë’¤ì— content ì¶”ê°€) ê°€ìƒ ìš”ì†Œì—ì„œ,
-  2. content: "í°íŠ¸ì–´ì¸ ìœ ë‹ˆì½”ë“œ" ë¥¼ ë„£ê³ ,
-  3. font-family: FontAwesome ì´ë¼ê³  ë„£ìœ¼ë©´ ë¨
+/* ¾ÆÀÌÄÜ Àû¿ë ¹æ¹ı
+  1. ::after (¿ä¼Ò µÚ¿¡ content Ãß°¡) °¡»ó ¿ä¼Ò¿¡¼­,
+  2. content: "ÆùÆ®¾î½æ À¯´ÏÄÚµå" ¸¦ ³Ö°í,
+  3. font-family: FontAwesome ÀÌ¶ó°í ³ÖÀ¸¸é µÊ
   */
 #backtotop::after {
   content: "\f077";
@@ -778,10 +775,6 @@ footer {
 }
 
 
-/*footer*/
-footer{
-min-height: 190px;
-}
 
 
 .map_ {

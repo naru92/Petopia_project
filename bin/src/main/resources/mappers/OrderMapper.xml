@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="co.kr.petopia.mapper.OrderMapper">
+
+	<!-- 결제 시 회원 별 장바구니(구매) 리스트 -->
+	<select id="getCartList" resultType="co.kr.petopia.vo.OrderVO">
+		select member.member_id, product_name, product_coloroption, product_price
+		from cart left join member on cart.member_id = member.member_id
+		left join order_form on member.member_id = order_form.member_id
+		left join product on cart.product_idx = product.product_idx 
+		where member_id = 'dummy20'
+		<!-- where member_id = #{member.id} -->
+	</select> 
+
+	<!-- 주문자 정보 입력 후 DB로 정보 넘기기 -->
+	<insert id="orderFormInsert">
+  		 insert into order_form (order_idx, product_idx, member_id, order_date) 
+		 values (order_seq.nextval, #{product_idx}, #{member_id}, sysdate)
+	</insert>
+
+	<insert id="orderDetailInsert">
+	     <!-- insert into order_detail (order_idx, product_idx, order_name, order_receiver_name, order_receiver_phonenumber, order_receiver_address, order_quantity, payment_method)
+		 values (#{order_idx}, #{product_idx}, #{order_name}, #{order_receiver_name}, #{order_receiver_phonenumber}, #{order_receiver_address}, #{order_quantity}, #{payment_method}) 
+	 -->
+	 
+<!-- 	 	<selectKey order = "BEFORE" keyProperty = "order_idx" resultType = "int">
+	 		select order_seq.nextVal from dual
+	 	</selectKey> -->
+	 	
+	     insert into order_detail (order_idx, product_idx, order_name, order_receiver_name, order_receiver_phonenumber, order_receiver_address, order_quantity, payment_method)
+		 values (#{order_idx}, #{product_idx}, #{order_name}, #{order_receiver_name}, #{order_receiver_phonenumber}, #{order_receiver_address}, #{order_quantity}, #{payment_method}) 
+		 <!--  -->
+	</insert>
+	
+<!-- 	<select id="getOrderFormCurrVal" >
+		select order_seq.currval from dual
+	</select> -->
+	
+	<delete id = "deleteOrderIdx">
+		delete from order_form (order_idx) where order_idx = #{order_idx}
+	</delete>
+	
+</mapper>

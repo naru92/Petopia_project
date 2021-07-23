@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="utf-8">
 
 <head>
 
@@ -17,123 +17,75 @@
   <link href="css/shop-homepage.css" rel="stylesheet">
   <!-- Custom styles for this template -->
   <script src="https://kit.fontawesome.com/f1def33959.js" crossorigin="anonymous"></script>
-
-
+  <link rel="shortcut icon" type="image/x-icon" href="images/petopia_logomini.png">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+  <link rel="stylesheet" href="css/menu_test.css">
 
 </head>
 
 <body>
 
-  <header>
-    <div id=headermenu>
-      <div class="col-ms-12">
-        <a>회원가입</a>
-        <a href="login.html">로그인</a>
-        <a>고객센터</a>
-      </div>
-    </div>
-    </div>
-
-    <!-- Navigation -->
-    <div class="container-fluid">
-
-
-      <!-- Page Content -->
-
-
-
-
-      <div class="container-fluid">
-        <div class="row logomenu">
-          <article id="header">
-            <section>
-              <div onclick="window.location.href='#'">
-                <img class="logo" src="images/gnb_logo.png" alt="">
-              </div>
-
-              <div class="highMenu">
-                <nav class="header-nav">
-                  <div id="leftmenuToggle" class="leftmenuToggle">
-                    <input type="checkbox" />
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-
-                    <ul id="leftmenu" class="hoverEvent">
-                      <div class="adiv">
-                        <a href="#">
-                          <li>Home</li>
-                        </a>
-                        <a href="#">
-                          <li>The Numbers</li>
-                        </a>
-                        <a href="#">
-                          <li>Info</li>
-                        </a>
-                        <a href="#">
-                          <li>Contact</li>
-                        </a>
+  <header><!-- Header Start -->
+        <div class="header-area">
+          <div class="main-header header-sticky">
+              <div class="container-fluid">
+                  <div class="menu-wrapper">
+                      <div class="links">
+                          <a href="joinagree" class="link_text">회원가입</a>
+                          <a href="loginpage" class="link_text">로그인</a>
+                          <a href="#" class="link_text">고객센터</a>
                       </div>
-                    </ul>
+
+                      <nav class="header-nav">
+                          <div id="leftmenuToggle" class="leftmenuToggle">
+                              <input type="checkbox"/>
+                              <span></span>
+                              <span></span>
+                              <span></span>
+                              <ul id="leftmenu" class="hoverEvent">
+                                  <div class="adiv">
+                                      <li><a href="petstagram">펫★그램</a></li>
+                                      <li><a href="main">펫shop</a></li>
+                                      <li><a href="donation">기부</a></li>
+                                      <li><a href="mypage"><i class="fas fa-paw"></i> MY</a></li>
+                                  </div>
+                              </ul>
+                          </div>
+                      <!-- Logo -->
+                      <div class="logo">
+                          <a href="main.html"><img src="images/petopia_logo.png" alt=""></a>
+                      </div>
+                      </nav>
+
+                      <!-- Main-menu -->
+                      <div class="main-menu d-none d-lg-block">
+                          <nav>
+                              <ul id="navigation">
+                                  <li><a href="petstagram">펫★그램</a></li>
+                                  <li><a href="main">펫shop</a></li>
+                                  <li><a href="donation">기부</a></li>
+                                  <li><a href="mypage"><i class="fas fa-paw"></i> MY</a></li>
+                              </ul>
+                          </nav>
+                      </div>
+                      <!-- Header Right -->
+                      <div class="search">
+                          <input type="text" class="searchForm" placeholder="검색어를 입력해주세요." aria-label="Recipient's username" aria-describedby="button-addon2" >
+                          <button class="searchBtn" type="submit"><i class="fas fa-search"></i></button>
+                          <button class="wishBtn" type="link"><i class="fas fa-heart"></i></button>
+                          <button class="cartBtn" type="link"><i class="fas fa-shopping-cart"></i></button>
+                      </div>
+
+                      <!-- Mobile Menu -->
+                      <div class="col-12">
+                          <div class="mobile_menu d-none d-lg-block"></div>
+                      </div>
                   </div>
-                </nav>
-
-                <nav class="lap-nav header-nav">
-
-
-
-                  <ul class="clearfix">
-                    <a class="navbar-brand a-bar" href="#">
-                      <img src="C:\Users\user\Desktop\startbootstrap-shop-homepage-gh-pages\image\petopia.png" width="30" height="30" class="d-inline-block align-top" alt="">
-                      Petopia
-                    </a>
-
-                    <li><a>My</a>
-                      <ul>
-                        <li>내 정보</li>
-                        <li>마이 펫</li>
-                        <li>주문 정보</li>
-                      </ul>
-                    </li>
-                    <li><a>기부</a>
-                      <ul>
-                        <li>기부현황</li>
-
-                      </ul>
-                    </li>
-
-
-                    <li><a>펫샵</a>
-
-
-                    </li>
-
-                    <li><a>펫그램</a>
-                      <ul>
-
-                      </ul>
-                    </li>
-                  </ul>
-                </nav>
               </div>
-            <div class="head-right-menu">
-              <div class="sample two">
-
-                <input type="text" name="search" placeholder="search">
-                <button type="submit" class="btn btn-search fa fa-search"></button>
-                <button type="reset" class="btn btn-reset fa fa-times"></button>
-              </div>
-            <div class="sample-three">
-              <i class="fas fa-user"></i>
-              <i class="fas fa-shopping-cart"></i>
-            </div>
           </div>
-            </section>
-          </article>
-        </div>
       </div>
-  </header>
+    <!-- Header End -->
 
 <hr />
   <div class="container-fluid">
@@ -146,25 +98,78 @@
 
 
       <div class="row">
-        <div class="fixedleftmenu">
-          <div class="col-lg-12 left-bar">
-
-            <h1 class="my-4">메뉴</h1>
-            <div class="list-group">
-              <a href="#" class="li">사료</a>
-              <a href="#" class="">간식</a>
-              <a href="#" class="">위생/배변 </a>
-              <a href="#" class="">미용/목욕 </a>
-              <a href="#" class="">급식/급수기 </a>
-              <a href="#" class="">장난감/훈련 </a>
-              <a href="#" class="">하우스/이동장 </a>
-              <a href="#" class="">패션/의류 </a>
-              <a href="#" class="">목줄/하네스</a>
-              <a href="#" class="">급식/급수기 </a>
 
 
+
+            <div class="container-side">
+        <div class="grid">
+            <div class="row">
+                <div class="col-3">
+                    <!-- category -->
+                    <nav class="category">
+                        <div class="ctghead">
+                            <h3><i class="ti-list"></i>펫shop</h3>
+                        </div>
+
+                        <ul class="ctgul">
+                            <li class="ctgli">
+                                <a href="#" class="ctga"><i class="ti-user"></i>신상품</a>
+                            </li>
+
+                            <li class="ctgli">
+                                <a href="#" class="ctga"><i class="ti-user"></i>베스트</a>
+                            </li>
+
+                            <li class="ctgli">
+                                <a href="#" class="ctga"><i class="ti-user"></i>이벤트</a>
+                            </li>
+
+                            <li class="ctgli">
+                                <a href="#" class="ctga ">
+                                    <i class="ti-write"></i>
+                                    카테고리
+                                    <i class="ti-angle-down down "></i>
+                                </a>
+                                <ul class="ctgulChild">
+                                    <li class="ctgliChild">
+                                        <a href="" class="ctgaChild">사료</a>
+                                    </li>
+                                    <li class="ctgliChild">
+                                        <a href="" class="ctgaChild">간식</a>
+                                    </li>
+                                    <li class="ctgliChild">
+                                        <a href="" class="ctgaChild">위생/배변</a>
+                                    </li>
+                                    <li class="ctgliChild">
+                                        <a href="" class="ctgaChild">미용/목욕</a>
+                                    </li>
+                                    <li class="ctgliChild">
+                                        <a href="" class="ctgaChild">급식/급수기</a>
+                                    </li>
+                                    <li class="ctgliChild">
+                                        <a href="" class="ctgaChild">장난감/훈련</a>
+                                    </li>
+                                    <li class="ctgliChild">
+                                        <a href="" class="ctgaChild">하우스/이동장</a>
+                                    </li>
+                                    <li class="ctgliChild">
+                                        <a href="" class="ctgaChild">패션/의류</a>
+                                    </li>
+                                    <li class="ctgliChild">
+                                        <a href="" class="ctgaChild">목줄/하네스</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
             </div>
-          </div>
+        </div>
+    </div>
+
+
+
+
         </div>
 
         <div class="container">
@@ -266,13 +271,13 @@
             <div class="col-md-12">이번주 신상</div>
 
 
-            <div class="col-lg-6 col-md-6 mb-4 ">
+            <div class="col-lg-6 col-md-6 mb-4 nopaddingcard ">
               <div class="card h-40 itembox1">
                 <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
               </div>
             </div>
 
-            <div class="col-lg-6 col-md-6 mb-4">
+            <div class="col-lg-6 col-md-6 mb-4 nopaddingcard">
               <div class="card h-40 itembox1">
                 <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
               </div>
@@ -287,7 +292,7 @@
               <div class="inner">
                 <div class="roadmap-container">
                   <div class="roadmap-title-container">
-                    <div class="roadmap-title">인기제품
+                    <div class="roadmap-title">&nbsp인기제품
                       <a>전체보기</a>
                     </div>
                     <div class="arrow-container">
@@ -384,7 +389,7 @@
               <div class="inner">
                 <div class="roadmap-container">
                   <div class="roadmap-title-container">
-                    <div class="roadmap-title">MD추천
+                    <div class="roadmap-title">&nbspMD추천
                       <a>전체보기</a>
                     </div>
                     <div class="arrow-container">
@@ -481,7 +486,7 @@
               <div class="inner">
                 <div class="roadmap-container">
                   <div class="roadmap-title-container">
-                    <div class="roadmap-title">재고임박
+                    <div class="roadmap-title">&nbsp재고임박
                       <a>전체보기</a>
                     </div>
                     <div class="arrow-container">
@@ -609,20 +614,29 @@
     <div class="container-fluid footercontainer">
 
 
-      <footer class="py-4 bg-dark petopiafooter">
-        <p class="m-0 text-center text-white">서비스 이용약관
-          서비스 이용약관 │ 개인정보 처리방침 │ 입점/제휴 문의<br />
 
-          (주)어바웃펫 대표 : 김경환, 나옥귀 사업자 등록번호 : 120-87-90035 통신판매업신고번호 : 제 2020-서울강남-03142호 개인정보관리자 : 정명성 hello@aboutpet.co.kr TEL : 1644-9601
-          서울특별시 강남구 테헤란로 151 (역삼하이츠빌딩) 지하2층
+        <!-- footer -->
 
-          © copyright (c) www.aboutpet.co.kr all rights reserved</p>
-        <!-- /.container -->
-      </footer>
+      <!--// footer -->
+
     </div>
+<footer>
+    <div class="container-fluid">
+
+        <img src="images/petopia_logomini.png">
+        </br>
+        <p>PETOPIA</p>
+        </br>
+        <p>서비스 이용약관 | 개인정보 처리방침 | 입점/제휴 문의</p>
+        </br>
+        <p>Naru Juhee Gunwoo Ahram Hansol Hana</p>
+        <p>Bitcamp Jongno</p>
+        </br>
+        <p>&copy Creative 2021-08</p>
 
 
-
+    </div>
+</footer>
 
 
 

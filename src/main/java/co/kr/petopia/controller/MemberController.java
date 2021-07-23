@@ -61,4 +61,16 @@ public class MemberController {
         return "member/donation";
     }
 
+	// 마이펫 등록
+	@GetMapping("/myPet1")
+	public String myPet1() {
+		return "member/myPet1";
+	}
+	
+	// 회원정보수정 비밀번호 확인
+	@GetMapping("/passwordConfirm")
+	public String passwordConfirm() {
+		
+		return "member/passwordConfirm";
+	}
 }
