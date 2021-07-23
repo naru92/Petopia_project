@@ -1,0 +1,69 @@
+body, main{
+	background: #fafafa;
+	position: relative; 
+	height: 1000px; 
+	z-index: -100;}
+
+.container{
+  height: 950px;
+}
+.withdrawal-form h3 {
+  font-size: 36px;
+  text-align: center;
+  color: #2AC1BC;
+  margin-bottom: 10px;
+  font-weight: normal;
+}
+.withdrawal-form p {
+	font-size: 15px;
+	margin-bottom: 30px;
+}
+.withdrawal-form {
+    background: #fff;
+    width: 450px;
+    border-radius: 6px;
+    margin: 0 auto;
+    display: table;
+    padding: 35px;
+    box-sizing: border-box;
+    position: relative;
+    top: 200px;
+}
+.form-group {
+  float: left;
+  width: 100%;
+  margin: 0 0 15px;
+  position: relative;
+}
+.withdrawal-form input {
+    width: 100%;
+    padding: 5px;
+    height: 56px;
+    border-radius: 74px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    font-size: 15px;
+    padding-left: 75px;
+}
+
+.withdrawal-form .withdrawal-btn {
+  background: #2AC1BC;
+  padding: 11px 50px;
+  border-color: #2AC1BC;
+  color: #fff;
+  text-align: center;
+  margin: 0 auto;
+  margin-top: 20px;
+  font-size: 20px;
+  border: 1px solid #2AC1BC;
+  border-radius: 44px;
+  width: 100%;
+  height: 56px;
+  cursor: pointer;
+}
+input:focus {
+  outline:none;
+}
+.withdrawal-form button:hover{
+  opacity: 0.9;
+}

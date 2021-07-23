@@ -1,6 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <c:set var='root' value="${pageContext.request.contextPath }/" />
 <!DOCTYPE html>
 <html lang="ko">
@@ -26,12 +28,12 @@
 	<div id="wrapper">
 
 
-		<!-- ÁÂÃø ³×ºñ°ÔÀÌ¼Ç ¹Ù -->
+		<!-- ì¢Œì¸¡ ë„¤ë¹„ê²Œì´ì…˜ ë°” -->
 		<c:import url="/WEB-INF/views/include/admin_left_side_bar.jsp" />
 
 
 
-		<!-- »ó´Ü ¸Ş´º ¹Ù -->
+		<!-- ìƒë‹¨ ë©”ë‰´ ë°” -->
 		<c:import url="/WEB-INF/views/include/admin_top_menu.jsp" />
 
 		<!-- Begin Page Content -->
@@ -50,7 +52,7 @@
 				<div class="col-xl-12 col-lg-12">
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">
-							<h6 class="m-0 font-weight-bold text-primary">±âºÎ³»¿ª °ü¸®</h6>
+							<h6 class="m-0 font-weight-bold text-primary">ê¸°ë¶€ë‚´ì—­ ê´€ë¦¬</h6>
 						</div>
 
 						<div class="card-body filterBox">
@@ -58,66 +60,38 @@
 								<form action="${contextPath }/admin/membmer/listMembers.do"
 									method="post" id="frm_search">
 									<table>
-
-
-
-
 										<tr>
-											<td colspan="2">Ã³¸® »óÅÂ&nbsp;&nbsp;</td>
-											<td colspan="5" class="pleft"><input type="radio"
-												value="cat" name="member_gender">¹ÌÃ³¸® <input
-												type="radio" value="all" name="member_gender" checked>Ã³¸®
-
-
+											<td colspan="2">ì²˜ë¦¬ ìƒíƒœ&nbsp;&nbsp;</td>
+									           <td colspan="5" class="pleft"><input type="radio" value="not" name="donation_state">ë¯¸ì²˜ë¦¬
+												 <input type="radio" value="complete" name="donation_state">ì²˜ë¦¬
 											</td>
 										</tr>
 
 										<tr>
-											<td colspan="2">±âºÎ ºĞ·ù&nbsp;&nbsp;</td>
-											<td colspan="5" class="pleft"><select
-												id="donation_date_year" name="donation_date_year">
-													<option value="" selected>--±âºÎ³»¿ª ³âµµ ¼±ÅÃ--</option>
-													<option value="donation_year">2021</option>
-													<option value="donation_year">2020</option>
-													<option value="donation_year">2019</option>
-													<option value="donation_year">2018</option>
-													<option value="donation_year">2017</option>
-
-
-											</select> <select id="donation_date_month" name="donation_date_month">
-													<option value="" selected>--±âºÎ³»¿ª ¿ù ¼±ÅÃ--</option>
-													<option value="donation_month">1¿ù</option>
-													<option value="donation_month">2¿ù</option>
-													<option value="donation_month">3¿ù</option>
-													<option value="donation_month">4¿ù</option>
-													<option value="donation_month">5¿ù</option>
-													<option value="donation_month">6¿ù</option>
-													<option value="donation_month">7¿ù</option>
-													<option value="donation_month">8¿ù</option>
-													<option value="donation_month">9¿ù</option>
-													<option value="donation_month">10¿ù</option>
-													<option value="donation_month">11¿ù</option>
-													<option value="donation_month">12¿ù</option>
-
-											</select> <select id="donation_date_today" name="donation_date_today">
-													<option value="" selected>--±âºÎÀÏÀÚ--</option>
-
-													<option value="donation_today">¿À´Ã ±âºÎ º¸±â</option>
-
-											</select></td>
+											<td colspan="2">ê¸°ë¶€ ë¶„ë¥˜&nbsp;&nbsp;</td>
+											<td colspan="5" class="pleft">
+											<select id="donation_date_year" name="donation_date_year">
+													<option value="" selected>--ê¸°ë¶€ë‚´ì—­ ë…„ë„ ì„ íƒ--</option>
+													<option value="donation_21year">2021</option>
+													<option value="donation_20year">2020</option>
+													<option value="donation_19year">2019</option>
+													<option value="donation_18year">2018</option>
+													<option value="donation_17year">2017</option>
+											</select>
+										
+											</td>
 										</tr>
-
 
 
 										<tr>
-											<td colspan="7"><input type="button" value="°Ë»ö"
-												onClick="member_search()" />&nbsp;&nbsp;<input type="reset"
-												value="ÃÊ±âÈ­" /></td>
+										  <td colspan="7"><input type="button" value="ê²€ìƒ‰" id="search_option" />
+										  &nbsp;&nbsp;<input type="reset" value="ì´ˆê¸°í™”" /></td>
+											   
 										</tr>
 									</table>
+								</form>
 							</div>
 						</div>
-						</form>
 
 						<div class="card-body">
 							<div class="table-responsive">
@@ -125,54 +99,69 @@
 									cellspacing="0">
 									<thead>
 										<tr>
-
-
-											<th>¹ÌÃ³¸®±âºÎ±İ</th>
-											<th>³»¿ë</th>
-											<th>Ã³¸®»óÅÂ</th>
-
+											<th>ê¸°ë¶€ë²ˆí˜¸</th>
+											<th>ë¯¸ì²˜ë¦¬ê¸°ë¶€ê¸ˆ</th>
+											<th>ì—° ê¸°ë¶€ê¸ˆ</th>
+											<th>ì›” ê¸°ë¶€ê¸ˆ</th>
+											<th>ì¼ ê¸°ë¶€ê¸ˆ</th>
+											<th>ì´ ê¸°ë¶€ê¸ˆ</th>
+											<th>ì²˜ë¦¬ ìƒíƒœ</th>
 										</tr>
 									</thead>
-									<tfoot>
-
-									</tfoot>
+									
+								<c:forEach var='d' items="${donationList}">
 									<tbody>
 										<tr>
-											<td>1</td>
-											<td>ab1233</td>
+											<td>${d.donation_idx }</td>
+											<td>${d.donation_notused }</td>
+								            <td>${d.donation_month }</td>
+								            <td>${d.donation_year }</td>
+								            <td>${d.donation_today }</td>
+								            <td>${d.donation_total }</td>
 											<td><select id="qna_state" name="qna_state">
-
-													<option value="qna_not">¹ÌÃ³¸®</option>
-													<option value="qna_complete">Ã³¸®¿Ï·á</option>
+													<option value="qna_not">ë¯¸ì²˜ë¦¬</option>
+													<option value="qna_complete">ì²˜ë¦¬ì™„ë£Œ</option>
 											</select></td>
-
-
 										</tr>
-										</tr>
-
 									</tbody>
-								</table>
+								</c:forEach>
+							</table>
+						</div>
+					
+					<form id='pageActionForm' action="/admin/delivery" method='get'>
+						<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum}' />
+						<input type='hidden' name='amount' value='${pageMaker.cri.amount}' />
+					</form>
+				</div>
+				
+				<input type="hidden" id="size" value="${fn:length(list)}" />
+						<div class="row">
+									<div class="col-sm-12 col-md-5 paginationdiv">
+										<div class="d-none d-md-block page-div">
+											<ul class="pagination justify-content-center">
+												<li class="page-item"><c:if test="${pageMaker.prev}">
+												<li class="page-item"><a
+													href="${pageMaker.startPage-1}" class="page-link">ì´ì „</a></li>
+											</c:if></li>
+										<c:forEach var="num" begin="${pageMaker.startPage}"
+											end="${pageMaker.endPage }">
+											<li
+												class='page-item numberitem ${pageMaker.cri.pageNum == num ? "active" : "" }'><a
+												href="${num}" class="page-link">${num}</a></li>
+										</c:forEach>
+
+										<c:if test="${pageMaker.next}">
+											<li class="page-item"><a href="${pageMaker.endPage +1}"
+												class="page-link">ë‹¤ìŒ</a></li>
+										</c:if>
+											</ul>
+										</div>
+									</div>
+								</div>
 							</div>
 						</div>
-
-						<ul class="pagination justify-content-center">
-							<li class="page-item"><a href="#" class="page-link">ÀÌÀü</a></li>
-							<li class="page-item"><a href="#" class="page-link">1</a></li>
-							<li class="page-item"><a href="#" class="page-link">2</a></li>
-							<li class="page-item"><a href="#" class="page-link">3</a></li>
-							<li class="page-item"><a href="#" class="page-link">4</a></li>
-							<li class="page-item"><a href="#" class="page-link">5</a></li>
-							<li class="page-item"><a href="#" class="page-link">6</a></li>
-							<li class="page-item"><a href="#" class="page-link">7</a></li>
-							<li class="page-item"><a href="#" class="page-link">8</a></li>
-							<li class="page-item"><a href="#" class="page-link">9</a></li>
-							<li class="page-item"><a href="#" class="page-link">10</a></li>
-							<li class="page-item"><a href="#" class="page-link">´ÙÀ½</a></li>
-						</ul>
 					</div>
 				</div>
-			</div>
-		</div>
 		<!-- /.container-fluid -->
 
 	</div>
@@ -188,12 +177,6 @@
 	</footer>
 	<!-- End of Footer -->
 
-	</div>
-	<!-- End of Content Wrapper -->
-
-	</div>
-	<!-- End of Page Wrapper -->
-
 	<!-- Scroll to Top Button-->
 	<a class="scroll-to-top rounded" href="#page-top"> <i
 		class="fas fa-angle-up"></i>
@@ -208,7 +191,7 @@
 					<h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
 					<button class="close" type="button" data-dismiss="modal"
 						aria-label="Close">
-						<span aria-hidden="true">¡¿</span>
+						<span aria-hidden="true">Ã—</span>
 					</button>
 				</div>
 				<div class="modal-body">Select "Logout" below if you are ready
@@ -222,8 +205,105 @@
 		</div>
 	</div>
 
-		<c:import url="/WEB-INF/views/include/admin_list_js.jsp" />
+	<c:import url="/WEB-INF/views/include/admin_list_js.jsp" />
+	
+	<script type="text/javascript">
+	$(document).ready(
+			function() {
 
+				// í˜ì´ì§• ë²„íŠ¼ ì´ë²¤íŠ¸
+				var actionForm = $("#pageActionForm");
+
+				$(".numberitem a").on("click", function(e) {
+						
+						
+
+							e.preventDefault();
+
+							console.log('click');
+
+							actionForm.find("input[name='pageNum']").val(
+							$(this).attr("href"));
+							actionForm.submit();
+				});
+				
+				
+				//í•„í„°ë°•ìŠ¤ ì´ë²¤íŠ¸
+				$('#frm_search').children().children().children('tr')
+				.children().children('#search_option').on('click', function(event) {
+
+			    	var donation_date_year = $('#donation_date_year').val();
+			    	var donation_state = $(":input:radio[name=donation_state]:checked").val();
+			    	
+			    	console.log($(":input:radio[name=donation_state]:checked").val());
+			    	console.log($('#donation_date_year').val());
+			    	
+			    	var options = {
+			    			
+			    			donation_state : donation_state,
+			    			donation_date_year : donation_date_year
+			    	}
+					
+			    	$.ajax({
+		    			type: 'post',
+		    			url: '/admin/donation',
+		    			cache: false,
+		    			data: JSON.stringify(options),
+		    			contentType: "application/json; charset=utf-8",
+		    			dataType: 'json',
+		    			success: function(list, status) {
+		    				
+		    			  	var htmls = "";
+							
+							$("#dataTable").html("");
+						
+							$("<tr>" , {
+								// ê¸°ë¶€ ì»¬ëŸ¼ëª…ë“¤								
+								html : "<td>" + "ê¸°ë¶€ë²ˆí˜¸" + "</td>"+ 
+										"<td>" + "ë¯¸ì²˜ë¦¬ê¸°ë¶€ê¸ˆ" + "</td>"+
+										"<td>" + "ì—° ê¸°ë¶€ê¸ˆ" + "</td>"+
+										"<td>" + "ì›” ê¸°ë¶€ê¸ˆ" + "</td>"+				
+										"<td>" + "ì¼ ê¸°ë¶€ê¸ˆ" + "</td>"+
+										"<td>" + "ì´ ê¸°ë¶€ê¸ˆ" + "</td>"+
+										"<td>" + "ì²˜ë¦¬ ìƒíƒœ" + "</td>"
+										
+										
+							}).appendTo("#dataTable") // ì´ê²ƒì„ í…Œì´ë¸”ì—ë¶™ì„
+							
+							if($(list).length < 1){
+								alert("ë“±ë¡ëœ ìƒí’ˆì´ ì—†ìŠµë‹ˆë‹¤.");
+							} else {
+						
+								$(list).each(function(){
+									console.log(this.product_idx);
+				                    htmls += '<tr>';
+				                    htmls += '<td>'+ this.donation_idx + '</td>';
+				                    htmls += '<td>'+ this.donation_notused + '</td>';
+					                htmls += '<td>'+ this.donation_month + '</td>'; 
+				                    htmls += '<td>'+ this.donation_year + '</td>';
+				                    htmls += '<td>'+ this.donation_today + '</td>';
+				                    htmls += '<td>'+ this.donation_total + '</td>';
+				                    htmls += "<td>"+"<select id='qna_state' name='qna_state'>"+
+											 "<option value='qna_not'>" + "ë¯¸ì²˜ë¦¬" + "</option>" +
+											 "<option value='qna_complete'>" + "ì²˜ë¦¬ì™„ë£Œ" + "</option>" + "</td>";
+				                    htmls += '</tr>';
+				                
+			                	});	//each end
+
+								
+							}
+							
+							$("#dataTable").append(htmls);
+		    			  },
+		    			     error:function(request,status,error){
+		    			         alert("code = "+ request.status + " message = " + request.responseText + " error = " + error); // ì‹¤íŒ¨ ì‹œ ì²˜ë¦¬
+		    			        }
+		    		});
+				});
+		
+	});
+	</script>
+	
 </body>
 
 </html>

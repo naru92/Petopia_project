@@ -1,6 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <c:set var='root' value="${pageContext.request.contextPath }/" />
 <!DOCTYPE html>
 <html lang="ko">
@@ -15,7 +17,8 @@
 <meta name="author" content="">
 
 <title>Petopia - Admin</title>
-
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <c:import url="/WEB-INF/views/include/admin_list_css.jsp" />
 
 </head>
@@ -25,10 +28,10 @@
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
-		<!-- ÁÂÃø ³×ºñ°ÔÀÌ¼Ç ¹Ù -->
+		<!-- ì¢Œì¸¡ ë„¤ë¹„ê²Œì´ì…˜ ë°” -->
 		<c:import url="/WEB-INF/views/include/admin_left_side_bar.jsp" />
 
-		<!-- »ó´Ü ¸Ş´º ¹Ù -->
+		<!-- ìƒë‹¨ ë©”ë‰´ ë°” -->
 		<c:import url="/WEB-INF/views/include/admin_top_menu.jsp" />
 
 		<!-- End of Topbar -->
@@ -49,12 +52,12 @@
 				<div class="col-xl-12 col-lg-12">
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">
-							<h6 class="m-0 font-weight-bold text-primary">¹è¼Û°ü¸®</h6>
+							<h6 class="m-0 font-weight-bold text-primary">ë°°ì†¡ê´€ë¦¬</h6>
 						</div>
 
 						<div class="card-body filterBox">
 							<div class="boxtr">
-								<form action="${contextPath }/admin/membmer/listMembers.do"
+								<form action="${contextPath }/admin/delivery"
 									method="post" id="frm_search">
 									<table>
 
@@ -62,39 +65,45 @@
 
 
 										<tr>
-											<td colspan="2">¹è¼Û ±¸ºĞ&nbsp;&nbsp;</td>
-											<td colspan="5" class="pleft"><input type="radio"
-												value="all" name="member_gender" checked>ºñÈ¸¿ø <input
-												type="radio" value="dog" name="member_gender">È¸¿ø</td>
+											<td colspan="2">ë°°ì†¡ êµ¬ë¶„&nbsp;&nbsp;</td>
+											<td colspan="5" class="pleft1">
+											<input type="radio" name="is_member" value="member_not" >ë¹„íšŒì› 
+											<input type="radio" name="is_member" value="member" >íšŒì›
+											</td>
+												
 										</tr>
 
 										<tr>
-											<td colspan="2">¹è¼Û ºĞ·ù&nbsp;&nbsp;</td>
-											<td colspan="5" class="pleft"><select
-												id="order_lately_date" name="order_lately_date">
-													<option value="" selected>--¹è¼Û ºĞ·ù ¼±ÅÃ--</option>
-													<option value="lately_login_desc">ÀüÃ¼</option>
-													<option value="lately_login_desc">¹ÌÃ³¸®</option>
-													<option value="lately_login_asc">Ã³¸®</option>
-											</select> <select id="order_total_buy" name="order_total_buy">
-													<option value="" selected>--¹è¼Û »óÅÂ--</option>
-													<option value="total_buy_desc">È¯ºÒ¿äÃ»</option>
-													<option value="total_buy_asc">¹İÇ°¿äÃ»</option>
-													<option value="total_buy_asc">¿Ï·á</option>
-											</select></td>
+											<td colspan="2">ë°°ì†¡ ë¶„ë¥˜&nbsp;&nbsp;</td>
+											<td colspan="5" class="pleft2">
+											<select id="select1" name="delivery_state">
+											
+													<option value="" selected>--ë°°ì†¡ ë¶„ë¥˜ ì„ íƒ--</option>
+													<option value="delivery_state_all">ì „ì²´</option>
+													<option value="delivery_state_not">ë°°ì†¡ì²˜ë¦¬ì¤‘</option>
+													<option value="delivery_state_complete">ë°°ì†¡ì™„ë£Œ</option>
+											</select>
+											 <select id="select2" name="delivery_refund">
+													<option value="" selected>--ë°°ì†¡ ìƒíƒœ--</option>
+													<option value="refund_req">í™˜ë¶ˆìš”ì²­</option>
+													<option value="return_req">ë°˜í’ˆìš”ì²­</option>
+													<option value="req_complete">ì™„ë£Œ</option>
+											</select>
+											</td>
 										</tr>
 
 
 
 										<tr>
-											<td colspan="7"><input type="button" value="°Ë»ö"
-												onClick="member_search()" />&nbsp;&nbsp;<input type="reset"
-												value="ÃÊ±âÈ­" /></td>
+											<td colspan="7"><input type="button" value="ê²€ìƒ‰"
+												id="search_option" />&nbsp;&nbsp;
+												<input type="reset" value="ì´ˆê¸°í™”" /></td>
 										</tr>
 									</table>
+								</form>
 							</div>
 						</div>
-						</form>
+						
 
 						<div class="card-body">
 							<div class="table-responsive">
@@ -102,43 +111,71 @@
 									cellspacing="0">
 									<thead>
 										<tr>
-											<th>¹è¼Û¹øÈ£</th>
-											<th>»óÇ°ÀÌ¸§</th>
-											<th>ÁÖ¹®ÀÚ ÀÌ¸§</th>
-											<th>¼ö½ÅÀÚ ÀÌ¸§</th>
-											<th>¼ö½ÅÀÚ ÀüÈ­¹øÈ£</th>
-											<th>¼ö½ÅÀÚ ÁÖ¼Ò</th>
-											<th>¹è¼ÛÀÏÀÚ</th>
-											<th>¹è¼ÛÃ³¸®»óÅÂ</th>
+											<th>ë°°ì†¡ë²ˆí˜¸</th>
+											<th>ìƒí’ˆì´ë¦„</th>
+											<th>ì£¼ë¬¸ì</th>
+											<th>ìˆ˜ì‹ ì</th>
+											<th>ì „í™”ë²ˆí˜¸</th>
+											<th>ìˆ˜ì‹ ì£¼ì†Œ</th>
+											<th>ë°°ì†¡ì¼ì</th>
+											<th>ë°°ì†¡ì²˜ë¦¬ìƒíƒœ</th>
 
 
 										</tr>
 									</thead>
-									<tfoot>
+											
+								<c:forEach var='d' items="${deliveryList}">
+							<!-- ë°°ì†¡ë²ˆí˜¸ ìƒí’ˆì´ë¦„  ì£¼ë¬¸ìì´ë¦„ ìˆ˜ì‹ ìì´ë¦„ ìˆ˜ì‹ ìì „í™”ë²ˆí˜¸ ìˆ˜ì‹ ìì£¼ì†Œ ë°°ì†¡ì¼ì ë°°ì†¡ì²˜ë¦¬ìƒíƒœ -->
+										<tbody>
+											<tr>
+											<td>${d.delivery_idx }</td>
+											<td>${d.product_name }</td>
+											<td>${d.order_name }</td>
+											<td>${d.order_receiver_name }</td>
+											<td>${d.order_receiver_phonenumber }</td>
+											<td>${d.order_receiver_address }</td>
+											<td>${d.delivery_date }</td>
+											<td>${d.delivery_state }</td>
+											
+											
+											</tr>
+										</tbody>
+										</c:forEach>
+										</table>
+									</div>
+									
+								<form id='pageActionForm' action="/admin/delivery" method='get'>
+												<input type='hidden' name='pageNum'
+													value='${pageMaker.cri.pageNum}' /> <input type='hidden'
+													name='amount' value='${pageMaker.cri.amount}' />
+								</form>
+								
+								</div>
+								
+								<input type="hidden" id="size" value="${fn:length(list)}" />
+								<div class="row">
+									<div class="col-sm-12 col-md-5 paginationdiv">
+										<div class="d-none d-md-block page-div">
+											<ul class="pagination justify-content-center">
+												<li class="page-item"><c:if test="${pageMaker.prev}">
+												<li class="page-item"><a
+													href="${pageMaker.startPage-1}" class="page-link">ì´ì „</a></li>
+											</c:if></li>
+										<c:forEach var="num" begin="${pageMaker.startPage}"
+											end="${pageMaker.endPage }">
+											<li
+												class='page-item numberitem ${pageMaker.cri.pageNum == num ? "active" : "" }'><a
+												href="${num}" class="page-link">${num}</a></li>
+										</c:forEach>
 
-									</tfoot>
-									<tbody>
-										<tr>
-											<td>Tiger Nixon</td>
-											<td>System Architect</td>
-											<td>Edinburgh</td>
-											<td>61</td>
-											<td>2011/04/25</td>
-											<td>2011/04/25</td>
-											<td>$320,800</td>
-											<td><select id="delivery_state" name="delivery_state">
-
-													<option value="delivery_not">¹ÌÃ³¸®</option>
-													<option value="delivery_complete">Ã³¸®¿Ï·á</option>
-											</select></td>
-
-										</tr>
-										</tr>
-
-									</tbody>
-								</table>
-							</div>
-						</div>
+										<c:if test="${pageMaker.next}">
+											<li class="page-item"><a href="${pageMaker.endPage +1}"
+												class="page-link">ë‹¤ìŒ</a></li>
+										</c:if>
+											</ul>
+										</div>
+									</div>
+								</div>
 					</div>
 				</div>
 			</div>
@@ -168,7 +205,9 @@
 	<a class="scroll-to-top rounded" href="#page-top"> <i
 		class="fas fa-angle-up"></i>
 	</a>
-
+	
+	
+	
 	<!-- Logout Modal-->
 	<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -178,7 +217,7 @@
 					<h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
 					<button class="close" type="button" data-dismiss="modal"
 						aria-label="Close">
-						<span aria-hidden="true">¡¿</span>
+						<span aria-hidden="true">Ã—</span>
 					</button>
 				</div>
 				<div class="modal-body">Select "Logout" below if you are ready
@@ -191,7 +230,113 @@
 			</div>
 		</div>
 	</div>
+		<script type="text/javascript">
+		$(document).ready(
+				function() {
+					
+					// í˜ì´ì§• ë²„íŠ¼ ì´ë²¤íŠ¸
+					var actionForm = $("#pageActionForm");
+					
+					
+					
+					$(".numberitem a").on(
+							"click",
+							function(e) {
 
+								e.preventDefault();
+
+								console.log('click');
+
+								actionForm.find("input[name='pageNum']").val(
+										$(this).attr("href"));
+								actionForm.submit();
+							});
+					
+					//í•„í„°ë°•ìŠ¤ ì´ë²¤íŠ¸
+					$('#frm_search').children().children().children('tr')
+					.children().children('#search_option').on('click', function(event) {
+
+				    	var delivery_state = $('#select1').val();
+				    	var delivery_refund = $('#select2').val();
+				    	var is_member = $(":input:radio[name=is_member]:checked").val();
+				    	
+				    	
+				    	
+
+				    			
+
+				    	
+				    	console.log($('#select1').val());
+				    	console.log($('#select2').val());
+				    	
+				    	var options = {
+				    			
+				    			delivery_state : delivery_state,
+				    			delivery_refund : delivery_refund,
+				    			is_member : is_member
+				    			
+				    	}
+						
+				    	$.ajax({
+			    			type: 'post',
+			    			url: '/admin/delivery',
+			    			cache: false,
+			    			data: JSON.stringify(options),
+			    			contentType: "application/json; charset=utf-8",
+			    			dataType: 'json',
+			    			success: function(list, status) {
+			    				
+			    			  	var htmls = "";
+								
+								$("#dataTable").html("");
+								
+								$("<tr>" , {
+									 // ì»¬ëŸ¼ëª…ë“¤								
+									html : "<td>" + "ë°°ì†¡ë²ˆí˜¸" + "</td>"+ 
+											"<td>" + "ìƒí’ˆì´ë¦„" + "</td>"+
+											"<td>" + "ì£¼ë¬¸ì" + "</td>"+
+											"<td>" + "ìˆ˜ì‹ ì" + "</td>"+				
+											"<td>" + "ì „í™”ë²ˆí˜¸" + "</td>"+
+											"<td>" + "ìˆ˜ì‹  ì£¼ì†Œ" + "</td>"+
+											"<td>" + "ë°°ì†¡ì¼ì" + "</td>"+
+											"<td>" + "ë°°ì†¡ì²˜ë¦¬ìƒíƒœ" + "</td>"
+											
+								}).appendTo("#dataTable") // ì´ê²ƒì„ í…Œì´ë¸”ì—ë¶™ì„
+								
+								if($(list).length < 1){
+									alert("ë“±ë¡ëœ ìƒí’ˆì´ ì—†ìŠµë‹ˆë‹¤.");
+								} else {
+									
+									$(list).each(function(){
+										console.log(this.product_idx);
+					                    htmls += '<tr>';
+					                    htmls += '<td>'+ this.delivery_idx + '</td>';
+					                    htmls += '<td>'+ this.product_name + '</td>';
+						                htmls += '<td>'+ this.order_name + '</td>'; 
+					                    htmls += '<td>'+ this.order_receiver_name + '</td>';
+					                    htmls += '<td>'+ this.order_receiver_phonenumber + '</td>';
+					                    htmls += '<td>'+ this.order_receiver_address + '</td>';
+					                    htmls += '<td>'+ this.delivery_date + '</td>';
+					                    htmls += '<td>'+ this.delivery_state + '</td>';
+					                    htmls += '</tr>';
+					                
+				                	});	//each end
+
+									
+								}
+								
+								$("#dataTable").append(htmls);
+			    			  },
+			    			     error:function(request,status,error){
+			    			         alert("code = "+ request.status + " message = " + request.responseText + " error = " + error); // ì‹¤íŒ¨ ì‹œ ì²˜ë¦¬
+			    			        }
+			    		});
+					});
+
+				});
+		
+		
+	</script>
 		<c:import url="/WEB-INF/views/include/admin_list_js.jsp" />
 
 </body>

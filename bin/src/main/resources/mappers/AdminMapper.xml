@@ -4,11 +4,1074 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="co.kr.petopia.mapper.AdminMapper">
+
 	<!-- 회원 리스트 -->
-	<select id="getMemberList" resultType="co.kr.petopia.vo.MemberVO">
+	
+	<select id="getMemberList"
+		resultType="co.kr.petopia.vo.MemberVO">
 		select * from member
+	</select>
+	<select id="getOrderList" resultType="co.kr.petopia.vo.OrderVO">
+		select * from order_form
+	</select>
+	<!-- 회원 상세 정보 -->
+	<select id="getMemberOne" parameterType="java.lang.Integer"
+		resultType="co.kr.petopia.vo.MemberVO">
+		select *
+		from member
+		where member_id=#{member.id}
+	</select>
+	
+	<!-- 회원삭제 -->
+	<delete id="deleteMember" parameterType="co.kr.petopia.vo.MemberVO">
+			<![CDATA[
+		delete from member where member_id = #{member_id}
+		]]>
+	</delete>
+
+	<!-- 상품 리스트 -->
+	<select id="getProductList"
+		resultType="co.kr.petopia.vo.ProductVO">
+
+		select
+		product_idx,product_name,product_category_id,
+		product_price, prodcut_stock, product_detail_info, product_image
+		from
+		product
+
+	</select>
+
+	<!-- 상품 정보 -->
+	<select id="getProductOne"
+		resultType="co.kr.petopia.vo.ProductVO">
+		select
+		product_idx,product_name,product_category_id,
+		product_price, product_stock, product_detail_info, product_image
+		from
+		product
+		where product_idx = #{product_idx}
+	</select>
+	
+	
+	
+	
+	<!-- 상품 CRUD -->
+
+	<select id= "product_seq_next" resultType="int">
+ 			select product_seq.nextval from dual
+ 	</select>
+
+	<insert id="insertProduct" >
+		 		
+		
+		INSERT into
+    		product(product_idx, product_category_id, product_price, product_name,
+    		product_coloroption, product_stock, product_detail_info, product_image) 
+    	VALUES
+		    (#{product_idx}, #{product_category_id}, #{product_price}, #{product_name},#{product_coloroption},
+		    #{product_stock},#{product_detail_info}, #{product_image, jdbcType=VARCHAR})
+		
+	</insert>
+
+	<!-- 상품 수정 (상품명 ,가격, 컬러옵션,재고량,상세정보, 이미지) -->
+	<update id="updateProduct"
+		parameterType="co.kr.petopia.vo.ProductVO">
+	
+		<![CDATA[
+		update product
+ 		set
+ 		
+ 			product_name = #{product_name},
+ 			product_price = #{product_price},
+ 			product_coloroption = #{product_coloroption}, 
+ 			product_stock = #{products_stock}, 
+ 			product_detail_info = #{product_detail_info}
+ 			product_image = #{product_image, jdbcType=VARCHAR}
+ 			
+ 		where productsNo = #{productsNo}
+		]]>
+
+	</update>
+
+	<!-- 상품 삭제 -->
+	<delete id="deleteProducts">
+
+		delete product where product_idx = #{product_idx}
+
+	</delete>
+
+	<!-- CRUD END -->
+
+	<!-- 배송리스트 -->
+	<select id="getDeliveryList"
+		resultType="co.kr.petopia.vo.DeliveryVO">
+		select * from delivery
+	</select>
+	<!-- 미처리 배송 -->
+	<select id="getUnprocessedOrderList"
+		resultType="co.kr.petopia.vo.DeliveryVO">
+		select *
+		from delivery
+		where delivery_state='배송준비중'
 	</select>
 
 
+	<!-- 금일 매출 -->
+	<select id="getTodayIncome" resultType="java.lang.Integer">
+		 select NVL(SUM(p.product_price *od.order_quantity),0)
+		AS TODAY_INCOME
+		from product p, order_detail od, order_form o
+		where
+		od.order_idx = o.order_idx
+		and o.product_idx = p.product_idx
+        AND
+		TO_CHAR(o.order_date,'YYYYMMDD') = TO_CHAR(sysdate,'YYYYMMDD')
+		
+	</select>
 
+	<!-- 현재주문 리스트 -->
+	<select id="currentOrderCount"
+		resultType="int">
+		select count(*)
+		from order_form
+		where to_char(order_date, 'yyyymmdd') = to_char(sysdate, 'yyyymmdd') 
+	</select>
+
+	<!-- 교환,환불 신청처리 건수-->
+	<select id="getRefundCount"
+		resultType="int">
+		select count(*)
+		from delivery
+		where delivery_state= '교환요청' or
+		delivery_state= '배송요청'
+	</select>
+
+
+	<!-- 총 주문량 -->
+	<select id="getTotalOrderList" resultType="java.lang.Integer">
+		select count(*)
+		from
+		order_form
+	</select>
+
+	<!-- 엊 그제 ~ 내일 모레 가입 회원수 (메인페이지 통계용) -->
+	<select id="get5DaysStatisticsMemberCount"
+		resultType="co.kr.petopia.vo.MemberVO">
+
+
+		 SELECT TO_CHAR(member_joindate, 'yyyy-mm-dd') AS statistics_join_day, COUNT(*) AS statistics_join_count 
+	 FROM member
+ 	 GROUP BY TO_CHAR(member_joindate, 'yyyy-mm-dd'), member_joindate
+ 	 having member_joindate between to_date(sysdate -5 , 'yy-mm-dd') and to_date(sysdate, 'yy-mm-dd')
+ 	 ORDER BY statistics_join_day
+     
+ 	 
+
+	</select>
+
+
+	<!--페이징 -->
+	<!-- 회원수 -->
+	<select id="getTotalMemberCount" resultType="int">
+	
+  		 <![CDATA[
+   			select count(*) from member
+  		 ]]>
+
+	</select>
+
+	<!-- 페이지만큼 데이터 가져오기 -->
+	<select id="getMemberListWithPaging" parameterType="int"
+		resultType="co.kr.petopia.vo.MemberVO">
+  		 <![CDATA[
+  		 	SELECT * FROM (
+              SELECT ROWNUM AS RNUM, A.* FROM (
+                       SELECT
+                             *
+                         FROM
+                             member
+                         
+                         order by member_id desc  
+             ) A WHERE ROWNUM <= #{pageNum} * #{amount}
+         ) WHERE RNUM > (#{pageNum}-1) * #{amount} 
+  		 ]]>
+	</select>
+
+	<!-- 상품수 -->
+	<select id="getTotalProductCount" resultType="int">
+	
+  		 <![CDATA[
+    	 	select count(*) from product
+  		 ]]>
+
+	</select>
+	
+	
+	
+	<!-- 상품 리스트 페이징 -->
+	<select id="getProductListWithPaging" parameterType="int"
+		resultType="co.kr.petopia.vo.ProductVO">
+  		 <![CDATA[
+  		 	SELECT * FROM (
+              SELECT ROWNUM AS RNUM, A.* FROM (
+                       SELECT
+                             *
+                         FROM
+                             product
+                         
+                         order by product_idx
+             ) A WHERE ROWNUM <= #{pageNum} * #{amount}
+         ) WHERE RNUM > (#{pageNum}-1) * #{amount} 
+  		 ]]>
+	</select>
+	<!-- 총 주문수 -->
+	<select id="getOrderCount" resultType="int">
+	
+  		 <![CDATA[
+    	 	select count(*) from order_form
+  		 ]]>
+
+	</select>
+	<!-- 주문리스트 페이징 -->
+	<select id="getOrderListWithPaging" parameterType="int"
+		resultType="co.kr.petopia.vo.OrderVO">
+  		 <![CDATA[
+  		 	SELECT * FROM (
+              SELECT ROWNUM AS RNUM, A.* FROM (
+                       SELECT
+                             o.order_idx as order_idx , od.order_receiver_name as order_receiver_name,
+                             od.order_receiver_address as order_receiver_address, od.order_quantity as order_quantity,
+                             od.order_quantity * p.product_price as order_price, o.order_date as order_date,
+                             od.payment_method as payment_method , od.order_name as order_name
+                         FROM
+                             order_form o, order_detail od, product p
+                         where o.order_idx = od.order_idx and o.product_idx = p.product_idx and od.order_idx = p.product_idx
+                         order by o.order_idx ASC
+             ) A WHERE ROWNUM <= #{pageNum} * #{amount}
+         ) WHERE RNUM > (#{pageNum}-1) * #{amount} 
+  		 ]]>
+	</select>
+
+	<!-- 총 배송수 -->
+	<select id="getTotalDeliveryCount" resultType="int">
+	
+  		 <![CDATA[
+    	 	select count(*) from delivery
+  		 ]]>
+
+	</select>
+	<!-- 총 배송리스트 페이징 -->
+	<select id="getDeliveryListWithPaging" parameterType="int"
+		resultType="co.kr.petopia.vo.DeliveryVO">
+  		 <![CDATA[
+  		 	SELECT * FROM (
+              SELECT ROWNUM AS RNUM, A.* FROM (
+                      SELECT
+                       		d.delivery_idx as delivery_idx , p.product_name product_name, od.order_name as order_name,
+                       		od.order_receiver_name as order_receiver_name, od.order_receiver_phonenumber as order_receiver_phonenumber,
+        			   		od.order_receiver_address as order_receiver_address, d.delivery_date as delivery_date, d.delivery_state as delivery_state
+					   FROM 
+					   		delivery d, order_form o, order_detail od, product p
+					   WHERE
+					   		d.order_idx = o.order_idx and o.order_idx = od.order_idx and o.product_idx = p.product_idx
+
+                         
+                         order by delivery_idx
+             ) A WHERE ROWNUM <= #{pageNum} * #{amount}
+         ) WHERE RNUM > (#{pageNum}-1) * #{amount} 
+  		 ]]>
+	</select>
+	<!-- 총 문의글 수 -->
+	<select id="getTotalQnACount" resultType="int">
+  		 <![CDATA[
+    	 select count(*) 
+    	from board b,content c 
+    	 where b.board_id = 2 and b.board_id = c.board_id 
+   		 ]]>
+
+	</select>
+
+	<!-- 총 문의글 페이징 -->
+	<select id="getQnAListWithPaging" parameterType="int" resultType="co.kr.petopia.vo.BoardVO">
+		
+  		 <![CDATA[
+  		 SELECT * FROM (
+              SELECT ROWNUM AS RNUM, A.* FROM (
+                       SELECT
+                             c.content_idx as content_idx , m.member_id as member_id , c.content_text as content_text 
+                         FROM
+                             content c ,board b, member m
+                         Where b.board_id = 2 and b.board_id = c.board_id and c.member_id = m.member_id 
+                         order by c.content_idx
+             ) A WHERE ROWNUM <= 10 * 1
+         ) WHERE RNUM > 10 * 1 
+  		 ]]>
+	</select>
+	<!-- 도네이션수 cri -->
+	<select id="getDonationCount" parameterType="int" resultType="int">
+	select count(*)
+	from donation
+	</select>
+	<!-- 도네이션 페이징 -->
+	<select id="getDonationWithPaging" parameterType="int" resultType="co.kr.petopia.vo.DonationVO">
+	 <![CDATA[
+  		 SELECT * FROM (
+              SELECT ROWNUM AS RNUM, A.* FROM (
+                       SELECT*
+                         FROM donation
+                         ORDER by donation_idx
+             ) A WHERE ROWNUM <= 10 * 1
+         ) WHERE RNUM > 10 * 1 
+  		 ]]>
+	</select>
+	
+	<!--페이징 끝 -->
+	
+	<!-- 오늘 기부 -->
+	<select id="getTodayDonation" resultType="int">
+	 select NVL(SUM(donation_today),0) from donation
+	</select>
+	
+	<select id="getStatisticsOrderCount" resultType="int">
+	select count(*) from order_form
+	</select>
+	
+	
+	<!-- 필터검색 -->
+	<select id="getSelectOptionList" parameterType="map"
+		resultType="co.kr.petopia.vo.ProductVO">
+		
+		<!-- 아무것도 선택 안했을때 그냥 오름차순 -->
+		
+		
+		<if test="product_price.equals('') and product_stock.equals('')" >
+		
+			<if test="select_category_id.equals('null')">
+			select * from product order by product_idx
+			</if>		
+			<if test="select_category_id.equals('사료')">
+			select * from product where product_category_id =1 order by product_idx
+			</if>
+			<if test="select_category_id.equals('간식')">
+			select * from product where product_category_id =2 order by product_idx
+			</if>
+			<if test="select_category_id.equals('위생')">
+			select * from product where product_category_id =3 order by product_idx
+			</if>
+			<if test="select_category_id.equals('미용')">
+			select * from product where product_category_id =4 order by product_idx
+			</if>
+			<if test="select_category_id.equals('급식기')">
+			select * from product where product_category_id =5 order by product_idx
+			</if>
+			<if test="select_category_id.equals('장난감')">
+			select * from product where product_category_id =6 order by product_idx
+			</if>
+			<if test="select_category_id.equals('하우스')">
+			select * from product where product_category_id =7 order by product_idx
+			</if>
+			<if test="select_category_id.equals('패션')">
+			select * from product where product_category_id =8 order by product_idx
+			</if>
+			<if test="select_category_id.equals('목줄')">
+			select * from product where product_category_id =9 order by product_idx
+			</if>
+					
+		</if>
+		
+		
+		
+		<if
+			test="product_price.equals('product_price_asc') and product_stock.equals('stock_asc')">	
+		
+		<if test="select_category_id.equals('null')">
+		select * from product order by product_price, product_stock
+		</if>		
+		<if test="select_category_id.equals('사료')">
+		select * from product where product_category_id =1 order by product_price, product_stock
+		</if>
+		<if test="select_category_id.equals('간식')">
+		select * from product where product_category_id =2 order by product_price, product_stock
+		</if>
+		<if test="select_category_id.equals('위생')">
+		select * from product where product_category_id =3 order by product_price, product_stock
+		</if>
+		<if test="select_category_id.equals('미용')">
+		select * from product where product_category_id =4 order by product_price, product_stock
+		</if>
+		<if test="select_category_id.equals('급식기')">
+		select * from product where product_category_id =5 order by product_price, product_stock
+		</if>
+		<if test="select_category_id.equals('장난감')">
+		select * from product where product_category_id =6 order by product_price, product_stock
+		</if>
+		<if test="select_category_id.equals('하우스')">
+		select * from product where product_category_id =7 order by product_price, product_stock
+		</if>
+		<if test="select_category_id.equals('패션')">
+		select * from product where product_category_id =8 order by product_price, product_stock
+		</if>
+		<if test="select_category_id.equals('목줄')">
+		select * from product where product_category_id =9 order by product_price, product_stock
+		</if>
+		
+		</if>
+
+		<if
+			test="product_price.equals('product_price_asc') and product_stock.equals('stock_desc')">
+		
+		<if test="select_category_id.equals('null')">
+		select * from product order by product_price, product_stock desc
+		</if>	
+		<if test="select_category_id.equals('사료')">
+		select * from product where product_category_id =1 order by product_price, product_stock desc
+		</if>
+		<if test="select_category_id.equals('간식')">
+		select * from product where product_category_id =2 order by product_price, product_stock desc
+		</if>
+		<if test="select_category_id.equals('위생')">
+		select * from product where product_category_id =3 order by product_price, product_stock desc
+		</if>
+		<if test="select_category_id.equals('미용')">
+		select * from product where product_category_id =4 order by product_price, product_stock desc
+		</if>
+		<if test="select_category_id.equals('급식기')">
+		select * from product where product_category_id =5 order by product_price, product_stock desc
+		</if>
+		<if test="select_category_id.equals('장난감')">
+		select * from product where product_category_id =6 order by product_price, product_stock desc
+		</if>
+		<if test="select_category_id.equals('하우스')">
+		select * from product where product_category_id =7 order by product_price, product_stock desc
+		</if>
+		<if test="select_category_id.equals('패션')">
+		select * from product where product_category_id =8 order by product_price, product_stock desc
+		</if>
+		<if test="select_category_id.equals('목줄')">
+		select * from product where product_category_id =9 order by product_price, product_stock desc
+		</if>
+				
+		</if>
+		<if
+			test="product_price.equals('product_price_desc') and product_stock.equals('stock_asc')">
+		<if test="select_category_id.equals('null')">
+		select * from product order by product_price, product_stock desc
+		</if>	
+		<if test="select_category_id.equals('사료')">
+		select * from product where product_category_id =1 order by product_price desc, product_stock asc
+		</if>
+		<if test="select_category_id.equals('간식')">
+		select * from product where product_category_id =2 order by product_price desc, product_stock asc
+		</if>
+		<if test="select_category_id.equals('위생')">
+		select * from product where product_category_id =3 order by product_price desc, product_stock asc
+		</if>
+		<if test="select_category_id.equals('미용')">
+		select * from product where product_category_id =4 order by product_price desc, product_stock asc
+		</if>
+		<if test="select_category_id.equals('급식기')">
+		select * from product where product_category_id =5 order by product_price desc, product_stock asc
+		</if>
+		<if test="select_category_id.equals('장난감')">
+		select * from product where product_category_id =6 order by product_price desc, product_stock asc
+		</if>
+		<if test="select_category_id.equals('하우스')">
+		select * from product where product_category_id =7 order by product_price desc, product_stock asc
+		</if>
+		<if test="select_category_id.equals('패션')">
+		select * from product where product_category_id =8 order by product_price desc, product_stock asc
+		</if>
+		<if test="select_category_id.equals('목줄')">
+		select * from product where product_category_id =9 order by product_price desc, product_stock asc
+		</if>
+			
+		</if>
+
+		<if
+			test="product_price.equals('product_price_desc') and product_stock.equals('stock_desc')">
+			<if test="select_category_id.equals('null')">
+		select * from product order by product_price, product_stock desc
+		</if>	
+		<if test="select_category_id.equals('사료')">
+		select * from product where product_category_id =1 order by product_price desc, product_stock desc
+		</if>
+		<if test="select_category_id.equals('간식')">
+		select * from product where product_category_id =2 order by product_price desc, product_stock desc
+		</if>
+		<if test="select_category_id.equals('위생')">
+		select * from product where product_category_id =3 order by product_price desc, product_stock desc
+		</if>
+		<if test="select_category_id.equals('미용')">
+		select * from product where product_category_id =4 order by product_price desc, product_stock desc
+		</if>
+		<if test="select_category_id.equals('급식기')">
+		select * from product where product_category_id =5 order by product_price desc, product_stock desc
+		</if>
+		<if test="select_category_id.equals('장난감')">
+		select * from product where product_category_id =6 order by product_price desc, product_stock desc
+		</if>
+		<if test="select_category_id.equals('하우스')">
+		select * from product where product_category_id =7 order by product_price desc, product_stock desc
+		</if>
+		<if test="select_category_id.equals('패션')">
+		select * from product where product_category_id =8 order by product_price desc, product_stock desc
+		</if>
+		<if test="select_category_id.equals('목줄')">
+		select * from product where product_category_id =9 order by product_price desc, product_stock desc
+		</if>
+			
+		</if>
+
+		<if
+			test="product_price.equals('') and product_stock.equals('stock_asc')">
+				<if test="select_category_id.equals('null')">
+		select * from product order by product_stock asc
+		</if>	
+		<if test="select_category_id.equals('사료')">
+		select * from product where product_category_id =1 order by product_stock asc
+		</if>
+		<if test="select_category_id.equals('간식')">
+		select * from product where product_category_id =2 order by product_stock asc
+		</if>
+		<if test="select_category_id.equals('위생')">
+		select * from product where product_category_id =3 order by product_stock asc
+		</if>
+		<if test="select_category_id.equals('미용')">
+		select * from product where product_category_id =4 order by product_stock asc
+		</if>
+		<if test="select_category_id.equals('급식기')">
+		select * from product where product_category_id =5 order by product_stock asc
+		</if>
+		<if test="select_category_id.equals('장난감')">
+		select * from product where product_category_id =6 order by product_stock asc
+		</if>
+		<if test="select_category_id.equals('하우스')">
+		select * from product where product_category_id =7 order by product_stock asc
+		</if>
+		<if test="select_category_id.equals('패션')">
+		select * from product where product_category_id =8 order by product_stock asc
+		</if>
+		<if test="select_category_id.equals('목줄')">
+		select * from product where product_category_id =9 order by product_stock asc
+		</if>
+			
+		</if>
+
+		<if
+			test="product_price.equals('') and product_stock.equals('stock_desc')">
+				<if test="select_category_id.equals('null')">
+		select * from product order by product_price, product_stock desc
+		</if>	
+		<if test="select_category_id.equals('사료')">
+		select * from product where product_category_id =1 order by product_stock desc
+		</if>
+		<if test="select_category_id.equals('간식')">
+		select * from product where product_category_id =2 order by product_stock desc
+		</if>
+		<if test="select_category_id.equals('위생')">
+		select * from product where product_category_id =3 order by product_stock desc
+		</if>
+		<if test="select_category_id.equals('미용')">
+		select * from product where product_category_id =4 order by product_stock desc
+		</if>
+		<if test="select_category_id.equals('급식기')">
+		select * from product where product_category_id =5 order by product_stock desc
+		</if>
+		<if test="select_category_id.equals('장난감')">
+		select * from product where product_category_id =6 order by product_stock desc
+		</if>
+		<if test="select_category_id.equals('하우스')">
+		select * from product where product_category_id =7 order by product_stock desc
+		</if>
+		<if test="select_category_id.equals('패션')">
+		select * from product where product_category_id =8 order by product_stock desc
+		</if>
+		<if test="select_category_id.equals('목줄')">
+		select * from product where product_category_id =9 order by product_stock desc
+		</if>
+			
+		</if>
+
+		<if
+			test="product_price.equals('product_price_asc') and product_stock.equals('')">
+				<if test="select_category_id.equals('null')">
+		select * from product order by product_price asc
+		</if>	
+		<if test="select_category_id.equals('사료')">
+		select * from product where product_category_id =1 order by product_price asc
+		</if>
+		<if test="select_category_id.equals('간식')">
+		select * from product where product_category_id =2 order by product_price
+		</if>
+		<if test="select_category_id.equals('위생')">
+		select * from product where product_category_id =3 order by product_price
+		</if>
+		<if test="select_category_id.equals('미용')">
+		select * from product where product_category_id =4 order by product_price
+		</if>
+		<if test="select_category_id.equals('급식기')">
+		select * from product where product_category_id =5 order by product_price
+		</if>
+		<if test="select_category_id.equals('장난감')">
+		select * from product where product_category_id =6 order by product_price
+		</if>
+		<if test="select_category_id.equals('하우스')">
+		select * from product where product_category_id =7 order by product_price
+		</if>
+		<if test="select_category_id.equals('패션')">
+		select * from product where product_category_id =8 order by product_price
+		</if>
+		<if test="select_category_id.equals('목줄')">
+		select * from product where product_category_id =9 order by product_price
+		</if>
+		
+		</if>
+
+		<if
+			test="product_price.equals('product_price_desc') and product_stock.equals('')">
+				<if test="select_category_id.equals('null')">
+		select * from product order by product_price desc
+		</if>	
+		<if test="select_category_id.equals('사료')">
+		select * from product where product_category_id =1 order by product_price desc
+		</if>
+		<if test="select_category_id.equals('간식')">
+		select * from product where product_category_id =2 order by product_price desc
+		</if>
+		<if test="select_category_id.equals('위생')">
+		select * from product where product_category_id =3 order by product_price desc
+		</if>
+		<if test="select_category_id.equals('미용')">
+		select * from product where product_category_id =4 order by product_price desc
+		</if>
+		<if test="select_category_id.equals('급식기')">
+		select * from product where product_category_id =5 order by product_price desc
+		</if>
+		<if test="select_category_id.equals('장난감')">
+		select * from product where product_category_id =6 order by product_price desc
+		</if>
+		<if test="select_category_id.equals('하우스')">
+		select * from product where product_category_id =7 order by product_price desc
+		</if>
+		<if test="select_category_id.equals('패션')">
+		select * from product where product_category_id =8 order by product_price desc
+		</if>
+		<if test="select_category_id.equals('목줄')">
+		select * from product where product_category_id =9 order by product_price desc
+		</if>
+		</if>
+
+	</select>
+	<!-- 배송 필터리스트 -->
+	<select id="selectOptionDeliveryList" parameterType="map"
+		resultType="co.kr.petopia.vo.DeliveryVO">
+
+				<!-- is_member가 null 일시 배송 전체리스트 -->
+		<choose>
+			
+			<when test="is_member == null || is_member.equals('')">
+				SELECT
+				d.delivery_idx as delivery_idx , p.product_name product_name,
+				od.order_receiver_name as order_receiver_name,
+				od.order_receiver_phonenumber as order_receiver_phonenumber,
+				od.order_receiver_address as order_receiver_address, d.delivery_date
+				as delivery_date, d.delivery_state as delivery_state,
+				od.order_name
+				as order_name
+				FROM
+				delivery d, order_form o, order_detail od, product
+				p
+
+				WHERE
+				d.order_idx = o.order_idx and o.order_idx = od.order_idx and
+				o.product_idx = p.product_idx
+
+				<trim prefix=" and " prefixOverrides=" and ">
+					<if test="delivery_state != null and !delivery_state.equals('')">
+						<choose>
+							<when test="delivery_state.equals('delivery_state_not')">
+								d.delivery_state = '배송처리중'
+							</when>
+							<when
+								test="delivery_state.equals('delivery_state_complete')">
+								d.delivery_state = '배송완료'
+							</when>
+							
+						</choose>
+					</if>
+				</trim>
+				<trim prefix=" and " prefixOverrides="and">
+					<if
+						test="delivery_refund != null and !delivery_state.equals('')">
+						<choose>
+							<when test="delivery_refund.equals('refund_req')">
+								d.delivery_state = '환불요청'
+							</when>
+							<when test="delivery_refund.equals('return_req')">
+								d.delivery_state = '반품요청'
+							</when>
+							<when test="delivery_refund.equals('req_complete')">
+								d.delivery_state = '환불처리완료'
+							</when>
+						</choose>
+					</if>
+				</trim>
+
+				ORDER BY delivery_date ASC
+			</when>
+
+
+
+
+			<!-- is_member가 member 일시 회원 배송 전체리스트 -->
+			<when test="is_member.equals('member')">
+				SELECT
+				d.delivery_idx as delivery_idx , p.product_name product_name,
+				od.order_receiver_name as order_receiver_name,
+				od.order_receiver_phonenumber as order_receiver_phonenumber,
+				od.order_receiver_address as order_receiver_address,
+				d.delivery_state as delivery_state, d.delivery_date as
+				delivery_date,
+				od.order_name as order_name
+				FROM
+				delivery d, order_form
+				o, order_detail od, product p, member m
+				WHERE
+				d.order_idx =
+				o.order_idx and o.order_idx = od.order_idx and o.product_idx =
+				p.product_idx and
+				m.member_id = o.member_id
+				<trim prefix=" and " prefixOverrides=" and ">
+					<if test="delivery_state != null and !delivery_state.equals('')">
+						<choose>
+							<when test="delivery_state.equals('delivery_state_not')">
+								d.delivery_state = '배송처리중'
+							</when>
+							<when
+								test="delivery_state.equals('delivery_state_complete')">
+								d.delivery_state = '배송완료'
+							</when>
+
+						</choose>
+					</if>
+				</trim>
+				<trim prefix=" and " prefixOverrides="and">
+					<if
+						test="delivery_refund != null and !delivery_state.equals('')">
+						<choose>
+							<when test="delivery_refund.equals('refund_req')">
+								d.delivery_state = '환불요청'
+							</when>
+							<when test="delivery_refund.equals('return_req')">
+								d.delivery_state = '반품요청'
+							</when>
+							<when test="delivery_refund.equals('req_complete')">
+								d.delivery_state = '환불처리완료'
+							</when>
+						</choose>
+					</if>
+				</trim>
+				ORDER BY delivery_date ASC
+
+			</when>
+
+			<otherwise>
+				<!-- is_member가 member_not 일시 비회원 배송 전체리스트 -->
+				SELECT DISTINCT
+				d.delivery_idx as delivery_idx , p.product_name
+				product_name,
+				od.order_receiver_name as order_receiver_name,
+				od.order_receiver_phonenumber as order_receiver_phonenumber,
+				od.order_receiver_address as order_receiver_address,
+				d.delivery_state as delivery_state,d.delivery_date as delivery_date,
+				od.order_name as order_name
+				FROM
+				delivery d, order_form o,
+				order_detail od, product p, member m
+				WHERE
+				d.order_idx= o.order_idx
+				and o.order_idx = od.order_idx and o.product_idx =
+				p.product_idx
+				and
+				od.product_idx = p.product_idx and o.member_id is null
+				<trim prefix=" and " prefixOverrides="and">
+					<if test="delivery_state != null and !delivery_state.equals('')">
+						<choose>
+							<when test="delivery_state.equals('delivery_state_not')">
+								d.delivery_state = '배송처리중'
+							</when>
+							<when
+								test="delivery_state.equals('delivery_state_complete')">
+								d.delivery_state = '배송완료'
+							</when>
+							<otherwise>
+							
+							</otherwise>
+						</choose>
+					</if>
+				</trim>
+				<trim prefix=" and " prefixOverrides="and">
+					<if
+						test="delivery_refund != null and !delivery_state.equals('')">
+						<choose>
+							<when test="delivery_refund.equals('refund_req')">
+								d.delivery_state = '환불요청'
+							</when>
+							<when test="delivery_refund.equals('return_req')">
+								d.delivery_state = '반품요청'
+							</when>
+							<when test="delivery_refund.equals('req_complete')">
+								d.delivery_state = '환불처리완료'
+							</when>
+						</choose>
+					</if>
+				</trim>
+				ORDER BY delivery_date ASC
+			</otherwise>
+
+		</choose>
+
+	</select>
+
+
+	<!-- 주문 필터리스트 -->
+	<select id="selectOptionOrderList" parameterType="map"
+		resultType="co.kr.petopia.vo.OrderVO">
+
+		<choose>
+			<when test="deposit == null || deposit.equals('')">
+
+				<!-- is_member가 deposit 널일시 전체리스트 -->
+				SELECT
+				o.order_idx as order_idx, od.order_receiver_name as
+				order_receiver_name,
+				od.order_receiver_address as
+				order_receiver_address,
+				od.order_quantity as order_quantity,
+				od.order_quantity * p.product_price as order_price, o.order_date as
+				order_date,
+				od.payment_method as payment_method , od.order_name as
+				order_name
+				FROM
+				order_form o, order_detail od, product p
+				WHERE
+				o.order_idx = od.order_idx and o.product_idx = p.product_idx and
+				od.order_idx =
+				p.product_idx
+				<trim prefix=" ORDER BY " prefixOverrides=" ORDER BY ">
+					<if test="order_date != null || order_date.equals('')">
+						<choose>
+							<when test="order_date.equals('order_date_desc')">
+								o.order_date DESC
+							</when>
+							<when
+								test="delivery_state.equals('delivery_state_complete')">
+								o.order_date ASC
+							</when>
+						</choose>
+					</if>
+				</trim>
+
+			</when>
+			<when test="deposit.equals('all')">
+				<!-- deposit가 deposit_ok 일시 회원 배송 전체리스트 -->
+
+				SELECT
+				o.order_idx as order_idx , od.order_receiver_name as
+				order_receiver_name,
+				od.order_receiver_address as
+				order_receiver_address,
+				od.order_quantity as order_quantity,
+				od.order_quantity * p.product_price as order_price, o.order_date as
+				order_date,
+				od.payment_method as payment_method , od.order_name as
+				order_name
+				FROM
+				order_form o, order_detail od, product p
+				WHERE
+				o.order_idx = od.order_idx and o.product_idx = p.product_idx and
+				od.order_idx =
+				p.product_idx
+				<trim prefix=" ORDER BY " prefixOverrides=" ORDER BY ">
+					<if test="order_date != null and !order_date.equals('')">
+						<choose>
+							<when test="order_date.equals('order_date_desc')">
+								o.order_date DESC
+							</when>
+							<when test="order_date.equals('order_date_asc')">
+								o.order_date ASC
+							</when>
+						</choose>
+					</if>
+				</trim>
+
+			</when>
+			<when test="deposit.equals('deposit_ok')">
+				<!-- deposit가 deposit_ok 일시 회원 배송 전체리스트 -->
+
+				SELECT
+				o.order_idx as order_idx , od.order_receiver_name as
+				order_receiver_name,
+				od.order_receiver_address as
+				order_receiver_address,
+				od.order_quantity as order_quantity,
+				od.order_quantity * p.product_price as order_price, o.order_date as
+				order_date,
+				od.payment_method as payment_method , od.order_name as
+				order_name
+				FROM
+				order_form o, order_detail od, product p
+				WHERE
+				o.order_idx = od.order_idx and o.product_idx = p.product_idx and
+				od.order_idx =
+				p.product_idx
+				<trim prefix=" ORDER BY " prefixOverrides=" ORDER BY ">
+					<if test="order_date != null and !order_date.equals('')">
+						<choose>
+							<when test="order_date.equals('order_date_desc')">
+								o.order_date DESC
+							</when>
+							<when test="order_date.equals('order_date_asc')">
+								o.order_date ASC
+							</when>
+						</choose>
+					</if>
+				</trim>
+
+			</when>
+
+			<otherwise>
+				<!-- deposit가 deposit_not 일시 주문 전체리스트 -->
+
+
+				SELECT o.order_idx as order_idx , od.order_receiver_name as
+				order_receiver_name,
+				od.order_receiver_address as
+				order_receiver_address,
+				od.order_quantity as order_quantity,
+				od.order_quantity * p.product_price as order_price, o.order_date as
+				order_date,
+				od.payment_method as payment_method , od.order_name as
+				order_name
+				FROM
+				order_form o, order_detail od, product p
+				WHERE
+				o.order_idx = od.order_idx and o.product_idx = p.product_idx and
+				od.order_idx =
+				p.product_idx
+				<trim prefix=" ORDER BY " prefixOverrides=" ORDER BY ">
+					<if test="order_date != null and !order_date.equals('')">
+						<choose>
+							<when test="order_date.equals('order_date_desc')">
+								o.order_date DESC
+							</when>
+							<when test="order_date.equals('order_date_asc')">
+								o.order_date ASC
+							</when>
+						</choose>
+					</if>
+				</trim>
+			</otherwise>
+		</choose>
+	</select>
+
+	<select id="selectOptionDonationList" parameterType="map" resultType="co.kr.petopia.vo.DonationVO">
+	<choose>
+	<!-- 각 year 다섯개씩 -->
+	<when test="donation_state == null || donation_state.equals('')">
+	<if test="donation_date_year.equals('donation_21year') ">
+	SELECT NVL(SUM(member_point_usepoint),0) as "2021_use_point"
+	FROM POINT
+	WHERE TO_DATE(member_point_usedate, 'yyyy') = '2021';
+	</if>
+	<if test="donation_date_year.equals('donation_20year') ">
+	SELECT NVL(SUM(member_point_usepoint),0) as "2020_use_point"
+	FROM POINT
+	WHERE TO_DATE(member_point_usedate, 'yyyy') = '2020';
+	</if>
+	<if test="donation_date_year.equals('donation_19year') ">
+	SELECT NVL(SUM(member_point_usepoint),0) as "2019_use_point"
+	FROM POINT
+	WHERE TO_DATE(member_point_usedate, 'yyyy') = '2019';
+	</if>
+	<if test="donation_date_year.equals('donation_18year') ">
+	SELECT NVL(SUM(member_point_usepoint),0) as "2018_use_point"
+	FROM POINT
+	WHERE TO_DATE(member_point_usedate, 'yyyy') = '2018';
+	</if>
+	<if test="donation_date_year.equals('donation_17year') ">
+	SELECT NVL(SUM(member_point_usepoint),0) as "2017_use_point"
+	FROM POINT
+	WHERE TO_DATE(member_point_usedate, 'yyyy') = '2017';
+	</if>
+	</when>
+	
+	<when test="donation_state.equals('not')">
+	<if test="donation_date_year.equals('donation_21year') ">
+	SELECT NVL(SUM(member_point_usepoint),0) as "2021_use_point"
+	FROM POINT
+	WHERE TO_DATE(member_point_usedate, 'yyyy') = '2021';
+	</if>
+	<if test="donation_date_year.equals('donation_20year') ">
+	SELECT NVL(SUM(member_point_usepoint),0) as "2020_use_point"
+	FROM POINT
+	WHERE TO_DATE(member_point_usedate, 'yyyy') = '2020';
+	</if>
+	<if test="donation_date_year.equals('donation_19year') ">
+	SELECT NVL(SUM(member_point_usepoint),0) as "2019_use_point"
+	FROM POINT
+	WHERE TO_DATE(member_point_usedate, 'yyyy') = '2019';
+	</if>
+	<if test="donation_date_year.equals('donation_18year') ">
+	SELECT NVL(SUM(member_point_usepoint),0) as "2018_use_point"
+	FROM POINT
+	WHERE TO_DATE(member_point_usedate, 'yyyy') = '2018';
+	</if>
+	<if test="donation_date_year.equals('donation_17year') ">
+	SELECT NVL(SUM(member_point_usepoint),0) as "2017_use_point"
+	FROM POINT
+	WHERE TO_DATE(member_point_usedate, 'yyyy') = '2017';
+	</if>
+	</when>
+	
+	<when test="donation_state.equals('complete')">
+	<if test="donation_date_year.equals('donation_21year') ">
+	SELECT NVL(SUM(member_point_usepoint),0) as "2021_use_point"
+	FROM POINT
+	WHERE TO_DATE(member_point_usedate, 'yyyy') = '2021';
+	</if>
+	<if test="donation_date_year.equals('donation_20year') ">
+	SELECT NVL(SUM(member_point_usepoint),0) as "2020_use_point"
+	FROM POINT
+	WHERE TO_DATE(member_point_usedate, 'yyyy') = '2020';
+	</if>
+	<if test="donation_date_year.equals('donation_19year') ">
+	SELECT NVL(SUM(member_point_usepoint),0) as "2019_use_point"
+	FROM POINT
+	WHERE TO_DATE(member_point_usedate, 'yyyy') = '2019';
+	</if>
+	<if test="donation_date_year.equals('donation_18year') ">
+	SELECT NVL(SUM(member_point_usepoint),0) as "2018_use_point"
+	FROM POINT
+	WHERE TO_DATE(member_point_usedate, 'yyyy') = '2018';
+	</if>
+	<if test="donation_date_year.equals('donation_17year') ">
+	SELECT NVL(SUM(member_point_usepoint),0) as "2017_use_point"
+	FROM POINT
+	WHERE TO_DATE(member_point_usedate, 'yyyy') = '2017';
+	</if>
+	</when>
+	</choose>
+	</select>
+	
+	
+	<!-- 통계 페이지용 통계 -->
+	
+	<!-- 3개월 -->
+	
+	
+	
+	<!-- 1년 -->
+	
+	
 </mapper>

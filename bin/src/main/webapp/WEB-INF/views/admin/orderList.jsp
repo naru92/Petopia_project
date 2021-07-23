@@ -1,6 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <c:set var='root' value="${pageContext.request.contextPath }/" />
 <!DOCTYPE html>
 <html lang="ko">
@@ -17,7 +19,8 @@
 <title>Petopia - Admin</title>
 
 <c:import url="/WEB-INF/views/include/admin_list_css.jsp" />
-
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 
 <body id="page-top">
@@ -25,12 +28,12 @@
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
-		<!-- ÁÂÃø ³×ºñ°ÔÀÌ¼Ç ¹Ù -->
+		<!-- ì¢Œì¸¡ ë„¤ë¹„ê²Œì´ì…˜ ë°” -->
 		<c:import url="/WEB-INF/views/include/admin_left_side_bar.jsp" />
 
 
 
-		<!-- »ó´Ü ¸Ş´º ¹Ù -->
+		<!-- ìƒë‹¨ ë©”ë‰´ ë°” -->
 		<c:import url="/WEB-INF/views/include/admin_top_menu.jsp" />
 
 
@@ -61,12 +64,12 @@
 						<div class="col-xl-12 col-lg-12">
 							<div class="card shadow mb-4">
 								<div class="card-header py-3">
-									<h6 class="m-0 font-weight-bold text-primary">ÁÖ¹®°ü¸®</h6>
+									<h6 class="m-0 font-weight-bold text-primary">ì£¼ë¬¸ê´€ë¦¬</h6>
 								</div>
 
 								<div class="card-body filterBox">
 									<div class="boxtr">
-										<form action="${contextPath }/admin/membmer/listMembers.do"
+										<form action="${contextPath }/admin/order"
 											method="post" id="frm_search">
 											<table>
 
@@ -74,105 +77,104 @@
 
 
 												<tr>
-													<td colspan="2">ÁÖ¹® ±¸ºĞ&nbsp;&nbsp;</td>
+													<td colspan="2">ì£¼ë¬¸ êµ¬ë¶„&nbsp;&nbsp;</td>
 													<td colspan="5" class="pleft"><input type="radio"
-														value="cat" name="member_gender">ÀüÃ¼ <input
-														type="radio" value="all" name="member_gender" checked>ÀÔ±İ
-														´ë±âÁß <input type="radio" value="dog" name="member_gender">ÀÔ±İ¿Ï·á
+														value="all" name="deposit" checked>ì „ì²´ <input
+														type="radio" value="deposit_not" name="deposit" >ì…ê¸ˆ
+														ëŒ€ê¸°ì¤‘ <input type="radio" value="deposit_ok" name="deposit">ì…ê¸ˆì™„ë£Œ
 
 													</td>
 												</tr>
 
 												<tr>
-													<td colspan="2">ÁÖ¹® ºĞ·ù&nbsp;&nbsp;</td>
+													<td colspan="2">ì£¼ë¬¸ ë¶„ë¥˜&nbsp;&nbsp;</td>
 													<td colspan="5" class="pleft"><select
-														id="order_lately_date" name="order_lately_date">
-															<option value="" selected>--ÁÖ¹® ºĞ·ù ¼±ÅÃ--</option>
-															<option value="lately_login_desc">ÃÖ±Ù ÁÖ¹® ¼ø</option>
-															<option value="lately_login_asc">¿À·¡µÈ ÁÖ¹® ¼ø</option>
+														id="select1" name="order_date">
+															<option value="" selected>--ì£¼ë¬¸ ë¶„ë¥˜ ì„ íƒ--</option>
+															<option value="order_date_desc">ìµœê·¼ ì£¼ë¬¸ ìˆœ</option>
+															<option value="order_date_asc">ì˜¤ë˜ëœ ì£¼ë¬¸ ìˆœ</option>
 													</select></td>
 												</tr>
 
 
 
 												<tr>
-													<td colspan="7"><input type="button" value="°Ë»ö"
-														onClick="member_search()" />&nbsp;&nbsp;<input
-														type="reset" value="ÃÊ±âÈ­" /></td>
+													<td colspan="7"><input type="button" value="ê²€ìƒ‰"
+														id="search_option" />&nbsp;&nbsp;<input
+														type="reset" value="ì´ˆê¸°í™”" /></td>
 												</tr>
 											</table>
+								</form>
 									</div>
 								</div>
-								</form>
 
 								<div class="card-body">
 									<div class="table-responsive">
-										<table class="table table-bordered" id="dataTable"
-											width="100%" cellspacing="0">
+										<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+										
 											<thead>
 												<tr>
-
-													<th>ÁÖ¹®¹øÈ£</th>
-													<th>¾ÆÀÌµğ</th>
-													<th>ÁÖ¹®ÀÚ ÀÌ¸§</th>
-													<th>ÁÖ¼Ò</th>
-													<th>ÁÖ¹®·®</th>
-													<th>°áÁ¦±İ¾×</th>
-													<th>ÁÖ¹®ÀÏÀÚ</th>
-													<th>°áÁ¦¹æ¹ı</th>
+													<th>ì£¼ë¬¸ë²ˆí˜¸</th>
+													<th>ì£¼ë¬¸ì ì´ë¦„</th>
+													<th>ì£¼ì†Œ</th>
+													<th>ì£¼ë¬¸ëŸ‰</th>
+													<th>ê²°ì œê¸ˆì•¡</th>
+													<th>ì£¼ë¬¸ì¼ì</th>
+													<th>ê²°ì œë°©ë²•</th>
+													
 												</tr>
 											</thead>
-											<tfoot>
-
-											</tfoot>
-											<tbody>
-												<tr>
-													<td>Tiger Nixon</td>
-													<td>System Architect</td>
-													<td>Edinburgh</td>
-													<td>°æ±â ºÏºÎ ³²ºÎ µ¿ºÎ</td>
-													<td>3°³</td>
-													<td>320,800¿ø</td>
-													<td>2011/04/25</td>
-													<td>Ä«µå</td>
-
-
-												</tr>
-												</tr>
-
-											</tbody>
+											
+								<c:forEach var='o' items="${orderList}">
+							
+										<tbody>
+											<tr>
+											<td>${o.order_idx }</td>
+											<td>${o.order_receiver_name }</td>
+											<td>${o.order_receiver_address }</td>
+											<td>${o.order_quantity }</td>
+											<td>${o.order_price }</td>
+											<td>${o.order_date }</td>
+											<td>
+											<c:if test="${o.payment_method == 1}" >ë¬´í†µì¥ì…ê¸ˆ</c:if>
+											<c:if test="${o.payment_method == 2}" >ì¹´ë“œê²°ì œ</c:if>
+											</td>
+											</tr>
+										</tbody>
+								</c:forEach>
 										</table>
 									</div>
+									
+									
+									<form id='pageActionForm' action="/admin/order" method='get'>
+												<input type='hidden' name='pageNum'
+													value='${pageMaker.cri.pageNum}' /> <input type='hidden'
+													name='amount' value='${pageMaker.cri.amount}' />
+									</form>
+									
+									
+									
 								</div>
-
+								<input type="hidden" id="size" value="${fn:length(list)}" />
 								<div class="row">
 									<div class="col-sm-12 col-md-5 paginationdiv">
 										<div class="d-none d-md-block page-div">
 											<ul class="pagination justify-content-center">
-												<li class="page-item"><a href="#" class="page-link">ÀÌÀü</a>
-												</li>
-												<li class="page-item"><a href="#" class="page-link">1</a>
-												</li>
-												<li class="page-item"><a href="#" class="page-link">2</a>
-												</li>
-												<li class="page-item"><a href="#" class="page-link">3</a>
-												</li>
-												<li class="page-item"><a href="#" class="page-link">4</a>
-												</li>
-												<li class="page-item"><a href="#" class="page-link">5</a>
-												</li>
-												<li class="page-item"><a href="#" class="page-link">6</a>
-												</li>
-												<li class="page-item"><a href="#" class="page-link">7</a>
-												</li>
-												<li class="page-item"><a href="#" class="page-link">8</a>
-												</li>
-												<li class="page-item"><a href="#" class="page-link">9</a>
-												</li>
-												<li class="page-item"><a href="#" class="page-link">10</a>
-												</li>
-												<li class="page-item"><a href="#" class="page-link">´ÙÀ½</a>
-												</li>
+												<li class="page-item"><c:if test="${pageMaker.prev}">
+												<li class="page-item"><a
+													href="${pageMaker.startPage-1}" class="page-link">ì´ì „</a></li>
+											</c:if></li>
+										<c:forEach var="num" begin="${pageMaker.startPage}"
+											end="${pageMaker.endPage }">
+											<li
+												class='page-item numberitem ${pageMaker.cri.pageNum == num ? "active" : "" }'><a
+												href="${num}" class="page-link">${num}</a></li>
+										</c:forEach>
+
+										<c:if test="${pageMaker.next}">
+											<li class="page-item"><a href="${pageMaker.endPage +1}"
+												class="page-link">ë‹¤ìŒ</a></li>
+										</c:if>
 											</ul>
 										</div>
 									</div>
@@ -216,7 +218,7 @@
 					<h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
 					<button class="close" type="button" data-dismiss="modal"
 						aria-label="Close">
-						<span aria-hidden="true">¡¿</span>
+						<span aria-hidden="true">Ã—</span>
 					</button>
 				</div>
 				<div class="modal-body">Select "Logout" below if you are ready
@@ -232,6 +234,105 @@
 
 		<c:import url="/WEB-INF/views/include/admin_list_js.jsp" />
 
+
+	<script type="text/javascript">
+	$(document).ready(
+			function() {
+				
+			
+				
+				// í˜ì´ì§• ë²„íŠ¼ ì´ë²¤íŠ¸
+				var actionForm = $("#pageActionForm");
+
+				$(".numberitem a").on(
+						"click",
+						function(e) {
+
+							e.preventDefault();
+
+							console.log('click');
+
+							actionForm.find("input[name='pageNum']").val(
+									$(this).attr("href"));
+							actionForm.submit();
+						});
+			
+				
+				console.log($('#frm_search').children().children().children('tr')
+						.children().children('#search_option'));
+				
+				//í•„í„°ë°•ìŠ¤ ì´ë²¤íŠ¸
+				$('#frm_search').children().children().children('tr')
+				.children().children('#search_option').on('click', function(event) {
+			
+			    	var order_date = $('#select1').val();
+			    	var deposit = $(":input:radio[name=deposit]:checked").val();
+			    	
+			    	
+					console.log($(":input:radio[name=deposit]:checked").val());
+			    	console.log($('#select1').val());
+			    	
+			    	var options = {
+			    			order_date : order_date,
+			    			deposit : deposit
+			    	}
+					
+			    	$.ajax({
+		    			type: 'post',
+		    			url: '/admin/order',
+		    			cache: false,
+		    			data: JSON.stringify(options),
+		    			contentType: "application/json; charset=utf-8",
+		    			dataType: 'json',
+		    			success: function(list, status) {
+		    				
+		    			  	var htmls = "";
+							
+							$("#dataTable").html("");
+							
+							$("<tr>" , {
+								 // ì»¬ëŸ¼ëª…ë“¤								
+								html : "<td>" + "ì£¼ë¬¸ë²ˆí˜¸" + "</td>"+ 
+										"<td>" + "ì£¼ë¬¸ì ì´ë¦„" + "</td>"+
+										"<td>" + "ì£¼ì†Œ" + "</td>"+
+										"<td>" + "ì£¼ë¬¸ëŸ‰" + "</td>"+				
+										"<td>" + "ê²°ì œê¸ˆì•¡" + "</td>"+
+										"<td>" + "ì£¼ë¬¸ì¼ì" + "</td>"+
+										"<td>" + "ê²°ì œë°©ë²•" + "</td>"
+										
+							}).appendTo("#dataTable") // ì´ê²ƒì„ í…Œì´ë¸”ì—ë¶™ì„
+							
+							if($(list).length < 1){
+								alert("ë“±ë¡ëœ ìƒí’ˆì´ ì—†ìŠµë‹ˆë‹¤.");
+							} else {
+								
+								$(list).each(function(){
+									console.log(this.order_idx);
+				                    htmls += '<tr>';
+				                    htmls += '<td>'+ this.order_idx + '</td>';
+				                    htmls += '<td>'+ this.order_name + '</td>';
+				                    htmls += '<td>'+ this.order_receiver_address + '</td>';
+				                    htmls += '<td>'+ this.order_quantity + '</td>';
+				                    htmls += '<td>'+ this.order_price + '</td>';
+				                    htmls += '<td>'+ this.order_date + '</td>';
+				                    htmls += '<td>'+ this.payment_method+ '</td>';
+				                    htmls += '</tr>';
+				                
+			                	});	//each end
+
+								
+							}
+							
+							$("#dataTable").append(htmls);
+		    			  },
+		    			     error:function(request,status,error){
+		    			         alert("code = "+ request.status + " message = " + request.responseText + " error = " + error); // ì‹¤íŒ¨ ì‹œ ì²˜ë¦¬
+		    			        }
+		    		});
+				});
+				
+			});
+	</script>
 </body>
 
 </html>
