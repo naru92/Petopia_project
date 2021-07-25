@@ -39,6 +39,7 @@ public interface AdminService {
 	public List<DeliveryVO> getUnprocessedOrderList();//미처리 배송
 	public int getRefundCount(); //교환,환불처리
 	public List<DeliveryVO> getDeliveryList();//딜리버리 목록
+	public void updateDeliveryState(DeliveryVO deliveryVO);//배송상태변경
 	
 	/*기부*/
 	public int getDonationCount(Criteria cri);
@@ -89,6 +90,8 @@ public interface AdminService {
 	
 	/*file*/
 	public List<FileUploadVO> findByProduct(int product_idx);
+	
+
 	
 	
 	

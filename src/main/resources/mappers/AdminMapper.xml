@@ -35,7 +35,7 @@
 
 		select
 		product_idx,product_name,product_category_id,
-		product_price, prodcut_stock, product_detail_info, product_image
+		product_price, prodcut_stock, product_detail_info
 		from
 		product
 
@@ -45,8 +45,7 @@
 	<select id="getProductOne"
 		resultType="co.kr.petopia.vo.ProductVO">
 		select
-		product_idx,product_name,product_category_id,
-		product_price, product_stock, product_detail_info, product_image
+		*
 		from
 		product
 		where product_idx = #{product_idx}
@@ -66,10 +65,10 @@
 		
 		INSERT into
     		product(product_idx, product_category_id, product_price, product_name,
-    		product_coloroption, product_stock, product_detail_info, product_image) 
+    		product_coloroption, product_stock, product_detail_info) 
     	VALUES
 		    (#{product_idx}, #{product_category_id}, #{product_price}, #{product_name},#{product_coloroption},
-		    #{product_stock},#{product_detail_info}, #{product_image, jdbcType=VARCHAR})
+		    #{product_stock},#{product_detail_info})
 		
 	</insert>
 
@@ -80,21 +79,20 @@
 		<![CDATA[
 		update product
  		set
- 		
  			product_name = #{product_name},
  			product_price = #{product_price},
- 			product_coloroption = #{product_coloroption}, 
- 			product_stock = #{products_stock}, 
+ 			product_coloroption = #{product_coloroption},
+ 			product_category_id = #{ product_category_id},
+ 			product_stock = #{product_stock}, 
  			product_detail_info = #{product_detail_info}
- 			product_image = #{product_image, jdbcType=VARCHAR}
- 			
- 		where productsNo = #{productsNo}
+			where product_idx = #{product_idx} 			
+ 	
 		]]>
 
 	</update>
 
 	<!-- 상품 삭제 -->
-	<delete id="deleteProducts">
+	<delete id="deleteProduct">
 
 		delete product where product_idx = #{product_idx}
 
@@ -114,6 +112,13 @@
 		from delivery
 		where delivery_state='배송준비중'
 	</select>
+	
+	<!-- 배송상태변경 -->
+	<update id="updateDeliveryState" parameterType="co.kr.petopia.vo.DeliveryVO">
+	UPDATE delivery 
+	SET delivery_state = #{delivery_state}
+	WHERE delivery_idx = #{delivery_idx}
+	</update>
 
 
 	<!-- 금일 매출 -->

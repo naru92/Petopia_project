@@ -247,20 +247,22 @@
 												data-product_detail_info ="${p.product_detail_info }" 
 												data-product_coloroption = "${p.product_coloroption}"
 												data-product_image = "${p.product_image }"
+												data-pageNum ="${pageMaker.cri.pageNum}"
+												data-amount = "${pageMaker.cri.amount}"
 												data-target="#largeModal" value="${p.product_idx }">
 													상세보기</button></td>
+												
 											</tr>
 										</tbody>
-												
-												
+										
 									
 									</c:forEach>
 								</table>
 							</div>
 							<form id='pageActionForm' action="/admin/product" method='get'>
-								<input type='hidden' name='pageNum'
+								<input type='hidden' id='currentPageNum' name='pageNum'
 									value='${pageMaker.cri.pageNum}' /> <input type='hidden'
-									name='amount' value='${pageMaker.cri.amount}' />
+									id='currentAmount' name='amount' value='${pageMaker.cri.amount}' />
 							</form>
 						</div>
 						<input type="hidden" id="size" value="${fn:length(list)}" />
@@ -275,8 +277,8 @@
 										<c:forEach var="num" begin="${pageMaker.startPage}"
 											end="${pageMaker.endPage }">
 											<li
-												class='page-item numberitem ${pageMaker.cri.pageNum == num ? "active" : "" }'><a
-												href="${num}" class="page-link">${num}</a></li>
+												class='page-item numberitem ${pageMaker.cri.pageNum == num ? "active" : "" }' value="${num}"><a
+												href="${num}" class="page-link" >${num}</a></li>
 										</c:forEach>
 
 										<c:if test="${pageMaker.next}">
@@ -343,34 +345,42 @@
 						
 						<h5 id= modal_product_idx></h5>
 						<div class="card-body">
-							<form action="board_modify.html" method="post">
+						
 								<div class="form-group">
 									<label for="board_writer_name">상품명</label> <input type="text"
 										id="modal_product_name" name="product_name"
-										class="form-control"  readonly="readonly" ></input>
+										class="form-control"></input>
 								</div>
 								<div class="form-group">
 									<label for="board_date">상품가격</label> <input type="text"
-										id="modal_product_price" name="board_date" class="form-control"
-										value="123" readonly="readonly" ></input>
+										id="modal_product_price" name="product_price" class="form-control"
+										value="123"></input>
 								</div>
 								<div class="form-group">
 									<label for="product_coloropiton">컬러</label> <input type="text"
-										id="modal_product_coloropiton" name="modal_product_coloropiton" class="form-control"
+										id="modal_product_coloropiton" name="product_coloropiton" class="form-control"
 										value="" />
 								</div>
 									
 								<div class="form-group">
-									<label for="product_detail_info">내용</label>
-									<textarea id="modal_product_detail_info" name="modal_product_detail_info"
+									<label for="product_detail_info">상품상세</label>
+									<textarea id="modal_product_detail_info" name="product_detail_info"
 										class="form-control" rows="10" style="resize: none"></textarea>
 								</div>
 								
 								
 								<div class="form-group uploadDiv">
 								<label for="board_file">첨부 이미지</label><br> <img src="" width="100%" />
-                            		<input type="file" name='uploadFile' id="modal_product_image" multiple>
+                            		<input type="file" name='uploadFile' id="product_image" multiple>
                         		</div>
+                        		
+                        		
+                        			<form id='operForm' action="product/update" method="get">       	
+                             				<input type="hidden" id =idx name='product_idx' value="" />
+                             				<input type="hidden" id = hiddenPageNum name='pageNum' value="" />
+	                             			<input type="hidden" id = hiddenAmount name='amount' value="" />
+	                				</form> 	         		
+												
                         		
 								<!-- 썸네일출력장소 -->
 								<div class="row">
@@ -391,16 +401,16 @@
 										</div>
 									</div>
 								</div>
-		                       
-
-							</form>
+						
+		                	   		
 						</div>
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-danger">삭제</button>
-						<button type="button" class="btn btn-info">수정</button>
-						<button type="button" class="btn btn-primary">완료</button>
+						<button type="button" class="btn btn-primary" data-dismiss="modal">닫기</button>
+						<button data-oper='update' class="btn btn-default" style="margin:10px;">수정</button>
 					</div>
+					
+				
 				</div>
 			</div>
 		</div>
@@ -470,7 +480,8 @@
 						//모달
 							
 							   $('.btn-info').on('click', function(event) { 
-								  
+								   var product_idx = parseInt($(this).data('product_idx'));
+								   
 						            $("#modal_product_idx").text("상품번호 : "+ $(this).data('product_idx'));
 						            $("#modal_product_name").val($(this).data('product_name'));
 						            $("#modal_product_category_id").val($(this).data('product_category_id'));
@@ -478,9 +489,22 @@
 						            $("#modal_product_coloropiton").val($(this).data('product_coloroption'));
 						            $("#modal_product_detail_info").val($(this).data('product_detail_info'));
 						          /*   $("#modal_product_image").val($(this).data('product_image')); */
-						            
-						        	var product_idx = $(this).data('product_idx');
-									console.log(product_idx);
+						          
+						         	
+						          	$('input[name=product_idx]').attr('value', $(this).data('product_idx'));
+						         	$("#hiddenPageNum").val($("#currentPageNum").val());
+						         	$("#hiddenAmount").val($("#currentAmount").val());
+						         	
+						        	// 버튼 동작
+						    		var operForm = $("#operForm");
+						    		
+						    		$("button[data-oper = 'update']").on("click", function(e) {
+						    			
+						    			operForm.attr("action", "/admin/product/update").submit();
+						    			
+						    		}); 
+						    		
+						          
 
 									$.getJSON("/admin/getAttachList", {product_idx: product_idx}, function(arr){
 									
@@ -491,12 +515,12 @@
 									  $(arr).each(function(i, attach){
 										  
 										  //이미지 타입만
-										  if(attach.fileType){
-											  var fileCallPathT = encodeURIComponent(obj.uploadPath + "/s_" + obj.uuid + "_" + obj.fileName);
-						    				  var fileCallPathBT = encodeURIComponent(obj.uploadPath + "/bs_" + obj.uuid + "_" + obj.fileName);
+										  if(attach.filetype){
+											  var fileCallPathT = encodeURIComponent(attach.uploadPath + "/s_" + attach.uuid + "_" + attach.fileName);
+						    				  var fileCallPathBT = encodeURIComponent(attach.uploadPath + "/bs_" + attach.uuid + "_" + attach.fileName);
 						    				  
 						    				  str += "<li data-path='"+attach.uploadPath+"' data-uuid='"+attach.uuid+"' data-filename='"+attach.fileName+"' data-type='"+attach.fileType+"' ><div>";
-						    		           str += "<img src='/display?fileName="+fileCallPath+"'>";
+						    		           str += "<img src='/display?fileName="+fileCallPathT+"'>";
 						    		           str += "</div>";
 						    		           str +"</li>";
 										  }else{
