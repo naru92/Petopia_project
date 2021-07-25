@@ -251,20 +251,22 @@ height: 10px;
 												data-product_detail_info ="${p.product_detail_info }" 
 												data-product_coloroption = "${p.product_coloroption}"
 												data-product_image = "${p.product_image }"
+												data-pageNum ="${pageMaker.cri.pageNum}"
+												data-amount = "${pageMaker.cri.amount}"
 												data-target="#largeModal" value="${p.product_idx }">
 													상세보기</button></td>
+												
 											</tr>
 										</tbody>
-												
-												
+										
 									
 									</c:forEach>
 								</table>
 							</div>
 							<form id='pageActionForm' action="/admin/product" method='get'>
-								<input type='hidden' name='pageNum'
+								<input type='hidden' id='currentPageNum' name='pageNum'
 									value='${pageMaker.cri.pageNum}' /> <input type='hidden'
-									name='amount' value='${pageMaker.cri.amount}' />
+									id='currentAmount' name='amount' value='${pageMaker.cri.amount}' />
 							</form>
 						</div>
 						<input type="hidden" id="size" value="${fn:length(list)}" />
@@ -279,8 +281,8 @@ height: 10px;
 										<c:forEach var="num" begin="${pageMaker.startPage}"
 											end="${pageMaker.endPage }">
 											<li
-												class='page-item numberitem ${pageMaker.cri.pageNum == num ? "active" : "" }'><a
-												href="${num}" class="page-link">${num}</a></li>
+												class='page-item numberitem ${pageMaker.cri.pageNum == num ? "active" : "" }' value="${num}"><a
+												href="${num}" class="page-link" >${num}</a></li>
 										</c:forEach>
 
 										<c:if test="${pageMaker.next}">
@@ -346,26 +348,46 @@ height: 10px;
 					<div class="modal-body">
 						<h5 id= modal_product_idx></h5>
 						<div class="card-body">
+<<<<<<< HEAD
 							<form id="updateForm" action="/admin/product/update" method="post" enctype="multipart/form-data">
 							  <input type="hidden" class="form-control" id='productsNo' name='productsNo' value="">
 								<div class="form-group">
 									<label for="board_writer_name">상품명</label> <input type="text"
 										id="modal_product_name" name="product_name"
 										class="form-control"  ></input>
+=======
+						
+								<div class="form-group">
+									<label for="board_writer_name">상품명</label> <input type="text"
+										id="modal_product_name" name="product_name"
+										class="form-control"></input>
+>>>>>>> a3b815f23186c21aa20ed07fc4ca99cb401253fc
 								</div>
 								<div class="form-group">
 									<label for="board_date">상품가격</label> <input type="text"
 										id="modal_product_price" name="product_price" class="form-control"
+<<<<<<< HEAD
 										value="123"  ></input>
 								</div>
 								<div class="form-group">
 									<label for="product_coloropiton">컬러</label> <input type="text"
 										id="modal_product_coloropiton" name="product_colorOption" class="form-control"
+=======
+										value="123"></input>
+								</div>
+								<div class="form-group">
+									<label for="product_coloropiton">컬러</label> <input type="text"
+										id="modal_product_coloropiton" name="product_coloropiton" class="form-control"
+>>>>>>> a3b815f23186c21aa20ed07fc4ca99cb401253fc
 										value="" />
 								</div>
 									
 								<div class="form-group">
+<<<<<<< HEAD
 									<label for="product_detail_info">내용</label>
+=======
+									<label for="product_detail_info">상품상세</label>
+>>>>>>> a3b815f23186c21aa20ed07fc4ca99cb401253fc
 									<textarea id="modal_product_detail_info" name="product_detail_info"
 										class="form-control" rows="10" style="resize: none"></textarea>
 								</div>
@@ -373,8 +395,20 @@ height: 10px;
 								
 								<div class="form-group uploadDiv">
 								<label for="board_file">첨부 이미지</label><br> <img src="" width="100%" />
+<<<<<<< HEAD
                             		<input type="file" name='uploadFile' id="product_image"  multiple>
+=======
+                            		<input type="file" name='uploadFile' id="product_image" multiple>
+>>>>>>> a3b815f23186c21aa20ed07fc4ca99cb401253fc
                         		</div>
+                        		
+                        		
+                        			<form id='operForm' action="product/update" method="get">       	
+                             				<input type="hidden" id =idx name='product_idx' value="" />
+                             				<input type="hidden" id = hiddenPageNum name='pageNum' value="" />
+	                             			<input type="hidden" id = hiddenAmount name='amount' value="" />
+	                				</form> 	         		
+												
                         		
 								<!-- 썸네일출력장소 -->
 								<div class="row">
@@ -395,16 +429,22 @@ height: 10px;
 										</div>
 									</div>
 								</div>
-		                       
-
-							</form>
+						
+		                	   		
 						</div>
 					</div>
 					<div class="modal-footer">
+<<<<<<< HEAD
 						<button type="button" class="btn btn-danger">삭제</button>
 						<button type="button" id = updateButton class="btn btn-info">수정</button>
 						<button type="button" class="btn btn-primary">완료</button>
+=======
+						<button type="button" class="btn btn-primary" data-dismiss="modal">닫기</button>
+						<button data-oper='update' class="btn btn-default" style="margin:10px;">수정</button>
+>>>>>>> a3b815f23186c21aa20ed07fc4ca99cb401253fc
 					</div>
+					
+				
 				</div>
 			</div>
 		</div>
@@ -474,9 +514,14 @@ height: 10px;
 						//모달
 							
 							   $('.btn-info').on('click', function(event) { 
+<<<<<<< HEAD
 								   $("#productsNo").val( $(this).data('product_idx'));
 									console.log('productsNo : ' + $("#productsNo").val());
 									
+=======
+								   var product_idx = parseInt($(this).data('product_idx'));
+								   
+>>>>>>> a3b815f23186c21aa20ed07fc4ca99cb401253fc
 						            $("#modal_product_idx").text("상품번호 : "+ $(this).data('product_idx'));
 						            $("#modal_product_name").val($(this).data('product_name'));
 						            $("#modal_product_category_id").val($(this).data('product_category_id'));
@@ -484,9 +529,22 @@ height: 10px;
 						            $("#modal_product_coloropiton").val($(this).data('product_coloroption'));
 						            $("#modal_product_detail_info").val($(this).data('product_detail_info'));
 						          /*   $("#modal_product_image").val($(this).data('product_image')); */
-						            
-						        	var product_idx = $(this).data('product_idx');
-									console.log(product_idx);
+						          
+						         	
+						          	$('input[name=product_idx]').attr('value', $(this).data('product_idx'));
+						         	$("#hiddenPageNum").val($("#currentPageNum").val());
+						         	$("#hiddenAmount").val($("#currentAmount").val());
+						         	
+						        	// 버튼 동작
+						    		var operForm = $("#operForm");
+						    		
+						    		$("button[data-oper = 'update']").on("click", function(e) {
+						    			
+						    			operForm.attr("action", "/admin/product/update").submit();
+						    			
+						    		}); 
+						    		
+						          
 
 									$.getJSON("/admin/getAttachList", {product_idx: product_idx}, function(arr){
 									
@@ -500,10 +558,18 @@ height: 10px;
 										  attach.filetype=true;
 										  //이미지 타입만
 										  if(attach.filetype){
+<<<<<<< HEAD
 											  var fileCallPath = encodeURIComponent(attach.uploadPath + "/s_" + attach.uuid + "_" + attach.fileName);
 						    				  
 						    				  str += "<li data-path='"+attach.uploadPath+"' data-uuid='"+attach.uuid+"' data-filename='"+attach.fileName+"' data-type='"+attach.filetype+"' ><div>";
 						    		           str += "<img src='/display?fileName="+fileCallPath+"'>";
+=======
+											  var fileCallPathT = encodeURIComponent(attach.uploadPath + "/s_" + attach.uuid + "_" + attach.fileName);
+						    				  var fileCallPathBT = encodeURIComponent(attach.uploadPath + "/bs_" + attach.uuid + "_" + attach.fileName);
+						    				  
+						    				  str += "<li data-path='"+attach.uploadPath+"' data-uuid='"+attach.uuid+"' data-filename='"+attach.fileName+"' data-type='"+attach.fileType+"' ><div>";
+						    		           str += "<img src='/display?fileName="+fileCallPathT+"'>";
+>>>>>>> a3b815f23186c21aa20ed07fc4ca99cb401253fc
 						    		           str += "</div>";
 						    		           str +"</li>";
 										  }else{

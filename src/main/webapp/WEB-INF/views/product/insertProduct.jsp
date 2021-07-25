@@ -130,8 +130,7 @@ display :inline;
             </div>
 			
             <div class="col-sm-9 padding-right">
-            <hr>
-                <div class="panel panel-primary" style="margin-top:5px; border-radius:5px;">
+                <div class="panel panel-default" style="margin-top:5px; border-radius:5px;">
                     <div class="panel-heading">파일 첨부</div>
 
                     <div class="panel-body">
@@ -169,22 +168,23 @@ display :inline;
 						//file upload
 						function(e) {
 							var formObj = $("#addForm");
-							
-							  $("#addBtn").on("click", function(e) {
 
-						            e.preventDefault();
+					        $("#addBtn").on("click", function(e) {
 
-						            console.log("submit clicked");
+					            e.preventDefault();
 
-						            var str = "";
+					            console.log("submit clicked");
 
-						            $(".uploadResult ul li").each(function(i, obj) {
+					            var str = "";
 
-						                var jobj = $(obj);
+					            $(".uploadResult ul li").each(function(i, obj) {
 
-						                console.dir(jobj);
-						                console.log(jobj.data("filename"));
+					                var jobj = $(obj);
 
+					                console.dir(jobj);
+					                console.log(jobj.data("filename"));
+
+<<<<<<< HEAD
 						                str += "<input type='hidden' name='productVOList[" + i + "].prdouct_image' value ='" + jobj.data('prdouct_image') + "'>";
 						                str += "<input type='hidden' name='productVOList[" + i + "].fileName' value='" + jobj.data('filename') + "'>";
 						                str += "<input type='hidden' name='productVOList[" + i + "].uuid' value='" + jobj.data('uuid') + "'>";
@@ -192,6 +192,13 @@ display :inline;
 						                str += "<input type='hidden' name='productVOList[" + i + "].filetype' value='" + jobj.data('type') + "'>";
 						                str += "<input type='hidden' name='product_image' value='" + jobj.data('filename') + "'>";
 						            });
+=======
+					                str += "<input type='hidden' name='productVOList[" + i + "].fileName' value='" + jobj.data('filename') + "'>";
+					                str += "<input type='hidden' name='productVOList[" + i + "].uuid' value='" + jobj.data('uuid') + "'>";
+					                str += "<input type='hidden' name='productVOList[" + i + "].uploadPath' value='" + jobj.data('path') + "'>";
+					                str += "<input type='hidden' name='productVOList[" + i + "].imageType' value='" + jobj.data('type') + "'>";
+					            });
+>>>>>>> a3b815f23186c21aa20ed07fc4ca99cb401253fc
 						            
 						            console.log(str);
 
@@ -201,6 +208,7 @@ display :inline;
 						        });
 
 
+<<<<<<< HEAD
 							const regex = new RegExp("(.*?)\.(exe\sh\zip\alz)$");//파일 확장자 선언
 							const maxSize = 20485760; //10MB로 제한
 
@@ -218,11 +226,33 @@ display :inline;
 								//이상없을때
 								return true;
 							}
+=======
+					        // 파일 용량, 확장자 체크
+					        var regex = new RegExp("(.*?)\.(exe\sh\zip\alz)$");
+					        var maxSize = 5424880; //5MB
+
+					        function checkExtension(fileName, fileSize) {
+
+					            if (fileSize >= maxSize) {
+					                alert("파일 사이즈 초과");
+
+					                return false;
+					            }
+
+					            if (regex.test(fileName)) {
+					                alert("해당 종류의 파일은 업로드 할 수 없습니다");
+
+					                return false;
+					            }
+
+					            return true;
+					        }
+>>>>>>> a3b815f23186c21aa20ed07fc4ca99cb401253fc
 							//input 태그 타입인 file에 변경이 일어났을때
 							
 
 							// 파일 업로드 결과
-							function showUploadResult(uploadResultArr) {
+        function showUploadResult(uploadResultArr) {
 
             if (!uploadResultArr || uploadResultArr.length == 0) {
                 return;
@@ -269,6 +299,7 @@ display :inline;
             uploadUL.append(str);
         }
 							
+<<<<<<< HEAD
 						$("input[type='file']")
 							.change(
 									function(e) {
@@ -315,6 +346,43 @@ display :inline;
 									});
 
 						});
+=======
+        $("input[type='file']").change(function(e) {
+
+            var formData = new FormData();
+
+            var inputFile = $("input[name='uploadFile']");
+
+            var files = inputFile[0].files;
+
+            console.log(files);
+
+            for (var i = 0; i < files.length; i++) {
+
+                if (!checkExtension(files[i].name, files[i].size)) {
+                    return false;
+                }
+
+                formData.append("uploadFile", files[i]);
+            }
+
+            $.ajax({
+                url: '/uploadAjaxAction',
+                processData: false,
+                contentType: false,
+                data: formData,
+                type: 'POST',
+                dataType: 'json',
+                success: function(result) {
+                    console.log("success" + result);
+                    showUploadResult(result);
+                }
+            });
+
+        });
+
+    });
+>>>>>>> a3b815f23186c21aa20ed07fc4ca99cb401253fc
 	</script>
 
 

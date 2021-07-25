@@ -1,6 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <c:set var='root' value="${pageContext.request.contextPath }/" />
 
 <!DOCTYPE html>
@@ -27,12 +29,12 @@
 	<div id="wrapper">
 
 
-		<!-- ÁÂÃø ³×ºñ°ÔÀÌ¼Ç ¹Ù -->
+		<!-- ì¢Œì¸¡ ë„¤ë¹„ê²Œì´ì…˜ ë°” -->
 		<c:import url="/WEB-INF/views/include/admin_left_side_bar.jsp" />
 
 
 
-		<!-- »ó´Ü ¸Ş´º ¹Ù -->
+		<!-- ìƒë‹¨ ë©”ë‰´ ë°” -->
 		<c:import url="/WEB-INF/views/include/admin_top_menu.jsp" />
 
 		<!-- Begin Page Content -->
@@ -51,7 +53,7 @@
 				<div class="col-xl-12 col-lg-12">
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">
-							<h6 class="m-0 font-weight-bold text-primary">¹®ÀÇ³»¿ª °ü¸®</h6>
+							<h6 class="m-0 font-weight-bold text-primary">ë¬¸ì˜ë‚´ì—­ ê´€ë¦¬</h6>
 						</div>
 
 						<div class="card-body filterBox">
@@ -64,93 +66,102 @@
 
 
 										<tr>
-											<td colspan="2">Ã³¸® »óÅÂ&nbsp;&nbsp;</td>
+											<td colspan="2">ì²˜ë¦¬ ìƒíƒœ&nbsp;&nbsp;</td>
 											<td colspan="5" class="pleft"><input type="radio"
-												value="cat" name="member_gender">ÀüÃ¼ <input
-												type="radio" value="cat" name="member_gender">¹ÌÃ³¸® <input
-												type="radio" value="all" name="member_gender" checked>Ã³¸®¿Ï·á
+												value="" name="qna_state" checked>ì „ì²´ <input
+												type="radio" value="not" name="qna_state">ë¯¸ì²˜ë¦¬ <input
+												type="radio" value="complete" name="qna_state" >ì²˜ë¦¬ì™„ë£Œ
 
 
 											</td>
 										</tr>
 
 										<tr>
-											<td colspan="2">¹®ÀÇ ºĞ·ù&nbsp;&nbsp;</td>
+											<td colspan="2">ë¬¸ì˜ ë¶„ë¥˜&nbsp;&nbsp;</td>
 											<td colspan="5" class="pleft"><select
-												id="order_lately_date" name="order_lately_date">
-													<option value="" selected>--¹®ÀÇ³»¿ª ºĞ·ù ¼±ÅÃ--</option>
-													<option value="lately_login_desc">ÃÖ±Ù ¹®ÀÇ ¼ø</option>
-													<option value="lately_login_asc">¿À·¡µÈ ¹®ÀÇ ¼ø</option>
+												id="qna" name="qna_lately_date">
+													<option value="" selected>--ë¬¸ì˜ë‚´ì—­ ë¶„ë¥˜ ì„ íƒ--</option>
+													<option value="qna_lately__asc">ìµœê·¼ ë¬¸ì˜ ìˆœ</option>
+													<option value="qna_lately__desc">ì˜¤ë˜ëœ ë¬¸ì˜ ìˆœ</option>
 											</select></td>
 										</tr>
 
 
 
 										<tr>
-											<td colspan="7"><input type="button" value="°Ë»ö"
-												onClick="member_search()" />&nbsp;&nbsp;<input type="reset"
-												value="ÃÊ±âÈ­" /></td>
+											<td colspan="7"><input type="button" value="ê²€ìƒ‰"
+												id="search_option" />&nbsp;&nbsp;<input type="reset"
+												value="ì´ˆê¸°í™”" /></td>
 										</tr>
 									</table>
+								</form>
 							</div>
 						</div>
-						</form>
-
+											
 						<div class="card-body">
 							<div class="table-responsive">
-								<table class="table table-bordered" id="dataTable" width="100%"
-									cellspacing="0">
-									<thead>
-										<tr>
+									<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+										
+											<thead>
+												<tr>
+													<th>ë¬¸ì˜ë²ˆí˜¸</th>
+													<th>ì•„ì´ë””</th>
+													<th>ë‚´ìš©</th>
+													<th>ì²˜ë¦¬ìƒíƒœ</th>
+												</tr>
+											</thead>
+											
+								<c:forEach var='q' items="${QnAList}">
+										<tbody>
+											<tr>
+											<td>${q.content_idx }</td>
+											<td>${q.member_id}</td>
+											<td>${q.content_text}</td>
+											<td>
+											<select id="qna_state" name="qna_state">
+													<option value="qna_not">ë¯¸ì²˜ë¦¬</option>
+													<option value="qna_complete">ì²˜ë¦¬ì™„ë£Œ</option>
+											</select>
+											</td>
+											</tr>
+										</tbody>
+								</c:forEach>
+							</table>
+					  	 </div>
+					  <form id='pageActionForm' action="/admin/order" method='get'>
+												<input type='hidden' name='pageNum'
+													value='${pageMaker.cri.pageNum}' /> <input type='hidden'
+													name='amount' value='${pageMaker.cri.amount}' />
+					 </form>
+				</div>
+						<input type="hidden" id="size" value="${fn:length(list)}" />
+						<div class="row">
+									<div class="col-sm-12 col-md-5 paginationdiv">
+										<div class="d-none d-md-block page-div">
+											<ul class="pagination justify-content-center">
+												<li class="page-item"><c:if test="${pageMaker.prev}">
+												<li class="page-item"><a
+													href="${pageMaker.startPage-1}" class="page-link">ì´ì „</a></li>
+											</c:if></li>
+										<c:forEach var="num" begin="${pageMaker.startPage}"
+											end="${pageMaker.endPage }">
+											<li
+												class='page-item numberitem ${pageMaker.cri.pageNum == num ? "active" : "" }'><a
+												href="${num}" class="page-link">${num}</a></li>
+										</c:forEach>
 
-											<th>¹®ÀÇ¹øÈ£</th>
-											<th>¾ÆÀÌµğ</th>
-											<th>³»¿ë</th>
-											<th>Ã³¸®»óÅÂ</th>
-
-										</tr>
-									</thead>
-									<tfoot>
-
-									</tfoot>
-									<tbody>
-										<tr>
-											<td>1</td>
-											<td>ab1233</td>
-											<td>»óÇ°ÀÌ º°·Î¿¡¿ä</td>
-											<td><select id="qna_state" name="qna_state">
-
-													<option value="qna_not">¹ÌÃ³¸®</option>
-													<option value="qna_complete">Ã³¸®¿Ï·á</option>
-											</select></td>
-
-
-										</tr>
-										</tr>
-
-									</tbody>
-								</table>
+										<c:if test="${pageMaker.next}">
+											<li class="page-item"><a href="${pageMaker.endPage +1}"
+												class="page-link">ë‹¤ìŒ</a></li>
+										</c:if>
+											</ul>
+										</div>
+									</div>
+								</div>
 							</div>
 						</div>
-
-						<ul class="pagination justify-content-center">
-							<li class="page-item"><a href="#" class="page-link">ÀÌÀü</a></li>
-							<li class="page-item"><a href="#" class="page-link">1</a></li>
-							<li class="page-item"><a href="#" class="page-link">2</a></li>
-							<li class="page-item"><a href="#" class="page-link">3</a></li>
-							<li class="page-item"><a href="#" class="page-link">4</a></li>
-							<li class="page-item"><a href="#" class="page-link">5</a></li>
-							<li class="page-item"><a href="#" class="page-link">6</a></li>
-							<li class="page-item"><a href="#" class="page-link">7</a></li>
-							<li class="page-item"><a href="#" class="page-link">8</a></li>
-							<li class="page-item"><a href="#" class="page-link">9</a></li>
-							<li class="page-item"><a href="#" class="page-link">10</a></li>
-							<li class="page-item"><a href="#" class="page-link">´ÙÀ½</a></li>
-						</ul>
 					</div>
 				</div>
-			</div>
-		</div>
 		<!-- /.container-fluid -->
 
 	</div>
@@ -186,7 +197,7 @@
 					<h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
 					<button class="close" type="button" data-dismiss="modal"
 						aria-label="Close">
-						<span aria-hidden="true">¡¿</span>
+						<span aria-hidden="true">Ã—</span>
 					</button>
 				</div>
 				<div class="modal-body">Select "Logout" below if you are ready
@@ -201,7 +212,104 @@
 	</div>
 
 		<c:import url="/WEB-INF/views/include/admin_list_js.jsp" />
+	<script type="text/javascript">
+	$(document).ready(
+			function() {
+				
+			
+				
+				// í˜ì´ì§• ë²„íŠ¼ ì´ë²¤íŠ¸
+				var actionForm = $("#pageActionForm");
 
+				$(".numberitem a").on(
+						"click",
+						function(e) {
+
+							e.preventDefault();
+
+							console.log('click');
+
+							actionForm.find("input[name='pageNum']").val(
+									$(this).attr("href"));
+							actionForm.submit();
+						});
+			
+				
+				console.log($('#frm_search').children().children().children('tr')
+						.children().children('#search_option'));
+				
+				//í•„í„°ë°•ìŠ¤ ì´ë²¤íŠ¸
+				$('#frm_search').children().children().children('tr')
+				.children().children('#search_option').on('click', function(event) {
+			
+			    	var qna_state = $(":input:radio[name=qna_state]:checked").val();
+			    	var qna_lately_date = $('#qna_lately_date').val();
+			    	
+			    	
+					console.log($(":input:radio[name=qna_state]:checked").val());
+			    	console.log($('#qna_lately_date').val());
+			    	
+			    	var options = {
+			    			qna_lately_date : qna_lately_date,
+			    			qna_state: qna_state
+			    	}
+					
+			    	$.ajax({
+		    			type: 'post',
+		    			url: '/admin/QnA',
+		    			cache: false,
+		    			data: JSON.stringify(options),
+		    			contentType: "application/json; charset=utf-8",
+		    			dataType: 'json',
+		    			success: function(list, status) {
+		    				
+		    			  	var htmls = "";
+							
+							$("#dataTable").html("");
+							
+							$("<tr>" , {
+								
+								
+								// ì»¬ëŸ¼ëª…ë“¤								
+								html : "<th>" + "ë¬¸ì˜ë²ˆí˜¸" + "</th>"+
+									   "<th>" + "ì•„ì´ë””" + "</th>"+
+									   "<th>" + "ë‚´ìš©" + "</th>"+
+									   "<th>" + "ì²˜ë¦¬ìƒíƒœ" + "</th>"
+										
+							}).appendTo("#dataTable") // ì´ê²ƒì„ í…Œì´ë¸”ì—ë¶™ì„
+							
+							if($(list).length < 1){
+								alert("ë“±ë¡ëœ ìƒí’ˆì´ ì—†ìŠµë‹ˆë‹¤.");
+							} else {
+								
+								
+								$(list).each(function(){
+									console.log(this.order_idx);
+				                    htmls += '<tr>';
+				                    htmls += '<td>'+ this.content_idx + '</td>';
+				                    htmls += '<td>'+ this.member_id + '</td>';
+				                    htmls += '<td>'+ this.content_text + '</td>';
+				                    htmls += '<select id="qna_state" name="qna_state">';
+									htmls += '<option value="qna_not">'+ ë¯¸ì²˜ë¦¬ +'</option>';
+									htmls += '<option value="qna_complete">'+ì²˜ë¦¬ì™„ë£Œ+'</option>';
+									htmls += '</select>';
+				                    htmls += '</tr>';
+				                
+			                	});	//each end
+
+								
+							}
+							
+							$("#dataTable").append(htmls);
+		    			  },
+		    			     error:function(request,status,error){
+		    			         alert("code = "+ request.status + " message = " + request.responseText + " error = " + error); // ì‹¤íŒ¨ ì‹œ ì²˜ë¦¬
+		    			        }
+		    		});
+				});
+				
+			});
+	</script>
 </body>
 
 </html>

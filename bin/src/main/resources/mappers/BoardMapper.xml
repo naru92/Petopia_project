@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="co.kr.petopia.mapper.BoardMapper">
+
+	<!-- 해당 게시판에 게시글 불러오는 쿼리문 / idx 내림차순 (최신게 위로) -->
+	<select id="getContentList" resultType="co.kr.petopia.vo.BoardVO">
+		select * from content where
+		board_id = #{board_id} order by content_idx DESC
+	</select>
+
+	<insert id="contentInsert">
+		insert into content(content_idx, board_id, member_id,
+		CONTENT_DATE,CONTENT_TITLE,CONTENT_TEXT,CONTENT_HIT)
+		values
+		(CONTENT_SEQ.nextval, #{board_id}, #{member_id}, SYSDATE,
+		#{content_title}, #{content_text}, 0)
+	</insert>
+
+	<select id="contentRead" resultType="co.kr.petopia.vo.BoardVO">
+		select * from content where content_idx = #{content_idx}
+	</select>
+
+	<delete id="contentDelete">
+		delete from content where content_idx = #{content_idx}
+	</delete>
+
+	<update id="contentUpdate">
+		update content
+		set content_title = #{content_title},
+		content_text = #{content_text},
+		content_update = sysdate
+		where content_idx = #{content_idx}
+	</update>
+
+	
+
+</mapper>

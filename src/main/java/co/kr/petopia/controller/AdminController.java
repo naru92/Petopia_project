@@ -23,9 +23,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -43,6 +45,7 @@ import co.kr.petopia.vo.FileUploadVO;
 import co.kr.petopia.vo.MemberVO;
 import co.kr.petopia.vo.OrderVO;
 import co.kr.petopia.vo.ProductVO;
+import lombok.extern.java.Log;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -406,7 +409,7 @@ public class AdminController {
 	
 	//모달 상품보기
 	@GetMapping("/getModal")
-	public void get( @RequestParam("p.product_idx") int product_idx, 
+	public void get( @RequestParam("product_idx") int product_idx, 
 			@ModelAttribute("cri") Criteria cri, Model model) {
 		
 		log.info("product_idx : " + product_idx);
@@ -441,19 +444,23 @@ public class AdminController {
 		//상품 메인으로 리다이렉트 
 		return "redirect:/admin/product";
 	}
-	@GetMapping("/update")
-	public void update(@RequestParam("productsNo") int product_idx, 
+	
+	
+	@GetMapping("/product/update")
+	public void update(@RequestParam("product_idx") int product_idx, 
 			@ModelAttribute("cri") Criteria cri, Model model) {
 		
 		
 		log.info("/update");
 		
 		model.addAttribute("productVO", adminService.getProductOne(product_idx));
+		
+		
 	}
 	
-	//업데이트
-	@PostMapping("product/update")
-	public String updateProduct(ProductVO productVO, 
+	//상품수정
+	@PostMapping("/product/update")
+	public String update(ProductVO productVO, 
 			@ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
 		
 		log.info("updateProducts : " + productVO);
@@ -462,18 +469,19 @@ public class AdminController {
 			rttr.addFlashAttribute("result", "success");
 		}
 		
-		rttr.addAttribute("productsNo", productVO.getProduct_idx());
+		
+		rttr.addAttribute("product_idx", productVO.getProduct_idx());
 		rttr.addAttribute("pageNum", cri.getPageNum());
 		rttr.addAttribute("amount", cri.getAmount());
 		
 		log.info("가져온 상품 정보 : " + productVO.getProduct_idx() + cri.getPageNum() + cri.getAmount());
 		
-		return "redirect:/products/get";// 수정하면 해당 번호 게시글로 빠짐
+		return "redirect:/admin/product";// 수정하면 해당 번호 상품정보로 간다
 	}
 	
 	
 	//상품삭제
-	@PostMapping("product/delete")
+	@PostMapping("/product/delete")
 	public String delete(@RequestParam("product_idx") int product_idx,
 			@ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
 		
@@ -499,5 +507,35 @@ public class AdminController {
 		log.info("productVOList " + product_idx);
 		
 		return new ResponseEntity<>(adminService.findByProduct(product_idx), HttpStatus.OK);
+	}
+	
+	//딜리버리 갱신
+
+	@ResponseBody
+	@PostMapping(value = "/delivery/update")
+	public ResponseEntity<String> updateDelivery(@RequestBody Map<String, Object> options){
+		log.info("updateDelivery ()....");
+		DeliveryVO deliveryVO = new DeliveryVO();
+		
+		
+		int delivery_idx =(int)options.get("delivery_idx");
+		String delivery_state = (String)options.get("delivery_state");
+		
+		log.info("delivery_state " + delivery_state);
+		log.info("delivery_idx " + delivery_idx);
+		
+		deliveryVO.setDelivery_idx(delivery_idx);
+		deliveryVO.setDelivery_state(delivery_state);
+		
+		try {
+			adminService.updateDeliveryState(deliveryVO);	
+		} catch (Exception e) {
+			log.info("error");
+			return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		
+		log.info("return");
+		return new ResponseEntity<>("success", HttpStatus.OK);
+		
 	}
 }

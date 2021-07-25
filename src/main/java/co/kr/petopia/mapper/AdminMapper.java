@@ -102,6 +102,8 @@ public interface AdminMapper{
 	public int getStatisticsOrderCount();
 	//메인페이지 총회원수
 	public int getTotalMemberCount();
+	//딜리버리 상태변경
+	public void updateDeliveryState(DeliveryVO deliveryVO);
 	
 	
 }

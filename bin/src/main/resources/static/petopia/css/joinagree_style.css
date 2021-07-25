@@ -172,20 +172,20 @@ h5 {
   margin-bottom: 7px;
 }
 
-.bnt-next {
+/*.bnt-next {
   font-size: 0.7rem;
   text-transform: uppercase;
   padding: 12px 30px;
   border: 1px solid none;
   background: white;
   transition: 0.3s;
-}
+}*/
 
-.bnt-next:hover {
+/*.bnt-next:hover {
   background:#222;
   color: white;
   cursor: pointer;
-}
+}*/
 
 .solid {
   font-size: 4rem;
@@ -227,7 +227,7 @@ font-weight:550;
 
 .one >:nth-child(2){
     width:400px;
-    margin: 2rem 0 0;
+    margin: 35px 0 0;
     text-align:left;
     border: 1px solid #bbb;
     border-radius: 10px;
@@ -239,7 +239,7 @@ font-weight:550;
 .allcheck {
     text-align:left;
     margin: 0 50px;
-    padding: 40px 0;
+    padding: 30px 0 35px 0;
 }
 
 .allcheck input {
@@ -268,7 +268,7 @@ margin: 0 60px;
 cursor:pointer;
 }
 
-.one>:last-child  button {
+.one .bnt-main {
 width:170px;
 padding: 1rem 1rem;
 font-size:0.9rem;
@@ -280,7 +280,34 @@ border: none;
 border-radius: 10px;
 }
 
-.one>:last-child  button:hover {
+.one .bnt-main:hover {
+background: #2AC1BC;
+}
+
+.one .bnt-next {
+width:170px;
+padding: 1rem 1rem;
+font-size:0.9rem;
+transition: 0.5s;
+margin-top:40px;
+border: none;
+border-radius: 10px;
+background-color: #c8c8c8;
+}
+
+.bnt-next:not(:disabled){
+width:170px;
+padding: 1rem 1rem;
+font-size:0.9rem;
+background: #555555;
+color: #fff;
+transition: 0.5s;
+margin-top:40px;
+border: none;
+border-radius: 10px;
+}
+
+.bnt-next:not(:disabled):hover {
 background: #2AC1BC;
 }
 

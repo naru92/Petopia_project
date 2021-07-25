@@ -1,10 +1,34 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <c:set var='root' value="${pageContext.request.contextPath }/" />
 <!DOCTYPE html>
 <html lang="ko">
+<style>
+@font-face {
+  font-family: 'NEXON Lv1 Gothic OTF';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv1 Gothic OTF.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
 
+body {
+  font-family: 'NEXON Lv1 Gothic OTF';
+}
+
+#container {
+    min-width: 310px;
+    max-width: 800px;
+    height: 400px;
+    margin: 0 auto
+}
+#goToOrder{
+font-size: 13px;
+}
+
+</style>
 <head>
 
 <meta charset="utf-8">
@@ -23,6 +47,11 @@
 <link
 	href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
 	rel="stylesheet">
+	<script src="https://code.highcharts.com/highcharts.js"></script>
+	<script src=" https://code.highcharts.com/modules/exporting.js"></script>
+	 <script
+		src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.4.1/chart.min.js"></script>
+
 
 <!-- Custom styles for this template-->
 <link href="/petopia/css/sb-admin-2.min.css" rel="stylesheet">
@@ -35,12 +64,12 @@
 	<div id="wrapper">
 		
 		
-		<!-- ÁÂÃø ³×ºñ°ÔÀÌ¼Ç ¹Ù -->
+		<!-- ì¢Œì¸¡ ë„¤ë¹„ê²Œì´ì…˜ ë°” -->
 		<c:import url="/WEB-INF/views/include/admin_left_side_bar.jsp" />
 
 
 
-		<!-- »ó´Ü ¸Ş´º ¹Ù -->
+		<!-- ìƒë‹¨ ë©”ë‰´ ë°” -->
 		<c:import url="/WEB-INF/views/include/admin_top_menu.jsp" />
 
 		<!-- Begin Page Content -->
@@ -49,7 +78,7 @@
 			<!-- Page Heading -->
 			<div
 				class="d-sm-flex align-items-center justify-content-between mb-4">
-				<h1 class="h3 mb-0 text-gray-800">¸ÅÃâÇöÈ²</h1>
+				<h1 class="h3 mb-0 text-gray-800">ë§¤ì¶œí˜„í™©&nbsp;&&nbsp;íšŒì›ìˆ˜</h1>
 
 			</div>
 
@@ -64,11 +93,11 @@
 								<div class="col mr-2">
 									<div
 										class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-										±İÀÏ ¸ÅÃâ</div>
-									<div class="h5 mb-0 font-weight-bold text-gray-800">${getTodayIncome}</div>
+										ê¸ˆì¼ ë§¤ì¶œ</div>
+									<div class="h5 mb-0 font-weight-bold text-gray-800">${getTodayIncome} ì›</div>
 								</div>
 								<div class="col-auto">
-									<i class="fas fa-calendar fa-2x text-gray-300"></i>
+									<i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
 								</div>
 							</div>
 						</div>
@@ -83,11 +112,11 @@
 								<div class="col mr-2">
 									<div
 										class="text-xs font-weight-bold text-success text-uppercase mb-1">
-										±İÀÏ ±âºÎ±İ</div>
-									<div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
+										ê¸ˆì¼ ê¸°ë¶€ê¸ˆ</div>
+									<div class="h5 mb-0 font-weight-bold text-gray-800">${getTodayDonation} ì›</div>
 								</div>
 								<div class="col-auto">
-									<i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+									<i class="fas fa-hand-holding-usd fa-2x text-gray-300"></i>
 								</div>
 							</div>
 						</div>
@@ -104,11 +133,11 @@
 								<div class="col mr-2">
 									<div
 										class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-										½Å±Ô È¸¿ø °¡ÀÔ¼ö (¸í)</div>
-									<div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+										 ì´ ê°€ì…ì ìˆ˜</div>
+									<div class="h5 mb-0 font-weight-bold text-gray-800">${statisticsTotalMemberConut} ëª…</div>
 								</div>
 								<div class="col-auto">
-									<i class="fas fa-comments fa-2x text-gray-300"></i>
+									<i class="fas fa-male fa-2x text-gray-300"></i>
 								</div>
 							</div>
 						</div>
@@ -118,20 +147,37 @@
 
 			<div
 				class="d-sm-flex align-items-center justify-content-between mb-4">
-				<h1 class="h3 mb-0 text-gray-800">ÁÖ¹®ÇöÈ²</h1>
+				<h1 class="h3 mb-0 text-gray-800">ì£¼ë¬¸í˜„í™©</h1>
 
 			</div>
 			<!--row start-->
 			<div class="row">
-				<div class="col-xl-3 col-md-6 mb-4">
+				<div class="col-xl-4 col-md-6 mb-4">
 					<div class="card border-left-primary shadow h-100 py-2">
 						<div class="card-body">
 							<div class="row no-gutters align-items-center">
 								<div class="col mr-2">
 									<div
 										class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-										ÇöÀç ÁÖ¹® (°Ç)</div>
-									<div class="h5 mb-0 font-weight-bold text-gray-800">0</div>
+										ìµœê·¼ ì£¼ë¬¸ ìˆ˜</div>
+									<div class="h5 mb-0 font-weight-bold text-gray-800">${currentOrderCount} ê±´</div>
+								</div>
+									<div class="col-auto">
+									<i class="fas fa-calendar fa-2x text-gray-300"></i>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-xl-4 col-md-6 mb-4">
+					<div class="card border-left-primary shadow h-100 py-2">
+						<div class="card-body">
+							<div class="row no-gutters align-items-center">
+								<div class="col mr-2">
+									<div
+										class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+										êµí™˜/í™˜ë¶ˆ ì‹ ì²­</div>
+									<div class="h5 mb-0 font-weight-bold text-gray-800">${refundCount} ê±´</div>
 								</div>
 								<div class="col-auto">
 									<i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -140,51 +186,18 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-xl-3 col-md-6 mb-4">
+			
+				<div class="col-xl-4 col-md-6 mb-4">
 					<div class="card border-left-primary shadow h-100 py-2">
 						<div class="card-body">
 							<div class="row no-gutters align-items-center">
 								<div class="col mr-2">
 									<div
 										class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-										±³È¯ ½ÅÃ» (°Ç)</div>
-									<div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+										ì´ ì£¼ë¬¸ëŸ‰ (ê±´)</div>
+									<div class="h5 mb-0 font-weight-bold text-gray-800">${statisticsOrderConut}</div>
 								</div>
-								<div class="col-auto">
-									<i class="fas fa-calendar fa-2x text-gray-300"></i>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-xl-3 col-md-6 mb-4">
-					<div class="card border-left-primary shadow h-100 py-2">
-						<div class="card-body">
-							<div class="row no-gutters align-items-center">
-								<div class="col mr-2">
-									<div
-										class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-										È¯ºÒ ½ÅÃ» (°Ç)</div>
-									<div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
-								</div>
-								<div class="col-auto">
-									<i class="fas fa-calendar fa-2x text-gray-300"></i>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-xl-3 col-md-6 mb-4">
-					<div class="card border-left-primary shadow h-100 py-2">
-						<div class="card-body">
-							<div class="row no-gutters align-items-center">
-								<div class="col mr-2">
-									<div
-										class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-										ÃÑ ÁÖ¹®·® (°Ç)</div>
-									<div class="h5 mb-0 font-weight-bold text-gray-800">${getTotalOrderList}</div>
-								</div>
-								<div class="col-auto">
+									<div class="col-auto">
 									<i class="fas fa-calendar fa-2x text-gray-300"></i>
 								</div>
 							</div>
@@ -208,7 +221,7 @@
 						<!-- Card Header - Dropdown -->
 						<div
 							class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-							<h6 class="m-0 font-weight-bold text-primary">È¸¿ø¼ö</h6>
+							<h6 class="m-0 font-weight-bold text-primary">íšŒì›ìˆ˜</h6>
 							<div class="dropdown no-arrow">
 								<a class="dropdown-toggle" href="#" role="button"
 									id="dropdownMenuLink" data-toggle="dropdown"
@@ -228,9 +241,9 @@
 						</div>
 						<!-- Card Body -->
 						<div class="card-body">
-							<div class="chart-area">
-								<canvas id="myAreaChart"></canvas>
-							</div>
+							
+								<div id="container"></div>
+						
 						</div>
 					</div>
 				</div>
@@ -240,9 +253,9 @@
 					<div class="card shadow mb-4">
 						<!-- Card Header - Dropdown -->
 						<div
-							class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-							<h6 class="m-0 font-weight-bold text-primary">Revenue
-								Sources</h6>
+							class="card-header py-3 d-flex flex-row align-items-center justify-content-between" >
+							<h6 class="m-0 font-weight-bold text-primary">Mypet ë¹„ìœ¨
+								</h6>
 							<div class="dropdown no-arrow">
 								<a class="dropdown-toggle" href="#" role="button"
 									id="dropdownMenuLink" data-toggle="dropdown"
@@ -261,20 +274,11 @@
 							</div>
 						</div>
 						<!-- Card Body -->
-						<div class="card-body">
-							<div class="chart-pie pt-4 pb-2">
-								<canvas id="myPieChart"></canvas>
-							</div>
-							<div class="mt-4 text-center small">
-								<span class="mr-2"> <i class="fas fa-circle text-primary"></i>
-									Direct
-								</span> <span class="mr-2"> <i
-									class="fas fa-circle text-success"></i> Social
-								</span> <span class="mr-2"> <i class="fas fa-circle text-info"></i>
-									Referral
-								</span>
-							</div>
-						</div>
+						
+								
+							<canvas id="pieChart" height="440px"></canvas>
+							
+						
 					</div>
 				</div>
 
@@ -290,45 +294,34 @@
 				<!-- Content Column -->
 				<div class="col-xl-12 col-lg-12">
 					<div class="card shadow mb-4">
-						<div class="card-header py-3">
-							<h6 class="m-0 font-weight-bold text-primary">¹ÌÃ³¸® ÁÖ¹®</h6>
+						<div class="card-header py-3 justify-content-around">
+							<h6 class="m-0 font-weight-bold text-primary">ë¯¸ì²˜ë¦¬ ì£¼ë¬¸</h6>
+							
 						</div>
 						<div class="card-body">
+						<a id="goToOrder" href="/admin/order">ê´€ë¦¬í˜ì´ì§€ë¡œ ì´ë™</a>
 							<div class="table-responsive">
 								<table class="table table-bordered" id="dataTable" width="100%"
 									cellspacing="0">
-									<thead>
-										<tr>
-											<th>Name</th>
-											<th>Position</th>
-											<th>Office</th>
-											<th>Age</th>
-											<th>Start date</th>
-											<th>Salary</th>
-										</tr>
-									</thead>
-									<tfoot>
-										<tr>
-											<th>Name</th>
-											<th>Position</th>
-											<th>Office</th>
-											<th>Age</th>
-											<th>Start date</th>
-											<th>Salary</th>
-										</tr>
-									</tfoot>
+									
+									<c:if test="${fn:length(getUnprocessedOrderList) == 0}">
 									<tbody>
-										<tr>
-											<td>Tiger Nixon</td>
-											<td>System Architect</td>
-											<td>Edinburgh</td>
-											<td>61</td>
-											<td>2011/04/25</td>
-											<td>$320,800</td>
-										</tr>
-										</tr>
-
-									</tbody>
+											<h4 align="center">ë°ì´í„°ê°€ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.</h4>
+									</tbody>		
+									</c:if>
+								<c:if test="${fn:length(getUnprocessedOrderList) > 0}">	
+										<c:forEach var='guol' items="${getUnprocessedOrderList}">
+								
+										<tbody>
+										
+											<td>${guol.delivery.idx }</td>
+											<td>${guol.order_idx }</td>
+											<td>${guol.delivery_sate }</td>
+										
+										
+										</tbody>
+								</c:forEach>
+								</c:if>
 								</table>
 							</div>
 						</div>
@@ -368,22 +361,93 @@
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+					<h5 class="modal-title" id="exampleModalLabel">ë¡œê·¸ì•„ì›ƒ</h5>
 					<button class="close" type="button" data-dismiss="modal"
 						aria-label="Close">
-						<span aria-hidden="true">¡¿</span>
+						<span aria-hidden="true">Ã—</span>
 					</button>
 				</div>
-				<div class="modal-body">Select "Logout" below if you are ready
-					to end your current session.</div>
+				<div class="modal-body">"ë¡œê·¸ì•„ì›ƒ"ì‹œ Petopia ë©”ì¸ìœ¼ë¡œ ëŒì•„ê°‘ë‹ˆë‹¤.</div>
 				<div class="modal-footer">
 					<button class="btn btn-secondary" type="button"
-						data-dismiss="modal">Cancel</button>
-					<a class="btn btn-primary" href="login.html">Logout</a>
+						data-dismiss="modal">ì·¨ì†Œ</button>
+					<a class="btn btn-primary" href="${root }main">ë¡œê·¸ì•„ì›ƒ</a>
 				</div>
 			</div>
 		</div>
 	</div>
+
+<script type="text/javascript">
+
+
+	
+	console.log('chart.start')
+Highcharts.chart('container', {
+
+    title: {
+        text: 'íšŒì›ìˆ˜ ê·¸ë˜í”„'
+    },
+
+    subtitle: {
+        text: '5ì¼ì „~ì˜¤ëŠ˜'
+    },
+
+    yAxis: {
+        title: {
+            text: 'íšŒì›ìˆ˜'
+        }
+    },
+    xAxis: {
+ 	categories:
+ 		[['${mainStatistics_join_day.get(0).toString()}'],
+ 	   ['${mainStatistics_join_day.get(1).toString()}'],
+	   ['${mainStatistics_join_day.get(2).toString()}'],
+	   ['${mainStatistics_join_day.get(3).toString()}'],
+	   ['${mainStatistics_join_day.get(4).toString()}']
+	   ]
+    },
+    legend: {
+        layout: 'vertical',
+        align: 'right',
+        verticalAlign: 'middle'
+    },
+  
+
+    series: [{
+        name: 'íšŒì›ìˆ˜',
+        data: [[${getStatisticsMemberCount.get(0).getStatistics_join_count()}],
+        	   [${getStatisticsMemberCount.get(1).getStatistics_join_count()}],
+        	   [${getStatisticsMemberCount.get(2).getStatistics_join_count()}],
+        	   [${getStatisticsMemberCount.get(3).getStatistics_join_count()}],
+        	   [${getStatisticsMemberCount.get(4).getStatistics_join_count()}]
+        	   ]
+        
+       
+    		
+    }]
+});
+
+	var context2 = document.getElementById('pieChart').getContext('2d');
+	var userChart = new Chart(context2, {
+		type : 'doughnut',
+		data : {
+		labels : ["ê°•ì•„ì§€" , "ê³ ì–‘ì´"],
+		datasets : [ {
+		backgroundColor : ["#2AC1BC", "#FDD272"],
+		hoverBackgroundColor :["#2AC1BC", "#FDD272"],
+		data : [10, 23]
+		} ]
+		},
+			options : {
+				responsive : false
+			}
+	});
+	
+	
+
+
+</script>
+
 
 	<!-- Bootstrap core JavaScript-->
 	<script src="/petopia/vendor/jquery/jquery.min.js"></script>
@@ -395,12 +459,7 @@
 	<!-- Custom scripts for all pages-->
 	<script src="/petopia/js/sb-admin-2.min.js"></script>
 
-	<!-- Page level plugins -->
-	<script src="/petopia/vendor/chart.js/Chart.min.js"></script>
 
-	<!-- Page level custom scripts -->
-	<script src="/petopia/js/demo/chart-area-demo.js"></script>
-	<script src="/petopia/js/demo/chart-pie-demo.js"></script>
 
 </body>
 

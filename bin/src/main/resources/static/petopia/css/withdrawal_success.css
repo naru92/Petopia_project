@@ -1,0 +1,42 @@
+
+main {
+   position: relative;
+   padding:200px 0 10rem 0;
+   background: #fafafa;
+}
+.taball img {
+  width: 35px;
+  filter: grayscale(100);
+  opacity: 0.4;
+  margin-bottom: 0.5rem;
+}
+.one {
+  width: 500px;
+  height: auto;
+  margin: 0 auto;
+  padding-top: 50px;
+  text-align: center;
+  background-color: #fff;
+  align-items: center;
+}
+#content {
+    padding: 4rem;
+  }
+
+#content .shop-btn {
+    width:200px;
+    padding: 1rem 1rem;
+    font-size:0.9rem;
+    background: #2AC1BC;
+    color: #fff;
+    transition: 0.5s;
+    border: none;
+    border-radius: 10px;
+}
+  
+#content .shop-btn:hover {
+    cursor: pointer;
+    text-decoration: none;
+    opacity: 0.9;
+    color: white;
+}

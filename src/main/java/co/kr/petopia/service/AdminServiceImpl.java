@@ -8,6 +8,7 @@ import javax.xml.bind.attachment.AttachmentMarshaller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import co.kr.petopia.controller.BoardController;
 import co.kr.petopia.mapper.AdminMapper;
@@ -201,7 +202,7 @@ public class AdminServiceImpl implements AdminService {
 
 		return productAattachMapper.findByProduct(product_idx);
 	}
-
+	@Transactional
 	@Override
 	public boolean updateProduct(ProductVO productVO) {
 		log.info("updateProduct " + productVO);
@@ -224,7 +225,7 @@ public class AdminServiceImpl implements AdminService {
 
 		return updateResult;
 	}
-
+	@Transactional
 	@Override
 	public boolean deleteProduct(int product_idx) {
 
@@ -276,5 +277,12 @@ public class AdminServiceImpl implements AdminService {
 		
 		return adminMapper.selectOptionQnAList(optionMap);
 	}
+
+	@Override
+	public void updateDeliveryState(DeliveryVO deliveryVO) {
+		// TODO Auto-generated method stub
+		adminMapper.updateDeliveryState(deliveryVO);
+	}
+	
 
 }
