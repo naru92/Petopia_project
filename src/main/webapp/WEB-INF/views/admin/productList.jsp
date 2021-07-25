@@ -113,6 +113,10 @@
 #animalType, #productsType, #brand {
   width: auto;
 }
+showCloseButton ::before {
+height: 10px;
+}
+
 </style>
 </style>
 
@@ -340,36 +344,36 @@
 					</div>
 					
 					<div class="modal-body">
-						
 						<h5 id= modal_product_idx></h5>
 						<div class="card-body">
-							<form action="board_modify.html" method="post">
+							<form id="updateForm" action="/admin/product/update" method="post" enctype="multipart/form-data">
+							  <input type="hidden" class="form-control" id='productsNo' name='productsNo' value="">
 								<div class="form-group">
 									<label for="board_writer_name">상품명</label> <input type="text"
 										id="modal_product_name" name="product_name"
-										class="form-control"  readonly="readonly" ></input>
+										class="form-control"  ></input>
 								</div>
 								<div class="form-group">
 									<label for="board_date">상품가격</label> <input type="text"
-										id="modal_product_price" name="board_date" class="form-control"
-										value="123" readonly="readonly" ></input>
+										id="modal_product_price" name="product_price" class="form-control"
+										value="123"  ></input>
 								</div>
 								<div class="form-group">
 									<label for="product_coloropiton">컬러</label> <input type="text"
-										id="modal_product_coloropiton" name="modal_product_coloropiton" class="form-control"
+										id="modal_product_coloropiton" name="product_colorOption" class="form-control"
 										value="" />
 								</div>
 									
 								<div class="form-group">
 									<label for="product_detail_info">내용</label>
-									<textarea id="modal_product_detail_info" name="modal_product_detail_info"
+									<textarea id="modal_product_detail_info" name="product_detail_info"
 										class="form-control" rows="10" style="resize: none"></textarea>
 								</div>
 								
 								
 								<div class="form-group uploadDiv">
 								<label for="board_file">첨부 이미지</label><br> <img src="" width="100%" />
-                            		<input type="file" name='uploadFile' id="modal_product_image" multiple>
+                            		<input type="file" name='uploadFile' id="product_image"  multiple>
                         		</div>
                         		
 								<!-- 썸네일출력장소 -->
@@ -398,7 +402,7 @@
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-danger">삭제</button>
-						<button type="button" class="btn btn-info">수정</button>
+						<button type="button" id = updateButton class="btn btn-info">수정</button>
 						<button type="button" class="btn btn-primary">완료</button>
 					</div>
 				</div>
@@ -470,7 +474,9 @@
 						//모달
 							
 							   $('.btn-info').on('click', function(event) { 
-								  
+								   $("#productsNo").val( $(this).data('product_idx'));
+									console.log('productsNo : ' + $("#productsNo").val());
+									
 						            $("#modal_product_idx").text("상품번호 : "+ $(this).data('product_idx'));
 						            $("#modal_product_name").val($(this).data('product_name'));
 						            $("#modal_product_category_id").val($(this).data('product_category_id'));
@@ -490,18 +496,24 @@
 									  
 									  $(arr).each(function(i, attach){
 										  
+										  console.log(attach.filetype);
+										  attach.filetype=true;
 										  //이미지 타입만
-										  if(attach.fileType){
-											  var fileCallPathT = encodeURIComponent(obj.uploadPath + "/s_" + obj.uuid + "_" + obj.fileName);
-						    				  var fileCallPathBT = encodeURIComponent(obj.uploadPath + "/bs_" + obj.uuid + "_" + obj.fileName);
+										  if(attach.filetype){
+											  var fileCallPath = encodeURIComponent(attach.uploadPath + "/s_" + attach.uuid + "_" + attach.fileName);
 						    				  
-						    				  str += "<li data-path='"+attach.uploadPath+"' data-uuid='"+attach.uuid+"' data-filename='"+attach.fileName+"' data-type='"+attach.fileType+"' ><div>";
+						    				  str += "<li data-path='"+attach.uploadPath+"' data-uuid='"+attach.uuid+"' data-filename='"+attach.fileName+"' data-type='"+attach.filetype+"' ><div>";
 						    		           str += "<img src='/display?fileName="+fileCallPath+"'>";
 						    		           str += "</div>";
 						    		           str +"</li>";
 										  }else{
-											  str += "<li data-path='"+attach.uploadPath+"' data-uuid='"+attach.uuid+"' data-filename='"+attach.fileName+"' data-type='"+attach.fileType+"' ><div>";
+											  var fileCallPath = encodeURIComponent(attach.uploadPath + "/s_" + attach.uuid + "_" + attach.fileName);
+							                   var fileLink = fileCallPath.replace(new RegExp(/\\/g), "/");
+							                    
+											   str += "<li data-path='"+attach.uploadPath+"' data-uuid='"+attach.uuid+"' data-filename='"+attach.fileName+"' data-type='"+attach.filetype+"' ><div>";
 									           str += "<span> "+ attach.fileName+"</span><br/>";
+									           str += "<button type='button' data-file=\'" +
+						                        "\' data-type='image' class='btn btn-warning btm-circle showCloseButton'> <i class='fa fa-times '></i></button><br>";
 									           str += "<img src='/petopia/image/petopia.png'></a>";
 									           str += "</div>";
 									           str +"</li>";
@@ -512,22 +524,19 @@
 									  $(".uploadResult ul").html(str);
 									}); ///end getjson
 							 // view-product 클릭시 원본 이미지 출력
-						     $(".uploadResult").on("click", function(e) {
+						     $(".uploadResult").on("click","button", function(e) {
 						    			
-						    			console.log("view image");
-						    			
-						    			var imgObj = $(this);
-						    			
-						    			var path = encodeURIComponent(imgObj.data("path") + "/" + imgObj.data("uuid") + "_" + imgObj.data("filename"));
-						    			
-						    			if(imgObj.data("type")) {
-						    				showImage(path.replace(new RegExp(/\\/g), "/"));
-						    			} 
+						    	 console.log('delete file');
+						    		
+						    	 	if(confirm("이미지를 삭제하시겠습니까? ")){
+						    	 		var targetLi = $(this).closest("li");
+						    	 		targetLi.remove();
+						    	 	}
+						    	 	
+						    	 
 						    		});	
 
 						    });
-						
-						
 						
 						
 							// 원본 이미지 출력
@@ -538,7 +547,7 @@
 					    			$(".bigPictureWrapper").css("display", "flex").show();
 					    			
 					    			$(".bigPicture")
-					    			.html("<img src='/display?fileName=" + fileCallPath + "'>")
+					    			.html("<img src='${pageContext.request.contextPath}/display?fileName="+fileCallPath+"'>")
 					    			.animate({width:'100%', height:'100%'}, 1000);
 					    		}
 					    		
@@ -715,6 +724,62 @@
 										// $.ajax
 									});
 
+							
+								 var updateForm = $("#updateForm");
+						        $('#updateButton').on("click", function(e) {
+						        	
+						        	
+
+						            e.preventDefault();
+
+						            var operation = $(this).data("oper");
+									
+									
+						            console.log(operation);
+
+						            if(operation === 'delete') {
+						                updateForm.attr("action", "/product/delete");
+						            } else if(operation === 'list') {
+						                updateForm.attr("action", "/products/list").attr("method", "get");
+						                var pageNumTag = $("input[name='pageNum']").clone();
+						                var amountTag = $("input[name='amount']").clone();
+						                var typeTag = $("input[name='type']").clone();
+										var keywordTag = $("input[name='keyword']").clone();
+						                
+						                updateForm.empty();
+						                updateForm.append(pageNumTag);
+						                updateForm.append(amountTag);
+						                updateForm.append(typeTag);
+						                updateForm.append(keywordTag);
+						            } else if(operation === 'update') {
+						            	
+						            	var str = "";
+						            	
+						            	$(".uploadResult ul li").each(function(i, obj) {
+						            		
+						            		var jobj = $(obj);
+						            		
+						            		console.dir("jobj : " + jobj);
+						            		
+						            		 str += "<input type='hidden' name='attachList[" + i + "].fileName' value='" + jobj.data('filename') + "'>";
+						                     str += "<input type='hidden' name='attachList[" + i + "].uuid' value='" + jobj.data('uuid') + "'>";
+						                     str += "<input type='hidden' name='attachList[" + i + "].uploadPath' value='" + jobj.data('path') + "'>";
+						                     str += "<input type='hidden' name='attachList[" + i + "].imageType' value='" + jobj.data('type') + "'>";
+						                 });
+						            	
+						            	console.log("str = " + str);
+														
+						            	updateForm.append(str).submit();
+
+						            }
+
+						            updateForm.submit();
+
+						        });
+						        
+						     	// getAttachList
+						     	
+							
 						});
 	</script>
 

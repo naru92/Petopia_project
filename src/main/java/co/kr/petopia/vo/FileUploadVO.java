@@ -15,7 +15,7 @@ public class FileUploadVO {
 	private boolean filetype;
 	private String product_image;
 	
-	
+	private boolean imageType;
 	private Integer board_id;
 	private int product_idx;
 	

@@ -1,5 +1,7 @@
 package co.kr.petopia.controller;
 
+import java.awt.Image;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -12,6 +14,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
+
+import javax.imageio.ImageIO;
 
 import org.apache.tika.Tika;
 import org.springframework.http.HttpHeaders;
@@ -47,8 +51,8 @@ public class FileUploadController {
 		try {
 			
 			log.info("check Image Type Function " + file);
-			
 			String contentType = Files.probeContentType(file.toPath());
+//			String contentType =new Tika().detect(file);
 			
 			log.info(contentType);
 			
@@ -66,7 +70,7 @@ public class FileUploadController {
 		List<FileUploadVO> productVOList = new ArrayList<>();
 		
 		
-		String uploadFolder = "D://petopia_bit//workspace-spring-tool-suite-4-4.11.0.RELEASE//petopia//src//main//webapp//upload";
+		String uploadFolder = "D:/petopia_bit/workspace-spring-tool-suite-4-4.11.0.RELEASE/petopia/src/main/webapp/upload";
 		String uploadFolderPath = getFolder();
 		
 		File uploadPath = new File(uploadFolder, uploadFolderPath);
@@ -86,10 +90,11 @@ public class FileUploadController {
 			
 			String uploadFileName = multipartFile.getOriginalFilename();
 			uploadFileName = uploadFileName
-											.substring(uploadFileName.lastIndexOf("\\")+1);
+											.substring(uploadFileName.lastIndexOf("//")+1);
 				UUID uuid = UUID.randomUUID();
 				uploadFileName = uuid.toString() + "_" + uploadFileName;
 				productVO.setFileName(uploadFileName);
+				
 			getProductImage.setProduct_image(productVO.getFileName());
 			try {
 				File saveFile = new File(uploadPath , uploadFileName);
@@ -109,10 +114,16 @@ public class FileUploadController {
 					
 					productVO.setFiletype(true);
 					getProductImage.setProduct_image(saveFile.getName());
+					
 					File thumbnail = new File(uploadPath, "s_" + uploadFileName);
-					Thumbnails.of(saveFile).size(160, 160)
+					BufferedImage image = ImageIO.read(saveFile);
+					double ratio = 3;
+					
+					int width = (int)(image.getWidth() / ratio);
+					int height = (int)(image.getHeight() / ratio);
+					Thumbnails.of(saveFile).size(width, height)
 					.toFile(thumbnail);
-
+				
 					
 				}
 					productVOList.add(productVO);
@@ -126,21 +137,22 @@ public class FileUploadController {
 	
 	@GetMapping("/display")
 	@ResponseBody
-	public ResponseEntity<byte[]> getFile(String fileName) throws IOException{
+	public ResponseEntity<byte[]> getFile(String fileName) {
+		log.info("display() ....");
 		log.info("fileName : " +  fileName);
 		
-		File file = new File("D://petopia_bit//workspace-spring-tool-suite-4-4.11.0.RELEASE//petopia//src//main//webapp//upload//" + fileName);
+		File file = new File("D:\\petopia_bit/workspace-spring-tool-suite-4-4.11.0.RELEASE/petopia/src/main/webapp/upload/" + fileName);
 		
 		log.info("file : " + file);
 		
 		ResponseEntity<byte[]> result = null;
-		System.out.println(file.toPath());
+		
 		try {
 			log.info("copy: " + FileCopyUtils.copyToByteArray(file));
 			HttpHeaders header = new HttpHeaders();
 			header.add("Content-Type", Files.probeContentType(file.toPath()));
 			result = new ResponseEntity<>(FileCopyUtils.copyToByteArray(file), header,HttpStatus.OK);
-		} catch (NoSuchFileException e) {
+		} catch (IOException e) {
 			log.info(e.getMessage());
 		}
 		return result;

@@ -309,7 +309,6 @@ $(function() {
 	   });
 
 </script>
-
 	<c:import url="/WEB-INF/views/include/admin_list_js.jsp" />
 	
 

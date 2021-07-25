@@ -1068,6 +1068,34 @@
 	<!-- 통계 페이지용 통계 -->
 	
 	<!-- 3개월 -->
+	<!-- 회원  -->
+	<select id="memeber_statistics_3month">
+	SELECT member_joindate, COUNT(*) as member_joincount 
+	FROM member
+    GROUP BY member_joindate
+	having member_joindate BETWEEN ADD_MONTHS(sysdate, -3) AND sysdate
+    order by member_joindate asc;
+	</select>
+	<!-- 도네이션 -->
+	<select id="donation_statistics_3month">
+	SELECT NVL(SUM(member_point_usepoint),0) AS donation, member_point_usedate
+    FROM point
+    GROUP BY member_point_usepoint,member_point_usedate
+    HAVING member_point_usedate BETWEEN ADD_MONTHS(sysdate, -3) AND sysdate
+    order by member_point_usedate asc;
+	</select>
+	<!-- 주문상품 -->
+	<select id="order_statistics_3month">
+	 select distinct
+        p.product_name , sum(od.order_quantity) as sales
+        from order_detail od , product p, order_form o 
+        group by p.product_name, o.order_date, p.product_idx, od.product_idx
+        having o.order_date BETWEEN ADD_MONTHS(sysdate, -3) AND sysdate
+        and p.product_idx = od.product_idx 
+        order by sales desc
+	</select>
+	<!-- 3개월 END -->
+	
 	
 	
 	

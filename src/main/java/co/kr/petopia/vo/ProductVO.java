@@ -24,12 +24,11 @@ public class ProductVO {
 	@NotBlank
 	private int product_category_id;
 	
-	@PositiveOrZero 
-	private long product_price;
+	private int product_price;
 	
 	private String product_coloroption;
 	
-	@PositiveOrZero 
+
 	private String product_stock;
 	
 	@NotBlank

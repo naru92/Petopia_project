@@ -1,6 +1,5 @@
 package co.kr.petopia.controller;
 
-import java.security.Principal;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -15,11 +14,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -28,11 +28,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
 
 import co.kr.petopia.service.AdminService;
 import co.kr.petopia.service.MemberSecurtiyService;
@@ -164,12 +162,13 @@ public class AdminController {
 		
 		int totalProduct = adminService.getTotalProductCount(cri);
 		model.addAttribute("pageMaker", new PageVO(cri, totalProduct));
-
+		
 		model.addAttribute("productList", adminService.getProductListWithPaging(cri));
 
 		return "admin/productList";
 
 	}
+	
 
 	// 상품 검색필터
 	@ResponseBody
@@ -369,27 +368,25 @@ public class AdminController {
 	
 	
 	//통계 모음 페이지
-	@GetMapping("/statistics")
+	@GetMapping(value = "/statistics", produces = "text/plain;charset=UTF-8")
 	@ResponseBody
-	public String statisticsPage(Model model) {
+	public String statisticsPage() {
 		
-		Map<String, Object> test = new HashMap<>();
+		Gson gson = new Gson();
+		
+		
 		
 		//주문 - 최근 3개월간 가장 많이 주문 - 바차트
 		
 		//회원 - 최근 3개월간 회원수 - 라인차트
 		
 		//기부 - 3개월간 기부금, 1년 기부금
+	
+	
+		return null;
 		
-		String json = null;
-		try {
-			json = new ObjectMapper().writeValueAsString(test);
-		} catch (JsonProcessingException e) {
-			e.printStackTrace();
-		}
-					
-			return json;
-		}
+		
+	}
 		
 		
 
@@ -444,9 +441,19 @@ public class AdminController {
 		//상품 메인으로 리다이렉트 
 		return "redirect:/admin/product";
 	}
-	//상품수정
-	@PostMapping("/update")
-	public String update(ProductVO productVO, 
+	@GetMapping("/update")
+	public void update(@RequestParam("productsNo") int product_idx, 
+			@ModelAttribute("cri") Criteria cri, Model model) {
+		
+		
+		log.info("/update");
+		
+		model.addAttribute("productVO", adminService.getProductOne(product_idx));
+	}
+	
+	//업데이트
+	@PostMapping("product/update")
+	public String updateProduct(ProductVO productVO, 
 			@ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
 		
 		log.info("updateProducts : " + productVO);
@@ -455,15 +462,15 @@ public class AdminController {
 			rttr.addFlashAttribute("result", "success");
 		}
 		
-		
 		rttr.addAttribute("productsNo", productVO.getProduct_idx());
 		rttr.addAttribute("pageNum", cri.getPageNum());
 		rttr.addAttribute("amount", cri.getAmount());
 		
-		log.info("상품번호 & 페이지 : " +productVO.getProduct_idx() + cri.getPageNum() + cri.getAmount());
+		log.info("가져온 상품 정보 : " + productVO.getProduct_idx() + cri.getPageNum() + cri.getAmount());
 		
-		return "redirect:/products/get";// 수정하면 해당 번호 상품정보로 간다
+		return "redirect:/products/get";// 수정하면 해당 번호 게시글로 빠짐
 	}
+	
 	
 	//상품삭제
 	@PostMapping("product/delete")

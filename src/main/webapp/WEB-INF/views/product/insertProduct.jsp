@@ -7,7 +7,7 @@
 
 <c:set var='root' value="${pageContext.request.contextPath }/" />
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 
 <head>
 
@@ -141,7 +141,7 @@ display :inline;
 
                         <div class='uploadResult'>
                             <ul>
-
+							
                             </ul>
                         </div>
                     </div>
@@ -189,7 +189,7 @@ display :inline;
 						                str += "<input type='hidden' name='productVOList[" + i + "].fileName' value='" + jobj.data('filename') + "'>";
 						                str += "<input type='hidden' name='productVOList[" + i + "].uuid' value='" + jobj.data('uuid') + "'>";
 						                str += "<input type='hidden' name='productVOList[" + i + "].uploadPath' value='" + jobj.data('path') + "'>";
-						                str += "<input type='hidden' name='productVOList[" + i + "].imageType' value='" + jobj.data('type') + "'>";
+						                str += "<input type='hidden' name='productVOList[" + i + "].filetype' value='" + jobj.data('type') + "'>";
 						                str += "<input type='hidden' name='product_image' value='" + jobj.data('filename') + "'>";
 						            });
 						            
@@ -202,7 +202,7 @@ display :inline;
 
 
 							const regex = new RegExp("(.*?)\.(exe\sh\zip\alz)$");//파일 확장자 선언
-							const maxSize = 10485760; //10MB로 제한
+							const maxSize = 20485760; //10MB로 제한
 
 							function checkExtension(fileName, fileSize) {
 								//실패
@@ -231,18 +231,23 @@ display :inline;
             var uploadUL = $(".uploadResult ul");
 
             var str = "";
-
+            
             $(uploadResultArr).each(function(i, obj) {
-                if (obj.imageType) {
+           	 obj.filetype= true
+           	 console.log(obj.uploadPath );
+           	console.log(encodeURIComponent(obj.uploadPath + "/s_" + obj.uuid + "_" + obj.fileName));
+
+            	console.log(obj.filetype);
+                if (obj.filetype) {
                     var fileCallPath = encodeURIComponent(obj.uploadPath + "/s_" + obj.uuid + "_" + obj.fileName);
 
                     str += "<li data-path='" + obj.uploadPath + "' data-uuid='" +
                         obj.uuid + "' data-filename='" + obj.fileName +
-                        "' data-type='" + obj.imageType + "' ><div>";
+                        "' data-type='" + obj.filetype + "' ><div>";
                     str += "<span> " + obj.fileName + "</span>";
                     str += "<button type='button' data-file=\'" + fileCallPath +
                         "\' data-type='image' class='btn btn-warning btm-circle'> <i class='fa fa-times'></i></button><br>";
-                    str += "<img src='/display?fileName=" + fileCallPath + "'>";
+                    str += "<img src='${pageContext.request.contextPath}/display?fileName=" + fileCallPath + "'>";
                     str += "</div>";
                     str + "</li>";
                 } else {
@@ -251,11 +256,11 @@ display :inline;
 
                     str += "<li data-path='" + obj.uploadPath + "' data-uuid='" +
                         obj.uuid + "' data-filename='" + obj.fileName +
-                        "' data-type='" + obj.imageType + "' ><div>";
+                        "' data-type='" + obj.filetype + "' ><div>";
                     str += "<span> " + obj.fileName + "</span>";
                     str += "<button type='button' data-file=\'" + fileCallPath +
                         "\' data-type='file' class='btn btn-warning btm-circle'> <i class='fa fa-times'></i></button><br>";
-                    str += "<img src='../../resources/images/attach.png'>";
+                    str += "<img src='/petopia/image/petopia.png'>";
                     str += "</div>";
                     str + "</li>";
                 }
@@ -283,17 +288,27 @@ display :inline;
 										}
 
 										$.ajax({
-											url : '/uploadAjaxAction',
+											url : '${pageContext.request.contextPath}/uploadAjaxAction',
 											processData : false,
 											contentType : false,
-											cashe: false,
-											data : formData,
+											data: formData,
 											type : 'POST',
 											dataType : 'json',
 											success : function(result) {
 												console.log('업로드 성공');
 												console.log(result);
 												showUploadResult(result);
+											},
+											error : function(
+													request,
+													status,
+													error) {
+												alert("code = "
+														+ request.status
+														+ " message = "
+														+ request.responseText
+														+ " error = "
+														+ error); // 실패 시 처리
 											}
 										});
 
