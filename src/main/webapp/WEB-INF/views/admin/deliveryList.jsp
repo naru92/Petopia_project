@@ -127,15 +127,21 @@
 								<c:forEach var='d' items="${deliveryList}">
 							<!-- 배송번호 상품이름  주문자이름 수신자이름 수신자전화번호 수신자주소 배송일자 배송처리상태 -->
 										<tbody>
-											<tr>
-											<td>${d.delivery_idx }</td>
+											<tr id = deliveryTr>
+											<td id="delivery_idx" >${d.delivery_idx }</td>
 											<td>${d.product_name }</td>
 											<td>${d.order_name }</td>
 											<td>${d.order_receiver_name }</td>
 											<td>${d.order_receiver_phonenumber }</td>
 											<td>${d.order_receiver_address }</td>
 											<td>${d.delivery_date }</td>
-											<td>${d.delivery_state }</td>
+											<td id="delivery_process"> 
+											<select id='delivery_state' name='delivery_state'>
+		                                	<option value="배송준비중" <c:if test='${d.delivery_state == "배송준비중" }'>selected</c:if>>배송준비중</option>
+		                                	<option value="배송완료" <c:if test='${d.delivery_state == "배송완료" }'>selected</c:if>>배송완료</option>
+                         	   				</select>
+                         	   				</td>
+											
 											
 											
 											</tr>
@@ -233,6 +239,46 @@
 		<script type="text/javascript">
 		$(document).ready(
 				function() {
+					//배송처리변경
+					$("#deliveryTr").on('change', function(e){
+					e.preventDefault();
+					
+					var delivery_state = $(this).children().children("#delivery_state").val();
+					var delivery_idx =parseInt($(this).children().first().text());
+					console.log(delivery_state);
+ 					console.log(delivery_idx);
+					
+					var options = {
+			    			
+							delivery_state : delivery_state,
+							delivery_idx : delivery_idx
+			    			
+			    			
+			    	}
+					
+					if(window.confirm('배송상태를 변경 하시겠습니까?') == true) {
+						
+						console.log("ajax송신 시작");
+						 $.ajax({
+						        type:"post",
+						        url: "/admin/delivery/update",
+						        cache: false,
+						        data: JSON.stringify(options),
+						        contentType:"application/json; charset=utf-8",
+						        dataType: 'json',
+						        success : function(status) {
+						        	alert('변경이 완료 됐습니다.')
+						       	},
+						       
+
+						 });
+					}
+					
+					});	
+					
+					
+					
+					
 					
 					// 페이징 버튼 이벤트
 					var actionForm = $("#pageActionForm");
@@ -262,8 +308,6 @@
 				    	
 				    	
 				    	
-
-				    			
 
 				    	
 				    	console.log($('#select1').val());
