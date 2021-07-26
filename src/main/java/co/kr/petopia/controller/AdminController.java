@@ -178,7 +178,7 @@ public class AdminController {
 	@PostMapping(value = "/product", consumes = "application/json", produces = { MediaType.APPLICATION_XML_VALUE,
 			MediaType.APPLICATION_JSON_VALUE })
 	public ResponseEntity<List<ProductVO>> selectOptionProductList(@RequestBody Map<String, Object> options,
-			Criteria cri) {
+			Criteria cri, Model model) {
 		
 		HashMap<String, Object> optionMap = new HashMap<String, Object>();
 
@@ -189,6 +189,7 @@ public class AdminController {
 		
 		log.info("카테고리 값: " + select_category_id);
 		
+		
 		optionMap.put("total_memberList", adminService.getProductListWithPaging(cri));
 		optionMap.put("product_stock", product_stock);
 		optionMap.put("product_price", product_price);
@@ -197,7 +198,9 @@ public class AdminController {
 		log.info("options : " + options);
 
 		List<ProductVO> productList = adminService.getSelectOptionList(optionMap);
-
+		int totalSelectOptionProductList = productList.size();
+		model.addAttribute("pageMaker", new PageVO(cri, totalSelectOptionProductList));
+		
 		return new ResponseEntity<>(productList, HttpStatus.OK);
 	}
 

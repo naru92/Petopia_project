@@ -14,15 +14,17 @@
 
 
 <style type="text/css">
-
+.ss{
+margin-top: 15px;
+}
 .girdscc{
-margin-right : 50px !important;
+margin-right : 15% !important;
 }
 .girdscc2{
-margin-right : 40px !important;
+margin-right : 14% !important;
 }
 .girdscc3{
-margin-right : 70px !important;
+margin-right : 16% !important;
 }
   .swiper-container {
   		color:black;
@@ -162,9 +164,6 @@ margin-right : 70px !important;
 
 
 			<div class="row">
-
-
-
 				<div class="container-side">
 					<div class="grid">
 						<div class="row">
@@ -323,226 +322,562 @@ margin-right : 70px !important;
 
 				</div>
 
-
 				<div class="row">
-					<section>
-						<div class="inner">
-							<div class="roadmap-container">
-								<div class="roadmap-title-container">
-									<div class="roadmap-title">
-										&nbsp인기제품 <a>전체보기</a>
-									</div>
-									<div class="arrow-container">
-										<i class="fas fa-chevron-circle-left slide-prev"></i> <i
-											class="fas fa-chevron-circle-right slide-next"></i>
-									</div>
-								</div>
-								<ul class="class-list">
-									<li class="class-card"><a href="http://school.fastcampus.co.kr/blog/all/113/"
-										target="_blank"> <img src="https://www.fun-coding.org/style/images/blog.jpg"
-											alt="잔재미코딩 블로그" class="class-image" />
-											<div class="class-container">
-												<div class="class-skill">
-													<div class="class-type">핫 신상</div>
-													<div class="class-format">♡</div>
-												</div>
-												<div class="class-desc">
-													<div class="class-title">상품1</div>
-													<div class="class-detail">상품입니다</div>
-												</div>
-											</div>
-									</a></li>
-									<li class="class-card"><a href="http://www.yes24.com/Product/Goods/60212672?OzSrank=1"
-										target="_blank"> <img src="https://www.fun-coding.org/style/images/broadIT3.png"
-											alt="잔재미코딩 서적" class="class-image" />
-											<div class="class-container">
-												<div class="class-skill">
-													<div class="class-type">출판서적</div>
-													<div class="class-format">♡</div>
-												</div>
-												<div class="class-desc">
-													<div class="class-title">누구나 쓱 읽고, 싹 이해하는 IT 핵심 기술</div>
-													<div class="class-detail">입문자를 위한 IT 큰 그림 이해하기</div>
-												</div>
-											</div>
-									</a></li>
-									<li class="class-card"><a
-										href="hhttp://www.yes24.com/Product/Goods/43504370?OzSrank=1" target="_blank"> <img
-											src="https://www.fun-coding.org/style/images/pythonbook.png" alt="잔재미코딩 서적"
-											class="class-image" />
-											<div class="class-container">
-												<div class="class-skill">
-													<div class="class-type">출판서적</div>
-													<div class="class-format">♡</div>
-												</div>
-												<div class="class-desc">
-													<div class="class-title">리스트1</div>
-													<div class="class-detail">리스트1</div>
-												</div>
-											</div>
-									</a></li>
-									<li class="class-card"><a href="http://www.yes24.com/Product/Goods/1461768?OzSrank=8"
-										target="_blank"> <img src="https://www.fun-coding.org/style/images/linuxbook.png"
-											alt="잔재미코딩 서적" class="class-image" />
-											<div class="class-container">
-												<div class="class-skill">
-													<div class="class-type">리스트1</div>
-													<div class="class-format">♡</div>
-												</div>
-												<div class="class-desc">
-													<div class="class-title">리눅스 커널 프로그래밍</div>
-													<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
-												</div>
-											</div>
-									</a></li>
-									<li class="class-card"><a href="http://www.yes24.com/Product/Goods/3369009"
-										target="_blank"> <img src="https://www.fun-coding.org/style/images/linuxbook2.png"
-											alt="잔재미코딩 서적" class="class-image" />
-											<div class="class-container">
-												<div class="class-skill">
-													<div class="class-type">출판서적</div>
-													<div class="class-format">♡</div>
-												</div>
-												<div class="class-desc">
-													<div class="class-title">리눅스 운영 체제의 이해와 개발</div>
-													<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
-												</div>
-											</div>
-									</a></li>
-								</ul>
-							</div>
-						</div>
-					</section>
+						<section>
+					
 
-
-				</div>
-
-				<div class="row">
-					<section>
-						<div class="inner">
-							<div class="roadmap-container">
-								<div class="roadmap-title-container">
-									<div class="roadmap-title">
-										&nbspMD추천 <a>전체보기</a>
-									</div>
-									<div class="arrow-container">
-										<i class="fas fa-chevron-circle-left slide-prev" onclick=""></i> <i
-											class="fas fa-chevron-circle-right slide-next"></i>
-									</div>
-								</div>
-								<ul class="class-list">
-									<li class="class-card"><a href="http://school.fastcampus.co.kr/blog/all/113/"
-										target="_blank"> <img src="https://www.fun-coding.org/style/images/blog.jpg"
-											alt="잔재미코딩 블로그" class="class-image" />
-											<div class="class-container">
-												<div class="class-skill">
-													<div class="class-type">핫 신상</div>
-													<div class="class-format">♡</div>
-												</div>
-												<div class="class-desc">
-													<div class="class-title">상품1</div>
-													<div class="class-detail">입문자를 위한 IT 큰 그림 이해하기</div>
-												</div>
-											</div>
-									</a></li>
-									<li class="class-card"><a href="http://www.yes24.com/Product/Goods/60212672?OzSrank=1"
-										target="_blank"> <img src="https://www.fun-coding.org/style/images/broadIT3.png"
-											alt="잔재미코딩 서적" class="class-image" />
-											<div class="class-container">
-												<div class="class-skill">
-													<div class="class-type">출판서적</div>
-													<div class="class-format">♡</div>
-												</div>
-												<div class="class-desc">
-													<div class="class-title">누구나 쓱 읽고, 싹 이해하는 IT 핵심 기술</div>
-													<div class="class-detail">입문자를 위한 IT 큰 그림 이해하기</div>
-												</div>
-											</div>
-									</a></li>
-									<li class="class-card"><a
-										href="hhttp://www.yes24.com/Product/Goods/43504370?OzSrank=1" target="_blank"> <img
-											src="https://www.fun-coding.org/style/images/pythonbook.png" alt="잔재미코딩 서적"
-											class="class-image" />
-											<div class="class-container">
-												<div class="class-skill">
-													<div class="class-type">출판서적</div>
-													<div class="class-format">♡</div>
-												</div>
-												<div class="class-desc">
-													<div class="class-title">리스트1</div>
-													<div class="class-detail">리스트1</div>
-												</div>
-											</div>
-									</a></li>
-									<li class="class-card"><a href="http://www.yes24.com/Product/Goods/1461768?OzSrank=8"
-										target="_blank"> <img src="https://www.fun-coding.org/style/images/linuxbook.png"
-											alt="잔재미코딩 서적" class="class-image" />
-											<div class="class-container">
-												<div class="class-skill">
-													<div class="class-type">리스트1</div>
-													<div class="class-format">♡</div>
-												</div>
-												<div class="class-desc">
-													<div class="class-title">리눅스 커널 프로그래밍</div>
-													<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
-												</div>
-											</div>
-									</a></li>
-									<li class="class-card"><a href="http://www.yes24.com/Product/Goods/3369009"
-										target="_blank"> <img src="https://www.fun-coding.org/style/images/linuxbook2.png"
-											alt="잔재미코딩 서적" class="class-image" />
-											<div class="class-container">
-												<div class="class-skill">
-													<div class="class-type">출판서적</div>
-													<div class="class-format">♡</div>
-												</div>
-												<div class="class-desc">
-													<div class="class-title">리눅스 운영 체제의 이해와 개발</div>
-													<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
-												</div>
-											</div>
-									</a></li>
-								</ul>
-							</div>
-						</div>
-					</section>
-				</div>
-
-				<!--row end-->
-
-				<div class="row">
-				<div class="swiper-container mySwiper">
+			     	<div class="roadmap-title">
+						&nbsp인기제품 <a>전체보기</a>
+				</div> 					
 				
+				<div class="swiper-container mySwiper">
+
+			     
 			      <div class="swiper-wrapper">
+			
 			        <div class="swiper-slide">
 			        	<div class="ss">
-								<div class="class-type">핫 신상</div>
-					<img src="/petopia/images/11356_originalView_01802971.jpg" alt="테스트 이미지" class="class-image"/>
+						
+					<img src="/petopia/images/11356_originalView_01802971.jpg" alt="테스트 이미지" class="class-image" width= />
+					<div class="class-skill">
+												<div class="class-type">리스트1</div>
+													<div class="class-format">♡</div>
+												</div>
+												<div class="class-desc col-10">
+													<div class="class-title">리눅스 커널 프로그래밍</div>
+													<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
+												</div>
 											
 						</div>
 			        </div>
-			        <div class="swiper-slide">Slide 2</div>
-			        <div class="swiper-slide">Slide 3</div>
-			        <div class="swiper-slide">Slide 4</div>
-			        <div class="swiper-slide">Slide 5</div>
-			        <div class="swiper-slide">Slide 6</div>
-			        <div class="swiper-slide">Slide 7</div>
-			        <div class="swiper-slide">Slide 8</div>
-			        <div class="swiper-slide">Slide 9</div>
+			        <div class="swiper-slide">
+			        	<div class="ss">
+						
+					<img src="/petopia/images/11356_originalView_01802971.jpg" alt="테스트 이미지" class="class-image" width= />
+					<div class="class-skill">
+												<div class="class-type">리스트1</div>
+													<div class="class-format">♡</div>
+												</div>
+												<div class="class-desc col-10">
+													<div class="class-title">리눅스 커널 프로그래밍</div>
+													<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
+												</div>
+											
+						</div>
+			        </div>
+			         <div class="swiper-slide">
+			        	<div class="ss">
+						
+					<img src="/petopia/images/11356_originalView_01802971.jpg" alt="테스트 이미지" class="class-image" width= />
+					<div class="class-skill">
+												<div class="class-type">리스트1</div>
+													<div class="class-format">♡</div>
+												</div>
+												<div class="class-desc col-10">
+													<div class="class-title">리눅스 커널 프로그래밍</div>
+													<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
+												</div>
+											
+						</div>
+			        </div>
+			       <div class="swiper-slide">
+			        	<div class="ss">
+						
+					<img src="/petopia/images/11356_originalView_01802971.jpg" alt="테스트 이미지" class="class-image" width= />
+					<div class="class-skill">
+												<div class="class-type">리스트1</div>
+													<div class="class-format">♡</div>
+												</div>
+												<div class="class-desc col-10">
+													<div class="class-title">리눅스 커널 프로그래밍</div>
+													<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
+												</div>
+											
+						</div>
+			        </div>
+			     <div class="swiper-slide">
+			        	<div class="ss">
+						
+					<img src="/petopia/images/11356_originalView_01802971.jpg" alt="테스트 이미지" class="class-image" width= />
+					<div class="class-skill">
+												<div class="class-type">리스트1</div>
+													<div class="class-format">♡</div>
+												</div>
+												<div class="class-desc col-10">
+													<div class="class-title">리눅스 커널 프로그래밍</div>
+													<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
+												</div>
+											
+						</div>
+			        </div>
+			     <div class="swiper-slide">
+			        	<div class="ss">
+						
+					<img src="/petopia/images/11356_originalView_01802971.jpg" alt="테스트 이미지" class="class-image" width= />
+					<div class="class-skill">
+												<div class="class-type">리스트1</div>
+													<div class="class-format">♡</div>
+												</div>
+												<div class="class-desc col-10">
+													<div class="class-title">리눅스 커널 프로그래밍</div>
+													<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
+												</div>
+											
+						</div>
+			        </div>
+			         <div class="swiper-slide">
+			        	<div class="ss">
+						
+					<img src="/petopia/images/11356_originalView_01802971.jpg" alt="테스트 이미지" class="class-image" width= />
+					<div class="class-skill">
+												<div class="class-type">리스트1</div>
+													<div class="class-format">♡</div>
+												</div>
+												<div class="class-desc col-10">
+													<div class="class-title">리눅스 커널 프로그래밍</div>
+													<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
+												</div>
+											
+						</div>
+			        </div>
+			         <div class="swiper-slide">
+			        	<div class="ss">
+						
+					<img src="/petopia/images/11356_originalView_01802971.jpg" alt="테스트 이미지" class="class-image" width= />
+					<div class="class-skill">
+												<div class="class-type">리스트1</div>
+													<div class="class-format">♡</div>
+												</div>
+												<div class="class-desc col-10">
+													<div class="class-title">리눅스 커널 프로그래밍</div>
+													<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
+												</div>
+											
+						</div>
+			        </div>
+			      </div>
+			      <br>
+			      <div class="swiper-button-next"></div>
+			      <div class="swiper-button-prev"></div>
+			    </div>
+					</section>
+
+
+				</div>
+
+				<div class="row">
+				<!--row end-->
+				<div class="roadmap-title">
+						&nbsp인기제품 <a>전체보기</a>
+				</div>
+				
+				<div class="swiper-container mySwiper">
+			      <div class="swiper-wrapper">
+			      
+			        <div class="swiper-slide">
+			        	<div class="ss">
+						
+					<img src="/petopia/images/11356_originalView_01802971.jpg" alt="테스트 이미지" class="class-image" width= />
+					<div class="class-skill">
+												<div class="class-type">리스트1</div>
+													<div class="class-format">♡</div>
+												</div>
+												<div class="class-desc col-10">
+													<div class="class-title">리눅스 커널 프로그래밍</div>
+													<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
+												</div>
+											
+						</div>
+			        </div>
+			        <div class="swiper-slide">
+			        	<div class="ss">
+						
+					<img src="/petopia/images/11356_originalView_01802971.jpg" alt="테스트 이미지" class="class-image" width= />
+					<div class="class-skill">
+												<div class="class-type">리스트1</div>
+													<div class="class-format">♡</div>
+												</div>
+												<div class="class-desc col-10">
+													<div class="class-title">리눅스 커널 프로그래밍</div>
+													<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
+												</div>
+											
+						</div>
+			        </div>
+			         <div class="swiper-slide">
+			        	<div class="ss">
+						
+					<img src="/petopia/images/11356_originalView_01802971.jpg" alt="테스트 이미지" class="class-image" width= />
+					<div class="class-skill">
+												<div class="class-type">리스트1</div>
+													<div class="class-format">♡</div>
+												</div>
+												<div class="class-desc col-10">
+													<div class="class-title">리눅스 커널 프로그래밍</div>
+													<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
+												</div>
+											
+						</div>
+			        </div>
+			       <div class="swiper-slide">
+			        	<div class="ss">
+						
+					<img src="/petopia/images/11356_originalView_01802971.jpg" alt="테스트 이미지" class="class-image" width= />
+					<div class="class-skill">
+												<div class="class-type">리스트1</div>
+													<div class="class-format">♡</div>
+												</div>
+												<div class="class-desc col-10">
+													<div class="class-title">리눅스 커널 프로그래밍</div>
+													<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
+												</div>
+											
+						</div>
+			        </div>
+			     <div class="swiper-slide">
+			        	<div class="ss">
+						
+					<img src="/petopia/images/11356_originalView_01802971.jpg" alt="테스트 이미지" class="class-image" width= />
+					<div class="class-skill">
+												<div class="class-type">리스트1</div>
+													<div class="class-format">♡</div>
+												</div>
+												<div class="class-desc col-10">
+													<div class="class-title">리눅스 커널 프로그래밍</div>
+													<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
+												</div>
+											
+						</div>
+			        </div>
+			     <div class="swiper-slide">
+			        	<div class="ss">
+						
+					<img src="/petopia/images/11356_originalView_01802971.jpg" alt="테스트 이미지" class="class-image" width= />
+					<div class="class-skill">
+												<div class="class-type">리스트1</div>
+													<div class="class-format">♡</div>
+												</div>
+												<div class="class-desc col-10">
+													<div class="class-title">리눅스 커널 프로그래밍</div>
+													<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
+												</div>
+											
+						</div>
+			        </div>
+			         <div class="swiper-slide">
+			        	<div class="ss">
+						
+					<img src="/petopia/images/11356_originalView_01802971.jpg" alt="테스트 이미지" class="class-image" width= />
+					<div class="class-skill">
+												<div class="class-type">리스트1</div>
+													<div class="class-format">♡</div>
+												</div>
+												<div class="class-desc col-10">
+													<div class="class-title">리눅스 커널 프로그래밍</div>
+													<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
+												</div>
+											
+						</div>
+			        </div>
+			         <div class="swiper-slide">
+			        	<div class="ss">
+						
+					<img src="/petopia/images/11356_originalView_01802971.jpg" alt="테스트 이미지" class="class-image" width= />
+					<div class="class-skill">
+												<div class="class-type">리스트1</div>
+													<div class="class-format">♡</div>
+												</div>
+												<div class="class-desc col-10">
+													<div class="class-title">리눅스 커널 프로그래밍</div>
+													<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
+												</div>
+											
+						</div>
+			        </div>
 			      </div>
 			      <br>
 			      <div class="swiper-button-next"></div>
 			      <div class="swiper-button-prev"></div>
 			    </div>
 				</div>
+				<div class="row">
+				<!--row end-->
+				<div class="roadmap-title">
+						&nbsp인기제품 <a>전체보기</a>
+				</div>
+				
+				<div class="swiper-container mySwiper">
+			      <div class="swiper-wrapper">
+			      
+			        <div class="swiper-slide">
+			        	<div class="ss">
+						
+					<img src="/petopia/images/11356_originalView_01802971.jpg" alt="테스트 이미지" class="class-image" width= />
+						<div class="class-skill">
+												<div class="class-type">리스트1</div>
+													<div class="class-format">♡</div>
+												</div>
+												<div class="class-desc col-10">
+													<div class="class-title">리눅스 커널 프로그래밍</div>
+													<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
+												</div>
+											
+						</div>
+			        </div>
+			          <div class="swiper-slide">
+			        	<div class="ss">
+						
+					<img src="/petopia/images/11356_originalView_01802971.jpg" alt="테스트 이미지" class="class-image" width= />
+					<div class="class-skill">
+												<div class="class-type">리스트1</div>
+													<div class="class-format">♡</div>
+												</div>
+												<div class="class-desc col-10">
+													<div class="class-title">리눅스 커널 프로그래밍</div>
+													<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
+												</div>
+											
+						</div>
+			        </div>
+			           <div class="swiper-slide">
+			        	<div class="ss">
+						
+					<img src="/petopia/images/11356_originalView_01802971.jpg" alt="테스트 이미지" class="class-image" width= />
+					<div class="class-skill">
+												<div class="class-type">리스트1</div>
+													<div class="class-format">♡</div>
+												</div>
+												<div class="class-desc col-10">
+													<div class="class-title">리눅스 커널 프로그래밍</div>
+													<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
+												</div>
+											
+						</div>
+			        </div>
+			           <div class="swiper-slide">
+			        	<div class="ss">
+						
+					<img src="/petopia/images/11356_originalView_01802971.jpg" alt="테스트 이미지" class="class-image" width= />
+					<div class="class-skill">
+												<div class="class-type">리스트1</div>
+													<div class="class-format">♡</div>
+												</div>
+												<div class="class-desc col-10">
+													<div class="class-title">리눅스 커널 프로그래밍</div>
+													<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
+												</div>
+											
+						</div>
+			        </div>
+			           <div class="swiper-slide">
+			        	<div class="ss">
+						
+					<img src="/petopia/images/11356_originalView_01802971.jpg" alt="테스트 이미지" class="class-image" width= />
+					<div class="class-skill">
+												<div class="class-type">리스트1</div>
+													<div class="class-format">♡</div>
+												</div>
+												<div class="class-desc col-10">
+													<div class="class-title">리눅스 커널 프로그래밍</div>
+													<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
+												</div>
+											
+						</div>
+			        </div>
+			           <div class="swiper-slide">
+			        	<div class="ss">
+						
+					<img src="/petopia/images/11356_originalView_01802971.jpg" alt="테스트 이미지" class="class-image" width= />
+					<div class="class-skill">
+												<div class="class-type">리스트1</div>
+													<div class="class-format">♡</div>
+												</div>
+												<div class="class-desc col-10">
+													<div class="class-title">리눅스 커널 프로그래밍</div>
+													<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
+												</div>
+											
+						</div>
+			        </div>
+			           <div class="swiper-slide">
+			        	<div class="ss">
+						
+					<img src="/petopia/images/11356_originalView_01802971.jpg" alt="테스트 이미지" class="class-image" width= />
+					<div class="class-skill">
+												<div class="class-type">리스트1</div>
+													<div class="class-format">♡</div>
+												</div>
+												<div class="class-desc col-10">
+													<div class="class-title">리눅스 커널 프로그래밍</div>
+													<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
+												</div>
+											
+						</div>
+			        </div>
+			           <div class="swiper-slide">
+			        	<div class="ss">
+						
+					<img src="/petopia/images/11356_originalView_01802971.jpg" alt="테스트 이미지" class="class-image" width= />
+					<div class="class-skill">
+												<div class="class-type">리스트1</div>
+													<div class="class-format">♡</div>
+												</div>
+												<div class="class-desc col-10">
+													<div class="class-title">리눅스 커널 프로그래밍</div>
+													<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
+												</div>
+											
+						</div>
+			        </div>
+			      </div>
+			      <br>
+			      <div class="swiper-button-next"></div>
+			      <div class="swiper-button-prev"></div>
+			    </div>
+				</div>
+				
+			<div class="row">
+				<div class="swiper-container mySwiper">
+			      <div class="swiper-wrapper">
+			          <div class="swiper-slide">
+			        	<div class="ss">
+						
+					<img src="/petopia/images/11356_originalView_01802971.jpg" alt="테스트 이미지" class="class-image" width= />
+					<div class="class-skill">
+												<div class="class-type">리스트1</div>
+													<div class="class-format">♡</div>
+												</div>
+												<div class="class-desc col-10">
+													<div class="class-title">리눅스 커널 프로그래밍</div>
+													<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
+												</div>
+											
+						</div>
+			        </div>
+			           <div class="swiper-slide">
+			        	<div class="ss">
+						
+					<img src="/petopia/images/11356_originalView_01802971.jpg" alt="테스트 이미지" class="class-image" width= />
+					<div class="class-skill">
+												<div class="class-type">리스트1</div>
+													<div class="class-format">♡</div>
+												</div>
+												<div class="class-desc col-10">
+													<div class="class-title">리눅스 커널 프로그래밍</div>
+													<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
+												</div>
+											
+						</div>
+			        </div>
+			           <div class="swiper-slide">
+			        	<div class="ss">
+						
+					<img src="/petopia/images/11356_originalView_01802971.jpg" alt="테스트 이미지" class="class-image" width= />
+					<div class="class-skill">
+												<div class="class-type">리스트1</div>
+													<div class="class-format">♡</div>
+												</div>
+												<div class="class-desc col-10">
+													<div class="class-title">리눅스 커널 프로그래밍</div>
+													<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
+												</div>
+											
+						</div>
+			        </div>
+			         <div class="swiper-slide">
+			        	<div class="ss">
+						
+					<img src="/petopia/images/11356_originalView_01802971.jpg" alt="테스트 이미지" class="class-image" width= />
+					<div class="class-skill">
+												<div class="class-type">리스트1</div>
+													<div class="class-format">♡</div>
+												</div>
+												<div class="class-desc col-10">
+													<div class="class-title">리눅스 커널 프로그래밍</div>
+													<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
+												</div>
+											
+						</div>
+			        </div>
+			       <div class="swiper-slide">
+			        	<div class="ss">
+						
+					<img src="/petopia/images/11356_originalView_01802971.jpg" alt="테스트 이미지" class="class-image" width= />
+					<div class="class-skill">
+												<div class="class-type">리스트1</div>
+													<div class="class-format">♡</div>
+												</div>
+												<div class="class-desc col-10">
+													<div class="class-title">리눅스 커널 프로그래밍</div>
+													<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
+												</div>
+											
+						</div>
+			        </div>
+			          <div class="swiper-slide">
+			        	<div class="ss">
+						
+					<img src="/petopia/images/11356_originalView_01802971.jpg" alt="테스트 이미지" class="class-image" width= />
+					<div class="class-skill">
+												<div class="class-type">리스트1</div>
+													<div class="class-format">♡</div>
+												</div>
+												<div class="class-desc col-10">
+													<div class="class-title">리눅스 커널 프로그래밍</div>
+													<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
+												</div>
+											
+						</div>
+			        </div>
+			          <div class="swiper-slide">
+			        	<div class="ss">
+						
+					<img src="/petopia/images/11356_originalView_01802971.jpg" alt="테스트 이미지" class="class-image" width= />
+					<div class="class-skill">
+												<div class="class-type">리스트1</div>
+													<div class="class-format">♡</div>
+												</div>
+												<div class="class-desc col-10">
+													<div class="class-title">리눅스 커널 프로그래밍</div>
+													<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
+												</div>
+											
+						</div>
+			        </div>
+			          <div class="swiper-slide">
+			        	<div class="ss">
+						
+					<img src="/petopia/images/11356_originalView_01802971.jpg" alt="테스트 이미지" class="class-image" width= />
+					<div class="class-skill">
+												<div class="class-type">리스트1</div>
+													<div class="class-format">♡</div>
+												</div>
+												<div class="class-desc col-10">
+													<div class="class-title">리눅스 커널 프로그래밍</div>
+													<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
+												</div>
+											
+						</div>
+			        </div>
+			        
+			      </div>
+			      <br>
+			   
+			   
+			    </div>
+				</div>
+				
 			</div>
 		</div>
 
 
 		<div class="quick">
-
+			
 			<div class="icon4">
 				<span>장바구니</span> <span><a href="#">0</a></span>
+				<div "class=cart_item">
+				
+				</div>
 			</div>
 			<div class="icon5">
 				<span>최근 본 상품</span> <br> <a href="#"><img

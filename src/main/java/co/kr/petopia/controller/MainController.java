@@ -9,6 +9,13 @@ public class MainController {
 	@GetMapping("/main")
 	public String mainPage() {
 		
+		/*
+		 * 메인에 필요한것들
+		 * 상품정보  
+		*/
+		
+		
+	
 		
 		
 		
