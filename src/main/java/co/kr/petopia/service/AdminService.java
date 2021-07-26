@@ -77,6 +77,7 @@ public interface AdminService {
 	/*상품 CRUD*/
 	//다음상품
 	
+	/*상품*/
 	//상세조회
 	public ProductVO getProductOne(int product_idx);
 	//등록
@@ -86,12 +87,14 @@ public interface AdminService {
 	//상품 삭제
 	public boolean deleteProduct(int product_idx);
 	
-	/*상품*/
 	
 	/*file*/
 	public List<FileUploadVO> findByProduct(int product_idx);
 	
-
+	/* 통계 */
+	public List<MemberVO> donation_statistics_3month();
+	public List<MemberVO> member_statistics_3month();
+	public List<ProductVO> order_statistics_3month();
 	
 	
 	

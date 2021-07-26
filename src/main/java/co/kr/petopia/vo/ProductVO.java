@@ -28,7 +28,6 @@ public class ProductVO {
 	
 	private String product_coloroption;
 	
-
 	private String product_stock;
 	
 	@NotBlank
@@ -37,6 +36,7 @@ public class ProductVO {
 	private String product_image; //file name
 	private String product_review;
 	
-	
 	private List<FileUploadVO> productVOList;
+	
+	private int sales;
 }

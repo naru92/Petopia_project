@@ -369,24 +369,24 @@ public class AdminController {
 				: new ResponseEntity<> (HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	
+	@GetMapping(value = "/statistics")
+	public String statisticsPage(Model model) {
+		
+		return "/admin/statisticsList";
+	}
 	
 	//통계 모음 페이지
-	@GetMapping(value = "/statistics", produces = "text/plain;charset=UTF-8")
-	@ResponseBody
-	public String statisticsPage() {
-		
+	@GetMapping(value = "/getStatistics", produces = "text/plain;charset=UTF-8")
+	public @ResponseBody String getStatistics(Model model) {
+
 		Gson gson = new Gson();
-		
-		
-		
-		//주문 - 최근 3개월간 가장 많이 주문 - 바차트
-		
 		//회원 - 최근 3개월간 회원수 - 라인차트
-		
+		List<MemberVO> List1 = adminService.member_statistics_3month();
 		//기부 - 3개월간 기부금, 1년 기부금
-	
-	
-		return null;
+		List<MemberVO> List2 = adminService.donation_statistics_3month();
+		//주문 - 최근 3개월간 가장 많이 주문 - 바차트
+		List<ProductVO> List3 = adminService.order_statistics_3month();
+		return gson.toJson(List1);
 		
 		
 	}

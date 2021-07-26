@@ -42,7 +42,7 @@ body {
   font-family: 'NEXON Lv1 Gothic OTF Light';
   font-size: 1rem;
   line-height: 1.2rem;
-  color: #181818;
+  color: white;
   letter-spacing: 0.1px;
 }
 
@@ -189,7 +189,7 @@ b89c87
   position: absolute;
   width: 50%;
 }
-.sample input:focus {``
+.sample input:focus {
   outline: none;
 }
 button.btn-search, button.btn-reset {

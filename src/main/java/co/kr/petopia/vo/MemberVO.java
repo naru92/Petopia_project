@@ -32,6 +32,7 @@ public class MemberVO implements UserDetails {
 	private String authority;
 
 	
+	
 	private List<? extends GrantedAuthority> authList;
 	private boolean Isenabled = true;
 	private	String username;
@@ -41,8 +42,11 @@ public class MemberVO implements UserDetails {
 	
 	//통계용 변수
 	private String statistics_join_day;
-	private String mainStatistics_join_day;
 	private int statistics_join_count;
+	private String mainStatistics_join_day;
+	private int member_joincount;
+	private int member_point_usepoint;
+	private Date member_point_usedate;
 	
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {

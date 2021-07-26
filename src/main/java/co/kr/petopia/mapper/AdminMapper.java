@@ -104,6 +104,11 @@ public interface AdminMapper{
 	public int getTotalMemberCount();
 	//딜리버리 상태변경
 	public void updateDeliveryState(DeliveryVO deliveryVO);
-	
+	//3개월치 맴버
+	public List<MemberVO> member_statistics_3month();
+	//3개월치 기부
+	public List<MemberVO> donation_statistics_3month();
+	//3개월치 상품
+	public List<ProductVO> order_statistics_3month();
 	
 }

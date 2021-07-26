@@ -283,6 +283,21 @@ public class AdminServiceImpl implements AdminService {
 		// TODO Auto-generated method stub
 		adminMapper.updateDeliveryState(deliveryVO);
 	}
+
+	@Override
+	public List<MemberVO> donation_statistics_3month() {
+		return adminMapper.donation_statistics_3month();
+	}
+
+	@Override
+	public List<MemberVO> member_statistics_3month() {
+		return adminMapper.member_statistics_3month();
+	}
+
+	@Override
+	public List<ProductVO> order_statistics_3month() {
+		return adminMapper.order_statistics_3month();
+	}
 	
 
 }

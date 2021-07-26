@@ -55,7 +55,7 @@ ul{
 
 /* 메인 - 옆에 따라다니는 메뉴 */
 .quick {
-
+ color:black;
   width: 40px;
   height: 40px;
   text-align: center;
@@ -154,36 +154,9 @@ ul{
 }
 
 
-.hoverEvent {
-
-  border-radius: 30px;
-  display: inline-block;
-  margin-top: 0;
-  position: fixed;
-  width: 250px;
-  height: 100%;
-  line-height: -35vh;
-  margin: -20px 220px -210px -130px;
-  padding-top: 150px;
-  text-align:center;
-
-  background: #ededed;
-  list-style-type: none;
-    -webkit-font-smoothing: antialiased;
-
-  transform-origin: 0% 0%;
-  transform: translate(-300%, 0);
-
-  transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
-}
-
-.hoverEvent li {
-
-  padding: 10px 20px;
-  font-size: 15px;
 
 
-}
+
 
 .hoverEvent ui {
 
@@ -534,7 +507,7 @@ section {
 
 .class-container {
   width: 100%;
-  padding: 0.5rem 1rem 1rem 1rem;
+  padding: 0.5rem 1rem 1rem 0rem;
 }
 
 .class-skill {
@@ -550,8 +523,8 @@ section {
 
 .class-format {
   font-size: 0.9rem;
-  color: #fff;
-  background-color: #0d47a1;
+  color: black;
+  background-color: white;
   padding: 0.2rem;
 }
 
