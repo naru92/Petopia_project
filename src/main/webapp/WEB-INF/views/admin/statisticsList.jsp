@@ -148,118 +148,58 @@ margin-top: 10px;
 <script type="text/javascript">
 $( document ).ready(function() {
     console.log( "ready!" );
-//회원수
-var chartLabels1 = [];
-var chartData1 = [];
-//도네
-var chartLabels2 = [];
-var chartData2 = [];
-//상품
-var chartLabels3 = [];
-var chartData3 = [];
-
-var lineChartData1 = {
-
-		labels : chartLabels1,
-
-		datasets : [
-
-			{
-
-				label : "회원수",
-
-				fillColor : "rbga(151,187,205,0.2)",
-
-				strokeColor : "rbga(151,187,205,1)",
-
-				pointColor : "rbga(151,187,205,1)",
-
-				pointStrokeColor : "#fff",
-
-				pointHighlightFill : "#fff",
-
-				pointHighlightStroke : "rbga(151,187,205,1)",
-
-				data : chartData1
 
 
-		}
 
-			]
 
-}
 
-var lineChartData2 = {
 
-		labels : chartLabels2,
 
-		datasets : [
-
-			{
-
-				label : "기부액",
-
-				fillColor : "rbga(151,187,205,0.2)",
-
-				strokeColor : "rbga(151,187,205,1)",
-
-				pointColor : "rbga(151,187,205,1)",
-
-				pointStrokeColor : "#fff",
-
-				pointHighlightFill : "#fff",
-
-				pointHighlightStroke : "rbga(151,187,205,1)",
-
-				data : chartData2
-
-			
-
-		}
-
-			]
-
-}
-
-var barChartData1 = {
-
-		labels : chartLabels3,
-
-		datasets : [
-
-			{
-
-				label : "인기상품",
-
-				fillColor : "rbga(151,187,205,0.2)",
-
-				strokeColor : "rbga(151,187,205,1)",
-
-				pointColor : "rbga(151,187,205,1)",
-
-				pointStrokeColor : "#fff",
-
-				pointHighlightFill : "#fff",
-
-				pointHighlightStroke : "rbga(151,187,205,1)",
-
-				data : chartData3
-
-			
-
-		}
-
-			]
-
-}
 
 $("#item1").on('click' ,function(){
-	console.log('item2');
+	var chartLabels1 = [];
+	var chartData1 = [];
+	if($('#chart').val() != null) {
+		console.log('차트 제거 작업 실행')
+	$('#chart').remove();
+	console.log($('#chart').val());
+	$('#statistics').eq(0).append('<canvas id ="chart"  width="1200" height="600"> </canvas>');
 	
-	$("#chart").remove();
-	$('#statistics').eq(0).append('<canvas id ="chart"> </canvas>');
+	}
 	
-	$.getJSON("http://localhost:8282/admin/getStatistics", function(data){
+	var lineChartData1 = {
+
+			labels : chartLabels1,
+
+			datasets : [
+
+				{
+
+					label : "회원수",
+
+					fillColor : "rbga(151,187,205,0.2)",
+
+					strokeColor : "rbga(151,187,205,1)",
+
+					pointColor : "rbga(151,187,205,1)",
+
+					pointStrokeColor : "#fff",
+
+					pointHighlightFill : "#fff",
+
+					pointHighlightStroke : "rbga(151,187,205,1)",
+
+					data : chartData1
+
+
+			}
+
+				]
+
+	}
+
+	
+	$.getJSON("http://localhost:8282/admin/getStatistics1", function(data){
 
 		
 
@@ -267,12 +207,13 @@ $("#item1").on('click' ,function(){
 
 			chartLabels1.push(obj.member_joindate);
 			chartData1.push(obj.member_joincount);
+			console.log(obj.member_joindate);
 
 		});
 
 		createChart();
 
-		console.log("create MemberChart1")
+		console.log("create Chart1")
 
 	});
 
@@ -315,13 +256,46 @@ $("#item1").on('click' ,function(){
 
 $("#item2").on('click' ,function(){
 	console.log('item2');
+	var chartLabels2 = [];
+	var chartData2 = [];
+	var lineChartData2 = {
+
+			labels : chartLabels2,
+
+			datasets : [
+
+				{
+
+					label : "기부액",
+
+					fillColor : "rbga(151,187,205,0.2)",
+
+					strokeColor : "rbga(151,187,205,1)",
+
+					pointColor : "rbga(151,187,205,1)",
+
+					pointStrokeColor : "#fff",
+
+					pointHighlightFill : "#fff",
+
+					pointHighlightStroke : "rbga(151,187,205,1)",
+
+					data : chartData2
+
+				
+
+			}
+
+				]
+
+	}
 	
 	$("#chart").remove();
 	$('#statistics').eq(0).append('<canvas id ="chart"> </canvas>');
 	
-	$.getJSON("http://localhost:8282/admin/getStatistics", function(data){
+	$.getJSON("http://localhost:8282/admin/getStatistics2", function(data){
 
-		
+		console.log(data)
 
 		$.each(data, function(inx, obj){
 
@@ -332,7 +306,7 @@ $("#item2").on('click' ,function(){
 
 		createChart();
 
-		console.log("create MemberChart1")
+		console.log("create Chart2")
 
 	});
 
@@ -374,12 +348,51 @@ $("#item2").on('click' ,function(){
 });
 
 $("#item3").on('click' ,function(){
+	//상품
+	var chartLabels3 = [];
+	var chartData3 = [];
+
 	console.log('item3');
+	console.log($("#chart").remove());
+
 	
 	$("#chart").remove();
 	$('#statistics').eq(0).append('<canvas id ="chart"> </canvas>');
 	
-	$.getJSON("http://localhost:8282/admin/getStatistics", function(data){
+	var barChartData3 = {
+
+			labels : chartLabels3,
+
+			datasets : [
+
+				{
+
+					label : '상품',
+
+					fillColor : "rbga(151,187,205,0.2)",
+
+					strokeColor : "rbga(151,187,205,1)",
+
+					pointColor : "rbga(151,187,205,1)",
+
+					pointStrokeColor : "#fff",
+
+					pointHighlightFill : "#fff",
+
+					pointHighlightStroke : "rbga(151,187,205,1)",
+
+					data : chartData3
+
+				
+
+			}
+
+				]
+
+	}
+	
+	
+	$.getJSON("http://localhost:8282/admin/getStatistics3", function(data){
 
 		
 
@@ -387,12 +400,14 @@ $("#item3").on('click' ,function(){
 
 			chartLabels3.push(obj.product_name);
 			chartData3.push(obj.sales);
+			
+			console.log(obj.product_name);
 
 		});
 
 		createChart();
 
-		console.log("create MemberChart3")
+		console.log("create Chart3")
 
 	});
 
@@ -403,9 +418,9 @@ $("#item3").on('click' ,function(){
 
 		var ctx = document.getElementById("chart").getContext("2d");
 
-		LineChartDemo = Chart.line(ctx,{
+		LineChartDemo = Chart.Bar(ctx,{
 
-			data : lineChartData3,
+			data : barChartData3,
 
 			options :{
 

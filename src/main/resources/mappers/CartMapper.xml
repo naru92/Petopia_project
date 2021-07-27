@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="co.kr.petopia.mapper.CartMapper">
+ 
+ 	<resultMap type="co.kr.petopia.vo.CartVO" id="cartMap">
+ 		<id property="cart_id" column="cart_id" />
+ 		<result property="member_id" column="member_id" />
+ 		<result property="product_idx" column="product_idx" />
+ 		<result property="amount" column="amount" />
+ 		
+ 		<association property="product" resultMap="productMap" />
+ 	</resultMap>
+ 
+ 	<resultMap type="co.kr.petopia.vo.ProductVO" id="productVO">
+ 		<id property="product_idx" column="product_idx" />
+ 		<result property="product_name" column="product_name" />
+ 		<result property="product_price" column="product_price" />
+ 		<result property="product_detail_info" column="product_detail_info" />
+ 		<result property="product_category_id" column="product_category_id" />
+ 		<result property="product_review" column="product_review" />
+ 		<result property="product_stock" column="product_stock" />
+ 		<result property="product_coloroption" column="product_coloroption" />
+ 		
+ 		<collection property="attachList" resultMap="attachMap" />
+ 	</resultMap>
+ 
+ 	<resultMap type="co.kr.petopia.vo.FileUploadVO" id="attachMap">
+ 		<id property="uuid" column="uuid" />
+ 		<result property="uploadPath" column="uploadPath" />
+ 		<result property="fileName" column="fileName" />
+ 		<result property="imageType" column="imageType" />
+ 		<result property="productsNo" column="productsNo" />
+ 	</resultMap>
+ 
+ 	<resultMap type="co.kr.petopia.vo.OrderVO" id="orderLogMap">
+ 		<id property="order_idx" column="order_idx" />
+ 		<result property="product_idx" column="product_idx" />
+ 		<result property="member_id" column="member_id" />
+ 		<result property="order_date" column="order_date" />
+ 		<result property="order_receiver_name" column="order_receiver_name" />
+ 		<result property="order_receiver_phonenumber" column="order_receiver_phonenumber" />
+ 		<result property="order_receiver_address" column="order_receiver_address" />
+ 		<result property="order_quantity" column="order_quantity" />
+ 		<result property="order_name" column="order_name" />
+ 		<result property="payment_method" column="payment_method" />
+ 		
+ 		<association property="product" resultMap="productsMap" />
+ 	</resultMap>
+ 	
+ 	<!-- 카트 리스트 -->
+ 		<select id="goCart" resultMap="cartMap">
+ 		<![CDATA[
+	 		select 
+	 			p.product_idx, p.product_name, p.product_price, 
+	 			cart_id, c.amount,
+	 			a.uuid, a.uploadPath, a.fileName, a.filetype
+	 		from 
+	 			product p, cart c, tbl_attach a
+	 		where 
+	 			p.product_idx = c.product_idx
+	 			and
+	 			c.product_idx = a.product_idx
+	 			and
+	 			c.member_id = #{member_id}
+ 		]]>
+ 		</select>
+ 		
+ 		
+ 	<!-- 장바구니 안에 중복 된 상품이 있는지 체크 -->
+ 	<select id="checkProductsInCart" resultMap="cartMap">
+ 		SELECT * 
+ 		FROM cart 
+ 		WHERE member_id = #{member_id} and 
+ 			  product_idx = #{product_idx}
+ 	</select>
+ 	<!-- 장바구니에 추가 -->
+ 	<insert id="addCart">
+ 		<selectKey keyProperty="cart_id" order="BEFORE" resultType="long">
+ 			select seq_cart.nextval from dual
+ 		</selectKey>
+ 		
+ 		insert into 
+ 			cart (cart_id, member_id, product_idx, amount)
+ 		values 
+ 			(#{cart_id}, #{member_id}, #{product_idx}, #{amount})
+ 	</insert>
+	
+	<!-- 카트 갱신 --> 
+ 	<update id="updateCartItem">
+ 		update 
+ 			cart
+ 		set 
+ 			amount = #{amount}
+ 		where 
+ 			member_id = #{member_id} and product_idx= #{product_idx}
+ 	</update>
+ 	
+ </mapper>

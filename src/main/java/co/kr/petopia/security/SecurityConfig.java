@@ -66,12 +66,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.authorizeRequests() 
 						
 								
-						.antMatchers("/admin/main","/member/login","/member/joinagree","/member/join","/main","/","/**","/order/**").permitAll() //공개 할 url
-						.antMatchers("/member/**").access("hasRole('ROLE_USER')")//맴버만 접근
+						.antMatchers("/admin/main","/member/login","/member/joinagree","/member/join","/main","/","/**","/order/**","/error").permitAll() //공개 할 url
+						.antMatchers("/**").access("hasRole('ROLE_USER')")//맴버만 접근
 
-						.antMatchers("/admin/**").access("hasRole('ROLE_USER')");//어드민만접근근
-						//.antMatchers("/**").authenticated(); //그 밖의 기타경로 인증필요
-						//.and()
+						.antMatchers("/admin/**").access("hasRole('ROLE_USER')")//어드민만접근근
+						.antMatchers("/**").authenticated(); //그 밖의 기타경로 인증필요
 
 
 		http

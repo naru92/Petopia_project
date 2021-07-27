@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="utf-8">
@@ -6,7 +7,8 @@
 <head>
 
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
 
@@ -14,54 +16,249 @@
 
 
 <style type="text/css">
-.ss{
-margin-top: 15px;
+.ss {
+	margin-top: 15px;
+	margin-bottom: 15px;
 }
-.girdscc{
-margin-right : 15% !important;
-}
-.girdscc2{
-margin-right : 14% !important;
-}
-.girdscc3{
-margin-right : 16% !important;
-}
-  .swiper-container {
-  		color:black;
-        width: 100%;
-        height: 100%;
-      }
 
-      .swiper-slide {
-        text-align: center;
-        font-size: 18px;
-        background: #fff;
+.girdscc {
+	margin-right: 15% !important;
+}
 
-        /* Center slide text vertically */
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: -webkit-flex;
-        display: flex;
-        -webkit-box-pack: center;
-        -ms-flex-pack: center;
-        -webkit-justify-content: center;
-        justify-content: center;
-        -webkit-box-align: center;
-        -ms-flex-align: center;
-        -webkit-align-items: center;
-        align-items: center;
-      }
+.girdscc2 {
+	margin-right: 14% !important;
+}
 
-      .swiper-slide img {
-        display: block;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
+.girdscc3 {
+	margin-right: 16% !important;
+}
+
+.swiper-button-next {
+	top: 35% !important
+}
+
+.swiper-button-prev {
+	top: 35% !important
+}
+
+.swiper-container {
+	color: black;
+	width: 100%;
+	height: 100%;
+}
+
+.swiper-slide {
+	text-align: center;
+	font-size: 18px;
+	background: #fff;
+	/* Center slide text vertically */
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	-webkit-justify-content: center;
+	justify-content: center;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	-webkit-align-items: center;
+	align-items: center;
+}
+
+.swiper-slide img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.page-wrapper {
+	min-height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center; button { padding : 20px;
+	border: none;
+	background: lighten(#292d48, 65);
+	position: relative;
+	outline: none;
+	border-radius: 5px;
+	color: #292d48;
+	font-size: 18px; . cart-item { position : absolute;
+	height: 24px;
+	width: 24px;
+	top: -10px;
+	right: -10px; &: before { content : '1';
+	display: block;
+	line-height: 24px;
+	height: 24px;
+	width: 24px;
+	font-size: 12px;
+	font-weight: 600;
+	background: #2bd156;
+	color: white;
+	border-radius: 20px;
+	text-align: center;
+}
+
+}
+&
+.sendtocart { .cart-item { display:block;
+	animation: xAxis 1s forwards cubic-bezier(1.000, 0.440, 0.840, 0.165);
+	&:
+	before
+	{
+	animation
+	:
+	yAxis
+	1s
+	alternate
+	forwards
+	cubic-bezier(
+	0.165
+	,
+	0.840
+	,
+	0.440
+	,
+	1.000
+	);
+}
+
+}
+}
+}
+}
+.cart {
+	position: fixed;
+	top: 20px;
+	right: 20px;
+	width: 50px;
+	height: 50px;
+	background: #292d48;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 5px; i { font-size : 25px;
+	color: white;
+}
+
+&
+:before {
+	content: attr(data-totalitems);
+	font-size: 12px;
+	font-weight: 600;
+	position: absolute;
+	top: -12px;
+	right: -12px;
+	background: #2bd156;
+	line-height: 24px;
+	padding: 0 5px;
+	height: 24px;
+	min-width: 24px;
+	color: white;
+	text-align: center;
+	border-radius: 24px;
+}
+
+&
+.shake {
+	animation: shakeCart .4s ease-in-out forwards;
+}
+
+}
+@
+keyframes xAxis { 100% {
+	transform: translateX(calc(50vw - 105px));
+}
+
+}
+@
+keyframes yAxis { 100% {
+	transform: translateY(calc(-50vh + 75px));
+}
+
+}
+@
+keyframes shakeCart { 25% {
+	transform: translateX(6px)
+}
+50
+
+
+%
+{
+transform
+
+
+:
+
+
+translateX
+(
+
+
+-4px
+
+
+)
+;
+
+
+}
+75
+
+
+%
+{
+transform
+
+
+:
+
+
+translateX
+(
+
+
+2px
+
+
+)
+;
+
+
+}
+100
+
+
+%
+{
+transform
+
+
+:
+
+
+translateX
+(
+
+
+0
+
+
+)
+;
+
+
+}
+}
 </style>
 <!-- Bootstrap core CSS -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/css/swiper.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/css/swiper.min.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
 	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
 	crossorigin="anonymous">
 <link rel="stylesheet" href="/petopia/css/menu_test2.css">
@@ -69,10 +266,15 @@ margin-right : 16% !important;
 <link rel="stylesheet" href="/petopia/css/index.css">
 <link rel="stylesheet" href="/petopia/css/main-homepage.css">
 <!-- Custom styles for this template -->
-<script src="https://kit.fontawesome.com/f1def33959.js" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/js/swiper.min.js"></script>
-<link rel="shortcut icon" type="image/x-icon" href="/petopia/images/petopia_logomini.png">
-	
+<script src="https://kit.fontawesome.com/f1def33959.js"
+	crossorigin="anonymous"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/js/swiper.min.js"></script>
+<link rel="shortcut icon" type="image/x-icon"
+	href="/petopia/images/petopia_logomini.png">
+
 </head>
 
 <body>
@@ -112,7 +314,8 @@ margin-right : 16% !important;
 							</div>
 							<!-- Logo -->
 							<div class="logo">
-								<a href="main"><img src="/petopia/images/petopia_logo.png" alt=""></a>
+								<a href="main"><img src="/petopia/images/petopia_logo.png"
+									alt=""></a>
 							</div>
 						</nav>
 
@@ -130,7 +333,8 @@ margin-right : 16% !important;
 						<!-- Header Right -->
 						<div class="search">
 							<input type="text" class="searchForm" placeholder="검색어를 입력해주세요."
-								aria-label="Recipient's username" aria-describedby="button-addon2">
+								aria-label="Recipient's username"
+								aria-describedby="button-addon2">
 							<button class="searchBtn" type="submit">
 								<i class="fas fa-search"></i>
 							</button>
@@ -177,14 +381,17 @@ margin-right : 16% !important;
 									</div>
 
 									<ul class="ctgul">
-										<li class="ctgli"><a href="#" class="ctga"><i class="ti-user"></i>신상품</a></li>
+										<li class="ctgli"><a href="#" class="ctga"><i
+												class="ti-user"></i>신상품</a></li>
 
-										<li class="ctgli"><a href="#" class="ctga"><i class="ti-user"></i>베스트</a></li>
+										<li class="ctgli"><a href="#" class="ctga"><i
+												class="ti-user"></i>베스트</a></li>
 
-										<li class="ctgli"><a href="#" class="ctga"><i class="ti-user"></i>이벤트</a></li>
+										<li class="ctgli"><a href="#" class="ctga"><i
+												class="ti-user"></i>이벤트</a></li>
 
-										<li class="ctgli"><a href="#" class="ctga "> <i class="ti-write"></i> 카테고리 <i
-												class="ti-angle-down down "></i>
+										<li class="ctgli"><a href="#" class="ctga "> <i
+												class="ti-write"></i> 카테고리 <i class="ti-angle-down down "></i>
 										</a>
 											<ul class="ctgulChild">
 												<li class="ctgliChild"><a href="" class="ctgaChild">사료</a></li>
@@ -211,8 +418,8 @@ margin-right : 16% !important;
 
 			<div class="container girdscc">
 				<div class="col-md-12 ">
-					<div id="carousel-2" class="carousel slide carousel-fade" data-ride="carousel"
-						data-interval="3000">
+					<div id="carousel-2" class="carousel slide carousel-fade"
+						data-ride="carousel" data-interval="3000">
 						<ol class="carousel-indicators">
 							<li data-target="#carousel-2" data-slide-to="0" class="active"></li>
 							<li data-target="#carousel-2" data-slide-to="1"></li>
@@ -222,14 +429,15 @@ margin-right : 16% !important;
 
 							<div class="carousel-item active">
 								<a href="https://bootstrapcreative.com/"> <img
-									src="https://dummyimage.com/1000x400/444/" alt="responsive image" class="d-block img-fluid"
-									width="100%">
+									src="https://dummyimage.com/1000x400/444/"
+									alt="responsive image" class="d-block img-fluid" width="100%">
 
 									<div class="carousel-caption">
 										<div>
 											<h2>Digital Craftsmanship</h2>
 											<p>We meticously build each site to get results</p>
-											<span class="btn btn-sm btn-outline-secondary">Learn More</span>
+											<span class="btn btn-sm btn-outline-secondary">Learn
+												More</span>
 										</div>
 									</div>
 								</a>
@@ -239,14 +447,17 @@ margin-right : 16% !important;
 
 							<div class="carousel-item">
 								<a href="https://bootstrapcreative.com/"> <img
-									src="https://dummyimage.com/1000x400/444/" alt="responsive image" class="d-block img-fluid"
-									width="100%">
+									src="https://dummyimage.com/1000x400/444/"
+									alt="responsive image" class="d-block img-fluid" width="100%">
 
-									<div class="carousel-caption justify-content-center align-items-center">
+									<div
+										class="carousel-caption justify-content-center align-items-center">
 										<div>
 											<h2>Every project begins with a sketch</h2>
-											<p>We work as an extension of your business to explore solutions</p>
-											<span class="btn btn-sm btn-outline-secondary">Our Process</span>
+											<p>We work as an extension of your business to explore
+												solutions</p>
+											<span class="btn btn-sm btn-outline-secondary">Our
+												Process</span>
 										</div>
 									</div>
 								</a>
@@ -254,14 +465,16 @@ margin-right : 16% !important;
 							<!-- /.carousel-item -->
 							<div class="carousel-item">
 								<a href="https://bootstrapcreative.com/"> <img
-									src="https://dummyimage.com/1000x400/444/" alt="responsive image" class="d-block img-fluid"
-									width="100%">
+									src="https://dummyimage.com/1000x400/444/"
+									alt="responsive image" class="d-block img-fluid" width="100%">
 
 
-									<div class="carousel-caption justify-content-center align-items-center">
+									<div
+										class="carousel-caption justify-content-center align-items-center">
 										<div>
 											<h2>Performance Optimization</h2>
-											<p>We monitor and optimize your site's long-term performance</p>
+											<p>We monitor and optimize your site's long-term
+												performance</p>
 											<span class="btn btn-sm btn-secondary">Learn How</span>
 										</div>
 									</div>
@@ -270,10 +483,12 @@ margin-right : 16% !important;
 							<!-- /.carousel-item -->
 						</div>
 						<!-- /.carousel-inner -->
-						<a class="carousel-control-prev" href="#carousel-2" role="button" data-slide="prev"> <span
-							class="carousel-control-prev-icon" aria-hidden="true"></span> <span class="sr-only">Previous</span>
-						</a> <a class="carousel-control-next" href="#carousel-2" role="button" data-slide="next"> <span
-							class="carousel-control-next-icon" aria-hidden="true"></span> <span class="sr-only">Next</span>
+						<a class="carousel-control-prev" href="#carousel-2" role="button"
+							data-slide="prev"> <span class="carousel-control-prev-icon"
+							aria-hidden="true"></span> <span class="sr-only">Previous</span>
+						</a> <a class="carousel-control-next" href="#carousel-2" role="button"
+							data-slide="next"> <span class="carousel-control-next-icon"
+							aria-hidden="true"></span> <span class="sr-only">Next</span>
 						</a>
 					</div>
 
@@ -302,20 +517,28 @@ margin-right : 16% !important;
 
 
 			<div class="container girdscc3">
+
+				<div class="col-md-12">
+					<p id="product_title">이번주 신상
+					<p>
+				</div>
 				<div class="row">
-
-					<div class="col-md-12">이번주 신상</div>
-
+					<div class="roadmap-title">
+						<p id="product_title">&nbsp이번주 신상품</p>
+						<a id=allList href="">전체보기</a>
+					</div>
 
 					<div class="col-lg-6 col-md-6 mb-4 nopaddingcard ">
 						<div class="card h-40 itembox1">
-							<a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+							<a href="#"><img class="card-img-top"
+								src="http://placehold.it/700x400" alt=""></a>
 						</div>
 					</div>
 
 					<div class="col-lg-6 col-md-6 mb-4 nopaddingcard">
 						<div class="card h-40 itembox1">
-							<a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+							<a href="#"><img class="card-img-top"
+								src="http://placehold.it/700x400" alt=""></a>
 						</div>
 					</div>
 
@@ -323,566 +546,607 @@ margin-right : 16% !important;
 				</div>
 
 				<div class="row">
-						<section>
-					
+					<section>
 
-			     	<div class="roadmap-title">
-						&nbsp인기제품 <a>전체보기</a>
-				</div> 					
-				
-				<div class="swiper-container mySwiper">
 
-			     
-			      <div class="swiper-wrapper">
-			
-			        <div class="swiper-slide">
-			        	<div class="ss">
-						
-					<img src="/petopia/images/11356_originalView_01802971.jpg" alt="테스트 이미지" class="class-image" width= />
-					<div class="class-skill">
-												<div class="class-type">리스트1</div>
-													<div class="class-format">♡</div>
-												</div>
-												<div class="class-desc col-10">
-													<div class="class-title">리눅스 커널 프로그래밍</div>
-													<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
-												</div>
-											
+						<div class="roadmap-title">
+							&nbsp인기제품 <a id=allList href="">전체보기</a>
 						</div>
-			        </div>
-			        <div class="swiper-slide">
-			        	<div class="ss">
-						
-					<img src="/petopia/images/11356_originalView_01802971.jpg" alt="테스트 이미지" class="class-image" width= />
-					<div class="class-skill">
-												<div class="class-type">리스트1</div>
-													<div class="class-format">♡</div>
-												</div>
-												<div class="class-desc col-10">
-													<div class="class-title">리눅스 커널 프로그래밍</div>
-													<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
-												</div>
-											
+
+						<div class="swiper-container mySwiper">
+
+
+							<div class="swiper-wrapper">
+
+								<div class="swiper-slide">
+									<div class="ss">
+
+										<img src="/petopia/images/11356_originalView_01802971.jpg"
+											alt="테스트 이미지" class="class-image" width= />
+										<div class="class-skill">
+											<div class="class-type">리스트1</div>
+											<div class="class-format">♡</div>
+										</div>
+										<div class="class-desc col-10">
+											<div class="class-title">리눅스 커널 프로그래밍</div>
+											<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
+										</div>
+										<button class="btn btn-3 btn-3a icon-cart">장바구니로</button>
+										<div class="page-wrapper"></div>
+
+									</div>
+								</div>
+								<div class="swiper-slide">
+									<div class="ss">
+
+										<img src="/petopia/images/11356_originalView_01802971.jpg"
+											alt="테스트 이미지" class="class-image" width= />
+										<div class="class-skill">
+											<div class="class-type">리스트1</div>
+											<div class="class-format">♡</div>
+										</div>
+										<div class="class-desc col-10">
+											<div class="class-title">리눅스 커널 프로그래밍</div>
+											<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
+										</div>
+
+										<button class="btn btn-3 btn-3a icon-cart">장바구니로</button>
+
+									</div>
+								</div>
+								<div class="swiper-slide">
+									<div class="ss">
+
+										<img src="/petopia/images/11356_originalView_01802971.jpg"
+											alt="테스트 이미지" class="class-image" width= />
+										<div class="class-skill">
+											<div class="class-type">리스트1</div>
+											<div class="class-format">♡</div>
+										</div>
+										<div class="class-desc col-10">
+											<div class="class-title">리눅스 커널 프로그래밍</div>
+											<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
+										</div>
+										<button class="btn btn-3 btn-3a icon-cart">장바구니로</button>
+									</div>
+								</div>
+								<div class="swiper-slide">
+									<div class="ss">
+
+										<img src="/petopia/images/11356_originalView_01802971.jpg"
+											alt="테스트 이미지" class="class-image" width= />
+										<div class="class-skill">
+											<div class="class-type">리스트1</div>
+											<div class="class-format">♡</div>
+										</div>
+										<div class="class-desc col-10">
+											<div class="class-title">리눅스 커널 프로그래밍</div>
+											<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
+										</div>
+									<button class="btn btn-3 btn-3a icon-cart">장바구니로</button>
+									</div>
+								</div>
+								<div class="swiper-slide">
+									<div class="ss">
+
+										<img src="/petopia/images/11356_originalView_01802971.jpg"
+											alt="테스트 이미지" class="class-image" width= />
+										<div class="class-skill">
+											<div class="class-type">리스트1</div>
+											<div class="class-format">♡</div>
+										</div>
+										<div class="class-desc col-10">
+											<div class="class-title">리눅스 커널 프로그래밍</div>
+											<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
+										</div>
+									<button class="btn btn-3 btn-3a icon-cart">장바구니로</button>
+									</div>
+								</div>
+								<div class="swiper-slide">
+									<div class="ss">
+
+										<img src="/petopia/images/11356_originalView_01802971.jpg"
+											alt="테스트 이미지" class="class-image" width= />
+										<div class="class-skill">
+											<div class="class-type">리스트1</div>
+											<div class="class-format">♡</div>
+										</div>
+										<div class="class-desc col-10">
+											<div class="class-title">리눅스 커널 프로그래밍</div>
+											<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
+										</div>
+									<button class="btn btn-3 btn-3a icon-cart">장바구니로</button>
+									</div>
+								</div>
+								<div class="swiper-slide">
+									<div class="ss">
+
+										<img src="/petopia/images/11356_originalView_01802971.jpg"
+											alt="테스트 이미지" class="class-image" width= />
+										<div class="class-skill">
+											<div class="class-type">리스트1</div>
+											<div class="class-format">♡</div>
+										</div>
+										<div class="class-desc col-10">
+											<div class="class-title">리눅스 커널 프로그래밍</div>
+											<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
+										</div>
+										<button class="btn btn-3 btn-3a icon-cart">장바구니로</button>
+									</div>
+								</div>
+								<div class="swiper-slide">
+									<div class="ss">
+
+										<img src="/petopia/images/11356_originalView_01802971.jpg"
+											alt="테스트 이미지" class="class-image" width= />
+										<div class="class-skill">
+											<div class="class-type">리스트1</div>
+											<div class="class-format">♡</div>
+										</div>
+										<div class="class-desc col-10">
+											<div class="class-title">리눅스 커널 프로그래밍</div>
+											<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
+										</div>
+										<button class="btn btn-3 btn-3a icon-cart">장바구니로</button>
+									</div>
+								</div>
+							</div>
+							<br>
+							<div class="swiper-button-next"></div>
+							<div class="swiper-button-prev"></div>
 						</div>
-			        </div>
-			         <div class="swiper-slide">
-			        	<div class="ss">
-						
-					<img src="/petopia/images/11356_originalView_01802971.jpg" alt="테스트 이미지" class="class-image" width= />
-					<div class="class-skill">
-												<div class="class-type">리스트1</div>
-													<div class="class-format">♡</div>
-												</div>
-												<div class="class-desc col-10">
-													<div class="class-title">리눅스 커널 프로그래밍</div>
-													<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
-												</div>
-											
-						</div>
-			        </div>
-			       <div class="swiper-slide">
-			        	<div class="ss">
-						
-					<img src="/petopia/images/11356_originalView_01802971.jpg" alt="테스트 이미지" class="class-image" width= />
-					<div class="class-skill">
-												<div class="class-type">리스트1</div>
-													<div class="class-format">♡</div>
-												</div>
-												<div class="class-desc col-10">
-													<div class="class-title">리눅스 커널 프로그래밍</div>
-													<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
-												</div>
-											
-						</div>
-			        </div>
-			     <div class="swiper-slide">
-			        	<div class="ss">
-						
-					<img src="/petopia/images/11356_originalView_01802971.jpg" alt="테스트 이미지" class="class-image" width= />
-					<div class="class-skill">
-												<div class="class-type">리스트1</div>
-													<div class="class-format">♡</div>
-												</div>
-												<div class="class-desc col-10">
-													<div class="class-title">리눅스 커널 프로그래밍</div>
-													<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
-												</div>
-											
-						</div>
-			        </div>
-			     <div class="swiper-slide">
-			        	<div class="ss">
-						
-					<img src="/petopia/images/11356_originalView_01802971.jpg" alt="테스트 이미지" class="class-image" width= />
-					<div class="class-skill">
-												<div class="class-type">리스트1</div>
-													<div class="class-format">♡</div>
-												</div>
-												<div class="class-desc col-10">
-													<div class="class-title">리눅스 커널 프로그래밍</div>
-													<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
-												</div>
-											
-						</div>
-			        </div>
-			         <div class="swiper-slide">
-			        	<div class="ss">
-						
-					<img src="/petopia/images/11356_originalView_01802971.jpg" alt="테스트 이미지" class="class-image" width= />
-					<div class="class-skill">
-												<div class="class-type">리스트1</div>
-													<div class="class-format">♡</div>
-												</div>
-												<div class="class-desc col-10">
-													<div class="class-title">리눅스 커널 프로그래밍</div>
-													<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
-												</div>
-											
-						</div>
-			        </div>
-			         <div class="swiper-slide">
-			        	<div class="ss">
-						
-					<img src="/petopia/images/11356_originalView_01802971.jpg" alt="테스트 이미지" class="class-image" width= />
-					<div class="class-skill">
-												<div class="class-type">리스트1</div>
-													<div class="class-format">♡</div>
-												</div>
-												<div class="class-desc col-10">
-													<div class="class-title">리눅스 커널 프로그래밍</div>
-													<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
-												</div>
-											
-						</div>
-			        </div>
-			      </div>
-			      <br>
-			      <div class="swiper-button-next"></div>
-			      <div class="swiper-button-prev"></div>
-			    </div>
 					</section>
 
 
 				</div>
 
 				<div class="row">
-				<!--row end-->
-				<div class="roadmap-title">
-						&nbsp인기제품 <a>전체보기</a>
-				</div>
-				
-				<div class="swiper-container mySwiper">
-			      <div class="swiper-wrapper">
-			      
-			        <div class="swiper-slide">
-			        	<div class="ss">
-						
-					<img src="/petopia/images/11356_originalView_01802971.jpg" alt="테스트 이미지" class="class-image" width= />
-					<div class="class-skill">
-												<div class="class-type">리스트1</div>
-													<div class="class-format">♡</div>
-												</div>
-												<div class="class-desc col-10">
-													<div class="class-title">리눅스 커널 프로그래밍</div>
-													<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
-												</div>
-											
+					<!--row end-->
+					<div class="roadmap-title">
+						&nbsp인기제품 <a id=allList href="">전체보기</a>
+					</div>
+
+					<div class="swiper-container mySwiper">
+						<div class="swiper-wrapper">
+
+							<div class="swiper-slide">
+								<div class="ss">
+
+									<img src="/petopia/images/11356_originalView_01802971.jpg"
+										alt="테스트 이미지" class="class-image" width= />
+									<div class="class-skill">
+										<div class="class-type">리스트1</div>
+										<div class="class-format">♡</div>
+									</div>
+									<div class="class-desc col-10">
+										<div class="class-title">리눅스 커널 프로그래밍</div>
+										<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
+									</div>
+								<button class="btn btn-3 btn-3a icon-cart">장바구니로</button>
+								</div>
+							</div>
+							<div class="swiper-slide">
+								<div class="ss">
+
+									<img src="/petopia/images/11356_originalView_01802971.jpg"
+										alt="테스트 이미지" class="class-image" width= />
+									<div class="class-skill">
+										<div class="class-type">리스트1</div>
+										<div class="class-format">♡</div>
+									</div>
+									<div class="class-desc col-10">
+										<div class="class-title">리눅스 커널 프로그래밍</div>
+										<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
+									</div>
+									<button class="btn btn-3 btn-3a icon-cart">장바구니로</button>
+								</div>
+							</div>
+							<div class="swiper-slide">
+								<div class="ss">
+
+									<img src="/petopia/images/11356_originalView_01802971.jpg"
+										alt="테스트 이미지" class="class-image" width= />
+									<div class="class-skill">
+										<div class="class-type">리스트1</div>
+										<div class="class-format">♡</div>
+									</div>
+									<div class="class-desc col-10">
+										<div class="class-title">리눅스 커널 프로그래밍</div>
+										<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
+									</div>
+									<button class="btn btn-3 btn-3a icon-cart">장바구니로</button>
+								</div>
+							</div>
+							<div class="swiper-slide">
+								<div class="ss">
+
+									<img src="/petopia/images/11356_originalView_01802971.jpg"
+										alt="테스트 이미지" class="class-image" width= />
+									<div class="class-skill">
+										<div class="class-type">리스트1</div>
+										<div class="class-format">♡</div>
+									</div>
+									<div class="class-desc col-10">
+										<div class="class-title">리눅스 커널 프로그래밍</div>
+										<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
+									</div>
+									<button class="btn btn-3 btn-3a icon-cart">장바구니로</button>
+								</div>
+							</div>
+							<div class="swiper-slide">
+								<div class="ss">
+
+									<img src="/petopia/images/11356_originalView_01802971.jpg"
+										alt="테스트 이미지" class="class-image" width= />
+									<div class="class-skill">
+										<div class="class-type">리스트1</div>
+										<div class="class-format">♡</div>
+									</div>
+									<div class="class-desc col-10">
+										<div class="class-title">리눅스 커널 프로그래밍</div>
+										<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
+									</div>
+									<button class="btn btn-3 btn-3a icon-cart">장바구니로</button>
+								</div>
+							</div>
+							<div class="swiper-slide">
+								<div class="ss">
+
+									<img src="/petopia/images/11356_originalView_01802971.jpg"
+										alt="테스트 이미지" class="class-image" width= />
+									<div class="class-skill">
+										<div class="class-type">리스트1</div>
+										<div class="class-format">♡</div>
+									</div>
+									<div class="class-desc col-10">
+										<div class="class-title">리눅스 커널 프로그래밍</div>
+										<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
+									</div>
+									<button class="btn btn-3 btn-3a icon-cart">장바구니로</button>
+								</div>
+							</div>
+							<div class="swiper-slide">
+								<div class="ss">
+
+									<img src="/petopia/images/11356_originalView_01802971.jpg"
+										alt="테스트 이미지" class="class-image" width= />
+									<div class="class-skill">
+										<div class="class-type">리스트1</div>
+										<div class="class-format">♡</div>
+									</div>
+									<div class="class-desc col-10">
+										<div class="class-title">리눅스 커널 프로그래밍</div>
+										<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
+									</div>
+									<button class="btn btn-3 btn-3a icon-cart">장바구니로</button>
+								</div>
+							</div>
+							<div class="swiper-slide">
+								<div class="ss">
+
+									<img src="/petopia/images/11356_originalView_01802971.jpg"
+										alt="테스트 이미지" class="class-image" width= />
+									<div class="class-skill">
+										<div class="class-type">리스트1</div>
+										<div class="class-format">♡</div>
+									</div>
+									<div class="class-desc col-10">
+										<div class="class-title">리눅스 커널 프로그래밍</div>
+										<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
+									</div>
+									<button class="btn btn-3 btn-3a icon-cart">장바구니로</button>
+								</div>
+							</div>
 						</div>
-			        </div>
-			        <div class="swiper-slide">
-			        	<div class="ss">
-						
-					<img src="/petopia/images/11356_originalView_01802971.jpg" alt="테스트 이미지" class="class-image" width= />
-					<div class="class-skill">
-												<div class="class-type">리스트1</div>
-													<div class="class-format">♡</div>
-												</div>
-												<div class="class-desc col-10">
-													<div class="class-title">리눅스 커널 프로그래밍</div>
-													<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
-												</div>
-											
-						</div>
-			        </div>
-			         <div class="swiper-slide">
-			        	<div class="ss">
-						
-					<img src="/petopia/images/11356_originalView_01802971.jpg" alt="테스트 이미지" class="class-image" width= />
-					<div class="class-skill">
-												<div class="class-type">리스트1</div>
-													<div class="class-format">♡</div>
-												</div>
-												<div class="class-desc col-10">
-													<div class="class-title">리눅스 커널 프로그래밍</div>
-													<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
-												</div>
-											
-						</div>
-			        </div>
-			       <div class="swiper-slide">
-			        	<div class="ss">
-						
-					<img src="/petopia/images/11356_originalView_01802971.jpg" alt="테스트 이미지" class="class-image" width= />
-					<div class="class-skill">
-												<div class="class-type">리스트1</div>
-													<div class="class-format">♡</div>
-												</div>
-												<div class="class-desc col-10">
-													<div class="class-title">리눅스 커널 프로그래밍</div>
-													<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
-												</div>
-											
-						</div>
-			        </div>
-			     <div class="swiper-slide">
-			        	<div class="ss">
-						
-					<img src="/petopia/images/11356_originalView_01802971.jpg" alt="테스트 이미지" class="class-image" width= />
-					<div class="class-skill">
-												<div class="class-type">리스트1</div>
-													<div class="class-format">♡</div>
-												</div>
-												<div class="class-desc col-10">
-													<div class="class-title">리눅스 커널 프로그래밍</div>
-													<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
-												</div>
-											
-						</div>
-			        </div>
-			     <div class="swiper-slide">
-			        	<div class="ss">
-						
-					<img src="/petopia/images/11356_originalView_01802971.jpg" alt="테스트 이미지" class="class-image" width= />
-					<div class="class-skill">
-												<div class="class-type">리스트1</div>
-													<div class="class-format">♡</div>
-												</div>
-												<div class="class-desc col-10">
-													<div class="class-title">리눅스 커널 프로그래밍</div>
-													<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
-												</div>
-											
-						</div>
-			        </div>
-			         <div class="swiper-slide">
-			        	<div class="ss">
-						
-					<img src="/petopia/images/11356_originalView_01802971.jpg" alt="테스트 이미지" class="class-image" width= />
-					<div class="class-skill">
-												<div class="class-type">리스트1</div>
-													<div class="class-format">♡</div>
-												</div>
-												<div class="class-desc col-10">
-													<div class="class-title">리눅스 커널 프로그래밍</div>
-													<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
-												</div>
-											
-						</div>
-			        </div>
-			         <div class="swiper-slide">
-			        	<div class="ss">
-						
-					<img src="/petopia/images/11356_originalView_01802971.jpg" alt="테스트 이미지" class="class-image" width= />
-					<div class="class-skill">
-												<div class="class-type">리스트1</div>
-													<div class="class-format">♡</div>
-												</div>
-												<div class="class-desc col-10">
-													<div class="class-title">리눅스 커널 프로그래밍</div>
-													<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
-												</div>
-											
-						</div>
-			        </div>
-			      </div>
-			      <br>
-			      <div class="swiper-button-next"></div>
-			      <div class="swiper-button-prev"></div>
-			    </div>
+						<br>
+						<div class="swiper-button-next"></div>
+						<div class="swiper-button-prev"></div>
+					</div>
 				</div>
 				<div class="row">
-				<!--row end-->
-				<div class="roadmap-title">
-						&nbsp인기제품 <a>전체보기</a>
+					<!--row end-->
+					<div class="roadmap-title">
+						&nbsp인기제품 <a id=allList href="">전체보기</a>
+					</div>
+
+					<div class="swiper-container mySwiper">
+						<div class="swiper-wrapper">
+
+							<div class="swiper-slide">
+								<div class="ss">
+
+									<img src="/petopia/images/11356_originalView_01802971.jpg"
+										alt="테스트 이미지" class="class-image" width= />
+									<div class="class-skill">
+										<div class="class-type">리스트1</div>
+										<div class="class-format">♡</div>
+									</div>
+									<div class="class-desc col-10">
+										<div class="class-title">리눅스 커널 프로그래밍</div>
+										<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
+									</div>
+									<button class="btn btn-3 btn-3a icon-cart">장바구니로</button>
+								</div>
+							</div>
+							<div class="swiper-slide">
+								<div class="ss">
+
+									<img src="/petopia/images/11356_originalView_01802971.jpg"
+										alt="테스트 이미지" class="class-image" width= />
+									<div class="class-skill">
+										<div class="class-type">리스트1</div>
+										<div class="class-format">♡</div>
+									</div>
+									<div class="class-desc col-10">
+										<div class="class-title">리눅스 커널 프로그래밍</div>
+										<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
+									</div>
+								<button class="btn btn-3 btn-3a icon-cart">장바구니로</button>
+								</div>
+							</div>
+							<div class="swiper-slide">
+								<div class="ss">
+
+									<img src="/petopia/images/11356_originalView_01802971.jpg"
+										alt="테스트 이미지" class="class-image" width= />
+									<div class="class-skill">
+										<div class="class-type">리스트1</div>
+										<div class="class-format">♡</div>
+									</div>
+									<div class="class-desc col-10">
+										<div class="class-title">리눅스 커널 프로그래밍</div>
+										<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
+									</div>
+									<button class="btn btn-3 btn-3a icon-cart">장바구니로</button>
+								</div>
+							</div>
+							<div class="swiper-slide">
+								<div class="ss">
+
+									<img src="/petopia/images/11356_originalView_01802971.jpg"
+										alt="테스트 이미지" class="class-image" width= />
+									<div class="class-skill">
+										<div class="class-type">리스트1</div>
+										<div class="class-format">♡</div>
+									</div>
+									<div class="class-desc col-10">
+										<div class="class-title">리눅스 커널 프로그래밍</div>
+										<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
+									</div>
+									<button class="btn btn-3 btn-3a icon-cart">장바구니로</button>
+								</div>
+							</div>
+							<div class="swiper-slide">
+								<div class="ss">
+
+									<img src="/petopia/images/11356_originalView_01802971.jpg"
+										alt="테스트 이미지" class="class-image" width= />
+									<div class="class-skill">
+										<div class="class-type">리스트1</div>
+										<div class="class-format">♡</div>
+									</div>
+									<div class="class-desc col-10">
+										<div class="class-title">리눅스 커널 프로그래밍</div>
+										<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
+									</div>
+									<button class="btn btn-3 btn-3a icon-cart">장바구니로</button>
+								</div>
+							</div>
+							<div class="swiper-slide">
+								<div class="ss">
+
+									<img src="/petopia/images/11356_originalView_01802971.jpg"
+										alt="테스트 이미지" class="class-image" width= />
+									<div class="class-skill">
+										<div class="class-type">리스트1</div>
+										<div class="class-format">♡</div>
+									</div>
+									<div class="class-desc col-10">
+										<div class="class-title">리눅스 커널 프로그래밍</div>
+										<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
+									</div>
+								<button class="btn btn-3 btn-3a icon-cart">장바구니로</button>
+								</div>
+							</div>
+							<div class="swiper-slide">
+								<div class="ss">
+
+									<img src="/petopia/images/11356_originalView_01802971.jpg"
+										alt="테스트 이미지" class="class-image" width= />
+									<div class="class-skill">
+										<div class="class-type">리스트1</div>
+										<div class="class-format">♡</div>
+									</div>
+									<div class="class-desc col-10">
+										<div class="class-title">리눅스 커널 프로그래밍</div>
+										<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
+									</div>
+								<button class="btn btn-3 btn-3a icon-cart">장바구니로</button>
+								</div>
+							</div>
+							<div class="swiper-slide">
+								<div class="ss">
+
+									<img src="/petopia/images/11356_originalView_01802971.jpg"
+										alt="테스트 이미지" class="class-image" width= />
+									<div class="class-skill">
+										<div class="class-type">리스트1</div>
+										<div class="class-format">♡</div>
+									</div>
+									<div class="class-desc col-10">
+										<div class="class-title">리눅스 커널 프로그래밍</div>
+										<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
+									</div>
+								<button class="btn btn-3 btn-3a icon-cart">장바구니로</button>
+								</div>
+							</div>
+						</div>
+						<br>
+						<div class="swiper-button-next"></div>
+						<div class="swiper-button-prev"></div>
+					</div>
 				</div>
-				
-				<div class="swiper-container mySwiper">
-			      <div class="swiper-wrapper">
-			      
-			        <div class="swiper-slide">
-			        	<div class="ss">
-						
-					<img src="/petopia/images/11356_originalView_01802971.jpg" alt="테스트 이미지" class="class-image" width= />
-						<div class="class-skill">
-												<div class="class-type">리스트1</div>
-													<div class="class-format">♡</div>
-												</div>
-												<div class="class-desc col-10">
-													<div class="class-title">리눅스 커널 프로그래밍</div>
-													<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
-												</div>
-											
+
+				<div class="row">
+					<div class="roadmap-title">
+						&nbsp인기제품 <a id=allList href="">전체보기</a>
+					</div>
+					<div class="swiper-container mySwiper">
+
+						<div class="swiper-wrapper">
+							<div class="swiper-slide">
+								<div class="ss">
+
+									<img src="/petopia/images/11356_originalView_01802971.jpg"
+										alt="테스트 이미지" class="class-image" width= />
+									<div class="class-skill">
+										<div class="class-type">리스트1</div>
+										<div class="class-format">♡</div>
+									</div>
+									<div class="class-desc col-10">
+										<div class="class-title">리눅스 커널 프로그래밍</div>
+										<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
+									</div>
+								<button class="btn btn-3 btn-3a icon-cart">장바구니로</button>
+								</div>
+							</div>
+							<div class="swiper-slide">
+								<div class="ss">
+
+									<img src="/petopia/images/11356_originalView_01802971.jpg"
+										alt="테스트 이미지" class="class-image" width= />
+									<div class="class-skill">
+										<div class="class-type">리스트1</div>
+										<div class="class-format">♡</div>
+									</div>
+									<div class="class-desc col-10">
+										<div class="class-title">리눅스 커널 프로그래밍</div>
+										<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
+									</div>
+									<button class="btn btn-3 btn-3a icon-cart">장바구니로</button>
+								</div>
+							</div>
+							<div class="swiper-slide">
+								<div class="ss">
+
+									<img src="/petopia/images/11356_originalView_01802971.jpg"
+										alt="테스트 이미지" class="class-image" width= />
+									<div class="class-skill">
+										<div class="class-type">리스트1</div>
+										<div class="class-format">♡</div>
+									</div>
+									<div class="class-desc col-10">
+										<div class="class-title">리눅스 커널 프로그래밍</div>
+										<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
+									</div>
+								<button class="btn btn-3 btn-3a icon-cart">장바구니로</button>
+								</div>
+							</div>
+							<div class="swiper-slide">
+								<div class="ss">
+
+									<img src="/petopia/images/11356_originalView_01802971.jpg"
+										alt="테스트 이미지" class="class-image" width= />
+									<div class="class-skill">
+										<div class="class-type">리스트1</div>
+										<div class="class-format">♡</div>
+									</div>
+									<div class="class-desc col-10">
+										<div class="class-title">리눅스 커널 프로그래밍</div>
+										<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
+									</div>
+								<button class="btn btn-3 btn-3a icon-cart">장바구니로</button>
+								</div>
+							</div>
+							<div class="swiper-slide">
+								<div class="ss">
+
+									<img src="/petopia/images/11356_originalView_01802971.jpg"
+										alt="테스트 이미지" class="class-image" width= />
+									<div class="class-skill">
+										<div class="class-type">리스트1</div>
+										<div class="class-format">♡</div>
+									</div>
+									<div class="class-desc col-10">
+										<div class="class-title">리눅스 커널 프로그래밍</div>
+										<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
+									</div>
+									<button class="btn btn-3 btn-3a icon-cart">장바구니로</button>
+								</div>
+							</div>
+							<div class="swiper-slide">
+								<div class="ss">
+
+									<img src="/petopia/images/11356_originalView_01802971.jpg"
+										alt="테스트 이미지" class="class-image" width= />
+									<div class="class-skill">
+										<div class="class-type">리스트1</div>
+										<div class="class-format">♡</div>
+									</div>
+									<div class="class-desc col-10">
+										<div class="class-title">리눅스 커널 프로그래밍</div>
+										<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
+									</div>
+								<button class="btn btn-3 btn-3a icon-cart">장바구니로</button>
+								</div>
+							</div>
+							<div class="swiper-slide">
+								<div class="ss">
+
+									<img src="/petopia/images/11356_originalView_01802971.jpg"
+										alt="테스트 이미지" class="class-image" width= />
+									<div class="class-skill">
+										<div class="class-type">리스트1</div>
+										<div class="class-format">♡</div>
+									</div>
+									<div class="class-desc col-10">
+										<div class="class-title">리눅스 커널 프로그래밍</div>
+										<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
+									</div>
+									<button class="btn btn-3 btn-3a icon-cart">장바구니로</button>
+								</div>
+							</div>
+							<div class="swiper-slide">
+								<div class="ss">
+
+									<img src="/petopia/images/11356_originalView_01802971.jpg"
+										alt="테스트 이미지" class="class-image" width= />
+									<div class="class-skill">
+										<div class="class-type">리스트1</div>
+										<div class="class-format">♡</div>
+									</div>
+									<div class="class-desc col-10">
+										<div class="class-title">리눅스 커널 프로그래밍</div>
+										<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
+									</div>
+						<button class="btn btn-3 btn-3a icon-cart">장바구니로</button>
+								</div>
+							</div>
+
 						</div>
-			        </div>
-			          <div class="swiper-slide">
-			        	<div class="ss">
-						
-					<img src="/petopia/images/11356_originalView_01802971.jpg" alt="테스트 이미지" class="class-image" width= />
-					<div class="class-skill">
-												<div class="class-type">리스트1</div>
-													<div class="class-format">♡</div>
-												</div>
-												<div class="class-desc col-10">
-													<div class="class-title">리눅스 커널 프로그래밍</div>
-													<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
-												</div>
-											
-						</div>
-			        </div>
-			           <div class="swiper-slide">
-			        	<div class="ss">
-						
-					<img src="/petopia/images/11356_originalView_01802971.jpg" alt="테스트 이미지" class="class-image" width= />
-					<div class="class-skill">
-												<div class="class-type">리스트1</div>
-													<div class="class-format">♡</div>
-												</div>
-												<div class="class-desc col-10">
-													<div class="class-title">리눅스 커널 프로그래밍</div>
-													<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
-												</div>
-											
-						</div>
-			        </div>
-			           <div class="swiper-slide">
-			        	<div class="ss">
-						
-					<img src="/petopia/images/11356_originalView_01802971.jpg" alt="테스트 이미지" class="class-image" width= />
-					<div class="class-skill">
-												<div class="class-type">리스트1</div>
-													<div class="class-format">♡</div>
-												</div>
-												<div class="class-desc col-10">
-													<div class="class-title">리눅스 커널 프로그래밍</div>
-													<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
-												</div>
-											
-						</div>
-			        </div>
-			           <div class="swiper-slide">
-			        	<div class="ss">
-						
-					<img src="/petopia/images/11356_originalView_01802971.jpg" alt="테스트 이미지" class="class-image" width= />
-					<div class="class-skill">
-												<div class="class-type">리스트1</div>
-													<div class="class-format">♡</div>
-												</div>
-												<div class="class-desc col-10">
-													<div class="class-title">리눅스 커널 프로그래밍</div>
-													<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
-												</div>
-											
-						</div>
-			        </div>
-			           <div class="swiper-slide">
-			        	<div class="ss">
-						
-					<img src="/petopia/images/11356_originalView_01802971.jpg" alt="테스트 이미지" class="class-image" width= />
-					<div class="class-skill">
-												<div class="class-type">리스트1</div>
-													<div class="class-format">♡</div>
-												</div>
-												<div class="class-desc col-10">
-													<div class="class-title">리눅스 커널 프로그래밍</div>
-													<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
-												</div>
-											
-						</div>
-			        </div>
-			           <div class="swiper-slide">
-			        	<div class="ss">
-						
-					<img src="/petopia/images/11356_originalView_01802971.jpg" alt="테스트 이미지" class="class-image" width= />
-					<div class="class-skill">
-												<div class="class-type">리스트1</div>
-													<div class="class-format">♡</div>
-												</div>
-												<div class="class-desc col-10">
-													<div class="class-title">리눅스 커널 프로그래밍</div>
-													<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
-												</div>
-											
-						</div>
-			        </div>
-			           <div class="swiper-slide">
-			        	<div class="ss">
-						
-					<img src="/petopia/images/11356_originalView_01802971.jpg" alt="테스트 이미지" class="class-image" width= />
-					<div class="class-skill">
-												<div class="class-type">리스트1</div>
-													<div class="class-format">♡</div>
-												</div>
-												<div class="class-desc col-10">
-													<div class="class-title">리눅스 커널 프로그래밍</div>
-													<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
-												</div>
-											
-						</div>
-			        </div>
-			      </div>
-			      <br>
-			      <div class="swiper-button-next"></div>
-			      <div class="swiper-button-prev"></div>
-			    </div>
+						<br>
+						<div class="swiper-button-next"></div>
+						<div class="swiper-button-prev"></div>
+
+					</div>
 				</div>
-				
-			<div class="row">
-				<div class="swiper-container mySwiper">
-			      <div class="swiper-wrapper">
-			          <div class="swiper-slide">
-			        	<div class="ss">
-						
-					<img src="/petopia/images/11356_originalView_01802971.jpg" alt="테스트 이미지" class="class-image" width= />
-					<div class="class-skill">
-												<div class="class-type">리스트1</div>
-													<div class="class-format">♡</div>
-												</div>
-												<div class="class-desc col-10">
-													<div class="class-title">리눅스 커널 프로그래밍</div>
-													<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
-												</div>
-											
-						</div>
-			        </div>
-			           <div class="swiper-slide">
-			        	<div class="ss">
-						
-					<img src="/petopia/images/11356_originalView_01802971.jpg" alt="테스트 이미지" class="class-image" width= />
-					<div class="class-skill">
-												<div class="class-type">리스트1</div>
-													<div class="class-format">♡</div>
-												</div>
-												<div class="class-desc col-10">
-													<div class="class-title">리눅스 커널 프로그래밍</div>
-													<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
-												</div>
-											
-						</div>
-			        </div>
-			           <div class="swiper-slide">
-			        	<div class="ss">
-						
-					<img src="/petopia/images/11356_originalView_01802971.jpg" alt="테스트 이미지" class="class-image" width= />
-					<div class="class-skill">
-												<div class="class-type">리스트1</div>
-													<div class="class-format">♡</div>
-												</div>
-												<div class="class-desc col-10">
-													<div class="class-title">리눅스 커널 프로그래밍</div>
-													<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
-												</div>
-											
-						</div>
-			        </div>
-			         <div class="swiper-slide">
-			        	<div class="ss">
-						
-					<img src="/petopia/images/11356_originalView_01802971.jpg" alt="테스트 이미지" class="class-image" width= />
-					<div class="class-skill">
-												<div class="class-type">리스트1</div>
-													<div class="class-format">♡</div>
-												</div>
-												<div class="class-desc col-10">
-													<div class="class-title">리눅스 커널 프로그래밍</div>
-													<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
-												</div>
-											
-						</div>
-			        </div>
-			       <div class="swiper-slide">
-			        	<div class="ss">
-						
-					<img src="/petopia/images/11356_originalView_01802971.jpg" alt="테스트 이미지" class="class-image" width= />
-					<div class="class-skill">
-												<div class="class-type">리스트1</div>
-													<div class="class-format">♡</div>
-												</div>
-												<div class="class-desc col-10">
-													<div class="class-title">리눅스 커널 프로그래밍</div>
-													<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
-												</div>
-											
-						</div>
-			        </div>
-			          <div class="swiper-slide">
-			        	<div class="ss">
-						
-					<img src="/petopia/images/11356_originalView_01802971.jpg" alt="테스트 이미지" class="class-image" width= />
-					<div class="class-skill">
-												<div class="class-type">리스트1</div>
-													<div class="class-format">♡</div>
-												</div>
-												<div class="class-desc col-10">
-													<div class="class-title">리눅스 커널 프로그래밍</div>
-													<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
-												</div>
-											
-						</div>
-			        </div>
-			          <div class="swiper-slide">
-			        	<div class="ss">
-						
-					<img src="/petopia/images/11356_originalView_01802971.jpg" alt="테스트 이미지" class="class-image" width= />
-					<div class="class-skill">
-												<div class="class-type">리스트1</div>
-													<div class="class-format">♡</div>
-												</div>
-												<div class="class-desc col-10">
-													<div class="class-title">리눅스 커널 프로그래밍</div>
-													<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
-												</div>
-											
-						</div>
-			        </div>
-			          <div class="swiper-slide">
-			        	<div class="ss">
-						
-					<img src="/petopia/images/11356_originalView_01802971.jpg" alt="테스트 이미지" class="class-image" width= />
-					<div class="class-skill">
-												<div class="class-type">리스트1</div>
-													<div class="class-format">♡</div>
-												</div>
-												<div class="class-desc col-10">
-													<div class="class-title">리눅스 커널 프로그래밍</div>
-													<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
-												</div>
-											
-						</div>
-			        </div>
-			        
-			      </div>
-			      <br>
-			   
-			   
-			    </div>
-				</div>
-				
+
 			</div>
 		</div>
 
 
 		<div class="quick">
-			
+
 			<div class="icon4">
 				<span>장바구니</span> <span><a href="#">0</a></span>
-				<div "class=cart_item">
-				
-				</div>
+				<div "class=cart_item"></div>
 			</div>
 			<div class="icon5">
 				<span>최근 본 상품</span> <br> <a href="#"><img
-					src="http://vivienne.kr/web/upload/goodymall40/layout/btn_recent_prev.gif" alt=""><img
-					src="http://vivienne.kr/web/upload/goodymall40/layout/btn_recent_next.gif" alt=""></a>
+					src="http://vivienne.kr/web/upload/goodymall40/layout/btn_recent_prev.gif"
+					alt=""><img
+					src="http://vivienne.kr/web/upload/goodymall40/layout/btn_recent_next.gif"
+					alt=""></a>
 			</div>
 
 		</div>
@@ -921,37 +1185,74 @@ margin-right : 16% !important;
 	<a id="backtotop"></a>
 
 	<!-- Bootstrap core JavaScript -->
-  <script type="text/javascript">
-		
-		
-      var swiper = new Swiper(".mySwiper", {
-        slidesPerView: 4,
-        spaceBetween: 20,
-        slidesPerGroup: 4,
-        loop: true,
-        loopFillGroupWithBlank: true,
-        pagination: {
-          el: ".swiper-pagination",
-          clickable: true,
-        },
-        navigation: {
-          nextEl: ".swiper-button-next",
-          prevEl: ".swiper-button-prev",
-        },
-      });
-    </script>	
+	<script type="text/javascript">
+		$(document)
+				.ready(
+						function() {
+							var swiper = new Swiper(".mySwiper", {
+								slidesPerView : 4,
+								spaceBetween : 20,
+								slidesPerGroup : 4,
+								loop : true,
+								loopFillGroupWithBlank : true,
+								pagination : {
+									el : ".swiper-pagination",
+									clickable : true,
+								},
+								navigation : {
+									nextEl : ".swiper-button-next",
+									prevEl : ".swiper-button-prev",
+								},
+							});
 
-<script src="/petopia/vendor/jquery/jquery.min.js"></script>
-<script src="/petopia/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+							$(document)
+									.ready(
+											function() {
+												$('#addtocart')
+														.on(
+																'click',
+																function() {
 
-<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
-<script src="/petopia/js/mainindex.js"></script>
-<script src="/petopia/js/petopia.js"></script>
-	
+																	var button = $(this);
+																	var cart = $('#cart');
+																	var cartTotal = cart
+																			.attr('data-totalitems');
+																	var newCartTotal = parseInt(cartTotal) + 1;
 
-<script type="text/javascript">
+																	button
+																			.addClass('sendtocart');
+																	setTimeout(
+																			function() {
+																				button
+																						.removeClass('sendtocart');
+																				cart
+																						.addClass(
+																								'shake')
+																						.attr(
+																								'data-totalitems',
+																								newCartTotal);
+																				setTimeout(
+																						function() {
+																							cart
+																									.removeClass('shake');
+																						},
+																						500)
+																			},
+																			1000)
+																})
+											});
 
-</script>
+						});
+	</script>
+
+
+	<script src="/petopia/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+	<script src="/petopia/js/mainindex.js"></script>
+	<script src="/petopia/js/petopia.js"></script>
+
+
+
 </body>
 
 </html>

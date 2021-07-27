@@ -17,7 +17,6 @@ public interface MemberMapper {
 	
 	// 해당 멤버 정보 가지고오기
 	MemberVO getMemberInfoRead(String member_id);
-	
 	// 회원가입
     void memberJoin(MemberVO member);
     // 회원가입 시 권한 주입 (회원가입과 동시에 이뤄져야 함)

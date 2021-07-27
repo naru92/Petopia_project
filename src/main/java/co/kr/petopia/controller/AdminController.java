@@ -379,21 +379,41 @@ public class AdminController {
 	}
 	
 	//통계 모음 페이지
-	@GetMapping(value = "/getStatistics", produces = "text/plain;charset=UTF-8")
+	@GetMapping(value = "/getStatistics1", produces = "text/plain;charset=UTF-8")
 	public @ResponseBody String getStatistics(Model model) {
 
 		Gson gson = new Gson();
 		//회원 - 최근 3개월간 회원수 - 라인차트
 		List<MemberVO> List1 = adminService.member_statistics_3month();
-		//기부 - 3개월간 기부금, 1년 기부금
-		List<MemberVO> List2 = adminService.donation_statistics_3month();
-		//주문 - 최근 3개월간 가장 많이 주문 - 바차트
-		List<ProductVO> List3 = adminService.order_statistics_3month();
+		
 		return gson.toJson(List1);
 		
-		
 	}
-		
+	//통계 모음 페이지
+		@GetMapping(value = "/getStatistics2", produces = "text/plain;charset=UTF-8")
+		public @ResponseBody String getStatistics2(Model model) {
+
+			Gson gson = new Gson();
+			//기부 - 3개월간 기부금, 1년 기부금
+			List<MemberVO> List2 = adminService.donation_statistics_3month();
+			
+			
+			return gson.toJson(List2);
+			
+		}
+		//통계 모음 페이지
+		@GetMapping(value = "/getStatistics3", produces = "text/plain;charset=UTF-8")
+		public @ResponseBody String getStatistics3(Model model) {
+
+			Gson gson = new Gson();
+			//주문 - 최근 3개월간 가장 많이 주문 - 바차트
+			List<ProductVO> List3 = adminService.order_statistics_3month();
+			
+			
+			return gson.toJson(List3);
+			
+			
+		}
 		
 
 	

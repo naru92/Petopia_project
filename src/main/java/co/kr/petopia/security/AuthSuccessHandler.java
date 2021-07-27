@@ -53,7 +53,7 @@ public class AuthSuccessHandler implements AuthenticationSuccessHandler {
 			Authentication auth) throws IOException, ServletException {
 		
 		logger.info("로그인 성공");
-		
+		logger.info("로그인 아이디 : " + auth);
 		
 		String member_id="";
 		
@@ -67,7 +67,7 @@ public class AuthSuccessHandler implements AuthenticationSuccessHandler {
 			authorityNames.add(authority.getAuthority());
 		});
 		
-		log.info(request.getParameter(member_id) + "ROLE_NAMES : " + authorityNames );
+		log.info(request.getParameter(member_id) + " ROLE_NAMES : " + authorityNames );
 		resultRedirectStrategy(request, response, auth);
 		
 		} catch (Exception e) {
