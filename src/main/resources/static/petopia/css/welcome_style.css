@@ -195,6 +195,7 @@ margin-bottom: 7px;
 
 #content4 {
     padding: 4rem;
+    padding-bottom: 0.5rem;
   }
 
 #content4 img {
@@ -212,8 +213,20 @@ margin-bottom: 7px;
     line-height: 1.4rem;
 }
 
-#content4 .shop-btn {
-    width:200px;
+section .shop-btn {
+    width:170px;
+    padding: 1rem 1rem;
+    font-size:0.9rem;
+    background: #2AC1BC;
+    color: #fff;
+    transition: 0.5s;
+    margin-top:1.5rem;
+    border: none;
+    border-radius: 10px;
+}
+
+section .login-btn {
+    width:170px;
     padding: 1rem 1rem;
     font-size:0.9rem;
     background: #2AC1BC;
@@ -224,9 +237,20 @@ margin-bottom: 7px;
     border-radius: 10px;
 }
   
-#content4 .shop-btn:hover {
+section .shop-btn:hover {
     cursor: pointer;
     text-decoration: none;
-    opacity: 0.9;
+    opacity: 0.8;
     color: white;
+}
+
+section .login-btn:hover {
+    cursor: pointer;
+    text-decoration: none;
+    opacity: 0.8;
+    color: white;
+}
+
+section button {
+	margin-bottom:70px;	
 }

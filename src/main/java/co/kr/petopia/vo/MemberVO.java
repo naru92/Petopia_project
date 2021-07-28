@@ -8,18 +8,21 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
+@Builder
 public class MemberVO implements UserDetails {
-	/**
+	/*
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	private String member_id;
+	private String memberAuth_id;
 	private String member_password;
 	private String member_name;
 	private String member_phoneNumber;
@@ -30,6 +33,7 @@ public class MemberVO implements UserDetails {
 	private int member_point;
 	private int member_donation;
 	private String authority;
+	private boolean enabled;
 
 	
 	

@@ -9,11 +9,11 @@ let index = {
 				// alert('member의 save함수 호출됨');
 				
 				let data = {
-						member_id: $(".id").val(),
+						member_id: $(".memberId").val(),
 						member_password: $(".password01").val(),
 						member_email: $(".email01").val()+"@"+$(".email02").val(),
-						member_name: $(".name").val(),
-						member_phoneNumber: $(".phoneNumber").val(),
+						member_name: $(".memberName").val(),
+						member_phoneNumber: $(".memberPhoneNumber").val(),
 						member_address: $(".address1").val()+" "+$(".address2").val()+" "+$(".address3").val(),
 				};
 				

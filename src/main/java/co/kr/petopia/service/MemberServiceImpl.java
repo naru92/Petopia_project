@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 
 import co.kr.petopia.mapper.MemberMapper;
 import co.kr.petopia.vo.BoardVO;
-import co.kr.petopia.vo.MemberAuthVO;
 import co.kr.petopia.vo.MemberVO;
 import co.kr.petopia.vo.ReplyVO;
 import lombok.RequiredArgsConstructor;
@@ -33,10 +32,10 @@ public class MemberServiceImpl implements MemberService{
     }
     
     @Override
-    public void memberRegister(MemberVO member, MemberAuthVO memberAuth) {
+    public void memberRegister(MemberVO member) {
         
         memberMapper.memberJoin(member);
-        memberMapper.memberAuthorities(memberAuth);
+        memberMapper.memberAuthorities(member);
         
     }
 
@@ -64,6 +63,18 @@ public class MemberServiceImpl implements MemberService{
     public List<BoardVO> getMyContentList(String member_id) {
 
         return memberMapper.getMyContentList(member_id);
+    }
+
+    @Override
+    public int checkMemberId(String member_id) {
+        
+        return memberMapper.checkMemberId(member_id);
+    }
+
+    @Override
+    public int checkMemberPhoneNumber(String member_phoneNumber) {
+        
+        return  memberMapper.checkMemberPhoneNumber(member_phoneNumber);
     }
     
     

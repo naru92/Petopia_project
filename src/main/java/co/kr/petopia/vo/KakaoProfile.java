@@ -35,4 +35,5 @@ public class KakaoProfile {
 			public Boolean is_default_image;
 		}
 	}
+
 }

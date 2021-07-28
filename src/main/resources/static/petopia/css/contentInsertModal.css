@@ -53,3 +53,9 @@
 #contentModal .form-control{
 	background-color:#fff;
 }
+
+.btn-insert:hover {
+	color: #fff;
+	background-color: #FDD272;
+    border-color: #FDD272;
+}

@@ -98,7 +98,9 @@
 					<div class="img_wrap">
 						<img id="contentImg">
 					</div>
-					<input type="file" id="inputImg">
+					<div class="uploadDiv">
+					<input type="file" id="inputImg" name='inputImg'>
+					</div>
 				</div>
 				<div class="form-group">
 					<label for="recipient-name" class="control-label">제목</label>
@@ -111,12 +113,14 @@
 			</form>
 		</div>
 		<div class="modal-footer">
-			<button type="submit" id="insertSubmit" class="btn btn-success">게시하기</button>
+			<button type="submit" id="insertSubmit" class="btn btn-insert">게시하기</button>
 		</div>
  	</div>
     </div>
+
     <script src="/petopia/js/contentInsertModal.js"></script>
-    
+
+  
     
     <!-- content get Modal -->
     <div id="contentModal" class="modal">
@@ -150,7 +154,6 @@
     </div>
     <script src="/petopia/js/contentGetModal.js"></script>
     
-
 
 	
 	
