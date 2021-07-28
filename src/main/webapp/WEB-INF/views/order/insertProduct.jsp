@@ -184,21 +184,12 @@ display :inline;
 					                console.dir(jobj);
 					                console.log(jobj.data("filename"));
 
-<<<<<<< HEAD
-						                str += "<input type='hidden' name='productVOList[" + i + "].prdouct_image' value ='" + jobj.data('prdouct_image') + "'>";
-						                str += "<input type='hidden' name='productVOList[" + i + "].fileName' value='" + jobj.data('filename') + "'>";
-						                str += "<input type='hidden' name='productVOList[" + i + "].uuid' value='" + jobj.data('uuid') + "'>";
-						                str += "<input type='hidden' name='productVOList[" + i + "].uploadPath' value='" + jobj.data('path') + "'>";
-						                str += "<input type='hidden' name='productVOList[" + i + "].filetype' value='" + jobj.data('type') + "'>";
-						                str += "<input type='hidden' name='product_image' value='" + jobj.data('filename') + "'>";
-						            });
-=======
+
 					                str += "<input type='hidden' name='productVOList[" + i + "].fileName' value='" + jobj.data('filename') + "'>";
 					                str += "<input type='hidden' name='productVOList[" + i + "].uuid' value='" + jobj.data('uuid') + "'>";
 					                str += "<input type='hidden' name='productVOList[" + i + "].uploadPath' value='" + jobj.data('path') + "'>";
 					                str += "<input type='hidden' name='productVOList[" + i + "].imageType' value='" + jobj.data('type') + "'>";
 					            });
->>>>>>> a3b815f23186c21aa20ed07fc4ca99cb401253fc
 						            
 						            console.log(str);
 
@@ -208,25 +199,7 @@ display :inline;
 						        });
 
 
-<<<<<<< HEAD
-							const regex = new RegExp("(.*?)\.(exe\sh\zip\alz)$");//파일 확장자 선언
-							const maxSize = 20485760; //10MB로 제한
 
-							function checkExtension(fileName, fileSize) {
-								//실패
-								if (fileSize >= maxSize) {
-									alert("사진 용량이 너무 큽니다.");
-									return false;
-								}
-								//이상한 확장자
-								if (regex.test(fileName)) {
-									alert("업로드 할 수 없는 파일 입니다.");
-									return false;
-								}
-								//이상없을때
-								return true;
-							}
-=======
 					        // 파일 용량, 확장자 체크
 					        var regex = new RegExp("(.*?)\.(exe\sh\zip\alz)$");
 					        var maxSize = 5424880; //5MB
@@ -247,7 +220,6 @@ display :inline;
 
 					            return true;
 					        }
->>>>>>> a3b815f23186c21aa20ed07fc4ca99cb401253fc
 							//input 태그 타입인 file에 변경이 일어났을때
 							
 
@@ -299,54 +271,7 @@ display :inline;
             uploadUL.append(str);
         }
 							
-<<<<<<< HEAD
-						$("input[type='file']")
-							.change(
-									function(e) {
-										var formData = new FormData(); // 폼태그
-										var inputFile = $("input[name='uploadFile']"); //업로드 속성객체 만듬
-										var files = inputFile[0].files;
 
-										for (var i = 0; i < files.length; i++) {
-											if (!checkExtension(
-													files[i].name,
-													files[i].size)) {
-												return false;
-											}
-											formData.append(
-													"uploadFile",
-													files[i]);
-										}
-
-										$.ajax({
-											url : '${pageContext.request.contextPath}/uploadAjaxAction',
-											processData : false,
-											contentType : false,
-											data: formData,
-											type : 'POST',
-											dataType : 'json',
-											success : function(result) {
-												console.log('업로드 성공');
-												console.log(result);
-												showUploadResult(result);
-											},
-											error : function(
-													request,
-													status,
-													error) {
-												alert("code = "
-														+ request.status
-														+ " message = "
-														+ request.responseText
-														+ " error = "
-														+ error); // 실패 시 처리
-											}
-										});
-
-									});
-
-						});
-=======
         $("input[type='file']").change(function(e) {
 
             var formData = new FormData();
