@@ -54,7 +54,10 @@
 					<p class="info">
 						모든 회원가입 절차가 완료되었습니다.<br>로그인 후 다양한 혜택과 서비스를 이용하실 수 있습니다.
 					</p>
-					<a href="main"><button class="shop-btn">메인으로</button></a>
+				</section>
+				<section>
+					<a href="/main"><button class="shop-btn">메인으로</button></a>
+					<a href="login"><button class="login-btn">로그인</button></a>
 				</section>
 			</article>
 		</div>

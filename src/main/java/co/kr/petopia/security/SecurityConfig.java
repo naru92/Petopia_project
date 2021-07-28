@@ -66,7 +66,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.authorizeRequests() 
 						
 								
-						.antMatchers("/admin/main","/member/login","/member/joinagree","/member/join","/main","/","/**","/order/**").permitAll() //공개 할 url
+						.antMatchers("/admin/main","/member/login","/member/joinagree","/member/join","/member/welcome","/main","/","/**","/order/**").permitAll() //공개 할 url
 						.antMatchers("/member/**").access("hasRole('ROLE_USER')")//맴버만 접근
 
 						.antMatchers("/admin/**").access("hasRole('ROLE_USER')");//어드민만접근근

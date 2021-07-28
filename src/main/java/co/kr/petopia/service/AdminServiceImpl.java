@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 import co.kr.petopia.controller.BoardController;
 import co.kr.petopia.mapper.AdminMapper;
-import co.kr.petopia.mapper.ProductAattachMapper;
+import co.kr.petopia.mapper.AattachMapper;
 import co.kr.petopia.utils.Criteria;
 import co.kr.petopia.vo.BoardVO;
 import co.kr.petopia.vo.DeliveryVO;
@@ -30,7 +30,7 @@ public class AdminServiceImpl implements AdminService {
 	AdminMapper adminMapper;
 
 	@Autowired
-	ProductAattachMapper productAattachMapper;
+	AattachMapper productAattachMapper;
 
 	@Override
 	public List<MemberVO> getMemberList() {

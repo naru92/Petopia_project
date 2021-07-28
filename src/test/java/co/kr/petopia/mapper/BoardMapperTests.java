@@ -1,16 +1,16 @@
 package co.kr.petopia.mapper;
 
 
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import co.kr.petopia.controller.BoardController;
-import co.kr.petopia.mapper.BoardMapper;
+import co.kr.petopia.utils.Criteria;
+import co.kr.petopia.utils.PageVO;
 import co.kr.petopia.vo.BoardVO;
-import jdk.internal.org.jline.utils.Log;
 import lombok.extern.log4j.Log4j2;
-import lombok.extern.slf4j.Slf4j;
 
 @SpringBootTest
 @Log4j2
@@ -62,5 +62,26 @@ public class BoardMapperTests {
         vo.setContent_title("Updated 제목입니다");
 
         log.info("count: " + boardMapper.contentUpdate(vo));
+    }
+    
+    @Test
+    public void testPaging() {
+        
+        Criteria cri = new Criteria();
+        
+        List<BoardVO> list = boardMapper.getContentListPaging(cri, 4L);
+        
+        list.forEach(b -> log.info(b));
+    }
+    
+    @Test
+    public void testPageVO() {
+        
+        Criteria cri = new Criteria();
+        cri.setPageNum(11);
+        
+        PageVO pageVO = new PageVO(cri, 20);
+        
+        log.info(pageVO);
     }
 }
