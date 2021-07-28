@@ -28,6 +28,9 @@ public interface AdminService {
 	public List<ProductVO> getProductListWithPaging(Criteria cri);
 	public int getTotalProductCount(Criteria cri);
 	public List<ProductVO> getSelectOptionList(HashMap<String, Object> result);
+	public List<ProductVO> getAllProductList();
+	public List<ProductVO> productListBestDesc();
+	public List<ProductVO> productListDateDesc();
 	
 	/*주문*/
 	public int getOrderCount(Criteria cri);

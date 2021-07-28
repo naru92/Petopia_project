@@ -298,6 +298,21 @@ public class AdminServiceImpl implements AdminService {
 	public List<ProductVO> order_statistics_3month() {
 		return adminMapper.order_statistics_3month();
 	}
+
+	@Override
+	public List<ProductVO> getAllProductList() {
+		return adminMapper.getAllProductList();
+	}
+
+	@Override
+	public List<ProductVO> productListBestDesc() {
+		return adminMapper.productListBestDesc();
+	}
+
+	@Override
+	public List<ProductVO> productListDateDesc() {
+		return adminMapper.productListDateDesc();
+	}
 	
 
 }

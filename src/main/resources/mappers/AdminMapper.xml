@@ -28,6 +28,11 @@
 		delete from member where member_id = #{member_id}
 		]]>
 	</delete>
+	<!-- 모든상품 -->
+	<select id="getAllProductList" resultType="co.kr.petopia.vo.ProductVO">
+	select *
+	from product
+	</select>	
 
 	<!-- 상품 리스트 -->
 	<select id="getProductList"
@@ -987,7 +992,7 @@
 	<if test="donation_date_year.equals('donation_21year') ">
 	SELECT NVL(SUM(member_point_usepoint),0) as "2021_use_point"
 	FROM POINT
-	WHERE TO_DATE(member_point_usedate, 'yyyy') = '2021';
+	WHERE TO_DATE(member_point_usedate, 'yyyy') = '2021'
 	</if>
 	<if test="donation_date_year.equals('donation_20year') ">
 	SELECT NVL(SUM(member_point_usepoint),0) as "2020_use_point"
@@ -1103,8 +1108,23 @@
 	
 	
 	
-	
-	<!-- 1년 -->
+	<!-- 인기순 -->
+	<select id="productListBestDesc" resultType="co.kr.petopia.vo.ProductVO">
+	 select distinct
+        p.product_name as product_name, nvl(sum(od.order_quantity),0) as sales
+        from  order_detail od
+        right outer join product p 
+        on p.product_idx = od.product_idx
+        group by p.product_name,  p.product_idx, od.product_idx
+        
+        order by sales desc
+	</select>
+	<!-- 날짜순 -->
+	<select id="productListDateDesc" resultType="co.kr.petopia.vo.ProductVO">
+	select *
+	from product
+	order by product_idx desc
+	</select>	
 	
 	
 </mapper>
