@@ -25,9 +25,8 @@
 				<form action="/loginProcess" method="POST">
 					<h1>로그인</h1>
 					<div class="form-group">
-						<input type="text" name="member_id" placeholder="아이디"> <span
-							class="input-icon"><i class="fa fa-user-circle"
-							aria-hidden="true"></i></span>
+						<input type="text" name="member_id" placeholder="아이디"> 
+						<span class="input-icon"><i class="fa fa-user-circle"aria-hidden="true"></i></span>
 					</div>
 					<div class="form-group">
 						<input type="password" name="member_password" placeholder="비밀번호"> <span
@@ -64,7 +63,7 @@
 						<input type="password" name="order_idx" placeholder="주문번호"> 
 						<span class="input-icon"><i class="fa fa-lock"></i></span>
 					</div>
-					<button id ="user-login-button" class="login-btn" type="submit" name="submit">로그인</button>
+					<button id ="login-button" class="login-btn" type="submit" name="submit">로그인</button>
 				
 				</form>
 			</div>
@@ -76,16 +75,28 @@
 	</footer>
 
 <script type="text/javascript">
-$(function(){
+$(document).ready(function() {
+	
 	$("#login-button").click(function(){
-		login();
-	})		
-})
-
-/**
-* 로그인 
-*/
-
+		$.ajax({
+			type: "POST",
+			url: "/member/loginProcess",
+			data: { "member_id": $('.memberId').val(),
+					"memberAuth_id" : $('.memberId').val(),
+					"member_password": $('.password01').val()},
+			dateType: 'json', 
+			contentType: "application/json; charset=UTF-8", 
+			success: function(result){
+				alert('로그인이 완료되었습니다.');
+				console.log(result);
+				location.href = "/petstagram";
+			}, error: function(result){
+				alert('로그인에 실패했습니다.');
+				console.log(result);
+			}
+		});
+	});
+});
 	
 </script>
 

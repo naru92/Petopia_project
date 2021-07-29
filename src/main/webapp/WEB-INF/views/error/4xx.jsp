@@ -11,9 +11,9 @@
     <title>Page Not Found</title>
 
   <!-- Fonts -->
-  <link href='http://fonts.googleapis.com/css?family=nunito:400,700,600' rel='stylesheet' type='text/css'>
+  <!--  <link href='http://fonts.googleapis.com/css?family=nunito:400,700,600' rel='stylesheet' type='text/css'>
   <link href='http://fonts.googleapis.com/css?family=Roboto:400,900,300,700' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Ultra' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Ultra' rel='stylesheet' type='text/css'> -->
 
   <!-- Latest compiled and minified Bootstrap CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">

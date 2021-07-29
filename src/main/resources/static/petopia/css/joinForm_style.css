@@ -178,15 +178,15 @@ margin-bottom: 7px;
   margin-top: 6.5rem;
 }
 
-#content3 .checkNum{
+#content3 .checkCode{
   width: 170px;
 }
 
-#content3 .checkNum:disabled{
+#content3 .checkCode:disabled{
 	background: #eeeeee;
 }
 
-#content3 .checkNum:not(:disabled){
+#content3 .checkCode:not(:disabled){
 	background: none;
 }
 
