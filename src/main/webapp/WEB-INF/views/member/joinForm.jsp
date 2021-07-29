@@ -294,14 +294,13 @@
 			}
 		});//blur
 		
-		/*
-		 * 이메일 인증 번호 보내기
-		 */
+		
+		<!----- 이메일 인증 번호 보내기 ----->
 		var key = "";
-		$(".sendMail").click(function() {	//메일 입력 유효성 검사
+		$(".sendMail").on("click",function() {	//메일 입력 유효성 검사
 			
-			$('.checkNum').prop('disabled', false);
-			$('.checkNum').prop('placeholder', '인증번호를 입력해주세요.');
+			$('.checkCode').prop('disabled', false);
+			$('.checkCode').prop('placeholder', '인증번호를 입력해주세요.');
 		
 			var mail = $(".email01").val(); //사용자의 이메일 입력값 
 			
@@ -314,6 +313,7 @@
 				console.log(mail);
 				
 				$.ajax({
+					async : false, 
 					type : 'POST',
 					url : 'CheckMail',
 					data : {mail:mail},
@@ -321,35 +321,39 @@
 					success : function(data) { 
 						key=data;
 						console.log(key);
-						alert("인증번호가 전송되었습니다.") 
-					}, error: function(result){
-						console.log(result)
-					}
+						alert("인증번호가 전송되었습니다.");
+					},  error:function(request,status,error){
+                        alert("code = "+ request.status + 
+                        	  " message = " + request.responseText + 
+                        	  " error = " + error); // 실패 시 처리
+                    }
 				});
-				return key;
 				
+				console.log(key);
 				isCertification=true; //추후 인증 여부를 알기위한 값
-				
 			}
 			
+			$(".checkCode").on("propertychange change keyup paste input", function() {
+				if ($(".checkCode").val() == key) {   //인증 키 값을 비교를 위해 텍스트인풋과 벨류를 비교
+					$("#email_check").text("인증에 성공했습니다.")
+					$("#email_check").css("color", "#2AC1BC");
+					isCertification = true;  //인증 성공여부 check
+					mailCertification = true;
+				} else if($(".checkCode").val() == '') {
+					$('.checkCode').prop('placeholder', '인증번호를 입력해주세요.');
+					$("#email_check").text("")
+				} else {
+					$("#email_check").text("인증번호가 일치하지 않습니다.")
+					$("#email_check").css("color", "red");
+					isCertification = false; //인증 실패
+				}
+			});
 		});
 		
-		$(".checkCode").on("propertychange change keyup paste input", function() {
-			if ($(".checkCode").val() == key) {   //인증 키 값을 비교를 위해 텍스트인풋과 벨류를 비교
-				$("#email_check").text("인증에 성공했습니다.")
-				$("#email_check").css("color", "#2AC1BC");
-				isCertification = true;  //인증 성공여부 check
-				mailCertification = true;
-			} else if($(".checkCode").val() == '') {
-				$('.checkCode').prop('placeholder', '인증번호를 입력해주세요.');
-				$("#email_check").text("")
-				$("#email_check").css("color", "red");
-			} else {
-				$("#email_check").text("인증번호가 일치하지 않습니다.")
-				$("#email_check").css("color", "red");
-				isCertification = false; //인증 실패
-			}
-		});
+		
+		
+				
+		
 	 
 		
 		/*
@@ -457,11 +461,13 @@
 				}
 			} 
 			
-			// inval_Arr가 모두 true일 경우 ajax로 데이터 전송
+			/*
+			 * inval_Arr가 모두 true일 경우 ajax로 데이터 전송
+			 */
 			if(validAll == true && mailCertification == true){
 				$.ajax({
 					type: "POST",
-					url: "/member/join-proc",
+					url: "/member/joinProcess",
 					data: { "member_id": $('.memberId').val(),
 							"member_email": $(".email01").val()+"@"+$(".email02").val(),
 							"member_password": $('.password01').val(),
@@ -482,7 +488,7 @@
 				alert('이메일 인증을 해주세요.');
 			}
 		});
-	}); //정규식 끝!
+	}); // 회원가입 끝!
 	</script>
 	
 	<!----- input check 해서 button 활성화/비활성화 하는 js ----->

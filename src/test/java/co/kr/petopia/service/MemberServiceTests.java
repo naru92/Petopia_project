@@ -30,6 +30,13 @@ public class MemberServiceTests {
     }
     
     @Test
+    public void testMemberLogin() {
+
+        memberService.memberLogin("dummy1","1111");
+
+    }
+    
+    @Test
     public void testMemberRegister() {
         
         MemberVO member = new MemberVO();
@@ -63,7 +70,7 @@ public class MemberServiceTests {
     @Test
     public void getMemberRemove() {
         
-        memberService.memberRemove("test30");
+        memberService.memberRemove("1807379122");
 
     }
     

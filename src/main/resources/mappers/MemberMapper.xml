@@ -12,13 +12,18 @@
 		m.member_name as member_name,
 		a.authority, a.enabled
 		FROM member m , authorities a
-		WHERE #{member_id} = a.member_id and
+		WHERE a.member_id = #{memberAuth_id} and
 		m.member_id = #{member_id}
 	</select>
 
 	<!-- 해당 멤버 정보 가지고 오기 -->
 	<select id="getMemberInfoRead" resultType="co.kr.petopia.vo.MemberVO">
 		select * from member where member_id = #{member_id}
+	</select>
+	
+	<!-- 로그인 id/pw -->
+	<select id="memberLogin" parameterType="String" resultType="co.kr.petopia.vo.MemberVO">
+		select * from member where member_id = #{member_id} AND member_password = #{member_password}
 	</select>
 
 	<!-- 회원가입 -->
@@ -35,7 +40,8 @@
 
 	<!-- 권한 주입 -->
 	<insert id="memberAuthorities">
-		insert into authorities(member_id, authority, enabled) values(#{memberAuth_id}, 'ROLE_MEMBER', 1)
+		insert into authorities(member_id, authority, enabled) 
+						 values(#{memberAuth_id}, 'ROLE_MEMBER', 1)
 	</insert>
 
 	<!-- 권한 삭제 / 회원탈퇴시 먼저 수행 -->
