@@ -172,7 +172,7 @@ h5 {
   margin-bottom: 7px;
 }
 
-/*.bnt-next {
+/*.btn-next {
   font-size: 0.7rem;
   text-transform: uppercase;
   padding: 12px 30px;
@@ -181,7 +181,7 @@ h5 {
   transition: 0.3s;
 }*/
 
-/*.bnt-next:hover {
+/*.btn-next:hover {
   background:#222;
   color: white;
   cursor: pointer;
@@ -268,7 +268,7 @@ margin: 0 60px;
 cursor:pointer;
 }
 
-.one .bnt-main {
+.one .btn-main {
 width:170px;
 padding: 1rem 1rem;
 font-size:0.9rem;
@@ -280,11 +280,11 @@ border: none;
 border-radius: 10px;
 }
 
-.one .bnt-main:hover {
+.one .btn-main:hover {
 background: #2AC1BC;
 }
 
-.one .bnt-next {
+.one .btn-next {
 width:170px;
 padding: 1rem 1rem;
 font-size:0.9rem;
@@ -295,7 +295,7 @@ border-radius: 10px;
 background-color: #c8c8c8;
 }
 
-.bnt-next:not(:disabled){
+.btn-next:not(:disabled){
 width:170px;
 padding: 1rem 1rem;
 font-size:0.9rem;
@@ -307,11 +307,11 @@ border: none;
 border-radius: 10px;
 }
 
-.bnt-next:not(:disabled):hover {
+.btn-next:not(:disabled):hover {
 background: #2AC1BC;
 }
 
-.bnt-main>a, .bnt-next >a{
+.btn-main>a, .btn-next >a{
     color: #fafafa;
 }
 section label {

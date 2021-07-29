@@ -67,8 +67,8 @@
 					</div>
 				</section>
 				<section>
-					<a href="main"><button class="bnt-main">메인으로</button></a> 
-					<a href="joinForm"><button class="bnt-next" disabled="disabled">다음으로</button></a> 
+					<a href="main"><button class="btn-main">메인으로</button></a> 
+					<a href="joinForm"><button class="btn-next" disabled="disabled">다음으로</button></a> 
 				</section>
 			</article>
 		</div>
@@ -94,7 +94,7 @@
           }
      	  // 버튼 활성화
           $('input[type="checkbox"]').each(function() {
-        	    $('.bnt-next').prop('disabled', false);
+        	    $('.btn-next').prop('disabled', false);
         	});
        } else {
           for (var i = 0; i < checkList.length; i++) {
@@ -103,7 +103,7 @@
           }
 			// 버튼 비활성화
 			$('input[type="checkbox"]').each(function() {
-      	    $('.bnt-next').prop('disabled', true);
+      	    $('.btn-next').prop('disabled', true);
       	});
           
        }
@@ -118,13 +118,13 @@
                 allcheck.checked = true; // allcheck 버튼도 체크값으로 변경
              	  // 버튼 활성화
                 $('input[type="checkbox"]').each(function() {
-              	    $('.bnt-next').prop('disabled', false);
+              	    $('.btn-next').prop('disabled', false);
               	});
              } else {
                 allcheck.checked = false; // 4이 아니라면 체크값을 없애줍니다
                 // 버튼 비활성화
                 $('input[type="checkbox"]').each(function() {
-            	    $('.bnt-next').prop('disabled', true);
+            	    $('.btn-next').prop('disabled', true);
             	});
              }
           } else {
@@ -132,7 +132,7 @@
              allcheck.checked = false; // allcheck 버튼 역시 4가 될 수 없으므로 체크값을 없애준다.
              // 버튼 비활성화
              $('input[type="checkbox"]').each(function() {
-         	    $('.bnt-next').prop('disabled', true);
+         	    $('.btn-next').prop('disabled', true);
          	});
           }
        }

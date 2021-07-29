@@ -19,6 +19,8 @@ public class FileUploadVO {
 	private Integer board_id;
 	private int product_idx;
 	
+	private int content_idx;
+	
 	
 	
 }

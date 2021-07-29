@@ -35,7 +35,7 @@
 
 	<!-- 권한 주입 -->
 	<insert id="memberAuthorities">
-		insert into authorities(member_id, authority, enabled) values(#{member_id}, 'ROLE_MEMBER', 1)
+		insert into authorities(member_id, authority, enabled) values(#{memberAuth_id}, 'ROLE_MEMBER', 1)
 	</insert>
 
 	<!-- 권한 삭제 / 회원탈퇴시 먼저 수행 -->
@@ -69,4 +69,13 @@
 		member_id = #{member_id} order by reply_idx DESC
 	</select>
 
+	<!-- 아이디 중복 검사 -->
+	<select id="checkMemberId" parameterType="String" resultType="int">
+		select count(*) from member where member_id = #{member_id}
+	</select>
+	
+	<!-- 휴대폰 번호 중복 검사 -->
+	<select id="checkMemberPhoneNumber" parameterType="String" resultType="int">
+		select count(*) from member where member_phoneNumber = #{member_phoneNumber}
+	</select>
 </mapper>
