@@ -15,14 +15,6 @@ public class MainController {
 		*/
 		
 		
-		//단독 상품
-		
-		//인기제품
-//		
-		//신상품
-		
-		//MD추천제품
-		
 	
 		
 		

@@ -37,7 +37,7 @@ public class CartController {
 	
 	@GetMapping("/cartpage")
 	public String showPage() {
-		return "order/cart";
+		return "order/cart2";
 	}
 	
 	//카트 목록가져오기

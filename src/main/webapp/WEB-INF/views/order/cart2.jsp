@@ -10,11 +10,14 @@
 	margin-top:5%;
 }
 </style>
-
+<!-- CSS here -->
+<link rel="stylesheet" href="/petopia/css/joinForm_style.css">
+<!-- default_css -->
+<%@include file="/petopia/include/default_css.jsp"%>
+</head>
 
 <!-- 상단 메뉴 바 -->
-<c:import url="/WEB-INF/views/include/admin_top_menu.jsp" />
-
+<%@include file="petopia/include/default_header.jsp"%>
 
 <section id="cart_items">
 		<div class="container">
