@@ -20,10 +20,12 @@ import co.kr.petopia.service.MemberService;
 import co.kr.petopia.vo.CartVO;
 import co.kr.petopia.vo.MemberVO;
 import co.kr.petopia.vo.OrderVO;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Controller
 @Slf4j
+@AllArgsConstructor
 public class CartController {
 	
 	
@@ -35,13 +37,13 @@ public class CartController {
 	private AdminService adminService;
 	
 	
-	@GetMapping("/cartpage")
+	@GetMapping("/cart1")
 	public String showPage() {
-		return "order/cart2";
+		return "order/cart";
 	}
 	
 	//카트 목록가져오기
-	@GetMapping("/cart")
+	@GetMapping("order/Cart")
 	public void goCart(Principal principal, Model model) {
 		
 		
@@ -69,7 +71,7 @@ public class CartController {
 			//카트 총가격 구하기
 			for(int i = 0; i < cartList.size(); i++) {
 			
-				totalPrice += cartList.get(i).getProductVOList().get(0).getProduct_price() * cartList.get(i).getAmount();
+				totalPrice += cartList.get(i).getProductList().get(0).getProduct_price() * cartList.get(i).getAmount();
 			} 
 			
 			log.info("TotalPrice : " + totalPrice);

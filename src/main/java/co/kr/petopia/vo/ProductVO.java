@@ -33,10 +33,10 @@ public class ProductVO {
 	@NotBlank
 	private String product_detail_info;
 	
-	private String product_image; //file name
 	private String product_review;
+
 	
 	private List<FileUploadVO> productVOList;
-	
+	private String product_image; //file name
 	private int sales;
 }

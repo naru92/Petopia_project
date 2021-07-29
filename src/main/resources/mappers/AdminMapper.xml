@@ -1110,12 +1110,12 @@
 	
 	<!-- 인기순 -->
 	<select id="productListBestDesc" resultType="co.kr.petopia.vo.ProductVO">
-	 select distinct
-        p.product_name as product_name, nvl(sum(od.order_quantity),0) as sales
+ select distinct
+        p.product_name as product_name, p.product_idx, p.product_price, p.product_detail_info, nvl(sum(od.order_quantity),0) as sales
         from  order_detail od
         right outer join product p 
         on p.product_idx = od.product_idx
-        group by p.product_name,  p.product_idx, od.product_idx
+        group by p.product_name,  p.product_idx, od.product_idx, p.product_price, p.product_detail_info
         
         order by sales desc
 	</select>

@@ -13,11 +13,12 @@ public class FileUploadVO {
 	private String uploadPath;
 	private String fileName;
 	private boolean filetype;
+	private int product_idx;
+	
 	private String product_image;
 	private boolean imageType;
 	
 	private Integer board_id;
-	private int product_idx;
 	
 	
 	

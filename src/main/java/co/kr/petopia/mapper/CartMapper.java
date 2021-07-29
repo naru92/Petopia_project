@@ -21,6 +21,10 @@ public interface CartMapper {
 	public int deleteCartItem(int cart_id);
 
 	public int insertOrderLog(OrderVO orderVO);
+	
+	public void insertCartType(CartVO cartVO);
+	
+	public int nextVal();
 
 	
 }

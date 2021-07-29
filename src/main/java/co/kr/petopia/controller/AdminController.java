@@ -360,6 +360,7 @@ public class AdminController {
 		//성공 실패여부 int값  1 성공 0 실패
 		int count = 0;
 		member_id = member_id.replaceAll("\\\"","");
+		
 		MemberVO vo = new MemberVO();
 		memberVO.setMember_id(member_id);
 		log.info("delete member " + memberVO.getMember_name() + " " + memberVO.getMember_id());
@@ -464,8 +465,8 @@ public class AdminController {
 	adminService.insertProduct(productVO);
 	redirectAttributes.addFlashAttribute("result", productVO.getProduct_idx());
 	
-		//상품 메인으로 리다이렉트 
-		return "redirect:/admin/product";
+		//등록 메시지 보여주고 상품메인
+		return "/product/insert_success";
 	}
 	
 	

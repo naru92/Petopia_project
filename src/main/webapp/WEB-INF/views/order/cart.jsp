@@ -460,11 +460,11 @@ translateX
 									</div>
 								</td>
                                 <td class="cart_description">
-                                    <h4><a href="/products/get?productsNo=${item.products.get(0).productsNo}"><c:out value="${item.products.get(0).productsName}"/></a></h4>
-                                        <p id="pno${status.index}"><c:out value="${item.products.get(0).productsNo}"/></p>
+                                    <h4><a href="/product/get?product_idx=${item.productList.get(0).product_idx}"><c:out value="${item.productList.get(0).product_name}"/></a></h4> 
+                                        <p id="pno${status.index}"><c:out value="${item.productList.get(0).product_idx}"/></p>
                                 </td>
                                 <td class="cart_price">
-                                    <p id="price${status.index}"><c:out value="${item.products.get(0).price}"/></p>
+                                    <p id="price${status.index}"><c:out value="${item.productList.get(0).product_price}"/></p>
                                 </td>
                                 <td class="cart_quantity">
                                     <div class="cart_quantity_button">
@@ -477,15 +477,15 @@ translateX
                                 <td class="cart_delete">
                                     <a class="cart_quantity_delete" href="#">
                                     	<i class="fa fa-times">
-                                        	<input type="hidden" name="cartNo" id="cartNo${status.index}" value="<c:out value='${item.cartNo}'/> " >
                                         </i>
+                                        	<input type="hidden" name="cart_id" id="cartNo${status.index}" value="<c:out value='${item.cart_id}'/>">
                                     </a>
                                 </td>
                            </tr>
-                           <input type="hidden" id="imageType${status.index}" value="${item.products.get(0).attachList.get(0).imageType}" />
-                           <input type="hidden" id="uuid${status.index}" value="${item.products.get(0).attachList.get(0).uuid}" />
-                           <input type="hidden" id="uploadPath${status.index}" value="${item.products.get(0).attachList.get(0).uploadPath}" />
-                           <input type="hidden" id="fileName${status.index}" value="${item.products.get(0).attachList.get(0).fileName}" />
+                           <input type="hidden" id="imageType${status.index}" value="${item.productList.get(0).productVOList.get(0).filetype}" />
+                           <input type="hidden" id="uuid${status.index}" value="${item.productList.get(0).productVOList.get(0).uuid}" />
+                           <input type="hidden" id="uploadPath${status.index}" value="${item.productList.get(0).productVOList.get(0).uploadPath}" />
+                           <input type="hidden" id="fileName${status.index}" value="${item.productList.get(0).productVOList.get(0).fileName}" />
                        </c:forEach>
                        <tr>
                        	   <td class="pull-right">
@@ -496,11 +496,11 @@ translateX
 				</table>
 				 <div>
 				 	<input type="hidden" id="size" value="${fn:length(cart)}" />
-				 	<input type="hidden" id="email" value="${member.email}" />
-                    <input type="hidden" id="name" value="${member.name}" />
-                    <input type="hidden" id="postCode" value="${member.postCode}" />
-                    <input type="hidden" id="address" value="${member.address}" />
-                    <input type="hidden" id="phoneNumber" value="${member.phoneNumber}" />        	
+				 	<input type="hidden" id=member_id value="${memberVO.member_id}" />
+                    <input type="hidden" id="name" value="${memberVO.member_name}" />
+                    <input type="hidden" id="address" value="${memberVO.member_address}" />
+                    <input type="hidden" id="email" value="${memberVO.member_email}" />
+                    <input type="hidden" id="point" value="${memberVO.member_point}" />        	
                  </div>
 			</div>
 		</div>
@@ -510,7 +510,7 @@ translateX
 		<div class="container">
 			<div class="row">
 				<div class="pull-right" align="right">
-					<a class="btn btn-info check_out" href="#" id="checkOut">주문하기</a>
+					<a class="btn btn-info check_out" href="#" id="checkOut">주문서 작성</a>
 				</div>
 			</div>
 		</div>
@@ -522,7 +522,7 @@ translateX
 			</div>
 		</div>
 
-
+<!-- 
 		<div class="quick">
 
 			<div class="icon4">
@@ -537,7 +537,7 @@ translateX
 					alt=""></a>
 			</div>
 
-		</div>
+		</div> -->
 	</div>
 </div>
 
@@ -627,13 +627,14 @@ $(document).ready(function() {
 	}
 	
 	$(".cart_delete").on("click", "a", function(e) {
-		var cartNumber = $(this).find("input[name=cartNo]").val();
+	
+		var cartNumber = $(this).find("input[name=cart_id]").val();
 		
 		console.log(cartNumber);
 		
-		$.ajax({
+		 $.ajax({
 			type: 'post',
-			url: '/purchase/deleteCartItem',
+			url: '/deleteCartItem',
 			data: JSON.stringify(cartNumber),
 			contentType: "application/json; charset=utf-8",
 			dataType: 'text',
@@ -642,9 +643,9 @@ $(document).ready(function() {
 
 			  	alert("상품이 장바구니에서 삭제 되었습니다");
 			  	
-			  	location.replace("/purchase/Cart");
+			  	location.replace("order/Cart");
 			  }
-		});
+		}); 
 	});
 	
 	// price comma
@@ -670,97 +671,9 @@ $(document).ready(function() {
 		$("#amountPrice" + i).html(numberFormat($("#amountPrice" + i).html()));
 	}
 	
-	var IMP = window.IMP;
-	IMP.init('imp85199466');
 	
-	// 결제 api
-	$("#checkOut").on("click", function(e) {	
-		var msg;
-		var date = new Date();
-		
-		IMP.request_pay({
-			pg: 'kakaopay',
-			pay_method: 'card',
-			merchant_uid: 'merchant_' + date.getTime(),
-			name: 'PETSHOP 반려동물 용품 결제',
-			amount: $("#totalPrice").html(),
-			buyer_email: $("#email").val(),
-			buyer_name: $("#name").val(),
-			buyer_tel: $("#phoneNumber").val(),
-			buyer_addr: $("#address").val(),
-			buyer_postcode: $("#postCode").val(),
-		}, function(rsp) {
-			if (rsp.success) {
-				// orderLog 배열 저장
-				var orderLogVO = new Array();
-				
-				$(".cart_product").each(function(i) {
-			
-					var pno = $("#pno" + i).html();
-					var payAmount = $("#quantity" + i).html();
-					var payPrice = $("#amountPrice" + i).html();
-					
-					var data = [];
-					
-					data[i] = {
-							pno : pno,
-							payAmount : payAmount,
-							payPrice : payPrice
-					};
-					
-					orderLogVO.push(data[i]);
-					
-					console.log(data[i]);
-				});
-				
-				console.log(orderLogVO);
-				
-				// 구매 이력 기록
-				$.ajax({
-					traditional : true,
-					type:'post',
-					url: "/purchase/afterPurchase",
-					data: JSON.stringify(orderLogVO),
-					contentType: "application/json; charset=utf-8",
-					dataType: 'text',
-					success: function(result, status, xhr) {
-						console.log("after purchase process success");
-						callback(result);
-					}
-				});
-				
-				// 장바구니 내용물 삭제
-				$(".cart_product").each(function(i) {
-					var cartNumber = $("#cartNo" + i).val();
-					
-					console.log("delete cart Item " + cartNumber);
-					
-					$.ajax({
-						type: 'post',
-						url: '/purchase/deleteCartItem',
-						data: JSON.stringify(cartNumber),
-						contentType: "application/json; charset=utf-8",
-						dataType: 'text',
-						success: function(result, status, xhr) {
-						  	console.log('delete cart item ' + result);
-						  }
-					});	
-				});
-				
-				var msg = '결제가 완료되었습니다. ';
-				msg += ' 고유ID : ' + rsp.imp_uid;
-				msg += ' 상점 거래ID : ' + rsp.merchant_uid;
-				msg += ' 결제 금액 : ' + rsp.paid_amount;
-				msg += ' 카드 승인번호 : ' + rsp.apply_num;
-			} else {
-				msg = '결제에 실패하였습니다. ';
-				msg += '에러 내용 : ' + rsp.error_msg;
-				}
+	
 
-			alert(msg);
-			location.replace('/purchase/cart'); 
-		});
-	});
 
 });
 </script>

@@ -100,24 +100,47 @@ display :inline;
                      	
                      	<br>
                         <div class="form-group">
-                            <h2><b>상품명 : </b></h2>
-                            <input class="form-control" name='product_name'>
+                        <label>
+						  <strong class="label-txt">상품명</strong>
+						   <input type="text" class="input" name="product_name">
+						   <div class="line-box">
+						   <div class="line"></div>
+						    </div>
+						    <strong class="pull-left" id="checkProductName"></strong>
+						  </label>
                         </div>
 
                         <div class="form-group">
-                            <h2><b>가격 : </b></h2>
-                            <input class="form-control" name='product_price'>
+                          <label>
+						  <strong class="label-txt">상품가격</strong>
+						   <input type="text" class="input" name="product_price">
+						   <div class="line-box">
+						   <div class="line"></div>
+						    </div>
+						    <strong class="pull-left" id="checkProductPrice"></strong>
+						  </label>
                         </div>
-                        <div class="form-group">
-                            <h2><b>재고량 : </b></h2>
-                            <input class="form-control" name='product_stock'>
-                        </div>
+                         <label>
+						  <strong class="label-txt">재고량</strong>
+						   <input type="text" class="input" name="product_stock">
+						   <div class="line-box">
+						   <div class="line"></div>
+						    </div>
+						    <strong class="pull-left" id="checkProductStock"></strong>
+						  </label>
 
                         <div class="form-group">
-                            <h2><b>상품 설명</b></h2>
-                            <textarea class="form-control" rows="3" name='product_detail_info'></textarea>
+                           <label>
+						  <strong class="label-txt">상품설명</strong>
+						  <textarea class="input" rows="3" name='product_detail_info'></textarea>
+						   <div class="line-box">
+						   <div class="line"></div>
+						    </div>
+						    <strong class="pull-left" id="checkProductDetailInfo"></strong>
+						  </label>
                         </div>
                         
+                            
                         
 
                         <button id="addBtn" type="submit" class="btn btn btn-primary">등록</button>
@@ -164,9 +187,123 @@ display :inline;
 		//파일 업로드 구현 시작
 		$(document)
 				.ready(
-						
-						//file upload
 						function(e) {
+							//input 활성화 시키기
+							 $('.input').focus(function(){
+		                            $(this).parent().find(".label-txt").addClass('label-active');
+		                       });
+
+		                     $(".input").focusout(function(){
+		                        if ($(this).val() == '') {
+		                              $(this).parent().find(".label-txt").removeClass('label-active');
+		                         };
+		                     });
+		                     
+							//검사변수(간단하게 유효성 검사)
+		                    var product_name = 0; //상품
+		                    var produt_price = 0;//가격
+		                    var product_stock = 0; //재고량
+		                    var product_detail_info = 0; //상품설명
+		                    
+		                  
+		                  
+		                  
+		                   // 상품 이름 검사
+		                    $("input[name=product_name]").blur(function() {
+		                       
+		                       console.log("product_name check");
+		                       
+		                       var product_name = $("input[name=product_name]").val();
+		                       // 비밀번호 정규식
+		                        // 공백 정규식
+
+		                        if($("input[name=product_name]").val().length >= 1) {
+		                          $("#checkProductName").text("입력완료");
+		                         $("#checkProductName").css("color", "black");
+		                         product_name = 1;
+		                        } else if($("input[name=product_name]").val().length == 0) {
+		                          $("#checkProductName").text("상품명을 입력하세요");
+		                         $("#checkProductName").css("color", "red");
+		                         product_name = 0;
+		                        }
+		                        
+		                    });
+		                 
+		                    
+							
+		                    $("input[name=product_price]").blur(function() {
+			                       
+			                       console.log("product_stock check");
+			                       
+			                       var product_price = $("input[name=product_price]").val();
+			                       // 비밀번호 정규식
+			                        var reg_product_price = /^[0-9]/g;
+			                        // 공백 정규식
+			                        var reg_space = /\s/g;
+
+			                        if(reg_product_price.test(product_price) == true) {
+			                          $("#checkProductPrice").text("입력완료");
+			                         $("#checkProductPrice").css("color", "black");
+			                         product_price = 1;
+			                     
+			                        } else {
+			                          $("#checkProductPrice").text("숫자만 입력하세요");
+			                         $("#checkProductPrice").css("color", "red");
+			                         product_price = 0;
+			                        }
+			                        
+			                    });
+		                    
+		                    $("input[name=product_stock]").blur(function() {
+			                       
+			                       console.log("product_stock check");
+			                       
+			                       var product_stock = $("input[name=product_stock]").val();
+			                       // 비밀번호 정규식
+			                        var reg_product_stock = /^[0-9]/g;
+			                        // 공백 정규식
+			                        var reg_space = /\s/g;
+
+			                        if(reg_product_stock.test(product_stock) == true) {
+			                          $("#checkProductStock").text("입력완료");
+			                         $("#checkProductStock").css("color", "black");
+			                         product_stock = 1;
+			                     
+			                        } else {
+			                          $("#checkProductStock").text("숫자만 입력하세요");
+			                         $("#checkProductStock").css("color", "red");
+			                         product_stock = 0;
+			                        }
+			                        
+			                    });
+		                    
+		                    $("textarea[name=product_detail_info]").blur(function() {
+			                       
+			                       console.log("product_detail_info check");
+			                       
+			                       var product_detail_info = $("textarea[name=product_detail_info]").val();
+			                       // 비밀번호 정규식
+			                        // 공백 정규식
+			                        var reg_space = /\s/g;
+
+			                        if($("textarea[name=product_detail_info]").val().length >= 1) {
+				                          $("#checkProductDetailInfo").text("입력완료");
+				                         $("#checkProductDetailInfo").css("color", "black");
+				                         product_name = 1;
+				                        } else if($("textarea[name=product_detail_info]").val().length == 0) {
+				                          $("#checkProductDetailInfo").text("상품설명을 입력하세요");
+				                         $("#checkProductDetailInfo").css("color", "red");
+				                         product_name = 0;
+				                        }
+			                        
+			                        if($("#prodct_category_id").val().length == 0){
+				                    	alert('상품분류를 선택하세요.')
+				                    }
+			                    });
+		                    
+		                  
+							
+		            		//file upload
 							var formObj = $("#addForm");
 
 					        $("#addBtn").on("click", function(e) {
@@ -184,21 +321,11 @@ display :inline;
 					                console.dir(jobj);
 					                console.log(jobj.data("filename"));
 
-<<<<<<< HEAD
-						                str += "<input type='hidden' name='productVOList[" + i + "].prdouct_image' value ='" + jobj.data('prdouct_image') + "'>";
-						                str += "<input type='hidden' name='productVOList[" + i + "].fileName' value='" + jobj.data('filename') + "'>";
-						                str += "<input type='hidden' name='productVOList[" + i + "].uuid' value='" + jobj.data('uuid') + "'>";
-						                str += "<input type='hidden' name='productVOList[" + i + "].uploadPath' value='" + jobj.data('path') + "'>";
-						                str += "<input type='hidden' name='productVOList[" + i + "].filetype' value='" + jobj.data('type') + "'>";
-						                str += "<input type='hidden' name='product_image' value='" + jobj.data('filename') + "'>";
-						            });
-=======
 					                str += "<input type='hidden' name='productVOList[" + i + "].fileName' value='" + jobj.data('filename') + "'>";
 					                str += "<input type='hidden' name='productVOList[" + i + "].uuid' value='" + jobj.data('uuid') + "'>";
 					                str += "<input type='hidden' name='productVOList[" + i + "].uploadPath' value='" + jobj.data('path') + "'>";
 					                str += "<input type='hidden' name='productVOList[" + i + "].imageType' value='" + jobj.data('type') + "'>";
 					            });
->>>>>>> a3b815f23186c21aa20ed07fc4ca99cb401253fc
 						            
 						            console.log(str);
 
@@ -207,26 +334,6 @@ display :inline;
 						            console.log(formObj);
 						        });
 
-
-<<<<<<< HEAD
-							const regex = new RegExp("(.*?)\.(exe\sh\zip\alz)$");//파일 확장자 선언
-							const maxSize = 20485760; //10MB로 제한
-
-							function checkExtension(fileName, fileSize) {
-								//실패
-								if (fileSize >= maxSize) {
-									alert("사진 용량이 너무 큽니다.");
-									return false;
-								}
-								//이상한 확장자
-								if (regex.test(fileName)) {
-									alert("업로드 할 수 없는 파일 입니다.");
-									return false;
-								}
-								//이상없을때
-								return true;
-							}
-=======
 					        // 파일 용량, 확장자 체크
 					        var regex = new RegExp("(.*?)\.(exe\sh\zip\alz)$");
 					        var maxSize = 5424880; //5MB
@@ -247,7 +354,6 @@ display :inline;
 
 					            return true;
 					        }
->>>>>>> a3b815f23186c21aa20ed07fc4ca99cb401253fc
 							//input 태그 타입인 file에 변경이 일어났을때
 							
 
@@ -299,54 +405,6 @@ display :inline;
             uploadUL.append(str);
         }
 							
-<<<<<<< HEAD
-						$("input[type='file']")
-							.change(
-									function(e) {
-										var formData = new FormData(); // 폼태그
-										var inputFile = $("input[name='uploadFile']"); //업로드 속성객체 만듬
-										var files = inputFile[0].files;
-
-										for (var i = 0; i < files.length; i++) {
-											if (!checkExtension(
-													files[i].name,
-													files[i].size)) {
-												return false;
-											}
-											formData.append(
-													"uploadFile",
-													files[i]);
-										}
-
-										$.ajax({
-											url : '${pageContext.request.contextPath}/uploadAjaxAction',
-											processData : false,
-											contentType : false,
-											data: formData,
-											type : 'POST',
-											dataType : 'json',
-											success : function(result) {
-												console.log('업로드 성공');
-												console.log(result);
-												showUploadResult(result);
-											},
-											error : function(
-													request,
-													status,
-													error) {
-												alert("code = "
-														+ request.status
-														+ " message = "
-														+ request.responseText
-														+ " error = "
-														+ error); // 실패 시 처리
-											}
-										});
-
-									});
-
-						});
-=======
         $("input[type='file']").change(function(e) {
 
             var formData = new FormData();
@@ -382,7 +440,6 @@ display :inline;
         });
 
     });
->>>>>>> a3b815f23186c21aa20ed07fc4ca99cb401253fc
 	</script>
 
 

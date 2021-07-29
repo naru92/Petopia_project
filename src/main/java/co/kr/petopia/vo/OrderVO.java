@@ -1,6 +1,9 @@
 package co.kr.petopia.vo;
 
 import java.util.Date;
+import java.util.List;
+
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -23,7 +26,7 @@ public class OrderVO {
 	private String order_receiver_address;
 	private int order_quantity;
 	private int order_price;
-	
+	private List<ProductVO> productList;
 	
 
 	

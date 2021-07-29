@@ -21,4 +21,6 @@ public interface CartService {
 	public int insertOrderLog(List<OrderVO> orderVO);
 	
 	public List<OrderVO> orderLogInfo(String member_id);
+	
+
 }

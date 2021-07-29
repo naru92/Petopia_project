@@ -256,19 +256,21 @@
 			    			
 			    	}
 					
+
+			        
 					if(window.confirm('배송상태를 변경 하시겠습니까?') == true) {
 						
 						console.log("ajax송신 시작");
 						 $.ajax({
-						        type:"post",
+						        type:"POST",
 						        url: "/admin/delivery/update",
 						        cache: false,
 						        data: JSON.stringify(options),
 						        contentType:"application/json; charset=utf-8",
-						        dataType: 'json',
+						        dataType: 'text', 
 						        success : function(status) {
 						        	alert('변경이 완료 됐습니다.')
-						       	},
+						       	}
 						       
 
 						 });

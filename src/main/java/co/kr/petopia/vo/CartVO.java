@@ -1,6 +1,5 @@
 package co.kr.petopia.vo;
 
-import java.util.Date;
 import java.util.List;
 
 
@@ -11,10 +10,11 @@ public class CartVO {
 	private int cart_id;
 	private String member_id;
 	private int product_idx;
+	private int amount;
 	
 	
 	//카트총량
-	private int amount;
-	private List<ProductVO> productVOList;
+	private List<ProductVO> productList;
 	private int order_quantity;
+	private String cart_name; 
 }

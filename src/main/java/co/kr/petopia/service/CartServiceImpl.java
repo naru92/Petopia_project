@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import co.kr.petopia.mapper.CartMapper;
 import co.kr.petopia.mapper.MemberMapper;
@@ -45,10 +46,15 @@ public class CartServiceImpl implements CartService {
 		return cartMapper.updateCartItem(originalCart);
 	}
 
-
+	@Transactional
 	@Override
 	public int addCart(CartVO cartVO) {
 		log.info("add cart " + cartVO);
+		
+		cartVO.setCart_id(cartMapper.nextVal());
+		cartVO.setCart_name("장바구니");
+		cartMapper.insertCartType(cartVO);
+		
 		
 		return cartMapper.addCart(cartVO);
 	}
@@ -97,6 +103,11 @@ public class CartServiceImpl implements CartService {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+
+
+
+
 		
 	
 

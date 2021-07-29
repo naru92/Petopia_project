@@ -39,7 +39,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	//정적 파일은 시큐리티 검열 무시
 	@Override
 	public void configure(WebSecurity web) throws Exception {
-		web.ignoring().antMatchers( "/petopia/css/**", "/petopia/js/**", "/petopia/images/**","/petoia/images/**","/petopia/font");
+		web.ignoring().antMatchers("/petopia/**", "/petopia/css/**", "/petopia/js/**", "/petopia/images/**","/petoia/images/**","/petopia/font");
 				
 
 	

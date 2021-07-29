@@ -11,28 +11,28 @@
  		<result property="product_idx" column="product_idx" />
  		<result property="amount" column="amount" />
  		
- 		<association property="product" resultMap="productMap" />
+ 		<association property="productList" resultMap="productsMap" />
  	</resultMap>
  
- 	<resultMap type="co.kr.petopia.vo.ProductVO" id="productVO">
+ 	<resultMap type="co.kr.petopia.vo.ProductVO" id="productsMap">
  		<id property="product_idx" column="product_idx" />
  		<result property="product_name" column="product_name" />
- 		<result property="product_price" column="product_price" />
- 		<result property="product_detail_info" column="product_detail_info" />
  		<result property="product_category_id" column="product_category_id" />
- 		<result property="product_review" column="product_review" />
- 		<result property="product_stock" column="product_stock" />
+ 		<result property="product_price" column="product_price" />
  		<result property="product_coloroption" column="product_coloroption" />
+ 		<result property="product_stock" column="product_stock" />
+ 		<result property="product_detail_info" column="product_detail_info" />
+ 		<result property="product_review" column="product_review" />
  		
- 		<collection property="attachList" resultMap="attachMap" />
+ 		<collection property="productVOList" resultMap="attachMap" />
  	</resultMap>
  
  	<resultMap type="co.kr.petopia.vo.FileUploadVO" id="attachMap">
  		<id property="uuid" column="uuid" />
  		<result property="uploadPath" column="uploadPath" />
  		<result property="fileName" column="fileName" />
- 		<result property="imageType" column="imageType" />
- 		<result property="productsNo" column="productsNo" />
+ 		<result property="filetype" column="filetype" />
+ 		<result property="product_idx" column="product_idx" />
  	</resultMap>
  
  	<resultMap type="co.kr.petopia.vo.OrderVO" id="orderLogMap">
@@ -47,12 +47,11 @@
  		<result property="order_name" column="order_name" />
  		<result property="payment_method" column="payment_method" />
  		
- 		<association property="product" resultMap="productsMap" />
+ 		<association property="productList" resultMap="productsMap" />
  	</resultMap>
  	
  	<!-- 카트 리스트 -->
  		<select id="goCart" resultMap="cartMap">
- 		<![CDATA[
 	 		select 
 	 			p.product_idx, p.product_name, p.product_price, 
 	 			cart_id, c.amount,
@@ -65,7 +64,6 @@
 	 			c.product_idx = a.product_idx
 	 			and
 	 			c.member_id = #{member_id}
- 		]]>
  		</select>
  		
  		
@@ -77,17 +75,35 @@
  			  product_idx = #{product_idx}
  	</select>
  	<!-- 장바구니에 추가 -->
+ 	<select id = "nextVal" resultType="int">
+ 			select cart_seq.nextval from dual
+	 </select>
+ 	
  	<insert id="addCart">
- 		<selectKey keyProperty="cart_id" order="BEFORE" resultType="long">
- 			select seq_cart.nextval from dual
- 		</selectKey>
  		
  		insert into 
  			cart (cart_id, member_id, product_idx, amount)
  		values 
- 			(#{cart_id}, #{member_id}, #{product_idx}, #{amount})
+ 			(${cart_id}, #{member_id}, #{product_idx}, #{amount})
+ 	</insert>
+ 	
+ 		<insert id="insertCartType" parameterType="co.kr.petopia.vo.CartVO">
+ 		
+ 		
+ 		insert into 
+ 			carttype (cart_id, product_idx, cart_name)
+ 		values 
+ 			(${cart_id},#{product_idx}, #{cart_name})
  	</insert>
 	
+	<!-- 카트날리기 -->
+		<delete id="deleteCartItem">
+ 		delete from 
+ 			cart
+ 		where
+ 			cart_id = #{cart_id}
+ 	</delete>
+ 
 	<!-- 카트 갱신 --> 
  	<update id="updateCartItem">
  		update 

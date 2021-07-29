@@ -36,20 +36,16 @@ public class MainController {
 		*/
 		
 		
+		List<ProductVO> AllProductList = adminService.getAllProductList();
 	
-		//단독 상품
-		adminService.getAllProductList();
-		//인기제품
-		adminService.productListBestDesc();
-		//신상품
-		adminService.productListDateDesc();
 		//MD추천제품
 		List<ProductVO> allList= adminService.getAllProductList();
-		for(int i=0; i<6; i++) {
+		for(int i=0; i < 2; i++) {
 			md.add(allList.get(random.nextInt(allList.size()+1))); 
 		}
 		
-		model.addAttribute("single_product", adminService.getAllProductList());
+		model.addAttribute("productVO", AllProductList);
+		model.addAttribute("single_product", AllProductList);
 		model.addAttribute("popular_product" , adminService.productListBestDesc());
 		model.addAttribute("new_product" , adminService.productListDateDesc());
 		model.addAttribute("md_product", md);

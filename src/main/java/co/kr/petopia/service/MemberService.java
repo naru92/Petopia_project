@@ -29,5 +29,6 @@ public interface MemberService {
 
     // 회원 별 댓글 list
     List<ReplyVO> getMyReplyList(String member_id);
+ 
 
 }
