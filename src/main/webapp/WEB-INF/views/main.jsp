@@ -183,7 +183,10 @@ keyframes yAxis { 100% {
 keyframes shakeCart { 25% {
 	transform: translateX(6px)
 }
+
 50
+
+
 
 
 %
@@ -191,22 +194,34 @@ keyframes shakeCart { 25% {
 transform
 
 
+
+
 :
 
 
+
+
 translateX
+
+
 (
+
+
 
 
 -4px
 
 
+
+
 )
+
+
 ;
-
-
 }
 75
+
+
 
 
 %
@@ -214,22 +229,34 @@ translateX
 transform
 
 
+
+
 :
 
 
+
+
 translateX
+
+
 (
+
+
 
 
 2px
 
 
+
+
 )
+
+
 ;
-
-
 }
 100
+
+
 
 
 %
@@ -237,21 +264,150 @@ translateX
 transform
 
 
+
+
 :
 
 
+
+
 translateX
+
+
 (
+
+
 
 
 0
 
 
-)
-;
 
+
+)
+
+
+;
+}
+}
+#rightSide {
+	position: absolute;
+	top: 547px;
+	left: 50%;
+	margin: 0 0 0 510px;
+}
+
+#rightSide #right_zzim {
+	position: fixed;
+	top: 680px;
+	left: 65%;
+	margin-left: 510px;
+	border: 1px solid #B0B5BD;
+	width: 114px;
+	height: 150px;
+}
+
+#rightSide #right_zzim  div {
+	text-align: center;
+}
+
+#rightSide #right_zzim  div.recTit {
+	line-height: 1.5em;
+	padding: 5px;
+	color: white;
+	background-color: #505A69;
+}
+
+#right_zzim #recentCnt {
+	color: yellow;
+}
+
+#rightSide #right_zzim ul {
+	min-height: 495px;
+}
+
+#rightSide #right_zzim  li {
+	text-align: center;
+	padding: 5px;
+	position: relative;
+}
+
+#rightSide #right_zzim ul li img {
+	border: 1px solid #ccc
+}
+
+#right_zzim .detail {
+	display: none;
+	position: absolute;
+	top: 3px;
+	right: 20px;
+	xheight: 40px;
+	xpadding: 15px 11px 0;
+	xbackground: #404a59;
+	color: #fff;
+	xtext-align: left;
+	white-space: nowrap;
+}
+
+#right_zzim li:hover .detail {
+	display: block
+}
+
+#right_zzim li .btn_delete {
+	position: absolute;
+	top: 3px;
+	right: -1px;
+	width: 11px;
+	height: 11px;
+	background: url(/img/sp.png) no-repeat -193px -111px;
+	text-indent: -9000px;
+}
+
+#right_zzim  #currentPage {
+	color: #505A69;
+	font-weight: bold
+}
+
+#right_zzim  #totalPageCount {
+	color: #CBC8D2;
+	font-weight: bold
+}
+
+.noData {
+	color: #ccc;
+	text-align: center;
+	margin-top: 223px;
+}
 
 }
+#paging {
+	display:;
+	position: relative;
+	line-height: 1em;
+}
+
+#paging .btn_prev {
+	position: absolute;
+	top: 125px;
+	left: 4px;
+	width: 13px;
+	height: 11px;
+	background: url(/petopia/images/btn_arrow_left_web.png) no-repeat;
+	text-indent: -9000px;
+	border: 1px solid #CCC;
+	display: inline-block;
+}
+
+#paging .btn_next {
+	position: absolute;
+	top: 125px;
+	right: 4px;
+	width: 13px;
+	height: 11px;
+	background: url(/images/ico_arrow.png) -11px 0px;
+	text-indent: -9000px;
+	border: 1px solid #CCC;
+	display: inline-block;
 }
 </style>
 <!-- Bootstrap core CSS -->
@@ -274,6 +430,9 @@ translateX
 	src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/js/swiper.min.js"></script>
 <link rel="shortcut icon" type="image/x-icon"
 	href="/petopia/images/petopia_logomini.png">
+<script type="text/javascript"
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+
 
 </head>
 
@@ -341,7 +500,8 @@ translateX
 							<button class="wishBtn" type="link">
 								<i class="fas fa-heart"></i>
 							</button>
-							<button class="cartBtn" type="link">
+							<button class="cartBtn"
+								onclick="location.href='${root}cartpage';">
 								<i class="fas fa-shopping-cart"></i>
 							</button>
 						</div>
@@ -623,7 +783,7 @@ translateX
 											<div class="class-title">리눅스 커널 프로그래밍</div>
 											<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
 										</div>
-									<button class="btn btn-3 btn-3a icon-cart">장바구니로</button>
+										<button class="btn btn-3 btn-3a icon-cart">장바구니로</button>
 									</div>
 								</div>
 								<div class="swiper-slide">
@@ -639,7 +799,7 @@ translateX
 											<div class="class-title">리눅스 커널 프로그래밍</div>
 											<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
 										</div>
-									<button class="btn btn-3 btn-3a icon-cart">장바구니로</button>
+										<button class="btn btn-3 btn-3a icon-cart">장바구니로</button>
 									</div>
 								</div>
 								<div class="swiper-slide">
@@ -655,7 +815,7 @@ translateX
 											<div class="class-title">리눅스 커널 프로그래밍</div>
 											<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
 										</div>
-									<button class="btn btn-3 btn-3a icon-cart">장바구니로</button>
+										<button class="btn btn-3 btn-3a icon-cart">장바구니로</button>
 									</div>
 								</div>
 								<div class="swiper-slide">
@@ -722,7 +882,7 @@ translateX
 										<div class="class-title">리눅스 커널 프로그래밍</div>
 										<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
 									</div>
-								<button class="btn btn-3 btn-3a icon-cart">장바구니로</button>
+									<button class="btn btn-3 btn-3a icon-cart">장바구니로</button>
 								</div>
 							</div>
 							<div class="swiper-slide">
@@ -881,7 +1041,39 @@ translateX
 										<div class="class-title">리눅스 커널 프로그래밍</div>
 										<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
 									</div>
-								<button class="btn btn-3 btn-3a icon-cart">장바구니로</button>
+									<button class="btn btn-3 btn-3a icon-cart">장바구니로</button>
+								</div>
+							</div>
+							<div class="swiper-slide">
+								<div class="ss">
+
+									<img src="/petopia/images/11356_originalView_01802971.jpg"
+										alt="테스트 이미지" class="class-image" width= />
+									<div class="class-skill">
+										<div class="class-type">리스트1</div>
+										<div class="class-format">♡</div>
+									</div>
+									<div class="class-desc col-10">
+										<div class="class-title">리눅스 커널 프로그래밍</div>
+										<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
+									</div>
+									<button class="btn btn-3 btn-3a icon-cart">장바구니로</button>
+								</div>
+							</div>
+							<div class="swiper-slide">
+								<div class="ss">
+
+									<img src="/petopia/images/11356_originalView_01802971.jpg"
+										alt="테스트 이미지" class="class-image" width= />
+									<div class="class-skill">
+										<div class="class-type">리스트1</div>
+										<div class="class-format">♡</div>
+									</div>
+									<div class="class-desc col-10">
+										<div class="class-title">리눅스 커널 프로그래밍</div>
+										<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
+									</div>
+									<button class="btn btn-3 btn-3a icon-cart">장바구니로</button>
 								</div>
 							</div>
 							<div class="swiper-slide">
@@ -945,39 +1137,7 @@ translateX
 										<div class="class-title">리눅스 커널 프로그래밍</div>
 										<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
 									</div>
-								<button class="btn btn-3 btn-3a icon-cart">장바구니로</button>
-								</div>
-							</div>
-							<div class="swiper-slide">
-								<div class="ss">
-
-									<img src="/petopia/images/11356_originalView_01802971.jpg"
-										alt="테스트 이미지" class="class-image" width= />
-									<div class="class-skill">
-										<div class="class-type">리스트1</div>
-										<div class="class-format">♡</div>
-									</div>
-									<div class="class-desc col-10">
-										<div class="class-title">리눅스 커널 프로그래밍</div>
-										<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
-									</div>
-								<button class="btn btn-3 btn-3a icon-cart">장바구니로</button>
-								</div>
-							</div>
-							<div class="swiper-slide">
-								<div class="ss">
-
-									<img src="/petopia/images/11356_originalView_01802971.jpg"
-										alt="테스트 이미지" class="class-image" width= />
-									<div class="class-skill">
-										<div class="class-type">리스트1</div>
-										<div class="class-format">♡</div>
-									</div>
-									<div class="class-desc col-10">
-										<div class="class-title">리눅스 커널 프로그래밍</div>
-										<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
-									</div>
-								<button class="btn btn-3 btn-3a icon-cart">장바구니로</button>
+									<button class="btn btn-3 btn-3a icon-cart">장바구니에 담기</button>
 								</div>
 							</div>
 						</div>
@@ -1007,7 +1167,7 @@ translateX
 										<div class="class-title">리눅스 커널 프로그래밍</div>
 										<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
 									</div>
-								<button class="btn btn-3 btn-3a icon-cart">장바구니로</button>
+									<button class="btn btn-3 btn-3a icon-cart">장바구니로</button>
 								</div>
 							</div>
 							<div class="swiper-slide">
@@ -1039,23 +1199,7 @@ translateX
 										<div class="class-title">리눅스 커널 프로그래밍</div>
 										<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
 									</div>
-								<button class="btn btn-3 btn-3a icon-cart">장바구니로</button>
-								</div>
-							</div>
-							<div class="swiper-slide">
-								<div class="ss">
-
-									<img src="/petopia/images/11356_originalView_01802971.jpg"
-										alt="테스트 이미지" class="class-image" width= />
-									<div class="class-skill">
-										<div class="class-type">리스트1</div>
-										<div class="class-format">♡</div>
-									</div>
-									<div class="class-desc col-10">
-										<div class="class-title">리눅스 커널 프로그래밍</div>
-										<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
-									</div>
-								<button class="btn btn-3 btn-3a icon-cart">장바구니로</button>
+									<button class="btn btn-3 btn-3a icon-cart">장바구니로</button>
 								</div>
 							</div>
 							<div class="swiper-slide">
@@ -1087,7 +1231,7 @@ translateX
 										<div class="class-title">리눅스 커널 프로그래밍</div>
 										<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
 									</div>
-								<button class="btn btn-3 btn-3a icon-cart">장바구니로</button>
+									<button class="btn btn-3 btn-3a icon-cart">장바구니로</button>
 								</div>
 							</div>
 							<div class="swiper-slide">
@@ -1119,7 +1263,23 @@ translateX
 										<div class="class-title">리눅스 커널 프로그래밍</div>
 										<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
 									</div>
-						<button class="btn btn-3 btn-3a icon-cart">장바구니로</button>
+									<button class="btn btn-3 btn-3a icon-cart">장바구니로</button>
+								</div>
+							</div>
+							<div class="swiper-slide">
+								<div class="ss">
+
+									<img src="/petopia/images/11356_originalView_01802971.jpg"
+										alt="테스트 이미지" class="class-image" width= />
+									<div class="class-skill">
+										<div class="class-type">리스트1</div>
+										<div class="class-format">♡</div>
+									</div>
+									<div class="class-desc col-10">
+										<div class="class-title">리눅스 커널 프로그래밍</div>
+										<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
+									</div>
+									<button class="btn btn-3 btn-3a icon-cart">장바구니로</button>
 								</div>
 							</div>
 
@@ -1135,124 +1295,283 @@ translateX
 		</div>
 
 
-		<div class="quick">
+	
 
-			<div class="icon4">
-				<span>장바구니</span> <span><a href="#">0</a></span>
-				<div "class=cart_item"></div>
-			</div>
-			<div class="icon5">
-				<span>최근 본 상품</span> <br> <a href="#"><img
-					src="http://vivienne.kr/web/upload/goodymall40/layout/btn_recent_prev.gif"
-					alt=""><img
-					src="http://vivienne.kr/web/upload/goodymall40/layout/btn_recent_next.gif"
-					alt=""></a>
+
+
+	
+
+
+		<div class="container-fluid footercontainer">
+
+	
+
+			<!-- footer -->
+
+			<!--// footer -->
+
+		</div>
+				<div id="rightSide">
+
+			<div id="right_zzim">
+
+				<div class="recTit">
+					최근본상품 <span id=recentCnt></span>
+				</div>
+
+				<ul></ul>
+				<!-- 본 상품이 뿌려질 부분  -->
+
+				<div id="paging">
+					<a class="btn_prev" style="cursor: pointer">이전</a><span
+						id="currentPage"></span><span id="totalPageCount"></span><a
+						class="btn_next" style="cursor: pointer">다음</a>
+				</div>
+
 			</div>
 
 		</div>
-	</div>
+			
+		<footer>
+			<div class="container-fluid">
+
+				<img src="/petopia/images/petopia_logomini.png"> </br>
+				<p>PETOPIA</p>
+				</br>
+				<p>서비스 이용약관 | 개인정보 처리방침 | 입점/제휴 문의</p>
+				</br>
+				<p>Naru Juhee Gunwoo Ahram Hansol Hana</p>
+				<p>Bitcamp Jongno</p>
+				</br>
+				<p>&copy Creative 2021-08</p>
+
+
+			</div>
+		</footer>
 
 
 
-	<div class="container-fluid footercontainer">
+		<a id="backtotop"></a>
+
+
+		<script type="text/javascript">
+			//웹사이트 전 영역에 영향을주는 쿠키 생성, 만료기한 1일
+			$.cookie('name', 'value', {
+				expires : 1,
+				path : '/'
+			});
+			
+			
+
+			// recent item    
+
+			 var Cpage;   // 현재 페이지 
+			var pagingSize = 4;   // 원하는 페이지 사이즈로 조정하세용 
+			function chkRecent(a){
+
+			var product_idx = $.cookie("product_idx");
+			var produt_name = $.cookie("product_name");
+
+			$("#right_zzim ul").html('');    // 일단 Ul 내용 지우기... 
+
+			if(product_idx){
+
+				var totcount = product_idx.split('&').length-1;   //
+				var totpage = Math.ceil(totcount / pagingSize) *1;
+
+				
+
+				Cpage = (totpage >= a )? a:1;
+
+				Cpage = (Cpage <1)? totpage:Cpage;
+
+				
+
+				var start = (Cpage-1) * pagingSize;    
+
+			
+
+				for (i = start ; i <= start+(pagingSize-1) ;i++){
+
+				var thisItem = product_idx.split('&')[i];
+
+					if(thisItem){
+
+						var product_idx = thisItem.split(':')[0];
+
+						var product_image = thisItem.split(':')[1];
+
+					$("#right_zzim ul").append('<li><a href="/product?product_idx='+product_idx+'" target="_top"><img src="http://www.xxx.com/images/s'+product_image+'"  width="75" border=1></a><div class="detail"><a href="javascript:removeRecentItem(\''+thisItem+'\')" class="btn_delete">삭제</a></div></li>')
+
+					}
+
+				}
+
+				$("#paging").show();
+
+			}else{
+
+				$("#right_zzim ul").append('<p class="noData">최근 본 상품이<br> 없습니다.</p>');
+
+				$("#paging").hide();$("#recentCnt").text('');
+
+			}
+
+			updateRecentPage(totcount, Cpage);
+
+		}
+
+		chkRecent(1);
 
 
 
-		<!-- footer -->
+			function removeRecentItem(itemname){
 
-		<!--// footer -->
+				var product_idx = $.cookie("product_idx");
 
-	</div>
-	<footer>
-		<div class="container-fluid">
+				product_idx = product_idx.replace(itemname+"&","");			
 
-			<img src="/petopia/images/petopia_logomini.png"> </br>
-			<p>PETOPIA</p>
-			</br>
-			<p>서비스 이용약관 | 개인정보 처리방침 | 입점/제휴 문의</p>
-			</br>
-			<p>Naru Juhee Gunwoo Ahram Hansol Hana</p>
-			<p>Bitcamp Jongno</p>
-			</br>
-			<p>&copy Creative 2021-08</p>
+				$.cookie('product_idx', product_idx , { expires: 1 });
 
+				chkRecent(Cpage);
 
-		</div>
-	</footer>
+			}
 
 
 
-	<a id="backtotop"></a>
+			function updateRecentPage(totcount,Cpage){  
 
-	<!-- Bootstrap core JavaScript -->
-	<script type="text/javascript">
-		$(document)
-				.ready(
-						function() {
-							var swiper = new Swiper(".mySwiper", {
-								slidesPerView : 4,
-								spaceBetween : 20,
-								slidesPerGroup : 4,
-								loop : true,
-								loopFillGroupWithBlank : true,
-								pagination : {
-									el : ".swiper-pagination",
-									clickable : true,
-								},
-								navigation : {
-									nextEl : ".swiper-button-next",
-									prevEl : ".swiper-button-prev",
-								},
+				$("#recentCnt").text(totcount);  
+				$("#totalPageCount").text("/"+Math.ceil((totcount / pagingSize) *1)); 
+
+				if(Math.ceil((totcount / pagingSize) *1) < Cpage){
+
+				$("#currentPage").text(Math.ceil((totcount / pagingSize) *1));
+
+				}else{
+
+				$("#currentPage").text(Cpage);  //
+
+				}
+
+			}
+
+
+			$(".btn_next").on('click',function(){
+
+			chkRecent(Cpage + 1);
+
+			});
+
+
+			$(".btn_prev").on('click',function(){
+
+			chkRecent(Cpage - 1);
+
+			});
+
+		
+
+		function checkCookie() {
+
+		    var product_idx = $.cookie("product_idx");
+			var thisItem='<?=$product_idx?>:<?=$itemImage ?>';   // 제품 아이디와 이미지 이름을 저장   
+
+			
+
+			if (thisItem){
+
+				if (product_idx != "" && product_idx != null) {
+
+					if (product_idx.indexOf(thisItem) ==-1 ){ //값이 없으면 
+
+							$.cookie('product_idx', product_idx+"&"+product_idx , { expires: 1 });
+
+					 }
+
+				} else {
+
+					if (product_idx == "" || product_idx== null) {
+
+						$.cookie('product_idx', product_idx+"&", { expires: 1 });
+
+					}
+
+				}
+
+			}
+
+		}
+
+		checkCookie();
+
+
+
+			$(document)
+					.ready(
+							function() {
+
+								var swiper = new Swiper(".mySwiper", {
+									slidesPerView : 4,
+									spaceBetween : 20,
+									slidesPerGroup : 4,
+									loop : true,
+									loopFillGroupWithBlank : true,
+									pagination : {
+										el : ".swiper-pagination",
+										clickable : true,
+									},
+									navigation : {
+										nextEl : ".swiper-button-next",
+										prevEl : ".swiper-button-prev",
+									},
+								});
+
+								$(document)
+										.ready(
+												function() {
+													$('#addtocart')
+															.on(
+																	'click',
+																	function() {
+
+																		var button = $(this);
+																		var cart = $('#cart');
+																		var cartTotal = cart
+																				.attr('data-totalitems');
+																		var newCartTotal = parseInt(cartTotal) + 1;
+
+																		button
+																				.addClass('sendtocart');
+																		setTimeout(
+																				function() {
+																					button
+																							.removeClass('sendtocart');
+																					cart
+																							.addClass(
+																									'shake')
+																							.attr(
+																									'data-totalitems',
+																									newCartTotal);
+																					setTimeout(
+																							function() {
+																								cart
+																										.removeClass('shake');
+																							},
+																							500)
+																				},
+																				1000)
+																	})
+												});
+
 							});
-
-							$(document)
-									.ready(
-											function() {
-												$('#addtocart')
-														.on(
-																'click',
-																function() {
-
-																	var button = $(this);
-																	var cart = $('#cart');
-																	var cartTotal = cart
-																			.attr('data-totalitems');
-																	var newCartTotal = parseInt(cartTotal) + 1;
-
-																	button
-																			.addClass('sendtocart');
-																	setTimeout(
-																			function() {
-																				button
-																						.removeClass('sendtocart');
-																				cart
-																						.addClass(
-																								'shake')
-																						.attr(
-																								'data-totalitems',
-																								newCartTotal);
-																				setTimeout(
-																						function() {
-																							cart
-																									.removeClass('shake');
-																						},
-																						500)
-																			},
-																			1000)
-																})
-											});
-
-						});
-	</script>
+		</script>
 
 
-	<script src="/petopia/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-	<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
-	<script src="/petopia/js/mainindex.js"></script>
-	<script src="/petopia/js/petopia.js"></script>
-
-
-
+		<script src="/petopia/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+		<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+		<script src="/petopia/js/mainindex.js"></script>
+		<script src="/petopia/js/petopia.js"></script>
 </body>
 
 </html>

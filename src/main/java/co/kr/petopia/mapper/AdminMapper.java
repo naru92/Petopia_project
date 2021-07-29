@@ -110,5 +110,10 @@ public interface AdminMapper{
 	public List<MemberVO> donation_statistics_3month();
 	//3개월치 상품
 	public List<ProductVO> order_statistics_3month();
-	
+	//모든상품
+	public List<ProductVO> getAllProductList();
+	//전체인기순
+	public List<ProductVO> productListBestDesc();
+	//전체등록순
+	public List<ProductVO> productListDateDesc();
 }
