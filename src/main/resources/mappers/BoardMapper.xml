@@ -10,6 +10,24 @@
 		select * from content where
 		board_id = #{board_id} order by content_idx DESC
 	</select>
+	
+	<!-- 해당 게시판에 게시글 불러오는 쿼리문 + 페이징 -->
+	<select id="getContentListPaging" resultType="co.kr.petopia.vo.BoardVO">
+		<![CDATA[
+		SELECT * FROM
+		(
+		select /*+ INDEX_DESC(content pk_content) */ rownum rn, content_idx, content_title, content_text,
+		content_date, content_hit, content_update, member_id, board_id from content 
+		where content_idx > 0 and rownum <= (#{pageNum} * #{amount})
+		)
+		where rn > (#{pageNum}-1) * 10 and board_id = #{board_id}
+		]]>
+	</select>
+	
+	<!-- count -->
+	<select id="getTotalCount" resultType="int">
+		select count(*) from content where content_idx > 0 and board_id = #{board_id}
+	</select>
 
 	<insert id="contentInsert">
 		insert into content(content_idx, board_id, member_id,

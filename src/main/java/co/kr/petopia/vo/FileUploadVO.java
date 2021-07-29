@@ -20,6 +20,8 @@ public class FileUploadVO {
 	
 	private Integer board_id;
 	
+	private int content_idx;
+	
 	
 	
 }

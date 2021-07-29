@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import co.kr.petopia.service.BoardService;
+import co.kr.petopia.utils.Criteria;
+import co.kr.petopia.utils.PageVO;
 import co.kr.petopia.vo.BoardVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -23,14 +25,20 @@ public class BoardController {
 
     /****************** 공지사항 **********************/
 
-    // 리스트 불러오기
+    // 리스트 불러오기(페이징 처리)
     @GetMapping("/notice")
-    public String noticeList(Model model) {
-
+    public String noticeList(Criteria cri, Model model) {
+        
+        log.info("--------------------------");
+        log.info(cri);
         log.info("noticeList...........");
 
-        model.addAttribute("contentList", boardService.getContentList(1L));
+        model.addAttribute("contentList", boardService.getContentListPaging(cri, 1L));
 
+        int total = boardService.getTotal(cri, 1L);
+
+        model.addAttribute("pageMaker", new PageVO(cri, total));
+        
         return "board/notice";
 
     }
@@ -82,16 +90,22 @@ public class BoardController {
         return "redirect:/notice";
     }
 
-    /****************** 문의하기 **********************/
+    /****************** 문의하기  **********************/
 
-    // 리스트 불러오기
+    // 리스트 불러오기(페이징)
     @GetMapping("member/inquiry")
-    public String inquiryList(Model model) {
-
+    public String inquiryList(Criteria cri, Model model) {
+        
+        log.info("--------------------------");
+        log.info(cri);
         log.info("inquiryList...........");
 
-        model.addAttribute("contentList", boardService.getContentList(2L));
+        model.addAttribute("contentList", boardService.getContentListPaging(cri, 2L));
+        
+        int total = boardService.getTotal(cri, 2L);
 
+        model.addAttribute("pageMaker", new PageVO(cri, total));
+        
         return "member/inquiry";
 
     }
@@ -220,7 +234,7 @@ public class BoardController {
     }
     
     // 해당 게시물 불러오기
-    @GetMapping("/petstagram/get")
+    @GetMapping({"/petstagram/get","/petstagram/modify"})
     public void petstagramGet(@RequestParam("content_idx") Long content_idx, Model model) {
         
         model.addAttribute("board", boardService.getContent(content_idx));

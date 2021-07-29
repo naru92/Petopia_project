@@ -1,0 +1,224 @@
+select * from AUTHORITIES;
+select * from board;
+select * from carttype;
+select * from cart;
+select * from content;
+select * from delivery;
+select * from member;
+select * from mypet;
+select * from order_detail;
+select * from order_form;
+select * from product;
+select * from product_category;
+select * from reply;
+select * from users;
+
+-- 멤버 데이터 생성
+select * from member; -- 테이블 내 멤버 확인
+delete from member; -- 멤버 테이블 데이터 삭제
+BEGIN
+    FOR i IN 1..100 LOOP
+        INSERT INTO MEMBER(member_id, member_password, member_name, member_phoneNumber,
+                   member_address, member_email, member_joinDate, member_grade,
+                   member_point, member_donation, authority)
+            VALUES(concat('dummy',i) , '1111' , concat('테스트',i), '010-1111-1111', concat('주소',i), 'test@test.com', sysdate, '브론즈',
+            0,0,2);
+        END LOOP;
+    END;
+
+
+-- 비회원
+SELECT * FROM USERS;
+INSERT INTO users(order_idx, user_name, user_phoneNumber, user_address)
+            values (1, 'user1', '010-1111-1111', '주소1');
+
+
+-- 권한 생성 / admin
+select * from authorities;
+insert into authorities(member_id, authority, enabled)
+                values ('dummy1', 'ROLE_ADMIN', 0);
+                
+-- 권한 생성 / member
+BEGIN
+FOR i IN 2..100 LOOP
+INSERT INTO authorities(member_id, authority, enabled)
+    VALUES(concat('dummy',i) ,'ROLE_MEMBER', 1);
+END LOOP;
+END;
+               
+-- 마이펫 데이터 생성
+insert into MYPET(MYPET_IDX, MEMBER_ID, MYPET_IMAGEFILE, MYPET_NAME, MYPET_CATEGORY, MYPET_GENDER, MYPET_ALLERGY,
+                       MYPET_AGE, MYPET_WEIGHT, MYPET_NEUTERING, MYPET_DISEASENAME)                       
+    values (MYPET_SEQ.nextval, 'dummy62', '멍멍이사진.jpg', '멍멍이', '강아지', '남', '알러지',
+            7, 3.2, 'Y', 'SICK');
+
+
+-- 상품 데이터 생성
+select * from product;
+delete from product;
+
+BEGIN
+FOR i IN 1..100 LOOP
+INSERT INTO PRODUCT(PRODUCT_IDX,PRODUCT_NAME,PRODUCT_CATEGORY_ID,PRODUCT_PRICE,
+                    PRODUCT_COLOROPTION,PRODUCT_STOCK,PRODUCT_DETAIL_INFO,PRODUCT_IMAGE,PRODUCT_REVIEW)
+            values (PRODUCT_SEQ.nextval, concat('상품', i), 1, 2000,
+                    '빨강', 1, '상품입니다.', concat('상품이미지', i), concat('상품후기', i));
+END LOOP;
+END;
+
+-- 상품 카테고리 생성
+SELECT * FROM PRODUCT_CATEGORY;
+CREATE TABLE product_category (product_category_id number(30) not null,
+                               product_category_name VARCHAR2(30) not null);
+
+
+-- 게시판 데이터 만들기
+select * from board;   -- 만들어진 게시판 확인
+insert into board(board_id, board_name)
+          values (1, '공지사항');
+insert into board(board_id, board_name)
+          values (2, '문의하기');
+insert into board(board_id, board_name)
+          values (3, '이벤트');
+insert into board(board_id, board_name)
+          values (4, '펫★그램');
+
+
+-- 게시글 데이터 생성
+select * from content;
+insert into content(content_idx, board_id, member_id, CONTENT_DATE,CONTENT_TITLE,CONTENT_TEXT,CONTENT_HIT)
+            values (CONTENT_SEQ.nextval, 1, 'dummy23', SYSDATE, '제목1', '내용입니다', 0);
+
+
+            
+            
+-- 댓글 데이터 생성
+select * from reply;
+insert into REPLY(reply_idx, content_idx, member_id, reply_group_idx, reply_text, reply_date)
+          values (REPLY_SEQ.nextval, 2, 'dummy47', 1, '댓글입니다.', sysdate);
+  
+  
+-- 주문서 데이터 생성
+SELECT * FROM ORDER_FORM;
+insert into ORDER_FORM(order_idx, product_idx, member_id, order_date, payment_method)
+               values (ORDER_SEQ.nextval, 201, 'dummy23', sysdate, 1);
+               
+               
+-- 주문 데이터 상세
+SELECT * FROM ORDER_DETAIL;
+INSERT INTO order_detail(order_idx, product_idx, order_receiver_name,
+                         order_receiver_phoneNumber, order_receiver_address, order_quantity, order_name)
+                 	 values (1, 1, '받는사람1', '010-1234-5687', '주소123', 3, '주문자1');
+            
+
+-- 장바구니 타입
+select * from carttype;
+insert into carttype(cart_id, product_idx, cart_name)
+              values(1, 1, '장바구니');
+insert into carttype(cart_id, product_idx, cart_name)
+              values(2, 1, '위시리스트');
+         
+              
+-- 장바구니 데이터 생성
+select * from cart;
+insert into cart(cart_id, member_id, product_idx)
+          values(1, 'dummy17', 1);
+             
+              
+-- 배송
+select * from delivery;
+insert into delivery(order_idx, delivery_idx, delivery_date, delivery_state)
+              values(1, delivery_seq.nextval, '01-07-21', '배송중');
+             
+              
+-- 포인트
+select * from point;
+insert into point(member_id, member_point_savedate, member_point_usedate)
+           values('dummy30', sysdate, sysdate);
+
+-- 상품 카테고리
+select * from product_category;
+insert into product_category(product_category_id, product_category_name)
+                values (1, '사료');
+insert into product_category(product_category_id, product_category_name)
+                values (2, '간식');
+insert into product_category(product_category_id, product_category_name)
+                values (3, '위생/배변');
+insert into product_category(product_category_id, product_category_name)
+                values (4, '미용/목욕');
+insert into product_category(product_category_id, product_category_name)
+                values (5, '급식/급수기');
+insert into product_category(product_category_id, product_category_name)
+                values (6, '장난감/훈련');     
+insert into product_category(product_category_id, product_category_name)
+                values (7, '하우스/이동장');                
+insert into product_category(product_category_id, product_category_name)
+                values (8, '패션/의류'); 
+insert into product_category(product_category_id, product_category_name)
+                values (9, '목줄/하네스');               
+
+
+-- 첨부파일 (2021.07.19 추가)
+/*uuid= 파일 고유이름, uploadPath = 업로드 경로 .. filetype 우린 이미지파일 'I'
+  idx는 본인이 개발시에 첨부파일 필요한 번호로 insert 할 것 */
+create table tbl_attach(
+ uuid varchar2(100) not null,
+ uploadPath varchar2(200) not null,
+ fileName varchar2(100) not null,
+ filetype char(1) default 'I',
+ product_idx number(10,0) default 0,
+ board_id number(10,0) default 0,
+ mypet_idx number(10,0) default 0
+
+)
+/*기본키는 uuid , 외래키는 따로 두지 않음*/
+alter table tbl_attach add constraint pk_attach primary key (uuid);  
+
+
+-- content 내에 수정일자 추가 (2021.07.20 추가)
+ALTER TABLE CONTENT 
+ADD (CONTENT_UPDATE DATE DEFAULT NULL);
+
+COMMENT ON COLUMN CONTENT.CONTENT_UPDATE IS '수정일자';
+
+
+(2021.07.21 추가)
+--order_form에 결제방법 삭제
+ALTER TABLE ORDER_FORM 
+DROP COLUMN PAYMENT_METHOD;
+
+--order_detail 더미데이터 삭제 
+delete from order_detail;
+
+--order_deail 결제방법 추가
+ALTER TABLE ORDER_DETAIL 
+ADD (PAYMENT_METHOD INTEGER NOT NULL);
+
+COMMENT ON COLUMN ORDER_DETAIL.PAYMENT_METHOD IS '결제 수단';
+
+--총 기부금 추가
+ALTER TABLE donation ADD donation_total number(38,0) default 0 not null;
+                
+
+(2021.07.22 추가)
+--멤버사용 포인트
+ALTER TABLE point ADD member_point_usepoint NUMBER DEFAULT 0 NULL;
+
+--ahthorities 권한 코드 수정
+update authorities set enabled = 1;
+update authorities set enabled = 0 where member_id = 'dummy1';
+
+--reply -> 그룹idx 컬럼 삭제
+ALTER TABLE REPLY 
+DROP COLUMN REPLY_GROUP_IDX;
+
+(2021.07.29 추가)
+-- 카트 시퀀스 생성
+create sequence cart_seq
+            INCREMENT by 1
+            start with 1
+            minvalue 1;
+
+-- 멤버네임 길이 수정
+ALTER TABLE MEMBER  
+MODIFY (MEMBER_NAME VARCHAR2(20 BYTE) );

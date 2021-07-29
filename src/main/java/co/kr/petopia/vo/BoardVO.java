@@ -1,6 +1,7 @@
 package co.kr.petopia.vo;
 
 import java.util.Date;
+import java.util.List;
 
 import lombok.Data;
 
@@ -14,4 +15,6 @@ public class BoardVO {
     private String content_text;
     private int content_hit;
     private Date content_update;
+    
+    private List<FileUploadVO> attachList;
 }

@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 
 import co.kr.petopia.mapper.MemberMapper;
 import co.kr.petopia.vo.BoardVO;
-import co.kr.petopia.vo.MemberAuthVO;
 import co.kr.petopia.vo.MemberVO;
 import co.kr.petopia.vo.ReplyVO;
 import lombok.RequiredArgsConstructor;
@@ -20,32 +19,46 @@ public class MemberServiceImpl implements MemberService{
     private final MemberMapper memberMapper;
 
     
+    // 회원권한조회
     @Override
     public MemberVO getSelectMemberInfo(String member_id) {
         
         return memberMapper.getSelectMemberInfo(member_id);
     }
     
+    // 회원정보조회
     @Override
     public MemberVO getMemberInfo(String member_id) {
 
         return memberMapper.getMemberInfoRead(member_id);
     }
     
+    // 로그인
     @Override
-    public void memberRegister(MemberVO member, MemberAuthVO memberAuth) {
+    public MemberVO memberLogin(String member_id, String member_password) {
+        
+        memberMapper.getSelectMemberInfo(member_id);
+        
+        return memberMapper.memberLogin(member_id, member_password);
+    }
+    
+    // 회원가입
+    @Override
+    public void memberRegister(MemberVO member) {
         
         memberMapper.memberJoin(member);
-        memberMapper.memberAuthorities(memberAuth);
+        memberMapper.memberAuthorities(member);
         
     }
-
+    
+    // 회원수정
     @Override
     public int memberModify(MemberVO member) {
         
         return memberMapper.memberUpdate(member);
     }
 
+    // 회원삭제(탈퇴)
     @Override
     public int memberRemove(String member_id) {
 
@@ -55,15 +68,31 @@ public class MemberServiceImpl implements MemberService{
         return 1;
     }
 
+    // 회원이 작성한 댓글리스트
     @Override
     public List<ReplyVO> getMyReplyList(String member_id) {
 
         return memberMapper.getMyReplyList(member_id);
     }
     
+    // 회원이 작성한 게시글리스트
     public List<BoardVO> getMyContentList(String member_id) {
 
         return memberMapper.getMyContentList(member_id);
+    }
+
+    // 아이디 중복 체크
+    @Override
+    public int checkMemberId(String member_id) {
+        
+        return memberMapper.checkMemberId(member_id);
+    }
+
+    // 핸드폰번호 중복 체크
+    @Override
+    public int checkMemberPhoneNumber(String member_phoneNumber) {
+        
+        return  memberMapper.checkMemberPhoneNumber(member_phoneNumber);
     }
     
     

@@ -9,14 +9,14 @@
 			
 				<div class="links">
 					<c:choose>
-						<c:when test="${empty sessionScope.principal}">
-							<a href="/member/joinAgree" class="link_text">회원가입</a>
-							<a href="/member/login" class="link_text">로그인</a>
+						<c:when test="${not empty sessionScope.principal}">
+							<a href="/member/mypage" class="link_text">마이페이지</a>
+							<a href="/member/logout" class="link_text">로그아웃</a>
 							<a href="#" class="link_text">고객센터</a>
 						</c:when>
 						<c:otherwise>
-							<a href="/member/mypage" class="link_text">마이페이지</a>
-							<a href="/member/logout" class="link_text">로그아웃</a>
+							<a href="/member/joinAgree" class="link_text">회원가입</a>
+							<a href="/member/login" class="link_text">로그인</a>
 							<a href="#" class="link_text">고객센터</a>
 						</c:otherwise>
 					</c:choose>

@@ -4,7 +4,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import co.kr.petopia.vo.MemberAuthVO;
 import co.kr.petopia.vo.MemberVO;
 import lombok.extern.log4j.Log4j2;
 
@@ -22,30 +21,33 @@ public class MemberMapperTests {
         memberMapper.getMemberInfoRead("dummy11");
 
     }
+    
+    @Test
+    public void testMemberLogin() {
+
+        memberMapper.memberLogin("dummy1","1111");
+
+    }
 
     @Test
     public void testMemberJoin() {
 
         MemberVO vo = new MemberVO();
 
-        vo.setMember_id("test07");
+        vo.setMember_id("test23");
         vo.setMember_password("1111");
         vo.setMember_name("test");
         vo.setMember_phoneNumber("010-1111-1111");
         vo.setMember_address("test");
         vo.setMember_email("test@test.com");
+        
+        vo.setMemberAuth_id("test23");
 
         memberMapper.memberJoin(vo);
-        
-        MemberAuthVO authVo = new MemberAuthVO();
-
-        
-        authVo.setMember_id("test07");
-
-        memberMapper.memberAuthorities(authVo);
+        memberMapper.memberAuthorities(vo);
 
         log.info("----------------------------");
-        log.info("afrer insert" + authVo.getMember_id());
+        log.info("afrer insert" + vo.getMember_id());
 
     }
 

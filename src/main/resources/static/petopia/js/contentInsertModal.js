@@ -25,6 +25,7 @@ window.onclick = function(event) {
 // Ajax로 데이터 전송 
 $(document).ready(function() { 
 	$('#insertSubmit').click(function(){
+
 		$.ajax({
 			type: "POST",
 			url: "/petstagram/register",

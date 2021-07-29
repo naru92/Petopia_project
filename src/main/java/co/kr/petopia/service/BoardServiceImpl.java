@@ -7,7 +7,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import co.kr.petopia.mapper.BoardMapper;
+import co.kr.petopia.utils.Criteria;
 import co.kr.petopia.vo.BoardVO;
+import jdk.internal.org.jline.utils.Log;
 import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 
@@ -46,6 +48,18 @@ public class BoardServiceImpl implements BoardService{
     public List<BoardVO> getContentList(Long board_id) {
         
         return boardMapper.getContentList(board_id);
+    }
+
+    @Override
+    public List<BoardVO> getContentListPaging(Criteria cri, Long board_id) {
+
+        return boardMapper.getContentListPaging(cri, board_id);
+    }
+
+    @Override
+    public int getTotal(Criteria cri, Long board_id) {
+
+        return boardMapper.getTotalCount(cri, board_id);
     }
     
 }
