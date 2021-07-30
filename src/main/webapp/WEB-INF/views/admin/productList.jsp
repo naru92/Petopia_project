@@ -23,11 +23,21 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 <style type="text/css">
-.footerdiv {height:100%;}
-.logo{margin-bottom:5px;}
-#modal_product_idx{margin-left: ; font-size:70%;}
-<style>
-.uploadResult {
+.footerdiv {
+	height: 100%;
+}
+
+.logo {
+	margin-bottom: 5px;
+}
+
+#modal_product_idx {
+	margin-left:;
+	font-size: 70%;
+}
+
+<
+style>.uploadResult {
 	width: 100%;
 	background-color: gray;
 }
@@ -51,9 +61,9 @@
 .uploadResult ul span {
 	display: inline-block;
 	width: 100px;
-	overflow: hidden; 
+	overflow: hidden;
 	white-space: nowrap;
-	text-overflow: ellipsis; 
+	text-overflow: ellipsis;
 }
 
 .view-product {
@@ -66,6 +76,7 @@
 	justify-content: center;
 	align-items: center;
 }
+
 .view-product ul li {
 	list-style: none;
 	padding: 10px;
@@ -85,38 +96,43 @@
 	justify-content: center;
 	align-items: center;
 }
+
 .item ul li {
 	list-style: none;
 	padding: 10px;
 }
+
 .item ul li img {
 	width: 100px;
 }
+
 .bigPictureWrapper {
-  position: absolute;
-  display: none;
-  justify-content: center;
-  align-items: center;
-  top:0%;
-  width:100%;
-  height:100%;
-  background-color: gray;
-  background-color: rgba( 255, 255, 255, 0.5 );
-  z-index: 100;
-}
-.bigPicture {
-  position: relative;
-  display:flex;
-  justify-content: center;
-  align-items: center;
-}
-#animalType, #productsType, #brand {
-  width: auto;
-}
-showCloseButton ::before {
-height: 10px;
+	position: absolute;
+	display: none;
+	justify-content: center;
+	align-items: center;
+	top: 0%;
+	width: 100%;
+	height: 100%;
+	background-color: gray;
+	background-color: rgba(255, 255, 255, 0.5);
+	z-index: 100;
 }
 
+.bigPicture {
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#animalType, #productsType, #brand {
+	width: auto;
+}
+
+showCloseButton ::before {
+	height: 10px;
+}
 </style>
 </style>
 
@@ -169,7 +185,7 @@ height: 10px;
 										<tr>
 											<td colspan="2">상품 구분&nbsp;&nbsp;</td>
 											<td class="head" colspan="5" class="pleft"><input
-												type="radio" value="사료" name="select_category_id" >1.사료
+												type="radio" value="사료" name="select_category_id">1.사료
 												<input type="radio" value="간식" name="select_category_id">2.간식
 												<input type="radio" value="위생" name="select_category_id">3.위생/배변
 												<input type="radio" value="미용" name="select_category_id">4.미용/목욕
@@ -226,15 +242,15 @@ height: 10px;
 										</tr>
 									</thead>
 
-									<c:forEach var='p' varStatus="status" items="${productList}" >
-									<div>
-										<input type="hidden" value="${p.product_detail_info }"></input>
-										<input type="hidden" value="${p.product_image }"></input>
-										<%-- <input type="hidden" id="imageType${status.index}" value="${p.productVOList.get(0).imageType}" />
+									<c:forEach var='p' varStatus="status" items="${productList}">
+										<div>
+											<input type="hidden" value="${p.product_detail_info }"></input>
+											<input type="hidden" value="${p.product_image }"></input>
+											<%-- <input type="hidden" id="imageType${status.index}" value="${p.productVOList.get(0).imageType}" />
 										<input type="hidden" id="uuid${status.index}" value="${p.productVOList.get(0).uuid}" />
 										<input type="hidden" id="uploadPath${status.index}" value="${p.productVOList.get(0).uploadPath}" />
 										<input type="hidden" id="fileName${status.index}" value="${p.productVOList.get(0).fileName}" /> --%>
-									</div>
+										</div>
 										<tbody>
 											<tr>
 												<td id="productidxTd">${p.product_idx }</td>
@@ -243,36 +259,38 @@ height: 10px;
 												<td>${p.product_price }</td>
 												<td>${p.product_stock }</td>
 												<td width="150" align="center">
-												<button class="btn btn-lg btn-info" data-toggle="modal" 
-												data-product_idx="${p.product_idx}"
-												data-product_name ="${p.product_name }" 
-												data-product_category_id = "${p.product_category_id }"
-												data-product_price = "${p.product_price}"
-												data-product_detail_info ="${p.product_detail_info }" 
-												data-product_coloroption = "${p.product_coloroption}"
-												data-product_image = "${p.product_image }"
-												data-pageNum ="${pageMaker.cri.pageNum}"
-												data-amount = "${pageMaker.cri.amount}"
-												data-target="#largeModal" value="${p.product_idx }">
-													상세보기</button></td>
-												
+													<button class="btn btn-lg btn-info" data-toggle="modal"
+														data-product_idx="${p.product_idx}"
+														data-product_name="${p.product_name }"
+														data-product_category_id="${p.product_category_id }"
+														data-product_price="${p.product_price}"
+														data-product_detail_info="${p.product_detail_info }"
+														data-product_coloroption="${p.product_coloroption}"
+														data-product_image="${p.product_image }"
+														data-pageNum="${pageMaker.cri.pageNum}"
+														data-amount="${pageMaker.cri.amount}"
+														data-target="#largeModal" value="${p.product_idx }">
+														상세보기</button>
+												</td>
+
 											</tr>
 										</tbody>
-										
-									
+
+
 									</c:forEach>
 								</table>
 							</div>
 							<form id='pageActionForm' action="/admin/product" method='get'>
 								<input type='hidden' id='currentPageNum' name='pageNum'
 									value='${pageMaker.cri.pageNum}' /> <input type='hidden'
-									id='currentAmount' name='amount' value='${pageMaker.cri.amount}' />
+									id='currentAmount' name='amount'
+									value='${pageMaker.cri.amount}' />
 							</form>
 						</div>
 						<input type="hidden" id="size" value="${fn:length(list)}" />
 						<div class="row">
 							<div class="col-sm-12 col-md-5 paginationdiv">
-								<div class="d-none d-md-block page-div">
+								<div id="masterDiv" class="d-none d-md-block page-div">
 									<ul class="pagination justify-content-center">
 										<li class="page-item"><c:if test="${pageMaker.prev}">
 												<li class="page-item"><a
@@ -281,8 +299,8 @@ height: 10px;
 										<c:forEach var="num" begin="${pageMaker.startPage}"
 											end="${pageMaker.endPage }">
 											<li
-												class='page-item numberitem ${pageMaker.cri.pageNum == num ? "active" : "" }' value="${num}"><a
-												href="${num}" class="page-link" >${num}</a></li>
+												class='page-item numberitem ${pageMaker.cri.pageNum == num ? "active" : "" }'
+												value="${num}"><a href="${num}" class="page-link">${num}</a></li>
 										</c:forEach>
 
 										<c:if test="${pageMaker.next}">
@@ -293,6 +311,8 @@ height: 10px;
 									</ul>
 								</div>
 							</div>
+							<table class="tbl paginated" id="tbl">
+							</table>
 						</div>
 
 					</div>
@@ -311,16 +331,16 @@ height: 10px;
 	<footer class="sticky-footer bg-white">
 		<div class="container my-auto">
 			<div class="copyright text-center my-auto">
-				  <div class="container-fluid footerdiv">
-        <img class="logo" src="/petopia/images/petopia_logomini.png">
-      
-        <p>PETOPIA</p>
-        
-        <p>서비스 이용약관 | 개인정보 처리방침 | 입점/제휴 문의</p>
-        <p>Created by Naru Juhee Gunwoo Ahram Hansol Hana</p>
-        <p>Bitcamp Jongno</p>
-        <p>&copy Creative 2021-08</p>     
-    </div>
+				<div class="container-fluid footerdiv">
+					<img class="logo" src="/petopia/images/petopia_logomini.png">
+
+					<p>PETOPIA</p>
+
+					<p>서비스 이용약관 | 개인정보 처리방침 | 입점/제휴 문의</p>
+					<p>Created by Naru Juhee Gunwoo Ahram Hansol Hana</p>
+					<p>Bitcamp Jongno</p>
+					<p>&copy Creative 2021-08</p>
+				</div>
 			</div>
 		</div>
 	</footer>
@@ -336,89 +356,88 @@ height: 10px;
 				<div class="modal-content">
 					<div class="modal-header">
 						<h4 class="modal-title" id="myModalLabel">상품 정보</h4>
-						
+
 						<button type="button" class="close" data-dismiss="modal"
 							aria-label="Close">
 							<span aria-hidden="true">&times;</span>
-							
+
 						</button>
-						
+
 					</div>
-					
+
 					<div class="modal-body">
-						<h5 id= modal_product_idx></h5>
+						<h5 id=modal_product_idx></h5>
 						<div class="card-body">
 
-						
-								<div class="form-group">
-									<label for="board_writer_name">상품명</label> <input type="text"
-										id="modal_product_name" name="product_name"
-										class="form-control"></input>
-								</div>
-								<div class="form-group">
-									<label for="board_date">상품가격</label> <input type="text"
-										id="modal_product_price" name="product_price" class="form-control"
 
-										value="123"></input>
-								</div>
-								<div class="form-group">
-									<label for="product_coloropiton">컬러</label> <input type="text"
-										id="modal_product_coloropiton" name="product_coloropiton" class="form-control"
-										value="" />
-								</div>
+							<div class="form-group">
+								<label for="board_writer_name">상품명</label> <input type="text"
+									id="modal_product_name" name="product_name"
+									class="form-control"></input>
+							</div>
+							<div class="form-group">
+								<label for="board_date">상품가격</label> <input type="text"
+									id="modal_product_price" name="product_price"
+									class="form-control" value="123"></input>
+							</div>
+							<div class="form-group">
+								<label for="product_coloropiton">컬러</label> <input type="text"
+									id="modal_product_coloropiton" name="product_coloropiton"
+									class="form-control" value="" />
+							</div>
+
+							<div class="form-group">
+
+								<label for="product_detail_info">상품상세</label>
+								<textarea id="modal_product_detail_info"
+									name="product_detail_info" class="form-control" rows="10"
+									style="resize: none"></textarea>
+							</div>
+
+
+							<div class="form-group uploadDiv">
+								<label for="board_file">첨부 이미지</label><br> <img src=""
+									width="100%" /> <input type="file" name='uploadFile'
+									id="product_image" multiple>
+							</div>
+
+
+							<form id='operForm' action="product/update" method="get">
+								<input type="hidden" id=idx name='product_idx' value="" /> <input
+									type="hidden" id=hiddenPageNum name='pageNum' value="" /> <input
+									type="hidden" id=hiddenAmount name='amount' value="" />
+							</form>
+
+
+							<!-- 썸네일출력장소 -->
+							<div class="row">
+								<div class='uploadResult'>
+									<ul>
 									
-								<div class="form-group">
+									</ul>
+								</div>
 
-									<label for="product_detail_info">상품상세</label>
-									<textarea id="modal_product_detail_info" name="product_detail_info"
-										class="form-control" rows="10" style="resize: none"></textarea>
-								</div>
-								
-								
-								<div class="form-group uploadDiv">
-								<label for="board_file">첨부 이미지</label><br> <img src="" width="100%" />
 
-                            		<input type="file" name='uploadFile' id="product_image" multiple>
-                        		</div>
-                        		
-                        		
-                        			<form id='operForm' action="product/update" method="get">       	
-                             				<input type="hidden" id =idx name='product_idx' value="" />
-                             				<input type="hidden" id = hiddenPageNum name='pageNum' value="" />
-	                             			<input type="hidden" id = hiddenAmount name='amount' value="" />
-	                				</form> 	         		
-												
-                        		
-								<!-- 썸네일출력장소 -->
-								<div class="row">
-									<div class='uploadResult'>
-					                        <ul>
-		
-		        		                   </ul>
-		                    	    </div>
-										
-									
+							</div>
+
+							<!-- 원본 이미지 출력 장소 -->
+							<div class="bigPicturePlace">
+								<div class='bigPictureWrapper'>
+									<div class="bigPicture"></div>
 								</div>
-								
-								<!-- 원본 이미지 출력 장소 -->
-			                    <div class="bigPicturePlace">
-									<div class='bigPictureWrapper'>
-										<div class="bigPicture">
-					
-										</div>
-									</div>
-								</div>
-						
-		                	   		
+							</div>
+
+
 						</div>
 					</div>
 					<div class="modal-footer">
 
 						<button type="button" class="btn btn-primary" data-dismiss="modal">닫기</button>
-						<button data-oper='update' class="btn btn-default" style="margin:10px;">수정</button>
+						<button data-oper='update' class="btn btn-default"
+							style="margin: 10px;">수정</button>
 					</div>
-					
-				
+
+
 				</div>
 			</div>
 		</div>
@@ -633,7 +652,7 @@ height: 10px;
 													product_stock : product_stock,
 													select_category_id : select_category_id
 												}
-
+													const list="";
 												$
 														.ajax({
 															type : 'post',
@@ -646,12 +665,14 @@ height: 10px;
 															success : function(
 																	list,
 																	status) {
-
+																list = $(list);
+																console.log(list);
 																var htmls = "";
 
 																$("#dataTable")
 																		.html(
 																				"");
+																$("#masterDiv").empty();
 
 																$(
 																		"<tr>",
@@ -672,14 +693,14 @@ height: 10px;
 																					+ "<td>"
 																					+ "재고량"
 																					+ "</td>"
-
+													
 																		})
 																		.appendTo(
 																				"#dataTable") // 이것을 테이블에붙임
 
 																if (list.length < 1) {
-																	htmls
-																			.push("등록된 상품이 없습니다.");
+																	$("#dataTable").html("<p>등록된 상품이 없습니다.</p>");
+																			
 																} else {
 
 																	$(list)
@@ -705,27 +726,22 @@ height: 10px;
 																						htmls += '</tr>';
 
 																					}); //each end
-
+																	
 																}
-																$("#dataTable")
-																		.append(
-																				htmls);
-															},
-															error : function(
-																	request,
-																	status,
-																	error) {
-																alert("code = "
-																		+ request.status
-																		+ " message = "
-																		+ request.responseText
-																		+ " error = "
-																		+ error); // 실패 시 처리
-															}
-														});
+																
+																$("#currnetPageNum").val(1);//1로주기
+																$("#currnetAmonut").val(list.lenght);
+																$("#dataTable").append(htmls);
+											    			  },
+											    			     error:function(request,status,error){
+											    			         alert("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+											    			        }
+											    		});
+												    	
+											
 
-											});
-
+												});
+							
 							$(".uploadResult").on("click", "button",
 									function(e) {
 

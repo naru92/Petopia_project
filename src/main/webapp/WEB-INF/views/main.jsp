@@ -702,7 +702,7 @@ translateX
 										<div class="class-title">${md.product_price }</div>
 										<div class="class-detail">${md.product_detail_info }</div>
 									</div>
-									<button class="btn btn-3 btn-3a icon-cart" id="addCart"><i class="fa fa-shopping-cart"></i> 장바구니</button></button>	
+									<button class="btn btn-3 btn-3a icon-cart" id="addCart"><i class="fa fa-shopping-cart"></i> 장바구니</button>
 								
 						</div>
 					</div>
@@ -744,7 +744,7 @@ translateX
 											<div class="class-title">${popular_product.product_price} </div>
 											<div class="class-detail">${popular_product.product_detail_info}</div>
 										</div>
-										<button id=addCart class="btn btn-3 btn-3a " ><i class="fa fa-shopping-cart"></i> 장바구니</button>
+									<button class="btn btn-3 btn-3a icon-cart" id="addCart"><i class="fa fa-shopping-cart"></i> 장바구니</button>
 										
 										<div class="page-wrapper"></div>
 
@@ -794,7 +794,7 @@ translateX
 										<div class="class-title">${new_product.product_price}</div>
 										<div class="class-detail">${new_product.product_detail_info}</div>
 									</div>
-									<button class="btn btn-3 btn-3a icon-cart"><i class="fa fa-shopping-cart"></i> 장바구니</button>
+									<button class="btn btn-3 btn-3a icon-cart" id="addCart"><i class="fa fa-shopping-cart"></i> 장바구니</button>
 								</div>
 							</div>
 					<form>
@@ -835,7 +835,7 @@ translateX
 										<div class="class-detail">${single_product.product_detail_info}</div>
 									</div>
 										<input type="hidden" id="cart_product_idx" value="<c:out value='${single_product.product_idx}' />">
-									<button class="btn btn-3 btn-3a icon-cart"><i class="fa fa-shopping-cart"></i> 장바구니</button>
+									<button class="btn btn-3 btn-3a icon-cart" id="addCart"><i class="fa fa-shopping-cart"></i> 장바구니</button>
 								</div>
 							</div>
 					<form>
@@ -855,149 +855,7 @@ translateX
 					</div>
 				</div>
 
-				<div class="row">
-					<div class="roadmap-title">
-						&nbsp인기제품 <a id=allList href="">전체보기</a>
-					</div>
-					<div class="swiper-container mySwiper">
-
-						<div class="swiper-wrapper">
-							<div class="swiper-slide">
-								<div class="ss">
-
-									<img src="/petopia/images/11356_originalView_01802971.jpg"
-										alt="테스트 이미지" class="class-image" width= />
-									<div class="class-skill">
-										<div class="class-type">리스트1</div>
-										<div class="class-format">♡</div>
-									</div>
-									<div class="class-desc col-10">
-										<div class="class-title">리눅스 커널 프로그래밍</div>
-										<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
-									</div>
-									<button class="btn btn-3 btn-3a icon-cart">장바구니로</button>
-								</div>
-							</div>
-							<div class="swiper-slide">
-								<div class="ss">
-
-									<img src="/petopia/images/11356_originalView_01802971.jpg"
-										alt="테스트 이미지" class="class-image" width= />
-									<div class="class-skill">
-										<div class="class-type">리스트1</div>
-										<div class="class-format">♡</div>
-									</div>
-									<div class="class-desc col-10">
-										<div class="class-title">리눅스 커널 프로그래밍</div>
-										<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
-									</div>
-									<button class="btn btn-3 btn-3a icon-cart">장바구니로</button>
-								</div>
-							</div>
-							<div class="swiper-slide">
-								<div class="ss">
-
-									<img src="/petopia/images/11356_originalView_01802971.jpg"
-										alt="테스트 이미지" class="class-image" width= />
-									<div class="class-skill">
-										<div class="class-type">리스트1</div>
-										<div class="class-format">♡</div>
-									</div>
-									<div class="class-desc col-10">
-										<div class="class-title">리눅스 커널 프로그래밍</div>
-										<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
-									</div>
-									<button class="btn btn-3 btn-3a icon-cart">장바구니로</button>
-								</div>
-							</div>
-							<div class="swiper-slide">
-								<div class="ss">
-
-									<img src="/petopia/images/11356_originalView_01802971.jpg"
-										alt="테스트 이미지" class="class-image" width= />
-									<div class="class-skill">
-										<div class="class-type">리스트1</div>
-										<div class="class-format">♡</div>
-									</div>
-									<div class="class-desc col-10">
-										<div class="class-title">리눅스 커널 프로그래밍</div>
-										<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
-									</div>
-								<button class="btn btn-3 btn-3a icon-cart"><i class="fa fa-shopping-cart"></i> 장바구니</button>
-								</div>
-							</div>
-							<div class="swiper-slide">
-								<div class="ss">
-
-									<img src="/petopia/images/11356_originalView_01802971.jpg"
-										alt="테스트 이미지" class="class-image" width= />
-									<div class="class-skill">
-										<div class="class-type">리스트1</div>
-										<div class="class-format">♡</div>
-									</div>
-									<div class="class-desc col-10">
-										<div class="class-title">리눅스 커널 프로그래밍</div>
-										<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
-									</div>
-									<button class="btn btn-3 btn-3a icon-cart">장바구니로</button>
-								</div>
-							</div>
-							<div class="swiper-slide">
-								<div class="ss">
-
-									<img src="/petopia/images/11356_originalView_01802971.jpg"
-										alt="테스트 이미지" class="class-image" width= />
-									<div class="class-skill">
-										<div class="class-type">리스트1</div>
-										<div class="class-format">♡</div>
-									</div>
-									<div class="class-desc col-10">
-										<div class="class-title">리눅스 커널 프로그래밍</div>
-										<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
-									</div>
-									<button class="btn btn-3 btn-3a icon-cart">장바구니로</button>
-								</div>
-							</div>
-							<div class="swiper-slide">
-								<div class="ss">
-
-									<img src="/petopia/images/11356_originalView_01802971.jpg"
-										alt="테스트 이미지" class="class-image" width= />
-									<div class="class-skill">
-										<div class="class-type">리스트1</div>
-										<div class="class-format">♡</div>
-									</div>
-									<div class="class-desc col-10">
-										<div class="class-title">리눅스 커널 프로그래밍</div>
-										<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
-									</div>
-									<button class="btn btn-3 btn-3a icon-cart">장바구니로</button>
-								</div>
-							</div>
-							<div class="swiper-slide">
-								<div class="ss">
-
-									<img src="/petopia/images/11356_originalView_01802971.jpg"
-										alt="테스트 이미지" class="class-image" width= />
-									<div class="class-skill">
-										<div class="class-type">리스트1</div>
-										<div class="class-format">♡</div>
-									</div>
-									<div class="class-desc col-10">
-										<div class="class-title">리눅스 커널 프로그래밍</div>
-										<div class="class-detail">고급 개발자를 위한 리눅스 커널 분석과 개발</div>
-									</div>
-									<button class="btn btn-3 btn-3a icon-cart">장바구니로</button>
-								</div>
-							</div>
-
-						</div>
-						<br>
-						<div class="swiper-button-next"></div>
-						<div class="swiper-button-prev"></div>
-
-					</div>
-				</div>
+				
 
 			</div>
 		</div>
@@ -1093,7 +951,7 @@ translateX
 
 			// recent item    
 
-			 var Cpage;   // 현재 페이지 
+			var Cpage;   // 현재 페이지 
 			var pagingSize = 4;   // 원하는 페이지 사이즈로 조정하세용 
 			function chkRecent(a){
 
@@ -1111,7 +969,7 @@ translateX
 
 				Cpage = (totpage >= a )? a:1;
 
-				Cpage = (Cpage <1)? totpage:Cpage;
+				Cpage = (Cpage < 1)? totpage:Cpage;
 
 				
 
@@ -1130,7 +988,7 @@ translateX
 						var product_image = thisItem.split(':')[1];
 
 					$("#right_zzim ul").append('<li><a href="/product?product_idx='+product_idx+'" target="_top"><img src="http://www'+product_image+'"  width="75" border=1></a><div class="detail"><a href="javascript:removeRecentItem(\''+thisItem+'\')" class="btn_delete">삭제</a></div></li>')
-
+					$.removeCookie('product_idx', { path: '/' });
 					}
 
 				}

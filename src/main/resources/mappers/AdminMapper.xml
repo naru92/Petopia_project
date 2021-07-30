@@ -72,7 +72,7 @@
     		product(product_idx, product_category_id, product_price, product_name,
     		product_coloroption, product_stock, product_detail_info) 
     	VALUES
-		    (#{product_idx}, #{product_category_id}, #{product_price}, #{product_name},#{product_coloroption},
+		    (#{product_idx}, #{product_category_id}, #{product_price}, #{product_name},#{product_coloroption, jdbcType=VARCHAR},
 		    #{product_stock},#{product_detail_info})
 		
 	</insert>
@@ -465,7 +465,7 @@
 		<if
 			test="product_price.equals('product_price_desc') and product_stock.equals('stock_asc')">
 		<if test="select_category_id.equals('null')">
-		select * from product order by product_price, product_stock desc
+		select * from product order by product_price desc, product_stock asc
 		</if>	
 		<if test="select_category_id.equals('사료')">
 		select * from product where product_category_id =1 order by product_price desc, product_stock asc
@@ -500,7 +500,7 @@
 		<if
 			test="product_price.equals('product_price_desc') and product_stock.equals('stock_desc')">
 			<if test="select_category_id.equals('null')">
-		select * from product order by product_price, product_stock desc
+		select * from product order by product_price desc, product_stock desc
 		</if>	
 		<if test="select_category_id.equals('사료')">
 		select * from product where product_category_id =1 order by product_price desc, product_stock desc
@@ -570,7 +570,7 @@
 		<if
 			test="product_price.equals('') and product_stock.equals('stock_desc')">
 				<if test="select_category_id.equals('null')">
-		select * from product order by product_price, product_stock desc
+		select * from product order by product_stock desc
 		</if>	
 		<if test="select_category_id.equals('사료')">
 		select * from product where product_category_id =1 order by product_stock desc

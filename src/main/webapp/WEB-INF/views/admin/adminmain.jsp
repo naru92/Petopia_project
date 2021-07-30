@@ -305,20 +305,24 @@ font-size: 13px;
 									cellspacing="0">
 									
 									<c:if test="${fn:length(getUnprocessedOrderList) == 0}">
-									<tbody>
-											<h4 align="center">데이터가 존재하지 않습니다.</h4>
-									</tbody>		
+									
 									</c:if>
+									<thead>
+										<tr>
+											<th>배송번호</th>
+											<th>주문번호</th>
+											<th>배송상태</th>
+										</tr>
+									</thead>	
 								<c:if test="${fn:length(getUnprocessedOrderList) > 0}">	
 										<c:forEach var='guol' items="${getUnprocessedOrderList}">
 								
 										<tbody>
-										
-											<td>${guol.delivery.idx }</td>
+										<tr>
+											<td>${guol.delivery_idx }</td>
 											<td>${guol.order_idx }</td>
-											<td>${guol.delivery_sate }</td>
-										
-										
+											<td>${guol.delivery_state }</td>
+										</tr>
 										</tbody>
 								</c:forEach>
 								</c:if>

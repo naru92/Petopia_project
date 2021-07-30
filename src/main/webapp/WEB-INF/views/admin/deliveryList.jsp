@@ -161,7 +161,7 @@
 								<input type="hidden" id="size" value="${fn:length(list)}" />
 								<div class="row">
 									<div class="col-sm-12 col-md-5 paginationdiv">
-										<div class="d-none d-md-block page-div">
+										<div id="masterDiv" class="d-none d-md-block page-div" >
 											<ul class="pagination justify-content-center">
 												<li class="page-item"><c:if test="${pageMaker.prev}">
 												<li class="page-item"><a
@@ -278,13 +278,8 @@
 					
 					});	
 					
-					
-					
-					
-					
 					// 페이징 버튼 이벤트
 					var actionForm = $("#pageActionForm");
-					
 					
 					
 					$(".numberitem a").on(
@@ -323,6 +318,8 @@
 				    			
 				    	}
 						
+				    	const list= "";
+				    	
 				    	$.ajax({
 			    			type: 'post',
 			    			url: '/admin/delivery',
@@ -331,7 +328,8 @@
 			    			contentType: "application/json; charset=utf-8",
 			    			dataType: 'json',
 			    			success: function(list, status) {
-			    				
+			    				list = $(list);
+			    			
 			    			  	var htmls = "";
 								
 								$("#dataTable").html("");
@@ -354,7 +352,7 @@
 								} else {
 									
 									$(list).each(function(){
-										console.log(this.product_idx);
+										console.log(this.delivery_idx);
 					                    htmls += '<tr>';
 					                    htmls += '<td>'+ this.delivery_idx + '</td>';
 					                    htmls += '<td>'+ this.product_name + '</td>';
@@ -367,8 +365,92 @@
 					                    htmls += '</tr>';
 					                
 				                	});	//each end
-
+				                	
+				                	var deliveryValue = '<c:out value="${d.delivery_idx}" />';
+				                	console.log(deliveryValue);
+				                	
+				                	
+				                	showList(1);
+				                	
+				                	var pageNum = 1;
+				            		var pageDiv = $("#masterDiv");
+				                	
+				                	// 배달평 페이징
+									function showdeliverysPage(deliveryCnt) {
+				                		console.log('showdeliverysPage');
+										var endNum = Math.ceil(pageNum / 10.0) * 10;
+										var startNum = endNum - 9;
+										
+										var prev = startNum != 1;
+										var next = false;
+										
+										if(endNum * 10 >= deliveryCnt) {
+											endNum = Math.ceil(deliveryCnt/10.0);
+										}
+										
+										if(endNum * 10 < deliveryCnt) {
+											next = true;
+										}
+										//일단 부모 div 날리기
+										$('#masterDiv').empty();
+										
+										var str = "<ul class='pagination pull-right'>";
+										//이전
+										if(prev) {
+											str += "<li class='page-item'><a class='page-link' href='" + (startNum - 1) + "'>Previous</a></li>";
+										}
+										//중단
+										for(var i = startNum; i <= endNum; i++) {
+											var active = pageNum == i ? "active" : "";
+											
+											str += "<li class='page-item numberitem" + active + "'> <a class='page-link' href='" + i + "'>" + i +"</a></li>";
+										}
+										//끝
+										if(next) {
+											str += "<li class='page-item'> <a class='page-link' href='" + (endNum + 1) + "'>Next</a></li>";
+										}
+										
+										str +="</ul></div>";
+										
+										//console.log(str);
+										
+										//페이지버튼
+										pageDiv.appendTo(str);
+									} 
 									
+						 	function showList(page) {
+										
+										console.log("show reivews list " + page);
+
+										list.get({delivery_idx:deliveryValue, page: page || 1}, function(deliveryCnt, list) {
+											console.log("deliveryCnt: " + deliveryCnt);
+											
+											if(page == -1) {
+												pageNum = Math.ceil(deliveryCnt/10.0);
+												showList(pageNum);
+												
+												return
+											}
+											
+											var str = "";
+											
+										
+										});
+									} // /showList 
+
+									// 페이지 버튼
+									$(".numberitem a").on("click", "li a", function(e) {
+										e.preventDefault();
+										console.log("page click");
+										
+										var targetPageNum = $(this).attr("href");
+										
+										console.log("targetPageNum : " + targetPageNum);
+										
+										pageNum = targetPageNum;
+										
+										showList(pageNum);
+									}); // /reviewsPageFooter
 								}
 								
 								$("#dataTable").append(htmls);
@@ -377,6 +459,8 @@
 			    			         alert("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
 			    			        }
 			    		});
+				    	
+				    	
 					});
 
 				});

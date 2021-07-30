@@ -42,6 +42,13 @@ public class CartController {
 		return "order/cart";
 	}
 	
+	/*카트개요
+	 *회원일시 회원 정보를 그저 전달하면 그만
+	 *비회원일시(복잡)
+	 *문제점1 동일 컴퓨터라면 쿠키가 남아있음(회원이던 비회원이던)
+	 *문제점2 동일 컴퓨터에서 다른 아이디? 쿠키가 남아있음 => 로그아웃시 DB에 비회원 정보
+	 *문제점3 로그아웃 하지않고 브라우저 종료시? => 장바구니 담을때마다 서버로 전송  */
+	
 	//카트 목록가져오기
 	@GetMapping("order/Cart")
 	public void goCart(Principal principal, Model model) {
