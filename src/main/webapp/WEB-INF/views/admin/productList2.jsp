@@ -19,8 +19,11 @@
 <title>Petopia - Admin</title>
 
 <c:import url="/WEB-INF/views/include/admin_list_css.jsp" />
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.min.js"></script>
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.css"/>
 
 <style type="text/css">
 .footerdiv {
@@ -241,13 +244,7 @@ showCloseButton ::before {
 
 										</tr>
 									</thead>
-									
-									<tbody>
-									<tr id="pagination-demo" class="pagination-sm">
-									
-									</tr>
-									</tbody>
-									
+
 									<c:forEach var='p' varStatus="status" items="${productList}">
 										<div>
 											<input type="hidden" value="${p.product_detail_info }"></input>
@@ -500,6 +497,7 @@ showCloseButton ::before {
 
 
 
+
 	<script type="text/javascript">
 	
 		$(document)
@@ -685,14 +683,13 @@ showCloseButton ::before {
 																	list,
 																	status) {
 																list = $(list);
-																container = $("#dataTable");
 																console.log(list);
 																var htmls = "";
 
 																$("#dataTable")
 																		.html("");
 																				
-															//	$("#masterDiv").empty();
+																$("#masterDiv").empty();
 
 																$(
 																		"<tr>",
@@ -722,35 +719,36 @@ showCloseButton ::before {
 																	$("#dataTable").html("<p>등록된 상품이 없습니다.</p>");
 																			
 																} else {
-																	$(list)
-																	.each(
-																			function() {
-																				
-																				htmls += '<tr>';
-																				htmls += '<td>'
-																						+ this.product_idx
-																						+ '</td>';
-																				htmls += '<td>'
-																						+ this.product_name
-																						+ '</td>';
-																				htmls += '<td>'
-																						+ this.product_category_id
-																						+ '</td>';
-																				htmls += '<td>'
-																						+ this.product_price
-																						+ '</td>';
-																				htmls += '<td>'
-																						+ this.product_stock
-																						+ '</td>';
-																				htmls += '</tr>';
 
-																			}); //each end
-																	
-																	$("#dataTable").append(htmls);
+																	$(list)
+																			.each(
+																					function() {
+																						
+																						htmls += '<tr>';
+																						htmls += '<td>'
+																								+ this.product_idx
+																								+ '</td>';
+																						htmls += '<td>'
+																								+ this.product_name
+																								+ '</td>';
+																						htmls += '<td>'
+																								+ this.product_category_id
+																								+ '</td>';
+																						htmls += '<td>'
+																								+ this.product_price
+																								+ '</td>';
+																						htmls += '<td>'
+																								+ this.product_stock
+																								+ '</td>';
+																						htmls += '</tr>';
+
+																					}); //each end
 																	
 																}
 																
-															
+																$("#currnetPageNum").val(1);//1로주기
+																$("#currnetAmonut").val(list.lenght);
+																$("#dataTable").append(htmls);
 											    			  },
 											    			     error:function(request,status,error){
 											    			         alert("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
