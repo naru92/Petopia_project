@@ -1,0 +1,12 @@
+.disabledInput {
+    color: gray;
+}
+#content3 input[type="email"] {
+    width: 23%;
+}
+.txt_readonly{
+    border: none;
+    color: #555;
+    font-weight: 700;
+    pointer-events: none;
+}

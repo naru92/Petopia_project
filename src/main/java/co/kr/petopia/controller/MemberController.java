@@ -73,4 +73,11 @@ public class MemberController {
 		
 		return "member/passwordConfirm";
 	}
+	
+	// 회원정보수정
+	@GetMapping("/memberModify")
+	public String memberModify() {
+		
+		return "member/memberModify";
+	}
 }
