@@ -1,7 +1,9 @@
 package co.kr.petopia.service;
 
+import java.util.HashMap;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import co.kr.petopia.mapper.MypetMapper;
@@ -14,7 +16,8 @@ import lombok.ToString;
 @ToString
 public class MypetServiceImpl implements MypetService {
 
-    private final MypetMapper mypetMapper;
+	@Autowired
+    private MypetMapper mypetMapper;
 
     // 목록
     @Override
@@ -45,5 +48,14 @@ public class MypetServiceImpl implements MypetService {
 
         return 1;
     }
+
+	@Override
+	public String selectPassword(HashMap<String, Object> param) {
+		// TODO Auto-generated method stub
+		System.out.println("param ::: " + param);
+		return mypetMapper.selectPassword(param);
+	}
+    
+    
 
 }

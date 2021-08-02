@@ -1,32 +1,4 @@
-/* header */
-.header-area .main-header{padding:0px 120px}
-@media only screen and (min-width: 1200px) and (max-width: 1600px){.header-area .main-header{padding:0px 10px}}
-@media only screen and (min-width: 992px) and (max-width: 1199px){.header-area .main-header{padding:0px 10px}}
-@media only screen and (min-width: 768px) and (max-width: 991px){.header-area .main-header{padding:22px 0px}}
-@media only screen and (min-width: 576px) and (max-width: 767px){.header-area .main-header{padding:22px 0px}}
-@media (max-width: 575px){.header-area .main-header{padding:22px 0px}}
-.header-area .main-header .menu-wrapper{display:flex;align-content:center;justify-content:space-between;flex-wrap:wrap;align-items:center;}
-.header-area .main-header .menu-wrapper .main-menu ul li{display:inline-block;position:relative;z-index:1}
-.header-area .main-header .menu-wrapper .main-menu ul li a{font-size:16px;font-family:"Josefin Sans",sans-serif;color:#141517;font-weight:600;padding:41px 21px;display:inline-block;text-transform:capitalize;display:block;-webkit-transition:all .3s ease-out 0s;-moz-transition:all .3s ease-out 0s;-ms-transition:all .3s ease-out 0s;-o-transition:all .3s ease-out 0s;transition:all .3s ease-out 0s;text-decoration: none;}
-.header-area{display:block;position:fixed;z-index: 500;background: #fafafa;top:0; left: 0;right: 0;border-bottom: #ecedef solid 1px;}
 
-/* menu hover color */
-.header-area .main-header .menu-wrapper .main-menu ul li:hover>a{color:#2AC1BC;text-decoration: none;}
-
-/* 좌측최상단 회원가입/로그인/고객센터 */
-.links {position: absolute; top: 0; right: 0;}
-.link_text {font-size: 10px; margin-left: 5px; text-decoration: none; color: #888;}
-.navigation{display: flex;}
-
-/* search button */
-#button-addon2{display: inline-block;font: inherit;background: none;border: none;color: inherit;padding: 0;cursor: pointer;font-size: 10px;}
-#button-addon2:hover {color:  #2AC1BC;}
-
-/* ul sort */
-ul{list-style:none;margin:0;padding:0}
-
-.form-control{
-  padding: 1px 2px;
 }
 /*======== css style base =========*/
 .main {
@@ -89,7 +61,6 @@ margin-bottom: 7px;
   text-align: center;
   font-size: 20px;
   font-weight: 700;
-  padding-bottom: 50px;
 }
 
 .result .blue {
@@ -146,8 +117,8 @@ margin-bottom: 7px;
 .info {
   color: #777;
   font-size:0.7rem;
-  text-align:left;
-  margin: 0 0 30px 10px;
+  text-align:center;
+  margin: 0 0 20px 0px;
   }
 
 #content3 {
@@ -189,25 +160,10 @@ margin-bottom: 7px;
   width: 30%;
 }
 
-#content3>:nth-child(2) p {
-  margin: 0 0 1rem 0;
-  padding: 0.6rem;
-
-}
-
 #content3>.join2>:nth-child(2)>:nth-child(1)>:nth-child(2) {
   margin-top: 6.5rem;
 }
 
-#content3 button {
-  background: none;
-  padding: 0;
-  margin: 0;
-  color: #444;
-  font-size: 0.75rem;
-  text-align: right;
-  text-decoration: none;
-}
 
 #content3 .address-btn{
   width: 40%;
@@ -221,18 +177,6 @@ margin-bottom: 7px;
   text-decoration: none;
 }
 
-#content3 .address-btn:hover{
-  cursor: pointer;
-  color: #fafafa;
-  text-decoration: none;
-  background: #444;
-}
-
-#content3 button:hover {
-  cursor: pointer;
-  color: #2AC1BC;
-  text-decoration: underline;
-}
 
 #content3>:nth-child(2)>:nth-child(2)>:nth-child(7),
 #content3>:nth-child(2)>:nth-child(2)>:nth-child(9),
@@ -241,24 +185,7 @@ margin-bottom: 7px;
   margin-bottom: 1rem;
 }
 
-#content3 .join-btn {
-  margin: 2rem auto 0 7rem;
-  font-size: 0.9rem;
-  text-decoration: none;
-  text-align: center;
-  background: #555555;
-  padding: 15px;
-  width: 200px;
-  color: white;
-  transition: 0.6s;
-  border-radius: 10px;
-}
 
-#content3 .join-btn:hover {
-  text-decoration: none;
-  background: #2AC1BC;
-  color: white;
-}
 
 .find1 {
 
@@ -316,6 +243,57 @@ input {
   /* margin-bottom: 1rem; */
   /* line-height: 1.7; */
 }
+
 .pb0{
   padding-bottom: 0 !important;
+  margin: 0 0 10px 0px;
+  text-align: center;
+}
+
+section .next-btn{
+	width:170px;
+padding: 1rem 1rem;
+font-size:0.9rem;
+transition: 0.5s;
+margin-top:40px;
+border: none;
+border-radius: 10px;
+background-color: #2AC1BC;
+display: inline-block;
+color: white;
+}
+
+section .next-btn:hover {
+  text-decoration: none;
+  opacity: 0.8;
+  color: white;
+  cursor: pointer;
+}
+
+#content3 {
+  text-align: left;
+}
+
+
+#content3 p{
+  font-size:13px;
+  margin: 0 0 23px 0;
+  padding: 9px;
+}
+
+#content3 .none{
+	margin: 0 0 80px 0;
+}
+
+
+#content3 input,
+#content3 label {
+  width: 85%;
+  padding: 10px;
+  margin-bottom: 1rem;
+}
+
+#content3 select {
+  width: 100px;
+  height: 39px;
 }
