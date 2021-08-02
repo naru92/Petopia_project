@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<c:set var='root' value="${pageContext.request.contextPath }/" />
 <!DOCTYPE html>
 <html lang="utf-8">
 
@@ -16,9 +19,46 @@
 
 
 <style type="text/css">
+.class-desc{
+margin: 0 auto;
+height: 80PX;
+overflow: hidden;
+}
+.dropbtn {
+  color: white;
+  padding: 0px;
+  font-size: 16px;
+  border: none;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: #ddd;}
+
+.dropdown:hover .dropdown-content {display: block;}
+
 .ss {
 	margin-top: 15px;
 	margin-bottom: 15px;
+	overflow: visible;
 }
 
 .girdscc {
@@ -446,15 +486,25 @@ translateX
 					<div class="menu-wrapper">
 						<div class="links">
 							<c:choose>
-								<c:when test="${empty sessionScope.principal}">
+							<c:when test="${empty sessionScope.principal}"> 
 									<a href="/member/joinAgree" class="link_text">회원가입</a>
 									<a href="/member/login" class="link_text">로그인</a>
-									<a href="#" class="link_text">고객센터</a>
-								</c:when>
+									<div class="dropdown">
+									<a href="#" class="link_text dropbtn">고객센터</a>
+									 <div class="dropdown-content">
+									    <a href="${root }notice?board_id=1">공지사항</a>
+									    <a href="/login">문의내역</a>
+									  </div>
+									</div>									
+							 </c:when> 
 								<c:otherwise>
 									<a href="/member/mypage" class="link_text">마이페이지</a>
 									<a href="/member/logout" class="link_text">로그아웃</a>
-									<a href="#" class="link_text">고객센터</a>
+									<a href="#" class="link_text dropbtn">고객센터</a>
+									 <div class="dropdown-content">
+									    <a href="${root }notice">공지사항</a>
+									    <a href="#">문의내역</a>
+									  </div>
 								</c:otherwise>
 							</c:choose>
 						</div>
@@ -732,7 +782,7 @@ translateX
 
 						<c:forEach var='popular_product' varStatus="status" items="${popular_product}" >
 								<div class="swiper-slide">
-									<div class="ss">
+									<div class="card h-40 ss">
 
 										<img src="/petopia/images/11356_originalView_01802971.jpg"
 											alt="테스트 이미지" class="class-image" width= />
@@ -782,7 +832,7 @@ translateX
 						
 						<c:forEach var='new_product' varStatus="status" items="${new_product}" >
 							<div class="swiper-slide">
-								<div class="ss">
+								<div class="card ss">
 
 									<img src="/petopia/images/11356_originalView_01802971.jpg"
 										alt="테스트 이미지" class="class-image" width= />
@@ -822,7 +872,7 @@ translateX
 
 					<c:forEach var='single_product' varStatus="status" items="${single_product}" >
 							<div class="swiper-slide">
-								<div class="ss">
+								<div class="card ss">
 
 									<img src="/petopia/images/11356_originalView_01802971.jpg"
 										alt="테스트 이미지" class="class-image" width= />

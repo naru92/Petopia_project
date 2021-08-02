@@ -27,4 +27,10 @@ public class MemberAuthentication extends UsernamePasswordAuthenticationToken {
 		super(member_id, member_password, grantedAuthorityList);
 		this.member = member;
 	}
+	
+	@Override
+	public Object getDetails() {
+		
+		return member;
+	}
 }

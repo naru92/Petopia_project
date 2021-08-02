@@ -35,11 +35,7 @@ public class MemberSecurtiyImpl implements MemberSecurtiyService {
 					member.setAuthList(authorities);
 				
 				
-			
-				
 			}
-	
-			
 			
 				return (UserDetails) member;
 		
