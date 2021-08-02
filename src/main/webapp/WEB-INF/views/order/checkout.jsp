@@ -83,22 +83,22 @@
 									class="joinStep_Img container" />
 							</div>
 
-							<form method="post" action="/order/confirmation">
+							<form id="orderInsert" method="post">
 								<table>
 									<tbody class="personalInfo">
 										<tr>
 											<th class="tableNumber">주문자 명</th>
 											<td class="tableTitle"><label for="checkName"> <input
-													type="text" id="checkName" class="inputBox"
+													type="text" id="checkName1" class="inputBox"
 													name="order_name" /></label> <span class="text">주문자 이름을
 													입력해주세요.</span></td>
 										</tr>
 										<tr>
 											<th class="tableNumber">수령자 명</th>
-											<td class="tableTitle"><label for="checkName"> <input
-													type="text" id="checkName" class="inputBox"
-													name="order_receiver_name" /></label> <span class="text">수령자
-													이름을 입력해주세요.</span></td>
+											<td class="tableTitle"><label for="checkName"> 
+											<input type="text" id="checkName2" class="inputBox" name="order_receiver_name" />
+													</label> <span class="text">수령자이름을 입력해주세요.</span></td>
+													
 										</tr>
 										<tr>
 											<th class="tableNumber">수령자 연락처</th>
@@ -124,10 +124,22 @@
 													<input type="text" id="detailAddress" placeholder="상세주소"
 													class="inputBox" name="address3"></label></td>
 										</tr>
-
+										
+										<tr class = "paymentMethod">
+										<th class = "tableNumber2">결제수단</th>
+										<td class = "tableTitle">
+										<label for="checkMethod"> <input type="radio" id="select1" name="selectPayment" value = "1"  />&nbsp;무통장입금&nbsp;&nbsp;&nbsp;</label> 
+										<label for="checkMethod"> <input type="radio" id="select2" name="selectPayment" value = "2" />&nbsp;카드결제</label> 
+										<span class="text">결제수단을 선택해주세요.</span>
+										</td>
+						
+					
 									</tbody>
 								</table>
-								<input type="button" id = "submit" value="주문서 내보내기">
+
+								<!-- <input type="submit" id="paymentBtn" value="결제"
+									onclick="requestPay()"> -->
+								<!-- <button onclick="requestPay()" id = type="submit">결제하기</button> -->
 							</form>
 
 						</div>
@@ -157,6 +169,7 @@
 						<table class="orderProduct" id="ProductLog" cellspacing="0">
 							<thead>
 								<tr>
+									<th>상품번호</th>
 									<th>상품명</th>
 									<th>옵션</th>
 									<th>수량</th>
@@ -167,9 +180,10 @@
 							<c:forEach var='o' items="${order}">
 								<tbody>
 									<tr>
+										<td id = "product_idx">${o.product_idx}</td>
 										<td>${o.product_name}</td>
-										<td>${o.product_coloroption }</td>
-										<td></td>
+										<td>${o.product_coloroption}</td>
+										<td id = "quantity" value = 3></td>
 										<td>${o.product_price}</td>
 									</tr>
 
@@ -179,18 +193,21 @@
 
 						<c:forEach var='o' items="${order}">
 							<div class="payment">
-								<br /> <strong>배송비 : 무료</strong><br />
-								<strong> 총 결제금액: </strong><strong>${o.product_price}원</strong><br />
+								<br /> <strong>배송비 : 무료</strong><br /> <strong> 총
+									결제금액: </strong><strong>${o.product_price}원</strong><br />
 							</div>
 						</c:forEach>
-						<!-- <button onclick = "requestPay()">결제하기</button> -->
+						
+						
 						<!-- <button onclick = "requestPay()" type = "submit">결제하기</button> -->
 
-						<a href="getInsertInfo"><button type="submit"
-								onclick="request_pay()">주문</button></a> <input type="submit"
-							onclick="postCode()" value="결제하기">
+						<!-- <a href="getInsertInfo"><button type="submit"
+								onclick="request_pay()">주문</button></a>
+								 <input type="submit" onclick="postCode()" value="결제하기"> -->
 					</div>
-
+						<div class = "paymentBtn">
+						<button id ="paymentBtn" type = "submit">결제하기</button>
+						</div>
 					<!-- <a href="main.html"><button class="homeBtn">결제하기</button></a> -->
 				</div>
 			</div>
@@ -202,130 +219,75 @@
 	</footer>
 
 	<!--  주소 api js-->
-	<%@include file="../include/default_mapApi_js.jsp"%>
+		<%@include file="../include/default_mapApi_js.jsp"%>
 
-	<!--  아임포트 js -->
+	<!-- 주문서 작성 ajax -->
 	<script type="text/javascript">
-	
-		var IMP = window.IMP; // 생략가능
-		IMP.init('imp61748969'); // 가맹점 식별 코드
-		
-		var msg;
-		var date = new Date(); 
-		
-		IMP.request_pay({
-			pg: 'html5_inicis',
-			pay_method: $('payment_method').val(),
-			merchant_uid: 'merchant_' + date.getTime(),
-			name: $('product_name').val(),
-			amount: $('product_price').val(),
-			buyer_name: $('order_name').val(),
-			buyer_name: $('order_receiver_name').val(),
-			buyer_tel: $('order_receiver_phonenumber').val(),
-			buyer_addr: $('order_receiver_address').val(),
-		}, function(rsp) {
-			if (rsp.success) {
-				// orderLog 배열 저장
-				var orderLogVO = new Array();
-				
-				$(".cart_product").each(function(i) {
-			
-					var pno = $("#pno" + i).html();
-					var payAmount = $("#quantity" + i).html();
-					var payPrice = $("#amountPrice" + i).html();
-					
-					var data = [];
-					
-					data[i] = {
-							pno : pno,
-							payAmount : payAmount,
-							payPrice : payPrice
-					};
-					
-					orderLogVO.push(data[i]);
-					
-					console.log(data[i]);
-				});
-				
-				console.log(orderLogVO);
-				
-				// 구매 이력 기록
-				$.ajax({
-					traditional : true,
-					type:'post',
-					url: "/purchase/afterPurchase",
-					data: JSON.stringify(orderLogVO),
-					contentType: "application/json; charset=utf-8",
-					dataType: 'text',
-					success: function(result, status, xhr) {
-						console.log("after purchase process success");
-						callback(result);
-					}
-				});
-				
-				// 장바구니 내용물 삭제
-				$(".cart_product").each(function(i) {
-					var cartNumber = $("#cartNo" + i).val();
-					
-					console.log("delete cart Item " + cartNumber);
-					
-					$.ajax({
-						type: 'post',
-						url: '/purchase/deleteCartItem',
-						data: JSON.stringify(cartNumber),
-						contentType: "application/json; charset=utf-8",
-						dataType: 'text',
-						success: function(result, status, xhr) {
-						  	console.log('delete cart item ' + result);
-						  }
-					});	
-				});
-				
-				var msg = '결제가 완료되었습니다. ';
-				msg += ' 고유ID : ' + rsp.imp_uid;
-				msg += ' 상점 거래ID : ' + rsp.merchant_uid;
-				msg += ' 결제 금액 : ' + rsp.paid_amount;
-				msg += ' 카드 승인번호 : ' + rsp.apply_num;
-			} else {
-				msg = '결제에 실패하였습니다. ';
-				msg += '에러 내용 : ' + rsp.error_msg;
-				}
+	 $(document).ready(function() { 
+	      $('#paymentBtn').click(function(){
+	    	  
+	    	  var payment_method = $(':input:radio[name="selectPayment"]:checked').val();
+	    	  
+	    	  var quantity = Number($('#quantity').val());
+	    	  
+	    	  console.log('click')
+			  console.log($("#checkName1").val());	
+		      console.log($("#checkName2").val());
+		      console.log($("#checkTel").val());
+		      console.log($("#postcode").val() + " " + $("#roadAddress").val() + " " + $("#detailAddress").val());
+	    	  console.log(payment_method);
+	    	  
+	    	  if(payment_method == 1){
+	    		  // 무통장입금
+	    		  $.ajax({
+	  	            type: "POST",
+	  	            url: "/order/order-proc",
+	  	            data: { "order_name": $('#checkName1').val(),
+	  	                  "order_receiver_name": $("#checkName2").val(),
+	  	                  "order_receiver_phonenumber": $('#checkTel').val(),
+	  	                  "order_receiver_address": $('#postcode').val() + " " + $('#roadAddress').val() + " " + $('#detailAddress').val(),
+	  	                  "payment_method": $('#select1').val(),
+	  	                  "order_quantity": quantity,
+	  	                  "product_idx" : $('#product_idx').text()
+	  	            },
+	  	                  
+	  	            success: function(result){
+	  	               alert('주문이 완료되었습니다.');
+	  	               console.log(result)
+	  	               location.href = "/order/confirmation_deposit";
+	  	               
+	  	            }, error: function(result){
+	  	               alert('주문이 실패했습니다.');
+	  	               console.log(result)
+	  	            }
+	  	         });
+	    		  
+	    	  }else if(payment_method == 2){
+	    		  // 카드결제(아임포트)
+	    		  $.ajax({
+		  	            type: "POST",
+		  	            url: "/order/order-proc",
+		  	            data: { "order_name": $('#checkName1').val(),
+		  	                  "order_receiver_name": $("#checkName2").val(),
+		  	                  "order_receiver_phonenumber": $('#checkTel').val(),
+		  	                  "order_receiver_address": $('#postcode').val() + " " + $('#roadAddress').val() + " " + $('#detailAddress').val(),
+		  	                  "payment_method": $('#select1').val(),
+		  	                  "order_quantity": quantity},
+		  	                  
+		  	            success: function(result){
+		  	               alert('주문이 완료되었습니다.');
+		  	               console.log(result)
+		  	               location.href = "/order/confirmation_card";
+		  	            }, error: function(result){
+		  	               alert('주문이 실패했습니다.');
+		  	               console.log(result)
+		  	            }
+		  	         });
+	    	  }
+	      });
+	   });
 
-			alert(msg);
-			location.replace('/purchase/Cart'); 
-		});
-	});
 	
-	</script>
-
-	<!-- order_detail 데이터 ajax로 넘기기 -->
-	<script>
-		$(document).ready(function(){
-			$('#submit').click(function(){   //submit 버튼을 클릭하였을 때
-			$.ajax({
-				type:'post',   //post 방식으로 전송
-				url:'/order/confirmation',   //데이터를 주고받을 파일 주소
-				data:sendData,   //위의 변수에 담긴 데이터를 전송해준다.
-				dataType:'html',   //html 파일 형식으로 값을 담아온다.
-				success : function(data){   //파일 주고받기가 성공했을 경우. data 변수 안에 값을 담아온다.
-					console.log(date);
-				}
-			});
-		});
-	});
-	</script>
-
-	<!-- 주소 API 값 하나로 묶기 -->
-	<script>
-	function postCode(){ 
-		var post1 = document.getElementById("postcode").value;
-		var post2 = document.getElementById("roadAddress").value;
-		var post3 = document.getElementById("detailAddress").value;
-		 
-		var addr = post1 + " " +  post2 + " " + post3;
-		console.log("주소 : " + addr);
-	
-	 }
 	</script>
 
 </body>

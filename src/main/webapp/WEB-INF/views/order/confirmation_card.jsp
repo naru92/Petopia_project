@@ -105,7 +105,7 @@
 						</tr>
 						<tr>
 							<td>결제수단</td>
-							<td><%= request.getParameter("payment_method") %></td>
+							<td>카드결제</td>
 						</tr>
 					</table>
 				</div>
