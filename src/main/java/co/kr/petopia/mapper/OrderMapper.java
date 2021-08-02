@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
 import co.kr.petopia.vo.CartVO;
+import co.kr.petopia.vo.OrderDetailVO;
 import co.kr.petopia.vo.OrderVO;
 
 @Mapper
@@ -27,6 +28,7 @@ public interface OrderMapper{
 	// order_form -> 주문번호 idx 삭제 메소드
 	void deleteOrderIdx(int order_idx);
 
-	
+	// 주문 상세 정보 가져오기
+	OrderVO readOrderInfo();
 	
 }

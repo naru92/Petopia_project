@@ -15,7 +15,7 @@ import co.kr.petopia.vo.CartVO;
 import co.kr.petopia.vo.DeliveryVO;
 import co.kr.petopia.vo.DonationVO;
 import co.kr.petopia.vo.MemberVO;
-
+import co.kr.petopia.vo.OrderDetailVO;
 import co.kr.petopia.mapper.OrderMapper;
 import co.kr.petopia.vo.CartVO;
 
@@ -66,7 +66,15 @@ public class OrderServiceImpl implements OrderService {
 		
 	}
 
+	// 주문 상세 정보 가져오기
+	@Override
+	public OrderVO readOrderInfo() {
 		
+		return orderMapper.readOrderInfo();
+		
+	}
+
 	
+
 	
 }

@@ -3,6 +3,7 @@ package co.kr.petopia.service;
 import java.util.List;
 
 import co.kr.petopia.vo.CartVO;
+import co.kr.petopia.vo.OrderDetailVO;
 import co.kr.petopia.vo.OrderVO;
 
 
@@ -12,7 +13,7 @@ public interface OrderService {
 
 	// 결제시 주문자 정보 입력(order_form)
 	void orderFormInsert(OrderVO orderVO);
-
+	
 	// 결제시 주문자 정보 입력(order_detail)
 	void orderDetailInsert(OrderVO orderVO);
 	
@@ -21,5 +22,8 @@ public interface OrderService {
 	
 	// order_form -> 주문번호 idx 삭제 메소드
 	void deleteOrderIdx(int order_idx);
+
+	// 주문 상세 정보 가져오기
+	OrderVO readOrderInfo();
 	
 }
