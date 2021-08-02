@@ -12,7 +12,7 @@
 	</select>
 	
 	<!-- 해당 게시판에 게시글 불러오는 쿼리문 + 페이징 -->
-	<select id="getContentListPaging" resultType="co.kr.petopia.vo.BoardVO">
+	<select id="getContentListPaging"  resultType="co.kr.petopia.vo.BoardVO">
 		<![CDATA[
 		SELECT * FROM
 		(
@@ -24,12 +24,40 @@
 		]]>
 	</select>
 	
+	<select id="getContentListPaging1"  parameterType="java.util.HashMap" resultType="co.kr.petopia.vo.BoardVO">
+		
+  		 <![CDATA[
+  		SELECT * FROM (
+              SELECT ROWNUM AS RNUM, A.* FROM (
+                       SELECT
+                           content_idx, content_title, content_text,
+		TO_CHAR(content_date , 'yyyy-mm-dd') as content_date, content_hit, content_update, member_id, board_id
+                         FROM
+                             content
+                         where board_id = #{board_id}
+                         order by board_id
+             ) A WHERE ROWNUM <= #{cri.pageNum , jdbcType=VARCHAR} * #{cri.amount, jdbcType=VARCHAR}
+         ) WHERE RNUM > (#{cri.pageNum , jdbcType=VARCHAR}-1) * #{cri.amount, jdbcType=VARCHAR} 
+  		 ]]>
+	</select>
+	
+	
+	
 	<!-- count -->
 	<select id="getTotalCount" resultType="int">
-		select count(*) from content where content_idx > 0 and board_id = #{board_id}
+		select count(*) from content where board_id = #{board_id}
+	</select>
+	
+	<!-- count -->
+	<select id="getTotalCount2" resultType="int" >
+		select count(*) from content where board_id = #{cri.board_id , jdbcType=VARCHAR}
 	</select>
 
 	<insert id="contentInsert">
+	<selectKey keyProperty="content_idx" order="BEFORE" resultType="int">
+ 			select content_seq.nextval from dual
+ 	</selectKey>
+	
 		insert into content(content_idx, board_id, member_id,
 		CONTENT_DATE,CONTENT_TITLE,CONTENT_TEXT,CONTENT_HIT)
 		values
@@ -52,7 +80,13 @@
 		content_update = sysdate
 		where content_idx = #{content_idx}
 	</update>
-
+	<select id="getBoardInfo" resultType="String" >
+	<![CDATA[
+		select board_name 
+		from board
+		where board_id =${board_id}
+	]]>
+	</select>
 	
 
 </mapper>
