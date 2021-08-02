@@ -13,30 +13,21 @@ import lombok.ToString;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class OrderVO {
+public class OrderDetailVO {
 	
 	private int order_idx;
 	private int product_idx;
-	private String member_id;
-	private Date order_date;
-	private int payment_method;
-	private String user_name;
-	private String product_name;
-	private String product_coloroption;
-	private String product_price;	
-	private int cart_id;
-	private String product_detail_info;
 	
-	private String order_name;
+	private String order_name;	
 	private String order_receiver_name;
 	private String order_receiver_phonenumber;
 	private String order_receiver_address;
+	
+	
+	private Date order_date;
+	private int payment_method;
+	private String user_name;
+	
 	private int order_quantity;
-	private int order_price;
-	
-	
-
-	
-
 	
 }

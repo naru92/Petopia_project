@@ -10,6 +10,7 @@ body, main {
 	width: 1090px;
 	margin: 0px auto;
 	overflow: hidden;
+	padding : 0 30px 0 0;
 }
 
 .thanks {
@@ -520,6 +521,16 @@ select {
 	line-height: 34px;
 }
 
+.tableNumber2 {
+	width: 15%;
+	border-top: 1px solid #b6ada8;
+	text-align: left;
+	vertical-align: middle;
+	padding: 0 10px;
+	font-size: 15px;
+	line-height: 34px;
+}
+
 .tableTitle {
 	width: 100%;
 	border-top: 1px solid #b6ada8;
@@ -563,7 +574,7 @@ select {
 }
 
 input.inputBox {
-	width: 695px;
+	width: 780px;
 	margin-bottom: 3px;
 }
 
@@ -642,9 +653,9 @@ span.emailAt {
 	.content .btn2 {
 		font-size: 14px;
 	}
-	.tableNumber {
+	/* .tableNumber {
 		width: 200px;
-	}
+	} */
 
 
 @media screen and (max-width:720px) {
@@ -655,22 +666,22 @@ span.emailAt {
 		width: 100%;
 		margin-bottom: 20px;
 	}
-	.personalInfo .tableNumber {
+	/* .personalInfo .tableNumber {
 		display: block;
 		width: auto;
 		text-align: left;
 		font-size: 13px;
 		line-height: 18px;
 		padding: 8px 5px 4px;
-	}
-	.personalInfo .tableTitle {
+	} */
+	/* .personalInfo .tableTitle {
 		border-top: none;
 		padding: 4px 5px 8px;
 		line-height: 18px;
 		font-size: 12px;
 		margin: 0;
 		text-align: left;
-	}
+	} */
 	.personalInfo .tableTitle span.txtInput {
 		font-size: 13px;
 		line-height: 18px;
@@ -774,13 +785,12 @@ span.emailAt {
 	text-align: center;
 }
 
-.homeBtn {
+#paymentBtn {
 	box-shadow:inset 0px 1px 0px 0px #ffffff;
 	background:linear-gradient(to bottom, #ffffff 5%, #f6f6f6 100%);
 	background-color:#ffffff;
 	border-radius:6px;
 	border:1px solid #dcdcdc;
-	display:inline-block;
 	cursor:pointer;
 	color:#666666;
 	font-size:15px;
@@ -789,17 +799,14 @@ span.emailAt {
 	text-decoration:none;
 	text-shadow:0px 1px 0px #ffffff;
   	float: right;
-  	position : absolute;
-  	top : 90%;
-  	left: 47.5%;
 }
 
-.homeBtn:hover {
+#paymentBtn:hover {
 	background:linear-gradient(to bottom, #f6f6f6 5%, #ffffff 100%);
 	background-color:#f6f6f6;
 }
 
-.homeBtn:active {
+#paymentBtn:active {
 	position:relative;
 	top:1px;
 }
@@ -830,6 +837,7 @@ span.emailAt {
  	margin-left : 125px;
  	border: 1px solid #b6ada8;
  }
+
 
 
 /* font nexon lv1 gothic */
