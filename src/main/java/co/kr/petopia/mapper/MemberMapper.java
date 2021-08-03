@@ -1,6 +1,7 @@
 package co.kr.petopia.mapper;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.apache.ibatis.annotations.Mapper;
 
@@ -14,11 +15,11 @@ public interface MemberMapper {
 	// 멤버 정보 가지고오기(시큐리티/로그인용)
 	MemberVO getSelectMemberInfo(String member_id);
 	
+    // 로그인 시 아이디 확인
+    Optional<MemberVO> findByMemberId(String member_id);
+	
 	// 해당 멤버 정보 가지고오기
 	MemberVO getMemberInfoRead(String member_id);
-	
-    // 로그인
-    MemberVO memberLogin(String member_id, String member_password);
 	
 	// 회원가입
     void memberJoin(MemberVO member);
@@ -44,6 +45,7 @@ public interface MemberMapper {
     
     // 휴대폰번호 중복체크
     int checkMemberPhoneNumber(String member_phoneNumber);
+    
 }
 
 

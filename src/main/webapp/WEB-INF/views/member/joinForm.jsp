@@ -467,18 +467,19 @@
 			if(validAll == true && mailCertification == true){
 				$.ajax({
 					type: "POST",
-					url: "/member/joinProcess",
+					url: "/joinProcess",
 					data: { "member_id": $('.memberId').val(),
 							"member_email": $(".email01").val()+"@"+$(".email02").val(),
 							"member_password": $('.password01').val(),
 							"member_name": $('.memberName').val(),
 							"member_phoneNumber": $('.memberPhoneNumber').val(),
 							"member_address" : $(".address1").val()+" "+$(".address2").val()+" "+$(".address3").val(),
-							"memberAuth_id" : $('.memberId').val()},
+							"memberAuth_id" : $('.memberId').val(),
+							"member_oauth" : null},
 					success: function(result){
 						alert('회원가입이 완료되었습니다.');
 						console.log(result)
-						location.href = "/member/welcome";
+						location.href = "/welcome";
 					}, error: function(result){
 						alert('회원가입에 실패했습니다.');
 						console.log(result)

@@ -19,8 +19,8 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
     <!-- Core CSS -->
-  <link href="/petopia/css/404.css" rel="stylesheet">
-
+  	<link href="/petopia/css/404.css" rel="stylesheet">
+	<link rel="icon" type="image/x-icon" href="/petopia/images/petopia_logomini.png">
 <style type="text/css">
 .logo
 {

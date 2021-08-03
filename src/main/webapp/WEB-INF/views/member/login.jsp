@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var='root' value="${pageContext.request.contextPath }/" />
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,7 +33,8 @@
 						<input type="password" name="member_password" placeholder="비밀번호"> <span
 							class="input-icon"><i class="fa fa-lock"></i></span>
 					</div>
-					<button id ="login-button" class="login-btn" type="submit" name="submit">로그인</button>
+					<button id ="login-button" class="login-btn" type="submit" name="submit" >로그인</button>
+				</form>	
 					<div class="reset-group">
 						<a class="reset-id" href="#">아이디찾기</a> <a class="reset-psw"
 							href="#">비밀번호찾기</a> <a class="sign-up" href="joinAgree">회원가입</a>
@@ -53,7 +55,8 @@
 					<div class="seperator">
 						<b>or</b>
 					</div>
-					
+				
+				<form>	
 					<h3>비회원 로그인</h3>
 					<div class="form-group">
 						<input type="text" name="user_name" placeholder="주문고객"> 
@@ -63,7 +66,7 @@
 						<input type="password" name="order_idx" placeholder="주문번호"> 
 						<span class="input-icon"><i class="fa fa-lock"></i></span>
 					</div>
-					<button id ="login-button" class="login-btn" type="submit" name="submit">로그인</button>
+					<button id ="userlogin-button" class="login-btn" type="submit" name="submit">로그인</button>
 				
 				</form>
 			</div>
@@ -73,32 +76,6 @@
 	<footer>
 		<%@include file="../include/default_footer.jsp"%>
 	</footer>
-
-<script type="text/javascript">
-$(document).ready(function() {
-	
-	$("#login-button").click(function(){
-		$.ajax({
-			type: "POST",
-			url: "/member/loginProcess",
-			data: { "member_id": $('.memberId').val(),
-					"memberAuth_id" : $('.memberId').val(),
-					"member_password": $('.password01').val()},
-			dateType: 'json', 
-			contentType: "application/json; charset=UTF-8", 
-			success: function(result){
-				alert('로그인이 완료되었습니다.');
-				console.log(result);
-				location.href = "/petstagram";
-			}, error: function(result){
-				alert('로그인에 실패했습니다.');
-				console.log(result);
-			}
-		});
-	});
-});
-	
-</script>
 
 </body>
 </html>

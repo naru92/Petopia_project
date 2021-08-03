@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 @Builder
-public class MemberVO implements UserDetails {
+public class MemberVO implements UserDetails{
 	/*
 	 * 
 	 */
@@ -32,6 +32,7 @@ public class MemberVO implements UserDetails {
 	private String member_grade;
 	private int member_point;
 	private int member_donation;
+	private String member_oauth;
 	private String authority;
 	private boolean enabled;
 
@@ -81,6 +82,7 @@ public class MemberVO implements UserDetails {
 	public boolean isEnabled() {
 		return this.Isenabled;
 	}
+
 
 	
 
