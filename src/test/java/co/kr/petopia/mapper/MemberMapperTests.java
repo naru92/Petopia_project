@@ -21,13 +21,6 @@ public class MemberMapperTests {
         memberMapper.getMemberInfoRead("dummy11");
 
     }
-    
-    @Test
-    public void testMemberLogin() {
-
-        memberMapper.memberLogin("dummy1","1111");
-
-    }
 
     @Test
     public void testMemberJoin() {

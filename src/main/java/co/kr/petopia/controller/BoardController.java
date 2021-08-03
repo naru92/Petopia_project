@@ -1,9 +1,14 @@
 package co.kr.petopia.controller;
 
+import java.security.Principal;
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -20,266 +25,325 @@ import lombok.extern.log4j.Log4j2;
 @Log4j2
 public class BoardController {
 
-    @Autowired
-    private final BoardService boardService;
-
-    /****************** 공지사항 **********************/
-
-    // 리스트 불러오기(페이징 처리)
-    @GetMapping("/notice")
-    public String noticeList(Criteria cri, Model model) {
-        
-        log.info("--------------------------");
-        log.info(cri);
-        log.info("noticeList...........");
-
-        model.addAttribute("contentList", boardService.getContentListPaging(cri, 1L));
-
-        int total = boardService.getTotal(cri, 1L);
-
-        model.addAttribute("pageMaker", new PageVO(cri, total));
-        
-        return "board/notice";
-
-    }
-    
-    // 해당 게시물 불러오기 ( jsp 만든 후 string으로 바꿔서 return 해줘야함 )
-    @GetMapping("/notice/get")
-    public void noticeGet(@RequestParam("content_idx") Long content_idx, Model model) {
-        
-        model.addAttribute("board", boardService.getContent(content_idx));
-        
-    }
-    
-    // 글 작성
-    @PostMapping("/notice/register")
-    public String noticeRegister(BoardVO board, RedirectAttributes rttr) {
-
-        log.info("board: " + board);
-
-        boardService.contentRegister(board);
-
-        rttr.addFlashAttribute("result", board.getContent_idx());
-
-        return "redirect:/notice";
-    }
-    
-    // 글 수정
-    @PostMapping("/notice/modify")
-    public String noticeModify(BoardVO board, RedirectAttributes rttr) {
-
-        int count = boardService.contentModify(board);
-
-        if (count == 1) {
-            rttr.addFlashAttribute("result", "success");
-        }
-
-        return "redirect:/notice";
-    }
-    
-    // 글 삭제
-    @PostMapping("/notice/remove")
-    public String noticeRemove(@RequestParam("content_idx") Long content_idx, RedirectAttributes rttr) {
-
-        int count = boardService.contentRemove(content_idx);
-
-        if (count == 1) {
-            rttr.addFlashAttribute("result", "success");
-        }
-
-        return "redirect:/notice";
-    }
-
-    /****************** 문의하기  **********************/
-
-    // 리스트 불러오기(페이징)
-    @GetMapping("member/inquiry")
-    public String inquiryList(Criteria cri, Model model) {
-        
-        log.info("--------------------------");
-        log.info(cri);
-        log.info("inquiryList...........");
-
-        model.addAttribute("contentList", boardService.getContentListPaging(cri, 2L));
-        
-        int total = boardService.getTotal(cri, 2L);
-
-        model.addAttribute("pageMaker", new PageVO(cri, total));
-        
-        return "member/inquiry";
-
-    }
-    
-    // 해당 게시물 불러오기 ( jsp 만든 후 string으로 바꿔서 return 해줘야함 )
-    @GetMapping("member/inquiry/get")
-    public String inquiryGet(@RequestParam("content_idx") Long content_idx, Model model) {
-        
-        model.addAttribute("board", boardService.getContent(content_idx));
-        
-        return "member/inquiry";
-    }
-    
-    // 글 작성
-    @PostMapping("member/inquiry/register")
-    public String inquiryRegister(BoardVO board, RedirectAttributes rttr) {
+	@Autowired
+	private final BoardService boardService;
+
+//****************** 공지사항 **********************
+
+	// 리스트 불러오기(페이징 처리)
+	
+	@GetMapping("/notice")
+	public String noticeList(Criteria cri, Model model, @RequestParam(value = "board_id",  defaultValue ="1") int board_id, 
+			 Principal principal) {
+		
+		Map<String, Object> pagingMap = new HashMap<String, Object>();
+		Map<String, Object> pagingMap2 = new HashMap<String, Object>();
+		
+		log.info("--------------------------");
+		log.info("noticeList...........");
+
+		pagingMap.put("cri", cri);
+		pagingMap.put("board_id", 1);
+		String boardName = boardService.getBoardInfo(1);
+		log.info("pagimap : " + pagingMap);
+		int total = boardService.getTotal(pagingMap);
+		log.info(total);
+		
+		pagingMap2.put("cri", cri);
+		pagingMap2.put("board_id", 1);
+		log.info(pagingMap2);
+		boardService.getContentListPaging(pagingMap2);
+		model.addAttribute("board_id" , board_id);
+		 model.addAttribute("pageMaker", new PageVO(cri, total));
+		 model.addAttribute("board_name" , boardName);
+		 model.addAttribute("contentList", boardService.getContentListPaging(pagingMap2));
+				
+
+		return "board/notice";
+
+	}
+
+	// 해당 게시물 불러오기 ( jsp 만든 후 string으로 바꿔서 return 해줘야함 )
+	@GetMapping("/notice/get")
+	public String noticeGet(@RequestParam("board_id") int board_id, @RequestParam("content_idx") Long content_idx, Model model) {
+
+		model.addAttribute("board", boardService.getContent(content_idx));
+		
+		return "board/notice_read";
+	}
+	
+	@GetMapping("/notice/register")
+	public String noticeRegister(@ModelAttribute("noticeContentVO") BoardVO noticeContentVO,
+			@RequestParam(value = "board_id", defaultValue = "1") int board_id) {
+		log.info("notice = " + noticeContentVO);
+		
+
+		return "/board/insert_notice";
+	}
+
+	// 글 작성
+	@PostMapping("/notice/register")
+	public String noticeRegister_pro(@ModelAttribute("noticeContentVO") BoardVO noticeContentVO,
+			@RequestParam(value = "board_id", defaultValue = "1") int board_id) {
+
+		log.info("board: " + noticeContentVO);
+		noticeContentVO.setMember_id("47");
+		noticeContentVO.setBoard_id(board_id);
+		boardService.contentRegister(noticeContentVO);
+
+
+		return "board/register_success";
+	}
+	
+	
+	@GetMapping("notice/modify")
+	public String modify(@RequestParam("board_id") int board_info_idx,
+							@RequestParam("content_idx") int content_idx,
+							@ModelAttribute("modifyContentVO") BoardVO modifyContentVO,
+							Model model) {
+		log.info("modify_get()...");
+		model.addAttribute("board_info_idx" , board_info_idx);
+		model.addAttribute("content_idx" , content_idx);
+		
+		BoardVO tempContentBean = boardService.getContent((long)content_idx);
+		
+		
+		modifyContentVO.setContent_date(tempContentBean.getContent_date());
+		modifyContentVO.setContent_title(tempContentBean.getContent_title());
+		modifyContentVO.setContent_text(tempContentBean.getContent_text());
+		modifyContentVO.setBoard_id(board_info_idx);
+		modifyContentVO.setContent_idx(content_idx);
+		
+		return "board/notice_modify";
+	}
+	
+	@PostMapping("/modify_pro")
+	public String modify_pro(@ModelAttribute("modifyContentVO") BoardVO modifyContentVO) {
+							 
+		log.info("modify_post()...");
+		boardService.modifyContentInfo(modifyContentVO);
+		
+		return "board/notice_modifySuccess";
+	}
+	
+	// 글 수정
+	@PostMapping("/notice/modify")
+	public String noticeModify(BoardVO board, RedirectAttributes rttr) {
 
-        log.info("board: " + board);
+		int count = boardService.contentModify(board);
 
-        boardService.contentRegister(board);
+		if (count == 1) {
+			rttr.addFlashAttribute("result", "success");
+		}
 
-        rttr.addFlashAttribute("result", board.getContent_idx());
+		return "redirect:/notice";
+	}
 
-        return "redirect:/member/inquiry";
-    }
-    
-    // 글 수정
-    @PostMapping("/member/inquiry/modify")
-    public String inquiryModify(BoardVO board, RedirectAttributes rttr) {
+	// 글 삭제
+	@GetMapping("/notice/remove")
+	public String noticeRemove(@RequestParam("board_id") int board_info_idx,
+			 @RequestParam("content_idx") int content_idx,
+			 Model model) {
 
-        int count = boardService.contentModify(board);
+		boardService.deleteContentInfo(content_idx);
+		
+		model.addAttribute("board_info_idx", board_info_idx);
+		
+		return "board/notice_removeSuccess";
+	}
 
-        if (count == 1) {
-            rttr.addFlashAttribute("result", "success");
-        }
+	/****************** 문의하기 **********************/
 
-        return "redirect:/member/inquiry";
-    }
-    
-    // 글 삭제
-    @PostMapping("/member/inquiry/remove")
-    public String inquiryRemove(@RequestParam("content_idx") Long content_idx, RedirectAttributes rttr) {
+	// 리스트 불러오기(페이징)
+	
 
-        int count = boardService.contentRemove(content_idx);
+	
+	@GetMapping("/board/qna")
+	public String inquiryList(@RequestParam int board_id ,Criteria cri, Model model) {
 
-        if (count == 1) {
-            rttr.addFlashAttribute("result", "success");
-        }
+		/*
+		 * log.info("--------------------------"); log.info(cri);
+		 * log.info("inquiryList...........");
+		 * 
+		 * model.addAttribute("contentList", boardService.getContentListPaging(cri,
+		 * 2L));
+		 * 
+		 * int total = boardService.getTotal(cri, 2L);
+		 * 
+		 * model.addAttribute("pageMaker", new PageVO(cri, total));
+		 */
 
-        return "redirect:/member/inquiry";
-    }
+		return "board/qna_main";
 
-    /****************** 이벤트 **********************/
+	}
 
-    // 리스트 불러오기
-    @GetMapping("/event")
-    public String eventList(Model model) {
+	// 해당 게시물 불러오기 ( jsp 만든 후 string으로 바꿔서 return 해줘야함 )
+	@GetMapping("member/inquiry/get")
+	public String inquiryGet(@RequestParam("content_idx") Long content_idx, Model model) {
 
-        log.info("eventList...........");
+		model.addAttribute("board", boardService.getContent(content_idx));
 
-        model.addAttribute("contentList", boardService.getContentList(3L));
+		return "member/inquiry";
+	}
 
-        return "board/event";
+	// 글 작성
+	@PostMapping("member/inquiry/register")
+	public String inquiryRegister(BoardVO board, RedirectAttributes rttr) {
 
-    }
+		log.info("board: " + board);
 
-    // 해당 게시물 불러오기
-    @GetMapping("/event/detail")
-    public String eventGet(@RequestParam("content_idx") Long content_idx, Model model) {
-        
-        model.addAttribute("board", boardService.getContent(content_idx));
-        
-        return "board/event_detail";
-    }
-    
-    // 글 작성
-    @PostMapping("/event/register")
-    public String eventRegister(BoardVO board, RedirectAttributes rttr) {
+		boardService.contentRegister(board);
 
-        log.info("board: " + board);
+		rttr.addFlashAttribute("result", board.getContent_idx());
 
-        boardService.contentRegister(board);
+		return "redirect:/member/inquiry";
+	}
 
-        rttr.addFlashAttribute("result", board.getContent_idx());
+	// 글 수정
+	@PostMapping("/member/inquiry/modify")
+	public String inquiryModify(BoardVO board, RedirectAttributes rttr) {
 
-        return "redirect:/event";
-    }
-    
-    // 글 수정
-    @PostMapping("/event/modify")
-    public String eventModify(BoardVO board, RedirectAttributes rttr) {
+		int count = boardService.contentModify(board);
 
-        int count = boardService.contentModify(board);
+		if (count == 1) {
+			rttr.addFlashAttribute("result", "success");
+		}
 
-        if (count == 1) {
-            rttr.addFlashAttribute("result", "success");
-        }
+		return "redirect:/member/inquiry";
+	}
 
-        return "redirect:/event";
-    }
-    
-    // 글 삭제
-    @PostMapping("/event/remove")
-    public String eventRemove(@RequestParam("content_idx") Long content_idx, RedirectAttributes rttr) {
+	// 글 삭제
+	@PostMapping("/member/inquiry/remove")
+	public String inquiryRemove(@RequestParam("content_idx") Long content_idx, RedirectAttributes rttr) {
 
-        int count = boardService.contentRemove(content_idx);
+		int count = boardService.contentRemove(content_idx);
 
-        if (count == 1) {
-            rttr.addFlashAttribute("result", "success");
-        }
+		if (count == 1) {
+			rttr.addFlashAttribute("result", "success");
+		}
 
-        return "redirect:/event";
-    }
+		return "redirect:/member/inquiry";
+	}
 
-    /****************** 펫스타그램 **********************/
+	/****************** 이벤트 **********************/
 
-    // 리스트 불러오기
-    @GetMapping("/petstagram")
-    public String petstagramList(Model model) {
+	// 리스트 불러오기
+	@GetMapping("/event")
+	public String eventList(Model model) {
 
-        log.info("petstagramList...........");
+		log.info("eventList...........");
 
-        model.addAttribute("contentList", boardService.getContentList(4L));
+		model.addAttribute("contentList", boardService.getContentList(3L));
 
-        return "board/petstagram";
-    }
-    
-    // 해당 게시물 불러오기
-    @GetMapping({"/petstagram/get","/petstagram/modify"})
-    public void petstagramGet(@RequestParam("content_idx") Long content_idx, Model model) {
-        
-        model.addAttribute("board", boardService.getContent(content_idx));
-    }
+		return "board/event";
 
+	}
 
-    // 글 작성
-    @PostMapping("/petstagram/register")
-    public String petstagramRegister(BoardVO board, RedirectAttributes rttr) {
+	// 해당 게시물 불러오기
+	@GetMapping("/event/detail")
+	public String eventGet(@RequestParam("content_idx") Long content_idx, Model model) {
 
-        log.info("board: " + board);
+		model.addAttribute("board", boardService.getContent(content_idx));
 
-        boardService.contentRegister(board);
+		return "board/event_detail";
+	}
 
-        rttr.addFlashAttribute("result", board.getContent_idx());
+	// 글 작성
+	@PostMapping("/event/register")
+	public String eventRegister(BoardVO board, RedirectAttributes rttr) {
 
-        return "redirect:/petstagram";
-    }
+		log.info("board: " + board);
 
-    
-    // 글 수정
-    @PostMapping("/petstagram/modify")
-    public String petstagramModify(BoardVO board, RedirectAttributes rttr) {
+		boardService.contentRegister(board);
 
-        int count = boardService.contentModify(board);
+		rttr.addFlashAttribute("result", board.getContent_idx());
 
-        if (count == 1) {
-            rttr.addFlashAttribute("result", "success");
-        }
+		return "redirect:/event";
+	}
 
-        return "redirect:/petstagram";
-    }
+	// 글 수정
+	@PostMapping("/event/modify")
+	public String eventModify(BoardVO board, RedirectAttributes rttr) {
 
-    
-    // 글 삭제
-    @PostMapping("/petstagram/remove")
-    public String petstagramRemove(@RequestParam("content_idx") Long content_idx, RedirectAttributes rttr) {
+		int count = boardService.contentModify(board);
 
-        int count = boardService.contentRemove(content_idx);
+		if (count == 1) {
+			rttr.addFlashAttribute("result", "success");
+		}
 
-        if (count == 1) {
-            rttr.addFlashAttribute("result", "success");
-        }
+		return "redirect:/event";
+	}
 
-        return "redirect:/petstagram";
-    }
+	// 글 삭제
+	@PostMapping("/event/remove")
+	public String eventRemove(@RequestParam("content_idx") Long content_idx, RedirectAttributes rttr) {
+
+		int count = boardService.contentRemove(content_idx);
+
+		if (count == 1) {
+			rttr.addFlashAttribute("result", "success");
+		}
+
+		return "redirect:/event";
+	}
+
+	/****************** 펫스타그램 **********************/
+
+	// 리스트 불러오기
+	@GetMapping("/petstagram")
+	public String petstagramList(Model model) {
+
+		log.info("petstagramList...........");
+
+		model.addAttribute("contentList", boardService.getContentList(4L));
+
+		return "board/petstagram";
+	}
+
+	// 해당 게시물 불러오기
+	@GetMapping({ "/petstagram/get", "/petstagram/modify" })
+	public void petstagramGet(@RequestParam("content_idx") Long content_idx, Model model) {
+
+		model.addAttribute("board", boardService.getContent(content_idx));
+	}
+
+	// 글 작성
+	@PostMapping("/petstagram/register")
+	public String petstagramRegister(BoardVO board, RedirectAttributes rttr) {
+
+		log.info("board: " + board);
+
+		boardService.contentRegister(board);
+
+		rttr.addFlashAttribute("result", board.getContent_idx());
+
+		return "redirect:/petstagram";
+	}
+
+	// 글 수정
+	@PostMapping("/petstagram/modify")
+	public String petstagramModify(BoardVO board, RedirectAttributes rttr) {
+
+		int count = boardService.contentModify(board);
+
+		if (count == 1) {
+			rttr.addFlashAttribute("result", "success");
+		}
+
+		return "redirect:/petstagram";
+	}
+
+	// 글 삭제
+	@PostMapping("/petstagram/remove")
+	public String petstagramRemove(@RequestParam("content_idx") Long content_idx, RedirectAttributes rttr) {
+
+		int count = boardService.contentRemove(content_idx);
+
+		if (count == 1) {
+			rttr.addFlashAttribute("result", "success");
+		}
+
+		return "redirect:/petstagram";
+	}
 
 }

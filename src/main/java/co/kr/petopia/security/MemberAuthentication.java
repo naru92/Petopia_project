@@ -16,9 +16,6 @@ import lombok.Setter;
 public class MemberAuthentication extends UsernamePasswordAuthenticationToken {
 	//로그인 사용자를 객체 저장할것임
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;	
 	
 	MemberVO member;
@@ -26,5 +23,11 @@ public class MemberAuthentication extends UsernamePasswordAuthenticationToken {
 	public MemberAuthentication(String member_id, String member_password, List<GrantedAuthority> grantedAuthorityList , MemberVO member) {
 		super(member_id, member_password, grantedAuthorityList);
 		this.member = member;
+	}
+	
+	@Override
+	public Object getDetails() {
+		
+		return member;
 	}
 }

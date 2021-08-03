@@ -4,60 +4,67 @@
 <html>
 <head>
 <meta http-equiv="Content-type" content="text/html; charset=UTF-8">
-<title>joinForm</title>
+
+<title>회원정보 수정</title>
 <!-- CSS here -->
-<link rel="stylesheet" href="/petopia/css/joinForm_style.css">
+<link rel="stylesheet" href="/petopia/css/memberModify.css">
+
 <!-- default_css -->
 <%@include file="../include/default_css.jsp"%>
 </head>
 <body>
+<header>
+		<%@include file="../include/default_header.jsp"%>
+	</header>
+	<script>
+	    $("document").ready(function() {
+	        //해당 페이지의 첫 진입점
+	        //ex) 로그인한 사용자의 id 를 display
+	        $("#txtId").val('isnana');
+	        //해당 페이지의 첫 진입점
+	        //ex) 로그인한 사용자의 id 를 display
+	        $("#txtMemberName").val('허하나');
+	    });
+	
+	    //테스트용 버튼
+	    $("#btnTest").click(function() {
+	        $("#txtId").attr('readonly', true);
+	        $("#txtId").addClass('disabledInput');
+	    });
+	</script>
+		
+
 	<header>
 		<%@include file="../include/default_header.jsp"%>
 	</header>
-
-	<main>
+	
+<main>
 		<div class="main">
-			<h3>회원가입</h3>
+			<h3>회원 정보 수정</h3>
 			<div class="result">
 				<span class="blue">필수정보를 입력</span>해주세요.
 			</div>
 
 			<article class="one">
-				<div class="taball">
-					<div class="tab1">
-						<img src="https://image.flaticon.com/icons/svg/126/126486.svg"><br>STEP 1<br>가입하기<br>
-					</div>
-					<div class="tab2">
-						<img src="https://image.flaticon.com/icons/svg/1159/1159633.svg"><br>STEP 2<br>약관동의<br>
-					</div>
-					<div class="tab3">
-						<img src="https://image.flaticon.com/icons/svg/839/839860.svg"><br>STEP 3<br>정보입력<br>
-					</div>
-					<div class="tab4">
-						<img src="https://image.flaticon.com/icons/svg/3064/3064197.svg"><br>STEP 4<br>가입완료<br>
-					</div>
-				</div>
-
 				<article class="find1">
 					<div>
 						<section id="content3">
 							<div class="info">
-								* 모든 항목은 필수 입력 항목입니다. <br>* 필수항목을 작성하지 않을 경우 회원가입이 어렵습니다.
 							</div>
 							<div>
 								<div>
-									<p>* 아이디</p>
-									<p class = emailP>* 이메일</p>
-									<p>* 비밀번호</p>
-									<p>* 비밀번호 확인</p>
-									<p>* 이름</p>
-									<p>* 휴대전화</p>
-									<p>* 주소</p>
+									<p>아이디</p>
+									<p class = emailP>이메일</p>
+									<p>새 비밀번호</p>
+									<p>비밀번호 확인</p>
+									<p>이름</p>
+									<p>휴대전화</p>
+									<p>주소</p>
 								</div>
 
 								<div>
 									<form class="inputAll">
-										<input type="text" class="memberId" placeholder="아이디를 입력하세요.">
+										<input type="text" class="memberId" readonly>
 										<div class="eheck_font" id="id_check"></div>
 
 										<br> <input type="text" class="email01"> @ <input type="text" class="email02"> <select size="1"
@@ -79,7 +86,7 @@
 										<br> <input type="password" class="password02" placeholder="비밀번호를 다시 한번 입력하세요.">
 										<div class="eheck_font" id="pw02_check"></div> 
 										
-										<br> <input type="text"	class="memberName" placeholder="이름을 입력하세요."> 
+										<br> <input type="text"	class="memberName" readonly> 
 										<div class="eheck_font" id="name_check"></div>
 
 										<br> <input type="tel" class="memberPhoneNumber" placeholder="예) 010-1234-5678">
@@ -95,7 +102,7 @@
 								</div>
 							</div>
 
-							<a><button type="submit" class="join-btn" disabled="disabled">가입하기</button></a>
+							<a><button type="submit" class="modify-btn">수정하기</button></a>
 						</section>
 					</div>
 				</article>
@@ -103,12 +110,11 @@
 		</div>
 	</main>
 
+<!-- footer -->	
 	<footer>
 		<%@include file="../include/default_footer.jsp"%>
 	</footer>
 	<%@include file="../include/default_mapApi_js.jsp"%>
-	
-	
 	
 	<script>
 	/*
@@ -132,46 +138,6 @@
 	$(document).ready(function() {
 	
 		var mailCertification = false;
-		
-		// ----- 아이디 중복 확인 -----
-		$(".memberId").blur(function() {
-			if($('.memberId').val()==''){ 
-				$('#id_check').text('아이디를 입력하세요.'); 
-				$('#id_check').css('color', 'red'); 
-			} else if(idJ.test($('.memberId').val())!=true){ 
-				$('#id_check').text('6~12자의 영문+숫자의 조합 사용 가능합니다.'); 
-				$('#id_check').css('color', 'red'); 
-			} else if($('.memberId').val()!=''){ 
-				var member_id=$('.memberId').val(); 
-				$.ajax({ 
-					async : true, 
-					type : 'GET', 
-					data : member_id,  
-					url : 'idCheck?memberId='+member_id, 
-					dateType: 'json', 
-					contentType: "application/json; charset=UTF-8", 
-					success : function(data) { 
-						if(data == 1){ 
-							$('#id_check').text('중복된 아이디 입니다.'); 
-							$('#id_check').css('color', 'red'); 
-							$(".inputAll").attr("disabled", true); 
-						}else if(idJ.test(member_id)){ 
-							$('#id_check').text('사용가능한 아이디 입니다.'); 
-							$('#id_check').css('color', '#2AC1BC'); 
-							$(".inputAll").attr("disabled", false); 
-						} else if(member_id==''){ 
-							$('#id_check').text('아이디를 입력해주세요.'); 
-							$('#id_check').css('color', 'red'); 
-							$(".inputAll").attr("disabled", true); 
-						} else{ 
-							$('#id_check').text("아이디는 소문자와 숫자 4~12자리만 가능합니다."); 
-							$('#id_check').css('color', 'red'); 
-							$(".inputAll").attr("disabled", true); 
-						}
-					} 
-				});//ajax
-			}//else if 
-		});//blur
 		
 		// ----- 휴대폰 번호 중복 확인 -----
 		$(".memberPhoneNumber").blur(function() {
@@ -238,20 +204,6 @@
 			} else if($('.password01').val()==$('.password02').val()){ 
 				$('#pw02_check').text('비밀번호가 확인되었습니다.'); 
 				$('#pw02_check').css('color', '#2AC1BC'); 
-			}
-		});//blur
-		
-		// ----- 이름 확인 -----
-		$(".memberName").blur(function() {
-			if($('.memberName').val()==''){ 
-				$('#name_check').text('이름을 입력하세요.'); 
-				$('#name_check').css('color', 'red'); 
-			} else if(nameJ.test($('.memberName').val())!=true){ 
-				$('#name_check').text('한글 2~6자만 입력 가능합니다.'); 
-				$('#name_check').css('color', 'red'); 
-			} else if(nameJ.test($('.memberName').val())){ 
-				$('#name_check').text(' '); 
-				$('#name_check').css('color', '#2AC1BC'); 
 			}
 		});//blur
 		
@@ -350,69 +302,37 @@
 			});
 		});
 		
-		
-		
-				
-		
+
 	 
 		
 		/*
 		 * 버튼 눌렀을 때 정규식 & 모두 true일 때 Ajax로 데이터 전송
 		 */
-		$('.join-btn').click(function(){
-			var inval_Arr = new Array(7).fill(false);
+		$('.modify-btn').click(function(){
+			var inval_Arr = new Array(5).fill(false);
 
-			// ----- 아이디 확인 -----
-			if (idJ.test($('.memberId').val())) {
-				var member_id=$('.memberId').val(); 
-				$.ajax({ 
-					async : false, 
-					type : 'GET', 
-					data : member_id,  
-					url : 'idCheck?memberId='+member_id, 
-					dateType: 'json', 
-					contentType: "application/json; charset=UTF-8", 
-					success : function(data) { 
-						if(data == 0){ 
-							inval_Arr[0] = true; 
-						}else { 
-							inval_Arr[0] = false; 
-							alert('아이디를 확인하세요.'); 
-							return false;
-						} 
-					} 
-				});//ajax
-			}
-		
 			// ----- 비밀번호가 같은 경우 && 비밀번호 정규식 확인 -----
 			if (($('.password01').val() == ($('.password02').val())) && pwJ.test($('.password01').val())) { 
-				inval_Arr[1] = true; 
+				inval_Arr[0] = true; 
 			} else { 
-				inval_Arr[1] = false; 
+				inval_Arr[0] = false; 
 				alert('비밀번호를 확인하세요.'); 
 				return false; 
 			} 
-			// ----- 이름 확인 -----
-			if (nameJ.test($('.memberName').val())) { 
-				inval_Arr[2] = true; 
-			} else { 
-				inval_Arr[2] = false; 
-				alert('이름을 확인하세요.'); 
-				return false; 
-			} 
+
 			// ----- 이메일 확인 1 ------
 			if (mailJ1.test($('.email01').val())){ 
-				inval_Arr[3] = true; 
+				inval_Arr[1] = true; 
 			} else { 
-				inval_Arr[3] = false; 
+				inval_Arr[1] = false; 
 				alert('이메일을 확인하세요.'); 
 				return false; 
 			} 
 			// ----- 이메일 확인 2 -----
 			if (mailJ2.test($('.email02').val())){ 
-				inval_Arr[4] = true; 
+				inval_Arr[2] = true; 
 			} else { 
-				inval_Arr[4] = false; 
+				inval_Arr[2] = false; 
 				alert('이메일을 확인하세요.'); 
 				return false; 
 			} 
@@ -429,10 +349,10 @@
 					contentType: "application/json; charset=UTF-8", 
 					success : function(data) { 
 						if(data == 0){ 
-							inval_Arr[5] = true;
+							inval_Arr[3] = true;
 							return true;
 						} else { 
-							inval_Arr[5] = false; 
+							inval_Arr[3] = false; 
 							alert('휴대폰 번호를 확인하세요.'); 
 							return false; 
 						}
@@ -441,9 +361,9 @@
 			}
 			// ----- 주소 확인 -----
 			if ($('.address3').val()!='') { 
-				inval_Arr[6] = true; 
+				inval_Arr[4] = true; 
 			} else { 
-				inval_Arr[6] = false; 
+				inval_Arr[4] = false; 
 				alert('주소를 확인하세요.'); 
 				return false; 
 			}
@@ -463,25 +383,22 @@
 			
 			/*
 			 * inval_Arr가 모두 true일 경우 ajax로 데이터 전송
-			 */
+			 */			 
 			if(validAll == true && mailCertification == true){
 				$.ajax({
 					type: "POST",
-					url: "/joinProcess",
-					data: { "member_id": $('.memberId').val(),
+					url: "/member/modify", // ----------------------수정
+					data: { "member_id": $(".memberId").val(), //------------- (세션에 있는 것)수정
 							"member_email": $(".email01").val()+"@"+$(".email02").val(),
 							"member_password": $('.password01').val(),
-							"member_name": $('.memberName').val(),
 							"member_phoneNumber": $('.memberPhoneNumber').val(),
-							"member_address" : $(".address1").val()+" "+$(".address2").val()+" "+$(".address3").val(),
-							"memberAuth_id" : $('.memberId').val(),
-							"member_oauth" : null},
+							"member_address" : $(".address1").val()+" "+$(".address2").val()+" "+$(".address3").val()},
 					success: function(result){
-						alert('회원가입이 완료되었습니다.');
+						alert('회원수정이 완료되었습니다.');
 						console.log(result)
-						location.href = "/welcome";
+						location.href = "/member/mypage"; // --------------수정
 					}, error: function(result){
-						alert('회원가입에 실패했습니다.');
+						alert('회원수정에 실패했습니다.');
 						console.log(result)
 					}
 				});
@@ -492,43 +409,7 @@
 	}); // 회원가입 끝!
 	</script>
 	
-	<!----- input check 해서 button 활성화/비활성화 하는 js ----->
-	<script>
-		$('.id').on('input', checkInput);
-		$('.email01').on('input', checkInput);
-		$('.email02').on('input', checkInput);
-		$('.password01').on('input', checkInput);
-		$('.password02').on('input', checkInput);
-		$('.name').on('input', checkInput);
-		$('.phoneNumber').on('input', checkInput);
-		$('.address1').on('input', checkInput);
-		$('.address2').on('input', checkInput);
-		$('.address3').on('input', checkInput);
-
-		function checkInput() {
-			var idCheck = $('.id').val();
-			var email01Check = $('.email01').val();
-			var email02Check = $('.email02').val();
-			var password01Check = $('.password01').val();
-			var password02Check = $('.password02').val();
-			var nameCheck = $('.name').val();
-			var phoneNumberCheck = $('.phoneNumber').val();
-			var address1Check = $('.address1').val();
-			var address2Check = $('.address2').val();
-			var address3Check = $('.address3').val();
-
-			if (idCheck === '' || email01Check === '' || email02Check === ''
-					|| password01Check === '' || password02Check === ''
-					|| nameCheck === '' || phoneNumberCheck === ''
-					|| address1Check === ''|| address2Check === ''|| address3Check === '') {
-				$('.join-btn').prop('disabled', true);
-			} else {
-				$('.join-btn').prop('disabled', false);
-			}
-		}
-	</script>
-
-	<!----- option을 통한 email 주소값 입력 ----->
+		<!----- option을 통한 email 주소값 입력 ----->
 	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 
 	<script>
@@ -544,12 +425,6 @@
 			});
 		});
 	</script>
-	
-	<script>
-	
-	</script>
-	
-	<!-- <script src="/petopia/js/member.js"></script> -->
 
 </body>
 </html>

@@ -8,7 +8,7 @@ import co.kr.petopia.vo.MemberVO;
 public interface MemberSecurtiyService extends UserDetailsService {
 	
 	//시큐리티 사용자 인증	
-	UserDetails loadUserByUsername(String id);
+	UserDetails loadUserByUsername(String member_id);
 	//회원 가입
 	MemberVO getSelectMemberInfo(String member_id);
 	

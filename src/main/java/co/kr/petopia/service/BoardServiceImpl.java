@@ -2,6 +2,7 @@ package co.kr.petopia.service;
 
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -61,5 +62,37 @@ public class BoardServiceImpl implements BoardService{
 
         return boardMapper.getTotalCount(cri, board_id);
     }
+
+	@Override
+	public String getBoardInfo(long board_idx) {
+		// TODO Auto-generated method stub
+		return boardMapper.getBoardInfo(board_idx);
+	}
+
+	@Override
+	public int getTotal(Map<String, Object> pagingMap) {
+		return boardMapper.getTotalCount2(pagingMap);
+	}
+
+	@Override
+	public List<BoardVO> getContentListPaging(Map<String, Object> pagingMap) {
+		return boardMapper.getContentListPaging1(pagingMap);
+	}
+
+	@Override
+	public void modifyContentInfo(BoardVO modifyContentVO) {
+		boardMapper.modifyContentInfo(modifyContentVO);
+		
+	}
+
+	@Override
+	public void deleteContentInfo(int content_idx) {
+		boardMapper.deleteContentInfo(content_idx);
+	}
+
+	@Override
+	public List<BoardVO> getAllBoardInfo() {
+		return boardMapper.getAllBoardInfo();
+	}
     
 }

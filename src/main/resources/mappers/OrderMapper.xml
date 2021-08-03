@@ -7,11 +7,8 @@
 
 	<!-- 결제 시 회원 별 장바구니(구매) 리스트 -->
 	<select id="getCartList" resultType="co.kr.petopia.vo.OrderVO">
-		select member.member_id, product_name, product_coloroption, product_price
-		from cart left join member on cart.member_id = member.member_id
-		left join order_form on member.member_id = order_form.member_id
-		left join product on cart.product_idx = product.product_idx 
-		where member_id = 'dummy20'
+		select product_detail_info, product.product_idx, product.product_name, product.product_coloroption, product_price
+		from cart, product where cart.product_idx = product.product_idx and member_id = 'dummy20'
 		<!-- where member_id = #{member.id} -->
 	</select> 
 
@@ -22,25 +19,16 @@
 	</insert>
 
 	<insert id="orderDetailInsert">
-	     <!-- insert into order_detail (order_idx, product_idx, order_name, order_receiver_name, order_receiver_phonenumber, order_receiver_address, order_quantity, payment_method)
-		 values (#{order_idx}, #{product_idx}, #{order_name}, #{order_receiver_name}, #{order_receiver_phonenumber}, #{order_receiver_address}, #{order_quantity}, #{payment_method}) 
-	 -->
-	 
-<!-- 	 	<selectKey order = "BEFORE" keyProperty = "order_idx" resultType = "int">
-	 		select order_seq.nextVal from dual
-	 	</selectKey> -->
-	 	
-	     insert into order_detail (order_idx, product_idx, order_name, order_receiver_name, order_receiver_phonenumber, order_receiver_address, order_quantity, payment_method)
-		 values (#{order_idx}, #{product_idx}, #{order_name}, #{order_receiver_name}, #{order_receiver_phonenumber}, #{order_receiver_address}, #{order_quantity}, #{payment_method}) 
-		 <!--  -->
+	     insert into order_detail (order_idx, product_idx, order_name, order_receiver_name, order_receiver_phonenumber, order_receiver_address, order_quantity, payment_method, order_date)
+		 values (#{order_idx}, #{product_idx}, #{order_name}, #{order_receiver_name}, #{order_receiver_phonenumber}, #{order_receiver_address}, #{order_quantity}, #{payment_method}, to_date(sysdate, 'yyyy/mm/dd hh24:mi:ss')) 
 	</insert>
 	
-<!-- 	<select id="getOrderFormCurrVal" >
-		select order_seq.currval from dual
-	</select> -->
-	
 	<delete id = "deleteOrderIdx">
-		delete from order_form (order_idx) where order_idx = #{order_idx}
+		delete from order_form where order_idx = #{order_idx}
 	</delete>
+	
+	<select id = "readOrderInfo" resultType="co.kr.petopia.vo.OrderVO">
+		select * from ORDER_DETAIL where order_idx = (select max(order_idx) from order_form)
+	</select>
 	
 </mapper>

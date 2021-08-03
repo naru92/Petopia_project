@@ -1,6 +1,7 @@
 package co.kr.petopia.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
@@ -29,5 +30,18 @@ public interface BoardMapper {
     int contentDelete(Long content_idx);
     
     public int getTotalCount(Criteria cri, Long board_id);
+    
+    //게시판 이름
+	String getBoardInfo(long board_idx);
+	//게시판 번호/이름 따오기
+	List<BoardVO> getAllBoardInfo();
+
+	int getTotalCount2(Map<String, Object> pagingMap);
+
+	List<BoardVO> getContentListPaging1(Map<String, Object> pagingMap);
+	//form update
+	void modifyContentInfo(BoardVO modifyContentVO);
+	//form delete
+	void deleteContentInfo(int content_idx);
 
 }

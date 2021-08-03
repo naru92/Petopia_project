@@ -404,6 +404,32 @@ display :inline;
 
             uploadUL.append(str);
         }
+        $(".uploadResult").on("click", "button", function(e) {
+
+            console.log("delete file");
+
+            var targetFile = $(this).data("file");
+            var type = $(this).data("type");
+
+            var targetLi = $(this).closest("li");
+
+            $.ajax({
+                url: '/deleteFile',
+                data: {
+                    fileName: targetFile,
+                    type: type
+                },
+                dataType: 'text',
+                type: 'POST',
+                success: function(result) {
+                    alert('삭제 되었습니다.');
+                    targetLi.remove();
+                    $("#uploadInput").val("");
+                }
+            });
+            // $.ajax
+        });
+	//검사변수
 							
         $("input[type='file']").change(function(e) {
 

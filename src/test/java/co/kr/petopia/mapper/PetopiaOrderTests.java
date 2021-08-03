@@ -61,4 +61,12 @@ class PetopiaOrderTests {
 		 */
 	}
 
+	
+	@Test
+	public void testReadOrderInfo() {
+		OrderVO vo = new OrderVO();
+		
+		
+	}
+	
 }

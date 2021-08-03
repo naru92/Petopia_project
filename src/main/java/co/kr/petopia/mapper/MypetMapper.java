@@ -1,5 +1,6 @@
 package co.kr.petopia.mapper;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
@@ -21,6 +22,7 @@ public interface MypetMapper {
     // 마이펫 삭제
     int mypetDelete (int mypet_idx);
 
+    String selectPassword(HashMap<String, Object> param);
 }
 
 

@@ -37,16 +37,15 @@ public class AuthSuccessHandler implements AuthenticationSuccessHandler {
 	@Autowired
 	MemberSecurtiyService memberSecurtiyService;
 	
-	private String defaultUrl="/main";//기본설정 url
+	private String defaultUrl="/petstagram";//기본설정 url
 	private RequestCache requestCache = new HttpSessionRequestCache(); //원래 요청한주소
 	private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy(); //원래 가야할 url위치
 	
-	/*super.setDefaultTargetUrl("/admin/main");
-		
-		super.onAuthenticationSuccess(request, response, authentication);*/
 	
-	
-
+	/* super.setDefaultTargetUrl("/main"); */
+	 //super.onAuthenticationSuccess(request,response, authentication);
+	  
+	 
 
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,

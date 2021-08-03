@@ -1,55 +1,35 @@
 package co.kr.petopia.controller;
 
-import java.io.IOException;
-import java.util.Random;
-import java.util.UUID;
 
-import javax.servlet.http.HttpSession;
+import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.google.gson.Gson;
 
 import co.kr.petopia.service.MemberService;
-import co.kr.petopia.vo.KakaoProfile;
 import co.kr.petopia.vo.MemberVO;
-import co.kr.petopia.vo.OAuthToken;
 import lombok.extern.log4j.Log4j2;
 
 @Log4j2
 @Controller
-@RequestMapping("/member")
 public class MemberController {
 
-    @Autowired
+	@Autowired
     private MemberService memberService;
-
-    /* 
-     * 2021.07.23
-     * url은 대소문자 구분 -> 사용자의 편의성을 위해서 대문자는 거의 사용하지 않는다.
-     * 단어간 구분을 할때는 '-' 을 사용하여 구분한다.
-     */
     
+
     @GetMapping("/login")
     public String loginPage() {
         log.info("로그인 페이지-----------");
@@ -87,26 +67,6 @@ public class MemberController {
 
         log.info("join service 완료-----------");
 
-        return "success";
-    }
-    
-    // 로그인
-    @PostMapping("/loginProcess")
-    @ResponseBody
-    public String login(String member_id, String member_password, HttpSession session) {
-        
-        log.info("login -----------");
-        
-        MemberVO principal = memberService.memberLogin(member_id, member_password);
-        
-        log.info("login service 완료-----------");
-        
-        if(principal != null) {
-            session.setAttribute("principal", principal);
-        }
-        
-        log.info("login 완료-----------");
-        
         return "success";
     }
 
@@ -170,53 +130,60 @@ public class MemberController {
 
 
     // 마이페이지 메인
-    @GetMapping("/mypage")
+    @GetMapping("member/mypage")
     public String mypage() {
         return "member/mypage";
     }
 
     // 마이페이지 기부
-    @GetMapping("/mypage_donation")
+    @GetMapping("member/mypage_donation")
     public String mypage_donation() {
         return "member/mypage_donation";
     }
 
     // 회원 탈퇴
-    @GetMapping("/withdrawal_agree")
+    @GetMapping("member/withdrawal_agree")
     public String withdrawal_agree() {
         return "member/withdrawal_agree";
     }
 
-    @GetMapping("/withdrawal")
+    @GetMapping("member/withdrawal")
     public String withdrawal() {
         return "member/withdrawal";
     }
 
-    @GetMapping("/withdrawal_success")
+    @GetMapping("member/withdrawal_success")
     public String withdrawal_success() {
         return "member/withdrawal_success";
     }
-
-    // 기부 메인
-    @GetMapping("/donation")
+	
+	// 기부 메인
+	@GetMapping("/donation")
     public String donation() {
         return "member/donation";
     }
 
 	// 마이펫 등록
-	@GetMapping("/myPet1")
+	@GetMapping("member/myPet1")
 	public String myPet1() {
 		return "member/myPet1";
 	}
 	
 	// 회원정보수정 비밀번호 확인
-	@GetMapping("/passwordConfirm")
+	@GetMapping("member/passwordConfirm")
 	public String passwordConfirm() {
 		
 		return "member/passwordConfirm";
 	}
-        
+
+	
+	// 회원정보수정
+	@GetMapping("/memberModify")
+	public String memberModify() {
+		
+
+		return "member/memberModify";
+	}
+
+
 }
-
-
-
