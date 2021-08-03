@@ -492,8 +492,8 @@ translateX
 									<div class="dropdown">
 									<a href="#" class="link_text dropbtn">고객센터</a>
 									 <div class="dropdown-content">
-									    <a href="${root }notice?board_id=1">공지사항</a>
-									    <a href="/login">문의내역</a>
+									    <a href="${root }notice?board_id=${notice_info.board_id}">공지사항</a>
+									    <a href="${root }board/qna?board_id=${qna_info.board_id}">문의하기</a>
 									  </div>
 									</div>									
 							 </c:when> 
@@ -569,10 +569,6 @@ translateX
 
 	<hr />
 	<div class="container-fluid">
-
-
-
-
 
 		<div class="container-fluid maginContainer">
 
