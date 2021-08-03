@@ -33,7 +33,15 @@ public interface BoardService {
     //게시판 이름 가져오기
 	String getBoardInfo(long board_idx);
 
+	//게시판 이름,정보 따오기
+	List<BoardVO> getAllBoardInfo();
+	
 	int getTotal(Map<String, Object> pagingMap);
 
 	List<BoardVO> getContentListPaging(Map<String, Object> pagingMap);
+	
+	//폼방식 수정
+	void modifyContentInfo(BoardVO modifyContentVO);
+	//폼방식 삭제
+	void deleteContentInfo(int content_idx);
 }

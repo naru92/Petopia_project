@@ -7,8 +7,10 @@
 
 	<!-- 해당 게시판에 게시글 불러오는 쿼리문 / idx 내림차순 (최신게 위로) -->
 	<select id="getContentList" resultType="co.kr.petopia.vo.BoardVO">
-		select * from content where
-		board_id = #{board_id} order by content_idx DESC
+		SELECT content_idx, content_title, content_text,
+				TO_CHAR(content_date , 'yyyy-mm-dd') as content_date, content_hit, content_update, member_id, board_id 
+		FROM content where
+		board_id = #{board_id} order by content_idx DESC;
 	</select>
 	
 	<!-- 해당 게시판에 게시글 불러오는 쿼리문 + 페이징 -->
@@ -80,13 +82,32 @@
 		content_update = sysdate
 		where content_idx = #{content_idx}
 	</update>
+	
+	<update id="modifyContentInfo">
+		UPDATE content
+		SET content_title = #{content_title},
+			content_text = #{content_text},
+			content_date = sysdate
+		WHERE board_id=#{board_id} and content_idx = #{content_idx}
+	</update>
+	
+	
 	<select id="getBoardInfo" resultType="String" >
 	<![CDATA[
-		select board_name 
+		select board_name, board_id 
 		from board
 		where board_id =${board_id}
 	]]>
 	</select>
+	
+	<select id="getAllBoardInfo" resultType="co.kr.petopia.vo.BoardVO">
+	select *
+	from board
+	</select>
+	
+	<delete id="deleteContentInfo">
+	delete from content where content_idx = #{content_idx}
+	</delete>
 	
 
 </mapper>

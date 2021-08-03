@@ -22,7 +22,13 @@
 
 
 <style type="text/css">
+.container-side{
+padding-top: 10px;
+}
 
+.paginationRow{
+justify-content: center;
+}
 footer {
  
    position:absolute;
@@ -43,7 +49,8 @@ width: 100%;
 }
 
 .card-title {
-	
+font-weight:bold;
+	margin-bottom: 24px;
 }
 </style>
 </head>
@@ -61,7 +68,9 @@ width: 100%;
 			<%@include file="../include/default_sidebar.jsp"%>
 		</div>
 		<div class="card-body boardbody">
-			<h4 class="card-title">${board_name}</h4>
+	
+		<h3 class="card-title">${board_name}</h3>
+	
 			<table class="table table-hover" id=''>
 				<thead>
 					<tr>
@@ -85,7 +94,7 @@ width: 100%;
 
 	
 			<input type="hidden" id="size" value="${fn:length(contentList)}" />
-			<div class="row">
+			<div class="row paginationRow">
 				<div class="col-sm-12 col-md-5 paginationdiv">
 					<div id="masterDiv" class="d-none d-md-block page-div">
 						<ul class="pagination justify-content-center">
@@ -112,7 +121,7 @@ width: 100%;
 			 <div class="text-right">
 				<a href="${root}/notice/register?board_id=1" class="btn btn-defalut">글작성</a>
 			</div> 
-			</sec:authorize>
+		</sec:authorize>
 
 		</div>
 	</div>

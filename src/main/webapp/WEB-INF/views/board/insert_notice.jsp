@@ -97,11 +97,11 @@ padding: 0;
 							</div>
 							
 						
-							<div class="form-group">
+						<div class="form-group">
 							<div class="text-right">
 								<form:button class="btn btn-default">작성하기</form:button>
-						</div>
 							</div>
+						</div>
 						</form:form>
 
 					</div>

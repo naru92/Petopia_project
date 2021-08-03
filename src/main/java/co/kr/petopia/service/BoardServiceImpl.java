@@ -76,8 +76,23 @@ public class BoardServiceImpl implements BoardService{
 
 	@Override
 	public List<BoardVO> getContentListPaging(Map<String, Object> pagingMap) {
-		// TODO Auto-generated method stub
 		return boardMapper.getContentListPaging1(pagingMap);
+	}
+
+	@Override
+	public void modifyContentInfo(BoardVO modifyContentVO) {
+		boardMapper.modifyContentInfo(modifyContentVO);
+		
+	}
+
+	@Override
+	public void deleteContentInfo(int content_idx) {
+		boardMapper.deleteContentInfo(content_idx);
+	}
+
+	@Override
+	public List<BoardVO> getAllBoardInfo() {
+		return boardMapper.getAllBoardInfo();
 	}
     
 }

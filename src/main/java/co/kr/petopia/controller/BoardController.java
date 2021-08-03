@@ -58,7 +58,6 @@ public class BoardController {
 		 model.addAttribute("board_name" , boardName);
 		 model.addAttribute("contentList", boardService.getContentListPaging(pagingMap2));
 				
-		 
 
 		return "board/notice";
 
@@ -78,8 +77,6 @@ public class BoardController {
 			@RequestParam(value = "board_id", defaultValue = "1") int board_id) {
 		log.info("notice = " + noticeContentVO);
 		
-		
-		
 
 		return "/board/insert_notice";
 	}
@@ -97,7 +94,38 @@ public class BoardController {
 
 		return "board/register_success";
 	}
-
+	
+	
+	@GetMapping("notice/modify")
+	public String modify(@RequestParam("board_id") int board_info_idx,
+							@RequestParam("content_idx") int content_idx,
+							@ModelAttribute("modifyContentVO") BoardVO modifyContentVO,
+							Model model) {
+		log.info("modify_get()...");
+		model.addAttribute("board_info_idx" , board_info_idx);
+		model.addAttribute("content_idx" , content_idx);
+		
+		BoardVO tempContentBean = boardService.getContent((long)content_idx);
+		
+		
+		modifyContentVO.setContent_date(tempContentBean.getContent_date());
+		modifyContentVO.setContent_title(tempContentBean.getContent_title());
+		modifyContentVO.setContent_text(tempContentBean.getContent_text());
+		modifyContentVO.setBoard_id(board_info_idx);
+		modifyContentVO.setContent_idx(content_idx);
+		
+		return "board/notice_modify";
+	}
+	
+	@PostMapping("/modify_pro")
+	public String modify_pro(@ModelAttribute("modifyContentVO") BoardVO modifyContentVO) {
+							 
+		log.info("modify_post()...");
+		boardService.modifyContentInfo(modifyContentVO);
+		
+		return "board/notice_modifySuccess";
+	}
+	
 	// 글 수정
 	@PostMapping("/notice/modify")
 	public String noticeModify(BoardVO board, RedirectAttributes rttr) {
@@ -112,35 +140,40 @@ public class BoardController {
 	}
 
 	// 글 삭제
-	@PostMapping("/notice/remove")
-	public String noticeRemove(@RequestParam("content_idx") Long content_idx, RedirectAttributes rttr) {
+	@GetMapping("/notice/remove")
+	public String noticeRemove(@RequestParam("board_id") int board_info_idx,
+			 @RequestParam("content_idx") int content_idx,
+			 Model model) {
 
-		int count = boardService.contentRemove(content_idx);
-
-		if (count == 1) {
-			rttr.addFlashAttribute("result", "success");
-		}
-
-		return "redirect:/notice";
+		boardService.deleteContentInfo(content_idx);
+		
+		model.addAttribute("board_info_idx", board_info_idx);
+		
+		return "board/notice_removeSuccess";
 	}
 
 	/****************** 문의하기 **********************/
 
 	// 리스트 불러오기(페이징)
-	@GetMapping("member/inquiry")
-	public String inquiryList(Criteria cri, Model model) {
+	
 
-		log.info("--------------------------");
-		log.info(cri);
-		log.info("inquiryList...........");
+	
+	@GetMapping("/board/qna")
+	public String inquiryList(@RequestParam int board_id ,Criteria cri, Model model) {
 
-		model.addAttribute("contentList", boardService.getContentListPaging(cri, 2L));
+		/*
+		 * log.info("--------------------------"); log.info(cri);
+		 * log.info("inquiryList...........");
+		 * 
+		 * model.addAttribute("contentList", boardService.getContentListPaging(cri,
+		 * 2L));
+		 * 
+		 * int total = boardService.getTotal(cri, 2L);
+		 * 
+		 * model.addAttribute("pageMaker", new PageVO(cri, total));
+		 */
 
-		int total = boardService.getTotal(cri, 2L);
-
-		model.addAttribute("pageMaker", new PageVO(cri, total));
-
-		return "member/inquiry";
+		return "board/qna_main";
 
 	}
 
