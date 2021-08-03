@@ -13,9 +13,6 @@ public interface MemberService {
 
     // 해당 멤버 정보 불러오기
     MemberVO getMemberInfo(String member_id);
-
-    // login
-    MemberVO memberLogin(String member_id, String member_password);
     
     // insert
     void memberRegister(MemberVO member);
@@ -32,7 +29,6 @@ public interface MemberService {
     // 회원 별 댓글 list
     List<ReplyVO> getMyReplyList(String member_id);
  
-
     // 아이디 중복체크
     int checkMemberId(String member_id);
 

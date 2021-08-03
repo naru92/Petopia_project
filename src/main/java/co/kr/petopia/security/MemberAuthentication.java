@@ -16,9 +16,6 @@ import lombok.Setter;
 public class MemberAuthentication extends UsernamePasswordAuthenticationToken {
 	//로그인 사용자를 객체 저장할것임
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;	
 	
 	MemberVO member;

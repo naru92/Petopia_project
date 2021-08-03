@@ -1,7 +1,8 @@
 package co.kr.petopia.controller;
 
 import java.io.IOException;
-import java.util.Random;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -9,17 +10,25 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.authority.AuthorityUtils;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import co.kr.petopia.service.MemberSecurtiyService;
 import co.kr.petopia.service.MemberService;
 import co.kr.petopia.vo.KakaoProfile;
 import co.kr.petopia.vo.MemberVO;
@@ -34,6 +43,11 @@ public class SocialController {
     @Autowired
     private MemberService memberService;
     
+    @Autowired
+    private MemberSecurtiyService memberSecurtiyService;
+    
+    private AuthenticationManager authenticationManager;
+    
     private String clientId = "ff1341405313f721c279ce5cd541bf40";
     private String redirectUri = "http://localhost:8282/kakao/callback";
     
@@ -41,7 +55,7 @@ public class SocialController {
     private String petopiaKey;
 
     @GetMapping("/kakao/callback")
-    public String kakaoCallback(String code) throws IOException { 
+    public String kakaoCallback(String code, HttpSession session, Model model) throws IOException { 
 
         // POST방식으로 key=value 데이터를 요청 (카카오 쪽으로)
         RestTemplate rt = new RestTemplate();
@@ -61,7 +75,7 @@ public class SocialController {
         HttpEntity<MultiValueMap<String, String>> kakaoTokenRequest = new HttpEntity<>(params, headers);
 
         // Http 요청하기 -> Post방식으로 -> 그리고 response 변수의 응답 받음.
-        ResponseEntity response = rt.exchange(
+        ResponseEntity<String> response = rt.exchange(
             "https://kauth.kakao.com/oauth/token", 
             HttpMethod.POST, 
             kakaoTokenRequest,
@@ -94,7 +108,7 @@ public class SocialController {
         HttpEntity<MultiValueMap<String, String>> kakaoProfileRequest = new HttpEntity<>(headers2);
 
         // Http 요청하기 -> Post방식으로 -> 그리고 response 변수의 응답 받음.
-        ResponseEntity response2 = rt2.exchange(
+        ResponseEntity<String> response2 = rt2.exchange(
             "https://kapi.kakao.com/v2/user/me", 
             HttpMethod.POST, 
             kakaoProfileRequest,
@@ -127,6 +141,7 @@ public class SocialController {
         kakaoMember.setMember_id(kakaoProfile.getId().toString());
         kakaoMember.setMemberAuth_id(kakaoProfile.getId().toString());
         kakaoMember.setMember_password(petopiaKey);
+        kakaoMember.setMember_oauth("KAKAO");
         kakaoMember.setMember_email(kakaoProfile.getKakao_account().getEmail());
         kakaoMember.setMember_name(kakaoProfile.getProperties().getNickname());
         kakaoMember.setMember_phoneNumber("미입력");
@@ -146,11 +161,23 @@ public class SocialController {
             memberService.memberRegister(kakaoMember);
             System.out.println("카카오 회원가입 완료-------------");
         } 
-        
+
         System.out.println("카카오 자동 로그인-------------");
+
+        // kakaoMember로 로그인처리 (세션등록)
+        UserDetails member = memberSecurtiyService.loadUserByUsername(kakaoMember.getMember_id());
+
+        Authentication authentication = new UsernamePasswordAuthenticationToken(kakaoMember.getMember_id(), kakaoMember.getMember_password()); 
         
-        // kakaoMember로 로그인처리
-       
+        SecurityContext securityContext = SecurityContextHolder.getContext();
+        
+        securityContext.setAuthentication(authentication);
+        
+        session.setAttribute("SPRING SECURITY CONTEXT", securityContext);
+        
+        model.addAttribute("msg", "카카오 계정으로 로그인 되었습니다");
+        model.addAttribute("url", "/");
+        
         
         return "redirect:/main";
     }

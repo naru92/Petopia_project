@@ -100,15 +100,15 @@ insert into REPLY(reply_idx, content_idx, member_id, reply_group_idx, reply_text
   
 -- 주문서 데이터 생성
 SELECT * FROM ORDER_FORM;
-insert into ORDER_FORM(order_idx, product_idx, member_id, order_date, payment_method)
-               values (ORDER_SEQ.nextval, 201, 'dummy23', sysdate, 1);
+insert into ORDER_FORM(order_idx, product_idx, member_id, order_date)
+               values (ORDER_SEQ.nextval, 201, 'dummy23', sysdate);
                
                
 -- 주문 데이터 상세
 SELECT * FROM ORDER_DETAIL;
 INSERT INTO order_detail(order_idx, product_idx, order_receiver_name,
-                         order_receiver_phoneNumber, order_receiver_address, order_quantity, order_name)
-                 	 values (1, 1, '받는사람1', '010-1234-5687', '주소123', 3, '주문자1');
+                         order_receiver_phoneNumber, order_receiver_address, order_quantity, order_name, order_date, PAYMENT_METHOD)
+                 	 values (1, 1, '받는사람1', '010-1234-5687', '주소123', 3, '주문자1', sysdate, 1);
             
 
 -- 장바구니 타입
@@ -222,3 +222,35 @@ create sequence cart_seq
 -- 멤버네임 길이 수정
 ALTER TABLE MEMBER  
 MODIFY (MEMBER_NAME VARCHAR2(20 BYTE) );
+
+(2021.07.30 추가)
+-- order_detail에 주문일자 추가
+
+ALTER TABLE ORDER_DETAIL 
+ADD (ORDER_DATE DATE NOT NULL);
+
+COMMENT ON COLUMN ORDER_DETAIL.ORDER_DATE IS '주문일자';
+
+(2021.08.01 추가)
+-- 비밀번호 길이 변경
+ALTER TABLE MEMBER  
+MODIFY (MEMBER_PASSWORD VARCHAR2(100 BYTE) );
+
+(2021.08.03 추가)
+-- 적립된 포인트
+ALTER TABLE point ADD member_point_savepoint NUMBER DEFAULT 0 NULL;
+
+ALTER TABLE point ADD member_point_savedetaile varchar(25) DEFAULT'-' NOT NULL;
+ALTER TABLE point ADD member_point_usedetaile varchar(25) DEFAULT'-' NOT NULL;
+
+-- 주소 허용 길이 수정
+ALTER TABLE ORDER_DETAIL  
+MODIFY (ORDER_RECEIVER_ADDRESS VARCHAR2(300 BYTE) );
+
+-- SNS으로 회원 가입시 구분
+ALTER TABLE MEMBER 
+ADD (MEMBER_OAUTH VARCHAR2(20) );
+
+COMMENT ON COLUMN MEMBER.MEMBER_OAUTH IS 'SNS가입구분';
+
+
