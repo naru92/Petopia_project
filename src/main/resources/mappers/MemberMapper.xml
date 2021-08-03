@@ -12,27 +12,22 @@
 		m.member_name as member_name,
 		a.authority, a.enabled
 		FROM member m , authorities a
-		WHERE a.member_id = #{memberAuth_id} and
+		WHERE a.member_id = #{member_id} and
 		m.member_id = #{member_id}
 	</select>
-
+	
 	<!-- 해당 멤버 정보 가지고 오기 -->
 	<select id="getMemberInfoRead" resultType="co.kr.petopia.vo.MemberVO">
 		select * from member where member_id = #{member_id}
-	</select>
-	
-	<!-- 로그인 id/pw -->
-	<select id="memberLogin" parameterType="String" resultType="co.kr.petopia.vo.MemberVO">
-		select * from member where member_id = #{member_id} AND member_password = #{member_password}
 	</select>
 
 	<!-- 회원가입 -->
 	<insert id="memberJoin">
 		insert into member(member_id, member_password,
 		member_name, member_phoneNumber, member_address,
-		member_email, member_joindate, member_grade, member_point, member_donation) 
+		member_email, member_joindate, member_grade, member_point, member_donation, member_oauth) 
 		values(#{member_id}, #{member_password}, #{member_name},
-		#{member_phoneNumber}, #{member_address}, #{member_email}, sysdate,'브론즈', 0, 0)
+		#{member_phoneNumber}, #{member_address}, #{member_email}, sysdate,'브론즈', 0, 0, #{member_oauth})
 		<selectKey order="BEFORE" keyProperty="member_id" resultType="java.lang.String">
 		select #{member_id} from dual
 		</selectKey>

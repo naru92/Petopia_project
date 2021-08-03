@@ -5,7 +5,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=decice-width" initial-scale="1">
 <title>Petstagram</title>
 <!-- default_css -->
@@ -21,7 +20,7 @@
 		<%@include file="../include/default_header.jsp"%>
 	</header>
 
-	<content> <!-- Latest Products Start -->
+	<section> <!-- Latest Products Start -->
 	<div class="container">
 
 		<!-- Nav Card -->
@@ -76,7 +75,7 @@
 		</div>
 		<!-- End of container -->
 	</div>
-	</content>
+	</section>
 	<br />
 	<footer>
 		<%@include file="../include/default_footer.jsp"%>

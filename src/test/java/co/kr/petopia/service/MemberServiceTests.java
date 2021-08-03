@@ -29,12 +29,6 @@ public class MemberServiceTests {
         memberService.getSelectMemberInfo("dummy23");
     }
     
-    @Test
-    public void testMemberLogin() {
-
-        memberService.memberLogin("dummy1","1111");
-
-    }
     
     @Test
     public void testMemberRegister() {
@@ -70,6 +64,12 @@ public class MemberServiceTests {
     @Test
     public void getMemberRemove() {
         
+        memberService.memberRemove("test01");
+        memberService.memberRemove("test02");
+        memberService.memberRemove("test03");
+        memberService.memberRemove("test04");
+        memberService.memberRemove("test05");
+        memberService.memberRemove("test06");
         memberService.memberRemove("1807379122");
 
     }

@@ -2,6 +2,8 @@ package co.kr.petopia.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import co.kr.petopia.mapper.MemberMapper;
@@ -16,8 +18,11 @@ import lombok.ToString;
 @ToString
 public class MemberServiceImpl implements MemberService{
 
+    @Autowired
     private final MemberMapper memberMapper;
 
+    @Autowired
+    private BCryptPasswordEncoder encodePWD;
     
     // 회원권한조회
     @Override
@@ -33,18 +38,15 @@ public class MemberServiceImpl implements MemberService{
         return memberMapper.getMemberInfoRead(member_id);
     }
     
-    // 로그인
-    @Override
-    public MemberVO memberLogin(String member_id, String member_password) {
-        
-        memberMapper.getSelectMemberInfo(member_id);
-        
-        return memberMapper.memberLogin(member_id, member_password);
-    }
     
     // 회원가입
     @Override
     public void memberRegister(MemberVO member) {
+        
+        String rawPassword = member.getMember_password();
+        String encPassword = encodePWD.encode(rawPassword);
+        
+        member.setMember_password(encPassword);
         
         memberMapper.memberJoin(member);
         memberMapper.memberAuthorities(member);

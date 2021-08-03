@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var='root' value="${pageContext.request.contextPath }/" />
   
-  <!-- »ó´Ü¸Þ´º -->  
+  <!-- ìƒë‹¨ë©”ë‰´ -->  
   <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
@@ -11,7 +11,7 @@
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-paw"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">Petopia °ü¸®</div>
+        <div class="sidebar-brand-text mx-3">Petopia ê´€ë¦¬</div>
       </a>
 
       <!-- Divider -->
@@ -26,12 +26,12 @@
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
           <i class="fas fa-user"></i>
-          <span>»ç¿ëÀÚ</span>
+          <span>ì‚¬ìš©ìž</span>
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
 
-            <a class="collapse-item" href="${root}admin/member">»ç¿ëÀÚ¸ñ·Ï</a>
+            <a class="collapse-item" href="${root}admin/member">ì‚¬ìš©ìžëª©ë¡</a>
 
           </div>
         </div>
@@ -41,12 +41,12 @@
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
           <i class="fas fa-gifts"></i>
-          <span>»óÇ°</span>
+          <span>ìƒí’ˆ</span>
         </a>
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="${root}admin/product">»óÇ°Á¶È¸</a>
-			<a class="collapse-item" href="${root}admin/product/insert">»óÇ°µî·Ï</a>
+            <a class="collapse-item" href="${root}admin/product">ìƒí’ˆì¡°íšŒ</a>
+			<a class="collapse-item" href="${root}admin/product/insert">ìƒí’ˆë“±ë¡</a>
           </div>
            
         </div>
@@ -55,12 +55,12 @@
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities0" aria-expanded="true" aria-controls="collapseUtilities1">
           <i class="fas fa-wallet"></i>
-          <span>ÁÖ¹®</span>
+          <span>ì£¼ë¬¸</span>
         </a>
         <div id="collapseUtilities0" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
 
-            <a class="collapse-item" href="${root}admin/order">ÁÖ¹®°ü¸®</a>
+            <a class="collapse-item" href="${root}admin/order">ì£¼ë¬¸ê´€ë¦¬</a>
 
 
           </div>
@@ -72,12 +72,12 @@
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities1" aria-expanded="true" aria-controls="collapseUtilities1">
           <i class="fas fa-truck"></i>
-          <span>¹è¼Û</span>
+          <span>ë°°ì†¡</span>
         </a>
         <div id="collapseUtilities1" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
 
-            <a class="collapse-item" href="${root}admin/delivery">¹è¼Û°ü¸®</a>
+            <a class="collapse-item" href="${root}admin/delivery">ë°°ì†¡ê´€ë¦¬</a>
 
 
           </div>
@@ -92,7 +92,7 @@
         <div id="collapseUtilities2" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
 
-            <a class="collapse-item" href="${root}admin/QnA">¹®ÀÇ³»¿ª°ü¸®</a>
+            <a class="collapse-item" href="${root}admin/QnA">ë¬¸ì˜ë‚´ì—­ê´€ë¦¬</a>
 
 
           </div>
@@ -102,12 +102,12 @@
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities3" aria-expanded="true" aria-controls="collapseUtilities3">
           <i class="fas fa-hand-holding-usd"></i>
-          <span>±âºÎ</span>
+          <span>ê¸°ë¶€</span>
         </a>
         <div id="collapseUtilities3" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
 
-            <a class="collapse-item" href="${root}admin/donation">±âºÎ³»¿ª°ü¸®</a>
+            <a class="collapse-item" href="${root}admin/donation">ê¸°ë¶€ë‚´ì—­ê´€ë¦¬</a>
 
 
           </div>
@@ -118,12 +118,12 @@
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities4" aria-expanded="true" aria-controls="collapseUtilities4">
           <i class="fas fa-chart-bar"></i>
-          <span>Åë°è</span>
+          <span>í†µê³„</span>
         </a>
         <div id="collapseUtilities4" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
 
-            <a class="collapse-item" href="${root}admin/statistics">Åë°è ¸ñ·Ï Á¶È¸</a>
+            <a class="collapse-item" href="${root}admin/statistics">í†µê³„ ëª©ë¡ ì¡°íšŒ</a>
 
 
           </div>
