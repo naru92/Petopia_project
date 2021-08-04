@@ -35,5 +35,7 @@ public interface MemberService {
     // 휴대폰번호 중복체크
     int checkMemberPhoneNumber(String member_phoneNumber);
     
+    // 이메일 중복체크
+    int checkMemberEmail(String member_email);
 
 }

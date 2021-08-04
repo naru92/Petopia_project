@@ -487,7 +487,7 @@ translateX
 				<div class="container-fluid">
 					<div class="menu-wrapper">
 						<div class="links">
-<<<<<<< HEAD
+
 							<c:choose>
 							<c:when test="${empty sessionScope.principal}"> 
 									<a href="/member/joinAgree" class="link_text">회원가입</a>
@@ -510,24 +510,6 @@ translateX
 									  </div>
 								</c:otherwise>
 							</c:choose>
-=======
-							<sec:authorize access="isAnonymous()">
-								<a href="/joinAgree" class="link_text">회원가입</a>
-								<a href="/login" class="link_text">로그인</a>
-								<a href="#" class="link_text">고객센터</a>
-							</sec:authorize>
-							<sec:authorize access="hasRole('ROLE_MEMBER')">
-								<a href="/member/mypage" class="link_text">마이페이지</a>
-								<a href="/logout" class="link_text">로그아웃</a>
-								<a href="#" class="link_text">고객센터</a>
-							</sec:authorize>
-							<sec:authorize access="hasRole('ROLE_ADMIN')">
-								<a href="/admin/main" class="link_text">관리자페이지</a>
-								<a href="/logout" class="link_text">로그아웃</a>
-								<a href="#" class="link_text">고객센터</a>
-							</sec:authorize>
->>>>>>> login2
-						</div>
 
 						<nav class="header-nav">
 							<div id="leftmenuToggle" class="leftmenuToggle">

@@ -6,12 +6,10 @@ import java.util.Random;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -69,7 +67,26 @@ public class MemberController {
 
         return "success";
     }
-
+    
+    // 아이디 찾기 폼
+    @GetMapping("/help/findid")
+    public String findMeberIdForm() {
+        return "member/findId";
+    }
+    // 아이디 찾기
+    
+    // 아이디 찾기 결과 화면
+    
+    // 비밀번호 찾기 폼
+    @GetMapping("/help/findpw")
+    public String findMeberPwForm() {
+        return "member/findPassword";
+    }
+    // 비밀번호 찾기
+    
+    // 비밀번혼 찾기 결과 화면
+    
+    
 
     // joinForm -> 아이디 중복 체크
     @GetMapping("/idCheck")
@@ -98,7 +115,7 @@ public class MemberController {
     @Autowired
     JavaMailSender javaMailSender;
     
-    @RequestMapping("/CheckMail")
+    @RequestMapping({"/CheckMail","member/CheckMail"})
     @ResponseBody
     public String SendMail(String mail) {
         Random random = new Random();
@@ -125,9 +142,6 @@ public class MemberController {
         return gson.toJson(key);
     }
     
-
-    
-
 
     // 마이페이지 메인
     @GetMapping("member/mypage")
@@ -178,7 +192,7 @@ public class MemberController {
 
 	
 	// 회원정보수정
-	@GetMapping("/memberModify")
+	@GetMapping("member/modify")
 	public String memberModify() {
 		
 
