@@ -8,6 +8,7 @@ import co.kr.petopia.vo.OrderVO;
 
 
 public interface OrderService {
+	
 	// 장바구니 목록 불러오기
 	List<CartVO> getCartList();
 
@@ -20,9 +21,6 @@ public interface OrderService {
 	// order_form -> 주문번호 idx 불러오는 메소드
 	int getOrderFormCurrVal();
 	
-	// order_form -> 주문번호 idx 삭제 메소드
-	void deleteOrderIdx(int order_idx);
-
 	// 주문 상세 정보 가져오기
 	OrderVO readOrderInfo();
 	

@@ -58,14 +58,6 @@ public class OrderServiceImpl implements OrderService {
 		
 	}
 
-	// order_form -> 주문번호 idx 삭제 메소드
-	@Override
-	public void deleteOrderIdx(int order_idx) {
-		
-		orderMapper.deleteOrderIdx(order_idx);
-		
-	}
-
 	// 주문 상세 정보 가져오기
 	@Override
 	public OrderVO readOrderInfo() {
@@ -73,8 +65,4 @@ public class OrderServiceImpl implements OrderService {
 		return orderMapper.readOrderInfo();
 		
 	}
-
-	
-
-	
 }
