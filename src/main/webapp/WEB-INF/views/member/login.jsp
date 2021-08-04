@@ -6,8 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="viewport" content="width=decice-width" initial-scale="1">
-<title>Login</title>
+<title>로그인 | Petopia</title>
 <!-- CSS here -->
 <link rel="stylesheet" href="/petopia/css/login_style.css">
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
@@ -36,8 +35,9 @@
 					<button id ="login-button" class="login-btn" type="submit" name="submit" >로그인</button>
 				</form>	
 					<div class="reset-group">
-						<a class="reset-id" href="#">아이디찾기</a> <a class="reset-psw"
-							href="#">비밀번호찾기</a> <a class="sign-up" href="joinAgree">회원가입</a>
+						<a class="reset-id" href="help/findid">아이디찾기</a> 
+						<a class="reset-psw" href="help/findpw">비밀번호찾기</a> 
+						<a class="sign-up" href="joinAgree">회원가입</a>
 					</div>
 					
 					<div class="seperator">
@@ -47,7 +47,8 @@
 					<p>SNS 간편 로그인</p>
 					<!-- Social login buttons -->
 					<div class="social-icon">
-						<button class="naver" type="button"></button>
+						<a href="https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=oXosCRoUhjS_qv3Pgdcy&state=state&redirect_uri=http://localhost:8282/naver/callback">
+						<button class="naver" type="button"></button></a>
 						<a href="https://kauth.kakao.com/oauth/authorize?client_id=ff1341405313f721c279ce5cd541bf40&redirect_uri=http://localhost:8282/kakao/callback&response_type=code">
 						<button class="kakao" type="button"></button></a>
 					</div>
@@ -57,18 +58,18 @@
 					</div>
 				
 				<form>	
-					<h3>비회원 로그인</h3>
+					<h3>비회원 주문조회</h3>
 					<div class="form-group">
-						<input type="text" name="user_name" placeholder="주문고객"> 
+						<input type="text" name="user_name" placeholder="주문자이름"> 
 						<span class="input-icon"><i class="fa fa-user-circle"aria-hidden="true"></i></span>
 					</div>
 					<div class="form-group">
 						<input type="password" name="order_idx" placeholder="주문번호"> 
 						<span class="input-icon"><i class="fa fa-lock"></i></span>
 					</div>
-					<button id ="userlogin-button" class="login-btn" type="submit" name="submit">로그인</button>
-				
+					<button id ="userlogin-button" class="login-btn" type="submit" name="submit">주문조회하기</button>
 				</form>
+				
 			</div>
 		</div>
 	</main>

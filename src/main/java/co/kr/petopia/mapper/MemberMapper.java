@@ -15,9 +15,6 @@ public interface MemberMapper {
 	// 멤버 정보 가지고오기(시큐리티/로그인용)
 	MemberVO getSelectMemberInfo(String member_id);
 	
-    // 로그인 시 아이디 확인
-    Optional<MemberVO> findByMemberId(String member_id);
-	
 	// 해당 멤버 정보 가지고오기
 	MemberVO getMemberInfoRead(String member_id);
 	
@@ -45,6 +42,9 @@ public interface MemberMapper {
     
     // 휴대폰번호 중복체크
     int checkMemberPhoneNumber(String member_phoneNumber);
+    
+    // 이메일 중복체크
+    int checkMemberEmail (String member_email);
     
 }
 
