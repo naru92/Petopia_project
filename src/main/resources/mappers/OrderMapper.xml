@@ -12,21 +12,19 @@
 		<!-- where member_id = #{member.id} -->
 	</select> 
 
-	<!-- 주문자 정보 입력 후 DB로 정보 넘기기 -->
+	<!-- 주문자 정보 입력 후 DB로 정보 넘기기(주문서 폼) -->
 	<insert id="orderFormInsert">
   		 insert into order_form (order_idx, product_idx, member_id, order_date) 
 		 values (order_seq.nextval, #{product_idx}, #{member_id}, sysdate)
 	</insert>
 
+	<!-- 주문자 정보 입력 후 DB로 정보 넘기기(주문 상세) -->
 	<insert id="orderDetailInsert">
 	     insert into order_detail (order_idx, product_idx, order_name, order_receiver_name, order_receiver_phonenumber, order_receiver_address, order_quantity, payment_method, order_date)
-		 values (#{order_idx}, #{product_idx}, #{order_name}, #{order_receiver_name}, #{order_receiver_phonenumber}, #{order_receiver_address}, #{order_quantity}, #{payment_method}, to_date(sysdate, 'yyyy/mm/dd hh24:mi:ss')) 
+		 values (#{order_idx}, #{product_idx}, #{order_name}, #{order_receiver_name}, #{order_receiver_phonenumber}, #{order_receiver_address}, #{order_quantity}, #{payment_method}, sysdate) 
 	</insert>
 	
-	<delete id = "deleteOrderIdx">
-		delete from order_form where order_idx = #{order_idx}
-	</delete>
-	
+	<!-- 멤버 별 주문 상세 읽어오기 -->
 	<select id = "readOrderInfo" resultType="co.kr.petopia.vo.OrderVO">
 		select * from ORDER_DETAIL where order_idx = (select max(order_idx) from order_form)
 	</select>
