@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>join agree</title>
+<title>약관동의 | Petopia</title>
 <!-- CSS here -->
 <link rel="stylesheet" href="/petopia/css/joinAgree_style.css">
 <!-- default_css -->

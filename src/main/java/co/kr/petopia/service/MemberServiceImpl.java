@@ -2,6 +2,8 @@ package co.kr.petopia.service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -102,6 +104,12 @@ public class MemberServiceImpl implements MemberService{
     public int checkMemberEmail(String member_email) {
 
         return memberMapper.checkMemberEmail(member_email);
+    }
+
+    @Override
+    public String findMemberId(String member_name, String member_phoneNumber, String member_email) {
+        
+        return memberMapper.findMemberId(member_name, member_phoneNumber, member_email);
     }
     
     

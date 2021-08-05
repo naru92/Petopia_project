@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="co.kr.petopia.mapper.PointMapper">
+	
+	<!-- 포인트 적립 -->
+	<insert id="savePoint">
+		insert into point (member_id, member_point_savepoint, member_point_savedetail, member_point_savedate)
+    		values (#{member_id}, #{member_point_savepoint}, #{member_point_savedetail}, #{member_point_savedate})
+	</insert>
+	
+	<!-- 포인트 사용 -->
+	<insert id="usePoint">
+		insert into point (member_id, member_point_usepoint, member_point_usedetail, member_point_usedate)
+    		values (#{member_id}, #{member_point_usepoint}, #{member_point_usedetail}, #{member_point_usedate})
+	</insert>
+
+	<!-- 보유 포인트 확인 -->
+	<update id="retentionPoint">
+		update member m
+			set m.member_point =
+				(select sum (p.member_point_savepoint - p.member_point_usepoint)
+					from point p)
+			where member_id = #{member_id}
+	</update>
+
+	<!-- 기부한 금액 확인 -->
+	<update id="donationPoint">
+		update member m
+			set m.member_donation =
+				(select sum (p.member_point_usepoint)
+					from point p
+						where member_point_usedetail = '기부')
+			where member_id = #{member_id}
+	</update>
+	
+	
+
+</mapper>

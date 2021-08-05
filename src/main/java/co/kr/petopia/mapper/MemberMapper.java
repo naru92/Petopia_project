@@ -46,6 +46,10 @@ public interface MemberMapper {
     // 이메일 중복체크
     int checkMemberEmail (String member_email);
     
+    // 아이디 찾기
+    String findMemberId(String member_name, String member_phoneNumber, String member_email);
+    
+    // 비밀번호 찾기 (수정)
 }
 
 
