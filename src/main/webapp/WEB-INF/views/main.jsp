@@ -488,15 +488,18 @@ translateX
 					<div class="menu-wrapper">
 						<div class="links">
 
+
 							<sec:authorize access="isAnonymous()">
 								<a href="/joinAgree" class="link_text">회원가입</a>
 								<a href="/login" class="link_text">로그인</a>
 								<div class="dropdown">
+
 									<a href="#" class="link_text dropbtn">고객센터</a>
 									 <div class="dropdown-content">
 									    <a href="${root }notice?board_id=${notice_info.board_id}">공지사항</a>
 									    <a href="${root }board/qna?board_id=${qna_info.board_id}">문의하기</a>
 									  </div>
+
 									</div>	
 							</sec:authorize>
 							<sec:authorize access="hasRole('ROLE_MEMBER')">
@@ -522,6 +525,7 @@ translateX
 									</div>	
 							</sec:authorize>
 						</div>
+
 
 						<nav class="header-nav">
 							<div id="leftmenuToggle" class="leftmenuToggle">

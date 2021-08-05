@@ -24,6 +24,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired 
     private UserDetailsService userDetailsService;
     
+    
     //로그인 버튼 클릭시 처리 클래스
     @Autowired
     AuthProvider authProvider;
@@ -99,9 +100,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         //.and()
         http
                 .logout()
-                        .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))//로그아웃 요청시 경로
+                        .logoutRequestMatcher(new AntPathRequestMatcher("/login/logoutProcess"))//로그아웃 요청시 경로
                         .logoutSuccessUrl("/login")//로그아웃 성공후 가게될 url
-                        .invalidateHttpSession(true); //세션 초기화  
+                        .invalidateHttpSession(true); //세션 초기화
                         
     }
     
