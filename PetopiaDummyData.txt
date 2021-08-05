@@ -253,4 +253,36 @@ ADD (MEMBER_OAUTH VARCHAR2(20) );
 
 COMMENT ON COLUMN MEMBER.MEMBER_OAUTH IS 'SNS가입구분';
 
+(2021.08.04)
+-- SNS가입 시 아이디 길이 때문에 member_id 길이 수정
+ALTER TABLE authorities  
+MODIFY (MEMBER_ID VARCHAR2(100 BYTE) );
+ALTER TABLE cart  
+MODIFY (MEMBER_ID VARCHAR2(100 BYTE) );
+ALTER TABLE content  
+MODIFY (MEMBER_ID VARCHAR2(100 BYTE) );
+ALTER TABLE member  
+MODIFY (MEMBER_ID VARCHAR2(100 BYTE) );
+ALTER TABLE mypet  
+MODIFY (MEMBER_ID VARCHAR2(100 BYTE) );
+ALTER TABLE order_form  
+MODIFY (MEMBER_ID VARCHAR2(100 BYTE) );
+ALTER TABLE point  
+MODIFY (MEMBER_ID VARCHAR2(100 BYTE) );
+ALTER TABLE reply  
+MODIFY (MEMBER_ID VARCHAR2(100 BYTE) );
 
+-- 포인트 컬럼명 수정
+ALTER TABLE point RENAME COLUMN member_point_savedetaile TO member_point_savedetail;
+ALTER TABLE point RENAME COLUMN member_point_usedetaile TO member_point_usedetail;
+
+-- 포인트 컬럼 코멘트 추가
+COMMENT ON COLUMN point.member_point_usepoint IS '사용 포인트';
+COMMENT ON COLUMN point.member_point_usedetail IS '사용 내역';
+COMMENT ON COLUMN point.member_point_usedate IS '사용 날짜';
+COMMENT ON COLUMN point.member_point_savepoint IS '적립 포인트';
+COMMENT ON COLUMN point.member_point_savedetail IS '적립 내역';
+COMMENT ON COLUMN point.member_point_savedate IS '적립 날짜';
+
+-- 포인트 인덱스 삭제
+DROP INDEX PK_POINT;

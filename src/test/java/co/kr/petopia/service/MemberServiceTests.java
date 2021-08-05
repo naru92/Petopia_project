@@ -64,13 +64,7 @@ public class MemberServiceTests {
     @Test
     public void getMemberRemove() {
         
-        memberService.memberRemove("test01");
-        memberService.memberRemove("test02");
-        memberService.memberRemove("test03");
-        memberService.memberRemove("test04");
-        memberService.memberRemove("test05");
-        memberService.memberRemove("test06");
-        memberService.memberRemove("1807379122");
+        memberService.memberRemove("J2SJzXng4l38ql4KRqnGsnbRQmRNQ8LXyBF5qUgq470");
 
     }
     

@@ -9,8 +9,8 @@
 
 <title>Confirmation</title>
 <!-- CSS here -->
-<link rel="stylesheet" href="petopia/css/orderconfirmation.css">
-<link rel="stylesheet" href="petopia/css/orderbootstrap.min.css">
+<link rel="stylesheet" href="/petopia/css/orderconfirmation.css">
+<link rel="stylesheet" href="/petopia/css/orderbootstrap.min.css">
 
 <!-- 추후에 수정 -->
 <link rel="shortcut icon" type="image/x-icon"
@@ -22,8 +22,6 @@
 	rel="stylesheet"
 	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
 	crossorigin="anonymous">
-<link rel="stylesheet"
-	href="https://wagtrung.github.io/store/themify-icons/themify-icons.css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
@@ -59,9 +57,7 @@
 		<div class="container">
 			<div class="invoice">
 
-				<div class="header">
-					<img alt="" src="http://www.dwcreative.uk/invoice/invoice1.png" />
-				</div>
+				
 				<br>
 				<div class="thanks">
 					<p>고객님의 주문이 완료되었습니다.</p>
@@ -73,7 +69,7 @@
 					<table>
 						<br>
 						<tr>
-							<td>서울특별시 종로구 종로 69 YMCA빌딩 7층 AIACADEMY</td>
+							<td>${confirmation_deposit.order_receiver_address}</td>
 						</tr>
 					</table>
 				</div>
@@ -83,11 +79,11 @@
 						<br>
 						<tr>
 							<td>주문자명</td>
-							<td><%= request.getParameter("order_name") %></td>
+							<td>${confirmation_deposit.order_name}</td>
 						</tr>
 						<tr>
 							<td>연락처</td>
-							<td><%= request.getParameter("order_receiver_phonenumber") %></td>
+							<td>${confirmation_deposit.order_receiver_phonenumber}</td>
 						</tr>
 					</table>
 				</div>
@@ -97,11 +93,11 @@
 						<br>
 						<tr>
 							<td>주문번호</td>
-							<td><%= request.getParameter("order_idx") %></td>
+							<td>${confirmation_deposit.order_idx}</td>
 						</tr>
 						<tr>
 							<td>주문날짜</td>
-							<td><%= request.getParameter("order_date") %></td>
+							<td>${confirmation_deposit.order_date}</td>
 						</tr>
 						<tr>
 							<td>결제수단</td>
@@ -126,25 +122,31 @@
 				<div class="productinfo">
 					<p>주문 상품 정보</p>
 					<table>
+					<c:forEach var='o' items="${order}">
 						<tbody>
 							<tr>
 								<th class="name">상품명</th>
 								<th class="detail">상품 설명</th>
 								<th class="qty">수량</th>
+								<th class="qty">옵션</th>
 								<th class="cost">가격</th>
 							</tr>
 							<tr>
-								<td class="name">바우와우 치즈볼</td>
-								<td class="detail">간식</td>
+								<td class="name">${o.product_name}</td>
+								<td class="detail">${o.product_detail_info}</td>
 								<td class="qty">2개</td>
-								<td class="cost">3,800원</td>
+								<td class="qty">${o.product_coloroption}</td>
+								<td class="cost">${o.product_price}</td>
 							</tr>
 						</tbody>
+					</c:forEach>
 					</table>
-
+					
+					<c:forEach var='o' items="${order}">
 					<div class="payment">
-						<strong> 총 결제금액: </strong><strong>3,800원</strong><br />
+						<strong> 총 결제금액: </strong><strong>${o.product_price}원</strong><br />
 					</div>
+					</c:forEach>
 				</div>
 
 				<div class="spacing2"></div>
