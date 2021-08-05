@@ -44,4 +44,6 @@ public interface BoardService {
 	void modifyContentInfo(BoardVO modifyContentVO);
 	//폼방식 삭제
 	void deleteContentInfo(int content_idx);
+	//회원 문의 리스트
+	List<BoardVO> getQnaList(BoardVO boardVO);
 }

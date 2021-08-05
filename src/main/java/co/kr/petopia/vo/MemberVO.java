@@ -36,7 +36,7 @@ public class MemberVO implements UserDetails{
 	private String authority;
 	private boolean enabled;
 
-	
+	private List<BoardVO> contentList;
 	
 	private List<? extends GrantedAuthority> authList;
 	private boolean Isenabled = true;
