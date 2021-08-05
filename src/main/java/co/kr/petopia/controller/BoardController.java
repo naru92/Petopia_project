@@ -126,18 +126,7 @@ public class BoardController {
 		return "board/notice_modifySuccess";
 	}
 	
-	// 글 수정
-	@PostMapping("/notice/modify")
-	public String noticeModify(BoardVO board, RedirectAttributes rttr) {
 
-		int count = boardService.contentModify(board);
-
-		if (count == 1) {
-			rttr.addFlashAttribute("result", "success");
-		}
-
-		return "redirect:/notice";
-	}
 
 	// 글 삭제
 	@GetMapping("/notice/remove")
