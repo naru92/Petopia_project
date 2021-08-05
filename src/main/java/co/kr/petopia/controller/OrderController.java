@@ -52,7 +52,12 @@ public class OrderController {
 	
 	// 주문 상세 페이지(카드)
 	@GetMapping("/confirmation_card")
-	public String confirmation_card() {
+	public String confirmation_card(OrderVO orderVO, Model model) {
+		log.info("confirmation_card");
+		log.info("orderService.readOrderInfo()..");
+		
+		model.addAttribute("confirmation_deposit", orderService.readOrderInfo());
+		model.addAttribute("order", orderService.getCartList());
 		
 		return "/order/confirmation_card";
 	}
@@ -74,19 +79,6 @@ public class OrderController {
 		rttr.addFlashAttribute("result", "success");
 		
 		return "success";
-	}
-	
-	// 주문 정보 삭제(order_idx)
-	/*
-	 * @PostMapping("/order/delete") public String
-	 * orderDelete(@RequestParam("order_idx") int order_idx, RedirectAttributes
-	 * rttr) {
-	 * 
-	 * int count = orderService.deleteOrderIdx(order_idx);
-	 * 
-	 * if (count == 1) { rttr.addFlashAttribute("result", "success"); }
-	 * 
-	 * return "redirect:/main"; }
-	 */
+	}	
 	
 }

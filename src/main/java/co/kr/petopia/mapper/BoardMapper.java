@@ -43,5 +43,7 @@ public interface BoardMapper {
 	void modifyContentInfo(BoardVO modifyContentVO);
 	//form delete
 	void deleteContentInfo(int content_idx);
+	//get my qnaList 
+	List<BoardVO> getQnaList(BoardVO boardVO);
 
 }

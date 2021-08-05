@@ -2,6 +2,7 @@ package co.kr.petopia.controller;
 
 import java.security.Principal;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +33,7 @@ public class BoardController {
 
 	// 리스트 불러오기(페이징 처리)
 	
+	//공지 CRUD -S-
 	@GetMapping("/notice")
 	public String noticeList(Criteria cri, Model model, @RequestParam(value = "board_id",  defaultValue ="1") int board_id, 
 			 Principal principal) {
@@ -101,7 +103,9 @@ public class BoardController {
 							@RequestParam("content_idx") int content_idx,
 							@ModelAttribute("modifyContentVO") BoardVO modifyContentVO,
 							Model model) {
+		
 		log.info("modify_get()...");
+		
 		model.addAttribute("board_info_idx" , board_info_idx);
 		model.addAttribute("content_idx" , content_idx);
 		
@@ -119,7 +123,8 @@ public class BoardController {
 	
 	@PostMapping("/modify_pro")
 	public String modify_pro(@ModelAttribute("modifyContentVO") BoardVO modifyContentVO) {
-							 
+		
+		
 		log.info("modify_post()...");
 		boardService.modifyContentInfo(modifyContentVO);
 		
@@ -140,12 +145,9 @@ public class BoardController {
 		
 		return "board/notice_removeSuccess";
 	}
-
-	/****************** 문의하기 **********************/
-
-	// 리스트 불러오기(페이징)
+	//공지 CRUD -END-
 	
-
+	/****************** 문의하기 **********************/
 	
 	@GetMapping("/board/qna")
 	public String inquiryList(@RequestParam int board_id ,Criteria cri, Model model) {
@@ -167,26 +169,45 @@ public class BoardController {
 	}
 
 	// 해당 게시물 불러오기 ( jsp 만든 후 string으로 바꿔서 return 해줘야함 )
-	@GetMapping("member/inquiry/get")
-	public String inquiryGet(@RequestParam("content_idx") Long content_idx, Model model) {
-
-		model.addAttribute("board", boardService.getContent(content_idx));
+	@GetMapping("member/my_qna")
+	public String inquiryGet(@RequestParam("content_idx") Long content_idx, 
+							 @RequestParam int board_id, Model model, Principal principal, BoardVO boardVO) {
+		
+		String userInfo = principal.getName();
+		boardVO.setMember_id(userInfo);
+		
+		
+		List<BoardVO> myQnaList = boardService.getQnaList(boardVO);
+		model.addAttribute("myQnaList",myQnaList);
 
 		return "member/inquiry";
 	}
 
 	// 글 작성
-	@PostMapping("member/inquiry/register")
-	public String inquiryRegister(BoardVO board, RedirectAttributes rttr) {
+	@GetMapping("/board/qna_register")
+	public String inquiryRegister(@RequestParam int board_id, Model model,
+								  @ModelAttribute("qnaContentVO") BoardVO qnaContentVO, Principal principal ) {
+		log.info("board: " + qnaContentVO);
+	
 
-		log.info("board: " + board);
 
-		boardService.contentRegister(board);
-
-		rttr.addFlashAttribute("result", board.getContent_idx());
-
-		return "redirect:/member/inquiry";
+		return "/board/qna_register";
 	}
+	
+	// 글 작성
+		@PostMapping("/board/qna_register")
+		public String inquiryRegister_pro(@RequestParam int board_id, Model model,
+									  @ModelAttribute("qnaContentVO") BoardVO qnaContentVO, Principal principal ) {
+			
+			qnaContentVO.setMember_id(principal.getName());
+			qnaContentVO.setBoard_id(board_id);
+			boardService.contentRegister(qnaContentVO);
+			log.info("board_id : "  + board_id);
+			log.info("board: " + qnaContentVO);
+
+
+			return "/board/qna_register_success";
+		}
 
 	// 글 수정
 	@PostMapping("/member/inquiry/modify")

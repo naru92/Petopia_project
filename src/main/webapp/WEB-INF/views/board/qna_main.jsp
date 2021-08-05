@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
@@ -850,7 +850,7 @@ footer section >:nth-child(3) >:nth-child(2) {
       <h2>문의하기</h2>
       <p>질문, 문의사항을 남겨주시면<br>신속하게 답변 해드립니다.</p>
       <div class="chat_btn">
-        <p><a href="${root}board/my_qna?board_id=${board_id}">작성하기</a><i class="fas fa-arrow-right"></i></p>
+        <p><a href="${root}qna_register?board_id=${param.board_id}">작성하기</a><i class="fas fa-arrow-right"></i></p>
 
       </div>
     </section>
@@ -869,7 +869,7 @@ footer section >:nth-child(3) >:nth-child(2) {
       <h2>문의내역</h2>
       <p>회원님의 문의하신 내용을<br>확인 할 수 있습니다.</p>
       <div class="chat_btn">
-        <p><a href="${root}board/my_qna?board_id=${board_id}">바로가기</a><i class="fas fa-arrow-right"></i></p>
+        <p><a href="${root}my_qna?board_id=${param.board_id}">바로가기</a><i class="fas fa-arrow-right"></i></p>
 
       </div>
     </section>

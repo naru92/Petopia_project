@@ -23,4 +23,5 @@ public class BoardVO {
     private String board_name;
     
     private List<FileUploadVO> attachList;
+    private List<MemberVO> memberList;
 }

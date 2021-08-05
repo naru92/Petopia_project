@@ -96,6 +96,13 @@ public class MemberServiceImpl implements MemberService{
         
         return  memberMapper.checkMemberPhoneNumber(member_phoneNumber);
     }
+
+    // 이메일 중복 체크
+    @Override
+    public int checkMemberEmail(String member_email) {
+
+        return memberMapper.checkMemberEmail(member_email);
+    }
     
     
 }
