@@ -94,5 +94,10 @@ public class BoardServiceImpl implements BoardService{
 	public List<BoardVO> getAllBoardInfo() {
 		return boardMapper.getAllBoardInfo();
 	}
+
+	@Override
+	public List<BoardVO> getQnaList(BoardVO boardVO) {
+		return boardMapper.getQnaList(boardVO);
+	}
     
 }

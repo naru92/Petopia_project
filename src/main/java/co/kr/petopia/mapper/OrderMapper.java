@@ -24,9 +24,6 @@ public interface OrderMapper{
 	// order_form -> 주문번호 idx 불러오는 메소드
 	@Select("select order_seq.currval from dual")
 	int getOrderFormCurrVal();
-	
-	// order_form -> 주문번호 idx 삭제 메소드
-	void deleteOrderIdx(int order_idx);
 
 	// 주문 상세 정보 가져오기
 	OrderVO readOrderInfo();

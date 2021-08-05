@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
@@ -488,28 +488,44 @@ translateX
 					<div class="menu-wrapper">
 						<div class="links">
 
-							<c:choose>
-							<c:when test="${empty sessionScope.principal}"> 
-									<a href="/member/joinAgree" class="link_text">회원가입</a>
-									<a href="/member/login" class="link_text">로그인</a>
-									<div class="dropdown">
+
+							<sec:authorize access="isAnonymous()">
+								<a href="/joinAgree" class="link_text">회원가입</a>
+								<a href="/login" class="link_text">로그인</a>
+								<div class="dropdown">
+
 									<a href="#" class="link_text dropbtn">고객센터</a>
 									 <div class="dropdown-content">
 									    <a href="${root }notice?board_id=${notice_info.board_id}">공지사항</a>
 									    <a href="${root }board/qna?board_id=${qna_info.board_id}">문의하기</a>
 									  </div>
-									</div>									
-							 </c:when> 
-								<c:otherwise>
-									<a href="/member/mypage" class="link_text">마이페이지</a>
-									<a href="/member/logout" class="link_text">로그아웃</a>
+
+									</div>	
+							</sec:authorize>
+							<sec:authorize access="hasRole('ROLE_MEMBER')">
+								<a href="/member/mypage" class="link_text">마이페이지</a>
+								<a href="/logout" class="link_text">로그아웃</a>
+								<div class="dropdown">
 									<a href="#" class="link_text dropbtn">고객센터</a>
 									 <div class="dropdown-content">
-									    <a href="${root }notice">공지사항</a>
-									    <a href="#">문의내역</a>
+									    <a href="${root }notice?board_id=${notice_info.board_id}">공지사항</a>
+									    <a href="${root }board/qna?board_id=${qna_info.board_id}">문의하기</a>
 									  </div>
-								</c:otherwise>
-							</c:choose>
+									</div>	
+							</sec:authorize>
+							<sec:authorize access="hasRole('ROLE_ADMIN')">
+								<a href="/admin/main" class="link_text">관리자페이지</a>
+								<a href="/logout" class="link_text">로그아웃</a>
+								<div class="dropdown">
+									<a href="#" class="link_text dropbtn">고객센터</a>
+									 <div class="dropdown-content">
+									    <a href="${root }notice?board_id=${notice_info.board_id}">공지사항</a>
+									    <a href="${root }board/qna?board_id=${qna_info.board_id}">문의하기</a>
+									  </div>
+									</div>	
+							</sec:authorize>
+						</div>
+
 
 						<nav class="header-nav">
 							<div id="leftmenuToggle" class="leftmenuToggle">

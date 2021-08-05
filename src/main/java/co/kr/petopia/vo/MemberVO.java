@@ -37,8 +37,13 @@ public class MemberVO implements UserDetails{
 	private String authority;
 	private boolean enabled;
 
+
 	
 	// 시큐리티용
+
+	private List<BoardVO> contentList;
+	
+
 	private List<? extends GrantedAuthority> authList;
 	private boolean Isenabled = true;
 	private	String username;

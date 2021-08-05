@@ -94,6 +94,7 @@ a {
 }
 
 .container {
+	padding-top : 10px;
 	margin: 0 auto
 }
 
@@ -489,11 +490,6 @@ select {
 	padding: 150px 0 150px 0;
 }
 
-.joinStepWrap .joinStep_Img {
-	display: block;
-	margin: 0 auto 50px
-}
-
 /* table css start  */
 .tableWrap {
 	border-top: 2px solid #464646;
@@ -532,7 +528,7 @@ select {
 }
 
 .tableTitle {
-	width: 100%;
+	width: 99.5%;
 	border-top: 1px solid #b6ada8;
 	vertical-align: middle;
 	padding: 15px 0;
@@ -639,32 +635,22 @@ span.emailAt {
 	line-height: 32px
 }
 
+.content {
+	padding: 90px 30px 0px 0px;
+	margin-left:30px;
+}
 
-	.content {
-		padding: 50px 30px 0px 0px;
-		margin-left:30px;
-	}
-	.joinStep_Img {
-		width: 90%;
-	}
-	.content .btn01 {
-		font-size: 14px;
-	}
-	.content .btn2 {
-		font-size: 14px;
-	}
-	/* .tableNumber {
-		width: 200px;
-	} */
+.content .btn01 {
+	font-size: 14px;
+}
 
-
+.content .btn2 {
+	font-size: 14px;
+}
+	
 @media screen and (max-width:720px) {
 	.content {
-		padding: 30px 15px 100px;
-	}
-	.joinStepWrap .joinStep_Img {
-		width: 100%;
-		margin-bottom: 20px;
+		padding: 0px 15px 100px;
 	}
 	/* .personalInfo .tableNumber {
 		display: block;
@@ -838,7 +824,7 @@ span.emailAt {
  	border: 1px solid #b6ada8;
  }
 
-
+/* 수정 금지 */
 
 /* font nexon lv1 gothic */
 @font-face {
@@ -1026,7 +1012,7 @@ ul {
 	font-family: 'NEXON Lv1 Gothic OTF';
 	color: #141517;
 	font-weight: 600;
-	padding: 41px 21px;
+	padding: 0px 21px;
 	display: inline-block;
 	text-transform: capitalize;
 	display: block;

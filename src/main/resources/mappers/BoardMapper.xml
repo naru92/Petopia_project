@@ -5,12 +5,48 @@
 
 <mapper namespace="co.kr.petopia.mapper.BoardMapper">
 
+ 
+ 	<resultMap type="co.kr.petopia.vo.BoardVO" id="contentMap">
+ 		<id property="content_idx" column="content_idx" />
+ 		<result property="board_id" column="board_id" />
+ 		<result property="content_date" column="content_date" />
+ 		<result property="content_title" column="content_title" />
+ 		<result property="content_text" column="content_text" />
+ 		<result property="content_hit" column="content_hit" />
+ 		<result property="content_update" column="content_update" />
+ 		
+ 		<association property="memberList" resultMap="memberMap" />
+ 	</resultMap>
+ 
+ 	<resultMap type="co.kr.petopia.vo.FileUploadVO" id="attachMap">
+ 		<id property="uuid" column="uuid" />
+ 		<result property="uploadPath" column="uploadPath" />
+ 		<result property="fileName" column="fileName" />
+ 		<result property="filetype" column="filetype" />
+ 		<result property="content_idx" column="content_idx" />
+ 	</resultMap>
+ 
+ 	<resultMap type="co.kr.petopia.vo.MemberVO" id="memberMap">
+ 		<id property="member_id" column="member_id" />
+ 		<result property="member_name" column="member_name" />
+ 		<result property="member_phoneNumber" column="member_phoneNumber" />
+ 		<result property="member_address" column="member_email" />
+ 		<result property="member_joindate" column="member_joindate" />
+ 		<result property="member_grade" column="member_grade" />
+ 		<result property="member_point" column="member_point" />
+ 		<result property="member_donation" column="member_donation" />
+ 		<result property="member_oauth" column="member_oauth" />
+ 		
+ 		<collection property="contentList" resultMap="contentMap" />
+ 	</resultMap>
+
+
 	<!-- 해당 게시판에 게시글 불러오는 쿼리문 / idx 내림차순 (최신게 위로) -->
 	<select id="getContentList" resultType="co.kr.petopia.vo.BoardVO">
 		SELECT content_idx, content_title, content_text,
 				TO_CHAR(content_date , 'yyyy-mm-dd') as content_date, content_hit, content_update, member_id, board_id 
 		FROM content where
-		board_id = #{board_id} order by content_idx DESC;
+		board_id = #{board_id} order by content_idx DESC
 	</select>
 	
 	<!-- 해당 게시판에 게시글 불러오는 쿼리문 + 페이징 -->
@@ -108,6 +144,15 @@
 	<delete id="deleteContentInfo">
 	delete from content where content_idx = #{content_idx}
 	</delete>
+	
+	<select id="getQnaList" resultMap="contentMap">
+	SELECT b.board_id , c.content_idx, c.content_title, c.content_date,
+        m.member_id, m.member_name, m.member_email
+	FROM board b , content c , member m
+	WHERE c.member_id = m.member_id AND
+		  b.board_id = c.board_id
+	
+	</select>
 	
 
 </mapper>
