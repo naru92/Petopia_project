@@ -6,18 +6,25 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import co.kr.petopia.service.BoardService;
 import co.kr.petopia.utils.Criteria;
 import co.kr.petopia.utils.PageVO;
 import co.kr.petopia.vo.BoardVO;
+import co.kr.petopia.vo.MemberVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 
@@ -151,36 +158,28 @@ public class BoardController {
 	
 	@GetMapping("/board/qna")
 	public String inquiryList(@RequestParam int board_id ,Criteria cri, Model model) {
-
-		/*
-		 * log.info("--------------------------"); log.info(cri);
-		 * log.info("inquiryList...........");
-		 * 
-		 * model.addAttribute("contentList", boardService.getContentListPaging(cri,
-		 * 2L));
-		 * 
-		 * int total = boardService.getTotal(cri, 2L);
-		 * 
-		 * model.addAttribute("pageMaker", new PageVO(cri, total));
-		 */
-
+		
+		log.info("qna view()..");
 		return "board/qna_main";
 
 	}
 
 	// 해당 게시물 불러오기 ( jsp 만든 후 string으로 바꿔서 return 해줘야함 )
-	@GetMapping("member/my_qna")
-	public String inquiryGet(@RequestParam("content_idx") Long content_idx, 
+	@GetMapping("/board/my_qna")
+	public String inquiryGet(
 							 @RequestParam int board_id, Model model, Principal principal, BoardVO boardVO) {
 		
 		String userInfo = principal.getName();
+		//id로 가져오기
+		boardVO.setBoard_id(board_id);
 		boardVO.setMember_id(userInfo);
 		
+		List<BoardVO> myQnaList= boardService.getQnaList(boardVO);
 		
-		List<BoardVO> myQnaList = boardService.getQnaList(boardVO);
-		model.addAttribute("myQnaList",myQnaList);
+		model.addAttribute("myQnaList" , myQnaList);
+		
 
-		return "member/inquiry";
+		return "board/qna_my_qna";
 	}
 
 	// 글 작성
@@ -188,53 +187,78 @@ public class BoardController {
 	public String inquiryRegister(@RequestParam int board_id, Model model,
 								  @ModelAttribute("qnaContentVO") BoardVO qnaContentVO, Principal principal ) {
 		log.info("board: " + qnaContentVO);
-	
-
-
+		qnaContentVO.setMember_id(principal.getName());
+		
 		return "/board/qna_register";
 	}
 	
-	// 글 작성
-		@PostMapping("/board/qna_register")
-		public String inquiryRegister_pro(@RequestParam int board_id, Model model,
-									  @ModelAttribute("qnaContentVO") BoardVO qnaContentVO, Principal principal ) {
+	@PostMapping("/board/qna_register")
+	public String inquiryRegister_pro(@RequestParam int board_id, Model model,
+								  @ModelAttribute("qnaContentVO") BoardVO qnaContentVO, Principal principal ) {
+		log.info("board: " + qnaContentVO);
+	
+		qnaContentVO.setMember_id(principal.getName());
+		boardService.contentRegister(qnaContentVO);
+		return "/board/qna_register_success";
+	}
+	
+	
+	@GetMapping("/board/my_qna/update")
+	public String myQnamodify(@RequestParam("board_id") int board_info_id,
+							@RequestParam("content_idx") int content_idx,
+							@ModelAttribute("modifyQnaVO") BoardVO modifyQnaVO,
+							Model model) {
+		
+		log.info("modify_get()...");
+		
+		model.addAttribute("board_info_idx" , board_info_id);
+		model.addAttribute("content_idx" , content_idx);
+		
+		BoardVO tempQnaBean = boardService.getContent((long)content_idx);
+		
+		
+		modifyQnaVO.setContent_date(tempQnaBean.getContent_date());
+		modifyQnaVO.setContent_title(tempQnaBean.getContent_title());
+		modifyQnaVO.setContent_text(tempQnaBean.getContent_text());
+		modifyQnaVO.setBoard_id(board_info_id);
+		modifyQnaVO.setContent_idx(content_idx);
+		modifyQnaVO.setMember_id(tempQnaBean.getMember_id());
+		
+		return "board/qna_modify";
+	}
+	
+	@PostMapping("/board/my_qna/update_pro")
+	public String myQnamodify_pro(@ModelAttribute("modifyQnaVO") BoardVO modifyQnaVO , @RequestParam("board_id") int board_info_id) {
+		
+		
+		log.info("modify_post()...");
+		boardService.modifyContentInfo(modifyQnaVO);
+		
+		return "board/qna_modify_success";
+	}
+	
+		//QNA 삭제
+		@DeleteMapping(value = "/board/my_qna/deleteQna",	consumes = "application/json",  
+					   produces = { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE}) 
+		@ResponseBody
+		public ResponseEntity<String> deleteMyQna(BoardVO boardVO, @RequestBody String content_idx) { 
 			
-			qnaContentVO.setMember_id(principal.getName());
-			qnaContentVO.setBoard_id(board_id);
-			boardService.contentRegister(qnaContentVO);
-			log.info("board_id : "  + board_id);
-			log.info("board: " + qnaContentVO);
-
-
-			return "/board/qna_register_success";
+			log.info("deleteMyQna() : " + content_idx);
+			
+			int count = 0;
+			int qna_idx = Integer.parseInt(content_idx);
+			
+			log.info("delete QnA(), 지워질 QNA 번호 : " +  qna_idx );
+			count = boardService.deleteContent(qna_idx);
+			
+			log.info("삭제 성공시 1이 출력됩니다 : " +count);
+			
+			return count >= 1
+					? new ResponseEntity<> ("Success", HttpStatus.OK)
+					: new ResponseEntity<> (HttpStatus.INTERNAL_SERVER_ERROR);
+			
 		}
-
-	// 글 수정
-	@PostMapping("/member/inquiry/modify")
-	public String inquiryModify(BoardVO board, RedirectAttributes rttr) {
-
-		int count = boardService.contentModify(board);
-
-		if (count == 1) {
-			rttr.addFlashAttribute("result", "success");
-		}
-
-		return "redirect:/member/inquiry";
-	}
-
-	// 글 삭제
-	@PostMapping("/member/inquiry/remove")
-	public String inquiryRemove(@RequestParam("content_idx") Long content_idx, RedirectAttributes rttr) {
-
-		int count = boardService.contentRemove(content_idx);
-
-		if (count == 1) {
-			rttr.addFlashAttribute("result", "success");
-		}
-
-		return "redirect:/member/inquiry";
-	}
-
+	
 	/****************** 이벤트 **********************/
 
 	// 리스트 불러오기
@@ -248,7 +272,6 @@ public class BoardController {
 		return "board/event";
 
 	}
-
 	// 해당 게시물 불러오기
 	@GetMapping("/event/detail")
 	public String eventGet(@RequestParam("content_idx") Long content_idx, Model model) {

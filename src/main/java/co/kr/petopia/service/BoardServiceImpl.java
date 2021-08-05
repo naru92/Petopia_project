@@ -99,5 +99,21 @@ public class BoardServiceImpl implements BoardService{
 	public List<BoardVO> getQnaList(BoardVO boardVO) {
 		return boardMapper.getQnaList(boardVO);
 	}
-    
+
+	@Override
+	public int deleteContent(int qna_idx) {
+		
+		int count = 0;
+		try {
+			boardMapper.deleteContentInfo(qna_idx);
+		} catch (Exception e) {
+			e.getMessage();
+			return count;
+		}
+		
+		count++;
+		return count;
+	}
+
+	
 }

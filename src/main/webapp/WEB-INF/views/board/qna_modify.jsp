@@ -3,7 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
-<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
+<%@ taglib uri="http://www.springframework.org/security/tags"
+	prefix="sec"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <c:set var='root' value='${pageContext.request.contextPath}/'/>	
 <c:set var='board_id' value='${param.board_id}'/>	
@@ -77,7 +78,7 @@ textarea {
 input[type="submit"], button {
   background: #2AC1BC ;
   color: white;
-}
+}w
 input[type="submit"]:hover, button:hover {
   background: #385663;
 }
@@ -187,12 +188,12 @@ color: red;
 	<!-- 게시글 리스트 -->
 	<div class="container col-10 board" style="margin-top: 120px">
 		<section id="contact-form">
-  <h2>문의하기</h2>
-  <form:form id="contact" action='${root }board/qna_register?board_id=${param.board_id}' method ='post' modelAttribute="qnaContentVO">
+  <h2>문의사항 수정</h2>
+  <form:form id="contact" action='${root}board/my_qna/update_pro?board_id=${param.board_id}' method ='post' modelAttribute="modifyQnaVO">
     <form:label path="member_id" class="label"><span><i class="fas fa-user-tag"></i></span><form:input path="member_id" class="input" readonly="true" /></form:label>
     <form:label path="content_title" class="label"><span></span><form:input path="content_title" class="input" placeholder="문의사항을 입력해주세요."/></form:label>
     <form:label path="content_text" class="lavel"><span></span><form:textarea path="content_text" class="textarea"  placeholder="문의 내용을 입력해주세요."></form:textarea></form:label>
-    <input class="input" id="startSubmit" name="submit" type="submit" value="작성하기"/>
+    <input class="input" id="startSubmit"name="submit" type="submit" value="수정하기"/>
   </form:form>
   <aside>
     <p class= "warningText">유의사항</p>
@@ -213,7 +214,7 @@ color: red;
 					
 						var form = $('#contact')
 						$('#startSubmit').on('click',function(e){
-							if (confirm('등록하시겠습니까?')) {
+							if (confirm('수정 하시겠습니까?')) {
 								form.submit();
 							}else{
 								e.preventDefault();

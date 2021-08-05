@@ -46,4 +46,5 @@ public interface BoardMapper {
 	//get my qnaList 
 	List<BoardVO> getQnaList(BoardVO boardVO);
 
+	
 }

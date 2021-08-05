@@ -46,4 +46,7 @@ public interface BoardService {
 	void deleteContentInfo(int content_idx);
 	//회원 문의 리스트
 	List<BoardVO> getQnaList(BoardVO boardVO);
+	//삭제메서드 성공시 1리턴
+	int deleteContent(int qna_idx);
+
 }

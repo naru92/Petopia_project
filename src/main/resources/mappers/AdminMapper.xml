@@ -311,10 +311,10 @@
                              c.content_idx as content_idx , m.member_id as member_id , c.content_text as content_text 
                          FROM
                              content c ,board b, member m
-                         Where b.board_id = 2 and b.board_id = c.board_id and c.member_id = m.member_id 
-                         order by c.content_idx
-             ) A WHERE ROWNUM <= 10 * 1
-         ) WHERE RNUM > 10 * 1 
+                         WHERE b.board_id = 2 and c.board_id =2 and c.member_id = m.member_id 
+                         ORDER BY c.content_idx
+             ) A WHERE ROWNUM <= #{pageNum} * #{amount}
+         ) WHERE RNUM > (#{pageNum}-1) * #{amount} 
   		 ]]>
 	</select>
 	<!-- 도네이션수 cri -->

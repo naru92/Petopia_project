@@ -147,7 +147,7 @@
 	
 	<select id="getQnaList" resultMap="contentMap">
 	SELECT b.board_id , c.content_idx, c.content_title, c.content_date,
-        m.member_id, m.member_name, m.member_email
+        content_text,m.member_id, m.member_name, m.member_email
 	FROM board b , content c , member m
 	WHERE c.member_id = m.member_id AND
 		  b.board_id = c.board_id

@@ -313,6 +313,7 @@ public class AdminController {
 		int totalQnAList = adminService.getTotalQnACount(cri);
 		model.addAttribute("pageMaker", new PageVO(cri, totalQnAList));
 
+		
 		model.addAttribute("QnAList", adminService.getQnAListWithPaging(cri));
 
 		return "admin/QnAList";
@@ -401,16 +402,10 @@ public class AdminController {
 			Gson gson = new Gson();
 			//주문 - 최근 3개월간 가장 많이 주문 - 바차트
 			List<ProductVO> List3 = adminService.order_statistics_3month();
-			
-			
 			return gson.toJson(List3);
-			
 			
 		}
 		
-
-	
-
 
 	/* 상품 등록 관련 */
 
