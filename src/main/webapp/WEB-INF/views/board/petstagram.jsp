@@ -7,7 +7,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Petstagram</title>
+<title>펫★그램 | Petopia</title>
 <!-- default_css -->
 <%@include file="../include/default_css.jsp"%>
 

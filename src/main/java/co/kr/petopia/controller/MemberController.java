@@ -1,12 +1,17 @@
 package co.kr.petopia.controller;
 
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Random;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -69,24 +74,46 @@ public class MemberController {
     }
     
     // 아이디 찾기 폼
-    @GetMapping("/help/findid")
+    @GetMapping("/help/idInquiry")
     public String findMeberIdForm() {
-        return "member/findId";
+        log.info("아이디 찾기 페이지-----------");
+        return "member/idInquiry";
     }
-    // 아이디 찾기
     
     // 아이디 찾기 결과 화면
+    @PostMapping("/help/findid")
+    public String findMemeberId(@RequestParam("member_name") String member_name, 
+            @RequestParam("member_phoneNumber") String member_phoneNumber,
+            @RequestParam("member_email") String member_email, Model model, HttpServletResponse response) throws Exception {
+        
+        String member_id = memberService.findMemberId(member_name, member_phoneNumber, member_email);
+        
+        if (member_id == null) {
+            response.setContentType("text/html; charset=UTF-8");
+            PrintWriter out = response.getWriter();
+            out.println("<script>alert('일치하는 정보가 없습니다. 다시 확인해주세요.'); history.go(-1);</script>");
+            out.flush();
+        } else {
+            model.addAttribute("member_id", member_id);
+        }
+        
+        return "member/findid";
+    }
     
     // 비밀번호 찾기 폼
-    @GetMapping("/help/findpw")
+    @GetMapping("/help/pwInquiry")
     public String findMeberPwForm() {
-        return "member/findPassword";
+        log.info("비밀번호 찾기 페이지-----------");
+        return "member/pwInquiry";
     }
-    // 비밀번호 찾기
     
-    // 비밀번혼 찾기 결과 화면
+    // 비밀번호 재설정
+    @PostMapping("/help/resetpw")
+    public String findMemberPw() {
+        return "member/resetpw";
+    }
     
-    
+    // 비밀번호 재설정 완료 화면
 
     // joinForm -> 아이디 중복 체크
     @GetMapping("/idCheck")
@@ -115,7 +142,7 @@ public class MemberController {
     @Autowired
     JavaMailSender javaMailSender;
     
-    @RequestMapping({"/CheckMail","member/CheckMail"})
+    @RequestMapping({"/CheckMail","member/CheckMail","help/CheckMail"})
     @ResponseBody
     public String SendMail(String mail) {
         Random random = new Random();

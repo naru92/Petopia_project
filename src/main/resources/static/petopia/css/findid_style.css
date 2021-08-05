@@ -3,7 +3,7 @@
 body, main{
 	background: #fafafa;
 	position: relative; 
-	height: 1100px; 
+	height: 1000px; 
 	z-index: -100;
 }
 
@@ -15,24 +15,17 @@ body, main{
   font-size: 25px;
   text-align: center;
   color: #2AC1BC;
-  margin-bottom: 30px;
+  margin-bottom: 100px;
   font-weight: normal;
 }
-.login-form .social-icon {
-    width: 100%;
-    font-size: 20px;
-    padding-top: 20px;
-    color: #fff;
-    text-align: center;
-    float: left;
-}
+
 .login-form {
     background: #fff;
     width: 450px;
     border-radius: 6px;
     margin: 0 auto;
     display: table;
-    padding: 35px;
+    padding: 70px 35px;
     box-sizing: border-box;
     position: relative;
     top: 200px;
@@ -81,6 +74,7 @@ body, main{
 .login-form .sendMail:hover{
 	background: #444;
 }
+
 .login-form .form-group .input-icon {
     font-size: 15px;
     display: -webkit-box;
@@ -96,78 +90,32 @@ body, main{
     padding-left: 35px;
     color: #666;
 }
-.login-form .confirm-btn {
-  background: #2AC1BC;
-  padding: 11px 50px;
-  border-color: #2AC1BC;
-  color: #fff;
-  text-align: center;
-  margin: 20px auto;
-  font-size: 20px;
-  border: 1px solid #2AC1BC;
-  border-radius: 44px;
-  width: 100%;
-  height: 56px;
-  cursor: pointer;
-  transition: 0.6s;
-}
-.login-form .reset-id,
-.login-form .reset-psw,
-.login-form .sign-up {
-  float: left;
-  width: 100%;
-  text-decoration: none;
-  color: #2AC1BC;
-  font-size: 14px;
-  text-align: center;
-  padding: 10px 0;
-}
 
-.reset-group{
-    margin-top: 10px;
-    display:flex;
-
-}
 input:focus {
   outline:none;
 }
 
-.login-form .social-icon button {
-    font-size: 20px;
-    height: 50px;
-    width: 50px;
-    border-radius: 60%;
-    margin: 0px 10px;
-    border: none;
-    cursor: pointer;
+.next-btn{
+  text-align: center;
 }
 
+.next-btn button{
+  width:180px;
+  padding: 1rem 1rem;
+  font-size:0.9rem;
+  background: #2AC1BC;
+  color: #fff;
+  transition: 0.5s;
+  margin-top: 100px;
+  border: none;
+  border-radius: 10px;
+}
 
-.login-form .confirm-btn:hover{
+.btn-main:hover,
+.btn-login:hover{
   opacity: 0.8;
 }
 
-.login-form .seperator {
-  float: left;
-  width: 100%;
-  border-top: 1px solid #ccc;
-  text-align: center;
-  margin: 50px 0 0;
-}
-.login-form .seperator b {
-  width: 40px;
-  height: 40px;
-  font-size: 16px;
-  text-align: center;
-  line-height: 40px;
-  background: #fff;
-  display: inline-block;
-  border: 1px solid #e0e0e0;
-  border-radius: 50%;
-  position: relative;
-  top: -22px;
-  z-index: 1;
-}
 .login-form p {
   float: left;
   width: 100%;
@@ -188,20 +136,24 @@ input:focus {
 	margin-bottom: 50px;
 	padding : 15px 10px;
 }
-.findid-btn{
-  background: #fff;
+.idInquiry-btn{
+  background: #2AC1BC;
   width: 190px;
-  color: #2AC1BC;
+  color: #fff;
   margin-right:-4px;
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
 }
-.findpw-btn{
-  background: #2AC1BC;
+.pwInquiry-btn{
+  background: #fff;
   width: 190px;
-  color: #fff;
+  color: #2AC1BC;
   margin-left:-3px;
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
 }
 
+.eheck_font {
+  height: 13px;
+  margin: 0 0 0 75px;
+}

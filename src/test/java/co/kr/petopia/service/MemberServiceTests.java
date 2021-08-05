@@ -35,14 +35,15 @@ public class MemberServiceTests {
         
         MemberVO member = new MemberVO();
 
-        member.setMember_id("test25");
+        member.setMember_id("test01");
         member.setMember_password("1111");
-        member.setMember_name("test");
+        member.setMember_name("테스트");
         member.setMember_phoneNumber("010-1111-1111");
         member.setMember_address("test");
         member.setMember_email("test@test.com");
+        member.setMember_oauth("(null)");
         
-        member.setMemberAuth_id("test25");
+        member.setMemberAuth_id("test01");
 
         memberService.memberRegister(member);
     }
