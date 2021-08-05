@@ -17,12 +17,22 @@
     		values (#{member_id}, #{member_point_usepoint}, #{member_point_usedetail}, #{member_point_usedate})
 	</insert>
 
-	<!-- 보유 포인트 -->
-	<update id="checkPoint">
+	<!-- 보유 포인트 확인 -->
+	<update id="retentionPoint">
 		update member m
 			set m.member_point =
-				(select sum(p.member_point_savepoint - p.member_point_usepoint)
+				(select sum (p.member_point_savepoint - p.member_point_usepoint)
 					from point p)
+			where member_id = #{member_id}
+	</update>
+
+	<!-- 기부한 금액 확인 -->
+	<update id="donationPoint">
+		update member m
+			set m.member_donation =
+				(select sum (p.member_point_usepoint)
+					from point p
+						where member_point_usedetail = '기부')
 			where member_id = #{member_id}
 	</update>
 	

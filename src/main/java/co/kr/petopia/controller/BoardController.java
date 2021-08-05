@@ -345,5 +345,13 @@ public class BoardController {
 
 		return "redirect:/petstagram";
 	}
-
+	
+	
+	/****************** 기부 **********************/
+	
+    // 기부 메인
+    @GetMapping("/donation")
+    public String donation() {
+        return "board/donation";
+    }
 }

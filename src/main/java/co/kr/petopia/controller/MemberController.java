@@ -19,6 +19,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.google.gson.Gson;
 
 import co.kr.petopia.service.MemberService;
+import co.kr.petopia.service.PointService;
 import co.kr.petopia.vo.MemberVO;
 import lombok.extern.log4j.Log4j2;
 
@@ -28,6 +29,8 @@ public class MemberController {
 
 	@Autowired
     private MemberService memberService;
+	@Autowired
+	private PointService pointService;
     
 
     @GetMapping("/login")
@@ -137,10 +140,23 @@ public class MemberController {
 
     // 마이페이지 기부
     @GetMapping("member/mypage_donation")
-    public String mypage_donation() {
+    public String mypage_donation(MemberVO donation) {
+        
+        pointService.donationPoint(donation);
+        
         return "member/mypage_donation";
     }
+    
+    // 마이페이지 포인트
+    @GetMapping("member/mypage_point")
+    public String mypage_point(MemberVO point) {
+        
+        pointService.retentionPoint(point);
+        
+        return "member/mypage_point";
+    }
 
+    
     // 회원 탈퇴
     @GetMapping("member/withdrawal_agree")
     public String withdrawal_agree() {
@@ -157,12 +173,7 @@ public class MemberController {
         return "member/withdrawal_success";
     }
 	
-	// 기부 메인
-	@GetMapping("/donation")
-    public String donation() {
-        return "member/donation";
-    }
-
+    
 	// 마이펫 등록
 	@GetMapping("member/myPet1")
 	public String myPet1() {
