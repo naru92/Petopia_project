@@ -3,20 +3,14 @@
 body, main{
 	background: #fafafa;
 	position: relative; 
-	height: 1300px; 
+	height: 1100px; 
 	z-index: -100;
 }
 
 .container{
   height: 950px;
 }
-.login-form h1 {
-  font-size: 36px;
-  text-align: center;
-  color: #2AC1BC;
-  margin-bottom: 30px;
-  font-weight: normal;
-}
+
 .login-form h3 {
   font-size: 25px;
   text-align: center;
@@ -59,6 +53,35 @@ body, main{
     font-size: 15px;
     padding-left: 75px;
 }
+
+.login-form input[name=member_email] {
+    width: 80%;
+    padding: 5px;
+    height: 56px;
+    border-radius: 74px 0 0 74px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    font-size: 15px;
+    padding-left: 75px;
+}
+
+.login-form .sendMail{
+	position: absolute;
+	width: 20%;
+	padding: 5px;
+	height: 56px;
+	border-radius: 0 74px 74px 0;
+    border: 1px solid #666;
+    box-sizing: border-box;
+    font-size: 11px;
+	background: #666;
+	color: #fff;
+}
+
+.login-form .sendMail:hover{
+	background: #444;
+}
+
 .login-form .form-group .input-icon {
     font-size: 15px;
     display: -webkit-box;
@@ -74,13 +97,13 @@ body, main{
     padding-left: 35px;
     color: #666;
 }
-.login-form .login-btn {
+.login-form .confirm-btn {
   background: #2AC1BC;
   padding: 11px 50px;
   border-color: #2AC1BC;
   color: #fff;
   text-align: center;
-  margin: 0 auto;
+  margin: 20px auto;
   font-size: 20px;
   border: 1px solid #2AC1BC;
   border-radius: 44px;
@@ -120,18 +143,11 @@ input:focus {
     cursor: pointer;
 }
 
-.social-icon .naver {
-  background-size : cover;
-  background-image: url(../images/naver.png);
-}
-.social-icon .kakao {
-  background-size: cover;
-  background-image: url(../images/kakao.png);
-}
 
-.login-form button:hover{
+.login-form .confirm-btn:hover{
   opacity: 0.8;
 }
+
 .login-form .seperator {
   float: left;
   width: 100%;
@@ -160,10 +176,33 @@ input:focus {
   font-size: 16px;
   margin: 0 0 10px;
 }
+
 @media screen and (max-width:767px) {
-.login-form {
-    width: 90%;
+  .login-form {
+	width: 90%;
     padding: 15px 15px 30px;
+  }
 }
+
+.find button{
+	border: 1px solid #2AC1BC;
+	margin-bottom: 50px;
+	padding : 15px 10px;
+}
+.findid-btn{
+  background: #2AC1BC;
+  width: 190px;
+  color: #fff;
+  margin-right:-4px;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+.findpw-btn{
+  background: #fff;
+  width: 190px;
+  color: #2AC1BC;
+  margin-left:-3px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
 

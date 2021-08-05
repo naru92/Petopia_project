@@ -7,76 +7,97 @@
 
 	<!-- 맴버정보(권한, enalbed포함) 가져오기 -->
 	<select id="getSelectMemberInfo" parameterType="String" resultType="co.kr.petopia.vo.MemberVO">
-		select m.member_id as member_id, m.member_password as
-		member_password,
-		m.member_name as member_name,
-		a.authority, a.enabled
+		SELECT m.member_id as member_id, m.member_password as member_password,
+			   m.member_name as member_name, a.authority, a.enabled
 		FROM member m , authorities a
-		WHERE a.member_id = #{member_id} and
-		m.member_id = #{member_id}
+		WHERE a.member_id = #{member_id}
+		AND m.member_id = #{member_id}
 	</select>
 	
 	<!-- 해당 멤버 정보 가지고 오기 -->
 	<select id="getMemberInfoRead" resultType="co.kr.petopia.vo.MemberVO">
-		select * from member where member_id = #{member_id}
+		SELECT * FROM member WHERE member_id = #{member_id}
 	</select>
 
 	<!-- 회원가입 -->
 	<insert id="memberJoin">
-		insert into member(member_id, member_password,
-		member_name, member_phoneNumber, member_address,
-		member_email, member_joindate, member_grade, member_point, member_donation, member_oauth) 
-		values(#{member_id}, #{member_password}, #{member_name},
-		#{member_phoneNumber}, #{member_address}, #{member_email}, sysdate,'브론즈', 0, 0, #{member_oauth})
+		INSERT INTO member(member_id, member_password, member_name, member_phoneNumber, 
+						   member_address, member_email, member_joindate, member_grade, 
+						   member_point, member_donation, member_oauth) 
+					VALUES(#{member_id}, #{member_password}, #{member_name}, #{member_phoneNumber}, 
+						   #{member_address}, #{member_email}, sysdate,'브론즈', 0, 0, #{member_oauth})
 		<selectKey order="BEFORE" keyProperty="member_id" resultType="java.lang.String">
-		select #{member_id} from dual
+		SELECT #{member_id} FROM dual
 		</selectKey>
 	</insert>
 
 	<!-- 권한 주입 -->
 	<insert id="memberAuthorities">
-		insert into authorities(member_id, authority, enabled) 
-						 values(#{memberAuth_id}, 'ROLE_MEMBER', 1)
+		INSERT INTO authorities(member_id, authority, enabled) 
+						 VALUES(#{memberAuth_id}, 'ROLE_MEMBER', 1)
 	</insert>
 
+	<!-- 아이디 찾기 -->
+	<select id="findMemberId">
+		SELECT member_id FROM member 
+		WHERE member_name = #{member_name} 
+		AND member_phoneNumber = #{member_phoneNumber}
+		AND member_email = #{member_email} 
+	</select>
+	
+	<!-- 비밀번호 찾기/ 정보 일치 할 경우 수정 -->
+	<update id="findMemberPw">
+		UPDATE member SET member_password = #{member_password}
+		WHERE member_id = #{member_id} 
+		AND member_name = #{member_name} 
+		AND member_email = #{member_email}
+	</update>
+	
 	<!-- 권한 삭제 / 회원탈퇴시 먼저 수행 -->
 	<delete id="memberAuthDelete">
-		delete from authorities where member_id = #{member_id}
+		DELETE FROM authorities WHERE member_id = #{member_id}
 	</delete>
 	
 	<!-- 회원 탈퇴 -->
 	<delete id="memberDelete">
-		delete from member where member_id = #{member_id}
+		DELETE FROM member WHERE member_id = #{member_id}
 	</delete>
 
 	<!-- 회원 정보 수정 -->
 	<update id="memberUpdate">
-		update member set member_password = #{member_password},
+		UPDATE member SET member_password = #{member_password},
 		member_phoneNumber = #{member_phoneNumber},
 		member_address = #{member_address},
 		member_email = #{member_email}
-		where member_id = #{member_id}
+		WHERE member_id = #{member_id}
 	</update>
 	
 	<!-- 회원별 쓴 게시물 불러오는 쿼리문 -->
 	<select id="getMyContentList" resultType="co.kr.petopia.vo.BoardVO">
-		select * from content where
-		member_id = #{member_id} order by content_idx DESC
+		SELECT * FROM content 
+		WHERE member_id = #{member_id} 
+		ORDER BY content_idx DESC
 	</select>
 	
 	<!-- 회원별 쓴 댓글 불러오는 쿼리문 -->
 	<select id="getMyReplyList" resultType="co.kr.petopia.vo.ReplyVO">
-		select * from reply where
-		member_id = #{member_id} order by reply_idx DESC
+		SELECT * FROM reply 
+		WHERE member_id = #{member_id} 
+		ORDER BY reply_idx DESC
 	</select>
 
 	<!-- 아이디 중복 검사 -->
 	<select id="checkMemberId" parameterType="String" resultType="int">
-		select count(*) from member where member_id = #{member_id}
+		SELECT count(*) FROM member WHERE member_id = #{member_id}
+	</select>
+	
+	<!-- 이메일 중복 검사 -->
+	<select id="checkMemberEmail" parameterType="String" resultType="int">
+		SELECT count(*) FROM member WHERE member_email = #{member_email}
 	</select>
 	
 	<!-- 휴대폰 번호 중복 검사 -->
 	<select id="checkMemberPhoneNumber" parameterType="String" resultType="int">
-		select count(*) from member where member_phoneNumber = #{member_phoneNumber}
+		SELECT count(*) FROM member WHERE member_phoneNumber = #{member_phoneNumber}
 	</select>
 </mapper>
