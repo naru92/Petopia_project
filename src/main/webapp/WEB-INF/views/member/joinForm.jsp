@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-type" content="text/html; charset=UTF-8">
-<title>joinForm</title>
+<title>회원가입 | Petopia</title>
 <!-- CSS here -->
 <link rel="stylesheet" href="/petopia/css/joinForm_style.css">
 <!-- default_css -->
@@ -85,10 +85,10 @@
 										<br> <input type="tel" class="memberPhoneNumber" placeholder="예) 010-1234-5678">
 										<div class="eheck_font" id="phone_check"></div>
 
-										<br> <input type="text" placeholder="우편번호" name="member_address" class="address1" id="postcode" readonly>
+										<br> <input type="text" placeholder="우편번호" class="address1" id="postcode" readonly>
 										<button type="button" class="address-btn" onClick="execDaumPostcode()">주소검색</button>
-										<br> <input type="text" placeholder="도로명주소" name="member_address" class="address2" id="roadAddress" readonly> 
-										<br> <input	type="text" placeholder="상세주소" name="member_address" class="address3" id="detailAddress">
+										<br> <input type="text" placeholder="도로명주소" class="address2" id="roadAddress" readonly> 
+										<br> <input	type="text" placeholder="상세주소" class="address3" id="detailAddress">
 										<div class="eheck_font" id="address_check"></div>
 										<br> <br>
 									</form>
@@ -545,11 +545,6 @@
 		});
 	</script>
 	
-	<script>
-	
-	</script>
-	
-	<!-- <script src="/petopia/js/member.js"></script> -->
 
 </body>
 </html>
