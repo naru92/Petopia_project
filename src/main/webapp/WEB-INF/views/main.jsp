@@ -80,7 +80,11 @@
 	margin-bottom: 15px;
 	overflow: visible;
 }
-
+.mypet_reg{
+width: 88% !important;
+padding-left: 25px !important;
+padding-right: 25px !important;
+}
 .girdscc {
 	margin-right: 15% !important;
 	margin-left: 320px !important;
@@ -699,7 +703,13 @@ translateX
 
 	</div>
 
-	<div class="container girdscc">
+	
+
+		<!-- 첫번째 컨테이너 플루이드 끝-->
+
+		<!-- 중단시작 -->
+
+		<div class="container-fluid mypet_resgister_div">
 		<div class="col-md-12 ">
 			<div class="container-fluid high_banner">
 						<div id="carousel-2" class="carousel slide carousel-fade"
@@ -776,19 +786,9 @@ translateX
 								class="sr-only">Next</span>
 							</a>
 						</div>
-
 			
-				</div>
 			</div>
-		</div>
-
-		<!-- 첫번째 컨테이너 플루이드 끝-->
-
-		<!-- 중단시작 -->
-
-		<div class="container-fluid mypet_resgister_div">
-			<div class="container girdscc2">
-				<div class="row col-sm-12">
+				<div class="row container-fluid mypet_reg ">
 					<article class="map_">
 						<section calss="register_mypet_banner">
 							<div>
@@ -799,8 +799,10 @@ translateX
 						</section>
 					</article>
 				</div>
-			</div>
-
+			
+		</div>
+		
+		
 
 
 			<div class="container girdscc3">

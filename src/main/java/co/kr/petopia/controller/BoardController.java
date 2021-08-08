@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import co.kr.petopia.service.BoardService;
+import co.kr.petopia.service.MemberService;
 import co.kr.petopia.utils.Criteria;
 import co.kr.petopia.utils.PageVO;
 import co.kr.petopia.vo.BoardVO;
@@ -35,6 +36,9 @@ public class BoardController {
 
 	@Autowired
 	private final BoardService boardService;
+	
+	@Autowired
+	private final MemberService memberService; 
 
 //****************** 공지사항 **********************
 
@@ -169,10 +173,17 @@ public class BoardController {
 	public String inquiryGet(
 							 @RequestParam int board_id, Model model, Principal principal, BoardVO boardVO) {
 		
-		String userInfo = principal.getName();
 		//id로 가져오기
+		MemberVO member = memberService.getSelectMemberInfo(principal.getName());
+		
+		log.info("맴버정보: " + member);
+		
 		boardVO.setBoard_id(board_id);
-		boardVO.setMember_id(userInfo);
+		boardVO.setMember_id(member.getMember_id());
+		boardVO.setAuthority(member.getAuthority());
+		
+		log.info("게시글정보 " + boardVO);
+		
 		
 		List<BoardVO> myQnaList= boardService.getQnaList(boardVO);
 		

@@ -62,7 +62,11 @@
 보통: font-family: 'NEXON Lv1 Gothic OTF';
 
 */
-
+.button_div{
+margin: 0 auto;
+margin-top: 10px;
+text-align: center; 
+}
 .qnaContent{
 background : rgb(249,249,249);
 width: 97.5%;
@@ -765,19 +769,33 @@ footer section>:nth-child(3)>:nth-child(2) {
 						</ul>
 					</label>
 					<section class="talk read-more-target">
-						   <textarea class="form-control qnaContent" rows="3" name='content_text'>
+						   <textarea class="form-control qnaContent" rows="3" name='content_text' readonly="readonly">
                             <c:out value="문의내용 : ${myQna.content_text}" /> 
                             </textarea>
 							<br>
-							<textarea class="form-control qnaAnswer" rows="3" name='reply_text'>
+							<div id="answer_area">
+							<textarea class="form-control qnaAnswer" rows="3" name='reply_text' readonly="readonly">
                             <c:out value="답변입니다." /> 
                             </textarea>
-                            
-                            <sec:authorize access="hasRole('ROLE_MEMBER')">    
+                            </div>
+                             <sec:authorize access="hasRole('ROLE_ADMIN')"> 
+                             <div id="text_box" class="button_div">
+                             <button type="button" class="btn btn-pill btn-dark">+</button>
+                             </div>
+                             </sec:authorize>
+            <sec:authorize access="hasRole('ROLE_MEMBER')">    
 						<div class="form-group">
 							<div class="text-right">
 							<a href="${root }my_qna/update?board_id=${param.board_id}&content_idx=${myQna.content_idx}" class="btn btn-default updateBtn">수정</a>
 							<a id="deleteButton" href="#" class="btn btn-default updateBtn">삭제</a>
+							</div>
+						</div>	
+			</sec:authorize>
+			 <sec:authorize access="hasRole('ROLE_ADMIN')">    
+						<div class="form-group">
+							<div class="text-right">
+							
+							<a id="replyQuestion" href="#" class="btn btn-default updateBtn">답변등록</a>
 							</div>
 						</div>	
 			</sec:authorize>
@@ -843,7 +861,31 @@ footer section>:nth-child(3)>:nth-child(2) {
 								
 							
 			});
+			$("#text_box").on("click", function(e) {
+				e.preventDefault();
+				console.log("add text Box");
+				
+				$("#answer_area").append("<textarea class='form-control qnaAnswer' rows='3' name='reply_text'>");
+				
+				
+			});
 			
+			$("#replyQuestion").on("click", function(e) {
+				e.preventDefault();
+				console.log("add replyQuestion");
+				
+				var reply= {
+					reviews: reviewsText.val(),
+					reviewer: reviewerInput.val(),
+					productsNo: productsNoValue
+				}
+				// reviews, reviewer, productsNo
+				reviewsService.add(reviews, function(result) {
+					alert("상품평 등록이 완료되었습니다.");
+					reviewsText.val("");
+					showList(1);
+				});
+			}); // /new
 		});
 	</script>
 </body>

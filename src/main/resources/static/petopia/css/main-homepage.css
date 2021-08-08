@@ -18,7 +18,11 @@
 	font-weight: normal;
 	font-style: normal;
 }
-
+@media (min-width: 1200px){
+.girdscc2{ 
+    max-width: 1345px;
+ }
+}
 
 @media (min-width: 1200px){
 .girdscc{ 

@@ -149,9 +149,16 @@
 	SELECT b.board_id , c.content_idx, c.content_title, c.content_date,
         content_text,m.member_id, m.member_name, m.member_email
 	FROM board b , content c , member m
+	<choose>
+	<when test="authority.equals('ROLE_ADMIN')">
 	WHERE c.member_id = m.member_id AND
 		  b.board_id = c.board_id
-	
+	</when>
+	<otherwise>
+	WHERE c.member_id = #{member_id} AND
+		  b.board_id = c.board_id
+	</otherwise>
+	</choose>	
 	</select>
 	
 

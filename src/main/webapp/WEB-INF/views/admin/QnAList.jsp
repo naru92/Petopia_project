@@ -114,7 +114,7 @@
 								<c:forEach var='q' items="${QnAList}">
 										<tbody>
 											<tr>
-											<td>${q.content_idx }</td>
+											<td><a href="${root}board/my_qna?board_id=2">${q.content_idx }</a></td>
 											<td>${q.member_id}</td>
 											<td>${q.content_text}</td>
 											<td>
