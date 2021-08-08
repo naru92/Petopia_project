@@ -106,10 +106,23 @@ public class MemberServiceImpl implements MemberService{
         return memberMapper.checkMemberEmail(member_email);
     }
 
+    // 아이디 찾기
     @Override
     public String findMemberId(String member_name, String member_phoneNumber, String member_email) {
         
         return memberMapper.findMemberId(member_name, member_phoneNumber, member_email);
+    }
+
+    // 비밀번호 찾기 (비번수정)
+    @Override
+    public int resetMemberPw(MemberVO member) {
+        
+        String rawPassword = member.getMember_password();
+        String encPassword = encodePWD.encode(rawPassword);
+        
+        member.setMember_password(encPassword);
+        
+        return memberMapper.resetMemberPw(member);
     }
     
     
