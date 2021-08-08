@@ -568,7 +568,7 @@ translateX
 							</sec:authorize>
 							<sec:authorize access="hasRole('ROLE_MEMBER')">
 								<a href="/member/mypage" class="link_text">마이페이지</a>
-								<a href="/logout" class="link_text">로그아웃</a>
+								<a href="/login/logoutProcess" class="link_text">로그아웃</a>
 								<div class="dropdown">
 									<a href="#" class="link_text dropbtn">고객센터</a>
 									<div class="dropdown-content">

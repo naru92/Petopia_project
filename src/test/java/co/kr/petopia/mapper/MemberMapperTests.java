@@ -73,4 +73,15 @@ public class MemberMapperTests {
         memberMapper.getMyReplyList("dummy42");
     }
     
+    @Test
+    public void testResetMemberPw() {
+        
+        MemberVO vo = new MemberVO();
+        vo.setMember_id("dummy1");
+        vo.setMember_name("테스트1");
+        vo.setMember_email("test@test.com");
+        vo.setMember_password("2222");
+        memberMapper.resetMemberPw(vo);
+    }
+    
 }
