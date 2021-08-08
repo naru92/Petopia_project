@@ -634,7 +634,7 @@ main h1 {
 
 footer {
 	background: #385663;
-	padding: 70px 0;
+	padding:  0;
 	margin-top: 11rem;
 }
 

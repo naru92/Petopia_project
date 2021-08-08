@@ -672,6 +672,97 @@
 		</if>
 
 	</select>
+	<!-- 문의 필터리스트 -->
+	<select id="selectOptionQnAList" parameterType="map" resultType="co.kr.petopia.vo.BoardVO">
+	<choose>
+ 		<when test="qna_state == null and qna_state qna_state.equals('') "> 
+			<if test="qna_lately_date == null and qna_lately_date.equals('')">
+			    SELECT
+                      c.content_idx as content_idx , m.member_id as member_id , c.content_text as content_text 
+                FROM
+                      content c ,board b, member m
+                WHERE b.board_id = 2 and c.board_id =2 and c.member_id = m.member_id 
+                ORDER BY c.content_idx
+			</if>
+			<if test="qna_lately_date.equals('qna_lately_asc')">
+				SELECT
+                      c.content_idx as content_idx , m.member_id as member_id , c.content_text as content_text 
+                FROM
+                      content c ,board b, member m
+                WHERE b.board_id = 2 and c.board_id =2 and c.member_id = m.member_id 
+                ORDER BY c.content_idx asc
+			</if>
+			
+			<if test="qna_lately_date.equals('qna_lately_desc')">
+			    SELECT
+                      c.content_idx as content_idx , m.member_id as member_id , c.content_text as content_text 
+                FROM
+                      content c ,board b, member m
+                WHERE b.board_id = 2 and c.board_id =2 and c.member_id = m.member_id 
+                ORDER BY c.content_idx desc
+			</if>
+		</when>
+		<when test="qna_state.equals('not')">
+				<if test="qna_lately_date == null and qna_lately_date.equals('')">
+			    SELECT
+                      c.content_idx as content_idx , m.member_id as member_id , c.content_text as content_text 
+                FROM
+                      content c ,board b, member m
+                WHERE b.board_id = 2 and c.board_id =2 and c.member_id = m.member_id
+                	  
+                ORDER BY c.content_idx
+			</if>
+			<if test="qna_lately_date.equals('qna_lately_asc')">
+				SELECT
+                      c.content_idx as content_idx , m.member_id as member_id , c.content_text as content_text 
+                FROM
+                      content c ,board b, member m
+                WHERE b.board_id = 2 and c.board_id =2 and c.member_id = m.member_id 
+                ORDER BY c.content_idx asc
+			</if>
+			
+			<if test="qna_lately_date.equals('qna_lately_desc')">
+			    SELECT
+                      c.content_idx as content_idx , m.member_id as member_id , c.content_text as content_text 
+                FROM
+                      content c ,board b, member m
+                WHERE b.board_id = 2 and c.board_id =2 and c.member_id = m.member_id 
+                ORDER BY c.content_idx desc
+			</if>		    
+		</when >
+		<when test="qna_state.equals('complete')">
+				<if test="qna_lately_date == null and qna_lately_date.equals('')">
+			    SELECT
+                      c.content_idx as content_idx , m.member_id as member_id , c.content_text as content_text 
+                FROM
+                      content c ,board b, member m
+                WHERE b.board_id = 2 and c.board_id =2 and c.member_id = m.member_id 
+                ORDER BY c.content_idx
+			</if>
+			<if test="qna_lately_date.equals('qna_lately_asc')">
+				SELECT
+                      c.content_idx as content_idx , m.member_id as member_id , c.content_text as content_text 
+                FROM
+                      content c ,board b, member m
+                WHERE b.board_id = 2 and c.board_id =2 and c.member_id = m.member_id 
+                ORDER BY c.content_idx asc
+			</if>
+			
+			<if test="qna_lately_date.equals('qna_lately_desc')">
+			    SELECT
+                      c.content_idx as content_idx , m.member_id as member_id , c.content_text as content_text 
+                FROM
+                      content c ,board b, member m
+                WHERE b.board_id = 2 and c.board_id =2 and c.member_id = m.member_id 
+                ORDER BY c.content_idx desc
+			</if>
+		
+		</when>
+	</choose>
+	</select>
+	
+	
+	
 	<!-- 배송 필터리스트 -->
 	<select id="selectOptionDeliveryList" parameterType="map"
 		resultType="co.kr.petopia.vo.DeliveryVO">
@@ -1125,6 +1216,7 @@
 	from product
 	order by product_idx desc
 	</select>	
+	
 	
 	
 </mapper>

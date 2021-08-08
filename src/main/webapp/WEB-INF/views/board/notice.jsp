@@ -33,9 +33,9 @@ justify-content: center;
 }
 footer {
  
-   position:absolute;
+   position:fixed;
    bottom:0;
-width: 100%;
+	width: 100%;
   color: white;
 }
 .board {

@@ -754,8 +754,8 @@ footer section>:nth-child(3)>:nth-child(2) {
 			<c:forEach var="myQna" varStatus="status" items="${myQnaList}" >
 				<div class="sss" id="${myQna.content_idx}">
 					<input type="hidden" id="qnaId" name="content_idx" value="${myQna.content_idx }">
-					<input type="checkbox" class="read-more-state" id="post-${status.count }" /> <label
-						for="post-${status.count }" class="ing read-more-trigger">
+					<input type="checkbox" class="read-more-state" id="post-${status.count }" /> 
+					<label for="post-${status.count }" class="ing read-more-trigger">
 				
 						<ul>
 							<li>회원/정보</li>

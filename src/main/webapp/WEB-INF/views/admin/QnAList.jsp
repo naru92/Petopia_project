@@ -79,10 +79,10 @@
 										<tr>
 											<td colspan="2">문의 분류&nbsp;&nbsp;</td>
 											<td colspan="5" class="pleft"><select
-												id="qna" name="qna_lately_date">
+												id="qna_lately_date" name="qna_lately_date">
 													<option value="" selected>--문의내역 분류 선택--</option>
-													<option value="qna_lately__asc">최근 문의 순</option>
-													<option value="qna_lately__desc">오래된 문의 순</option>
+													<option value="qna_lately_asc">최근 문의 순</option>
+													<option value="qna_lately_desc">오래된 문의 순</option>
 											</select></td>
 										</tr>
 
@@ -128,7 +128,7 @@
 								</c:forEach>
 							</table>
 					  	 </div>
-					  <form id='pageActionForm' action="/admin/order" method='get'>
+					  <form id='pageActionForm' action="/admin/QnA" method='get'>
 												<input type='hidden' name='pageNum'
 													value='${pageMaker.cri.pageNum}' /> <input type='hidden'
 													name='amount' value='${pageMaker.cri.amount}' />

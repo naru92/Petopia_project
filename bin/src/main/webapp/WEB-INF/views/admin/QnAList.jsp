@@ -58,7 +58,7 @@
 
 						<div class="card-body filterBox">
 							<div class="boxtr">
-								<form action="${contextPath }/admin/membmer/listMembers.do"
+								<form action="#"
 									method="post" id="frm_search">
 									<table>
 
@@ -128,7 +128,7 @@
 								</c:forEach>
 							</table>
 					  	 </div>
-					  <form id='pageActionForm' action="/admin/order" method='get'>
+<!-- 					  <form id='pageActionForm' action="/admin/QnA" method='get'> -->
 												<input type='hidden' name='pageNum'
 													value='${pageMaker.cri.pageNum}' /> <input type='hidden'
 													name='amount' value='${pageMaker.cri.amount}' />
@@ -284,7 +284,7 @@
 								
 								
 								$(list).each(function(){
-									console.log(this.order_idx);
+									console.log(this.content_idx);
 				                    htmls += '<tr>';
 				                    htmls += '<td>'+ this.content_idx + '</td>';
 				                    htmls += '<td>'+ this.member_id + '</td>';

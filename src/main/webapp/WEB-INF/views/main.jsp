@@ -4,7 +4,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <c:set var='root' value="${pageContext.request.contextPath }/" />
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 
 <!DOCTYPE html>
 <html lang="utf-8">
@@ -21,41 +22,58 @@
 
 
 <style type="text/css">
-.class-desc{
-margin: 0 auto;
-height: 80PX;
-overflow: hidden;
+
+
+
+.d-block {
+	padding-top: 64px;
+	display: block;
 }
+
+.register_mypet_banner {
+	padding-left: 0;
+}
+
+.class-desc {
+	margin: 0 auto;
+	height: 80PX;
+	overflow: hidden;
+}
+
 .dropbtn {
-  color: white;
-  padding: 0px;
-  font-size: 16px;
-  border: none;
+	color: white;
+	padding: 0px;
+	font-size: 16px;
+	border: none;
 }
 
 .dropdown {
-  position: relative;
-  display: inline-block;
+	position: relative;
+	display: inline-block;
 }
 
 .dropdown-content {
-  display: none;
-  position: absolute;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
+	display: none;
+	position: absolute;
+	min-width: 160px;
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+	z-index: 1;
 }
 
 .dropdown-content a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
+	color: black;
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
 }
 
-.dropdown-content a:hover {background-color: #ddd;}
+.dropdown-content a:hover {
+	background-color: #ddd;
+}
 
-.dropdown:hover .dropdown-content {display: block;}
+.dropdown:hover .dropdown-content {
+	display: block;
+}
 
 .ss {
 	margin-top: 15px;
@@ -65,10 +83,12 @@ overflow: hidden;
 
 .girdscc {
 	margin-right: 15% !important;
+	margin-left: 320px !important;
 }
 
 .girdscc2 {
 	margin-right: 14% !important;
+	padding: 0  !important;
 }
 
 .girdscc3 {
@@ -88,6 +108,8 @@ overflow: hidden;
 	width: 100%;
 	height: 100%;
 }
+
+
 
 .swiper-slide {
 	text-align: center;
@@ -231,9 +253,13 @@ keyframes shakeCart { 25% {
 
 
 
+
+
 %
 {
 transform
+
+
 
 
 
@@ -243,10 +269,16 @@ transform
 
 
 
+
+
 translateX
 
 
+
+
 (
+
+
 
 
 
@@ -256,7 +288,11 @@ translateX
 
 
 
+
+
 )
+
+
 
 
 ;
@@ -266,9 +302,13 @@ translateX
 
 
 
+
+
 %
 {
 transform
+
+
 
 
 
@@ -278,10 +318,16 @@ transform
 
 
 
+
+
 translateX
 
 
+
+
 (
+
+
 
 
 
@@ -291,12 +337,18 @@ translateX
 
 
 
+
+
 )
+
+
 
 
 ;
 }
 100
+
+
 
 
 
@@ -308,7 +360,11 @@ transform
 
 
 
+
+
 :
+
+
 
 
 
@@ -316,7 +372,11 @@ transform
 translateX
 
 
+
+
 (
+
+
 
 
 
@@ -326,7 +386,11 @@ translateX
 
 
 
+
+
 )
+
+
 
 
 ;
@@ -495,34 +559,34 @@ translateX
 								<div class="dropdown">
 
 									<a href="#" class="link_text dropbtn">고객센터</a>
-									 <div class="dropdown-content">
-									    <a href="${root }notice?board_id=${notice_info.board_id}">공지사항</a>
-									    <a href="${root }board/qna?board_id=${qna_info.board_id}">문의하기</a>
-									  </div>
+									<div class="dropdown-content">
+										<a href="${root }notice?board_id=${notice_info.board_id}">공지사항</a>
+										<a href="${root }board/qna?board_id=${qna_info.board_id}">문의하기</a>
+									</div>
 
-									</div>	
+								</div>
 							</sec:authorize>
 							<sec:authorize access="hasRole('ROLE_MEMBER')">
 								<a href="/member/mypage" class="link_text">마이페이지</a>
 								<a href="/logout" class="link_text">로그아웃</a>
 								<div class="dropdown">
 									<a href="#" class="link_text dropbtn">고객센터</a>
-									 <div class="dropdown-content">
-									    <a href="${root }notice?board_id=${notice_info.board_id}">공지사항</a>
-									    <a href="${root }board/qna?board_id=${qna_info.board_id}">문의하기</a>
-									  </div>
-									</div>	
+									<div class="dropdown-content">
+										<a href="${root }notice?board_id=${notice_info.board_id}">공지사항</a>
+										<a href="${root }board/qna?board_id=${qna_info.board_id}">문의하기</a>
+									</div>
+								</div>
 							</sec:authorize>
 							<sec:authorize access="hasRole('ROLE_ADMIN')">
 								<a href="/admin/main" class="link_text">관리자페이지</a>
 								<a href="/logout" class="link_text">로그아웃</a>
 								<div class="dropdown">
 									<a href="#" class="link_text dropbtn">고객센터</a>
-									 <div class="dropdown-content">
-									    <a href="${root }notice?board_id=${notice_info.board_id}">공지사항</a>
-									    <a href="${root }board/qna?board_id=${qna_info.board_id}">문의하기</a>
-									  </div>
-									</div>	
+									<div class="dropdown-content">
+										<a href="${root }notice?board_id=${notice_info.board_id}">공지사항</a>
+										<a href="${root }board/qna?board_id=${qna_info.board_id}">문의하기</a>
+									</div>
+								</div>
 							</sec:authorize>
 						</div>
 
@@ -568,8 +632,7 @@ translateX
 							<button class="wishBtn" type="link">
 								<i class="fas fa-heart"></i>
 							</button>
-							<button class="cartBtn"
-								onclick="location.href='order/Cart';">
+							<button class="cartBtn" onclick="location.href='order/Cart';">
 								<i class="fas fa-shopping-cart"></i>
 							</button>
 						</div>
@@ -582,150 +645,152 @@ translateX
 				</div>
 			</div>
 		</div>
+		
+				
 	</header>
 	<!-- Header End -->
 
 	<hr />
-	<div class="container-fluid">
+	<div class="row">
+						<div class="container-side">
+							<div class="grid">
+								<div class="row">
+									<div class="col-3">
+										<!-- category -->
+										<nav class="category">
+											<div class="ctghead">
+												<h3>
+													<i class="ti-list"></i>펫shop
+											</div>
 
-		<div class="container-fluid maginContainer">
+											<ul class="ctgul">
+												<li class="ctgli"><a href="#" class="ctga"><i
+														class="ti-user"></i>신상품</a></li>
 
+												<li class="ctgli"><a href="#" class="ctga"><i
+														class="ti-user"></i>베스트</a></li>
 
-			<div class="row">
-				<div class="container-side">
-					<div class="grid">
-						<div class="row">
-							<div class="col-3">
-								<!-- category -->
-								<nav class="category">
-									<div class="ctghead">
-										<h3>
-											<i class="ti-list"></i>펫shop
-										</h3>
+												<li class="ctgli"><a href="#" class="ctga"><i
+														class="ti-user"></i>이벤트</a></li>
+
+												<li class="ctgli"><a href="#" class="ctga "> <i
+														class="ti-write"></i> 카테고리 <i class="ti-angle-down down "></i>
+												</a>
+													<ul class="ctgulChild">
+														<li class="ctgliChild"><a href="" class="ctgaChild">사료</a></li>
+														<li class="ctgliChild"><a href="" class="ctgaChild">간식</a></li>
+														<li class="ctgliChild"><a href="" class="ctgaChild">위생/배변</a></li>
+														<li class="ctgliChild"><a href="" class="ctgaChild">미용/목욕</a></li>
+														<li class="ctgliChild"><a href="" class="ctgaChild">급식/급수기</a></li>
+														<li class="ctgliChild"><a href="" class="ctgaChild">장난감/훈련</a></li>
+														<li class="ctgliChild"><a href="" class="ctgaChild">하우스/이동장</a></li>
+														<li class="ctgliChild"><a href="" class="ctgaChild">패션/의류</a></li>
+														<li class="ctgliChild"><a href="" class="ctgaChild">목줄/하네스</a></li>
+													</ul></li>
+											</ul>
+										</nav>
 									</div>
-
-									<ul class="ctgul">
-										<li class="ctgli"><a href="#" class="ctga"><i
-												class="ti-user"></i>신상품</a></li>
-
-										<li class="ctgli"><a href="#" class="ctga"><i
-												class="ti-user"></i>베스트</a></li>
-
-										<li class="ctgli"><a href="#" class="ctga"><i
-												class="ti-user"></i>이벤트</a></li>
-
-										<li class="ctgli"><a href="#" class="ctga "> <i
-												class="ti-write"></i> 카테고리 <i class="ti-angle-down down "></i>
-										</a>
-											<ul class="ctgulChild">
-												<li class="ctgliChild"><a href="" class="ctgaChild">사료</a></li>
-												<li class="ctgliChild"><a href="" class="ctgaChild">간식</a></li>
-												<li class="ctgliChild"><a href="" class="ctgaChild">위생/배변</a></li>
-												<li class="ctgliChild"><a href="" class="ctgaChild">미용/목욕</a></li>
-												<li class="ctgliChild"><a href="" class="ctgaChild">급식/급수기</a></li>
-												<li class="ctgliChild"><a href="" class="ctgaChild">장난감/훈련</a></li>
-												<li class="ctgliChild"><a href="" class="ctgaChild">하우스/이동장</a></li>
-												<li class="ctgliChild"><a href="" class="ctgaChild">패션/의류</a></li>
-												<li class="ctgliChild"><a href="" class="ctgaChild">목줄/하네스</a></li>
-											</ul></li>
-									</ul>
-								</nav>
+								</div>
 							</div>
 						</div>
-					</div>
-				</div>
 
 
 
 
-			</div>
+	</div>
 
-			<div class="container girdscc">
-				<div class="col-md-12 ">
-					<div id="carousel-2" class="carousel slide carousel-fade"
-						data-ride="carousel" data-interval="3000">
-						<ol class="carousel-indicators">
-							<li data-target="#carousel-2" data-slide-to="0" class="active"></li>
-							<li data-target="#carousel-2" data-slide-to="1"></li>
-							<li data-target="#carousel-2" data-slide-to="2"></li>
-						</ol>
-						<div class="carousel-inner" role="listbox">
+	<div class="container girdscc">
+		<div class="col-md-12 ">
+			<div class="container-fluid high_banner">
+						<div id="carousel-2" class="carousel slide carousel-fade"
+							data-ride="carousel" data-interval="3000">
+							<ol class="carousel-indicators">
+								<li data-target="#carousel-2" data-slide-to="0" class="active"></li>
+								<li data-target="#carousel-2" data-slide-to="1"></li>
+								<li data-target="#carousel-2" data-slide-to="2"></li>
+							</ol>
+							<div class="carousel-inner" role="listbox">
 
-							<div class="carousel-item active">
-								<a href="https://bootstrapcreative.com/"> <img
-									src="https://dummyimage.com/1000x400/444/"
-									alt="responsive image" class="d-block img-fluid" width="100%">
+								<div class="carousel-item active">
+									<a href="https://bootstrapcreative.com/"> <img
+										src="https://dummyimage.com/1000x400/444/"
+										alt="responsive image" class="d-block img-fluid" width="100%">
 
-									<div class="carousel-caption">
-										<div>
-											<h2>Digital Craftsmanship</h2>
-											<p>We meticously build each site to get results</p>
-											<span class="btn btn-sm btn-outline-secondary">Learn
-												More</span>
+										<div class="carousel-caption">
+											<div>
+												<h2>Digital Craftsmanship</h2>
+												<p>We meticously build each site to get results</p>
+												<span class="btn btn-sm btn-outline-secondary">Learn
+													More</span>
+											</div>
 										</div>
-									</div>
-								</a>
-							</div>
-							<!-- 상단 끝 -->
+									</a>
+								</div>
+								<!-- 상단 끝 -->
 
 
-							<div class="carousel-item">
-								<a href="https://bootstrapcreative.com/"> <img
-									src="https://dummyimage.com/1000x400/444/"
-									alt="responsive image" class="d-block img-fluid" width="100%">
+								<div class="carousel-item">
+									<a href="https://bootstrapcreative.com/"> <img
+										src="https://dummyimage.com/1000x400/444/"
+										alt="responsive image" class="d-block img-fluid" width="100%">
 
-									<div class="carousel-caption justify-content-center align-items-center">
-										<div>
-											<h2>Every project begins with a sketch</h2>
-											<p>We work as an extension of your business to explore
-												solutions</p>
-											<span class="btn btn-sm btn-outline-secondary">Our
-												Process</span>
+										<div
+											class="carousel-caption justify-content-center align-items-center">
+											<div>
+												<h2>Every project begins with a sketch</h2>
+												<p>We work as an extension of your business to explore
+													solutions</p>
+												<span class="btn btn-sm btn-outline-secondary">Our
+													Process</span>
+											</div>
 										</div>
-									</div>
-								</a>
-							</div>
-							<!-- /.carousel-item -->
-							<div class="carousel-item">
-								<a href="https://bootstrapcreative.com/"> <img
-									src="https://dummyimage.com/1000x400/444/"
-									alt="responsive image" class="d-block img-fluid" width="100%">
+									</a>
+								</div>
+								<!-- /.carousel-item -->
+								<div class="carousel-item">
+									<a href="https://bootstrapcreative.com/"> <img
+										src="https://dummyimage.com/1000x400/444/"
+										alt="responsive image" class="d-block img-fluid" width="100%">
 
 
-									<div class="carousel-caption justify-content-center align-items-center">
-										<div>
-											<h2>Performance Optimization</h2>
-											<p>We monitor and optimize your site's long-term
-												performance</p>
-											<span class="btn btn-sm btn-secondary">Learn How</span>
+										<div
+											class="carousel-caption justify-content-center align-items-center">
+											<div>
+												<h2>Performance Optimization</h2>
+												<p>We monitor and optimize your site's long-term
+													performance</p>
+												<span class="btn btn-sm btn-secondary">Learn How</span>
+											</div>
 										</div>
-									</div>
-								</a>
+									</a>
+								</div>
+								<!-- /.carousel-item -->
 							</div>
-							<!-- /.carousel-item -->
+							<!-- /.carousel-inner -->
+							<a class="carousel-control-prev" href="#carousel-2" role="button"
+								data-slide="prev"> <span class="carousel-control-prev-icon"
+								aria-hidden="true"></span> <span class="sr-only">Previous</span>
+							</a> <a class="carousel-control-next" href="#carousel-2"
+								role="button" data-slide="next"> <span
+								class="carousel-control-next-icon" aria-hidden="true"></span> <span
+								class="sr-only">Next</span>
+							</a>
 						</div>
-						<!-- /.carousel-inner -->
-						<a class="carousel-control-prev" href="#carousel-2" role="button"
-							data-slide="prev"> <span class="carousel-control-prev-icon"
-							aria-hidden="true"></span> <span class="sr-only">Previous</span>
-						</a> <a class="carousel-control-next" href="#carousel-2" role="button"
-							data-slide="next"> <span class="carousel-control-next-icon"
-							aria-hidden="true"></span> <span class="sr-only">Next</span>
-						</a>
-					</div>
 
+			
 				</div>
 			</div>
 		</div>
+
 		<!-- 첫번째 컨테이너 플루이드 끝-->
 
 		<!-- 중단시작 -->
 
-		<div class="container-fluid">
+		<div class="container-fluid mypet_resgister_div">
 			<div class="container girdscc2">
 				<div class="row col-sm-12">
 					<article class="map_">
-						<section>
+						<section calss="register_mypet_banner">
 							<div>
 								<h6>함께하는 반려 동물이 있으신가요?</h6>
 								<h4>반려동물을 등록해주세요</h4>
@@ -739,10 +804,12 @@ translateX
 
 
 			<div class="container girdscc3">
-			<hr>
+				<hr>
 				<div class="col-md-12">
-					<p id="product_title">이번주 신상
-					<p>
+					<p id="product_title">
+						이번주 신상
+						<p>
+				
 				</div>
 				<div class="row">
 					<div class="roadmap-title">
@@ -751,11 +818,11 @@ translateX
 					</div>
 					
 			<!--반복 돌릴 곳  -->
-					<c:forEach var='md' varStatus="status" items="${md_product}" >
+					<c:forEach var='md' varStatus="status" items="${md_product}">
 					<div class="col-lg-6 col-md-6 mb-4 nopaddingcard ">
 						<div class="card h-40 itembox1">
 							<a href="#"><img class="card-img-top"
-								src="http://placehold.it/700x400" alt=""></a>
+									src="http://placehold.it/700x400" alt=""></a>
 								<div class="class-skill">
 										<div class="class-type">${md.product_name}</div>
 										<div class="class-format">♡</div>
@@ -764,16 +831,21 @@ translateX
 										<div class="class-title">${md.product_price }</div>
 										<div class="class-detail">${md.product_detail_info }</div>
 									</div>
-									<button class="btn btn-3 btn-3a icon-cart" id="addCart"><i class="fa fa-shopping-cart"></i> 장바구니</button>
+									<button class="btn btn-3 btn-3a icon-cart" id="addCart">
+									<i class="fa fa-shopping-cart"></i> 장바구니</button>
 								
 						</div>
 					</div>
 					<form>
 					<input type="hidden" name="product_idx" value="${md.product_idx}">
-					<input type="hidden" id="md_filetype${status.index}" value="${md.productVOList.get(0).filetype}" />
-					<input type="hidden" id="md_uuid${status.index}" value="${md.productVOList.get(0).uuid}" />
-					<input type="hidden" id="md_uploadPath${status.index}" value="${md.productVOList.get(0).uploadPath}" />
-					<input type="hidden" id="md_fileName${status.index}" value="${md.productVOList.get(0).fileName}" />
+					<input type="hidden" id="md_filetype${status.index}"
+								value="${md.productVOList.get(0).filetype}" />
+					<input type="hidden" id="md_uuid${status.index}"
+								value="${md.productVOList.get(0).uuid}" />
+					<input type="hidden" id="md_uploadPath${status.index}"
+								value="${md.productVOList.get(0).uploadPath}" />
+					<input type="hidden" id="md_fileName${status.index}"
+								value="${md.productVOList.get(0).fileName}" />
 					</form>
 					
 					</c:forEach>
@@ -792,12 +864,13 @@ translateX
 						<div class="swiper-container mySwiper">
 							<div class="swiper-wrapper">
 
-						<c:forEach var='popular_product' varStatus="status" items="${popular_product}" >
+						<c:forEach var='popular_product' varStatus="status"
+									items="${popular_product}">
 								<div class="swiper-slide">
 									<div class="card h-40 ss">
 
 										<img src="/petopia/images/11356_originalView_01802971.jpg"
-											alt="테스트 이미지" class="class-image" width= />
+												alt="테스트 이미지" class="class-image" width= />
 										<div class="class-skill">
 											<div class="class-type">${popular_product.product_name}</div>
 											<div class="class-format">♡</div>
@@ -806,7 +879,8 @@ translateX
 											<div class="class-title">${popular_product.product_price} </div>
 											<div class="class-detail">${popular_product.product_detail_info}</div>
 										</div>
-									<button class="btn btn-3 btn-3a icon-cart" id="addCart"><i class="fa fa-shopping-cart"></i> 장바구니</button>
+									<button class="btn btn-3 btn-3a icon-cart" id="addCart">
+												<i class="fa fa-shopping-cart"></i> 장바구니</button>
 										
 										<div class="page-wrapper"></div>
 
@@ -814,11 +888,16 @@ translateX
 								</div>
 								
 					<form>
-					<input type="hidden" name="product_idx" value="${popular_product.product_idx}">
-					<input type="hidden" id="p_filetype${status.index}" value="${popular_product.productVOList.get(0).filetype}" />
-					<input type="hidden" id="p_uuid${status.index}" value="${popular_product.productVOList.get(0).uuid}" />
-					<input type="hidden" id="p_uploadPath${status.index}" value="${popular_product.productVOList.get(0).uploadPath}" />
-					<input type="hidden" id="p_fileName${status.index}" value="${popular_product.productVOList.get(0).fileName}" />
+					<input type="hidden" name="product_idx"
+											value="${popular_product.product_idx}">
+					<input type="hidden" id="p_filetype${status.index}"
+											value="${popular_product.productVOList.get(0).filetype}" />
+					<input type="hidden" id="p_uuid${status.index}"
+											value="${popular_product.productVOList.get(0).uuid}" />
+					<input type="hidden" id="p_uploadPath${status.index}"
+											value="${popular_product.productVOList.get(0).uploadPath}" />
+					<input type="hidden" id="p_fileName${status.index}"
+											value="${popular_product.productVOList.get(0).fileName}" />
 					</form>
 						</c:forEach>
 							<!-- 인기제품 반복문 돌릴곳 끝 END -->
@@ -842,12 +921,13 @@ translateX
 					<div class="swiper-container mySwiper">
 						<div class="swiper-wrapper">
 						
-						<c:forEach var='new_product' varStatus="status" items="${new_product}" >
+						<c:forEach var='new_product' varStatus="status"
+								items="${new_product}">
 							<div class="swiper-slide">
 								<div class="card ss">
 
 									<img src="/petopia/images/11356_originalView_01802971.jpg"
-										alt="테스트 이미지" class="class-image" width= />
+											alt="테스트 이미지" class="class-image" width= />
 									<div class="class-skill">
 										<div class="class-type">${new_product.product_name}</div>
 										<div class="class-format">♡</div>
@@ -856,15 +936,21 @@ translateX
 										<div class="class-title">${new_product.product_price}</div>
 										<div class="class-detail">${new_product.product_detail_info}</div>
 									</div>
-									<button class="btn btn-3 btn-3a icon-cart" id="addCart"><i class="fa fa-shopping-cart"></i> 장바구니</button>
+									<button class="btn btn-3 btn-3a icon-cart" id="addCart">
+											<i class="fa fa-shopping-cart"></i> 장바구니</button>
 								</div>
 							</div>
 					<form>
-					<input type="hidden" name="product_idx" value="${new_product.product_idx}">
-					<input type="hidden" id="n_filetype${status.index}" value="${new_product.productVOList.get(0).filetype}" />
-					<input type="hidden" id="n_uuid${status.index}" value="${new_product.productVOList.get(0).uuid}" />
-					<input type="hidden" id="n_uploadPath${status.index}" value="${new_product.productVOList.get(0).uploadPath}" />
-					<input type="hidden" id="n_fileName${status.index}" value="${new_product.productVOList.get(0).fileName}" />
+					<input type="hidden" name="product_idx"
+										value="${new_product.product_idx}">
+					<input type="hidden" id="n_filetype${status.index}"
+										value="${new_product.productVOList.get(0).filetype}" />
+					<input type="hidden" id="n_uuid${status.index}"
+										value="${new_product.productVOList.get(0).uuid}" />
+					<input type="hidden" id="n_uploadPath${status.index}"
+										value="${new_product.productVOList.get(0).uploadPath}" />
+					<input type="hidden" id="n_fileName${status.index}"
+										value="${new_product.productVOList.get(0).fileName}" />
 					</form>
 							</c:forEach>
 							
@@ -882,12 +968,13 @@ translateX
 					<div class="swiper-container mySwiper">
 						<div class="swiper-wrapper">
 
-					<c:forEach var='single_product' varStatus="status" items="${single_product}" >
+					<c:forEach var='single_product' varStatus="status"
+								items="${single_product}">
 							<div class="swiper-slide">
 								<div class="card ss">
 
 									<img src="/petopia/images/11356_originalView_01802971.jpg"
-										alt="테스트 이미지" class="class-image" width= />
+											alt="테스트 이미지" class="class-image" width= />
 									<div class="class-skill">
 										<div class="class-type">${single_product.product_name}</div>
 										<div class="class-format">♡</div>
@@ -896,16 +983,23 @@ translateX
 										<div class="class-title">${single_product.product_price}</div>
 										<div class="class-detail">${single_product.product_detail_info}</div>
 									</div>
-										<input type="hidden" id="cart_product_idx" value="<c:out value='${single_product.product_idx}' />">
-									<button class="btn btn-3 btn-3a icon-cart" id="addCart"><i class="fa fa-shopping-cart"></i> 장바구니</button>
+										<input type="hidden" id="cart_product_idx"
+											value="<c:out value='${single_product.product_idx}' />">
+									<button class="btn btn-3 btn-3a icon-cart" id="addCart">
+											<i class="fa fa-shopping-cart"></i> 장바구니</button>
 								</div>
 							</div>
 					<form>
-					<input type="hidden" name="product_idx" value="${single_product.product_idx}">
-					<input type="hidden" id="s_filetype${status.index}" value="${single_product.productVOList.get(0).filetype}" />
-					<input type="hidden" id="s_uuid${status.index}" value="${single_product.productVOList.get(0).uuid}" />
-					<input type="hidden" id="s_uploadPath${status.index}" value="${single_product.productVOList.get(0).uploadPath}" />
-					<input type="hidden" id="s_fileName${status.index}" value="${single_product.productVOList.get(0).fileName}" />
+					<input type="hidden" name="product_idx"
+										value="${single_product.product_idx}">
+					<input type="hidden" id="s_filetype${status.index}"
+										value="${single_product.productVOList.get(0).filetype}" />
+					<input type="hidden" id="s_uuid${status.index}"
+										value="${single_product.productVOList.get(0).uuid}" />
+					<input type="hidden" id="s_uploadPath${status.index}"
+										value="${single_product.productVOList.get(0).uploadPath}" />
+					<input type="hidden" id="s_fileName${status.index}"
+										value="${single_product.productVOList.get(0).fileName}" />
 					</form>
 							</c:forEach>
 							
@@ -941,8 +1035,9 @@ translateX
 	        <p>장바구니에 상품이 추가되었습니다. 장바구니로 이동하시겠습니까?</p>
 	      </div>
 	      <div class="modal-footer">
-	        <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-	        <button type="button" class="btn btn-warning" >이동</button>
+	        <button type="button" class="btn btn-default"
+						data-dismiss="modal">닫기</button>
+	        <button type="button" class="btn btn-warning">이동</button>
 	      </div>
 	    </div>
 	
@@ -973,8 +1068,8 @@ translateX
 
 				<div id="paging">
 					<a class="btn_prev" style="cursor: pointer">이전</a><span
-						id="currentPage"></span><span id="totalPageCount"></span><a
-						class="btn_next" style="cursor: pointer">다음</a>
+					id="currentPage"></span><span id="totalPageCount"></span><a
+					class="btn_next" style="cursor: pointer">다음</a>
 				</div>
 
 			</div>
@@ -1004,7 +1099,6 @@ translateX
 
 
 		<script type="text/javascript">
-		
 			//웹사이트 전 영역에 영향을주는 쿠키 생성, 만료기한 1일
 			/* $.cookie('name', 'value', {
 				expires : 1,
@@ -1012,135 +1106,140 @@ translateX
 			}); */
 
 			// recent item    
+			var Cpage; // 현재 페이지 
+			var pagingSize = 4; // 원하는 페이지 사이즈로 조정하세용 
+			function chkRecent(a) {
 
-			var Cpage;   // 현재 페이지 
-			var pagingSize = 4;   // 원하는 페이지 사이즈로 조정하세용 
-			function chkRecent(a){
+				var product_idx = $.cookie("product_idx");
+				var produt_name = $.cookie("product_name");
 
-			var product_idx = $.cookie("product_idx");
-			var produt_name = $.cookie("product_name");
+				$("#right_zzim ul").html(''); // 일단 Ul 내용 지우기... 
 
-			$("#right_zzim ul").html('');    // 일단 Ul 내용 지우기... 
+				if (product_idx) {
 
-			if(product_idx){
+					var totcount = product_idx.split('&').length - 1;
+					var totpage = Math.ceil(totcount / pagingSize) * 1;
 
-				var totcount = product_idx.split('&').length-1;  
-				var totpage = Math.ceil(totcount / pagingSize) *1;
+					Cpage = (totpage >= a) ? a : 1;
 
-				
+					Cpage = (Cpage < 1) ? totpage : Cpage;
 
-				Cpage = (totpage >= a )? a:1;
+					var start = (Cpage - 1) * pagingSize;
 
-				Cpage = (Cpage < 1)? totpage:Cpage;
+					for (i = start; i <= start + (pagingSize - 1); i++) {
 
-				
+						var thisItem = product_idx.split('&')[i];
 
-				var start = (Cpage-1) * pagingSize;    
+						if (thisItem) {
 
-			
+							var product_idx = thisItem.split(':')[0];
 
-				for (i = start ; i <= start+(pagingSize-1) ;i++){
+							var product_image = thisItem.split(':')[1];
 
-				var thisItem = product_idx.split('&')[i];
+							$("#right_zzim ul")
+									.append(
+											'<li><a href="/product?product_idx='
+													+ product_idx
+													+ '" target="_top"><img src="http://www'+product_image+'"  width="75" border=1></a><div class="detail"><a href="javascript:removeRecentItem(\''
+													+ thisItem
+													+ '\')" class="btn_delete">삭제</a></div></li>')
+							$.removeCookie('product_idx', {
+								path : '/'
+							});
+						}
 
-					if(thisItem){
-
-						var product_idx = thisItem.split(':')[0];
-
-						var product_image = thisItem.split(':')[1];
-
-					$("#right_zzim ul").append('<li><a href="/product?product_idx='+product_idx+'" target="_top"><img src="http://www'+product_image+'"  width="75" border=1></a><div class="detail"><a href="javascript:removeRecentItem(\''+thisItem+'\')" class="btn_delete">삭제</a></div></li>')
-					$.removeCookie('product_idx', { path: '/' });
 					}
+
+					$("#paging").show();
+
+				} else {
+
+					$("#right_zzim ul").append(
+							'<p class="noData">최근 본 상품이<br> 없습니다.</p>');
+
+					$("#paging").hide();
+					$("#recentCnt").text('');
 
 				}
 
-				$("#paging").show();
-
-			}else{
-
-				$("#right_zzim ul").append('<p class="noData">최근 본 상품이<br> 없습니다.</p>');
-
-				$("#paging").hide();
-				$("#recentCnt").text('');
+				updateRecentPage(totcount, Cpage);
 
 			}
 
-			updateRecentPage(totcount, Cpage);
+			chkRecent(1);
 
-		}
-
-		chkRecent(1);
-
-			function removeRecentItem(itemname){
+			function removeRecentItem(itemname) {
 
 				var product_idx = $.cookie("product_idx");
 
-				product_idx = product_idx.replace(itemname+"&","");			
+				product_idx = product_idx.replace(itemname + "&", "");
 
-				$.cookie('product_idx', product_idx , { expires: 1 });
+				$.cookie('product_idx', product_idx, {
+					expires : 1
+				});
 
 				chkRecent(Cpage);
 
 			}
 
+			function updateRecentPage(totcount, Cpage) {
 
+				$("#recentCnt").text(totcount);
+				$("#totalPageCount").text(
+						"/" + Math.ceil((totcount / pagingSize) * 1));
 
-			function updateRecentPage(totcount,Cpage){  
+				if (Math.ceil((totcount / pagingSize) * 1) < Cpage) {
 
-				$("#recentCnt").text(totcount);  
-				$("#totalPageCount").text("/"+Math.ceil((totcount / pagingSize) *1)); 
+					$("#currentPage").text(
+							Math.ceil((totcount / pagingSize) * 1));
 
-				if(Math.ceil((totcount / pagingSize) *1) < Cpage){
+				} else {
 
-				$("#currentPage").text(Math.ceil((totcount / pagingSize) *1));
-
-				}else{
-
-				$("#currentPage").text(Cpage);  //
+					$("#currentPage").text(Cpage); //
 
 				}
 
 			}
 
+			$(".btn_next").on('click', function() {
 
-			$(".btn_next").on('click',function(){
-
-			chkRecent(Cpage + 1);
-
-			});
-
-
-			$(".btn_prev").on('click',function(){
-
-			chkRecent(Cpage - 1);
+				chkRecent(Cpage + 1);
 
 			});
 
-		
+			$(".btn_prev").on('click', function() {
 
-		function checkCookie() {
+				chkRecent(Cpage - 1);
 
-		    var product_idx = $.cookie("product_idx");
-			var thisItem='<?=$product_idx?>:<?=$itemImage ?>';   // 제품 아이디와 이미지 이름을 저장   
+			});
 
-			
+			function checkCookie() {
 
-			if (thisItem){
+				var product_idx = $.cookie("product_idx");
+				var thisItem = '<?=$product_idx?>:<?=$itemImage ?>'; // 제품 아이디와 이미지 이름을 저장   
 
-				if (product_idx != "" && product_idx != null) {
+				if (thisItem) {
 
-					if (product_idx.indexOf(thisItem) ==-1 ){ //값이 없으면 
+					if (product_idx != "" && product_idx != null) {
 
-							$.cookie('product_idx', product_idx+"&"+product_idx , { expires: 1 });
+						if (product_idx.indexOf(thisItem) == -1) { //값이 없으면 
 
-					 }
+							$.cookie('product_idx', product_idx + "&"
+									+ product_idx, {
+								expires : 1
+							});
 
-				} else {
+						}
 
-					if (product_idx == "" || product_idx== null) {
+					} else {
 
-						$.cookie('product_idx', product_idx+"&", { expires: 1 });
+						if (product_idx == "" || product_idx == null) {
+
+							$.cookie('product_idx', product_idx + "&", {
+								expires : 1
+							});
+
+						}
 
 					}
 
@@ -1148,68 +1247,59 @@ translateX
 
 			}
 
-		}
+			checkCookie();
 
-		checkCookie();
+			$(document).ready(function() {
 
+				var swiper = new Swiper(".mySwiper", {
+					slidesPerView : 4,
+					spaceBetween : 20,
+					slidesPerGroup : 4,
+					loop : true,
+					loopFillGroupWithBlank : true,
+					pagination : {
+						el : ".swiper-pagination",
+						clickable : true,
+					},
+					navigation : {
+						nextEl : ".swiper-button-next",
+						prevEl : ".swiper-button-prev",
+					},
+				});
 
+				$("#addCart").on("click", function(e) {
 
-			$(document)
-					.ready(
-							function() {
+					e.preventDefault();
 
-								var swiper = new Swiper(".mySwiper", {
-									slidesPerView : 4,
-									spaceBetween : 20,
-									slidesPerGroup : 4,
-									loop : true,
-									loopFillGroupWithBlank : true,
-									pagination : {
-										el : ".swiper-pagination",
-										clickable : true,
-									},
-									navigation : {
-										nextEl : ".swiper-button-next",
-										prevEl : ".swiper-button-prev",
-									},
-								});
+					var cartVO = {
+						product_idx : $("input[name=product_idx]").val(),
+					/* amount : $("#productsAmount").val() */
+					}
 
-								
-									
-								
-								$("#addCart").on("click", function(e) {
-					    			
-					    			e.preventDefault();
-					    			
-						    			var cartVO = {
-						    					product_idx : $("input[name=product_idx]").val(),
-						    					/* amount : $("#productsAmount").val() */
-						    			}
-						    			
-						    			$.ajax({
-						    				type: 'post',
-						    				url: '/addCart',
-						    				data: JSON.stringify(cartVO),
-						    			  	contentType: "application/json; charset=utf-8",
-						    			  	dataType: 'text',
-						    			  	success: function(result, status, xhr) {
-						    			  		console.log('add cart ' + result);
+					$.ajax({
+						type : 'post',
+						url : '/addCart',
+						data : JSON.stringify(cartVO),
+						contentType : "application/json; charset=utf-8",
+						dataType : 'text',
+						success : function(result, status, xhr) {
+							console.log('add cart ' + result);
 
-						    			  		alert("상품이 장바구니에 추가되었습니다");
-						    			  	}
-						    			});
-					    		
-					    			
-					    		});
-								
-							});
+							alert("상품이 장바구니에 추가되었습니다");
+						}
+					});
+
+				});
+
+			});
 		</script>
 
 
-		<script src="/petopia/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+						<script src="/petopia/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 		<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 		<script src="/petopia/js/mainindex.js"></script>
 		<script src="/petopia/js/petopia.js"></script>
-</body>
+
+					</body>
 
 </html>
