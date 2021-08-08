@@ -1,11 +1,12 @@
 package co.kr.petopia.controller;
 
 
-import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Random;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
@@ -76,48 +77,6 @@ public class MemberController {
         return "success";
     }
     
-    // 아이디 찾기 폼
-    @GetMapping("/help/idInquiry")
-    public String findMeberIdForm() {
-        log.info("아이디 찾기 페이지-----------");
-        return "member/idInquiry";
-    }
-    
-    // 아이디 찾기 결과 화면
-    @PostMapping("/help/findid")
-    public String findMemeberId(@RequestParam("member_name") String member_name, 
-            @RequestParam("member_phoneNumber") String member_phoneNumber,
-            @RequestParam("member_email") String member_email, Model model, HttpServletResponse response) throws Exception {
-        
-        String member_id = memberService.findMemberId(member_name, member_phoneNumber, member_email);
-        
-        if (member_id == null) {
-            response.setContentType("text/html; charset=UTF-8");
-            PrintWriter out = response.getWriter();
-            out.println("<script>alert('일치하는 정보가 없습니다. 다시 확인해주세요.'); history.go(-1);</script>");
-            out.flush();
-        } else {
-            model.addAttribute("member_id", member_id);
-        }
-        
-        return "member/findid";
-    }
-    
-    // 비밀번호 찾기 폼
-    @GetMapping("/help/pwInquiry")
-    public String findMeberPwForm() {
-        log.info("비밀번호 찾기 페이지-----------");
-        return "member/pwInquiry";
-    }
-    
-    // 비밀번호 재설정
-    @PostMapping("/help/resetpw")
-    public String findMemberPw() {
-        return "member/resetpw";
-    }
-    
-    // 비밀번호 재설정 완료 화면
-
     // joinForm -> 아이디 중복 체크
     @GetMapping("/idCheck")
     @ResponseBody
@@ -172,6 +131,81 @@ public class MemberController {
         return gson.toJson(key);
     }
     
+    // 아이디 찾기 폼
+    @GetMapping("/help/idInquiry")
+    public String findMeberIdForm() {
+        log.info("아이디 찾기 페이지-----------");
+        return "member/idInquiry";
+    }
+    
+    // 아이디 찾기 결과 화면
+    @PostMapping("/help/findid")
+    public String findMemeberId(@RequestParam("member_name") String member_name, 
+            @RequestParam("member_phoneNumber") String member_phoneNumber,
+            @RequestParam("member_email") String member_email, Model model, HttpServletResponse response) throws Exception {
+        
+        String member_id = memberService.findMemberId(member_name, member_phoneNumber, member_email);
+        
+        if (member_id == null) {
+            response.setContentType("text/html; charset=UTF-8");
+            PrintWriter out = response.getWriter();
+            out.println("<script>alert('일치하는 정보가 없습니다. 다시 확인해주세요.'); history.go(-1);</script>");
+            out.flush();
+        } else {
+            model.addAttribute("member_id", member_id);
+        }
+        
+        return "member/findid";
+    }
+    
+    // 비밀번호 찾기 폼
+    @GetMapping("/help/pwInquiry")
+    public String findMeberPwForm() {
+        log.info("비밀번호 찾기 페이지-----------");
+        return "member/pwInquiry";
+    }
+    
+    // 비밀번호 재설정
+    @PostMapping("/help/resetpw")
+    public String changeMemberPw(@RequestParam("member_id") String member_id, 
+                                 @RequestParam("member_name") String member_name,
+                                 @RequestParam("member_email") String member_email,
+                                 HttpServletRequest request) {
+        
+        HttpSession session = request.getSession();
+        
+        session.setAttribute("member_id", member_id);
+        session.setAttribute("member_name", member_name);
+        session.setAttribute("member_email", member_email);
+        
+        return "/member/resetpw";
+    }
+    
+    // 비밀번호 재설정 완료 화면
+    @PostMapping("/help/resetpw/success")
+    public String changePwSuccess(@RequestParam("member_password") String member_password, HttpServletRequest request) {
+        
+        HttpSession session = request.getSession();
+        
+        String member_id = (String) session.getAttribute("member_id");
+        String member_name = (String) session.getAttribute("member_name");
+        String member_email = (String) session.getAttribute("member_email");
+        
+        System.out.println(member_id);
+        
+        MemberVO member = new MemberVO();
+        
+        member.setMember_id(member_id);
+        member.setMember_name(member_name);
+        member.setMember_email(member_email);
+        member.setMember_password(member_password);
+        
+        memberService.resetMemberPw(member);
+        
+        session.invalidate();
+        
+        return "member/resetpwsuccess";
+    }
 
     // 마이페이지 메인
     @GetMapping("member/mypage")

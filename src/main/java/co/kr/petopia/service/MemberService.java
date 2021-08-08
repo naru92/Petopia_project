@@ -41,4 +41,6 @@ public interface MemberService {
     // 아이디 찾기
     String findMemberId(String member_name, String member_phoneNumber, String member_email);
 
+    // 비밀번호 찾기 (수정)
+    int resetMemberPw(MemberVO member);
 }

@@ -1,6 +1,7 @@
 package co.kr.petopia.security;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -40,7 +41,7 @@ public class AuthFailureHandler implements AuthenticationFailureHandler {
 			if(memberSecurtiyService.getSelectMemberInfo(member_id) != null) {
 				msg ="비밀번호가 틀렸습니다.";
 			}else {
-				msg = "해당 아이디가 존재하지 않습니다.";
+				msg ="해당 아이디가 존재하지 않습니다.";
 			}
 			
 		} catch (Exception e) {

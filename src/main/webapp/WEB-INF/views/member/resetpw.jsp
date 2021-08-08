@@ -22,7 +22,7 @@
 	<main>
 		<div class="container">
 			<div class="login-form">
-				<form action="/loginProcess" method="POST">
+				<form action="/help/resetpw/success" method="POST">
 					<h3>비밀번호 재설정</h3>
 					<div class="info">
 					* 새로운 비밀번호를 입력해 주세요.<br>

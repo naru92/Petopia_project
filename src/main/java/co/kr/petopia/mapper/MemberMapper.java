@@ -50,6 +50,7 @@ public interface MemberMapper {
     String findMemberId(String member_name, String member_phoneNumber, String member_email);
     
     // 비밀번호 찾기 (수정)
+    int resetMemberPw(MemberVO member);
 }
 
 
