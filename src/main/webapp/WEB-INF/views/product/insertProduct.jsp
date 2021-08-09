@@ -25,6 +25,25 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 <style>
+
+.button_div{
+display: flex;
+flex-direction: row-reverse;
+}
+
+.button_div button{
+margin-left: 5px;
+
+}
+
+.detail_info{
+margin-top: 10px;
+}
+.detail_info strong{
+ position: relative;
+    bottom: 65px;
+}
+
 .marginclass {
 	padding-left: 0px;
 }
@@ -101,7 +120,7 @@ display :inline;
                      	<br>
                         <div class="form-group">
                         <label>
-						  <strong class="label-txt">상품명</strong>
+						  <strong class="label-txt">상품명 &nbsp;&nbsp;</strong>
 						   <input type="text" class="input" name="product_name">
 						   <div class="line-box">
 						   <div class="line"></div>
@@ -121,31 +140,32 @@ display :inline;
 						  </label>
                         </div>
                          <label>
-						  <strong class="label-txt">재고량</strong>
+						  <strong class="label-txt">재고량 &nbsp;&nbsp;</strong>
 						   <input type="text" class="input" name="product_stock">
 						   <div class="line-box">
 						   <div class="line"></div>
 						    </div>
 						    <strong class="pull-left" id="checkProductStock"></strong>
 						  </label>
-
-                        <div class="form-group">
+						<br>
+                        <div class="form-group detail_info">
                            <label>
-						  <strong class="label-txt">상품설명</strong>
-						  <textarea class="input" rows="3" name='product_detail_info'></textarea>
-						   <div class="line-box">
+                           <strong class="label-txt product_detail_text">상품설명</strong>
+						  <textarea class="input" rows="3"  name='product_detail_info'></textarea>
+						
+						    <strong class="pull-left" id="checkProductDetailInfo"></strong>
+						     <div class="line-box">
 						   <div class="line"></div>
 						    </div>
-						    <strong class="pull-left" id="checkProductDetailInfo"></strong>
 						  </label>
                         </div>
                         
                             
                         
-
+						<div class=button_div>
                         <button id="addBtn" type="submit" class="btn btn btn-primary">등록</button>
                         <button type="reset" class="btn btn-info">초기화</button>
-
+						</div>
                     
                     </form>
                 </div>

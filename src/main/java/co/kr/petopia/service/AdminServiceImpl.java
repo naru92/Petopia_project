@@ -301,17 +301,47 @@ public class AdminServiceImpl implements AdminService {
 
 	@Override
 	public List<ProductVO> getAllProductList() {
-		return adminMapper.getAllProductList();
+		
+		List<ProductVO> getAllProductList = adminMapper.getAllProductList();
+		for(int i=0 ; i < getAllProductList.size(); i++) {
+				
+				List<FileUploadVO> fileImage = productAattachMapper.findByProduct(getAllProductList.get(i).getProduct_idx());
+				getAllProductList.get(i).setProductVOList(fileImage);
+				
+			}
+		
+		
+			return getAllProductList;		
+		
 	}
 
 	@Override
 	public List<ProductVO> productListBestDesc() {
-		return adminMapper.productListBestDesc();
+		
+		List<ProductVO> bestProductList = adminMapper.productListBestDesc();
+		
+		for(int i=0 ; i<bestProductList.size(); i++) {
+			
+			List<FileUploadVO> fileImage = productAattachMapper.findByProduct(bestProductList.get(i).getProduct_idx());
+			bestProductList.get(i).setProductVOList(fileImage);
+			
+		}
+		
+		return bestProductList;
 	}
 
 	@Override
 	public List<ProductVO> productListDateDesc() {
-		return adminMapper.productListDateDesc();
+		
+		List<ProductVO> DateDescList = adminMapper.productListDateDesc();
+	for(int i=0 ; i < DateDescList.size(); i++) {
+			
+			List<FileUploadVO> fileImage = productAattachMapper.findByProduct(DateDescList.get(i).getProduct_idx());
+			DateDescList.get(i).setProductVOList(fileImage);
+			
+		}
+		
+		return DateDescList;
 	}
 	
 

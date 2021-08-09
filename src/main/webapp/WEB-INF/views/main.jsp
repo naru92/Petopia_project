@@ -26,498 +26,366 @@
 
 
 .d-block {
-	padding-top: 64px;
-	display: block;
+  padding-top: 64px;
+  display: block;
 }
 
 .register_mypet_banner {
-	padding-left: 0;
+  padding-left: 0;
 }
 
 .class-desc {
-	margin: 0 auto;
-	height: 80PX;
-	overflow: hidden;
+  margin: 0 auto;
+  height: 80PX;
+  overflow: hidden;
 }
 
 .dropbtn {
-	color: white;
-	padding: 0px;
-	font-size: 16px;
-	border: none;
+  color: white;
+  padding: 0px;
+  font-size: 16px;
+  border: none;
 }
 
 .dropdown {
-	position: relative;
-	display: inline-block;
+  position: relative;
+  display: inline-block;
 }
 
 .dropdown-content {
-	display: none;
-	position: absolute;
-	min-width: 160px;
-	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-	z-index: 1;
+  display: none;
+  position: absolute;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
 }
 
 .dropdown-content a {
-	color: black;
-	padding: 12px 16px;
-	text-decoration: none;
-	display: block;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
 }
 
 .dropdown-content a:hover {
-	background-color: #ddd;
+  background-color: #ddd;
 }
 
 .dropdown:hover .dropdown-content {
-	display: block;
+  display: block;
 }
 
 .ss {
-	margin-top: 15px;
-	margin-bottom: 15px;
-	overflow: visible;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  overflow: visible;
 }
-.mypet_reg{
-width: 88% !important;
-padding-left: 25px !important;
-padding-right: 25px !important;
+
+.mypet_reg {
+  width: 88% !important;
+  padding-left: 25px !important;
+  padding-right: 25px !important;
 }
+
 .girdscc {
-	margin-right: 15% !important;
-	margin-left: 320px !important;
+  margin-right: 15% !important;
+  margin-left: 320px !important;
 }
 
 .girdscc2 {
-	margin-right: 14% !important;
-	padding: 0  !important;
+  margin-right: 14% !important;
+  padding: 0 !important;
 }
 
 .girdscc3 {
-	margin-right: 16% !important;
+  margin-right: 16% !important;
 }
 
 .swiper-button-next {
-	top: 35% !important
+  top: 35% !important
 }
 
 .swiper-button-prev {
-	top: 35% !important
+  top: 35% !important
 }
 
 .swiper-container {
-	color: black;
-	width: 100%;
-	height: 100%;
+  color: black;
+  width: 100%;
+  height: 100%;
 }
 
-
-
 .swiper-slide {
-	text-align: center;
-	font-size: 18px;
-	background: #fff;
-	/* Center slide text vertically */
-	display: -webkit-box;
-	display: -ms-flexbox;
-	display: -webkit-flex;
-	display: flex;
-	-webkit-box-pack: center;
-	-ms-flex-pack: center;
-	-webkit-justify-content: center;
-	justify-content: center;
-	-webkit-box-align: center;
-	-ms-flex-align: center;
-	-webkit-align-items: center;
-	align-items: center;
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+  /* Center slide text vertically */
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
 }
 
 .swiper-slide img {
-	display: block;
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .page-wrapper {
-	min-height: 100%;
-	display: flex;
-	align-items: center;
-	justify-content: center; button { padding : 20px;
-	border: none;
-	background: lighten(#292d48, 65);
-	position: relative;
-	outline: none;
-	border-radius: 5px;
-	color: #292d48;
-	font-size: 18px; . cart-item { position : absolute;
-	height: 24px;
-	width: 24px;
-	top: -10px;
-	right: -10px; &: before { content : '1';
-	display: block;
-	line-height: 24px;
-	height: 24px;
-	width: 24px;
-	font-size: 12px;
-	font-weight: 600;
-	background: #2bd156;
-	color: white;
-	border-radius: 20px;
-	text-align: center;
+  min-height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  button {
+    padding: 20px;
+    border: none;
+    background: lighten(#292d48, 65);
+    position: relative;
+    outline: none;
+    border-radius: 5px;
+    color: #292d48;
+    font-size: 18px;
+
+    . cart-item {
+      position: absolute;
+      height: 24px;
+      width: 24px;
+      top: -10px;
+      right: -10px;
+
+      &: before {
+        content: '1';
+        display: block;
+        line-height: 24px;
+        height: 24px;
+        width: 24px;
+        font-size: 12px;
+        font-weight: 600;
+        background: #2bd156;
+        color: white;
+        border-radius: 20px;
+        text-align: center;
+      }
+    }
+
+    & .sendtocart {
+      .cart-item {
+        display: block;
+        animation: xAxis 1s forwards cubic-bezier(1.000, 0.440, 0.840, 0.165);
+
+        &: before {
+          animation:
+            yAxis 1s alternate forwards cubic-bezier(0.165,
+              0.840,
+              0.440,
+              1.000);
+        }
+      }
+    }
+  }
 }
 
-}
-&
-.sendtocart { .cart-item { display:block;
-	animation: xAxis 1s forwards cubic-bezier(1.000, 0.440, 0.840, 0.165);
-	&:
-	before
-	{
-	animation
-	:
-	yAxis
-	1s
-	alternate
-	forwards
-	cubic-bezier(
-	0.165
-	,
-	0.840
-	,
-	0.440
-	,
-	1.000
-	);
-}
-
-}
-}
-}
-}
 .cart {
-	position: fixed;
-	top: 20px;
-	right: 20px;
-	width: 50px;
-	height: 50px;
-	background: #292d48;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	border-radius: 5px; i { font-size : 25px;
-	color: white;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  background: #292d48;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+
+  i {
+    font-size: 25px;
+    color: white;
+  }
+
+  &:before {
+    content: attr(data-totalitems);
+    font-size: 12px;
+    font-weight: 600;
+    position: absolute;
+    top: -12px;
+    right: -12px;
+    background: #2bd156;
+    line-height: 24px;
+    padding: 0 5px;
+    height: 24px;
+    min-width: 24px;
+    color: white;
+    text-align: center;
+    border-radius: 24px;
+  }
+
+  & .shake {
+    animation: shakeCart .4s ease-in-out forwards;
+  }
 }
 
-&
-:before {
-	content: attr(data-totalitems);
-	font-size: 12px;
-	font-weight: 600;
-	position: absolute;
-	top: -12px;
-	right: -12px;
-	background: #2bd156;
-	line-height: 24px;
-	padding: 0 5px;
-	height: 24px;
-	min-width: 24px;
-	color: white;
-	text-align: center;
-	border-radius: 24px;
+@ keyframes xAxis {
+  100% {
+    transform: translateX(calc(50vw - 105px));
+  }
 }
 
-&
-.shake {
-	animation: shakeCart .4s ease-in-out forwards;
+@ keyframes yAxis {
+  100% {
+    transform: translateY(calc(-50vh + 75px));
+  }
 }
 
+@ keyframes shakeCart {
+  25% {
+    transform: translateX(6px)
+  }
+
+  50 % {
+    transform:
+      translateX (-4px);
+  }
+
+  75 % {
+    transform:
+      translateX (2px);
+  }
+
+  100 % {
+    transform:
+      translateX (0);
+  }
 }
-@
-keyframes xAxis { 100% {
-	transform: translateX(calc(50vw - 105px));
-}
 
-}
-@
-keyframes yAxis { 100% {
-	transform: translateY(calc(-50vh + 75px));
-}
-
-}
-@
-keyframes shakeCart { 25% {
-	transform: translateX(6px)
-}
-
-50
-
-
-
-
-
-
-%
-{
-transform
-
-
-
-
-
-
-:
-
-
-
-
-
-
-translateX
-
-
-
-
-(
-
-
-
-
-
-
--4px
-
-
-
-
-
-
-)
-
-
-
-
-;
-}
-75
-
-
-
-
-
-
-%
-{
-transform
-
-
-
-
-
-
-:
-
-
-
-
-
-
-translateX
-
-
-
-
-(
-
-
-
-
-
-
-2px
-
-
-
-
-
-
-)
-
-
-
-
-;
-}
-100
-
-
-
-
-
-
-%
-{
-transform
-
-
-
-
-
-
-:
-
-
-
-
-
-
-translateX
-
-
-
-
-(
-
-
-
-
-
-
-0
-
-
-
-
-
-
-)
-
-
-
-
-;
-}
-}
 #rightSide {
-	position: absolute;
-	top: 547px;
-	left: 50%;
-	margin: 0 0 0 510px;
+  position: absolute;
+  top: 547px;
+  left: 50%;
+  margin: 0 0 0 510px;
 }
 
 #rightSide #right_zzim {
-	position: fixed;
-	top: 680px;
-	left: 65%;
-	margin-left: 510px;
-	border: 1px solid #B0B5BD;
-	width: 114px;
-	height: 150px;
+  position: fixed;
+  top: 680px;
+  left: 65%;
+  margin-left: 510px;
+  border: 1px solid #B0B5BD;
+  width: 114px;
+  height: 150px;
 }
 
-#rightSide #right_zzim  div {
-	text-align: center;
+#rightSide #right_zzim div {
+  text-align: center;
 }
 
-#rightSide #right_zzim  div.recTit {
-	line-height: 1.5em;
-	padding: 5px;
-	color: white;
-	background-color: #505A69;
+#rightSide #right_zzim div.recTit {
+  line-height: 1.5em;
+  padding: 5px;
+  color: white;
+  background-color: #505A69;
 }
 
 #right_zzim #recentCnt {
-	color: yellow;
+  color: yellow;
 }
 
 #rightSide #right_zzim ul {
-	min-height: 495px;
+  min-height: 495px;
 }
 
-#rightSide #right_zzim  li {
-	text-align: center;
-	padding: 5px;
-	position: relative;
+#rightSide #right_zzim li {
+  text-align: center;
+  padding: 5px;
+  position: relative;
 }
 
 #rightSide #right_zzim ul li img {
-	border: 1px solid #ccc
+  border: 1px solid #ccc
 }
 
 #right_zzim .detail {
-	display: none;
-	position: absolute;
-	top: 3px;
-	right: 20px;
-	xheight: 40px;
-	xpadding: 15px 11px 0;
-	xbackground: #404a59;
-	color: #fff;
-	xtext-align: left;
-	white-space: nowrap;
+  display: none;
+  position: absolute;
+  top: 3px;
+  right: 20px;
+  xheight: 40px;
+  xpadding: 15px 11px 0;
+  xbackground: #404a59;
+  color: #fff;
+  xtext-align: left;
+  white-space: nowrap;
 }
 
 #right_zzim li:hover .detail {
-	display: block
+  display: block
 }
 
 #right_zzim li .btn_delete {
-	position: absolute;
-	top: 3px;
-	right: -1px;
-	width: 11px;
-	height: 11px;
-	background: url(/img/sp.png) no-repeat -193px -111px;
-	text-indent: -9000px;
+  position: absolute;
+  top: 3px;
+  right: -1px;
+  width: 11px;
+  height: 11px;
+  background: url(/img/sp.png) no-repeat -193px -111px;
+  text-indent: -9000px;
 }
 
-#right_zzim  #currentPage {
-	color: #505A69;
-	font-weight: bold
+#right_zzim #currentPage {
+  color: #505A69;
+  font-weight: bold
 }
 
-#right_zzim  #totalPageCount {
-	color: #CBC8D2;
-	font-weight: bold
+#right_zzim #totalPageCount {
+  color: #CBC8D2;
+  font-weight: bold
 }
 
 .noData {
-	color: #ccc;
-	text-align: center;
-	margin-top: 223px;
+  color: #ccc;
+  text-align: center;
+  margin-top: 223px;
+}
 }
 
-}
 #paging {
-	display:;
-	position: relative;
-	line-height: 1em;
+  display: ;
+  position: relative;
+  line-height: 1em;
 }
 
 #paging .btn_prev {
-	position: absolute;
-	top: 125px;
-	left: 4px;
-	width: 13px;
-	height: 11px;
-	background: url(/petopia/images/btn_arrow_left_web.png) no-repeat;
-	text-indent: -9000px;
-	border: 1px solid #CCC;
-	display: inline-block;
+  position: absolute;
+  top: 125px;
+  left: 4px;
+  width: 13px;
+  height: 11px;
+  background: url(/petopia/images/btn_arrow_left_web.png) no-repeat;
+  text-indent: -9000px;
+  border: 1px solid #CCC;
+  display: inline-block;
 }
 
 #paging .btn_next {
-	position: absolute;
-	top: 125px;
-	right: 4px;
-	width: 13px;
-	height: 11px;
-	background: url(/images/ico_arrow.png) -11px 0px;
-	text-indent: -9000px;
-	border: 1px solid #CCC;
-	display: inline-block;
+  position: absolute;
+  top: 125px;
+  right: 4px;
+  width: 13px;
+  height: 11px;
+  background: url(/images/ico_arrow.png) -11px 0px;
+  text-indent: -9000px;
+  border: 1px solid #CCC;
+  display: inline-block;
 }
 </style>
 <!-- Bootstrap core CSS -->
@@ -583,7 +451,7 @@ translateX
 							</sec:authorize>
 							<sec:authorize access="hasRole('ROLE_ADMIN')">
 								<a href="/admin/main" class="link_text">관리자페이지</a>
-								<a href="/logout" class="link_text">로그아웃</a>
+								<a href="/login/logoutProcess" class="link_text">로그아웃</a>
 								<div class="dropdown">
 									<a href="#" class="link_text dropbtn">고객센터</a>
 									<div class="dropdown-content">
@@ -795,14 +663,14 @@ translateX
 						</section>
 					</article>
 				</div>
-			
+				<hr width="88%">
 		</div>
 		
 		
 
 
 			<div class="container girdscc3">
-				<hr>
+			
 				<div class="col-md-12">
 					<p id="product_title">
 						이번주 신상
@@ -819,14 +687,14 @@ translateX
 					<c:forEach var='md' varStatus="status" items="${md_product}">
 					<div class="col-lg-6 col-md-6 mb-4 nopaddingcard ">
 						<div class="card h-40 itembox1">
-							<a href="#"><img class="card-img-top"
-									src="http://placehold.it/700x400" alt=""></a>
+							<a href="#"><img class="card-img-top" id="listAttach${status.index}" src="#" alt="상품이미지"></a>
+									
 								<div class="class-skill">
 										<div class="class-type">${md.product_name}</div>
 										<div class="class-format">♡</div>
 									</div>
 									<div class="class-desc col-10">
-										<div class="class-title">${md.product_price }</div>
+										<div class="class-title">${md.product_price } 원</div>
 										<div class="class-detail">${md.product_detail_info }</div>
 									</div>
 									<button class="btn btn-3 btn-3a icon-cart" id="addCart">
@@ -847,6 +715,7 @@ translateX
 					</form>
 					
 					</c:forEach>
+					<input type="hidden" id="size1" value="${fn:length(md_product)}" />
 			<!--  -->
 			
 				</div>
@@ -867,14 +736,14 @@ translateX
 								<div class="swiper-slide">
 									<div class="card h-40 ss">
 
-										<img src="/petopia/images/11356_originalView_01802971.jpg"
-												alt="테스트 이미지" class="class-image" width= />
+										<img src="#"
+												alt="테스트 이미지" class="class-image" id="listAttach2${status.index}"  width= />
 										<div class="class-skill">
 											<div class="class-type">${popular_product.product_name}</div>
 											<div class="class-format">♡</div>
 										</div>
 										<div class="class-desc col-10">
-											<div class="class-title">${popular_product.product_price} </div>
+											<div class="class-title">${popular_product.product_price} 원</div>
 											<div class="class-detail">${popular_product.product_detail_info}</div>
 										</div>
 									<button class="btn btn-3 btn-3a icon-cart" id="addCart">
@@ -886,7 +755,7 @@ translateX
 								</div>
 								
 					<form>
-					<input type="hidden" name="product_idx"
+					<input type="hidden" name="product_idx" 
 											value="${popular_product.product_idx}">
 					<input type="hidden" id="p_filetype${status.index}"
 											value="${popular_product.productVOList.get(0).filetype}" />
@@ -898,6 +767,7 @@ translateX
 											value="${popular_product.productVOList.get(0).fileName}" />
 					</form>
 						</c:forEach>
+									<input type="hidden" id="size2" value="${fn:length(popular_product)}" />
 							<!-- 인기제품 반복문 돌릴곳 끝 END -->
 							
 							</div>
@@ -924,14 +794,14 @@ translateX
 							<div class="swiper-slide">
 								<div class="card ss">
 
-									<img src="/petopia/images/11356_originalView_01802971.jpg"
-											alt="테스트 이미지" class="class-image" width= />
+									<img src="/petopia/images/product_1.jpg"
+											alt="테스트 이미지" class="class-image" id="listAttach3${status.index}" width= />
 									<div class="class-skill">
 										<div class="class-type">${new_product.product_name}</div>
 										<div class="class-format">♡</div>
 									</div>
 									<div class="class-desc col-10">
-										<div class="class-title">${new_product.product_price}</div>
+										<div class="class-title">${new_product.product_price} 원</div>
 										<div class="class-detail">${new_product.product_detail_info}</div>
 									</div>
 									<button class="btn btn-3 btn-3a icon-cart" id="addCart">
@@ -951,7 +821,7 @@ translateX
 										value="${new_product.productVOList.get(0).fileName}" />
 					</form>
 							</c:forEach>
-							
+								<input type="hidden" id="size3" value="${fn:length(new_product)}" />
 						</div>
 						<br>
 						<div class="swiper-button-next"></div>
@@ -972,13 +842,13 @@ translateX
 								<div class="card ss">
 
 									<img src="/petopia/images/11356_originalView_01802971.jpg"
-											alt="테스트 이미지" class="class-image" width= />
+											alt="테스트 이미지" class="class-image" id="listAttach4${status.index}" width= />
 									<div class="class-skill">
 										<div class="class-type">${single_product.product_name}</div>
 										<div class="class-format">♡</div>
 									</div>
 									<div class="class-desc col-10">
-										<div class="class-title">${single_product.product_price}</div>
+										<div class="class-title">${single_product.product_price} 원</div>
 										<div class="class-detail">${single_product.product_detail_info}</div>
 									</div>
 										<input type="hidden" id="cart_product_idx"
@@ -1000,7 +870,7 @@ translateX
 										value="${single_product.productVOList.get(0).fileName}" />
 					</form>
 							</c:forEach>
-							
+								<input type="hidden" id="size4" value="${fn:length(single_product)}" />
 							
 						</div>
 						<br>
@@ -1013,7 +883,6 @@ translateX
 
 			</div>
 		</div>
-</div>
 
 
 	
@@ -1042,19 +911,9 @@ translateX
 	  </div>
 	</div>
 	
-
-
-		<div class="container-fluid footercontainer">
-
 	
-
-			<!-- footer -->
-
-			<!--// footer -->
-
-		</div>
-				<div id="rightSide">
-
+		
+		<div id="rightSide">
 			<div id="right_zzim">
 
 				<div class="recTit">
@@ -1119,9 +978,7 @@ translateX
 					var totpage = Math.ceil(totcount / pagingSize) * 1;
 
 					Cpage = (totpage >= a) ? a : 1;
-
 					Cpage = (Cpage < 1) ? totpage : Cpage;
-
 					var start = (Cpage - 1) * pagingSize;
 
 					for (i = start; i <= start + (pagingSize - 1); i++) {
@@ -1181,13 +1038,10 @@ translateX
 			}
 
 			function updateRecentPage(totcount, Cpage) {
-
 				$("#recentCnt").text(totcount);
 				$("#totalPageCount").text(
 						"/" + Math.ceil((totcount / pagingSize) * 1));
-
 				if (Math.ceil((totcount / pagingSize) * 1) < Cpage) {
-
 					$("#currentPage").text(
 							Math.ceil((totcount / pagingSize) * 1));
 
@@ -1248,7 +1102,93 @@ translateX
 			checkCookie();
 
 			$(document).ready(function() {
-
+				
+				//MD 추천 이미지
+				console.log($("#size1").val());
+				console.log($("#md_fileName" + 1).val());
+				
+				
+				for(var i = 0; i < $("#size1").val(); i++) {
+					var imgSrci = null;
+					var uuid = $("#md_uuid" + i).val();
+					var uploadPath = $("#md_uploadPath" + i).val();
+					var fileName = $("#md_fileName" + i).val();
+					console.log($("#md_filetype" + i).val(true));
+					if($("#md_filetype" + i).val()) {
+						imgSrci = encodeURIComponent(uploadPath + "/" + uuid + "_" + fileName);
+						imgSrci = "/display?fileName=" + imgSrci;
+					} else {
+						imgSrci = '../../resources/images/attach.png';
+					}
+				
+					console.log(imgSrci);
+					
+					$("#listAttach" + i).attr("src", imgSrci);
+				}
+				//인기 상품이미지
+				console.log($("#size2").val());
+				console.log("pop"+ $("#popular_product_fileName" + 1).val());
+				
+				for(var i = 0; i < $("#size2").val(); i++) {
+					var imgSrci = null;
+					var uuid = $("#p_uuid" + i).val();
+					var uploadPath = $("#p_uploadPath" + i).val();
+					var fileName = $("#p_fileName" + i).val();
+					console.log($("#p_filetype" + i).val(true));
+					if($("#p_filetype" + i).val()) {
+						imgSrci = encodeURIComponent(uploadPath + "/" + uuid + "_" + fileName);
+						imgSrci = "/display?fileName=" + imgSrci;
+					} else {
+						imgSrci = '../../resources/images/attach.png';
+					}
+				
+					console.log(imgSrci);
+					
+					$("#listAttach2" + i).attr("src", imgSrci);
+				}
+				
+				//신상품이미지
+				console.log($("#size3").val());
+				console.log("new"+ $("#n_fileName" + 1).val());
+				
+				for(var i = 0; i < $("#size3").val(); i++) {
+					var imgSrci = null;
+					var uuid = $("#n_uuid" + i).val();
+					var uploadPath = $("#n_uploadPath" + i).val();
+					var fileName = $("#n_fileName" + i).val();
+					console.log($("#n_filetype" + i).val(true));
+					if($("#n_filetype" + i).val()) {
+						imgSrci = encodeURIComponent(uploadPath + "/" + uuid + "_" + fileName);
+						imgSrci = "/display?fileName=" + imgSrci;
+					} else {
+						imgSrci = '../../resources/images/attach.png';
+					}
+				
+					console.log(imgSrci);
+					
+					$("#listAttach3" + i).attr("src", imgSrci);
+				}
+				//단독상품 이미지
+				console.log($("#size4").val());
+				console.log("single"+ $("#s_fileName" + 1).val());
+				
+				for(var i = 0; i < $("#size4").val(); i++) {
+					var imgSrci = null;
+					var uuid = $("#s_uuid" + i).val();
+					var uploadPath = $("#s_uploadPath" + i).val();
+					var fileName = $("#s_fileName" + i).val();
+					console.log($("#s_filetype" + i).val(true));
+					if($("#s_filetype" + i).val()) {
+						imgSrci = encodeURIComponent(uploadPath + "/" + uuid + "_" + fileName);
+						imgSrci = "/display?fileName=" + imgSrci;
+					} else {
+						imgSrci = '../../resources/images/attach.png';
+					}
+				
+					console.log(imgSrci);
+					
+					$("#listAttach4" + i).attr("src", imgSrci);
+				}
 				var swiper = new Swiper(".mySwiper", {
 					slidesPerView : 4,
 					spaceBetween : 20,
@@ -1293,11 +1233,11 @@ translateX
 		</script>
 
 
-						<script src="/petopia/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+		<script src="/petopia/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 		<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 		<script src="/petopia/js/mainindex.js"></script>
 		<script src="/petopia/js/petopia.js"></script>
 
-					</body>
+	</body>
 
 </html>

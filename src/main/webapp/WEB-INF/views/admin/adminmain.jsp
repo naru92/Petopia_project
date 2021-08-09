@@ -371,11 +371,11 @@ font-size: 13px;
 						<span aria-hidden="true">×</span>
 					</button>
 				</div>
-				<div class="modal-body">"로그아웃"시 Petopia 메인으로 돌아갑니다.</div>
+				<div class="modal-body">로그아웃시 Petopia 메인으로 돌아갑니다.</div>
 				<div class="modal-footer">
 					<button class="btn btn-secondary" type="button"
 						data-dismiss="modal">취소</button>
-					<a class="btn btn-primary" href="${root }main">로그아웃</a>
+					<a class="btn btn-primary" href="/login/logoutProcess">로그아웃</a>
 				</div>
 			</div>
 		</div>

@@ -20,98 +20,7 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-<style type="text/css">
-.footerdiv {height:100%;}
-.logo{margin-bottom:5px;}
-#modal_product_idx{margin-left: ; font-size:70%;}
-<style>
-.uploadResult {
-	width: 100%;
-	background-color: gray;
-}
 
-.uploadResult ul {
-	display: flex;
-	flex-flow: row;
-	justify-content: center;
-	align-items: center;
-}
-
-.uploadResult ul li {
-	list-style: none;
-	padding: 10px;
-}
-
-.uploadResult ul li img {
-	width: 100px;
-}
-
-.uploadResult ul span {
-	display: inline-block;
-	width: 100px;
-	overflow: hidden; 
-	white-space: nowrap;
-	text-overflow: ellipsis; 
-}
-
-.view-product {
-	width: 100%;
-}
-
-.view-product ul {
-	display: flex;
-	flex-flow: row;
-	justify-content: center;
-	align-items: center;
-}
-.view-product ul li {
-	list-style: none;
-	padding: 10px;
-}
-
-.view-product ul li img {
-	width: 100px;
-}
-
-.item {
-	width: 100%;
-}
-
-.item ul {
-	display: flex;
-	flex-flow: row;
-	justify-content: center;
-	align-items: center;
-}
-.item ul li {
-	list-style: none;
-	padding: 10px;
-}
-.item ul li img {
-	width: 100px;
-}
-.bigPictureWrapper {
-  position: absolute;
-  display: none;
-  justify-content: center;
-  align-items: center;
-  top:0%;
-  width:100%;
-  height:100%;
-  background-color: gray;
-  background-color: rgba( 255, 255, 255, 0.5 );
-  z-index: 100;
-}
-.bigPicture {
-  position: relative;
-  display:flex;
-  justify-content: center;
-  align-items: center;
-}
-#animalType, #productsType, #brand {
-  width: auto;
-}
-</style>
 </head>
 
 <body id="page-top">
@@ -175,6 +84,7 @@
                             <h2>
                                 <b>상품명 : </b>
                             </h2>
+                            <br>
                             <input class="form-control" name='product_name' value='<c:out value="${productVO.product_name}" />'>
                         </div>
 
@@ -260,6 +170,7 @@
 
             if(operation === 'delete') {
                 updateForm.attr("action", "/admin/product/delete");
+                alert('삭제되었습니다.');
             } else if(operation === 'list') {
                 updateForm.attr("action", "/admin/product").attr("method", "get");
                 var pageNumTag = $("input[name='pageNum']").clone();
@@ -308,8 +219,9 @@
      			
      			$(obj).each(function(i, obj) {
      				var fileCallPath = encodeURIComponent(obj.uploadPath + "/s_" + obj.uuid + "_" + obj.fileName);
-     				
-     				if(obj.filetype) {
+     				obj.filetype = true;
+     			
+     				if(obj.filetype ) {
      					str += "<li data-path='" + obj.uploadPath + "' data-uuid='" +
                         obj.uuid + "' data-filename='" + obj.fileName +
                         	"' data-type='" + obj.filetype + "' ><div>";
@@ -387,7 +299,8 @@
             var str = "";
 
             $(uploadResultArr).each(function(i, obj) {
-                if (obj.filetype) {
+            	
+                if (obj.filetype == false) {
                     var fileCallPath = encodeURIComponent(obj.uploadPath + "/s_" + obj.uuid + "_" + obj.fileName);
 
                     str += "<li data-path='" + obj.uploadPath + "' data-uuid='" +

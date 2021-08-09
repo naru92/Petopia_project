@@ -114,7 +114,7 @@ public class ReplyController {
                 : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         
     }
-    //QNA(파라미터로 content_idx를 받지않음 따로만듬)
+    //QNA(리턴값을 List로 하지않음, 따로만듬)
     @GetMapping(value ="/QnaAnswer/{content_idx}",
     		 produces = "text/plain;charset=UTF-8")  
 	public @ResponseBody String getMyAnswerList(@PathVariable int content_idx) {

@@ -16,7 +16,9 @@ import co.kr.petopia.service.CartService;
 import co.kr.petopia.service.MemberService;
 import co.kr.petopia.vo.ProductVO;
 import jdk.internal.org.jline.utils.Log;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Controller
 public class MainController {
 	
@@ -46,9 +48,23 @@ public class MainController {
 	
 		//MD추천제품
 		List<ProductVO> allList= adminService.getAllProductList();
+		int[] mdNumber = new int[2];
+		
 		for(int i=0; i < 2; i++) {
-			md.add(allList.get(random.nextInt(allList.size()+1))); 
+			
+			mdNumber[i] = random.nextInt(allList.size());
+		}	
+		while(mdNumber[0] == mdNumber[1]) {
+			mdNumber[1] = random.nextInt(allList.size());
 		}
+			
+		
+		//MD추천 두개만
+		md.add(allList.get(mdNumber[0]));
+		md.add(allList.get(mdNumber[1]));
+		 
+		
+		
 		
 		model.addAttribute("productVO", AllProductList);
 		model.addAttribute("single_product", AllProductList);
@@ -60,7 +76,7 @@ public class MainController {
 		model.addAttribute("event_info" , boardService.getAllBoardInfo().get(2));//이벤트게시판 정보
 		model.addAttribute("petstar_info" , boardService.getAllBoardInfo().get(3));//펫스타그램 게시판 정보
 		
-		
+		log.info("md : " + md);
 		
 		
 		

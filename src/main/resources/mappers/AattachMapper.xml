@@ -18,14 +18,14 @@
 	
 	<!-- 첨부파일 가져오기 -->
 	<select id = "findByProduct" parameterType="int" resultType="co.kr.petopia.vo.FileUploadVO">
-	select * from tbl_attach where product_idx = #{product_idx}
+	select * from tbl_attach where product_idx = #{product_idx} order by product_idx
 	</select>
 	
 <!--  게시물첨부  -->
 	<!--첨부파일 추가 -->
 	<insert id ="insertContentImage">
 	insert into tbl_attach (uuid, uploadPath, filename, filetype, board_id , content_idx)
-	values (#{uuid}, #{uploadPath}, #{fileName}, #{imageType}, #{board_id} ,#{content_idx})
+	values (#{uuid}, #{uploadPath}, #{fileName}, #{filetype}, #{board_id} ,#{content_idx})
 	</insert>
 	
 	<!-- 첨부파일 삭제 -->

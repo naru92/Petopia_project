@@ -215,7 +215,6 @@ ul {
   text-decoration: none;
 }
 
-/* 醫뚯륫理쒖긽�떒 �쉶�썝媛��엯/濡쒓렇�씤/怨좉컼�꽱�꽣 */
 .links {
   position: absolute;
   top: 5px;
@@ -226,7 +225,7 @@ ul {
   font-size: 11px;
   margin-left: 5px;
   text-decoration: none;
-  color: #888;
+  color: black;
 }
 
 .navigation {
@@ -2311,4 +2310,7 @@ a {
 	transform-origin: 50% 0%;
 	transform: rotateX(90deg) translateY(-100%);
 }
+
+
+
 

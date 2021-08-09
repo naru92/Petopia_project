@@ -169,9 +169,6 @@ public class FileUploadController {
 		log.info("display() ....");
 		log.info("fileName : " +  fileName);
 		
-
-		
-		
 		File file = new File("C:\\upload\\" + fileName);
 		// "c:\\upload\\"
 		// "/usr/local/apache-tomcat-9.0.29/webapps/upload"
