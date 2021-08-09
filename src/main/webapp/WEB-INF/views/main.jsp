@@ -697,10 +697,6 @@ translateX
 								</div>
 							</div>
 						</div>
-
-
-
-
 	</div>
 
 	

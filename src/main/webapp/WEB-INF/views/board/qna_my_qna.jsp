@@ -759,9 +759,9 @@ footer section>:nth-child(3)>:nth-child(2) {
 				<div class="sss" id="${myQna.content_idx}">
 					<input type="hidden" id="qnaId" name="content_idx" value="${myQna.content_idx }">
 					<input type="checkbox" class="read-more-state" id="post-${status.count }" /> 
-					<label for="post-${status.count }" class="ing read-more-trigger">
+					<label for="post-${status.count }" class="ing read-more-trigger" >
 				
-						<ul>
+						<ul class="qna_detail_info" >
 							<li>회원/정보</li>
 							<li>${myQna.content_title}</li>
 							<li>${myQna.content_date}</li>
@@ -775,7 +775,7 @@ footer section>:nth-child(3)>:nth-child(2) {
 							<br>
 							<div id="answer_area">
 							<textarea class="form-control qnaAnswer" rows="3" name='reply_text' readonly="readonly">
-                            <c:out value="답변입니다." /> 
+                            <c:out value="" /> 
                             </textarea>
                             </div>
                              <sec:authorize access="hasRole('ROLE_ADMIN')"> 
@@ -787,7 +787,7 @@ footer section>:nth-child(3)>:nth-child(2) {
 						<div class="form-group">
 							<div class="text-right">
 							<a href="${root }my_qna/update?board_id=${param.board_id}&content_idx=${myQna.content_idx}" class="btn btn-default updateBtn">수정</a>
-							<a id="deleteButton" href="#" class="btn btn-default updateBtn">삭제</a>
+							<a id="deleteButton" href="#" class="btn btn-default updateBtn del">삭제</a>
 							</div>
 						</div>	
 			</sec:authorize>
@@ -824,12 +824,11 @@ footer section>:nth-child(3)>:nth-child(2) {
 			})
 			
 			
-			//회원 삭제
-			$("#deleteButton").on("click", function(e) {
+			//문의 삭제
+			$(".del").on("click", function(e) {
 				
 			e.preventDefault();
-			var content_idx = parseInt($(".sss").attr('id'));
-			
+			var content_idx = parseInt($(this).parent().parent().parent().parent().attr('id'));
 			
 			function refreshMemList(){
 				location.reload();
@@ -865,7 +864,7 @@ footer section>:nth-child(3)>:nth-child(2) {
 				e.preventDefault();
 				console.log("add text Box");
 				
-				$("#answer_area").append("<textarea class='form-control qnaAnswer' rows='3' name='reply_text'>");
+				$("#answer_area").append("<textarea class='form-control qnaAnswer' rows='3' id='admin_reply' name='reply_text'>");
 				
 				
 			});
@@ -874,18 +873,45 @@ footer section>:nth-child(3)>:nth-child(2) {
 				e.preventDefault();
 				console.log("add replyQuestion");
 				
+				var reply_text = $("#admin_reply").val();
+				var content_idx = $("#qnaId").val();
+				console.log(reply_text);
 				var reply= {
-					reviews: reviewsText.val(),
-					reviewer: reviewerInput.val(),
-					productsNo: productsNoValue
+						reply_text : reply_text, 
+						content_idx : content_idx
 				}
-				// reviews, reviewer, productsNo
-				reviewsService.add(reviews, function(result) {
-					alert("상품평 등록이 완료되었습니다.");
-					reviewsText.val("");
-					showList(1);
+				//등록 에이젝스
+				$.ajax({
+					type: 'POST',
+					url : '/replies/new',
+					data : JSON.stringify(reply),
+					contentType : "application/json; charset=utf-8",
+					success : function(result , status, xhr){
+						
+						alert('등록 완료');
+						$("#admin_reply").attr("readonly", "readonly");
+					},
+					error : function(xhr, status, err){
+						
+						alert('등록 실패');
+						
+					}
 				});
-			}); // /new
+			}); 
+			
+			$(".qna_detail_info").on("click", function(e) {
+				var content_idx = $(this).parent().parent().attr('id');
+				console.log("Show detail_info Box");
+				
+				$.getJSON('http://localhost:8282/replies/QnaAnswer/'+ content_idx , function(data){
+					console.log('성공');
+					
+					console.log(data.reply_text);
+					$(".qnaAnswer").val("                            " + data.reply_text);
+
+				});
+				
+			});
 		});
 	</script>
 </body>

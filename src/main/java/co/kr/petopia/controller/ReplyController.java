@@ -1,5 +1,6 @@
 package co.kr.petopia.controller;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.google.gson.Gson;
 
 import co.kr.petopia.service.ReplyService;
 import co.kr.petopia.utils.Criteria;
@@ -32,10 +36,11 @@ public class ReplyController {
 
     // 댓글 등록
     @PostMapping(value = "/new", consumes = "application/json", produces = { MediaType.TEXT_PLAIN_VALUE })
-    public ResponseEntity<String> replyCreate(@RequestBody ReplyVO reply) {
+    public ResponseEntity<String> replyCreate(@RequestBody ReplyVO reply, Principal principal) {
 
         log.info("ReplyVO: " + reply);
-
+        reply.setMember_id(principal.getName());
+        
         int insertCount = replyService.replyRegister(reply);
 
         log.info("Reply INSERT COUNT: " + insertCount);
@@ -109,4 +114,19 @@ public class ReplyController {
                 : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         
     }
+    //QNA(파라미터로 content_idx를 받지않음 따로만듬)
+    @GetMapping(value ="/QnaAnswer/{content_idx}",
+    		 produces = "text/plain;charset=UTF-8")  
+	public @ResponseBody String getMyAnswerList(@PathVariable int content_idx) {
+    	
+		log.info("get myAnswer List...");
+		log.info(content_idx);
+
+		Gson gson = new Gson();
+		
+		return gson.toJson(replyService.getMyAnswerList(content_idx));
+				
+	}	
+    
+    
 }

@@ -67,4 +67,10 @@ public class ReplyServiceImpl implements ReplyService{
         return replyMapper.replyDelete(reply_idx);
     }
 
+	@Override
+	public ReplyVO getMyAnswerList(int content_idx) {
+		// TODO Auto-generated method stub
+		return replyMapper.getMyAnswerList(content_idx);
+	}
+
 }

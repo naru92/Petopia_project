@@ -25,4 +25,6 @@ public interface ReplyService {
     // delete
     int replyRemove(Long reply_idx);
 
+	ReplyVO getMyAnswerList(int content_idx);
+
 }

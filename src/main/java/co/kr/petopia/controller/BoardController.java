@@ -22,10 +22,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import co.kr.petopia.service.BoardService;
 import co.kr.petopia.service.MemberService;
+import co.kr.petopia.service.ReplyService;
 import co.kr.petopia.utils.Criteria;
 import co.kr.petopia.utils.PageVO;
 import co.kr.petopia.vo.BoardVO;
 import co.kr.petopia.vo.MemberVO;
+import co.kr.petopia.vo.ReplyVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 
@@ -39,6 +41,9 @@ public class BoardController {
 	
 	@Autowired
 	private final MemberService memberService; 
+	
+	@Autowired
+	private final ReplyService replyService; 
 
 //****************** 공지사항 **********************
 
@@ -171,7 +176,7 @@ public class BoardController {
 	// 해당 게시물 불러오기 ( jsp 만든 후 string으로 바꿔서 return 해줘야함 )
 	@GetMapping("/board/my_qna")
 	public String inquiryGet(
-							 @RequestParam int board_id, Model model, Principal principal, BoardVO boardVO) {
+							 @RequestParam int board_id, Model model, Principal principal, BoardVO boardVO, ReplyVO replyVO) {
 		
 		//id로 가져오기
 		MemberVO member = memberService.getSelectMemberInfo(principal.getName());
@@ -184,8 +189,8 @@ public class BoardController {
 		
 		log.info("게시글정보 " + boardVO);
 		
-		
 		List<BoardVO> myQnaList= boardService.getQnaList(boardVO);
+		
 		
 		model.addAttribute("myQnaList" , myQnaList);
 		

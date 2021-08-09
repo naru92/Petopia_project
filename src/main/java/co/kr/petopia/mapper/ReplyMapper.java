@@ -30,5 +30,8 @@ public interface ReplyMapper {
     
     // delete
     int replyDelete (Long reply_idx);
+    
+    //QnA
+	ReplyVO getMyAnswerList(int content_idx);
 
 }
