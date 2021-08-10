@@ -25,7 +25,7 @@
 		<div class="main">
 			<h3>회원탈퇴</h3>
 			<div class="result">
-				회원 탈퇴에 앞서 <span class="blue">유의사항 및 안내 
+				회원 탈퇴에 앞서 <span class="blue">유의사항</span> 및 <span class="blue">안내</span> 
 			</div>
 
 			<article class="one">

@@ -22,7 +22,7 @@
 		<div class="donation-main">
 			<div class="content">
 				<h2>기부</h2>
-				<a href="donation.html">
+				<a href="#">
 					<button class="donationBtn">기부하기</button>
 				</a>
 			</div>
@@ -50,7 +50,7 @@
 							<h4>현재까지 나의 총 기부금</h4>
 						</div>
 						<div>
-							<h1>&nbsp 10,000</h1>
+							<h1>&nbsp ${m.member_donation}</h1>
 						</div>
 						<div>
 							<h5>&nbsp 원</h5>
@@ -62,7 +62,7 @@
 			<div class="table">
 				<div class="table-box">
 					<div>
-						<h4>{회원 이름}님의 기부 내역을 확인하세요!</h4>
+						<h4>${m.member_name}{회원 이름}님의 기부 내역을 확인하세요!</h4>
 					</div>
 
 					<table class="donation-table">
@@ -77,10 +77,10 @@
 
 						<tbody>
 							<tr>
-								<td>2021.06.02</td>
+								<td>${d.donation_date }2021.06.02</td>
 								<td>&nbsp &nbsp &nbsp</td>
 								<td></td>
-								<td>1000 point</td>
+								<td>${d.donation_point }1000 point</td>
 							</tr>
 							<tr>
 								<td>2021.06.02</td>
