@@ -77,7 +77,7 @@
 							</div>
 							<p class="validation-check" id="errorMsg" style="display: none;" >비밀번호를 다시 확인해주세요.</p>
 
-							<a href="javascript:void(0);">
+							<a href="memberModify">
 								<button class="join-btn" onclick="fn_passwordCheck()">확인</button>
 							</a>
 						</section>

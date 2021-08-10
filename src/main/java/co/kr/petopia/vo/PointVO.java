@@ -13,12 +13,12 @@ public class PointVO {
 	
     private String member_id;
     
-	private Date member_point_savedate;
-	private int member_point_savepoint;
-	private String member_point_savedetail;
-	
-	private Date member_point_usedate;
-	private int member_point_usepoint;
-	private String member_point_usedetail;
+    private int member_point_savepoint;
+    private String member_point_savedetail;
+    private Date member_point_savedate;
+    
+    private int member_point_usepoint;
+    private String member_point_usedetail;
+    private Date member_point_usedate;
 
 }

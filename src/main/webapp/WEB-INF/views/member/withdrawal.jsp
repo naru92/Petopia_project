@@ -23,10 +23,7 @@
 			<div class="withdrawal-form">
 				<div class="main">
 					<h3>본인 재확인</h3>
-					<p>안전한 탈퇴를 위해 아이디와 비밀번호를 다시 한 번 입력해주세요.</p>
-				</div>
-				<div class="form-group">
-					<input type="text" name="member_id" placeholder="아이디">
+					<p>안전한 탈퇴를 위해 비밀번호를 다시 한 번 입력해주세요.</p>
 				</div>
 				<div class="form-group">
 					<input type="password" name="member_password" placeholder="비밀번호">

@@ -8,33 +8,66 @@
 	<!-- 포인트 적립 -->
 	<insert id="savePoint">
 		insert into point (member_id, member_point_savepoint, member_point_savedetail, member_point_savedate)
-    		values (#{member_id}, #{member_point_savepoint}, #{member_point_savedetail}, #{member_point_savedate})
-	</insert>
+			values (#{member_id}, #{member_point_savepoint}, #{member_point_savedetail}, #{member_point_savedate})
+	</insert>	
 	
 	<!-- 포인트 사용 -->
 	<insert id="usePoint">
 		insert into point (member_id, member_point_usepoint, member_point_usedetail, member_point_usedate)
-    		values (#{member_id}, #{member_point_usepoint}, #{member_point_usedetail}, #{member_point_usedate})
+			values (#{member_id}, #{member_point_usepoint}, #{member_point_usedetail}, #{member_point_usedate})
 	</insert>
 
-	<!-- 보유 포인트 확인 -->
-	<update id="retentionPoint">
+	<!-- 보유 포인트 업데이트 -->
+	<update id="pointUpdate">
 		update member m
-			set m.member_point =
-				(select sum (p.member_point_savepoint - p.member_point_usepoint)
-					from point p)
-			where member_id = #{member_id}
+    		set m.member_point = 
+        		(select sum(p.member_point_savepoint - p.member_point_usepoint)
+            		from point p)
+            where member_id = #{member_id}
 	</update>
+	
+	<!-- 포인트 확인 -->
+	<select id="retentionPoint" resultType="int">
+		select member_point
+			from member
+				where member_id = #{member_id}
+	</select>
+	
+	<!-- 포인트 적립/사용 내역 조회 -->
+	<select id="pointHistory" resultType="String">
+		select greatest(member_point_savepoint, member_point_usepoint),
+				member_point_usedate || member_point_savedate,
+        		member_point_usedetail || member_point_savedetail
+    		from point
+        		where member_id = #{member_id}
+            		ORDER BY member_point_usedate || member_point_savedate desc
+	</select>
 
-	<!-- 기부한 금액 확인 -->
-	<update id="donationPoint">
+	<!-- 총 기부 금액 업데이트 -->
+	<update id="donationUpdate">
 		update member m
 			set m.member_donation =
-				(select sum (p.member_point_usepoint)
+				(select sum(p.member_point_usepoint)
 					from point p
 						where member_point_usedetail = '기부')
 			where member_id = #{member_id}
 	</update>
+	
+	<!-- 현재까지 기부금 보기 -->
+	<select id="donationPoint" resultType="int">
+		select member_donation
+			from member
+    			where member_id = #{member_id}
+	</select>
+	
+	<!-- 기부 내역 조회 -->
+	<select id="donationHistory" resultType="String">
+		select member_id, member_point_usepoint, member_point_usedate, member_point_usedetail
+			from point
+				where member_id = #{member_id}
+						and member_point_usedetail = '기부'
+					order by member_point_usedate desc
+	</select>
 	
 	
 

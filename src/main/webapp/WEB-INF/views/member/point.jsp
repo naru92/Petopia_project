@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!Doctype html>
@@ -9,7 +9,7 @@
 <title>포인트 | Petopia</title>
 <!-- CSS here -->
 <link rel="stylesheet" href="/petopia/css/menu_test.css">
-<link rel="stylesheet" href="/petopia/css/my_donation.css">
+<link rel="stylesheet" href="/petopia/css/my_point.css">
 <!-- default_css -->
 <%@include file="../include/default_css.jsp"%>
 </head>
@@ -19,14 +19,17 @@
 	<%@include file="../include/default_header.jsp"%>
 	<%@include file="../include/mypage_sidebar.jsp"%>
 	<main>
-		<div class="donation-main">
+		<div class="point-main">
 			<div class="content">
 				<h2>포인트</h2>
+				<a href="#">
+					<button class="donationBtn">기부하기</button>
+				</a>
 			</div>
 			
 			<div class="content">
 				<div class="my-box">
-					<div class="donation-info">
+					<div class="point-info">
 						<div>
 							<h4>보유 포인트</h4>
 						</div>
@@ -34,7 +37,7 @@
 							<h1>&nbsp 6</h1>
 						</div>
 						<div>
-							<h5>&nbsp Point</h5>
+							<h4>&nbsp Point</h4>
 						</div>
 					</div>
 				</div>
@@ -43,7 +46,7 @@
 			<div class="table">
 				<div class="table-box">
 
-					<table class="donation-table">
+					<table class="point-table">
 						<thead>
 							<tr>
 								<th>포인트 내역 &nbsp</th>

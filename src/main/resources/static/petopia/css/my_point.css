@@ -1,0 +1,77 @@
+.point-main{
+  margin-top: 100px;
+  margin-left: 350px;
+  margin-bottom: 100px;
+}
+.content{
+	width: 1045px;
+	display: flex;
+}
+
+
+/* 기부하기 버튼 */
+.content a{
+	margin-left: 865px;
+}
+.donationBtn {
+	box-shadow:inset 0px 39px 0px -24px #e67a73;
+	background-color:#e4685d;
+	border-radius:4px;
+	border:1px solid #ffffff;
+	cursor:pointer;
+	color:#ffffff;
+	font-size:15px;
+	padding:6px 15px;
+}
+.donationBtn:hover {
+	background-color:#eb675e;
+}
+.donationBtn:active {
+	position:relative;
+	top:1px;
+}
+
+/* 현재 보유 포인트 */
+.info{
+	color: #bbb;
+}
+.my-box {
+  width: 1045px;
+  height: 160px;
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: center;
+  border: 1px solid #bbb;
+}
+.my-box h1{
+  color: #385663;
+}
+.point-info{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+/* 포인트 적립, 사용 내역 */
+.table {
+	width: 1045px;
+}
+.table-box {
+  width: 1005px;
+  height: 160px;
+  margin-bottom: 30px;
+  padding: 20px;
+  border: 1px solid #bbb;
+}
+.point-table{
+	width: 1000px;
+}
+.point-table thead{
+	border-bottom: 1px solid #bbb;
+}
+.point-table tbody{
+	border: none;
+}
+
+

@@ -17,7 +17,6 @@
 <body>
 	<header> </header>
 	<%@include file="../include/default_header.jsp"%>
-	<%@include file="../include/default_sidebar.jsp"%>
 	<main>
 		<div class="donation-main">
 			<h1>기부</h1>
@@ -113,9 +112,9 @@
 			</div>
 			<div>
 				<h2>사용 내역</h2>
-				<a href=""><div class="list-box">2021.07 사용 내역</div></a>
-				<a href=""><div class="list-box">2021.06 사용 내역</div></a>
-				<a href=""><div class="list-box">2021.05 사용 내역</div></a>
+				<div class="list-box">2021.07 사용 내역</div>
+				<div class="list-box">2021.06 사용 내역</div>
+				<div class="list-box">2021.05 사용 내역</div>
 			</div>
 		</div>
 	</main>

@@ -13,6 +13,8 @@ public interface MypetMapper {
     // 마이펫 리스트
     List<MypetVO> getMypetList();
     
+    MypetVO getMypetInfo(String mypet_idx);
+    
     // 마이펫 등록
     void mypetInsert(MypetVO mypet);
     
