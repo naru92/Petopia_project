@@ -36,6 +36,9 @@ public interface PointMapper {
     // 기부 날짜 조회 리스트 불러오기
     List<PointVO> donationHistory(String member_id);
     
+    // 기부횟수 조회
+    int countDonation(String member_id);
+    
 }
 
 

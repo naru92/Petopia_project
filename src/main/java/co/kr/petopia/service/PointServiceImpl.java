@@ -72,6 +72,12 @@ public class PointServiceImpl implements PointService {
         
         return pointMapper.donationHistory(member_id);
     }
+    // 기부 횟수 조회
+    @Override
+    public int countDonation(String member_id) {
+        
+        return pointMapper.countDonation(member_id);
+    }
 	
 	
 

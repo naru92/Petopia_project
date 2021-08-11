@@ -50,7 +50,7 @@
 							<h4>현재까지 나의 총 기부금</h4>
 						</div>
 						<div>
-							<h1>&nbsp ${m.member_donation}</h1>
+							<h1>&nbsp ${member.member_donation}</h1>
 						</div>
 						<div>
 							<h5>&nbsp 원</h5>
@@ -62,7 +62,7 @@
 			<div class="table">
 				<div class="table-box">
 					<div>
-						<h4>${m.member_name}{회원 이름}님의 기부 내역을 확인하세요!</h4>
+						<h4>${member.member_name}{회원 이름}님의 기부 내역을 확인하세요!</h4>
 					</div>
 
 					<table class="donation-table">
@@ -77,17 +77,17 @@
 
 						<tbody>
 							<tr>
-								<td>${d.donation_date }2021.06.02</td>
+								<td>${d_history.member_point_usedate }2021.06.02</td>
 								<td>&nbsp &nbsp &nbsp</td>
 								<td></td>
-								<td>${d.donation_point }1000 point</td>
+								<td>${d_history.member_point_usepoint }1000 point</td>
 							</tr>
-							<tr>
+<!-- 							<tr>
 								<td>2021.06.02</td>
 								<td>&nbsp &nbsp &nbsp</td>
 								<td></td>
 								<td>1000 point</td>
-							</tr>
+							</tr> -->
 						</tbody>
 					</table>
 

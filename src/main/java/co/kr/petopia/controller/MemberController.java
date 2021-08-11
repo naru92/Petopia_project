@@ -27,6 +27,7 @@ import co.kr.petopia.utils.Criteria;
 import co.kr.petopia.utils.PageVO;
 import co.kr.petopia.vo.MemberVO;
 import co.kr.petopia.vo.MypetVO;
+import co.kr.petopia.vo.PointVO;
 import lombok.extern.log4j.Log4j2;
 
 @Log4j2
@@ -155,9 +156,12 @@ public class MemberController {
     public String mypage(Model model, Principal principal) {
         
         String member_id = principal.getName();
+        
+        model.addAttribute("p_update", pointService.pointUpdate(member_id));
+        model.addAttribute("p_total", pointService.retentionPoint(member_id));
+        
         MemberVO memberVO = memberService.getMemberInfo(member_id);
         model.addAttribute("member", memberVO);
-
         log.info("memberVO: " + memberVO);
         
 //        MypetVO mypetVO = MypetService.getMypetInfo(mypet_idx);
@@ -171,10 +175,13 @@ public class MemberController {
     public String mypage_donation(Model model, Principal principal) {
 
         String member_id = principal.getName();
+        MemberVO memberVO = memberService.getMemberInfo(member_id);
+        model.addAttribute("member", memberVO);
         
-        model.addAttribute("m.member_donation_update", pointService.donationUpdate(member_id));
-        model.addAttribute("m.member_total_donation", pointService.donationPoint(member_id));
-        model.addAttribute("m.member_donation_history", pointService.donationHistory(member_id));
+        model.addAttribute("d_update", pointService.donationUpdate(member_id));
+        model.addAttribute("d_total", pointService.donationPoint(member_id));
+        model.addAttribute("d_history", pointService.donationHistory(member_id));
+        model.addAttribute("d_count", pointService.countDonation(member_id));
 
         return "member/myDonation";
     }
@@ -185,10 +192,12 @@ public class MemberController {
     public String mypage_point(Model model, Principal principal) {
 
         String member_id = principal.getName();
+        MemberVO memberVO = memberService.getMemberInfo(member_id);
+        model.addAttribute("member", memberVO);
         
-        model.addAttribute("m.member_point_update", pointService.pointUpdate(member_id));
-        model.addAttribute("m.member_retention_point", pointService.retentionPoint(member_id));
-        model.addAttribute("m.member_point_history", pointService.pointHistory(member_id));
+        model.addAttribute("p_update", pointService.pointUpdate(member_id));
+        model.addAttribute("p_total", pointService.retentionPoint(member_id));
+        model.addAttribute("p_history", pointService.pointHistory(member_id));
 
         return "member/point";
     }
