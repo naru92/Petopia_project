@@ -34,7 +34,7 @@
 							<h4>보유 포인트</h4>
 						</div>
 						<div>
-							<h1>&nbsp 6</h1>
+							<h1>&nbsp ${member.member_point}</h1>
 						</div>
 						<div>
 							<h4>&nbsp Point</h4>
@@ -58,17 +58,17 @@
 
 						<tbody>
 							<tr>
+								<td>${p_history.member_point_usedate || p_history.member_point_savedate }2021.06.02</td>
+								<td>${p_history.member_point_usedetail || p_history.member_point_savedetail }</td>
+								<td></td>
+								<td>${p_history.member_point_usepoint || p_history.member_point_savepoint }1000 point</td>
+							</tr>
+<!-- 							<tr>
 								<td>2021.06.02</td>
 								<td>&nbsp &nbsp &nbsp</td>
 								<td></td>
 								<td>1000 point</td>
-							</tr>
-							<tr>
-								<td>2021.06.02</td>
-								<td>&nbsp &nbsp &nbsp</td>
-								<td></td>
-								<td>1000 point</td>
-							</tr>
+							</tr> -->
 						</tbody>
 					</table>
 

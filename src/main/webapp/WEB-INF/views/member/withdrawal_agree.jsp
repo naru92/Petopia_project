@@ -115,48 +115,66 @@
 	</footer>
 
 	<script>
-		var allcheck = document.querySelector('.checkall'); // 모두 선택 체크박스
-		var checkList = document.querySelectorAll('.allcheck input'); // 그 외의 6개의 체크박스 (전부 선택해주려면 document.querySelectorAll 뿐인듯 해 이것으로 적용해주었습니다)
+    var checkList = document.querySelectorAll('.allcheck input'); // 그 외의 6개의 체크박스
+    
+    var count = 0; // 가상의 박스에 초기값 0을 넣어줍니다.
+    
+    allcheck.addEventListener("change", checkboxClick); // 모두 선택 체크박스가 변경되었을때 이벤트 실행
 
-		var count = 0; // 가상의 박스에 초기값 0을 넣어줍니다.
+    function checkboxClick() {
+       if (allcheck.checked) { // 모두 선택 체크박스의 값이 'true' 일때
+          for (var i = 0; i < checkList.length; i++) {
+             checkList[i].checked = true; // 하단 체크 박스 4개를 모두 check 시켜줌
+             count = checkList.length; // count 값은 ckeckList의 길이값과 동일
+          }
+     	  // 버튼 활성화
+          $('input[type="checkbox"]').each(function() {
+        	    $('.btn-next').prop('disabled', false);
+        	});
+       } else {
+          for (var i = 0; i < checkList.length; i++) {
+             checkList[i].checked = false; // 하단 체크 박스 4개를 모두 uncheck 시켜줌
+             count = 0; // 모든 체크박스가 uncheck 되었으므로 count 값은 0
+          }
+			// 버튼 비활성화
+			$('input[type="checkbox"]').each(function() {
+      	    $('.btn-next').prop('disabled', true);
+      	});
+          
+       }
+    };
 
-		allcheck.addEventListener("change", checkboxClick); // 모두 선택 체크박스가 변경되었을때 이벤트 실행
+    for (var i = 0; i < checkList.length; i++) {
+       checkList[i].addEventListener("change", checkboxChecking); // 하단 체크박스의 i 번째가 체크되었을 때 이벤트 실행
+       function checkboxChecking() {
+          if (this.checked) { // 클릭한 값이 체크되었을 때
+             count++; // 카운트 +
+             if (count == checkList.length) { // count 값이 길이값과 동일하게 되었다면
+                allcheck.checked = true; // allcheck 버튼도 체크값으로 변경
+             	  // 버튼 활성화
+                $('input[type="checkbox"]').each(function() {
+              	    $('.btn-next').prop('disabled', false);
+              	});
+             } else {
+                allcheck.checked = false; // 4이 아니라면 체크값을 없애줍니다
+                // 버튼 비활성화
+                $('input[type="checkbox"]').each(function() {
+            	    $('.btn-next').prop('disabled', true);
+            	});
+             }
+          } else {
+             count--; // 카운트 -
+             allcheck.checked = false; // allcheck 버튼 역시 4가 될 수 없으므로 체크값을 없애준다.
+             // 버튼 비활성화
+             $('input[type="checkbox"]').each(function() {
+         	    $('.btn-next').prop('disabled', true);
+         	});
+          }
+       }
+       ;
+    };
 
-		function checkboxClick() {
-			if (allcheck.checked) { // 모두 선택 체크박스의 값이 'true' 일때
-				for (var i = 0; i < checkList.length; i++) {
-					checkList[i].checked = true; // 하단 체크 박스 6개를 모두 check 시켜줌
-					count = checkList.length; // count 값은 ckeckList의 길이값과 동일
-				}
-				;
-			} else {
-				for (var i = 0; i < checkList.length; i++) {
-					checkList[i].checked = false; // 하단 체크 박스 6개를 모두 uncheck 시켜줌
-					count = 0; // 모든 체크박스가 uncheck 되었으므로 count 값은 0
-				}
-				;
-			}
-		};
 
-		for (var i = 0; i < checkList.length; i++) {
-			checkList[i].addEventListener("change", checkboxChecking); // 하단 체크박스의 i 번째가 체크되었을 때 이벤트 실행
-
-			function checkboxChecking() {
-				if (this.checked) { // 클릭한 값이 체크되었을 때
-
-					count++; // 카운트 +
-					if (count == checkList.length) { // count 값이 길이값과 동일하게 되었다면
-						allcheck.checked = true; // allcheck 버튼도 체크값으로 변경
-					} else {
-						allcheck.checked = false; // 6이 아니라면 체크값을 없애줍니다
-					}
-				} else {
-					count--; // 카운트 -
-					allcheck.checked = false; // allcheck 버튼 역시 6이 될 수 없으므로 체크값을 없애줍니다.
-				}
-			}
-			;
-		};
 	</script>
 </body>
 

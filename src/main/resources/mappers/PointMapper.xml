@@ -69,6 +69,14 @@
 					order by member_point_usedate desc
 	</select>
 	
+	<!-- 기부횟수 보기 -->
+	<select id="countDonation" resultType="int">
+		select member_point_usedetail, count(*) 
+    		from point
+        		where member_point_usedetail = '기부' and member_id = #{member_id}
+            		group by member_point_usedetail
+	</select>
+	
 	
 
 </mapper>

@@ -62,7 +62,7 @@
 					<!--등급 정보-->
 					<div class="profile-box">
 						<a href="#">
-							<img class="profile-pic" src="#">
+							<img class="profile-pic" src="/petopia/images/grade.png">
 						</a>
 						<div>
 							<p>등급</p>
@@ -77,7 +77,7 @@
 					<!--포인트-->
 					<div class="profile-box">
 						<a href="point">
-							<img class="profile-pic" src="#">
+							<img class="profile-pic" src="/petopia/images/point.png">
 						</a>
 						<div>
 							<p>포인트</p>
@@ -91,7 +91,7 @@
 					<div class="profile-box">
 						<!-- <h4>기부 내역</h4> -->
 						<a href="myDonation">
-							<img class="profile-pic" src="#">
+							<img class="profile-pic" src="/petopia/images/donation.png">
 						</a>
 						<div>
 							<a href="myDonation">
@@ -107,7 +107,7 @@
 					<!--주문내역-->
 					<div class="profile-box">
 						<a href="#">
-							<img class="profile-pic" src="/petopia/images/icon_bar_save_on1.png">
+							<img class="profile-pic" src="/petopia/images/order.png">
 						</a>
 						<div>
 							<a href="#">
@@ -119,7 +119,7 @@
 					<!--배송조회-->
 					<div class="profile-box">
 						<a href="#">
-							<img class="profile-pic" src="/petopia/images/icon_bar_save_on1.png">
+							<img class="profile-pic" src="/petopia/images/delivery.png">
 						</a>
 						<div>
 							<a href="#">
@@ -131,7 +131,7 @@
 					<!--취소/반품/교환-->
 					<div class="profile-box">
 						<a href="#">
-							<img class="profile-pic" src="/petopia/images/icon_bar_save_on1.png">
+							<img class="profile-pic" src="/petopia/images/return.png">
 						</a>
 						<div>
 							<a href="#">
@@ -145,7 +145,7 @@
 					<!--최근 본 상품-->
 					<div class="profile-box">
 						<a href="#">
-							<img class="profile-pic" src="/petopia/images/icon_bar_save_on1.png">
+							<img class="profile-pic" src="/petopia/images/recent_view.png">
 						</a>
 						<div>
 							<a href="#">
@@ -157,7 +157,7 @@
 					<!--장바구니-->
 					<div class="profile-box">
 						<a href="#">
-							<img class="profile-pic" src="/petopia/images/icon_bar_save_on1.png">
+							<img class="profile-pic" src="/petopia/images/cart.png">
 						</a>
 						<div>
 							<a href="#">
@@ -169,7 +169,7 @@
 					<!--위시리스트-->
 					<div class="profile-box">
 						<a href="#">
-							<img class="profile-pic" src="/petopia/images/icon_bar_save_on1.png">
+							<img class="profile-pic" src="/petopia/images/wishlist.png">
 						</a>
 						<div>
 							<a href="#">
@@ -184,7 +184,7 @@
 					<!--QnA-->
 					<div class="profile-box">
 						<a href="#">
-							<img class="profile-pic" src="/petopia/images/icon_bar_save_on1.png">
+							<img class="profile-pic" src="/petopia/images/QnA.png">
 						</a>
 						<div>
 							<a href="#">
@@ -195,7 +195,7 @@
 					<!--후기 내역-->
 					<div class="profile-box">
 						<a href="#">
-							<img class="profile-pic" src="/petopia/images/icon_bar_save_on1.png">
+							<img class="profile-pic" src="/petopia/images/review.png">
 						</a>
 						<div>
 							<a href="#">
@@ -206,7 +206,7 @@
 					<!--댓글 내역-->
 					<div class="profile-box">
 						<a href="#">
-							<img class="profile-pic" src="/petopia/images/icon_bar_save_on1.png">
+							<img class="profile-pic" src="/petopia/images/comments.png">
 						</a>
 						<div>
 							<a href="#">

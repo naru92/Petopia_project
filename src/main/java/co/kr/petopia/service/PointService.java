@@ -31,5 +31,8 @@ public interface PointService {
     
     // 기부 날짜 조회 리스트
     List<PointVO> donationHistory(String member_id);
+
+    // 기부 횟수 조회
+    int countDonation(String member_id);
 	
 }
