@@ -58,7 +58,7 @@ public class MainController {
 		model.addAttribute("notice_info" , boardService.getAllBoardInfo().get(0));//공지사항 게시판정보
 		model.addAttribute("qna_info" , boardService.getAllBoardInfo().get(1)); //문의사항 게시판정보
 		model.addAttribute("event_info" , boardService.getAllBoardInfo().get(2));//이벤트게시판 정보
-		model.addAttribute("petstar_info" , boardService.getAllBoardInfo().get(3));//펫스타그램 게시판 정보
+		model.addAttribute("petsta_info" , boardService.getAllBoardInfo().get(3));//펫스타그램 게시판 정보
 		
 		
 		

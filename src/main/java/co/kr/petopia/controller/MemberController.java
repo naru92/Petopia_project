@@ -1,6 +1,5 @@
 package co.kr.petopia.controller;
 
-
 import java.io.PrintWriter;
 import java.util.Random;
 
@@ -33,8 +32,8 @@ public class MemberController {
 
 	@Autowired
     private MemberService memberService;
-	@Autowired
-	//private PointService pointService;
+	// @Autowired
+	// private PointService pointService;
     
 
     @GetMapping("/login")

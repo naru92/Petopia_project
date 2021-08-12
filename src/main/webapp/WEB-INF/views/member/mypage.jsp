@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!Doctype html>
 <html>
@@ -157,12 +156,6 @@
 	<footer>
 		<%@include file="../include/default_footer.jsp"%>
 	</footer>
-
-	<script>
-		
-	<%@include file="../include/default_sidebar_js.jsp"%>
-		
-	</script>
 </body>
 
 </html>

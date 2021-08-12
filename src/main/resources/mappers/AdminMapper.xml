@@ -66,8 +66,6 @@
  	</select>
 
 	<insert id="insertProduct" >
-		 		
-		
 		INSERT into
     		product(product_idx, product_category_id, product_price, product_name,
     		product_coloroption, product_stock, product_detail_info) 
