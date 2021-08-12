@@ -429,7 +429,6 @@ display :inline;
 
             var targetFile = $(this).data("file");
             var type = $(this).data("type");
-
             var targetLi = $(this).closest("li");
 
             $.ajax({

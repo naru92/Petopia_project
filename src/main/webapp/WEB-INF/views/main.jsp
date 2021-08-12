@@ -295,6 +295,7 @@
 }
 
 #rightSide #right_zzim div.recTit {
+	
   line-height: 1.5em;
   padding: 5px;
   color: white;
@@ -310,6 +311,7 @@
 }
 
 #rightSide #right_zzim li {
+  color: black;
   text-align: center;
   padding: 5px;
   position: relative;
@@ -677,7 +679,6 @@
 			
 				<div class="col-md-12">
 					<p id="product_title">
-						이번주 신상
 						<p>
 				
 				</div>
@@ -692,6 +693,9 @@
 					<div class="col-lg-6 col-md-6 mb-4 nopaddingcard ">
 						<div class="card h-40 itembox1">
 							<a href="#"><img class="card-img-top" id="listAttach${status.index}" src="#" alt="상품이미지"></a>
+								<input type="hidden" name="product_idx" value="${md.product_idx}">
+								<input type="hidden" id="cookiefileName" value="${md.productVOList.get(0).fileName}" />
+								
 									
 								<div class="class-skill">
 										<div class="class-type">${md.product_name}</div>
@@ -707,14 +711,13 @@
 						</div>
 					</div>
 					<form>
-					<input type="hidden" name="product_idx" value="${md.product_idx}">
 					<input type="hidden" id="md_filetype${status.index}"
 								value="${md.productVOList.get(0).filetype}" />
 					<input type="hidden" id="md_uuid${status.index}"
 								value="${md.productVOList.get(0).uuid}" />
 					<input type="hidden" id="md_uploadPath${status.index}"
 								value="${md.productVOList.get(0).uploadPath}" />
-					<input type="hidden" id="md_fileName${status.index}"
+					<input type="hidden" id="md_fileName${status.index}" name="fileName"
 								value="${md.productVOList.get(0).fileName}" />
 					</form>
 					
@@ -767,7 +770,7 @@
 											value="${popular_product.productVOList.get(0).uuid}" />
 					<input type="hidden" id="p_uploadPath${status.index}"
 											value="${popular_product.productVOList.get(0).uploadPath}" />
-					<input type="hidden" id="p_fileName${status.index}"
+					<input type="hidden" id="p_fileName${status.index}" name="fileName"
 											value="${popular_product.productVOList.get(0).fileName}" />
 					</form>
 						</c:forEach>
@@ -821,7 +824,7 @@
 										value="${new_product.productVOList.get(0).uuid}" />
 					<input type="hidden" id="n_uploadPath${status.index}"
 										value="${new_product.productVOList.get(0).uploadPath}" />
-					<input type="hidden" id="n_fileName${status.index}"
+					<input type="hidden" id="n_fileName${status.index}" name="fileName"
 										value="${new_product.productVOList.get(0).fileName}" />
 					</form>
 							</c:forEach>
@@ -870,7 +873,7 @@
 										value="${single_product.productVOList.get(0).uuid}" />
 					<input type="hidden" id="s_uploadPath${status.index}"
 										value="${single_product.productVOList.get(0).uploadPath}" />
-					<input type="hidden" id="s_fileName${status.index}"
+					<input type="hidden" id="s_fileName${status.index}" name="fileName"
 										value="${single_product.productVOList.get(0).fileName}" />
 					</form>
 							</c:forEach>
@@ -960,164 +963,168 @@
 
 
 		<script type="text/javascript">
-			//웹사이트 전 영역에 영향을주는 쿠키 생성, 만료기한 1일
-			/* $.cookie('name', 'value', {
-				expires : 1,
-				path : '/'
-			}); */
-
-			// recent item    
-			var Cpage; // 현재 페이지 
-			var pagingSize = 4; // 원하는 페이지 사이즈로 조정하세용 
-			function chkRecent(a) {
-
-				var product_idx = $.cookie("product_idx");
-				var produt_name = $.cookie("product_name");
-
-				$("#right_zzim ul").html(''); // 일단 Ul 내용 지우기... 
-
-				if (product_idx) {
-
-					var totcount = product_idx.split('&').length - 1;
-					var totpage = Math.ceil(totcount / pagingSize) * 1;
-
-					Cpage = (totpage >= a) ? a : 1;
-					Cpage = (Cpage < 1) ? totpage : Cpage;
-					var start = (Cpage - 1) * pagingSize;
-
-					for (i = start; i <= start + (pagingSize - 1); i++) {
-
-						var thisItem = product_idx.split('&')[i];
-
-						if (thisItem) {
-
-							var product_idx = thisItem.split(':')[0];
-
-							var product_image = thisItem.split(':')[1];
-
-							$("#right_zzim ul")
-									.append(
-											'<li><a href="/product?product_idx='
-													+ product_idx
-													+ '" target="_top"><img src="http://www'+product_image+'"  width="75" border=1></a><div class="detail"><a href="javascript:removeRecentItem(\''
-													+ thisItem
-													+ '\')" class="btn_delete">삭제</a></div></li>')
-							$.removeCookie('product_idx', {
-								path : '/'
-							});
-						}
-
-					}
-
-					$("#paging").show();
-
-				} else {
-
-					$("#right_zzim ul").append(
-							'<p class="noData">최근 본 상품이<br> 없습니다.</p>');
-
-					$("#paging").hide();
-					$("#recentCnt").text('');
-
-				}
-
-				updateRecentPage(totcount, Cpage);
-
-			}
-
-			chkRecent(1);
-
-			function removeRecentItem(itemname) {
-
-				var product_idx = $.cookie("product_idx");
-
-				product_idx = product_idx.replace(itemname + "&", "");
-
-				$.cookie('product_idx', product_idx, {
-					expires : 1
-				});
-
-				chkRecent(Cpage);
-
-			}
-
-			function updateRecentPage(totcount, Cpage) {
-				$("#recentCnt").text(totcount);
-				$("#totalPageCount").text(
-						"/" + Math.ceil((totcount / pagingSize) * 1));
-				if (Math.ceil((totcount / pagingSize) * 1) < Cpage) {
-					$("#currentPage").text(
-							Math.ceil((totcount / pagingSize) * 1));
-
-				} else {
-
-					$("#currentPage").text(Cpage); //
-
-				}
-
-			}
-
-			$(".btn_next").on('click', function() {
-
-				chkRecent(Cpage + 1);
-
-			});
-
-			$(".btn_prev").on('click', function() {
-
-				chkRecent(Cpage - 1);
-
-			});
-
-			function checkCookie() {
-
-				var product_idx = $.cookie("product_idx");
-				var thisItem = '<?=$product_idx?>:<?=$itemImage ?>'; // 제품 아이디와 이미지 이름을 저장   
-
-				if (thisItem) {
-
-					if (product_idx != "" && product_idx != null) {
-
-						if (product_idx.indexOf(thisItem) == -1) { //값이 없으면 
-
-							$.cookie('product_idx', product_idx + "&"
-									+ product_idx, {
-								expires : 1
-							});
-
-						}
-
-					} else {
-
-						if (product_idx == "" || product_idx == null) {
-
-							$.cookie('product_idx', product_idx + "&", {
-								expires : 1
-							});
-
-						}
-
-					}
-
-				}
-
-			}
-
-			checkCookie();
+		
 
 			$(document).ready(function() {
 				
+					var product_no ="";
+					var imageName="";
+					var itemList = [];
+				
+				
+			$(".class-detail").on('click', function(e){
+			
+					product_no = $(this).parent().parent().children('input').val();
+					imageName = $(this).parent().parent().children('#cookiefileName').val();
+					
+					var product = {
+						"product_idx" : product_no,
+						"fileName" : imageName
+					}
+					
+					$.cookie('item', JSON.stringify(product));
+					itemList.push(product);
+					console.log(itemList);
+					$.cookie('itemList', JSON.stringify(itemList));
+					console.log(JSON.parse($.cookie('item')));
+					
+			
+					
+					var Cpage;   // 현재 페이지 
+					var pagingSize = 1;   // 원하는 페이지 사이즈로 조정하세용 
+
+					function chkRecent(a){
+
+					var itemID = JSON.parse($.cookie('itemList'));
+					console.log(itemID.product_idx);
+
+					$("#right_zzim ul").html('');    // 일단 Ul 내용 지우기... 
+
+					if(itemID) {
+						//var list =  itemID.split(',');
+						var totcount = itemList.length ;   //
+						var totpage = Math.ceil(totcount / pagingSize) *1;
+						
+						console.log('totcount = ' +  totcount + "totpage = " + totpage);
+						
+						Cpage = (totpage >= a )? a:1;
+						Cpage = (Cpage <1)? totpage:Cpage;
+
+
+						var start = (Cpage-1) * pagingSize;    
+
+					
+
+						for (i = start ; i <= start+(pagingSize-1) ;i++){
+						var thisItem = itemID.shift();
+							if(thisItem){
+								var itemId = thisItem.product_idx;
+								var itemImg = thisItem.fileName;
+							$("#right_zzim ul").append('<li><a href="#" target="_top"><img src="/petopia/images/'+itemImg+'" width="75" border=1></a><div class="detail"><a href="javascript:removeRecentItem(\''+thisItem+'\')" class="btn_delete">삭제</a></div></li>')
+							}
+						}
+
+						$("#paging").show();
+
+					}else{
+
+						$("#right_zzim ul").append('<p class="noData">최근 본 상품이<br> 없습니다.</p>');
+
+						$("#paging").hide();$("#recentCnt").text('');
+
+					}
+
+					updateRecentPage(totcount, Cpage);
+
+
+				}
+
+				chkRecent(1);
+
+
+					function removeRecentItem(itemname){
+
+						var itemID = getCookie("itemID");
+
+						itemID = itemID.replace(itemname+"&","");			
+
+						setCookie("itemID",itemID,1);
+
+						chkRecent(Cpage);
+
+					}
+
+
+
+					function updateRecentPage(totcount,Cpage){  //  
+						console.log('최근본 상품갱신')
+						$("#recentCnt").text(totcount);  //
+						$("#totalPageCount").text("/"+Math.ceil((totcount / pagingSize) *1)); 
+
+						if(Math.ceil((totcount / pagingSize) *1) < Cpage){
+
+						$("#currentPage").text(Math.ceil((totcount / pagingSize) *1));
+
+						}else{
+
+						$("#currentPage").text(Cpage);  //
+
+						}
+
+					}
+
+
+
+					$(".btn_next").on('click',function(){
+
+					chkRecent(Cpage + 1);
+
+
+					});
+
+					
+					$(".btn_prev").on('click',function(){
+
+					chkRecent(Cpage - 1);
+
+					});
+
+					function checkCookie() {
+
+					    var itemList = $.cookie("itemList");
+
+					
+						if (itemList){
+							if (itemList != "" && itemList != null) {
+
+								if ( itemList.length < 1 ){ //값이 없으면 
+										itemlist.push(product)
+								 }
+
+							} else {
+
+								if (itemList == "" || itemList == null) {
+									itemlist.push(product)
+	
+								}
+
+							}
+
+						}
+
+					}
+
+					checkCookie();
+
+
+				});
+
 				//MD 추천 이미지
-				console.log($("#size1").val());
-				console.log($("#md_fileName" + 1).val());
-				
-				
 				for(var i = 0; i < $("#size1").val(); i++) {
 					var imgSrci = null;
 					var uuid = $("#md_uuid" + i).val();
 					var uploadPath = $("#md_uploadPath" + i).val();
 					var fileName = $("#md_fileName" + i).val();
-					console.log($("#md_filetype" + i).val(true));
 					if($("#md_filetype" + i).val()) {
 						imgSrci = encodeURIComponent(uploadPath + "/" + uuid + "_" + fileName);
 						imgSrci = "/display?fileName=" + imgSrci;
@@ -1125,20 +1132,16 @@
 						imgSrci = '../../resources/images/attach.png';
 					}
 				
-					console.log(imgSrci);
 					
 					$("#listAttach" + i).attr("src", imgSrci);
 				}
 				//인기 상품이미지
-				console.log($("#size2").val());
-				console.log("pop"+ $("#popular_product_fileName" + 1).val());
 				
 				for(var i = 0; i < $("#size2").val(); i++) {
 					var imgSrci = null;
 					var uuid = $("#p_uuid" + i).val();
 					var uploadPath = $("#p_uploadPath" + i).val();
 					var fileName = $("#p_fileName" + i).val();
-					console.log($("#p_filetype" + i).val(true));
 					if($("#p_filetype" + i).val()) {
 						imgSrci = encodeURIComponent(uploadPath + "/" + uuid + "_" + fileName);
 						imgSrci = "/display?fileName=" + imgSrci;
@@ -1146,21 +1149,17 @@
 						imgSrci = '../../resources/images/attach.png';
 					}
 				
-					console.log(imgSrci);
 					
 					$("#listAttach2" + i).attr("src", imgSrci);
 				}
 				
 				//신상품이미지
-				console.log($("#size3").val());
-				console.log("new"+ $("#n_fileName" + 1).val());
 				
 				for(var i = 0; i < $("#size3").val(); i++) {
 					var imgSrci = null;
 					var uuid = $("#n_uuid" + i).val();
 					var uploadPath = $("#n_uploadPath" + i).val();
 					var fileName = $("#n_fileName" + i).val();
-					console.log($("#n_filetype" + i).val(true));
 					if($("#n_filetype" + i).val()) {
 						imgSrci = encodeURIComponent(uploadPath + "/" + uuid + "_" + fileName);
 						imgSrci = "/display?fileName=" + imgSrci;
@@ -1168,20 +1167,16 @@
 						imgSrci = '../../resources/images/attach.png';
 					}
 				
-					console.log(imgSrci);
 					
 					$("#listAttach3" + i).attr("src", imgSrci);
 				}
 				//단독상품 이미지
-				console.log($("#size4").val());
-				console.log("single"+ $("#s_fileName" + 1).val());
 				
 				for(var i = 0; i < $("#size4").val(); i++) {
 					var imgSrci = null;
 					var uuid = $("#s_uuid" + i).val();
 					var uploadPath = $("#s_uploadPath" + i).val();
 					var fileName = $("#s_fileName" + i).val();
-					console.log($("#s_filetype" + i).val(true));
 					if($("#s_filetype" + i).val()) {
 						imgSrci = encodeURIComponent(uploadPath + "/" + uuid + "_" + fileName);
 						imgSrci = "/display?fileName=" + imgSrci;
@@ -1189,7 +1184,6 @@
 						imgSrci = '../../resources/images/attach.png';
 					}
 				
-					console.log(imgSrci);
 					
 					$("#listAttach4" + i).attr("src", imgSrci);
 				}
