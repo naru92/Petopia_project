@@ -81,7 +81,7 @@ public class BoardController {
 
 	}
 
-	// 해당 게시물 불러오기 ( jsp 만든 후 string으로 바꿔서 return 해줘야함 )
+	// 해당 게시물 불러오기 
 	@GetMapping("/notice/get")
 	public String noticeGet(@RequestParam("board_id") int board_id, @RequestParam("content_idx") Long content_idx, Model model) {
 
@@ -340,12 +340,19 @@ public class BoardController {
 
 	// 리스트 불러오기
 	@GetMapping("/petstagram")
-	public String petstagramList(Model model) {
+	public String petstagramList(Model model, Principal principal,
+	                            @RequestParam(value = "board_id", defaultValue = "4") Long board_id) {
 
 		log.info("petstagramList...........");
-
-		model.addAttribute("contentList", boardService.getContentList(4L));
-
+		
+		model.addAttribute("contentList", boardService.getContentList(board_id));
+		
+		if (principal != null) {
+		String member_id = principal.getName();
+		model.addAttribute("member_id",member_id);
+		log.info(member_id);
+		}
+		
 		return "board/petstagram";
 	}
 
@@ -358,10 +365,12 @@ public class BoardController {
 
 	// 글 작성
 	@PostMapping("/petstagram/register")
-	public String petstagramRegister(BoardVO board, RedirectAttributes rttr) {
+	public String petstagramRegister(BoardVO board, RedirectAttributes rttr,
+	        @RequestParam(value = "board_id", defaultValue = "4") int board_id) {
 
 		log.info("board: " + board);
 
+		board.setBoard_id(board_id);
 		boardService.contentRegister(board);
 
 		rttr.addFlashAttribute("result", board.getContent_idx());

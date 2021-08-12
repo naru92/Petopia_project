@@ -1,41 +1,56 @@
 .mypage-main{
   margin-top: 100px;
-  margin-left: 400px;
+  margin-left: 350px;
   margin-bottom: 200px;
-  max-width: 1200px;
+  max-width: 1050px;
 }
 
 .line {
 	display: flex;
 }
 .profile-box {
-  width: 300px;
+  width: 330px;
   height: 160px;
   display: flex;
   border: 1px solid #bbb;
-  align-items: center;
   margin-left: 15px;
   margin-bottom: 10px;
   border-radius: 10px;
-  
+  align-items: center;
+}
+.profile-box p{
+	margin:0px;
+	margin-right: 60px;
 }
 .profile-pic {
     margin-left: 10px;
+    margin-right: 20px;
     width: 130px;
     height: 130px;
     border-radius: 70%;
     overflow: hidden;
     object-fit: cover;
 }
-.profile-box p{
-    margin-left: 20px;
-    line-height: 10px;
-}
-.profile-box h4{
-    margin-left: 20px;
-}
+
 .mypage-subtitle{
   color: #385663;
   margin-left: 20px;
   margin-top: 50px;
+}
+
+/* 내 정보 수정 버튼 */
+.ModifyBtn {
+	border-radius:4px;
+	border:1px solid #bbb;
+	cursor:pointer;
+	font-size:11px;
+	padding:3px 10px;
+}
+.ModifyBtn:active {
+	position:relative;
+	top:1px;
+}
+.modifybutton{
+	margin-right: 5px;
+	margin-top: 120px;
 }

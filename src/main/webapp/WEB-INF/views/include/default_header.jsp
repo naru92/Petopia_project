@@ -1,7 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
-
 
 
 <!-- Header Start -->
@@ -11,57 +10,37 @@
 			<div class="menu-wrapper">
 			
 				<div class="links">
-							<sec:authorize access="isAnonymous()">
-								<a href="/joinAgree" class="link_text">회원가입</a>
-								<a href="/login" class="link_text">로그인</a>
-								<div class="dropdown">
+					<sec:authorize access="isAnonymous()">
+						<a href="/joinAgree" class="link_text">회원가입</a>
+						<a href="/login/logoutProcess" class="link_text">로그인</a>
+						<a href="#" class="link_text">고객센터</a>
+					</sec:authorize>
+					<sec:authorize access="hasRole('ROLE_MEMBER')">
+						<a href="/member/mypage" class="link_text">마이페이지</a>
+						<a href="/login/logoutProcess" class="link_text">로그아웃</a>
+						<a href="#" class="link_text">고객센터</a>
+					</sec:authorize>
+					<sec:authorize access="hasRole('ROLE_ADMIN')">
+						<a href="/admin/main" class="link_text">관리자페이지</a>
+						<a href="/login/logoutProcess" class="link_text">로그아웃</a>
+						<a href="#" class="link_text">고객센터</a>
+					</sec:authorize>
+				</div>
 
-									<a href="#" class="link_text dropbtn">고객센터</a>
-									<div class="dropdown-content">
-										<a href="${root }notice?board_id=2">공지사항</a>
-										<a href="${root }board/qna?board_id=2">문의하기</a>
-									</div>
-
-								</div>
-							</sec:authorize>
-							<sec:authorize access="hasRole('ROLE_MEMBER')">
-								<a href="/member/mypage" class="link_text">마이페이지</a>
-								<a href="/login/logoutProcess" class="link_text">로그아웃</a>
-								<div class="dropdown">
-									<a href="#" class="link_text dropbtn">고객센터</a>
-									<div class="dropdown-content">
-										<a href="${root }notice?board_id=2">공지사항</a>
-										<a href="${root }board/qna?board_id=2">문의하기</a>
-									</div>
-								</div>
-							</sec:authorize>
-							<sec:authorize access="hasRole('ROLE_ADMIN')">
-								<a href="/admin/main" class="link_text">관리자페이지</a>
-								<a href="/logout" class="link_text">로그아웃</a>
-								<div class="dropdown">
-									<a href="#" class="link_text dropbtn">고객센터</a>
-									<div class="dropdown-content">
-										<a href="${root }notice?board_id=2">공지사항</a>
-										<a href="${root }board/qna?board_id=2">문의하기</a>
-									</div>
-								</div>
-							</sec:authorize>
-						</div>
-				
 				<nav class="header-nav">
 					<div id="leftmenuToggle" class="leftmenuToggle">
 						<input type="checkbox" /> <span></span> <span></span> <span></span>
 						<ul id="leftmenu" class="hoverEvent">
 						<div class="adiv">
-								<li><a href="/petstagram">펫★그램</a></li>
+								<li><a href="/petstagram?board_id=${petsta_info.board_id}">펫★그램</a></li>
 								<li><a href="/main">펫shop</a></li>
-								<li><a href="/donation">기부</a></li>
+								<li><a href="/board/donation">기부</a></li>
 								<li><a href="/member/mypage"><i class="fas fa-paw"></i> MY</a></li>
 						</div>
 						</ul>
 					</div>
+					
 					<!-- Logo -->
-
 					<div class="logo">
 						<a href="/main"><img src="/petopia/images/petopia_logo.png" alt=""></a>
 					</div>
@@ -71,9 +50,9 @@
 				<div class="main-menu d-none d-lg-block">
 					<nav>
 						<ul id="navigation">
-							<li><a href="/petstagram">펫★그램</a></li>
+							<li><a href="/petstagram?board_id=${petsta_info.board_id}">펫★그램</a></li>
 							<li><a href="/main">펫shop</a></li>
-							<li><a href="/donation">기부</a></li>
+							<li><a href="/board/donation">기부</a></li>
 							<li><a href="/member/mypage"><i class="fas fa-paw"></i> MY</a></li>
 						</ul>
 					</nav>

@@ -10,6 +10,8 @@ public interface MypetService {
     // 목록
     List<MypetVO> getMypetList();
     
+    MypetVO getMypetInfo(String mypet_idx);
+    
     // 등록
     void mypetRegister(MypetVO mypet);
     

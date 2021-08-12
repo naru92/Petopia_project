@@ -16,7 +16,13 @@ h5 .blue {
     border-bottom: 1px solid #2AC1BC;
 }
 
-
+main{
+	position: relative; 
+	height: 1200px; 
+	z-index: -100;
+    background: #fafafa;
+    font-size: 90%;
+  }
 
 body {
     background: #fafafa;
@@ -52,16 +58,15 @@ text-align:center;
 }
 
 .one {
-width:1000px;
+width:650px;
 height: 600px;
 margin:0 auto;
 margin-top: 30px;
 }
 
 .box{
-  padding: 5px;
+  padding: 20px;
   padding-left: 30px;
-  padding-bottom: 20px;
   margin-bottom: 60px;
   background-color: #fff;
 }

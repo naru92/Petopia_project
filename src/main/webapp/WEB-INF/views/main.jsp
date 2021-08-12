@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
@@ -266,6 +265,12 @@
     transform:
       translateX (0);
   }
+(
+
+2px
+
+)
+;
 }
 
 #rightSide {
@@ -470,7 +475,7 @@
 								<input type="checkbox" /> <span></span> <span></span> <span></span>
 								<ul id="leftmenu" class="hoverEvent">
 									<div class="adiv">
-										<li><a href="petstagram">펫★그램</a></li>
+										<li><a href="petstagram?board_id=${petsta_info.board_id}">펫★그램</a></li>
 										<li><a href="main">펫shop</a></li>
 										<li><a href="donation">기부</a></li>
 										<li><a href="mypage"><i class="fas fa-paw"></i> MY</a></li>
@@ -479,8 +484,7 @@
 							</div>
 							<!-- Logo -->
 							<div class="logo">
-								<a href="main"><img src="/petopia/images/petopia_logo.png"
-									alt=""></a>
+								<a href="main"><img src="/petopia/images/petopia_logo.png" alt=""></a>
 							</div>
 						</nav>
 
@@ -488,7 +492,7 @@
 						<div class="main-menu d-none d-lg-block">
 							<nav>
 								<ul id="navigation">
-									<li><a href="petstagram">펫★그램</a></li>
+									<li><a href="petstagram?board_id=${petsta_info.board_id}">펫★그램</a></li>
 									<li><a href="main">펫shop</a></li>
 									<li><a href="donation">기부</a></li>
 									<li><a href="mypage"><i class="fas fa-paw"></i> MY</a></li>
@@ -944,7 +948,7 @@
 				</br>
 				<p>서비스 이용약관 | 개인정보 처리방침 | 입점/제휴 문의</p>
 				</br>
-				<p>Naru Juhee Gunwoo Ahram Hansol Hana</p>
+				<p>Naru Juhee Ahram Hansol Hana</p>
 				<p>Bitcamp Jongno</p>
 				</br>
 				<p>&copy Creative 2021-08</p>

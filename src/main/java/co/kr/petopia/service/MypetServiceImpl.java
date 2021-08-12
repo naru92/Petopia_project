@@ -55,7 +55,12 @@ public class MypetServiceImpl implements MypetService {
 		System.out.println("param ::: " + param);
 		return mypetMapper.selectPassword(param);
 	}
-    
+
+    @Override
+    public MypetVO getMypetInfo(String mypet_idx) {
+        
+        return mypetMapper.getMypetInfo(mypet_idx);
+    }
     
 
 }
