@@ -10,4 +10,6 @@ public class ShopController {
     public String shopProductList() {
         return "board/shopProductList";
     }
+    
+    
 }

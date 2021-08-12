@@ -6,6 +6,21 @@
 <title>상품상세 | Petopia</title>
 </head>
 <body>
+	<header>
+		<%@include file="../include/default_header.jsp"%>
+	</header>
 
+	<%@include file="../include/default_sidebar.jsp"%>
+	<main>
+		<div class="container">
+		</div>
+	</main>
+
+
+
+
+	<footer>
+		<%@include file="../include/default_footer.jsp"%>
+	</footer>
 </body>
 </html>

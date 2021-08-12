@@ -460,8 +460,12 @@ Remove or comment-out the code block below to see how the browser will fall-back
 }
 
 #getMemberId,
-#getContentDate {
+#getContentDate,
+#getContentTitle,
+#getContentText {
 	border:0 solid black;
+	background: #fff;
+	margin-bottom: 3px;
 }
 
 #getMemberId:focus,
@@ -469,3 +473,5 @@ Remove or comment-out the code block below to see how the browser will fall-back
 	box-shadow: none;
 	outline:none;
 }
+
+
