@@ -112,7 +112,7 @@
 					<div class="uploadResult">
 						<ul>
                         </ul>
-					</div>
+					</div> 
 					
 					<div class="uploadFile">
 					<input type="file" id="uploadFile" name='uploadFile' multiple>
@@ -159,8 +159,7 @@
 					<input type="text" class="form-control" id="getMemberId" readonly="readonly">
 					<input type="text" class="form-control" id="getContentDate" readonly="readonly">
 					<input type="text" class="form-control" id="getContentTitle" readonly="readonly" >
-					<br>
-					<textarea class="form-control getContentText" readonly="readonly" style="resize: none"></textarea>
+					<textarea class="form-control" id="getContentText" readonly="readonly" style="resize: none"></textarea>
 					<br>
 				</div>
 			</form>

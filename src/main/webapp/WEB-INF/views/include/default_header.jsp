@@ -39,8 +39,8 @@
 						</div>
 						</ul>
 					</div>
+					
 					<!-- Logo -->
-
 					<div class="logo">
 						<a href="/main"><img src="/petopia/images/petopia_logo.png" alt=""></a>
 					</div>

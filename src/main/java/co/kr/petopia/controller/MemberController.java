@@ -1,15 +1,16 @@
 package co.kr.petopia.controller;
 
-import java.security.Principal;
 import java.io.PrintWriter;
+import java.security.Principal;
 import java.util.Random;
 
-import javax.xml.bind.helpers.PrintConversionEventImpl;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,11 +25,7 @@ import com.google.gson.Gson;
 import co.kr.petopia.service.MemberService;
 import co.kr.petopia.service.MypetService;
 import co.kr.petopia.service.PointService;
-import co.kr.petopia.utils.Criteria;
-import co.kr.petopia.utils.PageVO;
 import co.kr.petopia.vo.MemberVO;
-import co.kr.petopia.vo.MypetVO;
-import co.kr.petopia.vo.PointVO;
 import lombok.extern.log4j.Log4j2;
 
 @Log4j2
@@ -85,22 +82,80 @@ public class MemberController {
     }
 
     // 아이디 찾기 폼
-    @GetMapping("/help/findid")
+    @GetMapping("/help/idInquiry")
     public String findMeberIdForm() {
-        return "member/findId";
+        log.info("아이디 찾기 페이지-----------");
+        return "member/idInquiry";
     }
-    // 아이디 찾기
-
+    
     // 아이디 찾기 결과 화면
-
-    // 비밀번호 찾기 폼
-    @GetMapping("/help/findpw")
-    public String findMeberPwForm() {
-        return "member/findPassword";
+    @PostMapping("/help/findid")
+    public String findMemeberId(@RequestParam("member_name") String member_name, 
+            @RequestParam("member_phoneNumber") String member_phoneNumber,
+            @RequestParam("member_email") String member_email, Model model, HttpServletResponse response) throws Exception {
+        
+        String member_id = memberService.findMemberId(member_name, member_phoneNumber, member_email);
+        
+        if (member_id == null) {
+            response.setContentType("text/html; charset=UTF-8");
+            PrintWriter out = response.getWriter();
+            out.println("<script>alert('일치하는 정보가 없습니다. 다시 확인해주세요.'); history.go(-1);</script>");
+            out.flush();
+        } else {
+            model.addAttribute("member_id", member_id);
+        }
+        
+        return "member/findid";
     }
-    // 비밀번호 찾기
-
-    // 비밀번혼 찾기 결과 화면
+    
+    // 비밀번호 찾기 폼
+    @GetMapping("/help/pwInquiry")
+    public String findMeberPwForm() {
+        log.info("비밀번호 찾기 페이지-----------");
+        return "member/pwInquiry";
+    }
+    
+    // 비밀번호 재설정
+    @PostMapping("/help/resetpw")
+    public String changeMemberPw(@RequestParam("member_id") String member_id, 
+                                 @RequestParam("member_name") String member_name,
+                                 @RequestParam("member_email") String member_email,
+                                 HttpServletRequest request) {
+        
+        HttpSession session = request.getSession();
+        
+        session.setAttribute("member_id", member_id);
+        session.setAttribute("member_name", member_name);
+        session.setAttribute("member_email", member_email);
+        
+        return "/member/resetpw";
+    }
+    
+    // 비밀번호 재설정 완료 화면
+    @PostMapping("/help/resetpw/success")
+    public String changePwSuccess(@RequestParam("member_password") String member_password, HttpServletRequest request) {
+        
+        HttpSession session = request.getSession();
+        
+        String member_id = (String) session.getAttribute("member_id");
+        String member_name = (String) session.getAttribute("member_name");
+        String member_email = (String) session.getAttribute("member_email");
+        
+        System.out.println(member_id);
+        
+        MemberVO member = new MemberVO();
+        
+        member.setMember_id(member_id);
+        member.setMember_name(member_name);
+        member.setMember_email(member_email);
+        member.setMember_password(member_password);
+        
+        memberService.resetMemberPw(member);
+        
+        session.invalidate();
+        
+        return "member/resetpwsuccess";
+    }
 
     // joinForm -> 아이디 중복 체크
     @GetMapping("/idCheck")
@@ -165,6 +220,7 @@ public class MemberController {
         
         MemberVO memberVO = memberService.getMemberInfo(member_id);
         model.addAttribute("member", memberVO);
+        
         log.info("memberVO: " + memberVO);
         
 //        MypetVO mypetVO = MypetService.getMypetInfo(mypet_idx);
