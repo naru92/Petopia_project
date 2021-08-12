@@ -1082,31 +1082,33 @@
 	<!-- 각 year 다섯개씩 -->
 	<when test="donation_state == null || donation_state.equals('')">
 	
-	<if test="donation_date_year.equals('') || donation_state == null ">
+	<if test="donation_date_year.equals('') || donation_date_year == null">
 	SELECT NVL(SUM(member_point_usepoint),0) as "2021_use_point"
 	FROM POINT
 	</if>
-	<if test="donation_date_year.equals('donation_21year') ">
+	
+	<if test="donation_date_year.equals('donation_21year')">
 	SELECT NVL(SUM(member_point_usepoint),0) as "2021_use_point"
-	FROM POINT
+	FROM POINT 
 	WHERE TO_DATE(member_point_usedate, 'yyyy') = '2021'
 	</if>
-	<if test="donation_date_year.equals('donation_20year') ">
+	
+	<if test="donation_date_year.equals('donation_20year')">
 	SELECT NVL(SUM(member_point_usepoint),0) as "2020_use_point"
 	FROM POINT
 	WHERE TO_DATE(member_point_usedate, 'yyyy') = '2020'
 	</if>
-	<if test="donation_date_year.equals('donation_19year') ">
+	<if test="donation_date_year.equals('donation_19year')">
 	SELECT NVL(SUM(member_point_usepoint),0) as "2019_use_point"
 	FROM POINT
 	WHERE TO_DATE(member_point_usedate, 'yyyy') = '2019'
 	</if>
-	<if test="donation_date_year.equals('donation_18year') ">
+	<if test="donation_date_year.equals('donation_18year')">
 	SELECT NVL(SUM(member_point_usepoint),0) as "2018_use_point"
 	FROM POINT
 	WHERE TO_DATE(member_point_usedate, 'yyyy') = '2018'
 	</if>
-	<if test="donation_date_year.equals('donation_17year') ">
+	<if test="donation_date_year.equals('donation_17year')">
 	SELECT NVL(SUM(member_point_usepoint),0) as "2017_use_point"
 	FROM POINT
 	WHERE TO_DATE(member_point_usedate, 'yyyy') = '2017'

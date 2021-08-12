@@ -281,7 +281,7 @@
   left: 65%;
   margin-left: 510px;
   border: 1px solid #B0B5BD;
-  width: 114px;
+  width: 120px;
   height: 150px;
 }
 
@@ -302,7 +302,7 @@
 }
 
 #rightSide #right_zzim ul {
-  min-height: 495px;
+  min-height: 20px;
 }
 
 #rightSide #right_zzim li {
@@ -373,20 +373,20 @@
   width: 13px;
   height: 11px;
   background: url(/petopia/images/btn_arrow_left_web.png) no-repeat;
+  background-size : 5px, 5px;
   text-indent: -9000px;
-  border: 1px solid #CCC;
   display: inline-block;
 }
 
 #paging .btn_next {
   position: absolute;
   top: 125px;
-  right: 4px;
+  right: -5px;
   width: 13px;
   height: 11px;
-  background: url(/images/ico_arrow.png) -11px 0px;
+  background: url(/petopia/images/btn_arrow_right_web.png) no-repeat;
+  background-size : 5px, 5px;
   text-indent: -9000px;
-  border: 1px solid #CCC;
   display: inline-block;
 }
 </style>
@@ -690,7 +690,7 @@
 						<div class="card h-40 itembox1">
 							<a href="#"><img class="card-img-top" id="listAttach${status.index}" src="#" alt="상품이미지"></a>
 								<input type="hidden" name="product_idx" value="${md.product_idx}">
-								<input type="hidden" id="cookiefileName" value="${md.productVOList.get(0).fileName}" />
+								<input type="hidden" class="cookiefileName" value="${md.productVOList.get(0).fileName}" />
 								
 									
 								<div class="class-skill">
@@ -739,6 +739,9 @@
 								<div class="swiper-slide">
 									<div class="card h-40 ss">
 
+										<input type="hidden" name="product_idx" value="${popular_product.product_idx}"> 
+										<input type="hidden" class="cookiefileName" name="fileName" value="${popular_product.productVOList.get(0).fileName}" />
+											
 										<img src="#"
 												alt="테스트 이미지" class="class-image" id="listAttach2${status.index}"  width= />
 										<div class="class-skill">
@@ -758,8 +761,6 @@
 								</div>
 								
 					<form>
-					<input type="hidden" name="product_idx" 
-											value="${popular_product.product_idx}">
 					<input type="hidden" id="p_filetype${status.index}"
 											value="${popular_product.productVOList.get(0).filetype}" />
 					<input type="hidden" id="p_uuid${status.index}"
@@ -796,7 +797,9 @@
 								items="${new_product}">
 							<div class="swiper-slide">
 								<div class="card ss">
-
+								<input type="hidden" name="product_idx" value="${new_product.product_idx}"> 
+								<input type="hidden" class="cookiefileName" name="fileName" value="${new_product.productVOList.get(0).fileName}" />
+								
 									<img src="/petopia/images/product_1.jpg"
 											alt="테스트 이미지" class="class-image" id="listAttach3${status.index}" width= />
 									<div class="class-skill">
@@ -812,8 +815,7 @@
 								</div>
 							</div>
 					<form>
-					<input type="hidden" name="product_idx"
-										value="${new_product.product_idx}">
+				
 					<input type="hidden" id="n_filetype${status.index}"
 										value="${new_product.productVOList.get(0).filetype}" />
 					<input type="hidden" id="n_uuid${status.index}"
@@ -843,7 +845,9 @@
 								items="${single_product}">
 							<div class="swiper-slide">
 								<div class="card ss">
-
+								<input type="hidden" name="product_idx" value="${single_product.product_idx}"> 
+								<input type="hidden" class="cookiefileName" name="fileName" value="${single_product.productVOList.get(0).fileName}" />
+								
 									<img src="/petopia/images/11356_originalView_01802971.jpg"
 											alt="테스트 이미지" class="class-image" id="listAttach4${status.index}" width= />
 									<div class="class-skill">
@@ -861,8 +865,6 @@
 								</div>
 							</div>
 					<form>
-					<input type="hidden" name="product_idx"
-										value="${single_product.product_idx}">
 					<input type="hidden" id="s_filetype${status.index}"
 										value="${single_product.productVOList.get(0).filetype}" />
 					<input type="hidden" id="s_uuid${status.index}"
@@ -971,7 +973,7 @@
 			$(".class-detail").on('click', function(e){
 			
 					product_no = $(this).parent().parent().children('input').val();
-					imageName = $(this).parent().parent().children('#cookiefileName').val();
+					imageName = $(this).parent().parent().children('.cookiefileName').val();
 					
 					var product = {
 						"product_idx" : product_no,
@@ -1005,18 +1007,18 @@
 						
 						Cpage = (totpage >= a )? a:1;
 						Cpage = (Cpage <1)? totpage:Cpage;
-
+						console.log('현재페이지 = ' + Cpage);
 
 						var start = (Cpage-1) * pagingSize;    
 
 					
 
 						for (i = start ; i <= start+(pagingSize-1) ;i++){
-						var thisItem = itemID.shift();
+						var thisItem = itemID[i];
 							if(thisItem){
 								var itemId = thisItem.product_idx;
 								var itemImg = thisItem.fileName;
-							$("#right_zzim ul").append('<li><a href="#" target="_top"><img src="/petopia/images/'+itemImg+'" width="75" border=1></a><div class="detail"><a href="javascript:removeRecentItem(\''+thisItem+'\')" class="btn_delete">삭제</a></div></li>')
+							$("#right_zzim ul").append('<li><a href="#" target="_top"><img src="/petopia/images/'+itemImg+'" width="75" border=1></a><div class="detail"><a href="javascript:removeRecentItem(\''+thisItem+ Cpage +'\')" class="btn_delete">삭제</a></div></li>')
 							}
 						}
 
@@ -1040,7 +1042,7 @@
 
 					function removeRecentItem(itemname){
 
-						var itemID = getCookie("itemID");
+						var itemID = getCookie("itemlist"+"["+ Cpage +"]");
 
 						itemID = itemID.replace(itemname+"&","");			
 
@@ -1050,11 +1052,9 @@
 
 					}
 
-
-
-					function updateRecentPage(totcount,Cpage){  //  
+					function updateRecentPage(totcount,Cpage){  
 						console.log('최근본 상품갱신')
-						$("#recentCnt").text(totcount);  //
+						$("#recentCnt").text(totcount);  
 						$("#totalPageCount").text("/"+Math.ceil((totcount / pagingSize) *1)); 
 
 						if(Math.ceil((totcount / pagingSize) *1) < Cpage){
@@ -1069,12 +1069,9 @@
 
 					}
 
-
-
 					$(".btn_next").on('click',function(){
 
 					chkRecent(Cpage + 1);
-
 
 					});
 
@@ -1109,9 +1106,7 @@
 						}
 
 					}
-
 					checkCookie();
-
 
 				});
 
