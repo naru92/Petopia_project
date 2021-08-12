@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
@@ -32,7 +32,7 @@
 						<input type="checkbox" /> <span></span> <span></span> <span></span>
 						<ul id="leftmenu" class="hoverEvent">
 						<div class="adiv">
-								<li><a href="/petstagram">펫★그램</a></li>
+								<li><a href="/petstagram?board_id=${petsta_info.board_id}">펫★그램</a></li>
 								<li><a href="/main">펫shop</a></li>
 								<li><a href="/board/donation">기부</a></li>
 								<li><a href="/member/mypage"><i class="fas fa-paw"></i> MY</a></li>
@@ -50,7 +50,7 @@
 				<div class="main-menu d-none d-lg-block">
 					<nav>
 						<ul id="navigation">
-							<li><a href="/petstagram">펫★그램</a></li>
+							<li><a href="/petstagram?board_id=${petsta_info.board_id}">펫★그램</a></li>
 							<li><a href="/main">펫shop</a></li>
 							<li><a href="/board/donation">기부</a></li>
 							<li><a href="/member/mypage"><i class="fas fa-paw"></i> MY</a></li>

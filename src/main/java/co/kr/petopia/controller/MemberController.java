@@ -1,6 +1,7 @@
 package co.kr.petopia.controller;
 
 import java.security.Principal;
+import java.io.PrintWriter;
 import java.util.Random;
 
 import javax.xml.bind.helpers.PrintConversionEventImpl;
@@ -40,7 +41,9 @@ public class MemberController {
     private PointService pointService;
     @Autowired
     private MypetService mypetService;
-
+	// @Autowired
+	// private PointService pointService;
+    
     @GetMapping("/login")
     public String loginPage() {
         log.info("로그인 페이지-----------");

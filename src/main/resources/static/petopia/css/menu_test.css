@@ -382,35 +382,6 @@ a {
   color: black;
 }
 
-@media only screen and (min-width: 1200px) and (max-width: 1600px) {
-  .category {
-    margin-left: 30px;
-  }
-}
-
-@media only screen and (min-width: 992px) and (max-width: 1199px) {
-  .category {
-    margin-left: 30px;
-  }
-}
-
-@media only screen and (min-width: 768px) and (max-width: 991px) {
-  .category {
-    margin-left: 10px;
-  }
-}
-
-@media only screen and (min-width: 576px) and (max-width: 767px) {
-  .category {
-    margin-left: 10px;
-  }
-}
-
-@media (max-width: 575px) {
-  .category {
-    margin-left: 0px;
-  }
-}
 
 /* side bar */
 .container-side {
@@ -425,7 +396,7 @@ a {
   top: 160px;
   left: 0;
   width: 230px;
-  margin-left: 30px;
+  margin-left: 100px;
   z-index: -1;
 }
 
@@ -438,6 +409,7 @@ a {
   display: inline-flex;
   font-weight: bold;
   margin-left: 30px;
+  font-size: 25px;
 }
 
 .ctghead h3 i {
@@ -448,11 +420,13 @@ a {
 .ctgul {
   margin-top: 16px;
   padding: 0 0 16px 0;
+  font-size: 14px;
 }
 
 .ctgulChild {
   margin: 0 0 0 30px;
   padding: 0 0 10px 0;
+  
 }
 
 .ctgliChild {
@@ -460,8 +434,8 @@ a {
   position: relative;
   list-style: none;
   transition: .3s linear;
-  font-size: 14px;
-  height: 40px;
+  font-size: 13px;
+  height: 30px;
   /* box-shadow: transparent 0px 14px 13px -12px, transparent 0px 26px 32px -22px; */
 }
 
@@ -479,7 +453,7 @@ a {
   line-height: 2.3rem;
   color: #333;
   text-decoration: none;
-  padding: 7px 40px 7px 30px;
+  padding: 3px 40px 3px 30px;
   position: relative;
   right: 0;
   transition: right linear .3s;

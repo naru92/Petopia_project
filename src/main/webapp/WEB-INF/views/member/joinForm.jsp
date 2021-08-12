@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -323,7 +323,8 @@
 						console.log(key);
 						alert("인증번호가 전송되었습니다.");
 					},  error:function(request,status,error){
-                        alert("code = "+ request.status + 
+                        alert("오류가 발생하였습니다. 잠시후 다시 시도해주세요.");
+                        console.log("code = "+ request.status + 
                         	  " message = " + request.responseText + 
                         	  " error = " + error); // 실패 시 처리
                     }
