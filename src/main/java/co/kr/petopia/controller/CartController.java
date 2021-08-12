@@ -3,6 +3,8 @@ package co.kr.petopia.controller;
 import java.security.Principal;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -12,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import co.kr.petopia.service.AdminService;
@@ -182,6 +185,13 @@ public class CartController {
 		log.info("orderLog = " +orderLog);
 
 		model.addAttribute("orderLog", orderLog);
+		
+	}
+	
+	@RequestMapping("/order/recent")
+	public String productRecent() {
+		return "/order/recent_product";
+		
 		
 	}
 	
