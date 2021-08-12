@@ -4,11 +4,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <c:set var='root' value="${pageContext.request.contextPath }/" />
+
 <!DOCTYPE html>
+
 <html lang="ko">
 
 <head>
-
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport"
@@ -470,6 +471,7 @@
 		
 		
 	</script>
+	
 		<c:import url="/WEB-INF/views/include/admin_list_js.jsp" />
 
 </body>
