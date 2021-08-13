@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!Doctype html>
 <html>
@@ -17,7 +16,6 @@
 <body>
 	<header> </header>
 	<%@include file="../include/default_header.jsp"%>
-	<%@include file="../include/default_sidebar.jsp"%>
 	<main>
 		<div class="donation-main">
 			<h1>기부</h1>
@@ -113,9 +111,9 @@
 			</div>
 			<div>
 				<h2>사용 내역</h2>
-				<a href=""><div class="list-box">2021.07 사용 내역</div></a>
-				<a href=""><div class="list-box">2021.06 사용 내역</div></a>
-				<a href=""><div class="list-box">2021.05 사용 내역</div></a>
+				<div class="list-box">2021.07 사용 내역</div>
+				<div class="list-box">2021.06 사용 내역</div>
+				<div class="list-box">2021.05 사용 내역</div>
 			</div>
 		</div>
 	</main>
@@ -123,10 +121,6 @@
 	<footer>
 		<%@include file="../include/default_footer.jsp"%>
 	</footer>
-	
-	<script>
-	<%@include file="../include/default_sidebar_js.jsp"%>
-	</script>
 </body>
 
 </html>

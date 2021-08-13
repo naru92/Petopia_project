@@ -10,20 +10,34 @@ import co.kr.petopia.vo.PointVO;
 
 @Mapper
 public interface PointMapper {
-    
-    List<PointVO> getPointList();
 	
     // 포인트 적립
-    int savePoint(PointVO savepoint);
+    String savePoint(PointVO savepoint);
     
     // 포인트 사용
-    int usePoint(PointVO usepoint);
+    String usePoint(PointVO usepoint);
+    
+    // 보유 포인트 업데이트
+    int pointUpdate(String member_id);
     
     // 보유 포인트 확인
-    int retentionPoint(MemberVO point);
+    int retentionPoint(String member_id);
+    
+    // 포인트 적립/사용 내역 리스트 불러오기
+    List<PointVO> pointHistory(String member_id);
+
+    
+    // 총 기부금액 업데이트
+    int donationUpdate(String member_id);
     
     // 총 기부 금액 확인
-    int donationPoint(MemberVO donation);
+    int donationPoint(String member_id);
+    
+    // 기부 날짜 조회 리스트 불러오기
+    List<PointVO> donationHistory(String member_id);
+    
+    // 기부횟수 조회
+    int countDonation(String member_id);
     
 }
 

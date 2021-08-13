@@ -22,10 +22,10 @@
 	<!-- 회원가입 -->
 	<insert id="memberJoin">
 		INSERT INTO member(member_id, member_password, member_name, member_phoneNumber, 
-						member_address, member_email, member_joindate, member_grade, 
-						member_point, member_donation, member_oauth) 
-		VALUES(#{member_id}, #{member_password}, #{member_name}, #{member_phoneNumber}, 
-				#{member_address}, #{member_email}, sysdate,'브론즈', 0, 0, #{member_oauth})
+						   member_address, member_email, member_joindate, member_grade, 
+						   member_point, member_donation, member_oauth) 
+					VALUES(#{member_id}, #{member_password}, #{member_name}, #{member_phoneNumber}, 
+						   #{member_address}, #{member_email}, sysdate,'브론즈', 0, 0, #{member_oauth})
 		<selectKey order="BEFORE" keyProperty="member_id" resultType="java.lang.String">
 		SELECT #{member_id} FROM dual
 		</selectKey>
@@ -34,9 +34,25 @@
 	<!-- 권한 주입 -->
 	<insert id="memberAuthorities">
 		INSERT INTO authorities(member_id, authority, enabled) 
-		VALUES(#{memberAuth_id}, 'ROLE_MEMBER', 1)
+						 VALUES(#{memberAuth_id}, 'ROLE_MEMBER', 1)
 	</insert>
 
+	<!-- 아이디 찾기 -->
+	<select id="findMemberId">
+		SELECT member_id FROM member 
+		WHERE member_name = #{member_name} 
+		AND member_phoneNumber = #{member_phoneNumber}
+		AND member_email = #{member_email} 
+	</select>
+	
+	<!-- 비밀번호 찾기/ 정보 일치 할 경우 수정 -->
+	<update id="findMemberPw">
+		UPDATE member SET member_password = #{member_password}
+		WHERE member_id = #{member_id} 
+		AND member_name = #{member_name} 
+		AND member_email = #{member_email}
+	</update>
+	
 	<!-- 권한 삭제 / 회원탈퇴시 먼저 수행 -->
 	<delete id="memberAuthDelete">
 		DELETE FROM authorities WHERE member_id = #{member_id}
@@ -69,6 +85,12 @@
 		WHERE member_id = #{member_id} 
 		ORDER BY reply_idx DESC
 	</select>
+	
+	<!-- 회원 등급 확인 -->
+<!-- 	<select id="getMyGrade" resultType="co.kr.petopia.vo.MemberVO">
+		select member_grade from member
+			where member_id = #{member_id}
+	</select> -->
 
 	<!-- 아이디 중복 검사 -->
 	<select id="checkMemberId" parameterType="String" resultType="int">
@@ -84,21 +106,4 @@
 	<select id="checkMemberPhoneNumber" parameterType="String" resultType="int">
 		SELECT count(*) FROM member WHERE member_phoneNumber = #{member_phoneNumber}
 	</select>
-	
-	<!-- 아이디 찾기 -->
-	<select id="findMemberId" resultType="String">
-		SELECT member_id FROM member 
-		WHERE member_name = #{member_name} 
-		AND member_phoneNumber = #{member_phoneNumber}
-		AND member_email = #{member_email} 
-	</select>
-	
-	<!-- 비밀번호 찾기/ 정보 일치 할 경우 수정 -->
-	<update id="resetMemberPw">
-		UPDATE member SET member_password = #{member_password}
-		WHERE member_id = #{member_id} 
-		AND member_name = #{member_name} 
-		AND member_email = #{member_email}
-	</update>
-	
 </mapper>

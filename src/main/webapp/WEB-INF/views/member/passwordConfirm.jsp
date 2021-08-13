@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -77,7 +77,7 @@
 							</div>
 							<p class="validation-check" id="errorMsg" style="display: none;" >비밀번호를 다시 확인해주세요.</p>
 
-							<a href="javascript:void(0);">
+							<a href="memberModify">
 								<button class="join-btn" onclick="fn_passwordCheck()">확인</button>
 							</a>
 						</section>

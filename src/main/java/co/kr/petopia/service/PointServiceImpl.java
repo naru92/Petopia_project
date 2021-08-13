@@ -17,45 +17,66 @@ public class PointServiceImpl implements PointService {
 	@Autowired
 	private PointMapper pointMapper;
 
-	
+	// 포인트 적립
     @Override
-    public List<PointVO> getPointList() {
-        
-        return pointMapper.getPointList();
-    }
-
-    @Override
-    public int savePoint(PointVO savepoint) {
-        
+    public String savePoint(PointVO savepoint) {
         log.info("save point...", savepoint);
         
         return pointMapper.savePoint(savepoint);
-        
     }
-
+    // 포인트 사용
     @Override
-    public int usePoint(PointVO usepoint) {
-        
+    public String usePoint(PointVO usepoint) {
         log.info("use point...", usepoint);
         
         return pointMapper.usePoint(usepoint);
-        
     }
-
+    // 보유 포인트 업데이트
     @Override
-    public int retentionPoint(MemberVO point) {
+    public int pointUpdate(String member_id) {
+        log.info("point Update...", member_id);
         
-        log.info("retention point...", point);
+        return pointMapper.pointUpdate(member_id);
+    }
+    // 보유 포인트 확인
+    @Override
+    public int retentionPoint(String member_id) {
+        log.info("retention point...", member_id);
         
-        return pointMapper.retentionPoint(point);
+        return pointMapper.retentionPoint(member_id);
+    }
+    // 포인트 적립/사용 날짜 리스트
+    @Override
+    public List<PointVO> pointHistory(String member_id) {
+        
+        return pointMapper.pointHistory(member_id);
     }
     
+    
+    // 총 기부 금액 업데이트
     @Override
-    public int donationPoint(MemberVO donation) {
+    public int donationUpdate(String member_id) {
         
-        log.info("donation point...", donation);
+        return pointMapper.donationUpdate(member_id);
+    }
+    // 총 기부 금액 조회
+    @Override
+    public int donationPoint(String member_id) {
+        log.info("donation point...", member_id);
         
-        return pointMapper.donationPoint(donation);
+        return pointMapper.donationPoint(member_id);
+    }
+    // 기부 날짜 조회 리스트
+    @Override
+    public List<PointVO> donationHistory(String member_id) {
+        
+        return pointMapper.donationHistory(member_id);
+    }
+    // 기부 횟수 조회
+    @Override
+    public int countDonation(String member_id) {
+        
+        return pointMapper.countDonation(member_id);
     }
 	
 	
