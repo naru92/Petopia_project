@@ -79,22 +79,29 @@
 										<tr>
 											<th class="tableNumber">주문자 명</th>
 											<td class="tableTitle">
-											<label for="checkName"><input type="text" id="checkName1" class="inputBox" name="order_name" /></label> 
-											<span class="text">주문자 이름을 입력해주세요.</span></td>
+											<label for="checkName"><input type="text" id="checkName1" class="inputName1" name="order_name" /></label> 
+											<span class="text">주문자 이름을 입력해주세요.
+											<div class="eheck_font" id="name_check1"></div>
+											</span></td>
 										</tr>
 										
 										<tr>
 											<th class="tableNumber">수령자 명</th>
 											<td class="tableTitle">
-											<label for="checkName"><input type="text" id="checkName2" class="inputBox" name="order_receiver_name" /></label>
-											<span class="text">수령자이름을 입력해주세요.</span></td>
+											<label for="checkName"><input type="text" id="checkName2" class="inputName2" name="order_receiver_name" /></label>
+											<span class="text">수령자 이름을 입력해주세요.
+											<div class="eheck_font" id="name_check2"></div>
+											</span></td>
 										</tr>
 										
 										<tr>
 											<th class="tableNumber">수령자 연락처</th>
 											<td class="tableTitle">
-											<label for="checkTel"><input type="text" id="checkTel" class="inputBox" name="order_receiver_phonenumber" /></label> 
-											<span class="text">핸드폰 번호를 입력해주세요. (예시: 010-1111-1111)</span></td>
+											<label for="checkTel"><input type="text" id="checkTel" class="inputTel" name="order_receiver_phonenumber" /></label> 
+											<span class="text">연락처를 입력해주세요. (예시: 010-1111-1111)
+											<div class="eheck_font" id="phone_check"></div>
+											</span></td>
+											
 										</tr>
 										
 										<tr>
@@ -110,7 +117,13 @@
 											<td class="tableTitle">
 											<label for="address1"> 
 											<input type="text" id="roadAddress" placeholder="도로명 주소" class="inputBox" name="address2" readonly><br>
-											<input type="text" id="detailAddress" placeholder="상세주소" class="inputBox" name="address3"></label></td>
+											<input type="text" id="detailAddress" placeholder="상세주소" class="inputPost" name="address3"></label>
+											<span class="text">
+											<div class="eheck_font" id="address_check"></div></span>
+											</td>
+											
+											
+											
 										</tr>
 										
 										<tr class = "paymentMethod">
@@ -193,10 +206,141 @@
 	<!--  주소 api js-->
 		<%@include file="../include/default_mapApi_js.jsp"%>
 
-	<!-- 주문서 작성 ajax -->
+	<!-- 주문서 작성 ajax, iamport(kakaopay) -->
 	<script type="text/javascript">
-	 $(document).ready(function() { 
-	      $('#paymentBtn').click(function(){
+	/*
+	 * 유효성 검사
+	 */
+	 
+	//모든 공백 체크 정규식 
+	var empJ = /\s/g; 
+	// 이름 정규식 
+	var nameJ = /^[가-힣]{2,6}$/; 
+	// 휴대폰 번호 정규식 
+	var phoneJ = /^010-?([0-9]{4})-?([0-9]{4})$/; 
+
+	$(document).ready(function() {
+		
+		// ----- 주문자 이름 확인 -----
+		$(".inputName1").blur(function() {
+			if($('.inputName1').val()==''){ 
+				$('#name_check1').text('주문자 이름을 입력해주세요.'); 
+				$('#name_check1').css('color', 'red'); 
+			} else if(nameJ.test($('.inputName1').val())!=true){ 
+				$('#name_check1').text('한글 2~6자만 입력 가능합니다.'); 
+				$('#name_check1').css('color', 'red'); 
+			} else if(nameJ.test($('.inputName1').val())){ 
+				$('#name_check1').text(' '); 
+				$('#name_check1').css('color', '#2AC1BC'); 
+			}
+		});//blur
+		
+		// ----- 수령자 이름 확인 -----
+		$(".inputName2").blur(function() {
+			if($('.inputName2').val()==''){ 
+				$('#name_check2').text('수령자 이름을 입력해주세요.'); 
+				$('#name_check2').css('color', 'red'); 
+			} else if(nameJ.test($('.inputName2').val())!=true){ 
+				$('#name_check2').text('한글 2~6자만 입력 가능합니다.'); 
+				$('#name_check2').css('color', 'red'); 
+			} else if(nameJ.test($('.inputName2').val())){ 
+				$('#name_check2').text(' '); 
+				$('#name_check2').css('color', '#2AC1BC'); 
+			}
+		});//blur
+		
+		// ----- 전화번호 확인 -----
+		$(".inputTel").blur(function() {
+			if($('.inputTel').val()==''){ 
+				$('#phone_check').text('연락처를 입력해주세요.'); 
+				$('#phone_check').css('color', 'red'); 
+			} else if(phoneJ.test($('.inputTel').val())!=true){ 
+				$('#phone_check').text('010-_ _ _ _-_ _ _ _ 형식에 맞춰 입력해주세요.'); 
+				$('#phone_check').css('color', 'red'); 
+			} else if(phoneJ.test($('.inputTel').val())){ 
+				$('#phone_check').text(' '); 
+				$('#phone_check').css('color', '#2AC1BC'); 
+			}
+		});//blur
+		
+		// ----- 주소 확인 -----
+		$(".inputPost").blur(function() {
+			if($('.inputPost').val()==''){ 
+				$('#address_check').text('상세주소를 입력해주세요.'); 
+				$('#address_check').css('color', 'red'); 
+			} else { 
+				$('#address_check').text(' '); 
+				$('#address_check').css('color', '#2AC1BC'); 
+			}
+		});//blur
+		
+		/*
+		 * 버튼 눌렀을 때 정규식 & 모두 true일 때 Ajax로 데이터 전송
+		 */
+		$('#paymentBtn').click(function(){
+			var inval_Arr = new Array(5).fill(false);
+			
+			// ----- 주문자명 확인 -----
+			if (nameJ.test($('.inputName1').val())) { 
+				inval_Arr[0] = true; 
+			} else { 
+				inval_Arr[0] = false; 
+				alert('주문자명을 확인하세요.'); 
+				return false; 
+			} 
+			
+			// ----- 수령자명 확인 -----
+			if (nameJ.test($('.inputName2').val())) { 
+				inval_Arr[1] = true; 
+			} else { 
+				inval_Arr[1] = false; 
+				alert('수령자명을 확인하세요.'); 
+				return false; 
+			} 
+			
+			// ----- 휴대폰번호 확인 -----
+			if (phoneJ.test($('.inputTel').val())) { 
+				inval_Arr[2] = true;
+			} else {
+				inval_Arr[2] = false;
+				alert('전화번호를 확인하세요.');
+				return false;
+			}
+			
+			// ----- 주소 확인 -----
+			if ($('.inputPost').val()!='') { 
+				inval_Arr[3] = true; 
+			} else { 
+				inval_Arr[3] = false; 
+				alert('주소를 확인하세요.'); 
+				return false; 
+			}
+		
+			//  ----- 결제 수단 확인 -----
+			if ($('[name=selectPayment]:checked').val() == 1 || $('[name=selectPayment]:checked').val() == 2 ) {
+				inval_Arr[4] = true;
+			} else {	
+				inval_Arr[4] - false;
+				alert('결제수단을 선택하세요.');
+     			return false;
+			}
+			
+			// inval_Arr 결과 출력
+			console.log(inval_Arr);
+			
+			// inval_Arr가 모두 true인지 검사
+			var validAll = true; 
+			
+			for(var i = 0; i < inval_Arr.length; i++){ 
+				if(inval_Arr[i] == false){ 
+					validAll = false; 
+				}
+			} 
+			
+			/*
+			 * inval_Arr가 모두 true일 경우 ajax로 데이터 전송
+			 */	
+			 if(validAll == true){
 	    	  
 	    	  var payment_method = $(':input:radio[name="selectPayment"]:checked').val();
 	    	  
@@ -235,6 +379,7 @@
 	  	         });
 	    		  
 	    	  }else{
+	    		  // kakaopay 결제
 		    	  		IMP.init('imp61748969'); //가맹점 식별코드
 		    	  		IMP.request_pay({
 		    	  		    pg : 'kakaopay',
@@ -285,9 +430,13 @@
 		    	            }
 		    	        });
 	    	  		}
+			 	}
+	    	  
 	      		});
 	   		});
-
+	
+	
+	
 	
 	</script>
 

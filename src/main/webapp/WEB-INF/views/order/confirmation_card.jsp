@@ -117,7 +117,6 @@
 					</div>
 				</div>
 
-				<div class="spacing2"></div>
 
 				<div class="productinfo">
 					<p>주문 상품 정보</p>
@@ -148,8 +147,6 @@
 					</div>
 					</c:forEach>
 				</div>
-
-				<div class="spacing2"></div>
 
 				<div class="spacing"></div>
 

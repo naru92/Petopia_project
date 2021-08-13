@@ -126,8 +126,6 @@
 					</div>
 				</div>
 
-				
-
 				<div class="productinfo">
 					<p>주문 상품 정보</p>
 					<table>
