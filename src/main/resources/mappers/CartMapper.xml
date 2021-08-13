@@ -84,7 +84,7 @@
  		insert into 
  			cart (cart_id, member_id, product_idx, amount)
  		values 
- 			(${cart_id}, #{member_id}, #{product_idx}, #{amount})
+ 			(${cart_id}, #{member_id}, #{product_idx}, 1)
  	</insert>
  	
  		<insert id="insertCartType" parameterType="co.kr.petopia.vo.CartVO">

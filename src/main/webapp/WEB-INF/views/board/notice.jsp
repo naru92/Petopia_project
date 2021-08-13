@@ -39,7 +39,7 @@ footer {
   color: white;
 }
 .board {
-	margin-left: 230px;
+	margin-left: 300px;
 	padding-right: 10px;
 	padding-top: 0px;
 }
@@ -119,7 +119,7 @@ font-weight:bold;
 					</div>
 				</div>
 			</div>
-		<sec:authorize access="hasRole('ROLE_USER')">
+		<sec:authorize access="hasRole('ROLE_ADMIN')">
 			 <div class="text-right">
 				<a href="${root}/notice/register?board_id=1" class="btn btn-defalut">글작성</a>
 			</div> 

@@ -25,6 +25,8 @@
 
 
 
+
+
 .d-block {
   padding-top: 64px;
   display: block;
@@ -311,6 +313,9 @@
   padding: 5px;
   position: relative;
 }
+#right_zzim ul p {
+	color:black;
+}
 
 #rightSide #right_zzim ul li img {
   border: 1px solid #ccc
@@ -327,6 +332,14 @@
   color: #fff;
   xtext-align: left;
   white-space: nowrap;
+}
+
+
+.cursor-heart{
+cursor: pointer;
+}
+.cursor-heart:hover{
+color: : red !important;
 }
 
 #right_zzim li:hover .detail {
@@ -356,7 +369,7 @@
 .noData {
   color: #ccc;
   text-align: center;
-  margin-top: 223px;
+  margin-top: 25px !important;
 }
 }
 
@@ -389,6 +402,8 @@
   text-indent: -9000px;
   display: inline-block;
 }
+
+
 </style>
 <!-- Bootstrap core CSS -->
 <link rel="stylesheet"
@@ -686,6 +701,8 @@
 					
 			<!--반복 돌릴 곳  -->
 					<c:forEach var='md' varStatus="status" items="${md_product}">
+					<c:choose>
+					<c:when test="${!empty md}">
 					<div class="col-lg-6 col-md-6 mb-4 nopaddingcard ">
 						<div class="card h-40 itembox1">
 							<a href="#"><img class="card-img-top" id="listAttach${status.index}" src="#" alt="상품이미지"></a>
@@ -695,10 +712,11 @@
 									
 								<div class="class-skill">
 										<div class="class-type">${md.product_name}</div>
-										<div class="class-format">♡</div>
+										<div class="class-format"><i class="fas fa-heart cursor-heart"></i></div>
+
 									</div>
 									<div class="class-desc col-10">
-										<div class="class-title">${md.product_price } 원</div>
+										<div class="class-title md">${md.product_price } 원</div>
 										<div class="class-detail">${md.product_detail_info }</div>
 									</div>
 									<button class="btn btn-3 btn-3a icon-cart" id="addCart">
@@ -706,6 +724,7 @@
 								
 						</div>
 					</div>
+					
 					<form>
 					<input type="hidden" id="md_filetype${status.index}"
 								value="${md.productVOList.get(0).filetype}" />
@@ -716,8 +735,24 @@
 					<input type="hidden" id="md_fileName${status.index}" name="fileName"
 								value="${md.productVOList.get(0).fileName}" />
 					</form>
-					
+					</c:when>
+					</c:choose>
+					<c:choose>
+					<c:when test="${empty md}">
+						<div class="col-lg-6 col-md-6 mb-4 nopaddingcard ">
+						<div class="card h-40 itembox1">
+						
+									<div class="class-desc col-10">
+										<div class="class-detail">데이터가 없습니다.</div>
+									</div>
+								
+								
+						</div>
+					</div>
+					</c:when>
+					</c:choose>
 					</c:forEach>
+					
 					<input type="hidden" id="size1" value="${fn:length(md_product)}" />
 			<!--  -->
 			
@@ -733,9 +768,9 @@
 						<!-- 인기제품 반복문 돌릴곳 Start -->
 						<div class="swiper-container mySwiper">
 							<div class="swiper-wrapper">
-
-						<c:forEach var='popular_product' varStatus="status"
-									items="${popular_product}">
+						<c:forEach var='popular_product' varStatus="status" items="${popular_product}">
+						<c:choose>
+						<c:when test="${!empty popular_product}">
 								<div class="swiper-slide">
 									<div class="card h-40 ss">
 
@@ -749,7 +784,7 @@
 											<div class="class-format">♡</div>
 										</div>
 										<div class="class-desc col-10">
-											<div class="class-title">${popular_product.product_price} 원</div>
+											<div class="class-title popular">${popular_product.product_price} 원</div>
 											<div class="class-detail">${popular_product.product_detail_info}</div>
 										</div>
 									<button class="btn btn-3 btn-3a icon-cart" id="addCart">
@@ -770,7 +805,19 @@
 					<input type="hidden" id="p_fileName${status.index}" name="fileName"
 											value="${popular_product.productVOList.get(0).fileName}" />
 					</form>
-						</c:forEach>
+					</c:when>
+					</c:choose>
+					</c:forEach>
+					
+					<c:choose>
+					<c:when test="${empty popular_product}">
+						
+								<p align="center">데이터가 없습니다</p>
+								
+					</c:when>
+					</c:choose>
+					
+					
 									<input type="hidden" id="size2" value="${fn:length(popular_product)}" />
 							<!-- 인기제품 반복문 돌릴곳 끝 END -->
 							
@@ -793,8 +840,9 @@
 					<div class="swiper-container mySwiper">
 						<div class="swiper-wrapper">
 						
-						<c:forEach var='new_product' varStatus="status"
-								items="${new_product}">
+						<c:forEach var='new_product' varStatus="status" items="${new_product}">
+						<c:choose>
+						<c:when test="${!empty new_product}">
 							<div class="swiper-slide">
 								<div class="card ss">
 								<input type="hidden" name="product_idx" value="${new_product.product_idx}"> 
@@ -807,13 +855,14 @@
 										<div class="class-format">♡</div>
 									</div>
 									<div class="class-desc col-10">
-										<div class="class-title">${new_product.product_price} 원</div>
+										<div class="class-title new">${new_product.product_price} 원</div>
 										<div class="class-detail">${new_product.product_detail_info}</div>
 									</div>
 									<button class="btn btn-3 btn-3a icon-cart" id="addCart">
 											<i class="fa fa-shopping-cart"></i> 장바구니</button>
 								</div>
 							</div>
+					
 					<form>
 				
 					<input type="hidden" id="n_filetype${status.index}"
@@ -825,7 +874,16 @@
 					<input type="hidden" id="n_fileName${status.index}" name="fileName"
 										value="${new_product.productVOList.get(0).fileName}" />
 					</form>
-							</c:forEach>
+					</c:when>
+					</c:choose>
+				</c:forEach>
+				<c:choose>
+					<c:when test="${empty new_product}">
+						
+								<p align="center">데이터가 없습니다</p>
+								
+					</c:when>
+				</c:choose>
 								<input type="hidden" id="size3" value="${fn:length(new_product)}" />
 						</div>
 						<br>
@@ -843,6 +901,8 @@
 
 					<c:forEach var='single_product' varStatus="status"
 								items="${single_product}">
+						<c:choose>
+							<c:when test="${!empty single_product}">
 							<div class="swiper-slide">
 								<div class="card ss">
 								<input type="hidden" name="product_idx" value="${single_product.product_idx}"> 
@@ -855,7 +915,7 @@
 										<div class="class-format">♡</div>
 									</div>
 									<div class="class-desc col-10">
-										<div class="class-title">${single_product.product_price} 원</div>
+										<div class="class-title single">${single_product.product_price} 원</div>
 										<div class="class-detail">${single_product.product_detail_info}</div>
 									</div>
 										<input type="hidden" id="cart_product_idx"
@@ -874,7 +934,16 @@
 					<input type="hidden" id="s_fileName${status.index}" name="fileName"
 										value="${single_product.productVOList.get(0).fileName}" />
 					</form>
-							</c:forEach>
+					</c:when>
+			</c:choose>		
+				</c:forEach>
+				<c:choose>
+					<c:when test="${empty single_product}">
+						
+								<p align="center">데이터가 없습니다</p>
+								
+					</c:when>
+				</c:choose>
 								<input type="hidden" id="size4" value="${fn:length(single_product)}" />
 							
 						</div>
@@ -961,9 +1030,21 @@
 
 
 		<script type="text/javascript">
+		$.cookie('itemList', null);
+		
+		
+		if($("#noData").length == 0){
+			
+			$("#right_zzim ul").append('<p class="noData">최근 본 상품이<br> 없습니다.</p>');
+			$("#paging").hide();
+			$("#recentCnt").text('');
+			
+		}
+		
 		
 
 			$(document).ready(function() {
+				
 				
 					var product_no ="";
 					var imageName="";
@@ -980,11 +1061,9 @@
 						"fileName" : imageName
 					}
 					
-					$.cookie('item', JSON.stringify(product));
 					itemList.push(product);
 					console.log(itemList);
 					$.cookie('itemList', JSON.stringify(itemList));
-					console.log(JSON.parse($.cookie('item')));
 					
 			
 					
@@ -1026,9 +1105,10 @@
 
 					}else{
 
-						$("#right_zzim ul").append('<p class="noData">최근 본 상품이<br> 없습니다.</p>');
+						$("#right_zzim ul").append('<li class="noData">최근 본 상품이<br> 없습니다.</p>');
 
-						$("#paging").hide();$("#recentCnt").text('');
+						$("#paging").hide();
+						$("#recentCnt").text('');
 
 					}
 
@@ -1109,6 +1189,7 @@
 					checkCookie();
 
 				});
+	
 
 				//MD 추천 이미지
 				for(var i = 0; i < $("#size1").val(); i++) {
@@ -1217,6 +1298,33 @@
 					});
 
 				});
+				
+				//세자리 콤마
+				function numberFormat(inputNumber) {
+					  return inputNumber.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+				}
+				
+				// 가격 콤마삽입
+				for(var i = 0; i < $("#size1").val(); i++) {
+					var price = $(".md").html()
+					console.log(price);
+					$(".md").html(numberFormat(price));
+				}
+				for(var i = 0; i < $("#size2").val(); i++) {
+					var price = $(".popular").html()
+					console.log(price);
+					$(".popular").html(numberFormat(price));
+				}
+				for(var i = 0; i < $("#size3").val(); i++) {
+					var price = $(".new").html()
+					console.log(price);
+					$(".new").html(numberFormat(price));
+				}
+				for(var i = 0; i < $("#size4").val(); i++) {
+					var price = $(".single").html()
+					console.log(price);
+					$(".single").html(numberFormat(price));
+				}
 
 			});
 		</script>

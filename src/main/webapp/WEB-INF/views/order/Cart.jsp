@@ -22,6 +22,7 @@ margin-left: 13px;
 margin-bottom: 20px;
 }
 .pull-right{
+text-align: end;
 margin-left : 75%;
 color: black !important;
 }
@@ -85,6 +86,21 @@ color: black !important;
 	object-fit: cover;
 }
 
+.price {
+color: black;
+}
+
+.quantity {
+font-size : 16px;
+color: black;
+}
+.cart_quantity{
+padding-top: 3px !important; 
+}
+.amountPrice {
+color: black;
+}
+
 .page-wrapper {
 	min-height: 100%;
 	display: flex;
@@ -140,6 +156,9 @@ color: black !important;
 }
 }
 }
+}
+.total_pirce_word{
+color:#385663;
 }
 .cart {
 	position: fixed;
@@ -265,6 +284,8 @@ translateX
 
 }
 }
+
+
 </style>
 <!-- Bootstrap core CSS -->
 <link rel="stylesheet"
@@ -291,81 +312,9 @@ translateX
 
 <body>
 
-	<header>
 		<!-- Header Start -->
-		<div class="header-area">
-			<div class="main-header header-sticky">
-				<div class="container-fluid">
-					<div class="menu-wrapper">
-						<div class="links">
-							<c:choose>
-								<c:when test="${empty sessionScope.principal}">
-									<a href="/member/joinAgree" class="link_text">회원가입</a>
-									<a href="/member/login" class="link_text">로그인</a>
-									<a href="#" class="link_text">고객센터</a>
-								</c:when>
-								<c:otherwise>
-									<a href="/member/mypage" class="link_text">마이페이지</a>
-									<a href="/member/logout" class="link_text">로그아웃</a>
-									<a href="#" class="link_text">고객센터</a>
-								</c:otherwise>
-							</c:choose>
-						</div>
-
-						<nav class="header-nav">
-							<div id="leftmenuToggle" class="leftmenuToggle">
-								<input type="checkbox" /> <span></span> <span></span> <span></span>
-								<ul id="leftmenu" class="hoverEvent">
-									<div class="adiv">
-										<li><a href="petstagram">펫★그램</a></li>
-										<li><a href="main">펫shop</a></li>
-										<li><a href="donation">기부</a></li>
-										<li><a href="mypage"><i class="fas fa-paw"></i> MY</a></li>
-									</div>
-								</ul>
-							</div>
-							<!-- Logo -->
-							<div class="logo">
-								<a href="main"><img src="/petopia/images/petopia_logo.png"
-									alt=""></a>
-							</div>
-						</nav>
-
-						<!-- Main-menu -->
-						<div class="main-menu d-none d-lg-block">
-							<nav>
-								<ul id="navigation">
-									<li><a href="petstagram">펫★그램</a></li>
-									<li><a href="main">펫shop</a></li>
-									<li><a href="donation">기부</a></li>
-									<li><a href="mypage"><i class="fas fa-paw"></i> MY</a></li>
-								</ul>
-							</nav>
-						</div>
-						<!-- Header Right -->
-						<div class="search">
-							<input type="text" class="searchForm" placeholder="검색어를 입력해주세요."
-								aria-label="Recipient's username"
-								aria-describedby="button-addon2">
-							<button class="searchBtn" type="submit">
-								<i class="fas fa-search"></i>
-							</button>
-							<button class="wishBtn" type="link">
-								<i class="fas fa-heart"></i>
-							</button>
-							<button class="cartBtn" type="link">
-								<i class="fas fa-shopping-cart"></i>
-							</button>
-						</div>
-
-						<!-- Mobile Menu -->
-						<div class="col-12">
-							<div class="mobile_menu d-none d-lg-block"></div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+	<header>
+		<%@include file="../include/default_header.jsp"%>
 	</header>
 	<!-- Header End -->
 
@@ -444,10 +393,10 @@ translateX
 					<thead>
 						<tr class="cart_menu">
 							<td class="image">품목</td>
-							<td class="description"></td>
+							<td class="description">상품명</td>
 							<td class="price">가격</td>
 							<td class="quantity">개수</td>
-							<td class="total">총 가격</td>
+							<td class="total">가격</td>
 							<td></td>
 						</tr>
 					</thead>
@@ -461,18 +410,18 @@ translateX
 								</td>
                                 <td class="cart_description">
                                     <h4><a href="/product/get?product_idx=${item.productList.get(0).product_idx}"><c:out value="${item.productList.get(0).product_name}"/></a></h4> 
-                                        <p id="pno${status.index}"><c:out value="${item.productList.get(0).product_idx}"/></p>
+                                        <p id="pno${status.index}" class=pno></p>
                                 </td>
                                 <td class="cart_price">
-                                    <p id="price${status.index}"><c:out value="${item.productList.get(0).product_price}"/></p>
+                                    <p id="price${status.index}" class=price><c:out value="${item.productList.get(0).product_price}"/></p>
                                 </td>
                                 <td class="cart_quantity">
                                     <div class="cart_quantity_button">
-                                       <h2 id="quantity${status.index}">${item.amount}</h2>
+                                       <h2 id="quantity${status.index}" class="quantity" >${item.amount}</h2>
                                     </div>
                                 </td>
                                 <td class="cart_total">
-                                    <p class="cart_total_price" id="amountPrice${status.index}"></p>
+                                    <p class="cart_total_price amountPrice" id="amountPrice${status.index}"></p>
                                 </td>
                                 <td class="cart_delete">
                                     <a class="cart_quantity_delete" href="#">
@@ -487,9 +436,9 @@ translateX
                            <input type="hidden" id="uploadPath${status.index}" value="${item.productList.get(0).productVOList.get(0).uploadPath}" />
                            <input type="hidden" id="fileName${status.index}" value="${item.productList.get(0).productVOList.get(0).fileName}" />
                        </c:forEach>
-                       <tr>
-                       	   <td class="pull-right">
-                       	   		<p>총 가격 : <p id="totalPrice"></p></p>
+                       <tr class="pull-right-parent">
+                       	   <td class="pull-right" colspan="6">
+                       	   		<p><strong class="total_pirce_word">총 가격  </strong><p id="totalPrice"></p></p>
                        	   </td>
                        </tr>
 					</tbody>
@@ -643,7 +592,7 @@ $(document).ready(function() {
 
 			  	alert("상품이 장바구니에서 삭제 되었습니다");
 			  	
-			  	location.replace("order/Cart");
+			  	location.replace("/order/Cart");
 			  }
 		}); 
 	});
@@ -662,9 +611,9 @@ $(document).ready(function() {
 		totalPrice += Number($("#amountPrice" + i).html());
 	}
 	
-	$("#totalPrice").html(numberFormat(totalPrice));
+	$("#totalPrice").html(numberFormat(totalPrice)+"&nbsp원");
 	
-	console.log($("#totalPrice").html());
+	console.log($("#totalPrice").html() +"원");
 	
 	//amount price comma
 	for(var i = 0; i < $("#size").val(); i++) {

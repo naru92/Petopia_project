@@ -188,11 +188,12 @@ public class CartController {
 		
 	}
 	
-	@RequestMapping("/order/recent")
-	public String productRecent() {
-		return "/order/recent_product";
-		
-		
-	}
+	//위시리스트..
+	@GetMapping("/wishList")
+	public String showWishList() {
+		return "/order/wishlist";
+	} 
+	
+	
 	
 }
