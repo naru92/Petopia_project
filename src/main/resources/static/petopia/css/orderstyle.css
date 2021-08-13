@@ -1,7 +1,7 @@
 /* ORDERFORM */
 body, main {
 	position: relative;
-	height: 1300px;
+	height: 1350px;
 	z-index: -100;
 }
 
@@ -580,10 +580,35 @@ input.inputBox2 {
 	border: 1px solid #dfdfdf;
 }
 
+input.inputName1{
+	width: 780px;
+	margin-bottom: 3px;
+	border: 1px solid #dfdfdf;	
+}
+
+input.inputName2{
+	width: 780px;
+	margin-bottom: 3px;
+	border: 1px solid #dfdfdf;	
+}
+
+input.inputTel{
+	width: 780px;
+	margin-bottom: 3px;
+	border: 1px solid #dfdfdf;	
+}
+
+input.inputPost{
+	width: 780px;
+	margin-bottom: 3px;
+	border: 1px solid #dfdfdf;	
+}
+
 span.text {
 	display: block;
 	color: #aaa;
 	line-height: 20px
+	margin-top: 15px;
 }
 
 span.txtInput {
