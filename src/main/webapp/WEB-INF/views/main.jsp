@@ -288,7 +288,7 @@
   left: 65%;
   margin-left: 510px;
   border: 1px solid #B0B5BD;
-  width: 120px;
+  width: 130px;
   height: 150px;
 }
 
@@ -1034,7 +1034,7 @@ color: : red !important;
 
 
 		<script type="text/javascript">
-		$.cookie('itemList', null);
+		
 		
 		
 		if($("#noData").length == 0){
@@ -1046,14 +1046,136 @@ color: : red !important;
 		}
 		
 		
-
 			$(document).ready(function() {
 				
 				
+				
+				
+			
 					var product_no ="";
 					var imageName="";
-					var itemList = [];
-				
+					var itemList = JSON.parse($.cookie('itemList'));
+					var Cpage;   // 현재 페이지 
+					var pagingSize = 1;   // 원하는 페이지 사이즈로 조정하세용 
+
+					function chkRecent(a){
+
+					var itemID = JSON.parse($.cookie('itemList'));
+					console.log(itemID.product_idx);
+
+					$("#right_zzim ul").html('');    // 일단 Ul 내용 지우기... 
+
+					if(itemID) {
+						//var list =  itemID.split(',');
+						var totcount = itemList.length ;   //
+						var totpage = Math.ceil(totcount / pagingSize) *1;
+						
+						console.log('totcount = ' +  totcount + "totpage = " + totpage);
+						
+						Cpage = (totpage >= a )? a:1;
+						Cpage = (Cpage <1)? totpage:Cpage;
+						console.log('현재페이지 = ' + Cpage);
+
+						var start = (Cpage-1) * pagingSize;    
+
+					
+
+						for (i = start ; i <= start+(pagingSize-1) ;i++){
+						var thisItem = itemID[i];
+							if(thisItem){
+								var itemId = thisItem.product_idx;
+								var itemImg = thisItem.fileName;
+							$("#right_zzim ul").append('<li><a href="#" target="_top"><img src="/petopia/images/'+itemImg+'" width="75" border=1></a><div class="detail"><a href="javascript:removeRecentItem(\''+thisItem+ Cpage +'\')" class="btn_delete">삭제</a></div></li>')
+							
+							}
+						}
+
+						$("#paging").show();
+
+					}else{
+
+						$("#right_zzim ul").append('<li class="noData">최근 본 상품이<br> 없습니다.</p>');
+
+						$("#paging").hide();
+						$("#recentCnt").text('');
+
+					}
+
+					updateRecentPage(totcount, Cpage);
+
+
+				}
+
+				chkRecent(1);
+
+
+					function removeRecentItem(itemname){
+
+						var itemID = getCookie("itemlist"+"["+ Cpage +"]");
+
+						itemID = itemID.replace(itemname+"&","");			
+
+						setCookie("itemID",itemID,1);
+
+						chkRecent(Cpage);
+
+					}
+
+					function updateRecentPage(totcount,Cpage){  
+						console.log('최근본 상품갱신')
+						$("#recentCnt").text(totcount);  
+						$("#totalPageCount").text("/"+Math.ceil((totcount / pagingSize) *1)); 
+
+						if(Math.ceil((totcount / pagingSize) *1) < Cpage){
+
+						$("#currentPage").text(Math.ceil((totcount / pagingSize) *1));
+
+						}else{
+
+						$("#currentPage").text(Cpage);  //
+
+						}
+
+					}
+
+					$(".btn_next").on('click',function(){
+
+					chkRecent(Cpage + 1);
+
+					});
+
+					
+					$(".btn_prev").on('click',function(){
+
+					chkRecent(Cpage - 1);
+
+					});
+
+					function checkCookie() {
+
+					    var itemList = $.cookie("itemList");
+
+					
+						if (itemList){
+							if (itemList != "" && itemList != null) {
+
+								if ( itemList.length < 1 ){ //값이 없으면 
+										itemlist.push(product)
+								 }
+
+							} else {
+
+								if (itemList == "" || itemList == null) {
+									itemlist.push(product)
+	
+								}
+
+							}
+
+						}
+
+					}
+					checkCookie();
 				
 			$(".class-detail").on('click', function(e){
 			
@@ -1102,6 +1224,7 @@ color: : red !important;
 								var itemId = thisItem.product_idx;
 								var itemImg = thisItem.fileName;
 							$("#right_zzim ul").append('<li><a href="#" target="_top"><img src="/petopia/images/'+itemImg+'" width="75" border=1></a><div class="detail"><a href="javascript:removeRecentItem(\''+thisItem+ Cpage +'\')" class="btn_delete">삭제</a></div></li>')
+							
 							}
 						}
 
