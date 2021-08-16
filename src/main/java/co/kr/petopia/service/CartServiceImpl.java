@@ -105,6 +105,38 @@ public class CartServiceImpl implements CartService {
 	}
 
 
+	@Override
+	public int addWish(CartVO cartVO) {
+		log.info("add wish " + cartVO);
+		
+		cartVO.setCart_id(cartMapper.nextVal());
+		cartVO.setCart_name("위시리스트");
+		cartMapper.addWishType(cartVO);
+		
+		
+		return cartMapper.addWish(cartVO);
+	}
+
+
+	@Override
+	public List<CartVO> getWishList(String member_id) {
+		log.info("get wish for member : " + member_id);
+		return cartMapper.getWishList(member_id);
+	}
+
+
+	@Override
+	public int deleteWishList(int cart_id) {
+		log.info("delete Cart Item");
+		
+		return cartMapper.deleteCartItem(cart_id);
+	}
+
+	
+	
+	
+	
+		
 
 
 

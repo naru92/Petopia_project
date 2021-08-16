@@ -1,5 +1,6 @@
 package co.kr.petopia.controller;
 
+import java.io.Console;
 import java.security.Principal;
 import java.util.List;
 
@@ -188,12 +189,90 @@ public class CartController {
 		
 	}
 	
-	//위시리스트..
-	@GetMapping("/wishList")
-	public String showWishList() {
-		return "/order/wishlist";
-	} 
+
+	//위시리스트.. cartType 으로 분류
+	//카트 목록가져오기
+		@GetMapping("/order/wishList")
+		public String getWishList(Principal principal, Model model) {
+			
+			MemberVO memberInfo = new MemberVO();
+			
+			if(principal != null) {
+				memberInfo = memberService.getMemberInfo(principal.getName());
+				log.info("cart page " + principal.getName());
+				
+				String member_id = memberInfo.getMember_id();
+				
+				log.info("member_id = " + member_id);
+				
+				List<CartVO> wishList = cartService.getWishList(member_id);
+				log.info("cartList = " + wishList);
+				
+				model.addAttribute("wishList", wishList);
+				// 회원 정보
+				MemberVO memberVO = memberService.getMemberInfo(principal.getName());
+				
+				log.info("memberInfo = " + memberVO);
+				
+				//모델에 이름 넘기기
+				model.addAttribute("member", memberVO);
+				
+				
+				}else {
+				return "/login";
+				}
+				
+			return "/order/wishlist";
+		}
 	
+	@PostMapping(value = "/addWishList", 
+			consumes = "application/json", 
+			produces = { MediaType.APPLICATION_XML_VALUE, 
+			MediaType.APPLICATION_JSON_VALUE})
+	@ResponseBody
+	public ResponseEntity<String> addWishList(@RequestBody CartVO cartVO, Principal principal) {
+		
+		log.info("add cart " + cartVO);
+
+		MemberVO memberInfo= memberService.getMemberInfo(principal.getName());
+		
+		cartVO.setMember_id(memberInfo.getMember_id());
+		
+		log.info(cartVO.getMember_id()+ " " + cartVO.getProduct_idx());
+		
+		CartVO originalCart = cartService.checkProductsInCart(cartVO);
+		
+		int count = 0;
+		
+		if(originalCart != null) {
+			log.info("cart = " + originalCart);
+			// 원래 양에 받아온 카트 + 사용자가 추가한 카트 더해줘야함
+			
+			return count == 1 
+					? new ResponseEntity<> ("success", HttpStatus.OK)
+					: new ResponseEntity<> (HttpStatus.INTERNAL_SERVER_ERROR);
+		} else {
+			count = cartService.addWish(cartVO);	
+			return count == 1 
+					? new ResponseEntity<> ("success", HttpStatus.OK)
+					: new ResponseEntity<> (HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		
+
+	}
 	
+	@PostMapping(value="/deleteWishItem", 
+	consumes = "application/json", 
+	produces = { MediaType.APPLICATION_XML_VALUE, 
+	MediaType.APPLICATION_JSON_VALUE })
+	@ResponseBody
+	public ResponseEntity<String> deleteWishList(@RequestBody int cart_id) {
+		log.info("cartID = " + cart_id);
+		int count = cartService.deleteWishList(cart_id);
+	return count == 1
+			? new ResponseEntity<> ("success", HttpStatus.OK)
+			: new ResponseEntity<> (HttpStatus.INTERNAL_SERVER_ERROR);
+	}
 	
+
 }

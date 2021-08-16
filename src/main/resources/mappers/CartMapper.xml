@@ -86,22 +86,34 @@
  		values 
  			(${cart_id}, #{member_id}, #{product_idx}, 1)
  	</insert>
+
+ 	
  	
  		<insert id="insertCartType" parameterType="co.kr.petopia.vo.CartVO">
- 		
- 		
  		insert into 
  			carttype (cart_id, product_idx, cart_name)
  		values 
  			(${cart_id},#{product_idx}, #{cart_name})
- 	</insert>
+	 	</insert>
 	
 	<!-- 카트날리기 -->
 		<delete id="deleteCartItem">
  		delete from 
  			cart
  		where
- 			cart_id = #{cart_id}
+ 			c.cart_id = ct.cart_id and
+ 			cart_id = #{cart_id} and
+ 			ct.cart_name = '장바구니' 			
+ 	</delete>
+ 	<!-- 위시 날리기 -->
+ 		<delete id="deleteWishList">
+ 		delete from 
+ 			cart c, carttype ct
+ 		where
+ 			c.cart_id = ct.cart_id and
+ 			c.cart_id = #{cart_id} and
+ 			ct.cart_name = '위시리스트'
+ 			
  	</delete>
  
 	<!-- 카트 갱신 --> 
@@ -114,4 +126,37 @@
  			member_id = #{member_id} and product_idx= #{product_idx}
  	</update>
  	
+ 	<select id="getWishList" resultMap="cartMap">
+	 		select 
+	 			p.product_idx, p.product_name, p.product_price, 
+	 			c.cart_id, c.amount,
+	 			a.uuid, a.uploadPath, a.fileName, a.filetype
+	 		from 
+	 			product p, cart c, tbl_attach a, carttype ct
+	 		where 
+	 			p.product_idx = c.product_idx
+	 			and
+	 			c.product_idx = a.product_idx
+	 			and
+	 			c.member_id = #{member_id}
+	 			and
+	 			c.cart_id = ct.cart_id
+	 			and
+	 			ct.cart_name = '위시리스트'
+	 			
+  </select>
+  
+  <insert id="addWish">
+ 		insert into 
+ 			cart (cart_id, member_id, product_idx, amount)
+ 		values 
+ 			(${cart_id}, #{member_id}, #{product_idx}, 1)
+ </insert>
+ <insert id="addWishType">
+ insert into 
+ 			cart (cart_id, product_idx, cart_name)
+ 		values 
+ 			(${cart_id}, #{product_idx}, '위시리스트')
+ 	
+ </insert>
  </mapper>

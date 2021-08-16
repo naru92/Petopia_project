@@ -17,14 +17,22 @@ public interface CartMapper {
 	public int updateCartItem(CartVO originalCart);
 
 	public int addCart(CartVO cartVO);
+	
+	public int addWishList(CartVO cartVO);
 
 	public int deleteCartItem(int cart_id);
-
+	
+	public int deleteWishList(int cart_id);
+	
 	public int insertOrderLog(OrderVO orderVO);
 	
 	public void insertCartType(CartVO cartVO);
 	
 	public int nextVal();
 
+	public List<CartVO> getWishList(String member_id);
 	
+	public int addWish(CartVO cartVO);
+	
+	public void addWishType(CartVO cartVO);
 }

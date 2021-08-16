@@ -522,7 +522,7 @@ color: : red !important;
 							<button class="searchBtn" type="submit">
 								<i class="fas fa-search"></i>
 							</button>
-							<button class="wishBtn" type="link">
+							<button class="wishBtn" onclick="location.href='order/wishList';">
 								<i class="fas fa-heart"></i>
 							</button>
 							<button class="cartBtn" onclick="location.href='order/Cart';">
@@ -716,7 +716,7 @@ color: : red !important;
 									
 								<div class="class-skill">
 										<div class="class-type">${md.product_name}</div>
-										<div class="class-format"><i class="fas fa-heart cursor-heart"></i></div>
+										<div class="class-format"><button id="addWish"><i class="fas fa-heart cursor-heart"></i></button></div>
 
 									</div>
 									<div class="class-desc col-10">
@@ -1037,24 +1037,159 @@ color: : red !important;
 		$.cookie('itemList', null);
 		
 		
-		if($("#noData").length == 0){
-			
-			$("#right_zzim ul").append('<p class="noData">최근 본 상품이<br> 없습니다.</p>');
-			$("#paging").hide();
-			$("#recentCnt").text('');
-			
-		}
+	
 		
 		
 
 			$(document).ready(function() {
 				
+
 				
 					var product_no ="";
 					var imageName="";
 					var itemList = [];
 				
 				
+
+					var product_no ="";
+					var imageName="";
+					if($.cookie('itemList') == null){
+					var itemList = [];	
+					}else{
+					var itemList = JSON.parse($.cookie('itemList'));
+					}
+					
+				if($("#noData").length == 0 && itemList == "null" ){
+					
+					$("#right_zzim ul").append('<p class="noData">최근 본 상품이<br> 없습니다.</p>');
+					$("#paging").hide();
+					$("#recentCnt").text('');
+					
+				}else if(itemList.length >= 1) {
+					var itemList = JSON.parse($.cookie('itemList'));
+					var Cpage;   // 현재 페이지 
+					var pagingSize = 1;   // 원하는 페이지 사이즈로 조정하세용 
+
+					function chkRecent(a){
+
+					var itemID = JSON.parse($.cookie('itemList'));
+					console.log(itemID.product_idx);
+
+					$("#right_zzim ul").html('');    // 일단 Ul 내용 지우기... 
+
+					if(itemID) {
+						//var list =  itemID.split(',');
+						var totcount = itemList.length ;   //
+						var totpage = Math.ceil(totcount / pagingSize) *1;
+						
+						console.log('totcount = ' +  totcount + "totpage = " + totpage);
+						
+						Cpage = (totpage >= a )? a:1;
+						Cpage = (Cpage <1)? totpage:Cpage;
+						console.log('현재페이지 = ' + Cpage);
+
+						var start = (Cpage-1) * pagingSize;    
+
+					
+
+						for (i = start ; i <= start+(pagingSize-1) ;i++){
+						var thisItem = itemID[i];
+							if(thisItem){
+								var itemId = thisItem.product_idx;
+								var itemImg = thisItem.fileName;
+							$("#right_zzim ul").append('<li><a href="#" target="_top"><img src="/petopia/images/'+itemImg+'" width="75" border=1></a><div class="detail"><a href="javascript:removeRecentItem(\''+thisItem+ Cpage +'\')" class="btn_delete">삭제</a></div></li>')
+							
+							}
+						}
+
+						$("#paging").show();
+
+					}else{
+
+						$("#right_zzim ul").append('<li class="noData">최근 본 상품이<br> 없습니다.</p>');
+
+						$("#paging").hide();
+						$("#recentCnt").text('');
+
+					}
+
+					updateRecentPage(totcount, Cpage);
+
+
+				}
+
+				chkRecent(1);
+
+
+					function removeRecentItem(itemname){
+
+						var itemID = getCookie("itemlist"+"["+ Cpage +"]");
+
+						itemID = itemID.replace(itemname+"&","");			
+
+						setCookie("itemID",itemID,1);
+
+						chkRecent(Cpage);
+
+					}
+
+					function updateRecentPage(totcount,Cpage){  
+						console.log('최근본 상품갱신')
+						$("#recentCnt").text(totcount);  
+						$("#totalPageCount").text("/"+Math.ceil((totcount / pagingSize) *1)); 
+
+						if(Math.ceil((totcount / pagingSize) *1) < Cpage){
+
+						$("#currentPage").text(Math.ceil((totcount / pagingSize) *1));
+
+						}else{
+
+						$("#currentPage").text(Cpage);  //
+
+						}
+
+					}
+
+					$(".btn_next").on('click',function(){
+
+					chkRecent(Cpage + 1);
+
+					});
+
+					
+					$(".btn_prev").on('click',function(){
+
+					chkRecent(Cpage - 1);
+
+					});
+
+					function checkCookie() {
+
+					    var itemList = $.cookie("itemList");
+
+					
+						if (itemList){
+							if (itemList != "" && itemList != null) {
+
+								if ( itemList.length < 1 ){ //값이 없으면 
+										itemlist.push(product)
+								 }
+
+							} else {
+
+								if (itemList == "" || itemList == null) {
+									itemlist.push(product)
+	
+								}
+
+							}
+
+						}
+
+					}
+					checkCookie();
+				}
+
 			$(".class-detail").on('click', function(e){
 			
 					product_no = $(this).parent().parent().children('input').val();
@@ -1299,6 +1434,33 @@ color: : red !important;
 
 							alert("상품이 장바구니에 추가되었습니다");
 						}
+					});
+
+				});
+				
+				$("#addWish").on("click", function(e) {
+
+					e.preventDefault();
+
+					var cartVO = {
+						product_idx : $("input[name=product_idx]").val()
+					
+					}
+
+					$.ajax({
+						type : 'POST',
+						url : '/addWishList',
+						data : JSON.stringify(cartVO),
+						contentType : "application/json; charset=utf-8",
+						dataType : 'text',
+						success : function(result, status, xhr) {
+							console.log('add wish ' + result);
+					
+
+							alert("상품이 위시리스트에 추가되었습니다");
+						},error: function(request, status, error){
+							  alert("이미 등록된 상품입니다.");
+				        }
 					});
 
 				});
