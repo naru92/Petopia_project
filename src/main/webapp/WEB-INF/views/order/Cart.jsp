@@ -11,10 +11,6 @@
 
 
 <style type="text/css">
-
-.cart_title{
-margin-left: 50px;
-}
 .check_out{
 background-color:  #2AC1BC !important;
 color: white !important;
@@ -162,9 +158,6 @@ color: black;
 }
 .total_pirce_word{
 color:#385663;
-}
-.cart_con{
-padding-left: 200px !important;
 }
 .cart {
 	position: fixed;
@@ -326,7 +319,7 @@ translateX
 
 	<hr />
 	<div class="container-fluid">
-	
+
 		<div class="container-fluid maginContainer">
 
 
@@ -373,6 +366,10 @@ translateX
 						</div>
 					</div>
 				</div>
+
+
+
+
 			</div>
 
 		
@@ -385,7 +382,7 @@ translateX
 
 		<div class="container-fluid">
 			<div class="container girdscc2">
-				<div class="row col-sm-12 cart_con">
+				<div class="row col-sm-12">
 					
 <section id="cart_items">
 		<h2 id="cart_title">장바구니</h2>
@@ -472,6 +469,23 @@ translateX
 				</div>
 			</div>
 		</div>
+
+<!-- 
+		<div class="quick">
+
+			<div class="icon4">
+				<span>장바구니</span> <span><a href="#">0</a></span>
+				<div "class=cart_item"></div>
+			</div>
+			<div class="icon5">
+				<span>최근 본 상품</span> <br> <a href="#"><img
+					src="http://vivienne.kr/web/upload/goodymall40/layout/btn_recent_prev.gif"
+					alt=""><img
+					src="http://vivienne.kr/web/upload/goodymall40/layout/btn_recent_next.gif"
+					alt=""></a>
+			</div>
+
+		</div> -->
 	</div>
 </div>
 

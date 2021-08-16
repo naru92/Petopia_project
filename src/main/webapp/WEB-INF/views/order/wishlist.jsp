@@ -141,10 +141,6 @@ flex-direction: inherit;
                     </div>
                 </div>
             </div>
-               <input type="hidden" id="imageType${status.index}" value="${item.productList.get(0).productVOList.get(0).filetype}" />
-               <input type="hidden" id="uuid${status.index}" value="${item.productList.get(0).productVOList.get(0).uuid}" />
-               <input type="hidden" id="uploadPath${status.index}" value="${item.productList.get(0).productVOList.get(0).uploadPath}" />
-               <input type="hidden" id="fileName${status.index}" value="${item.productList.get(0).productVOList.get(0).fileName}" />
         </div>
         <div class="item col-sm-3 col-lg-4">
             <div class="thumbnail">
@@ -263,60 +259,13 @@ flex-direction: inherit;
 
 	<script type="text/javascript">
 	$(document).ready(function() {
-		
-		//목록형 , 카드형 보기
 	    $('#list').click(function(event){
 	    	event.preventDefault();$('#products .item').addClass('list-group-item');
 	    	});
 	    $('#grid').click(function(event){
 	    	event.preventDefault();
-	    $('#products .item').removeClass('list-group-item');
-	    $('#products .item').addClass('grid-group-item');
+	    $('#products .item').removeClass('list-group-item');$('#products .item').addClass('grid-group-item');
 	    });
-	    
-	  	//위시리스트 이미지
-	    for(var i = 0; i < $("#size").val(); i++) {
-			var imgSrci = null;
-			var uuid = $("#uuid" + i).val();
-			var uploadPath = $("#uploadPath" + i).val();
-			var fileName = $("#fileName" + i).val();
-			
-			if($("#imageType" + i).val()) {
-				imgSrci = encodeURIComponent(uploadPath + "/s_" + uuid + "_" + fileName);
-				imgSrci = "/display?fileName=" + imgSrci;
-			} else {
-				imgSrci = '../../resources/images/attach.png';
-			}
-		
-			console.log(imgSrci);
-			
-			$("#cartAttach" + i).attr("src", imgSrci);
-		}
-		
-		
-		$(".wish_delete").on("click", "a", function(e) {
-		
-			var cartNumber = $(this).find("input[name=cart_id]").val();
-			
-			console.log(cartNumber);
-			
-			 $.ajax({
-				type: 'post',
-				url: '/deleteCartItem',
-				data: JSON.stringify(cartNumber),
-				contentType: "application/json; charset=utf-8",
-				dataType: 'text',
-				success: function(result, status, xhr) {
-				  	console.log('delete cart item ' + result);
-
-				  	alert("상품이 장바구니에서 삭제 되었습니다");
-				  	
-				  	location.replace("/order/Cart");
-				  }
-			}); 
-		});
-		
-	    
 	});
 		
 	</script>

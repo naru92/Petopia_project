@@ -53,9 +53,11 @@ public class CartController {
 	 *문제점3 로그아웃 하지않고 브라우저 종료시? => 장바구니 담을때마다 서버로 전송  */
 	
 	//카트 목록가져오기
-	@GetMapping("/order/Cart")
+	@GetMapping("order/Cart")
 	public void goCart(Principal principal, Model model) {
 		
+		
+		principal.getName();
 		MemberVO memberInfo = new MemberVO();
 		
 		if(principal != null) {
@@ -94,11 +96,9 @@ public class CartController {
 			//모델에 이름 넘기기
 			model.addAttribute("member", memberVO);
 			
-			}else {
-			String member_id = "not_member";
-			model.addAttribute("member", member_id );
 			}
-				
+		
+		
 	}
 	//사용자 카트 목록추가
 	@PostMapping(value = "/addCart", 
@@ -188,53 +188,12 @@ public class CartController {
 		
 	}
 	
-	//위시리스트.. cartType 으로 분류
-	@GetMapping("/order/wishList")
+	//위시리스트..
+	@GetMapping("/wishList")
 	public String showWishList() {
 		return "/order/wishlist";
 	} 
 	
-	@PostMapping
-	public ResponseEntity<String> addWishList(@RequestBody CartVO cartVO, Principal principal) {
-		
-		log.info("add cart " + cartVO);
-
-		MemberVO memberInfo= memberService.getMemberInfo(principal.getName());
-		
-		cartVO.setMember_id(memberInfo.getMember_id());
-		
-		log.info(cartVO.getMember_id()+ " " + cartVO.getProduct_idx());
-		
-		CartVO originalCart = cartService.checkProductsInCart(cartVO);
-		
-		int count = 0;
-		
-		if(originalCart != null) {
-			log.info("cart = " + originalCart);
-			// 원래 양에 받아온 카트 + 사용자가 추가한 카트 더해줘야함
-			originalCart.setAmount(originalCart.getAmount() + cartVO.getAmount());
-			count = cartService.updateCartItem(originalCart);
-		} else {
-			count = cartService.addCart(cartVO);	
-		}
-		
-		return count == 1 
-				? new ResponseEntity<> ("success", HttpStatus.OK)
-				: new ResponseEntity<> (HttpStatus.INTERNAL_SERVER_ERROR);
-	}
-	@PostMapping(value="/deleteWishItem", 
-	consumes = "application/json", 
-	produces = { MediaType.APPLICATION_XML_VALUE, 
-	MediaType.APPLICATION_JSON_VALUE })
-	@ResponseBody
-	public ResponseEntity<String> deleteWishList(@RequestBody int cart_id) {
 	
-	log.info("cartID = " + cart_id);
-	int count = cartService.deleteCartItem(cart_id);
 	
-	return count == 1
-			? new ResponseEntity<> ("success", HttpStatus.OK)
-			: new ResponseEntity<> (HttpStatus.INTERNAL_SERVER_ERROR);
-	}
-
 }

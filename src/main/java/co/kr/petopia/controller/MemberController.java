@@ -212,20 +212,18 @@ public class MemberController {
     // 마이페이지 메인
     @GetMapping("member/mypage")
     public String mypage(Model model, Principal principal) {
-		
-		  String member_id = principal.getName();
-		  log.info(pointService.pointUpdate(member_id)); log.info(
-		  pointService.retentionPoint(member_id)); model.addAttribute("p_update",
-		  pointService.pointUpdate(member_id)); model.addAttribute("p_total",
-		  pointService.retentionPoint(member_id));
-		  
-		  MemberVO memberVO = memberService.getMemberInfo(member_id);
-		  model.addAttribute("member", memberVO);
-		  
-		  log.info("memberVO: " + memberVO);
-		 
         
-//      MypetVO mypetVO = MypetService.getMypetInfo(mypet_idx);
+        String member_id = principal.getName();
+        
+        model.addAttribute("p_update", pointService.pointUpdate(member_id));
+        model.addAttribute("p_total", pointService.retentionPoint(member_id));
+        
+        MemberVO memberVO = memberService.getMemberInfo(member_id);
+        model.addAttribute("member", memberVO);
+        
+        log.info("memberVO: " + memberVO);
+        
+//        MypetVO mypetVO = MypetService.getMypetInfo(mypet_idx);
 //        model.addAttribute("mypet", mypetVO);
 
         return "member/mypage";
