@@ -84,6 +84,10 @@
 							<td>${confirmation_deposit.order_name}</td>
 						</tr>
 						<tr>
+							<td>수령자명</td>
+							<td>${confirmation_deposit.order_receiver_name}</td>
+						</tr>
+						<tr>
 							<td>연락처</td>
 							<td>${confirmation_deposit.order_receiver_phonenumber}</td>
 						</tr>
@@ -139,11 +143,11 @@
 								<th class="cost">가격</th>
 							</tr>
 							<tr>
-								<td class="name">${o.product_name}</td>
-								<td class="detail">${o.product_detail_info}</td>
-								<td class="qty">2개</td>
-								<td class="qty">${o.product_coloroption}</td>
-								<td class="cost">${o.product_price}</td>
+								<td class="name">${sessionScope.cart[0].productList[0].product_name}</td>
+								<td class="detail">${sessionScpoe.cart[0].productList[0].product_detail_info}</td>
+								<td class="qty">${sessionScope.cart[0].amount}</td>
+								<td class="qty">${sessionScope.cart[0].productList[0].product_coloroption}</td>
+								<td class="cost">${sessionScope.cart[0].productList[0].product_price}</td>
 							</tr>
 						</tbody>
 					</c:forEach>
@@ -151,7 +155,7 @@
 					
 					<c:forEach var='o' items="${order}">		
 					<div class="payment">
-						<strong> 총 결제금액: </strong><strong>${o.product_price}원</strong><br />
+						<strong> 총 결제금액: </strong><strong>${totalPrice}원</strong><br />
 					</div>
 					</c:forEach>
 				</div>

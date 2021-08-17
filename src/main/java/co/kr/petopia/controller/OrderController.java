@@ -1,6 +1,9 @@
 package co.kr.petopia.controller;
 
 import java.security.Principal;
+import java.util.List;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,8 +13,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import co.kr.petopia.service.CartService;
 import co.kr.petopia.service.MemberService;
 import co.kr.petopia.service.OrderService;
+import co.kr.petopia.vo.CartVO;
 import co.kr.petopia.vo.MemberVO;
 import co.kr.petopia.vo.OrderVO;
 import lombok.extern.slf4j.Slf4j;
@@ -26,10 +31,13 @@ public class OrderController {
     @Autowired
     private MemberService memberService;
     
+    @Autowired
+    private CartService cartService;
+    
 	// 회원
 	// 회원 주문서 작성(회원일 경우 정보 불러오기)
 	@GetMapping("/member/checkout")
-	public String getMemberOrderForm(Model model, Principal principal) {
+	public String getMemberOrderForm(Model model, Principal principal, HttpSession session) {
 		log.info("getOrderForm()..");
 		log.info("OrderService.getCartList()..");
 
@@ -37,11 +45,15 @@ public class OrderController {
 	
 		if (principal != null) {
 			String member_id = principal.getName();
+			List<CartVO> cartInfo = cartService.goCart(member_id);
+			log.info("카트정보: " + cartInfo);
+			
 			memberInfo = memberService.getMemberInfo(member_id);
 			
 			model.addAttribute("memberInfo", memberInfo);
 			model.addAttribute("order", orderService.getMemberCartList(member_id));
 			log.info(member_id);
+			
 		}
 
 		return "/order/checkout_member";
@@ -49,13 +61,18 @@ public class OrderController {
 
 	// 회원 주문 상세 페이지(무통장입금)
 	@GetMapping("/member/confirmation_deposit")
-	public String confirmation_deposit(OrderVO orderVO, Model model, Principal principal) {
+	public String confirmation_deposit(OrderVO orderVO, Model model, Principal principal, HttpSession httpSession) {
 		log.info("confirmation_deposit");
 		log.info("orderService.readOrderInfo()..");
-
+		
 		String member_id = principal.getName();
-
-		model.addAttribute("confirmation_deposit", orderService.readMemberOrderInfo(member_id));
+		log.info("member_id = " + member_id);
+		
+		List<CartVO> cartInfo = cartService.goCart(member_id);
+		log.info("카트정보: " + cartInfo);
+		
+		log.info("orderVO = " + orderService.readMemberOrderInfo());
+		model.addAttribute("confirmation_deposit", orderService.readMemberOrderInfo());
 		model.addAttribute("order", orderService.getMemberCartList(member_id));
 
 		return "/order/confirmation_deposit";
@@ -63,13 +80,13 @@ public class OrderController {
 
 	// 회원 주문 상세 페이지(카드)
 	@GetMapping("/member/confirmation_card")
-	public String confirmation_card(OrderVO orderVO, Model model, Principal principal) {
+	public String confirmation_card(OrderVO orderVO, Model model, Principal principal, HttpSession httpSession) {
 		log.info("confirmation_card");
 		log.info("orderService.readOrderInfo()..");
 
 		String member_id = principal.getName();
 
-		model.addAttribute("confirmation_deposit", orderService.readMemberOrderInfo(member_id));
+		model.addAttribute("confirmation_deposit", orderService.readMemberOrderInfo());
 		model.addAttribute("order", orderService.getMemberCartList(member_id));
 
 		return "/order/confirmation_card";
@@ -78,28 +95,30 @@ public class OrderController {
 	// 회원 주문자 정보 입력 데이터 넘기기
 	@PostMapping("/member/order-proc")
 	@ResponseBody
-	public String orderInsert(OrderVO orderVO, RedirectAttributes rttr, Principal principal) {
-		log.info("order : " + orderVO);
+	public String orderInsert( OrderVO orderVO, RedirectAttributes rttr, Principal principal) {
+		log.info("주문입력 : " + orderVO);
 
 		String member_id = principal.getName();
 
-		// orderVO.setMember_id("dummy20");
-
-		orderService.memberOrderFormInsert(member_id);
+		orderService.memberOrderFormInsert(member_id, orderVO.getProduct_idx());
 
 		orderVO.setOrder_idx(orderService.getOrderFormCurrVal());
 
-		orderService.memberOrderDetailInsert(member_id);
+		orderService.memberOrderDetailInsert(orderVO.getOrder_idx(), orderVO.getProduct_idx(),
+											orderVO.getOrder_name(), orderVO.getOrder_receiver_name(),
+											orderVO.getOrder_receiver_phonenumber(), orderVO.getOrder_receiver_address(),
+											orderVO.getOrder_quantity(), orderVO.getPayment_method(), orderVO.getOrder_date());
 
 		rttr.addFlashAttribute("result", "success");
 
 		return "success";
 	}
 
+	
 	// 비회원
 	// 비회원 주문서 작성(장바구니 리스트 불러오기)
 	@GetMapping("/users/checkout")
-	public String getOrderForm(Model model) {
+	public String getOrderForm(Model model, HttpSession session) {
 		log.info("getOrderForm()..");
 
 		return "/order/checkout_users";
@@ -107,7 +126,7 @@ public class OrderController {
 
 	// 비회원 주문 상세 페이지(무통장입금)
 	@GetMapping("/users/confirmation_deposit")
-	public String confirmation_deposit(OrderVO orderVO, Model model) {
+	public String confirmation_deposit(OrderVO orderVO, Model model, HttpSession session) {
 		log.info("confirmation_deposit");
 		log.info("orderService.readOrderInfo()..");
 
@@ -118,7 +137,7 @@ public class OrderController {
 
 	// 비회원 주문 상세 페이지(카드)
 	@GetMapping("/users/confirmation_card")
-	public String confirmation_card(OrderVO orderVO, Model model) {
+	public String confirmation_card(OrderVO orderVO, Model model, HttpSession session) {
 		log.info("confirmation_card");
 		log.info("orderService.readOrderInfo()..");
 
@@ -132,8 +151,6 @@ public class OrderController {
 	@ResponseBody
 	public String orderInsert(OrderVO orderVO, RedirectAttributes rttr) {
 		log.info("order : " + orderVO);
-
-		// orderVO.setMember_id("dummy20");
 
 		orderService.orderFormInsert(orderVO);
 

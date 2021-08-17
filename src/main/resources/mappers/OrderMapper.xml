@@ -44,6 +44,16 @@
 		SELECT * FROM ORDER_DETAIL WHERE order_idx = (select max(order_idx) from order_form)
 	</select>
 	
+	<!-- 포인트-->
+	<insert id = "insertPoint">
+		INSERT INTO point (member_id, member_point_savedetail
+         	   VALUES (#{member_id}, 100)
+	</insert>
+	
+	<update id = "updatePoint">
+		UPDATE point SET sum(member_point_save_point + 100)
+	      WHERE member_id = #{member_id}
+	</update>
 	
 	<!-- 비회원 -->
 	

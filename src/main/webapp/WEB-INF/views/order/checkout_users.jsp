@@ -164,10 +164,11 @@
 								<tbody>
 									<tr>
 										<td id = "product_idx">${o.product_idx}</td>
-										<td>${o.product_name}</td>
-										<td>${o.product_coloroption}</td>
-										<td id = "quantity" value = 3></td>
-										<td>${o.product_price}</td>
+										<!-- <td>${sessionScope.TotalPrice}</td> -->
+										<td>${sessionScope.cart[0].productList[0].product_name}</td>
+										<td>${sessionScope.cart[0].productList[0].product_coloroption}</td>
+										<td id ="quantity">${sessionScope.cart[0].amount}</td>
+										<td>${sessionScope.cart[0].productList[0].product_price}</td>
 									</tr>
 
 								</tbody>
@@ -177,7 +178,7 @@
 						<c:forEach var='o' items="${order}">
 							<div class="payment">
 								<br /> <strong>배송비 : 무료</strong><br /> <strong> 총
-									결제금액: </strong><strong>${o.product_price}원</strong><br />
+									결제금액: </strong><strong>${totalPrice}</strong><br />
 							</div>
 						</c:forEach>
 						</div>
@@ -357,7 +358,7 @@
 	    		  // 무통장입금
 	    		  $.ajax({
 	  	            type: "POST",
-	  	            url: "/member/order-proc",
+	  	            url: "/users/order-proc",
 	  	            data: { "order_name": $('#checkName1').val(),
 	  	                  "order_receiver_name": $("#checkName2").val(),
 	  	                  "order_receiver_phonenumber": $('#checkTel').val(),
@@ -370,7 +371,7 @@
 	  	            success: function(result){
 	  	               alert('주문이 완료되었습니다.');
 	  	               console.log(result)
-	  	               location.href = "/order/confirmation_deposit";
+	  	               location.href = "/users/confirmation_deposit";
 	  	               
 	  	            }, error: function(result){
 	  	               alert('주문이 실패했습니다.');
@@ -394,7 +395,7 @@
 		    	            if ( rsp.success ) {
 		    	                //[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
 		    	                jQuery.ajax({
-		    	                    url: "/member/order-proc", //cross-domain error가 발생하지 않도록 주의해주세요
+		    	                    url: "/users/order-proc", //cross-domain error가 발생하지 않도록 주의해주세요
 		    	                    type: 'POST',
 		    	                    dataType: 'json',
 		    	                    data: { "order_name": $('#checkName1').val(),
@@ -421,7 +422,7 @@
 		    	                    }
 		    	                });
 		    	                //성공시 이동할 페이지
-		    	                location.href = "/order/confirmation_card";
+		    	                location.href = "/users/confirmation_card";
 		    	            } else {
 		    	                msg = '결제에 실패하였습니다.';
 		    	                msg += '에러내용 : ' + rsp.error_msg;

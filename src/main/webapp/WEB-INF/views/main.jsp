@@ -1039,6 +1039,7 @@ color: : red !important;
       
          $(document).ready(function() {
             
+<<<<<<< HEAD
 
             
                var product_no ="";
@@ -1560,23 +1561,24 @@ color: : red !important;
 			}); */
 
 			// recent item    
->>>>>>> mypet1
 
                var product_no ="";
                var imageName="";
+               var itemList =[];
+               
                if($.cookie('itemList') == null){
                var itemList = [];   
                }else{
                var itemList = JSON.parse($.cookie('itemList'));
                }
                
+               console.log(itemList);
             if($("#noData").length == 0 && itemList == "null" ){
-               
                $("#right_zzim ul").append('<p class="noData">최근 본 상품이<br> 없습니다.</p>');
                $("#paging").hide();
                $("#recentCnt").text('');
                
-            }else if(itemList.length >= 1) {
+            }else if(itemList !=  "null") {
                var itemList = JSON.parse($.cookie('itemList'));
                var Cpage;   // 현재 페이지 
                var pagingSize = 1;   // 원하는 페이지 사이즈로 조정하세용 
@@ -1584,7 +1586,6 @@ color: : red !important;
                function chkRecent(a){
 
                var itemID = JSON.parse($.cookie('itemList'));
-               console.log(itemID.product_idx);
 
                $("#right_zzim ul").html('');    // 일단 Ul 내용 지우기... 
 
