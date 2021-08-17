@@ -464,7 +464,7 @@ a {
   margin-right: 10px;
 }
 
-.ctga:hover, .ctgaChild:hover {
+.ctghead a:hover, .ctga:hover, .ctgaChild:hover {
   /* right:-4px; */
   color: var(--hove);
 }

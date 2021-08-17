@@ -51,7 +51,7 @@ public class ReplyController {
 
     // 특정 게시물의 댓글 목록 확인
     @GetMapping(value = "/pages/{content_idx}", produces = { MediaType.APPLICATION_XML_VALUE })
-    public ResponseEntity<List<ReplyVO>> getReplyList(@PathVariable("content_idx") Long content_idx) {
+    public ResponseEntity<List<ReplyVO>> getReplyList(@PathVariable("content_idx") int content_idx) {
 
         log.info("getReplyList..............");
 
@@ -63,7 +63,7 @@ public class ReplyController {
             produces = { MediaType.APPLICATION_XML_VALUE })
     public ResponseEntity<List<ReplyVO>> getReplyListPaging(
             @PathVariable("pageNum") int pageNum,
-            @PathVariable("content_idx") Long content_idx) {
+            @PathVariable("content_idx") int content_idx) {
 
         log.info("getReplyList..............");
         
@@ -76,7 +76,7 @@ public class ReplyController {
 
     // 댓글 조회
     @GetMapping(value = "/{reply_idx}", produces = { MediaType.APPLICATION_XML_VALUE })
-    public ResponseEntity<ReplyVO> get(@PathVariable("reply_idx") Long reply_idx) {
+    public ResponseEntity<ReplyVO> get(@PathVariable("reply_idx") int reply_idx) {
 
         log.info("getReply: " + reply_idx);
 
@@ -87,7 +87,7 @@ public class ReplyController {
     @DeleteMapping(value = "/{reply_idx}",
             produces = {
                     MediaType.APPLICATION_XML_VALUE })
-    public ResponseEntity<String> replyRemove(@PathVariable("reply_idx") Long reply_idx){
+    public ResponseEntity<String> replyRemove(@PathVariable("reply_idx") int reply_idx){
         
         log.info("replyRemove: " + reply_idx);
         

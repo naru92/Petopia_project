@@ -48,6 +48,7 @@
 		FROM content where
 		board_id = #{board_id} order by content_idx DESC
 	</select>
+		
 	
 	<!-- 해당 게시판에 게시글 불러오는 쿼리문 + 페이징 -->
 	<select id="getContentListPaging"  resultType="co.kr.petopia.vo.BoardVO">
@@ -99,7 +100,7 @@
 		insert into content(content_idx, board_id, member_id,
 		CONTENT_DATE,CONTENT_TITLE,CONTENT_TEXT,CONTENT_HIT)
 		values
-		(CONTENT_SEQ.nextval, #{board_id}, #{member_id}, SYSDATE,
+		(#{content_idx}, #{board_id}, #{member_id}, SYSDATE,
 		#{content_title}, #{content_text}, 0)
 	</insert>
 

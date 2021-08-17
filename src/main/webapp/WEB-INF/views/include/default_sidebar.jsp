@@ -10,7 +10,7 @@
                     <!-- category -->
                     <nav class="category">
                         <div class="ctghead">
-                            <h3><i class="ti-list"></i>펫shop</h3>
+                            <h3><a href="/main"><i class="ti-list"></i>펫shop</a></h3>
                         </div>
 
                         <ul class="ctgul">
@@ -23,7 +23,7 @@
                             </li>
 
                             <li class="ctgli">
-                                <a href="#" class="ctga"><i class="ti-user"></i>이벤트</a>
+                                <a href="/event" class="ctga"><i class="ti-user"></i>이벤트</a>
                             </li>
 
                             <li class="ctgli">

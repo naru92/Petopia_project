@@ -21,19 +21,19 @@ public class ReplyServiceTests {
     
     @Test
     public void testGetReplyList() {
-        replyService.getReplyList(22L).forEach(reply -> log.info(reply));
+        replyService.getReplyList(22).forEach(reply -> log.info(reply));
     }
     
     @Test
     public void testGetReply() {
-        replyService.getReply(23L);
+        replyService.getReply(23);
     }
     
     @Test
     public void testReplyRegister() {
         ReplyVO reply = new ReplyVO();
         
-        reply.setContent_idx(22);
+        reply.setContent_idx(86);
         reply.setMember_id("dummy42");
         reply.setReply_text("댓글입니다.");
         
@@ -52,6 +52,6 @@ public class ReplyServiceTests {
     
     @Test
     public void testReplyRemove() {
-        replyService.replyRemove(22L);
+        replyService.replyRemove(22);
     }
 }

@@ -1,9 +1,12 @@
 package co.kr.petopia.controller;
 
+import java.io.PrintWriter;
 import java.security.Principal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,6 +29,7 @@ import co.kr.petopia.service.ReplyService;
 import co.kr.petopia.utils.Criteria;
 import co.kr.petopia.utils.PageVO;
 import co.kr.petopia.vo.BoardVO;
+import co.kr.petopia.vo.FileUploadVO;
 import co.kr.petopia.vo.MemberVO;
 import co.kr.petopia.vo.ReplyVO;
 import lombok.RequiredArgsConstructor;
@@ -356,25 +360,26 @@ public class BoardController {
 		return "board/petstagram";
 	}
 
-	// 해당 게시물 불러오기
-	@GetMapping({ "/petstagram/get", "/petstagram/modify" })
-	public void petstagramGet(@RequestParam("content_idx") Long content_idx, Model model) {
-
-		model.addAttribute("board", boardService.getContent(content_idx));
-	}
+//	// 해당 게시물 불러오기
+//	@GetMapping({ "/petstagram/get", "/petstagram/modify" })
+//	public void petstagramGet(@RequestParam("content_idx") Long content_idx, Model model) {
+//
+//		model.addAttribute("board", boardService.getContent(content_idx));
+//	}
 
 	// 글 작성
 	@PostMapping("/petstagram/register")
 	public String petstagramRegister(BoardVO board, RedirectAttributes rttr,
-	        @RequestParam(value = "board_id", defaultValue = "4") int board_id) {
+	        @RequestParam(value = "board_id", defaultValue = "4") int board_id) throws Exception {
 
 		log.info("board: " + board);
 
 		board.setBoard_id(board_id);
-		boardService.contentRegister(board);
+
+		boardService.petstagramRegister(board);
 
 		rttr.addFlashAttribute("result", board.getContent_idx());
-
+        
 		return "redirect:/petstagram";
 	}
 
