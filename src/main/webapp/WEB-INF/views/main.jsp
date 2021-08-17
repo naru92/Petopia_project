@@ -1,9 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"   pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <c:set var='root' value="${pageContext.request.contextPath }/" />
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="sec"
+   uri="http://www.springframework.org/security/tags"%>
 
 <!DOCTYPE html>
 <html lang="utf-8">
@@ -11,7 +12,8 @@
 <head>
 
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="viewport"
+   content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
 
@@ -265,6 +267,12 @@
     transform:
       translateX (0);
   }
+(
+
+2px
+
+)
+;
 }
 
 #rightSide {
@@ -332,7 +340,12 @@
 }
 
 
-
+.cursor-heart{
+cursor: pointer;
+}
+.cursor-heart:hover{
+color: : red !important;
+}
 
 #right_zzim li:hover .detail {
   display: block
@@ -361,7 +374,7 @@
 .noData {
   color: #ccc;
   text-align: center;
-  margin-top: 223px;
+  margin-top: 25px !important;
 }
 }
 
@@ -395,35 +408,7 @@
   display: inline-block;
 }
 
-[type='input'] {
-  position: absolute;
-  left: -100vw;
-}
 
-[for='toggle-heart'] {
-  color: black;
-}
-
-[type='input']:checked + label {
-  color: black;
-}
-
-[for='toggle-heart'] {
-  cursor: pointer;
-}
-
-
-
-[for='toggle-heart'] { 
-  align-self: center; 
-}
-
-@keyframes heart { 0%, 17.5% { font-size: 0; } }
-
-[type='input']:checked + label {
-  will-change: font-size;
-  animation: heart 1s cubic-bezier(.17, .89, .32, 1.49);
-}
 </style>
 <!-- Bootstrap core CSS -->
 <link rel="stylesheet"
@@ -505,7 +490,7 @@
                         <input type="checkbox" /> <span></span> <span></span> <span></span>
                         <ul id="leftmenu" class="hoverEvent">
                            <div class="adiv">
-                              <li><a href="petstagram">펫★그램</a></li>
+                              <li><a href="petstagram?board_id=${petsta_info.board_id}">펫★그램</a></li>
                               <li><a href="main">펫shop</a></li>
                               <li><a href="donation">기부</a></li>
                               <li><a href="mypage"><i class="fas fa-paw"></i> MY</a></li>
@@ -514,8 +499,7 @@
                      </div>
                      <!-- Logo -->
                      <div class="logo">
-                        <a href="main"><img src="/petopia/images/petopia_logo.png"
-                           alt=""></a>
+                        <a href="main"><img src="/petopia/images/petopia_logo.png" alt=""></a>
                      </div>
                   </nav>
 
@@ -523,7 +507,7 @@
                   <div class="main-menu d-none d-lg-block">
                      <nav>
                         <ul id="navigation">
-                           <li><a href="petstagram">펫★그램</a></li>
+                           <li><a href="petstagram?board_id=${petsta_info.board_id}">펫★그램</a></li>
                            <li><a href="main">펫shop</a></li>
                            <li><a href="donation">기부</a></li>
                            <li><a href="mypage"><i class="fas fa-paw"></i> MY</a></li>
@@ -538,7 +522,7 @@
                      <button class="searchBtn" type="submit">
                         <i class="fas fa-search"></i>
                      </button>
-                     <button class="wishBtn" type="link">
+                     <button class="wishBtn" onclick="location.href='order/wishList';">
                         <i class="fas fa-heart"></i>
                      </button>
                      <button class="cartBtn" onclick="location.href='order/Cart';">
@@ -732,11 +716,11 @@
                            
                         <div class="class-skill">
                               <div class="class-type">${md.product_name}</div>
-                              <input class="toggle-heart" type="checkbox" />
-                              <label for="toggle-heart">❤</label>
+                              <div class="class-format"><button id="addWish"><i class="fas fa-heart cursor-heart"></i></button></div>
+
                            </div>
                            <div class="class-desc col-10">
-                              <div class="class-title">${md.product_price } 원</div>
+                              <div class="class-title md">${md.product_price } 원</div>
                               <div class="class-detail">${md.product_detail_info }</div>
                            </div>
                            <button class="btn btn-3 btn-3a icon-cart" id="addCart">
@@ -804,7 +788,7 @@
                                  <div class="class-format">♡</div>
                               </div>
                               <div class="class-desc col-10">
-                                 <div class="class-title">${popular_product.product_price} 원</div>
+                                 <div class="class-title popular">${popular_product.product_price} 원</div>
                                  <div class="class-detail">${popular_product.product_detail_info}</div>
                               </div>
                            <button class="btn btn-3 btn-3a icon-cart" id="addCart">
@@ -875,7 +859,7 @@
                               <div class="class-format">♡</div>
                            </div>
                            <div class="class-desc col-10">
-                              <div class="class-title">${new_product.product_price} 원</div>
+                              <div class="class-title new">${new_product.product_price} 원</div>
                               <div class="class-detail">${new_product.product_detail_info}</div>
                            </div>
                            <button class="btn btn-3 btn-3a icon-cart" id="addCart">
@@ -935,7 +919,7 @@
                               <div class="class-format">♡</div>
                            </div>
                            <div class="class-desc col-10">
-                              <div class="class-title">${single_product.product_price} 원</div>
+                              <div class="class-title single">${single_product.product_price} 원</div>
                               <div class="class-detail">${single_product.product_detail_info}</div>
                            </div>
                               <input type="hidden" id="cart_product_idx"
@@ -1035,7 +1019,7 @@
             </br>
             <p>서비스 이용약관 | 개인정보 처리방침 | 입점/제휴 문의</p>
             </br>
-            <p>Naru Juhee Gunwoo Ahram Hansol Hana</p>
+            <p>Naru Juhee Ahram Hansol Hana</p>
             <p>Bitcamp Jongno</p>
             </br>
             <p>&copy Creative 2021-08</p>
@@ -1050,33 +1034,157 @@
 
 
       <script type="text/javascript">
-   
-      $(document).ready(function(){
-         
-         
-         });
+      $.cookie('itemList', null);
       
-      
-
          $(document).ready(function() {
             
-              $(".heart").click(function(){
-                   if($(".heart").hasClass("liked")){
-                     $(".heart").html('<i class="fa fa-heart-o" aria-hidden="true"></i>');
-                     $(".heart").removeClass("liked");
-                   }else{
-                     $(".heart").html('<i class="fa fa-heart" aria-hidden="true"></i>');
-                     $(".heart").addClass("liked");
-                   }
-            });
-                 
-            
+
             
                var product_no ="";
                var imageName="";
                var itemList = [];
             
             
+
+               var product_no ="";
+               var imageName="";
+               if($.cookie('itemList') == null){
+               var itemList = [];   
+               }else{
+               var itemList = JSON.parse($.cookie('itemList'));
+               }
+               
+            if($("#noData").length == 0 && itemList == "null" ){
+               
+               $("#right_zzim ul").append('<p class="noData">최근 본 상품이<br> 없습니다.</p>');
+               $("#paging").hide();
+               $("#recentCnt").text('');
+               
+            }else if(itemList.length >= 1) {
+               var itemList = JSON.parse($.cookie('itemList'));
+               var Cpage;   // 현재 페이지 
+               var pagingSize = 1;   // 원하는 페이지 사이즈로 조정하세용 
+
+               function chkRecent(a){
+
+               var itemID = JSON.parse($.cookie('itemList'));
+               console.log(itemID.product_idx);
+
+               $("#right_zzim ul").html('');    // 일단 Ul 내용 지우기... 
+
+               if(itemID) {
+                  //var list =  itemID.split(',');
+                  var totcount = itemList.length ;   //
+                  var totpage = Math.ceil(totcount / pagingSize) *1;
+                  
+                  console.log('totcount = ' +  totcount + "totpage = " + totpage);
+                  
+                  Cpage = (totpage >= a )? a:1;
+                  Cpage = (Cpage <1)? totpage:Cpage;
+                  console.log('현재페이지 = ' + Cpage);
+
+                  var start = (Cpage-1) * pagingSize;    
+
+               
+
+                  for (i = start ; i <= start+(pagingSize-1) ;i++){
+                  var thisItem = itemID[i];
+                     if(thisItem){
+                        var itemId = thisItem.product_idx;
+                        var itemImg = thisItem.fileName;
+                     $("#right_zzim ul").append('<li><a href="#" target="_top"><img src="/petopia/images/'+itemImg+'" width="75" border=1></a><div class="detail"><a href="javascript:removeRecentItem(\''+thisItem+ Cpage +'\')" class="btn_delete">삭제</a></div></li>')
+                     
+                     }
+                  }
+
+                  $("#paging").show();
+
+               }else{
+
+                  $("#right_zzim ul").append('<li class="noData">최근 본 상품이<br> 없습니다.</p>');
+
+                  $("#paging").hide();
+                  $("#recentCnt").text('');
+
+               }
+
+               updateRecentPage(totcount, Cpage);
+
+
+            }
+
+            chkRecent(1);
+
+
+               function removeRecentItem(itemname){
+
+                  var itemID = getCookie("itemlist"+"["+ Cpage +"]");
+
+                  itemID = itemID.replace(itemname+"&","");         
+
+                  setCookie("itemID",itemID,1);
+
+                  chkRecent(Cpage);
+
+               }
+
+               function updateRecentPage(totcount,Cpage){  
+                  console.log('최근본 상품갱신')
+                  $("#recentCnt").text(totcount);  
+                  $("#totalPageCount").text("/"+Math.ceil((totcount / pagingSize) *1)); 
+
+                  if(Math.ceil((totcount / pagingSize) *1) < Cpage){
+
+                  $("#currentPage").text(Math.ceil((totcount / pagingSize) *1));
+
+                  }else{
+
+                  $("#currentPage").text(Cpage);  //
+
+                  }
+
+               }
+
+               $(".btn_next").on('click',function(){
+
+               chkRecent(Cpage + 1);
+
+               });
+
+               
+               $(".btn_prev").on('click',function(){
+
+               chkRecent(Cpage - 1);
+
+               });
+
+               function checkCookie() {
+
+                   var itemList = $.cookie("itemList");
+
+               
+                  if (itemList){
+                     if (itemList != "" && itemList != null) {
+
+                        if ( itemList.length < 1 ){ //값이 없으면 
+                              itemlist.push(product)
+                         }
+
+                     } else {
+
+                        if (itemList == "" || itemList == null) {
+                           itemlist.push(product)
+   
+                        }
+
+                     }
+
+                  }
+
+               }
+               checkCookie();
+            }
+
          $(".class-detail").on('click', function(e){
          
                product_no = $(this).parent().parent().children('input').val();
@@ -1087,11 +1195,9 @@
                   "fileName" : imageName
                }
                
-               $.cookie('item', JSON.stringify(product));
                itemList.push(product);
                console.log(itemList);
                $.cookie('itemList', JSON.stringify(itemList));
-               console.log(JSON.parse($.cookie('item')));
                
          
                
@@ -1218,11 +1324,6 @@
 
             });
    
-      
-      
-                  
-            
-         
 
             //MD 추천 이미지
             for(var i = 0; i < $("#size1").val(); i++) {
@@ -1331,6 +1432,60 @@
                });
 
             });
+            
+            $("#addWish").on("click", function(e) {
+
+               e.preventDefault();
+
+               var cartVO = {
+                  product_idx : $("input[name=product_idx]").val()
+               
+               }
+
+               $.ajax({
+                  type : 'POST',
+                  url : '/addWishList',
+                  data : JSON.stringify(cartVO),
+                  contentType : "application/json; charset=utf-8",
+                  dataType : 'text',
+                  success : function(result, status, xhr) {
+                     console.log('add wish ' + result);
+               
+
+                     alert("상품이 위시리스트에 추가되었습니다");
+                  },error: function(request, status, error){
+                       alert("이미 등록된 상품입니다.");
+                    }
+               });
+
+            });
+            
+            //세자리 콤마
+            function numberFormat(inputNumber) {
+                 return inputNumber.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            }
+            
+            // 가격 콤마삽입
+            for(var i = 0; i < $("#size1").val(); i++) {
+               var price = $(".md").html()
+               console.log(price);
+               $(".md").html(numberFormat(price));
+            }
+            for(var i = 0; i < $("#size2").val(); i++) {
+               var price = $(".popular").html()
+               console.log(price);
+               $(".popular").html(numberFormat(price));
+            }
+            for(var i = 0; i < $("#size3").val(); i++) {
+               var price = $(".new").html()
+               console.log(price);
+               $(".new").html(numberFormat(price));
+            }
+            for(var i = 0; i < $("#size4").val(); i++) {
+               var price = $(".single").html()
+               console.log(price);
+               $(".single").html(numberFormat(price));
+            }
 
          });
       </script>

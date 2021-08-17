@@ -18,9 +18,13 @@ public interface CartService {
 	//카트삭제
 	public int deleteCartItem(int cart_id);
 	
+	public int deleteWishList(int cart_id);
+	
 	public int insertOrderLog(List<OrderVO> orderVO);
 	
 	public List<OrderVO> orderLogInfo(String member_id);
 	
-
+	public int addWish(CartVO cartVO);
+	//카트리스트 보기
+	public List<CartVO> getWishList(String member_id);
 }

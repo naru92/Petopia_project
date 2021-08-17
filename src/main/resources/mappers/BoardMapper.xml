@@ -153,7 +153,7 @@
 	<choose>
 	<when test="authority.equals('ROLE_ADMIN')">
 	WHERE c.member_id = m.member_id AND
-		  b.board_id = c.board_id
+		  b.board_id = c.board_id AND b.board_id = 2
 	</when>
 	<otherwise>
 	WHERE c.member_id = #{member_id} AND
