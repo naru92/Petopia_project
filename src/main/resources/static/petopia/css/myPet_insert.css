@@ -113,6 +113,89 @@ margin-bottom: 7px;
   align-items: center;
 }
 
+element.style {
+}
+.radiobox .radio>input {
+    width: 100%;
+    left: 0;
+    height: 50px;
+}
+.radio>input {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    padding: 0;
+    margin: 0px;
+    opacity: 0;
+    width: 24px;
+    height: 24px;
+}
+input {
+    -webkit-tap-highlight-color: transparent;
+}
+
+element.style {
+}
+.pet-wrap .member-input.t2 .list li:first-of-type {
+    border: 0;
+}
+.pet-wrap .member-input.t2 .list li {
+    border-top: 1px solid #ecedef;
+    padding: 25px 0 0px;
+}
+.member-input .list li {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+element.style {
+}
+.pet-wrap .radiobox .radio>input:checked + .txt {
+    background-color: #fff;
+    color: #669aff;
+}
+.radiobox .radio>input:checked + .txt {
+    border-color: #669aff;
+    border-right-width: 1px;
+    position: relative;
+    z-index: 10;
+    color: #ffffff;
+    font-weight: 700;
+    background: #669aff;
+}
+.radiobox .radio>.txt {
+    border-radius: 5px 5px 5px 5px;
+}
+.radiobox .radio>.txt {
+    height: 50px;
+    border: #cccccc solid 1px;
+    /* border-right-width: 0px; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1px 0px 1px 0px;
+    color: #000000;
+    background-color: #ffffff;
+}
+.radio>.txt {
+    display: inline-block;
+    vertical-align: middle;
+    /* margin-left: 5px; */
+    /* padding-left: 30px; */
+    /* line-height: 1.6; */
+    padding-top: 0px;
+}
+
+label {
+    vertical-align: middle;
+    display: inline-block;
+}
+
+ol, ul, li {
+    list-style: none;
+}
+
+
 /* form tag style */
 .info {
   color: #777;
@@ -185,8 +268,6 @@ margin-bottom: 7px;
   margin-bottom: 1rem;
 }
 
-
-
 .find1 {
 
   margin: 0 auto;
@@ -228,6 +309,8 @@ input {
   border: 1px solid #999;
   margin-bottom: 0.2rem;
 }
+
+
 
 .doublecheck {
   margin-top: 1rem;
@@ -297,3 +380,4 @@ section .next-btn:hover {
   width: 100px;
   height: 39px;
 }
+

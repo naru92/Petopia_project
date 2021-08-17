@@ -1,0 +1,142 @@
+
+/*------ login css -----*/
+body, main{
+	background: #fafafa;
+	position: relative; 
+	height: 1000px; 
+	z-index: -100;
+}
+
+.container{
+  height: 950px;
+}
+
+.login-form h3 {
+  font-size: 25px;
+  text-align: center;
+  color: #2AC1BC;
+  margin-bottom: 100px;
+  font-weight: normal;
+}
+
+.login-form {
+    background: #fff;
+    width: 450px;
+    border-radius: 6px;
+    margin: 0 auto;
+    display: table;
+    padding: 70px 35px;
+    box-sizing: border-box;
+    position: relative;
+    top: 200px;
+}
+.form-group {
+  float: left;
+  width: 100%;
+  margin: 0 0 15px;
+  position: relative;
+}
+.login-form input {
+    width: 100%;
+    padding: 5px;
+    height: 56px;
+    border-radius: 74px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    font-size: 15px;
+    padding-left: 75px;
+}
+
+.login-form input[name=member_email] {
+    width: 80%;
+    padding: 5px;
+    height: 56px;
+    border-radius: 74px 0 0 74px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    font-size: 15px;
+    padding-left: 75px;
+}
+
+.login-form .sendMail{
+	position: absolute;
+	width: 20%;
+	padding: 5px;
+	height: 56px;
+	border-radius: 0 74px 74px 0;
+    border: 1px solid #666;
+    box-sizing: border-box;
+    font-size: 11px;
+	background: #666;
+	color: #fff;
+}
+
+.login-form .sendMail:hover{
+	background: #444;
+}
+
+.login-form .form-group .input-icon {
+    font-size: 15px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    border-radius: 25px;
+    bottom: 0;
+    height: 100%;
+    padding-left: 35px;
+    color: #666;
+}
+
+input:focus {
+  outline:none;
+}
+
+.next-btn{
+  text-align: center;
+}
+
+.next-btn button{
+  width:180px;
+  padding: 1rem 1rem;
+  font-size:0.9rem;
+  background: #2AC1BC;
+  color: #fff;
+  transition: 0.5s;
+  margin-top: 80px;
+  border: none;
+  border-radius: 10px;
+}
+
+.btn-main:hover {
+  opacity: 0.8;
+}
+
+.login-form p {
+  float: left;
+  width: 100%;
+  text-align: center;
+  font-size: 16px;
+  margin: 0 0 10px;
+}
+
+@media screen and (max-width:767px) {
+  .login-form {
+	width: 90%;
+    padding: 15px 15px 30px;
+  }
+}
+
+.find button{
+	border: 1px solid #2AC1BC;
+	margin-bottom: 50px;
+	padding : 15px 10px;
+}
+
+.eheck_font {
+  height: 13px;
+  margin: 0 0 0 75px;
+}

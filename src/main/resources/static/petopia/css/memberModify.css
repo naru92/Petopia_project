@@ -236,20 +236,8 @@ margin-bottom: 7px;
 }
 
 
-#content3 .modify-btn{
-  margin: 2rem auto 0 9rem;
-  font-size: 0.9rem;
-  text-decoration: none;
-  text-align: center;
-  padding: 15px;
-  width: 200px;
-  transition: 0.6s;
-  border-radius: 10px;
-  background-color: #c8c8c8;
-}
-
 #content3 .modify-btn:not(:disabled) {
-  margin: 2rem auto 0 9rem;
+  margin: auto;
   font-size: 0.9rem;
   text-decoration: none;
   text-align: center;
