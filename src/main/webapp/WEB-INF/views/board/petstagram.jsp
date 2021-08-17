@@ -75,6 +75,7 @@
 						data-content_title="${c.content_title}"
 						data-content_text="${c.content_text}"
 						data-content_date="${c.content_date}"
+						data-content_idx="${c.content_idx}"
 						data-target="contentModalLabel">
 					<img src="https://images.unsplash.com/photo-1511765224389-37f0e77cf0eb?w=500&h=500&fit=crop" class="gallery-image">
 					<div class="gallery-item-info">
@@ -105,11 +106,11 @@
         	<span class="close">&times;</span>
 		</div>
 		<div class="modal-body">
-			<form id="insertForm">
+			<form id="insertForm" action="/petstagram/register" method="post">
 				<div class="img-group">
 				
 					<!--썸네일 영역-->
-					<div class="uploadResult">
+					<div class="uploadResult" name="attachList">
 						<ul>
                         </ul>
 					</div> 
@@ -117,24 +118,27 @@
 					<div class="uploadFile">
 					<input type="file" id="uploadFile" name='uploadFile' multiple>
 					</div>
+					<br>
+					<p>* 사진은 1:1 비율로 수정됩니다.</p>
 				</div>
 				
 				<div class="form-group">
 					<label for="insertMemberId" class="control-label">작성자</label>
-					<input type="text" class="form-control" id="insertMemberId" readonly="readonly">
+					<input type="text" class="form-control" name="member_id" id="insertMemberId" readonly="readonly">
 					<br>
 					<label for="insertContentTitle" class="control-label">제목</label>
-					<input type="text" class="form-control" id="insertContentTitle"  placeholder="제목을 입력해주세요.">
+					<input type="text" class="form-control" name="content_title" id="insertContentTitle"  placeholder="제목을 입력해주세요.">
 					<br>
 					<label for="message-text" class="control-label">내용</label>
-					<textarea class="form-control" id="insertContentText" placeholder="200자 이내로 작성 가능합니다." style="resize: none" maxlength="200"></textarea>
+					<textarea class="form-control" name="content_text" id="insertContentText" placeholder="200자 이내로 작성 가능합니다." style="resize: none" maxlength="200"></textarea>
 					<br>
+				</div>
+				<div class="modal-footer">
+					<button type="submit" id="insertSubmit">게시하기</button>
 				</div>
 			</form>
 		</div>
-		<div class="modal-footer">
-			<button type="submit" id="insertSubmit">게시하기</button>
-		</div>
+		
  	</div>
     </div>
 
@@ -157,10 +161,21 @@
 				</div>
 				<div class="form-group">
 					<input type="text" class="form-control" id="getMemberId" readonly="readonly">
+					<input type="text" class="form-control" id="getContentIdx" readonly="readonly">
 					<input type="text" class="form-control" id="getContentDate" readonly="readonly">
 					<input type="text" class="form-control" id="getContentTitle" readonly="readonly" >
 					<textarea class="form-control" id="getContentText" readonly="readonly" style="resize: none"></textarea>
+					<hr>
+					<i class="fa fa-comments fa-fw"></i> 댓글
+					<c:forEach items="${replyList}" var="r" varStatus="status">
+						<c:out value="${r.reply_text}"/>
+						<ul class="reply">
+							<li class="left clearfix">
+						</ul>
+					</c:forEach>
 					<br>
+					<input type="text" class="form-control" id="replyRegister" >
+					<button type="submit" id="replySubmit"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
 				</div>
 			</form>
 		</div>

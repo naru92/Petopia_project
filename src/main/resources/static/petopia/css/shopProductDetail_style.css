@@ -1,0 +1,139 @@
+
+/*------ shop product list css -----*/
+
+body, main{
+	position: relative; 
+	height: 1300px; 
+	z-index: -100;
+	overflow-x: hidden;
+	overflow-y: auto; 
+}
+
+.article{
+  position: relative;
+  left: 400px;
+  top: 170px;
+  width: 1140px;
+}
+
+.categorymenu{
+	position: absolute;
+	margin-left:10px;
+	font-size: 15px;
+}
+.main-img{
+    position: relative;
+    float: left;
+    padding: 30px 60px 80px 0px;
+}
+
+.big-img{
+    /*position: relative;*/
+    padding: 5px;
+    width: 500px;
+    height: 500px;
+    border-radius: 20px;
+    overflow: hidden;
+
+}
+
+.product-detail{
+	position:relative;
+	float: left;
+    height: 520px;
+    width: 430px;
+    padding: 30px 100px 70px 40px;
+    color: #757575;
+}
+
+.product-heading{
+    font-size: 25px;
+    font-weight: bold;
+    color: black;
+    margin: 0px;
+    padding: 20px 100px 10px 0;
+}
+
+.rating-price{
+    font-size: 15px;
+}
+
+.rating-price h4{
+	margin-top: 20px;
+    font-size: 23px;
+    font-weight: Bold;
+}
+
+
+.checked{
+    color: #FDD272;
+}
+
+#review-no{
+    color: #FDD272;
+    margin-right: 10px;
+}
+
+.product-heading h3{
+    font-weight: bold;
+    color: black;
+    margin-bottom: 10px;
+    font-size: 23px;
+}
+
+.minititle {
+	color: black;
+	font-weight: bold;
+	margin-right: 30px;
+}
+
+.minititle,
+.miniinfo {
+	font-size: 15px;
+}
+
+#addcart-btn{
+    background: black;
+    background-color:white;
+    color: black;
+    border: 1px solid #e1e1e1;
+    margin-right:10px;
+    width: 180px;
+    height: 50px;
+}
+
+#order-btn{
+	width: 180px;
+    height: 50px;
+    background-color: #2AC1BC;
+    color:white;
+}
+
+.tabMenu{
+	position: relative;
+	float: left;
+	width: 1050px;
+	border-bottom: 2px solid #ecedef;
+	height: 40px;
+	margin-top:50px;
+}
+
+.ulTab li {
+	position: relative;
+	height: 30px;
+    background: #ffffff;
+    float: left;
+    margin: 0 30px 0 20px;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.tabBtn:hover{
+	color: #2AC1BC;
+}
+
+#productDetail,
+#review,
+#QnA{
+	color: #2AC1BC;
+}

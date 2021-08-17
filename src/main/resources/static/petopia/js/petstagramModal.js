@@ -23,28 +23,7 @@ $('#insertBtn').click(function(){
 });
 
 
-// Ajax로 데이터 전송 
-$(document).ready(function() { 
-	$('#insertSubmit').click(function(){
-
-		$.ajax({
-			type: "POST",
-			url: "/petstagram/register",
-			data: { "member_id" : $('#insertMemberId').val(),
-					"content_title" : $('#insertContentTitle').val(),
-					"content_text" : $('#insertContentText').val()},
-			success: function(){
-				alert('게시글이 등록되었습니다.');
-				location.reload();
-			}, error: function(){
-				alert('게시글 등록에 실패했습니다.\n 잠시후 다시 시도해주세요.');
-			}
-		});
-	});
-});
-
-
-
+ 
 $("input[type='file']").change(function(e) {
 	var formData = new FormData();
 
@@ -170,16 +149,44 @@ $(".uploadResult").on("click", "button", function(e) {
 	});  // $.ajax
 });
         
-        
+
+/* 게시물 등록 */
+var formObj = $("#insertSubmit");
+
+$('#insertSubmit').click(function(){
+
+	var str = "";
+
+	$(".uploadResult ul li").each(function(i, obj) {
+
+		var jobj = $(obj);
+
+		console.dir(jobj);
+		console.log(jobj.data("filename"));
+
+		str += "<input type='hidden' name='attachList[" + i + "].fileName' value='" + jobj.data('filename') + "'>";
+		str += "<input type='hidden' name='attachList[" + i + "].uuid' value='" + jobj.data('uuid') + "'>";
+		str += "<input type='hidden' name='attachList[" + i + "].uploadPath' value='" + jobj.data('path') + "'>";
+		str += "<input type='hidden' name='attachList[" + i + "].imageType' value='" + jobj.data('type') + "'>";
+	});
+	
+	console.log(str);
+	formObj.append(str).submit();
+	console.log(formObj);
+	alert("게시물이 등록되었습니다.");
+	location.reload();
+	
+});
+       
 /*----------------게시물 보기 Modal----------------------*/
 
 $('.contentGetImg').click(function(){
 
 	$("#getMemberId").val("작성자: " + $(this).data('member_id'));
 	$("#getContentDate").val("작성일자: " + $(this).data('content_date'));
-	$("#getContentTitle").val($(this).data('content_title'));
+	$("#getContentTitle").val("제목: " + $(this).data('content_title'));
 	$("#getContentText").val($(this).data('content_text'));
-
+	$("#getContentIdx").val("글번호: " + $(this).data('content_idx'));
 	
 	var modal = document.getElementById('contentModal');
 	var img = document.getElementById("contentGetImg");
@@ -196,6 +203,9 @@ $('.contentGetImg').click(function(){
 			modal.style.display = "none";
 		}
 	}
+
+	/* 댓글달기 */
+
 
 });
 

@@ -13,14 +13,14 @@ import co.kr.petopia.vo.ReplyVO;
 public interface ReplyMapper {
     
     // content_idx 기준으로 list 불러오기
-    List<ReplyVO> getReplyList(Long content_id);
+    List<ReplyVO> getReplyList(int content_id);
     
     // 게시글 별 list + 페이징
     List<ReplyVO> getReplyListPaging(@Param("cri") Criteria cri,
-                                     @Param("content_idx") Long content_idx);
+                                     @Param("content_idx") int content_idx);
     
     // read
-    ReplyVO getReplyRead(Long reply_idx);
+    ReplyVO getReplyRead(int reply_idx);
 
     // insert
     int replyInsert(ReplyVO reply);
@@ -29,7 +29,7 @@ public interface ReplyMapper {
     int replyUpdate (ReplyVO reply);
     
     // delete
-    int replyDelete (Long reply_idx);
+    int replyDelete (int reply_idx);
     
     //QnA
 	ReplyVO getMyAnswerList(int content_idx);

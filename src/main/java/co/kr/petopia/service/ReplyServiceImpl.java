@@ -21,13 +21,13 @@ public class ReplyServiceImpl implements ReplyService{
     private final ReplyMapper replyMapper;
 
     @Override
-    public List<ReplyVO> getReplyList(Long content_idx) {
+    public List<ReplyVO> getReplyList(int content_idx) {
         
         return replyMapper.getReplyList(content_idx);
     }
     
     @Override
-    public List<ReplyVO> getReplyListPaging(Criteria cri, Long content_idx) {
+    public List<ReplyVO> getReplyListPaging(Criteria cri, int content_idx) {
         
         log.info("get Reply List of a Board with paging" + content_idx + cri);
         
@@ -36,7 +36,7 @@ public class ReplyServiceImpl implements ReplyService{
 
     
     @Override
-    public ReplyVO getReply(Long reply_idx) {
+    public ReplyVO getReply(int reply_idx) {
         
         log.info("get......." + reply_idx);
         
@@ -62,7 +62,7 @@ public class ReplyServiceImpl implements ReplyService{
     }
 
     @Override
-    public int replyRemove(Long reply_idx) {
+    public int replyRemove(int reply_idx) {
         
         return replyMapper.replyDelete(reply_idx);
     }

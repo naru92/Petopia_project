@@ -4,27 +4,48 @@ package co.kr.petopia.service;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import co.kr.petopia.mapper.AattachMapper;
 import co.kr.petopia.mapper.BoardMapper;
 import co.kr.petopia.utils.Criteria;
 import co.kr.petopia.vo.BoardVO;
 import jdk.internal.org.jline.utils.Log;
 import lombok.RequiredArgsConstructor;
 import lombok.ToString;
+import lombok.extern.log4j.Log4j2;
 
 @Service
 @RequiredArgsConstructor
 @ToString
+@Log4j2
 public class BoardServiceImpl implements BoardService{
     
+    @Autowired
     private final BoardMapper boardMapper;
+    @Autowired
+    private final AattachMapper aattachMapper;
 
     @Override
     public void contentRegister(BoardVO board) {
         
         boardMapper.contentInsert(board);
+    }
+    
+    @Override
+    public void petstagramRegister(BoardVO board) {
+        
+        boardMapper.contentInsert(board);
+        
+        board.getAttachList().forEach(attach -> {
+            log.info("attach : " + attach);
+            attach.setContent_idx(board.getContent_idx());
+            attach.setBoard_id(4);
+
+            aattachMapper.insertContentImage(attach);
+        });
     }
 
     @Override

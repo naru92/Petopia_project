@@ -398,6 +398,7 @@ Remove or comment-out the code block below to see how the browser will fall-back
 	padding: 20px;
 	border: 1px solid #888;
 	width: 50%; /* Could be more or less, depending on screen size */
+	height: 510px;
 	position: relative;
 	top: -50px;
 }
@@ -417,7 +418,8 @@ Remove or comment-out the code block below to see how the browser will fall-back
 	height: 200px;
 }
 #getContentText{
-	height: 70px;	
+	height: 70px;
+	overflow-y: auto;
 }
 
 /* The Close Button */
@@ -474,4 +476,77 @@ Remove or comment-out the code block below to see how the browser will fall-back
 	outline:none;
 }
 
+.uploadResult ul{
+	display: block; 
+	overflow: hidden; 
+	height: 300px; 
+	width: 300px;
+	margin-bottom: 10px;
+}
 
+.uploadResult img{
+display: block; /* Otherwise it keeps some space around baseline */ 
+max-width: 100%; /* Scale up to fill container width */ 
+min-height: 100%; /* Scale up to fill container height */ -ms-interpolation-mode: bicubic;
+
+}
+
+#replyRegister{
+	position: relative;
+	width: 88%;
+	margin: 0;
+	font-size: 13px;
+	box-sizing: border-box;
+	display: inline-block;
+	bottom: -150px;
+}
+
+#replySubmit {
+	width: 10%;
+	position: relative;
+	box-sizing: border-box;
+	display: inline-block;
+	margin: 0;
+	height: 28.5px;
+	background-color: #fff;
+	border-style: none;
+	bottom: -150px;
+}
+
+#replySubmit .svg-inline--fa{
+	font-size: 17px;
+}
+
+#replySubmit .svg-inline--fa:hover{
+	color:#2AC1BC;
+}
+
+#getMemberId{
+	position: relative;
+	width: 70%;
+	margin: 0;
+	box-sizing: border-box;
+	display: inline-block;
+}
+
+#getContentIdx{
+	position: relative;
+	right: -10px;
+	width: 28%;
+	box-sizing: border-box;
+	display: inline-block;
+	margin: 0;
+	text-align: right;
+	background-color: #fff;
+	border-style: none;
+	font-size: 12px;
+}
+
+#getContentIdx:focus {
+	box-shadow: none;
+	outline:none;
+}
+
+.reply {
+	overflow-y: auto;
+}

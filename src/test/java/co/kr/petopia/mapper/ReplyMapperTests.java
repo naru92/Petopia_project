@@ -19,13 +19,13 @@ public class ReplyMapperTests {
     @Test
     public void testGetReplyList() {
         
-        replyMapper.getReplyList(1L);
+        replyMapper.getReplyList(1);
     }
     
     @Test
     public void testGetReplyRead() {
         
-        replyMapper.getReplyRead(23L);
+        replyMapper.getReplyRead(23);
     }
 
     @Test
@@ -44,7 +44,7 @@ public class ReplyMapperTests {
     @Test
     public void testReplyDelete() {
         
-        int count = replyMapper.replyDelete(21L);
+        int count = replyMapper.replyDelete(21);
         log.info("count: " + count);
     }
     

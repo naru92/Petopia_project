@@ -1,7 +1,5 @@
 package co.kr.petopia.controller;
 
-import java.awt.Image;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -11,14 +9,11 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.nio.file.Files;
-import java.nio.file.NoSuchFileException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
-
-import javax.imageio.ImageIO;
 
 import org.apache.tika.Tika;
 import org.springframework.core.io.FileSystemResource;
@@ -35,11 +30,10 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import co.kr.petopia.vo.BoardVO;
 import co.kr.petopia.vo.FileUploadVO;
-import co.kr.petopia.vo.ProductVO;
 import lombok.extern.slf4j.Slf4j;
 import net.coobird.thumbnailator.Thumbnailator;
-import net.coobird.thumbnailator.Thumbnails;
 @Slf4j
 @Controller
 
@@ -159,6 +153,7 @@ public class FileUploadController {
 			}
 			
 		}
+		
 		
 		return new ResponseEntity<>(attachList, HttpStatus.OK);
 	}
