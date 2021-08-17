@@ -1,14 +1,16 @@
 package co.kr.petopia.mapper;
 
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import co.kr.petopia.mapper.OrderMapper;
+import co.kr.petopia.vo.CartVO;
 import co.kr.petopia.vo.OrderVO;
 
 @SpringBootTest
-class PetopiaOrderTests {
+class OrderMapperTests {
 
 	@Autowired
 	private OrderMapper orderMapper;
@@ -17,13 +19,16 @@ class PetopiaOrderTests {
 	@Test
 	public void testOrderFormInsert() {
 		
-		
 		OrderVO vo = new OrderVO();
+		
 		// orderform
 		vo.setProduct_idx(3);
 		vo.setMember_id("dummy27");
-
-		orderMapper.orderFormInsert(vo);
+		
+		// orderMapper.orderFormInsert(vo);
+		
+		orderMapper.memberOrderFormInsert(null);
+		
 		
 		int orderCurrVal = orderMapper.getOrderFormCurrVal();
 		
@@ -36,7 +41,9 @@ class PetopiaOrderTests {
 		vo.setOrder_quantity(3);
 		vo.setPayment_method(1);
 		
-		orderMapper.orderDetailInsert(vo);
+		// orderMapper.orderDetailInsert(vo);
+		
+		orderMapper.memberOrderDetailInsert(null);
 		
 
 		//System.out.println("sysout" + orderCurrVal);
@@ -61,12 +68,48 @@ class PetopiaOrderTests {
 		 */
 	}
 
-	
 	@Test
-	public void testReadOrderInfo() {
-		OrderVO vo = new OrderVO();
-		
-		
+	public void testGetMemberCartList() {
+		CartVO vo = new CartVO();
+		vo.setMember_id("dummy20");
+		List<OrderVO> getMemberCartList = orderMapper.getMemberCartList("dummy20");
+		System.out.println(getMemberCartList);
 	}
+	
+	// 회원 정보 불러오기 테스트
+	@Test
+	public void testGetMemberinfo() {
+		orderMapper.getMemberInfoRead("dummy20");
+	}
+	
+	// 비회원 주문 테스트
+	@Test
+	public void testUsersOrder() {
+		OrderVO vo = new OrderVO();
+		// orderform
+		vo.setProduct_idx(3);
+		vo.setUser_name("테스트");
+
+		orderMapper.orderFormInsert(vo);
+		
+		int orderCurrVal = orderMapper.getOrderFormCurrVal();
+		
+		vo.setOrder_idx(orderCurrVal);
+		//vo.setProduct_idx(5);
+		vo.setOrder_name(vo.getUser_name());
+		vo.setOrder_receiver_name("usertest");
+		vo.setOrder_receiver_phonenumber("usertest");
+		vo.setOrder_receiver_address("usertest");
+		vo.setOrder_quantity(3);
+		vo.setPayment_method(1);
+		
+		// users
+		vo.setUser_phonenumber(vo.getOrder_receiver_phonenumber());
+		vo.setUser_address(vo.getOrder_receiver_address());
+	
+		orderMapper.orderDetailInsert(vo);
+		orderMapper.orderUserInsert(vo);
+	}
+	
 	
 }

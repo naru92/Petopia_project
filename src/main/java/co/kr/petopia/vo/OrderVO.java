@@ -17,18 +17,25 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 public class OrderVO {
+	private String member_name;
+	private String member_phoneNumber;
+	private String member_address;
 	
 	private int order_idx;
 	private int product_idx;
 	private String member_id;
 	private Date order_date;
 	private int payment_method;
-	private String user_name;
 	private String product_name;
 	private String product_coloroption;
 	private String product_price;	
 	private int cart_id;
 	private String product_detail_info;
+	
+	// users
+	private String user_name;
+	private String user_phonenumber;
+	private String user_address;
 	
 	private String order_name;
 	private String order_receiver_name;

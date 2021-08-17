@@ -65,47 +65,60 @@
 				
 				<br> <br>
 				<div class="thanks2">
-					<p>주문자 정보 입력</p>
+					<p>[주문 / 결제]</p>
 				</div>
 				<div class="spacing"></div>
-
+				
+					
+						
+				
 				<div class="wrapper">
 					<div class="sectionInner container">
 						<div class="content">
-							
+							<div class="infoInsert"><p>주문 정보 입력</p></div>	
 							<form id="orderInsert" method="post">
 								<table>
 									<tbody class="personalInfo">
+										
 										<tr>
+										<th class="tableNumber">주문자 아이디</th>
+										<td class="tableTitle">
+										<label for="checkName"><input type="text" id="checkId" class="readId" value="${memberInfo.member_id}" readonly/></label></td>
+										</tr>
+										
+									
+										<tr>
+										<th class="tableNumber">주문자 명</th>
+										<td class="tableTitle">
+										<label for="checkName"><input type="text" id="checkName1" class="readName" name="order_name" value="${memberInfo.member_name}" readonly/></label></td>
+										</tr>
+										
+										
+										<%-- <tr>
 											<th class="tableNumber">주문자 명</th>
 											<td class="tableTitle">
-											<label for="checkName"><input type="text" id="checkName1" class="inputName1" name="order_name" /></label> 
-											<span class="text">주문자 이름을 입력해주세요.
-											<div class="eheck_font" id="name_check1"></div>
-											</span></td>
-										</tr>
+											<label for="checkName"><input type="text" id="checkName1" class="inputName1" name="order_name" placeholder="${memberInfo.member_name}" readonly/></label> 
+											<span class="text" id="name_check1">주문자 이름을 입력해주세요.</span></td>
+										</tr> --%>
+										
 										
 										<tr>
-											<th class="tableNumber">수령자 명</th>
+											<th class="tableNumber">* 수령자 명</th>
 											<td class="tableTitle">
 											<label for="checkName"><input type="text" id="checkName2" class="inputName2" name="order_receiver_name" /></label>
-											<span class="text">수령자 이름을 입력해주세요.
-											<div class="eheck_font" id="name_check2"></div>
-											</span></td>
+											<span class="text" id="name_check2">수령자 이름을 입력해주세요.</span></td>
 										</tr>
 										
 										<tr>
-											<th class="tableNumber">수령자 연락처</th>
+											<th class="tableNumber">* 수령자 연락처</th>
 											<td class="tableTitle">
 											<label for="checkTel"><input type="text" id="checkTel" class="inputTel" name="order_receiver_phonenumber" /></label> 
-											<span class="text">연락처를 입력해주세요. (예시: 010-1111-1111)
-											<div class="eheck_font" id="phone_check"></div>
-											</span></td>
+											<span class="text" id="phone_check">연락처를 입력해주세요. (예시: 010-1111-1111)</span></td>
 											
 										</tr>
 										
 										<tr>
-											<th class="tableNumber">우편번호</th>
+											<th class="tableNumber">* 우편번호</th>
 											<td class="tableTitle">
 											<label for="PostalCode">
 											<input type="text" id="postcode" placeholder="우편번호" class="inputBox2" name="address1" readonly> 
@@ -113,25 +126,22 @@
 										</tr>
 										
 										<tr class="address">
-											<th class="tableNumber">주소</th>
+											<th class="tableNumber">* 주소</th>
 											<td class="tableTitle">
 											<label for="address1"> 
 											<input type="text" id="roadAddress" placeholder="도로명 주소" class="inputBox" name="address2" readonly><br>
 											<input type="text" id="detailAddress" placeholder="상세주소" class="inputPost" name="address3"></label>
-											<span class="text">
-											<div class="eheck_font" id="address_check"></div></span>
+											<span class="text" id="address_check"></span>
 											</td>
-											
-											
 											
 										</tr>
 										
 										<tr class = "paymentMethod">
-										<th class = "tableNumber2">결제수단</th>
+										<th class = "tableNumber2">* 결제수단</th>
 										<td class = "tableTitle">
-										<label for="checkMethod"> <input type="radio" id="select1" name="selectPayment" value = "1"  />&nbsp;무통장입금&nbsp;&nbsp;&nbsp;</label> 
-										<label for="checkMethod"> <input type="radio" id="select2" name="selectPayment" value = "2" />&nbsp;카드결제</label> 
-										<span class="text">결제수단을 선택해주세요.</span>
+										<label for="checkMethod"> <input type="radio" class="selectMethod" id="select1" name="selectPayment" value = "1"  />&nbsp;무통장입금&nbsp;&nbsp;&nbsp;</label> 
+										<label for="checkMethod"> <input type="radio" class="selectMethod" id="select2" name="selectPayment" value = "2" />&nbsp;카드결제</label> 
+										<span class="text" id="method_check">결제수단을 선택해주세요.</span>
 										
 										</td>
 									</tbody>
@@ -150,7 +160,7 @@
 					<br>
 
 					<div class="thanks2">
-						<p>주문하실 상품</p>
+						<p>[주문하실 상품]</p>
 					</div>
 					<div class="spacing"></div>
 					<div class="order2"></div>
@@ -221,10 +231,9 @@
 
 	$(document).ready(function() {
 		
-		// ----- 주문자 이름 확인 -----
+		/* // ----- 주문자 이름 확인 -----
 		$(".inputName1").blur(function() {
 			if($('.inputName1').val()==''){ 
-				$('#name_check1').text('주문자 이름을 입력해주세요.'); 
 				$('#name_check1').css('color', 'red'); 
 			} else if(nameJ.test($('.inputName1').val())!=true){ 
 				$('#name_check1').text('한글 2~6자만 입력 가능합니다.'); 
@@ -233,7 +242,7 @@
 				$('#name_check1').text(' '); 
 				$('#name_check1').css('color', '#2AC1BC'); 
 			}
-		});//blur
+		});//blur */
 		
 		// ----- 수령자 이름 확인 -----
 		$(".inputName2").blur(function() {
@@ -274,53 +283,64 @@
 			}
 		});//blur
 		
+		// ----- 결제수단 확인 -----
+		$(".selectMethod").blur(function() {
+			if($('[name=selectPayment]:checked').val() == ''){ 
+				$('#method_check').text('결제수단을 선택해주세요.'); 
+				$('#method_check').css('color', 'red'); 
+			} else { 
+				$('#method_check').text(' '); 
+				$('#method_check').css('color', '#2AC1BC'); 
+			}
+		});//blur
+		
 		/*
 		 * 버튼 눌렀을 때 정규식 & 모두 true일 때 Ajax로 데이터 전송
 		 */
 		$('#paymentBtn').click(function(){
-			var inval_Arr = new Array(5).fill(false);
+			var inval_Arr = new Array(4).fill(false);
 			
-			// ----- 주문자명 확인 -----
+			/* // ----- 주문자명 확인 -----
 			if (nameJ.test($('.inputName1').val())) { 
 				inval_Arr[0] = true; 
 			} else { 
 				inval_Arr[0] = false; 
 				alert('주문자명을 확인하세요.'); 
 				return false; 
-			} 
+			}  */
 			
 			// ----- 수령자명 확인 -----
 			if (nameJ.test($('.inputName2').val())) { 
-				inval_Arr[1] = true; 
+				inval_Arr[0] = true; 
 			} else { 
-				inval_Arr[1] = false; 
+				inval_Arr[0] = false; 
 				alert('수령자명을 확인하세요.'); 
 				return false; 
 			} 
 			
 			// ----- 휴대폰번호 확인 -----
 			if (phoneJ.test($('.inputTel').val())) { 
-				inval_Arr[2] = true;
+				inval_Arr[1] = true;
 			} else {
-				inval_Arr[2] = false;
+				inval_Arr[1] = false;
 				alert('전화번호를 확인하세요.');
 				return false;
 			}
 			
 			// ----- 주소 확인 -----
 			if ($('.inputPost').val()!='') { 
-				inval_Arr[3] = true; 
+				inval_Arr[2] = true; 
 			} else { 
-				inval_Arr[3] = false; 
+				inval_Arr[2] = false; 
 				alert('주소를 확인하세요.'); 
 				return false; 
 			}
 		
 			//  ----- 결제 수단 확인 -----
 			if ($('[name=selectPayment]:checked').val() == 1 || $('[name=selectPayment]:checked').val() == 2 ) {
-				inval_Arr[4] = true;
+				inval_Arr[3] = true;
 			} else {	
-				inval_Arr[4] - false;
+				inval_Arr[3] - false;
 				alert('결제수단을 선택하세요.');
      			return false;
 			}
@@ -347,6 +367,7 @@
 	    	  var quantity = Number($('#quantity').val());
 	    	  
 	    	  console.log('click')
+	    	  console.log($("#checkId").val());
 			  console.log($("#checkName1").val());	
 		      console.log($("#checkName2").val());
 		      console.log($("#checkTel").val());
@@ -357,8 +378,10 @@
 	    		  // 무통장입금
 	    		  $.ajax({
 	  	            type: "POST",
-	  	            url: "/order/order-proc",
-	  	            data: { "order_name": $('#checkName1').val(),
+	  	            url: "/member/order-proc",
+	  	            data: { 
+	  	            	  "member_id": $('#checkId').val(),
+	  	            	  "order_name": $('#checkName1').val(),
 	  	                  "order_receiver_name": $("#checkName2").val(),
 	  	                  "order_receiver_phonenumber": $('#checkTel').val(),
 	  	                  "order_receiver_address": $('#postcode').val() + " " + $('#roadAddress').val() + " " + $('#detailAddress').val(),
@@ -394,7 +417,7 @@
 		    	            if ( rsp.success ) {
 		    	                //[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
 		    	                jQuery.ajax({
-		    	                    url: "/order/order-proc", //cross-domain error가 발생하지 않도록 주의해주세요
+		    	                    url: "/member/order-proc", //cross-domain error가 발생하지 않도록 주의해주세요
 		    	                    type: 'POST',
 		    	                    dataType: 'json',
 		    	                    data: { "order_name": $('#checkName1').val(),
