@@ -458,7 +458,7 @@ translateX
 		<div class="container">
 			<div class="row">
 				<div class="pull-right" align="right">
-					<a class="btn btn-info check_out" href="#" id="checkOut">주문서 작성</a>
+					<a class="btn btn-info check_out" href="/member/checkout" id="checkOut">주문서 작성</a>
 				</div>
 			</div>
 		</div>

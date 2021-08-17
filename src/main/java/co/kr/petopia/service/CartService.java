@@ -27,4 +27,5 @@ public interface CartService {
 	public int addWish(CartVO cartVO);
 	//카트리스트 보기
 	public List<CartVO> getWishList(String member_id);
+	
 }

@@ -29,7 +29,7 @@ public class CartServiceImpl implements CartService {
 		
 		return cartMapper.goCart(member_id);
 	}
-
+	
 
 	@Override
 	public CartVO checkProductsInCart(CartVO cartVO) {
@@ -131,6 +131,9 @@ public class CartServiceImpl implements CartService {
 		
 		return cartMapper.deleteCartItem(cart_id);
 	}
+
+
+	
 
 	
 	

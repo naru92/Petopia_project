@@ -55,9 +55,9 @@ public class CartController {
 	
 	//카트 목록가져오기
 	@GetMapping("order/Cart")
-	public void goCart(Principal principal, Model model) {
+	public void goCart(Principal principal, Model model, HttpSession httpSession) {
 		
-		
+	
 		principal.getName();
 		MemberVO memberInfo = new MemberVO();
 		
@@ -88,6 +88,11 @@ public class CartController {
 			log.info("TotalPrice : " + totalPrice);
 			
 			model.addAttribute("totalPrice", totalPrice);
+			httpSession.setAttribute("totalPrice", totalPrice);
+			httpSession.setAttribute("cart", cartList);
+			
+			log.info("세션에 저장된 상품가격: " + httpSession.getAttribute("totalPrice"));
+			log.info("세션에 저장된 카트정보: " + httpSession.getAttribute("cart"));
 			
 			// 회원 정보
 			MemberVO memberVO = memberService.getMemberInfo(principal.getName());

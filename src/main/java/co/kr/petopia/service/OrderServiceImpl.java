@@ -1,5 +1,7 @@
 package co.kr.petopia.service;
 
+
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,17 +33,20 @@ public class OrderServiceImpl implements OrderService {
 
 	// 주문자 정보 입력 처리 함수
 	@Override
-	public void memberOrderFormInsert(String member_id) {
+	public void memberOrderFormInsert(String member_id, int product_idx) {
 
-		orderMapper.memberOrderFormInsert(member_id);
+		orderMapper.memberOrderFormInsert(member_id, product_idx);
 
 	}
 
 	// 주문자 정보 입력 처리 함수
 	@Override
-	public void memberOrderDetailInsert(String member_id) {
+	public void memberOrderDetailInsert(int order_idx, int product_idx, String order_name,
+			String order_receiver_name, String order_receiver_phonenumber, String order_receiver_address,
+			int order_quantity, int payment_method, Date order_date) { 
 
-		orderMapper.memberOrderDetailInsert(member_id);
+		orderMapper.memberOrderDetailInsert(order_idx, product_idx, order_name, order_receiver_name,
+				order_receiver_phonenumber, order_receiver_address, order_quantity, payment_method, order_date);
 
 	}
 
@@ -55,9 +60,9 @@ public class OrderServiceImpl implements OrderService {
 
 	// 주문 상세 정보 가져오기
 	@Override
-	public OrderVO readMemberOrderInfo(String member_id) {
+	public OrderVO readMemberOrderInfo() {
 
-		return orderMapper.readMemberOrderInfo(member_id);
+		return orderMapper.readMemberOrderInfo();
 
 	}
 
