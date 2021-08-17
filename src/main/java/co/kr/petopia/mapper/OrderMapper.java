@@ -1,5 +1,6 @@
 package co.kr.petopia.mapper;
 
+import java.util.Date;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
@@ -18,17 +19,19 @@ public interface OrderMapper {
 	List<OrderVO> getMemberCartList(String member_id);
 
 	// 결제 시 정보 입력하기 메소드(order_form)
-	void memberOrderFormInsert(String member_id);
+	void memberOrderFormInsert(String member_id, int product_idx);
 
 	// 결제 시 정보 입력하기 메소드(order_detail)
-	void memberOrderDetailInsert(String member_id);
+	void memberOrderDetailInsert(int order_idx, int product_idx, String order_name,
+			String order_receiver_name, String order_receiver_phonenumber, String order_receiver_address,
+			int order_quantity, int payment_method, Date order_date);
 
 	// order_form -> 주문번호 idx 불러오는 메소드
 	@Select("select order_seq.currval from dual")
 	int getMemberOrderFormCurrVal();
 
 	// 주문 상세 정보 가져오기
-	OrderVO readMemberOrderInfo(String member_id);
+	OrderVO readMemberOrderInfo();
 
 	
 	
@@ -51,4 +54,5 @@ public interface OrderMapper {
 	
 	// 주문 상세 정보 가져오기
 	OrderVO readOrderInfo();
+
 }

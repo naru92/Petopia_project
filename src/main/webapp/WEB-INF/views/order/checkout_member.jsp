@@ -184,10 +184,11 @@
 								<tbody>
 									<tr>
 										<td id = "product_idx">${o.product_idx}</td>
-										<td>${o.product_name}</td>
-										<td>${o.product_coloroption}</td>
-										<td id = "quantity" value = 3></td>
-										<td>${o.product_price}</td>
+										<!-- <td>${sessionScope.TotalPrice}</td> -->
+										<td>${sessionScope.cart[0].productList[0].product_name}</td>
+										<td>${sessionScope.cart[0].productList[0].product_coloroption}</td>
+										<td id ="quantity">${sessionScope.cart[0].amount}</td>
+										<td>${sessionScope.cart[0].productList[0].product_price}</td>
 									</tr>
 
 								</tbody>
@@ -197,7 +198,7 @@
 						<c:forEach var='o' items="${order}">
 							<div class="payment">
 								<br /> <strong>배송비 : 무료</strong><br /> <strong> 총
-									결제금액: </strong><strong>${o.product_price}원</strong><br />
+									결제금액: </strong><strong>${totalPrice}</strong><br />
 							</div>
 						</c:forEach>
 						</div>
@@ -230,19 +231,6 @@
 	var phoneJ = /^010-?([0-9]{4})-?([0-9]{4})$/; 
 
 	$(document).ready(function() {
-		
-		/* // ----- 주문자 이름 확인 -----
-		$(".inputName1").blur(function() {
-			if($('.inputName1').val()==''){ 
-				$('#name_check1').css('color', 'red'); 
-			} else if(nameJ.test($('.inputName1').val())!=true){ 
-				$('#name_check1').text('한글 2~6자만 입력 가능합니다.'); 
-				$('#name_check1').css('color', 'red'); 
-			} else if(nameJ.test($('.inputName1').val())){ 
-				$('#name_check1').text(' '); 
-				$('#name_check1').css('color', '#2AC1BC'); 
-			}
-		});//blur */
 		
 		// ----- 수령자 이름 확인 -----
 		$(".inputName2").blur(function() {
@@ -299,15 +287,6 @@
 		 */
 		$('#paymentBtn').click(function(){
 			var inval_Arr = new Array(4).fill(false);
-			
-			/* // ----- 주문자명 확인 -----
-			if (nameJ.test($('.inputName1').val())) { 
-				inval_Arr[0] = true; 
-			} else { 
-				inval_Arr[0] = false; 
-				alert('주문자명을 확인하세요.'); 
-				return false; 
-			}  */
 			
 			// ----- 수령자명 확인 -----
 			if (nameJ.test($('.inputName2').val())) { 
@@ -373,6 +352,7 @@
 		      console.log($("#checkTel").val());
 		      console.log($("#postcode").val() + " " + $("#roadAddress").val() + " " + $("#detailAddress").val());
 	    	  console.log(payment_method);
+	    	  console.log($('#product_idx').text());
 	    	  
 	    	  if(payment_method == 1){
 	    		  // 무통장입금
@@ -386,14 +366,14 @@
 	  	                  "order_receiver_phonenumber": $('#checkTel').val(),
 	  	                  "order_receiver_address": $('#postcode').val() + " " + $('#roadAddress').val() + " " + $('#detailAddress').val(),
 	  	                  "payment_method": $('#select1').val(),
-	  	                  "order_quantity": quantity,
+	  	                  "order_quantity": parseInt.quantity,
 	  	                  "product_idx" : $('#product_idx').text()
 	  	            },
 	  	                  
 	  	            success: function(result){
 	  	               alert('주문이 완료되었습니다.');
 	  	               console.log(result)
-	  	               location.href = "/order/confirmation_deposit";
+	  	               location.href = "/member/confirmation_deposit";
 	  	               
 	  	            }, error: function(result){
 	  	               alert('주문이 실패했습니다.');
@@ -409,7 +389,7 @@
 		    	  		    pay_method : 'card',
 		    	  		    merchant_uid : 'merchant_' + new Date().getTime(),
 		    	  		    name : 'PETSHOP 반려동물 용품 결제' , //결제창에서 보여질 이름
-		    	  		    amount : 100, //실제 결제되는 가격
+		    	  		    amount : ${totalPrice}, //실제 결제되는 가격
 		    	  		    buyer_name : $('#checkName1').val(),
 		    	  		    buyer_tel : $('#checkTel').val(),
 		    	  		    buyer_addr : $('#postcode').val() + " " + $('#roadAddress').val() + " " + $('#detailAddress').val(),
@@ -444,7 +424,7 @@
 		    	                    }
 		    	                });
 		    	                //성공시 이동할 페이지
-		    	                location.href = "/order/confirmation_card";
+		    	                location.href = "/member/confirmation_card";
 		    	            } else {
 		    	                msg = '결제에 실패하였습니다.';
 		    	                msg += '에러내용 : ' + rsp.error_msg;

@@ -8,6 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import co.kr.petopia.vo.CartVO;
 import co.kr.petopia.vo.OrderVO;
+import co.kr.petopia.vo.PointVO;
 
 @SpringBootTest
 class OrderMapperTests {
@@ -27,7 +28,7 @@ class OrderMapperTests {
 		
 		// orderMapper.orderFormInsert(vo);
 		
-		orderMapper.memberOrderFormInsert(null);
+		orderMapper.memberOrderFormInsert(null, 0);
 		
 		
 		int orderCurrVal = orderMapper.getOrderFormCurrVal();
@@ -43,7 +44,7 @@ class OrderMapperTests {
 		
 		// orderMapper.orderDetailInsert(vo);
 		
-		orderMapper.memberOrderDetailInsert(null);
+		orderMapper.memberOrderDetailInsert(orderCurrVal, orderCurrVal, null, null, null, null, orderCurrVal, orderCurrVal, null);
 		
 
 		//System.out.println("sysout" + orderCurrVal);
@@ -67,13 +68,35 @@ class OrderMapperTests {
 		 * orderMapper.orderDetailInsert(vo);
 		 */
 	}
-
+	
+	@Test
+	public void testMemberOrderInfo() {
+		orderMapper.readMemberOrderInfo();
+	
+	}
+	
 	@Test
 	public void testGetMemberCartList() {
 		CartVO vo = new CartVO();
 		vo.setMember_id("dummy20");
 		List<OrderVO> getMemberCartList = orderMapper.getMemberCartList("dummy20");
 		System.out.println(getMemberCartList);
+	}
+	
+	// 포인트 추가
+	@Test
+	public void testInsertPoint() {
+		PointVO vo = new PointVO();
+		vo.setMember_id("dummy30");
+		vo.setMember_point_savedetail("100");
+	}
+	
+	// 포인트 업데이트
+	@Test
+	public void testUpdatePoint() {
+		PointVO vo = new PointVO();
+		vo.setMember_id("dummy30");
+		vo.setMember_point_savepoint(0);
 	}
 	
 	// 회원 정보 불러오기 테스트
