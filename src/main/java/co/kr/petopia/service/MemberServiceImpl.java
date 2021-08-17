@@ -59,6 +59,11 @@ public class MemberServiceImpl implements MemberService{
     @Override
     public int memberModify(MemberVO member) {
         
+        String rawPassword = member.getMember_password();
+        String encPassword = encodePWD.encode(rawPassword);
+        
+        member.setMember_password(encPassword);
+        
         return memberMapper.memberUpdate(member);
     }
 

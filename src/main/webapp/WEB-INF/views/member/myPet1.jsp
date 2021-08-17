@@ -3,79 +3,47 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>마이펫 등록</title>
-
 <meta http-equiv="Content-type" content="text/html; charset=UTF-8">
-<meta name="viewport" content="width=decice-width" initial-scale="1">
+
+<title>마이펫 등록</title>
 
 <!-- CSS here -->
 <link rel="stylesheet" href="/petopia/css/myPet_insert.css">
 
-<!-- 추후에 수정 -->
-<link rel="shortcut icon" type="image/x-icon"
-	href="images/petopia_logomini.png">
-<link rel="stylesheet"
-	href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-	crossorigin="anonymous">
-<link rel="stylesheet"
-	href="https://wagtrung.github.io/store/themify-icons/themify-icons.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
-
 <!-- default_css -->
 <%@include file="../include/default_css.jsp"%>
 </head>
-
 <body>
 	<header>
 		<%@include file="../include/default_header.jsp"%>
 	</header>
-
+	
 	<main>
 		<div class="main">
-			<h3>내새꾸를 등록해보세요!</h3>
+			<h3>함께하는 아이는 어떤 아이인가요?<br>내새꾸를 등록해보세요.</h3><br>
 			<div class="result">
-				<span class="blue">필수정보를 입력</span>해주세요.
+				<span class="blue"> * 필수정보를 입력</span>해주세요.
 			</div>
 
 			<article class="one">
-				<!-- article 기능이 뭔지 (두개 다)? -->
 				<article class="find1">
 					<div>
 						<section id="content3">
-							<div>
-							<div class="pb0">
-								어떤 반려동물과 함께 하시나요?<br>
-							</div>
-							<div class="info">
-								* 항목은 필수 입력 항목입니다.<br>
-							</div>
-							</div>
-
-							<div>
-								<div>
-									<p class="none">
-										<span id='choiceText'> &nbsp;</span>
-									</p>
-									<p>이름 *</p>
-									<p>성별 *</p>
-									<p>&nbsp</p>
-									<p>생년월일 *</p>
-									<p>몸무게</p>
-									<p>중성화 여부</p>
-									<p>염려질환</p>
-									<p>&nbsp</p>
-								</div>
-
 								<div>
 									<div class="choice">
+									<div class="uploadDiv">
+									<td>사진을 등록해주세요. </td>
+									<input type="file" id="inputImg" name='inputImg'></div>
+									
+									<label for="petname">* 이름</label>
+									<input type="text" placeholder="이름을 입력해주세요"><br>
+									
+									<label for="petkind">* 강아지/고양이 선택 후 품종을 입력해주세요. </label>
 										<input type="radio" name="kind" onclick="handleClick(this)" value="cat"> 고양이 
 										<input type="radio" name="kind" onclick="handleClick(this)" value="dog"> 강아지
+										<p class="none">
+										<span id='choiceText'></span>
+									</p>
 									</div>
 									<div style='width: 300px'>
 										<!-- <span id='choiceText'></span> -->
@@ -84,21 +52,35 @@
                                     </br> -->
 										<input type='text' id='txtKind' style='width: 250px' placeholder="세상에 하나뿐인 시고르사브르종" ></input>
 									</div>
-									<input type="text" placeholder="아이의 이름을 입력해주세요"><br>
+									
 									<div class="choice">
+									<label for="petkind">* 성별을 선택해주세요. </label>
 										<input type="radio" name="gender" value="male"> 남아 
 										<input type="radio" name="gender" value="female"> 여아
 									</div>
 									<label>생년월일을 선택해주세요. </label><br> 
 									<input type="date"><br> 
-									<input type="number" step="0.1" value="kg"><br> 
-									<input type='button' id='중성화 전' onclick='button1_click();' value="중성화 후"><br> 
-									<input type="text" placeholder="염려질환을 입력해주세요"><br>
-								</div>
+									<label>[선택] 몸무게를 입력해주세요. </label><br> 
+									<div class="input del t2" data-txt="kg">
+									<input type="number" id="weight" name="weight" placeholder="소수점 한자리까지 입력 가능"><br> 
 							</div>
+								
+									<label>[선택] 중성화가 되어 있나요? </label><br> 
+									<!-- <input type='button' id='중성화 전' onclick='button1_click();' value="중성화 후"><br> --> 
+									<div class="pet-wrap">
+										<div class="radiobox">
+														<span class="radio"><input type="radio" name="fixingYn" id="fixingYnN" value="N" ><label for="radt_1" class="txt">중성화 전</label></span>
+														<span class="radio"><input type="radio" name="fixingYn" id="fixingYnY" value="Y" ><label for="radt_2" class="txt">중성화 완료</label></span>
+													</div>
+									</div>
+									<input type="text" placeholder="염려질환을 입력해주세요"><br>
+									<label>[선택] 아이가 혹시 알러지가 있나요? </label><br>
+								
+								</div>
+				
 							<section>
-								<a href="welcome.html"><button class="next-btn">이전</button></a>
-								<a href="welcome.html"><button class="next-btn">다음</button></a>
+								<button type="submit" class="modify-btn">이전</button>
+								<button type="submit" class="modify-btn">다음</button>
 							</section>
 						</section>
 					</div>

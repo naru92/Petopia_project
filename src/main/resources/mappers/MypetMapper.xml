@@ -54,7 +54,7 @@
 		/* co.kr.petopia.mapper.MemberMapper.selectPassword */
 		
 		SELECT
-			member_id
+			member_password
 		FROM	member	
 		WHERE	member_id = #{memberId}
 		AND 	member_password = #{memberPassword}

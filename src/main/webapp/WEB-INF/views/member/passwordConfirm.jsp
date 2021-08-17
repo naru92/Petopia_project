@@ -30,7 +30,7 @@
 
 <body>
 	<script>
-		$("document").ready(function() {
+		/* $("document").ready(function() {
 			//해당 페이지의 첫 진입점
 			//ex) 로그인한 사용자의 id 를 display
 			$('#txtId').val('isnana');
@@ -42,7 +42,7 @@
 		$("#btnTest").click(function() {
 			$('#txtId').attr('readonly', true);
 			$("#txtId").addClass('disabledInput');
-		});
+		}); */
 		/* 
 		로그인 유저와 입력 비밀번호가 동일한지
 		button class="join-btn">확인</button> 
@@ -68,7 +68,6 @@
 			</div>
 
 			<article class="one">
-				<!-- article 기능이 뭔지 (두개 다)? -->
 				<article class="find1">
 					<div>
 						<section id="content3">
@@ -80,6 +79,7 @@
 							<a href="memberModify">
 								<button class="join-btn" onclick="fn_passwordCheck()">확인</button>
 							</a>
+							<input id='id' type="hidden" value="${memberId}">
 						</section>
 					</div>
 				</article>
@@ -95,24 +95,27 @@
 	function fn_passwordCheck() {
 		console.log("fn_passwordCheck");
 		
-		var password = $('#password').val();		
-
+		var memberId = $('#id').val();
+		var password = $('#password').val();
+			
+		
 		if(!password){
 			alert('패스워드를 입력해주세요.');
 			$('#password').focus();
 			return false;
 		}
 		
+		
 		var data = {'memberPassword' : password
-					, 'memberId' : 'dummy84' };
+					, 'memberId' : memberId };
 		
 		$.ajax({
 			type: 'post' //데이터 전송 타입,
 			, url : '${pageContext.request.contextPath}/mypet/passwordCheck' //데이터를 주고받을 파일 주소 입력,
 			, data: data //보내는 데이터,
-			, success: function(obj){ //작업이 성공적으로 발생했을 경우
-				console.log('obj :: ' , obj);
-				if(!obj){
+			, success: function(text){ //작업이 성공적으로 발생했을 경우
+				console.log('text :: ' , text);
+				if(text == 'fail'){
 					alert('패스워드가 틀렸습니다. 패스워드를 확인해주세요.');
 					$('#password').focus();
 					return false;
@@ -122,7 +125,7 @@
 			}
 			, error:function(e){ //에러가 났을 경우 실행시킬 코드
 				console.log('e :: ', e)
-				alert('서버오류입니다. 잠시 후 다시 시도해주세요.')
+				alert(' 잠시 후 다시 시도해주세요.')
 			}
 		})
 		
