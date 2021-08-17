@@ -33,7 +33,7 @@
 							<h4>현재까지 나의 총 기부 횟수</h4>
 						</div>
 						<div>
-							<h1>&nbsp 6</h1>
+							<h1>&nbsp </h1>
 						</div>
 						<div>
 							<h5>&nbsp 번</h5>
@@ -61,7 +61,7 @@
 			<div class="table">
 				<div class="table-box">
 					<div>
-						<h4>${member.member_name}{회원 이름}님의 기부 내역을 확인하세요!</h4>
+						<h4>${member.member_name}님의 기부 내역을 확인하세요!</h4>
 					</div>
 
 					<table class="donation-table">

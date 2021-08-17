@@ -26,18 +26,18 @@
                     <label for="event-tab1">진행중인 이벤트</label>
                     <div class="tabCon">
                         <div class="event-box">
-                            <a href="event_detail.html"><img src="/petopia/images/event_img_1.jpg"></a>
+                            <a href="event_detail"><img src="/petopia/images/event_img_1.jpg"></a>
                             <div class="event-caption">
-                                <a href="event_detail.html"><h3>여름맞이 선물이 팡팡! 7월 출석 이벤트</h3></a>
-                                <a href="event_detail.html"><p>2021.07.01 ~ 2021.07.31</p></a>
+                                <a href="event_detail"><h3>여름맞이 선물이 팡팡! 7월 출석 이벤트</h3></a>
+                                <a href="event_detail"><p>2021.07.01 ~ 2021.07.31</p></a>
                             </div>
                         </div>
 
                         <div class="event-box">
-                            <a href="event_detail.html"><img src="/petopia/images/event_img_2.jpg"></a>
+                            <a href="event_detail"><img src="/petopia/images/event_img_2.jpg"></a>
                             <div class="event-caption">
-                                <a href="event_detail.html"><h3>참여만 해도 포인트를 준다??</h3></a>
-                                <a href="event_detail.html"><p>2021.07.01 ~ 2021.07.31</p></a>
+                                <a href="event_detail"><h3>참여만 해도 포인트를 준다??</h3></a>
+                                <a href="event_detail"><p>2021.07.01 ~ 2021.07.31</p></a>
                             </div>
                         </div>
                     </div>
@@ -47,18 +47,18 @@
                     <label for="event-tab2">종료된 이벤트</label>
                     <div class="tabCon">
                         <div class="event-box">
-                            <a href="event_detail.html"><img src="/petopia/images/event_img_1.jpg"></a>
+                            <a href="event_detail"><img src="/petopia/images/event_img_1.jpg"></a>
                             <div class="event-caption">
-                                <a href="event_detail.html"><h3>참여만 해도 포인트를 준다??</h3></a>
-                                <a href="event_detail.html"><p>2021.07.01 ~ 2021.07.31</p></a>
+                                <a href="event_detail"><h3>참여만 해도 포인트를 준다??</h3></a>
+                                <a href="event_detail"><p>2021.07.01 ~ 2021.07.31</p></a>
                             </div>
                         </div>
 
                         <div class="event-box">
-                            <a href="event_detail.html"><img src="/petopia/images/event_img_2.jpg"></a>
+                            <a href="event_detail"><img src="/petopia/images/event_img_2.jpg"></a>
                             <div class="event-caption">
-                                <a href="event_detail.html"><h3>여름맞이 선물이 팡팡! 7월 출석 이벤트</h3></a>
-                                <a href="event_detail.html"><p>2021.07.01 ~ 2021.07.31</p></a>
+                                <a href="event_detail"><h3>여름맞이 선물이 팡팡! 7월 출석 이벤트</h3></a>
+                                <a href="event_detail"><p>2021.07.01 ~ 2021.07.31</p></a>
                             </div>
                         </div>
                     </div>

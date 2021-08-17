@@ -46,8 +46,8 @@
 					<div class="profile-box">
 							<img class="profile-pic" src="/petopia/images/icon_bar_save_on1.png">
 							<div>
-								<h4>${mypet.mypet_name}ABCD</h4>
-								<p>${mypet.mypet_gender}ㅁㄴㅇㄹ</p>
+								<h4>${mypet.mypet_name}</h4>
+								<p>${mypet.mypet_gender}</p>
 								<p>${mypet.mypet_age} 살</p>
 								<p>${mypet.mypet_weight} kg</p>
 							</div>
@@ -110,7 +110,7 @@
 						</a>
 						<div>
 							<a href="#">
-								<h4>배송조회</h4>
+								<h4>주문내역</h4>
 							</a>
 						</div>
 					</div>

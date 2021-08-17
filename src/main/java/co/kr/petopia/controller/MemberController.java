@@ -237,10 +237,10 @@ public class MemberController {
         MemberVO memberVO = memberService.getMemberInfo(member_id);
         model.addAttribute("member", memberVO);
         
-        model.addAttribute("d_update", pointService.donationUpdate(member_id));
-        model.addAttribute("d_total", pointService.donationPoint(member_id));
-        model.addAttribute("d_history", pointService.donationHistory(member_id));
-        model.addAttribute("d_count", pointService.countDonation(member_id));
+//        model.addAttribute("d_update", pointService.donationUpdate(member_id));
+//        model.addAttribute("d_total", pointService.donationPoint(member_id));
+//        model.addAttribute("d_history", pointService.donationHistory(member_id));
+//        model.addAttribute("d_count", pointService.countDonation(member_id));
 
         return "member/myDonation";
     }
@@ -254,9 +254,9 @@ public class MemberController {
         MemberVO memberVO = memberService.getMemberInfo(member_id);
         model.addAttribute("member", memberVO);
         
-        model.addAttribute("p_update", pointService.pointUpdate(member_id));
-        model.addAttribute("p_total", pointService.retentionPoint(member_id));
-        model.addAttribute("p_history", pointService.pointHistory(member_id));
+//        model.addAttribute("p_update", pointService.pointUpdate(member_id));
+//        model.addAttribute("p_total", pointService.retentionPoint(member_id));
+//        model.addAttribute("p_history", pointService.pointHistory(member_id));
 
         return "member/point";
     }
