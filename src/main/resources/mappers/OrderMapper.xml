@@ -4,29 +4,86 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="co.kr.petopia.mapper.OrderMapper">
+	<!-- 회원 -->
+	<!-- 해당 멤버 정보 가지고 오기 -->
+	<select id="getMemberInfoRead" resultType="co.kr.petopia.vo.OrderVO">
+		SELECT * FROM member WHERE member_id = #{member_id}
+	</select>
+	
+	<!-- 결제 시 회원 별 장바구니(구매) 리스트 -->
+	<select id="getMemberCartList" resultType="co.kr.petopia.vo.OrderVO">
+		SELECT 
+		c.member_id as member_id, 
+		c.product_idx as product_idx, 
+		p.product_detail_info as product_detail_info, 
+		p.product_name as product_name, 
+		p.product_coloroption as product_coloroption, 
+		p.product_price as product_price 
+		FROM cart c, product p 
+		WHERE c.product_idx = p.product_idx and c.member_id = #{member_id} 
+	</select> 
 
+	<!-- 주문자 정보 입력 후 DB로 정보 넘기기(주문서 폼) -->
+	<insert id="memberOrderFormInsert">
+  		 INSERT INTO order_form (order_idx, product_idx, member_id, order_date) 
+		 VALUES (order_seq.nextval, #{product_idx}, #{member_id}, sysdate)
+	</insert>
+
+	<!-- 주문자 정보 입력 후 DB로 정보 넘기기(주문 상세) -->
+	<insert id="memberOrderDetailInsert">
+	     INSERT INTO order_detail (order_idx, product_idx, order_name, order_receiver_name, 
+	     						   order_receiver_phonenumber, order_receiver_address, order_quantity, 
+	     						   payment_method, order_date)
+		 	    VALUES (#{order_idx}, #{product_idx}, #{order_name}, #{order_receiver_name}, 
+		 	            #{order_receiver_phonenumber}, #{order_receiver_address}, #{order_quantity}, 
+		 	            #{payment_method}, sysdate) 
+	</insert>
+	
+	<!-- 멤버 별 주문 상세 읽어오기 -->
+	<select id = "readMemberOrderInfo" resultType="co.kr.petopia.vo.OrderVO">
+		SELECT * FROM ORDER_DETAIL WHERE order_idx = (select max(order_idx) from order_form)
+	</select>
+	
+	
+	<!-- 비회원 -->
+	
 	<!-- 결제 시 회원 별 장바구니(구매) 리스트 -->
 	<select id="getCartList" resultType="co.kr.petopia.vo.OrderVO">
-		select product_detail_info, product.product_idx, product.product_name, product.product_coloroption, product_price
-		from cart, product where cart.product_idx = product.product_idx and member_id = 'dummy20'
+		SELECT 
+		product_detail_info, product.product_idx, product.product_name, 
+		product.product_coloroption, product_price
+		FROM cart, product 
+		WHERE cart.product_idx = product.product_idx and member_id = 'dummy20'
 		<!-- where member_id = #{member.id} -->
 	</select> 
 
 	<!-- 주문자 정보 입력 후 DB로 정보 넘기기(주문서 폼) -->
 	<insert id="orderFormInsert">
-  		 insert into order_form (order_idx, product_idx, member_id, order_date) 
-		 values (order_seq.nextval, #{product_idx}, #{member_id}, sysdate)
+  		 INSERT INTO order_form (order_idx, product_idx, user_name, order_date) 
+		 		VALUES (order_seq.nextval, #{product_idx}, #{user_name}, sysdate)
 	</insert>
 
 	<!-- 주문자 정보 입력 후 DB로 정보 넘기기(주문 상세) -->
 	<insert id="orderDetailInsert">
-	     insert into order_detail (order_idx, product_idx, order_name, order_receiver_name, order_receiver_phonenumber, order_receiver_address, order_quantity, payment_method, order_date)
-		 values (#{order_idx}, #{product_idx}, #{order_name}, #{order_receiver_name}, #{order_receiver_phonenumber}, #{order_receiver_address}, #{order_quantity}, #{payment_method}, sysdate) 
+	     INSERT INTO order_detail (order_idx, product_idx, order_name, order_receiver_name, 
+	     						   order_receiver_phonenumber, order_receiver_address, order_quantity, 
+	     						   payment_method, order_date)
+		 		VALUES (#{order_idx}, #{product_idx}, #{user_name}, #{order_receiver_name}, 
+		 			    #{order_receiver_phonenumber}, #{order_receiver_address}, #{order_quantity}, 
+		 			    #{payment_method}, sysdate) 
+	</insert>
+	
+	<!--  users 테이블로 DB 정보 넘기기 -->
+	<insert id="orderUserInsert">
+		INSERT INTO users (order_idx, user_name, user_phonenumber, user_address)
+			   VALUES (#{order_idx}, #{order_name}, #{order_receiver_phonenumber}, #{order_receiver_address})
+	
 	</insert>
 	
 	<!-- 멤버 별 주문 상세 읽어오기 -->
 	<select id = "readOrderInfo" resultType="co.kr.petopia.vo.OrderVO">
 		select * from ORDER_DETAIL where order_idx = (select max(order_idx) from order_form)
 	</select>
+	
 	
 </mapper>
