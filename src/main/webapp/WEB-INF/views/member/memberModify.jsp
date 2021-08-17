@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -6,6 +7,7 @@
 <meta http-equiv="Content-type" content="text/html; charset=UTF-8">
 
 <title>회원정보 수정</title>
+
 <!-- CSS here -->
 <link rel="stylesheet" href="/petopia/css/memberModify.css">
 
@@ -13,10 +15,11 @@
 <%@include file="../include/default_css.jsp"%>
 </head>
 <body>
-<header>
+	<header>
 		<%@include file="../include/default_header.jsp"%>
 	</header>
-	<script>
+	
+<!-- 	<script>
 	    $("document").ready(function() {
 	        //해당 페이지의 첫 진입점
 	        //ex) 로그인한 사용자의 id 를 display
@@ -31,14 +34,8 @@
 	        $("#txtId").attr('readonly', true);
 	        $("#txtId").addClass('disabledInput');
 	    });
-	</script>
-		
-
-	<header>
-		<%@include file="../include/default_header.jsp"%>
-	</header>
-	
-<main>
+	</script> -->
+	<main>
 		<div class="main">
 			<h3>회원 정보 수정</h3>
 			<div class="result">
@@ -49,12 +46,11 @@
 				<article class="find1">
 					<div>
 						<section id="content3">
-							<div class="info">
-							</div>
+							<div class="info"></div>
 							<div>
 								<div>
 									<p>아이디</p>
-									<p class = emailP>이메일</p>
+									<p class="emailP">이메일</p>
 									<p>새 비밀번호</p>
 									<p>비밀번호 확인</p>
 									<p>이름</p>
@@ -63,46 +59,50 @@
 								</div>
 
 								<div>
-									<form class="inputAll">
-										<input type="text" class="memberId" readonly>
+									<form class="inputAll" action="/member/modifySuccess" method="POST">
+
+										<input type="text" class="memberId" value="${memberInfo.member_id}" readonly>
 										<div class="eheck_font" id="id_check"></div>
 
-										<br> <input type="text" class="email01"> @ <input type="text" class="email02"> <select size="1"
-											id="selectEmail">
+										<br> <input type="text" class="email01" name="email01" value="${email1}">
+										@ <input type="text" class="email02" name="email02" value="${email2}">
+										<select size="1" id="selectEmail">
 											<option value="self">직접입력</option>
 											<option value="naver.com">naver.com</option>
 											<option value="gmail.com">gmail.com</option>
 											<option value="hanmail.net">hanmail.net</option>
 											<option value="hotmail.com">hotmail.com</option>
 											<option value="nate.com">nate.com</option>
-										</select>
-										<br> <input type="text"	class="checkCode" placeholder="인증번호전송 버튼을 누르세요." disabled="disabled"> 
+										</select> 
+										
+										<br> <input type="text" class="checkCode" placeholder="인증번호전송 버튼을 누르세요." disabled="disabled">
 										<button type="button" class="sendMail">인증번호전송</button>
 										<div class="eheck_font" id="email_check"></div>
 
-										<br> <input type="password" class="password01" placeholder="영문+숫자+(!,@,#,$,%,^,&,*)조합 8~12자">
-										<div class="eheck_font" id="pw01_check"></div>
+										<br> <input type="password" class="password01" name="member_password" maxlength ="12" placeholder="영문+숫자+(!,@,#,$,%,^,&,*)조합 8~12자">
+										<div class="eheck_font" id="pw01_check" ></div>
 
-										<br> <input type="password" class="password02" placeholder="비밀번호를 다시 한번 입력하세요.">
-										<div class="eheck_font" id="pw02_check"></div> 
-										
-										<br> <input type="text"	class="memberName" readonly> 
+										<br> <input type="password" class="password02" maxlength ="12" placeholder="비밀번호를 다시 한번 입력하세요.">
+										<div class="eheck_font" id="pw02_check"></div>
+
+										<br> <input type="text" class="memberName" value="${memberInfo.member_name}" readonly>
 										<div class="eheck_font" id="name_check"></div>
 
-										<br> <input type="tel" class="memberPhoneNumber" placeholder="예) 010-1234-5678">
+										<br> <input type="tel" class="memberPhoneNumber" name="member_phoneNumber" maxlength ="13"
+											 value="${memberInfo.member_phoneNumber}" placeholder="예) 010-1234-5678">
 										<div class="eheck_font" id="phone_check"></div>
 
-										<br> <input type="text" placeholder="우편번호" name="member_address" class="address1" id="postcode" readonly>
+										<br> <input type="text" placeholder="우편번호" name="member_address1" class="address1" id="postcode" value="${address1}" readonly>
 										<button type="button" class="address-btn" onClick="execDaumPostcode()">주소검색</button>
-										<br> <input type="text" placeholder="도로명주소" name="member_address" class="address2" id="roadAddress" readonly> 
-										<br> <input	type="text" placeholder="상세주소" name="member_address" class="address3" id="detailAddress">
+										<br> <input type="text" placeholder="도로명주소" name="member_address2" class="address2" id="roadAddress" value="${address2}" readonly> 
+											<br> <input type="text" placeholder="상세주소" name="member_address3" class="address3" id="detailAddress" value="${address3}" maxlength ="30">
 										<div class="eheck_font" id="address_check"></div>
 										<br> <br>
+										<button type="submit" class="modify-btn">수정하기</button>
 									</form>
 								</div>
 							</div>
 
-							<a><button type="submit" class="modify-btn">수정하기</button></a>
 						</section>
 					</div>
 				</article>
@@ -110,12 +110,12 @@
 		</div>
 	</main>
 
-<!-- footer -->	
+	<!-- footer -->
 	<footer>
 		<%@include file="../include/default_footer.jsp"%>
 	</footer>
 	<%@include file="../include/default_mapApi_js.jsp"%>
-	
+
 	<script>
 	/*
 	 * 유효성 검사
@@ -147,10 +147,10 @@
 			} else if(phoneJ.test($('.memberPhoneNumber').val())!=true){ 
 				$('#phone_check').text('010-_ _ _ _-_ _ _ _형식에 맞춰 입력하세요.'); 
 				$('#phone_check').css('color', 'red'); 
-			} else if($('.memberPhoneNumber').val()!=''){ 
+			} else if($('.memberPhoneNumber').val()!=''){ // 공백? 
 				var member_phoneNumber=$('.memberPhoneNumber').val(); 
 				$.ajax({ 
-					async : true, 
+					async : true,
 					type : 'GET', 
 					data : member_phoneNumber,  
 					url : 'pnCheck?memberPN='+member_phoneNumber, 
@@ -179,10 +179,11 @@
 			}//else if 
 		});//blur
 		
-		// ----- 비밀번호 검사 -----
+		
+		// ----- 새 비밀번호 확인 및 비밀번호 검사 -----
 		$(".password01").blur(function() {
 			if($('.password01').val()==''){ 
-				$('#pw01_check').text('비밀번호를 입력하세요.'); 
+				$('#pw01_check').text('변경할 비밀번호를 입력하세요.'); 
 				$('#pw01_check').css('color', 'red'); 
 			} else if(pwJ.test($('.password01').val())!=true){ 
 				$('#pw01_check').text('영문+숫자+(!,@,#,$,%,^,&,*)조합 8~12자'); 
@@ -265,7 +266,7 @@
 				console.log(mail);
 				
 				$.ajax({
-					async : false, 
+					async : false,
 					type : 'POST',
 					url : 'CheckMail',
 					data : {mail:mail},
@@ -309,7 +310,7 @@
 		 * 버튼 눌렀을 때 정규식 & 모두 true일 때 Ajax로 데이터 전송
 		 */
 		$('.modify-btn').click(function(){
-			var inval_Arr = new Array(5).fill(false);
+			var inval_Arr = new Array(6).fill(false);
 
 			// ----- 비밀번호가 같은 경우 && 비밀번호 정규식 확인 -----
 			if (($('.password01').val() == ($('.password02').val())) && pwJ.test($('.password01').val())) { 
@@ -341,7 +342,7 @@
 			if (phoneJ.test($('.memberPhoneNumber').val())) { 
 				var member_phoneNumber=$('.memberPhoneNumber').val(); 
 				$.ajax({ 
-					async : false, 
+					async : false, // 수정
 					type : 'GET', 
 					data : member_phoneNumber,  
 					url : 'pnCheck?memberPN='+member_phoneNumber, 
@@ -368,6 +369,16 @@
 				return false; 
 			}
 		
+			
+			// 메일 인증 여부 확인
+			if (mailCertification == true){ 
+				inval_Arr[5] = true;
+			} else {
+				inval_Arr[5] = false;
+				alert('이메일 인증을 완료해주세요.');
+				return false;
+			}
+			
 			// inval_Arr와 mailCertification결과 출력
 			console.log(inval_Arr);
 			console.log(mailCertification);
@@ -381,36 +392,35 @@
 				}
 			} 
 			
-			/*
+ 			/*
 			 * inval_Arr가 모두 true일 경우 ajax로 데이터 전송
 			 */			 
-			if(validAll == true && mailCertification == true){
-				$.ajax({
-					type: "POST",
-					url: "/member/modify", // ----------------------수정
-					data: { "member_id": $(".memberId").val(), //------------- (세션에 있는 것)수정
-							"member_email": $(".email01").val()+"@"+$(".email02").val(),
-							"member_password": $('.password01').val(),
-							"member_phoneNumber": $('.memberPhoneNumber').val(),
-							"member_address" : $(".address1").val()+" "+$(".address2").val()+" "+$(".address3").val()},
-					success: function(result){
-						alert('회원수정이 완료되었습니다.');
-						console.log(result)
-						location.href = "/member/mypage"; // --------------수정
-					}, error: function(result){
-						alert('회원수정에 실패했습니다.');
-						console.log(result)
-					}
-				});
-			} else if (mailCertification == false){
-				alert('이메일 인증을 해주세요.');
-			}
+//			if(validAll == true && mailCertification == true){
+//				$.ajax({
+//					type: "POST",
+//					url: "/member/modifyProcess", // ----------------------수정
+//					data: { "member_id": $(".memberId").val(), //------------- (세션에 있는 것)수정
+//							"member_email": $(".email01").val()+"@"+$(".email02").val(),
+//							"member_password": $('.password01').val(),
+//							"member_phoneNumber": $('.memberPhoneNumber').val(),
+//							"member_address" : $(".address1").val()+" "+$(".address2").val()+" "+$(".address3").val()},
+//					success: function(result){
+//						alert('회원수정이 완료되었습니다.');
+//						console.log(result)
+//						location.href = "/member/mypage"; // --------------수정
+//					}, error: function(result){
+//						alert('회원수정에 실패했습니다.');
+//						console.log(result)
+//					}
+//				});
+
 		});
-	}); // 회원가입 끝!
+	}); // 회원수정
 	</script>
-	
-		<!----- option을 통한 email 주소값 입력 ----->
-	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+	<!----- option을 통한 email 주소값 입력 ----->
+	<script type="text/javascript"
+		src="http://code.jquery.com/jquery-latest.min.js"></script>
 
 	<script>
 		$('#selectEmail').change(function() {
