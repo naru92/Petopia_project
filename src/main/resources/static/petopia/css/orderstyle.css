@@ -1,7 +1,7 @@
 /* ORDERFORM */
 body, main {
 	position: relative;
-	height: 1350px;
+	height: 1500px;
 	z-index: -100;
 }
 
@@ -31,13 +31,33 @@ body, main {
 }
 
 .thanks2 p {
-	font-size: 25px;
+	font-size: 28px;
 	font-weight: bold;
 	color: #393939;
 	margin-bottom: 4px;
 	letter-spacing: 3px;
 	text-transform: uppercase;
 	text-align: left;
+	margin-left: 105px;
+}
+
+.infoInsert p {
+	font-size: 20px;
+	font-weight: bold;
+	color: #393939;
+	letter-spacing: 3px;
+	text-transform: uppercase;
+}
+
+.memberInfo p {
+	font-size: 20px;
+	font-weight: bold;
+	color: #393939;
+	letter-spacing: 3px;
+	text-transform: uppercase;
+}
+
+.memberInfoForm{
 	margin-left: 105px;
 }
 
@@ -49,7 +69,7 @@ body, main {
 	width: 85%;
 	margin-top: 10px;
 	margin-bottom: 20px;
-	margin-left: 110px;
+	margin-left: 105px;
 	display: inline-block;
 	border-bottom: 3px solid #393939;
 	z-index: -1;
@@ -580,10 +600,25 @@ input.inputBox2 {
 	border: 1px solid #dfdfdf;
 }
 
+input.readId {
+	width: 780px;
+	margin-bottom: 3px;
+	border: 1px solid white;		
+	pointer-events : none;
+}
+
+input.readName {
+	width: 780px;
+	margin-bottom: 3px;
+	border: 1px solid white;		
+	pointer-events : none;
+}
+
 input.inputName1{
 	width: 780px;
 	margin-bottom: 3px;
 	border: 1px solid #dfdfdf;	
+	
 }
 
 input.inputName2{
