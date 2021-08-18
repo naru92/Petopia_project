@@ -119,4 +119,29 @@
 		AND u.order_idx = d.order_idx 
 		AND d.order_idx = #{order_idx}
 	</select>
+	
+	<!-- 회원 주문 상세 조회 -->
+	<select id = "memberOrderInfo" resultType="co.kr.petopia.vo.OrderVO">
+		SELECT d.order_date as order_date_str,
+			d.order_idx as order_idx,
+			d.product_idx as product_idx,
+			d.order_quantity as order_quantity,
+			d.payment_method as payment_method,
+			d.order_receiver_name as  order_receiver_name,
+			d.order_receiver_phonenumber as order_receiver_phonenumber,
+			d.order_receiver_address as order_receiver_address,
+			d.order_name as order_name,
+			m.member_phonenumber as member_phonenumber,
+			p.product_name as product_name,
+			p.product_detail_info as product_detail_info,
+			p.product_price as product_price,
+			v.delivery_state as delivery_state,
+			t.filename as filename
+		FROM member m, order_form f, order_detail d, product p, tbl_attach t, delivery v
+		WHERE p.product_idx = t.product_idx 
+		AND m.member_name = d.order_name 
+		AND f.member_id = #{member_id}
+		AND u.order_idx = d.order_idx 
+		AND d.order_idx = #{order_idx}
+	</select>
 </mapper>

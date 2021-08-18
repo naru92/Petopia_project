@@ -51,7 +51,6 @@ dl{	margin: 0;}
 .tb_list td .ordernum2{color:#8e929c;font-size:11px;letter-spacing:0;line-height:14px}
 .tb_list td .deli{color:#8e929c;font-size:11px;letter-spacing:0;line-height:22px;letter-spacing:-1px}
 .tb_list td .opt{width:13px;height:13px;margin:-1px 4px 1px 0;vertical-align:middle}
-.tb_list td .ord_detail{display:block;overflow:hidden;width:88px;height:20px;margin:8px auto 1px;background:url(../../../../img/service/front/order/spr_btn.gif) no-repeat -600px -720px;text-indent:-9000px}
 .tb_list td.pro_num .opt{display:block;margin:0 auto 7px}
 .tb_list td.product{padding:13px 10px 11px 40px;text-align:left;position: relative}
 .tb_list td.product div{overflow:hidden;position:relative;zoom:1}
@@ -67,7 +66,6 @@ dl{	margin: 0;}
 .tb_list td.product dl{display:block !important;overflow:hidden;*float:left}
 .tb_list td.product dt{margin-bottom:3px;line-height:18px}
 .tb_list td.product dt a{color:#20232c;vertical-align:middle}
-.tb_list td.product dt span{display:inline-block;position:static !important;margin:-1px 0 1px 3px;background:url(../../../../img/service/front/order/spr_ico.gif) no-repeat;vertical-align:middle}
 .tb_list td.product dt span.orderproduct,
 .tb_list td.product dt span.orderproduct_after{
     margin:0;
@@ -75,7 +73,6 @@ dl{	margin: 0;}
 .tb_list td.product dt span.ico{width:13px;height:13px;background-position:0 -1080px}
 .tb_list td.product dt span.ico2{width:13px;height:13px;background-position:0 -1100px}
 .tb_list td.product dt .icon_area{height:13px;margin-bottom:6px;font-size:0}
-.tb_list td.product dt span.ico_npay{width:42px;height:13px;margin:0 2px 0 0;background: url(../../../../img/service/front/order/sp_mypage_npmember.png?20210316) 0 -40px no-repeat;vertical-align:top;}
 .tb_list td.product dt .text_free{display:inline-block;padding:0 2px;border-radius:1px;font-size:10px;line-height:13px;color:#fff;background-color:#09aa5c;letter-spacing:-0.5px;vertical-align:top;}
 .tb_list td.product dt .name_seller{display:block;font-size:11px}
 .tb_list td.product .name_seller{font-weight:normal;color:#adb1b8}
@@ -87,7 +84,6 @@ dl{	margin: 0;}
 .tb_list td.product dd .add{margin:2px 0 0 6px}
 .tb_list td.product dd.option2{margin:13px 0 -3px;*margin-bottom:0}
 .tb_list td.product dd.option2 ul{overflow:hidden}
-.tb_list td.product dd.option2 li{float:left;margin-left:5px;padding:0 0 0 7px;background:url(../../../../img/service/front/order/spr_bar.gif) no-repeat 0 -78px;color:#8e929c}
 .tb_list td.product dd.option2 li.none{margin-left:0;padding-left:0;background:none}
 .tb_list td.product dd.option2 li em{color:#8e929c;letter-spacing:0}
 .tb_list td.product dd .r_option li{color:#20232c}
@@ -97,8 +93,6 @@ dl{	margin: 0;}
 .tb_list td.product dd.shp_words em{color:#009dd0}
 .tb_list td.product dd.shp_toggle{margin:11px 0 0 0}
 .tb_list td.product dd.btn{margin:6px 0 0 0}
-.tb_list td.product dd.btn a{display:inline-block;height:20px;background:url(../../../../img/service/front/order/spr_btn.gif) no-repeat;vertical-align: top;}
-.tb_list td.product dd.btn a.buy_write{width:109px;height:20px;background:url(../../../../img/service/front/order/sp_btn.gif) no-repeat}
 .tb_list td.product dd.btn a.change_option{width:51px;margin-top:5px;background-position:-700px -960px}
 .tb_list td.product dd.btn a.goods_change{width:75px;background-position:-800px -960px}
 .tb_list td.product dd .tog{float:left;margin-right:4px}
@@ -113,7 +107,6 @@ dl{	margin: 0;}
 .tb_list td.product dd.free .ico_free{display:inline-block;margin:0;padding:0 3px;border:1px solid #d7e7df;font-size:10px;line-height:11px;color:#09b65a;background-color:#fff}
 .tb_list td.product dd.free .desc{margin:0;color:#9194a1}
 .tb_list td.product dd.gift_recipient{overflow: hidden;margin-top: 6px;font-size: 11px;line-height: 14px;letter-spacing: -0.42px;color: #565960;text-overflow: ellipsis;white-space: nowrap;}
-.tb_list td.product .pointcol a{display:inline-block;position:relative;padding-right:8px;background:url(../../../../img/service/front/order/spr_bu.gif) no-repeat 100% -1153px;font-size:11px;color:#080;letter-spacing:-1px;text-decoration:underline}
 .tb_list td.product .pointcol a.selected{background-position:100% -1186px;}
 .tb_list td.product2{padding:15px 10px 11px;vertical-align:top}
 .tb_list td.product2 dl{font-size:11px;letter-spacing:0 !important}
@@ -150,11 +143,6 @@ dl{	margin: 0;}
 .tb_list td span.line{display:inline;margin:0 6px 0 5px;color:#dbdce1 !important}
 .tb_list td.link{padding:10px;line-height:16px;color:#7a7a7a;font-size:11px}
 .tb_list td.link a{display:inline;text-decoration:underline;color:#00c73c;font-weight:bold}
-.tb_list .btn_help{display:inline-block;width:13px;height:13px;margin:-2px 0 2px 3px;background:url(../../../../img/service/front/order/spr_btn.gif) no-repeat -50px 0;vertical-align:middle}
-.tb_list .btn_help2{display:inline-block;width:14px;height:14px;margin:-2px 0 2px 3px !important;background:url(../../../../img/service/front/order/spr_btn.gif) no-repeat 0 0;vertical-align:middle}
-.tb_list .btn_mileage{display:inline-block;width:13px;height:13px;margin:0 0 0 6px;background:url(../../../../img/service/front/order/spr_ico.gif) no-repeat 0 -1100px;vertical-align:middle}
-.tb_list .btn_od_modify{display:block;width:96px;height:20px;background:url(../../../../img/service/front/order/spr_btn.gif) no-repeat -800px -360px;vertical-align:top}
-.tb_list .btn_pd_edit{display:block;width:32px;height:20px;margin:6px auto 0;background:url(../../../../img/service/front/order/spr_btn.gif) no-repeat -500px -650px;vertical-align:top}
 .tb_list .btn_wishdate_modify {
     width: 105px;
     background-position: 0 -1730px;
@@ -204,7 +192,6 @@ dl{	margin: 0;}
 .tb_list td.seller2 span{display:block;margin-top:4px;color:#9194a1}
 .tb_list td.seller_row{border-left:1px solid #edeeef;border-right:1px solid #edeeef}
 .tb_list td .zi10{z-index:10}
-.tb_list td .ico_chk{display:inline-block !important;width:11px;height:12px;margin:-2px 0 2px 2px;padding:2px;background:url(../../../../img/service/front/order/spr_ico.gif) no-repeat 2px 2px;vertical-align:middle}
 .tb_list td.dc_money{font-size:11px;color:#8e929c;line-height:13px}
 .tb_list td.dc_money em{letter-spacing:0}
 .tb_list td.dc_money .btn_help{margin:-1px 0 1px 3px}
@@ -213,12 +200,10 @@ dl{	margin: 0;}
 .tb_list td.order_seller{padding-left:16px;padding-right:11px;font-size:11px;color:#565864;line-height:15px}
 .tb_list td.order_seller a{color:#6f707b}
 .tb_list td.order_money .btn_group{padding:6px 0 0 5px;text-align:right}
-.tb_list td.order_money .btn_group a{display:inline-block;width:42px;height:20px;margin-left:-1px;background:url(../../../../img/service/front/order/spr_btn.gif) no-repeat;vertical-align:top}
 .tb_list td.order_money .btn_group .btn_order{background-position:-800px -400px}
 .tb_list td.order_money .btn_group .btn_ordel{background-position:-851px -400px}
 .tb_list td.order_money .pointcol{line-height:17px;}
 .tb_list td.btn a,
-.tb_list td .only_btn a{display:block;width:88px;height:20px;margin:0 auto 3px;background:url(../../../../img/service/front/order/spr_btn.gif) no-repeat}
 .tb_list td .only_btn a{margin:5px auto 3px}
 .tb_list td.btn a.tgrtxt{display:inline-block;margin-left:10px;vertical-align:middle}
 .tb_list td.btn .store a{width:auto}
@@ -278,18 +263,15 @@ dl{	margin: 0;}
 .tb_list td.btn a.reserve_detail{background-position:-410px -780px}	/* 상세정보 */
 
 .tb_list .fr_section{float:right}
-.fr_section .info,.info3{display:inline-block;float:left;margin-top:2px;padding:1px 0 0 17px;background:url(../../../../img/service/front/order/spr_ico.gif) no-repeat 0 -980px;color:#05c300;font-size:11px;letter-spacing:-1px;line-height:12px}
 .info_area{padding:10px 0 6px}
 .bnr_alrim + .info_area{padding-top:14px}
 .tb_list .fr_section .info strong{display:inline-block;margin:-2px 0 2px;font-family:Tahoma,Geneva,sans-serif;letter-spacing:0}
 .tb_list .group td{border-top:1px solid #dddde1}
-.tb_list td .btn .receipt{display:inline-block;margin-top:15px;padding-right:4px;background:url(../../../../img/service/front/order/spr_bu.gif) no-repeat 100% -207px;font-size:11px;color:#95969e;letter-spacing:-1px;text-decoration:underline;}
 .tb_list td.qna{padding:13px 0 11px}
 .tb_list td.qna .qna_area{margin-right:20px;line-height:16px;text-align:left}
 .tb_list td.qna .qna_area dt{padding-left:17px;color:#20232c}
 .tb_list td.qna .qna_area dt a{color:#20232c;text-decoration:none}
 .tb_list td.qna .qna_area dt em{margin-right:2px;font-size:11px;letter-spacing:-1px}
-.tb_list td.qna .qna_area .icon{display:inline-block;width:12px;height:12px;margin:-1px 4px 1px -17px;background:url(../../../../img/service/front/order/spr_ico.gif) no-repeat;vertical-align:middle}
 .tb_list td.qna .qna_area dd{display:none;margin-top:5px;padding-left:17px}
 .tb_list td.qna .qna_area dd em{margin-right:2px}
 .tb_list td.qna .qna_area .question dt .icon{background-position:0 -490px}
@@ -303,9 +285,7 @@ dl{	margin: 0;}
 .tb_list td.qna .qna_area .answer p.ans_info a{color:#8e929c}
 .tb_list td.qna .qna_area .answer p.ans_info em{letter-spacing:0}
 .tb_list td.qna .qna_area .answer p.ans_info span{display:inline;margin:0 6px 0 5px;color:#dbdce1}
-.tb_list td.qna .qna_area a.btn{display:inline-block;margin:9px 0 0 17px;padding-right:7px;background:url(../../../../img/service/front/order/spr_bu.gif) no-repeat 100% -294px;color:#8e929c;font-size:11px;letter-spacing:-1px}
 .tb_list td.qna .qna_area .qna_btn{margin-left:17px}
-.tb_list td.qna .qna_area .qna_btn a{display:inline-block;margin:9px 8px 0 0;padding-left:10px;background:url(../../../../img/service/front/order/spr_bu2.gif) no-repeat;color:#91949e;font-size:11px;letter-spacing:-1px;vertical-align:top;line-height:20px;}
 .tb_list td.qna .qna_area .qna_btn .modify{background-position:0 -34px}
 .tb_list td.qna .qna_area .qna_btn .delete{background-position:0 -54px}
 .tb_list td.date{font-family:Tahoma,Geneva,sans-serif;font-size:12px;color:#9194a1}
@@ -328,7 +308,6 @@ dl{	margin: 0;}
 .tb_list .qna_open td.qna .qna_area a.btn{background-position:100% -314px}
 .tb_list .req_goods td{padding:12px 0 11px 9px;text-align:left}
 .tb_list .req_goods td span{display:inline-block}
-.tb_list .req_goods td dt{float:left;margin-right:27px;padding:1px 10px 0 0;background:url(../../../../img/service/front/order/spr_bu.gif) no-repeat 100% -175px;color:#05bd00;font-weight:bold}
 .tb_list .req_goods td dd ul{overflow:hidden;zoom:1}
 .tb_list .req_goods td dd li{float:left;margin-right:38px;padding-top:1px}
 .tb_list .req_goods td dd li.on{font-weight:bold}
@@ -336,7 +315,6 @@ dl{	margin: 0;}
 .tb_list .cost_method td table{width:100%;border:none}
 .tb_list .cost_method td th,.tb_list .cost_method td td{padding:0;border:none;line-height:16px;vertical-align:top}
 .tb_list .cost_method td th{padding-top:1px}
-.tb_list .cost_method td th span{display:inline-block;padding-right:5px;background:url(../../../../img/service/front/order/spr_bu.gif) no-repeat 100% -176px;color:#05c200;font-size:12px;font-weight:bold}
 .tb_list .cost_method td td .pay_method{overflow:hidden;line-height:14px;vertical-align:middle}
 .tb_list .cost_method td td .pay_method .method{float:left;padding:1px 0 0 6px}
 .tb_list .cost_method td td .pay_method .method select{display:inline-block;margin:-1px 0 1px;color:#20232c}
@@ -392,7 +370,6 @@ dl{	margin: 0;}
     display: inline-block;
 }
 .tb_list span.num{color:#20232c}
-.tb_list .btn_del{display:inline-block;width:7px;height:7px;margin:-6px 0 -3px 1px;padding:5px;background:url(../../../../img/service/front/order/spr_btn.gif) no-repeat -346px 5px;vertical-align:middle}
 .tb_list .out_product{margin-left:3px;font-size:11px;font-weight:normal;letter-spacing:-1px;color:#080}
 .tb_btnone{border-top:none !important}
 .btm_none{border-bottom:none !important}
@@ -409,7 +386,6 @@ dl{	margin: 0;}
 .tb_list2 td.money div{overflow:hidden;padding:15px 13px 15px 0;border-top:1px solid #dddde1;zoom:1}
 .tb_list2 td.money dl{float:left;width:50%;margin-left:-1px;padding:0 14px;border-right:1px solid #efeef1;border-left:1px solid #efeef1;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;color:#20232c}
 .tb_list2 td.money dt{margin-bottom:11px;font-size:12px}
-.tb_list2 td.money dd li{overflow:hidden;padding-left:9px;background:url(../../../../img/service/front/order/spr_bu.gif) no-repeat 1px -116px;color:#8e929c;font-size:11px;line-height:21px}
 .tb_list2 td.money dd li strong{float:left;font-weight:normal;letter-spacing:-1px}
 .tb_list2 td.money dd li p{float:right}
 .tb_list2 td.money dd.total{margin-top:7px;text-align:right}
@@ -418,7 +394,6 @@ dl{	margin: 0;}
 .tb_list2 td.money dl.discount{width:171px}
 .tb_list2 td.money .way_type{padding:15px 13px 10px 0}
 .tb_list2 td.money .benefit{overflow:hidden;padding-left:34px}
-.tb_list2 td.money .benefit .ico{display:inline-block;float:left;width:25px;height:14px;margin-left:-34px;background:url(../../../../img/service/front/order/spr_ico.gif) no-repeat 0 -250px}
 .tb_list2 td.money .benefit ul{float:left;margin:-3px 0 0 3px}
 .tb_list2 td.money .benefit li{color:#565960;font-size:11px;letter-spacing:-1px;line-height:20px}
 .tb_list2 td.money .benefit li span{letter-spacing:0}
@@ -439,12 +414,9 @@ dl{	margin: 0;}
 .tb_list2 td.rev_refund dl{overflow:hidden}
 .tb_list2 td.rev_refund dt{float:left}
 .tb_list2 td.rev_refund dd{float:right;margin:0 !important}
-.tb_list2 th a,.tb_list2 td a{display:inline-block;background:url(../../../../img/service/front/order/spr_btn.gif) no-repeat;vertical-align:middle}
-.tb_list2 td .btn_bu{margin:4px 6px 0 0;padding-right:4px;background:url(../../../../img/service/front/order/spr_bu.gif) no-repeat 100% -206px;color:#565960;font-size:11px;letter-spacing:-1px;line-height:12px;text-decoration:underline;vertical-align:middle}
 .tb_list2 td a.btn_help{width:14px;height:14px;background-position:-50px 0}
 .tb_list2 td a.btn_help2{width:13px;height:13px;margin:-1px 0 1px 3px;background-position:-150px 0}
 .tb_list2 td a.btn_detail{margin-left:5px;font-size:12px;color:#fff;font-weight:normal;text-decoration:none;vertical-align:top;opacity:0.7;filter: alpha(opacity=70);background:none}
-.tb_list2 td a.btn_detail:after{display:inline-block;width:5px;height:12px;margin:4px 0 0 2px;vertical-align:top;background:url(../../../../img/service/front/order/spr_orderpage.png?20210620) no-repeat;background-position:-270px -140px;content:''}
 .tb_list2 th a.info_change{width:72px;height:20px;background-position:0 -1020px;vertical-align:middle}
 .tb_list2 td a.view{width:13px;height:13px;margin:-2px 0 2px 3px;background-position:-100px 0}
 .tb_list2 td a.view2{width:13px;height:13px;margin:-2px 0 2px 3px;background-position:-200px 0}
@@ -466,8 +438,6 @@ dl{	margin: 0;}
 .tb_list2 td.amount li strong{float:left;margin-top:1px;font-weight:normal}
 .tb_list2 td.amount li.bld strong{font-weight:bold}
 .tb_list2 td.amount li p{float:right;color:#fff;font-weight:bold}
-.tb_list2 td.amount li p.plus{padding-left:26px;background:url(../../../../img/service/front/order/spr_ico.gif) no-repeat 0 -414px}
-.tb_list2 td.amount li p.minus{padding-left:26px;background:url(../../../../img/service/front/order/spr_ico.gif) no-repeat 0 -444px}
 .tb_list2 td.amount li p span{margin-right:5px}
 .tb_list2 td.amount li p span strong{float:none;margin-top:0;font-weight:bold}
 .tb_list2 td.amount li p em{font-weight:bold}
@@ -497,7 +467,6 @@ dl{	margin: 0;}
 .tb_list2 td .sel_refund li.sel{color:#080;font-weight:bold}
 .tb_list2 td .sel_refund .bank td{padding:8px 0 0;color:#878a98}
 .tb_list2 td .sel_refund .bank td span{margin:0;background:none;line-height:16px;vertical-align:middle}
-.tb_list2 td .sel_refund a.banklist{display:inline-block;width:74px;height:20px;margin:-3px 0 3px;background:url(../../../../img/service/front/order/spr_btn.gif) no-repeat -100px -1080px}
 .tb_list2 td .sel_refund p.txt{clear:both;margin:7px 0 4px;color:#9294a1;font-size:11px;letter-spacing:-1px;line-height:15px}
 .tb_list2 td .sel_refund p.txt a{margin:-1px 0 1px;padding:0;background:none;color:#535459;text-decoration:underline}
 .tb_list2 td .sel_refund p{margin-top:-2px}
@@ -610,7 +579,6 @@ dl{	margin: 0;}
 
 .tb_rev td.amount{padding-top:0}
 
-.input_section{overflow:hidden;min-width:540px;margin-top:9px;padding-right:280px;border-top:2px solid #383d4a;border-bottom:1px solid #dddde1;background:url(../../../../img/service/front/order/bg_th.gif) repeat-y 0 0;zoom:1}
 .input_section .inp_area{float:left;width:100%;margin-right:-1px;border-right:1px solid #edeeef}
 .input_section .inp_area .tb_input2{width:100%;border-right:none;table-layout:fixed}
 .input_section .inp_area .tb_option th,.input_section .inp_area .tb_option td{line-height:16px}
@@ -632,7 +600,6 @@ dl{	margin: 0;}
 .input_section .view_area dd.card_list .card_info{float:left;width:276px;margin-right:-18px;padding-bottom:18px;zoom:1;}
 .input_section .view_area dd.card_list .brbotm{border-bottom:1px solid #eeeeef;}
 .input_section .view_area dd.card_list .card_info li{float:left;*width:78px;height:15px;margin:15px 9px 0 3px}
-.input_section .view_area dd.card_list .btn_help{display:inline-block;overflow:hidden;margin:1px 0 0 4px;background:url(../../../../img/service/front/order/spr_btn.gif) no-repeat 0 0;vertical-align:top}
 .input_section .view_area dd.card_list .btn_help span{display:block;text-indent:-9999px}
 .input_section .terms_area{*display:inline;float:right;width:239px;*width:242px;margin-right:-240px;*margin-right:-243px;border-left:1px solid #edeeef}
 .input_section .terms_area dt{padding:11px 0 6px 14px;color:#20232c;line-height:20px}
@@ -641,7 +608,6 @@ dl{	margin: 0;}
 .input_section .terms_area dd p{margin-bottom:23px}
 .input_section .terms_area dd .opt{width:13px;height:13px;margin:-1px 4px 1px 0;vertical-align:middle}
 .input_section .terms_area dd label{font-size:12px;font-weight:bold;color:#000}
-.input_section .terms_area dd .btn_bu{display:inline-block;margin:-1px 0 1px 10px;padding-right:4px;background:url(../../../../img/service/front/order/spr_bu.gif) no-repeat 100% -204px;color:#565960;font-size:11px;letter-spacing:-1px;text-decoration:underline;vertical-align:middle}
 
 .input_section2{overflow:hidden;margin-top:9px;padding-right:300px;*padding-right:268px;border-top:2px solid #383d4a;border-bottom:1px solid #dddde1;zoom:1}
 .input_section2 .inp_area{float:left;width:100%;margin-right:-1px;border-right:1px solid #edeeef}
@@ -763,4 +729,14 @@ dl{	margin: 0;}
 	border: 1px solid #2AC1BC;
 	cursor: pointer;
   	border-radius: 10px;
+}
+
+.fold_heading{
+	margin: 10px 0;
+}
+
+.p_color_green{
+	float: right;
+	margin-right: 20px;
+	color: #2AC1BC;
 }

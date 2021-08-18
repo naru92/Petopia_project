@@ -1,8 +1,8 @@
 package co.kr.petopia.service;
 
+import java.util.HashMap;
 import java.util.List;
 
-import co.kr.petopia.vo.MemberVO;
 import co.kr.petopia.vo.PointVO;
 
 public interface PointService {
@@ -35,4 +35,6 @@ public interface PointService {
     // 기부 횟수 조회
     int countDonation(String member_id);
 	
+    //월별 기부
+    List<PointVO> getSelectOptionList(HashMap<String, Object> optionMap);
 }

@@ -77,6 +77,34 @@
             		group by member_point_usedetail
 	</select>
 	
+	<select id="getSelectOptionList" resultType="co.kr.petopia.vo.PointVO">
+		<if test="selected_month.equals('recent_month')">
+		select member_point_usepoint, to_char(member_point_usedate, 'yyyy-mm-dd') as member_point_usedate , member_point_usedetail
+		from point
+		where EXTRACT(YEAR FROM member_point_usedate) = EXTRACT(YEAR FROM sysdate) AND
+			EXTRACT(MONTH FROM member_point_usedate)  = EXTRACT(MONTH FROM sysdate) AND
+			member_id = #{member_id}
+		</if>
+		
+		<if test="selected_month.equals('before_1month')" >
+		select member_id ,member_point_usepoint,  to_char(member_point_usedate, 'yyyy-mm-dd') as member_point_usedate, member_point_usedetail
+		from point
+		where EXTRACT(YEAR FROM member_point_usedate) = EXTRACT(YEAR FROM sysdate) AND
+			EXTRACT(MONTH FROM member_point_usedate)  = (EXTRACT(MONTH FROM sysdate)-1) AND
+			member_id = #{member_id}
+		
+		</if>
+		
+		<if test="selected_month.equals('before_2month')">
+		select member_point_usepoint,  to_char(member_point_usedate, 'yyyy-mm-dd') as member_point_usedate, member_point_usedetail
+		from point
+		where EXTRACT(YEAR FROM member_point_usedate) = EXTRACT(YEAR FROM sysdate) AND
+			EXTRACT(MONTH FROM member_point_usedate)  = (EXTRACT(MONTH FROM sysdate)-2) AND
+			member_id = #{member_id}
+		
+		</if>
+ 	</select>
+	
 	
 
 </mapper>

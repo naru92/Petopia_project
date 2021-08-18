@@ -129,5 +129,11 @@ public class OrderServiceImpl implements OrderService {
         return orderMapper.usersOrderInfo(orderVO);
     }
 
+    @Override
+    public OrderVO memberOrderInfo(OrderVO orderVO) {
+
+        return orderMapper.memberOrderInfo(orderVO);
+    }
+
 
 }

@@ -58,4 +58,7 @@ public interface OrderMapper {
 	
 	// 비회원 주문 상세정보 조회
 	OrderVO usersOrderInfo(OrderVO orderVO);
+	
+	// 회원 주문 상세정보 조회
+    OrderVO memberOrderInfo(OrderVO orderVO);
 }
