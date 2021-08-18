@@ -186,18 +186,23 @@ public class OrderController {
 
         System.out.println("날짜: " + usersOrderInfo.getOrder_date_str());
         
-        model.addAttribute("usersOrderInfo", usersOrderInfo);
+        model.addAttribute("u", usersOrderInfo);
       
         return "order/usersOrderDetail";
     }
 
     // 회원 주문상세조회 페이지
-    @PostMapping("member/orderdetail")
-    public String memberOrderDetail(OrderVO orderVO, Model model) throws Exception {
+    @GetMapping("member/orderdetail")
+    public String memberOrderDetail(OrderVO orderVO, Model model, Principal principal) throws Exception {
 
         System.out.println(orderVO);
+        
+        OrderVO memberOrderInfo = orderService.memberOrderInfo(orderVO);
+        String member_id = principal.getName();
+        memberOrderInfo.setMember_id(member_id);
+        
+        model.addAttribute("m", memberOrderInfo);
 
-      
         return "order/memberOrderDetail";
     }
 

@@ -6,7 +6,6 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import co.kr.petopia.vo.MemberVO;
 import co.kr.petopia.vo.PointVO;
 
 @Mapper
@@ -41,7 +40,7 @@ public interface PointMapper {
     int countDonation(String member_id);
     
     //월별 기부
-   	List<PointVO> getSelectOptionList(HashMap<String, Object> optionMap);
+    List<PointVO> getSelectOptionList(HashMap<String, Object> optionMap);
 }
 
 

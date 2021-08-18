@@ -54,6 +54,10 @@ public class MemberController {
 
     @Autowired
     private OrderService orderService;
+ 
+    
+	// @Autowired
+	// private PointService pointService;
     
     @GetMapping("/login")
     public String loginPage() {
@@ -283,7 +287,6 @@ public class MemberController {
 
         return "member/point";
     }
-    
 
     // 주문 내역
     @GetMapping("member/myOrderList")
@@ -403,14 +406,6 @@ public class MemberController {
 		return "member/withdrawal_success";
 	}
 
-
-	
-	
-	/* // 기부 메인
-	 * 
-	 * @GetMapping("/donation") public String donation() { return "member/donation";
-	 * }
-	 */
 
 	// 마이펫 등록
 	@GetMapping("member/myPet1")

@@ -30,7 +30,7 @@
 							<dl>
 								<dt>주문일자</dt>
 								<dd>
-									<strong>${usersOrderInfo.order_date_str}</strong>
+									<strong>${u.order_date_str}</strong>
 								</dd>
 							</dl>
 						</li>
@@ -38,7 +38,7 @@
 							<dl>
 								<dt>주문번호</dt>
 								<dd class="ordnum">
-									<strong class="pointcol">${usersOrderInfo.order_idx}</strong> 
+									<strong class="pointcol">${u.order_idx}</strong> 
 								</dd>
 							</dl>
 						</li>
@@ -65,7 +65,7 @@
 					</thead>
 					<tbody>
 						<tr class="group">
-							<td><span class="thm ordernum2">${usersOrderInfo.order_idx}</span></td>
+							<td><span class="thm ordernum2">${u.order_idx}</span></td>
 							<td class="product">
 								<div>
 									<div class="thmb">
@@ -77,15 +77,15 @@
 									</div>
 									<dl>
 										<dt>
-											<strong class="name_seller">${usersOrderInfo.product_detail_info}</strong> 
-											<a href="#"	target="_blank">${usersOrderInfo.product_name}</a>
+											<strong class="name_seller">${u.product_detail_info}</strong> 
+											<a href="#"	target="_blank">${u.product_name}</a>
 										</dt>
 									</dl>
 								</div>
 							</td>
-							<td class="money"><em class="thm">${usersOrderInfo.product_price * usersOrderInfo.order_quantity}</em>원<br> <span>(${usersOrderInfo.order_quantity}개)</span></td>
+							<td class="money"><em class="thm">${u.product_price * u.order_quantity}</em>원<br> <span>(${u.order_quantity}개)</span></td>
 							<td class="bg_point state">무료배송<br />
-							<td class="bg_point state">${usersOrderInfo.delivery_state}<br />
+							<td class="bg_point state">${u.delivery_state}<br />
 							<td class="bg_point state">구매미확정<br />
 							</td>
 
@@ -117,7 +117,7 @@
 												<ul class="price_list">
 													<li><strong>상품금액</strong>
 														<p>
-															<em class="thm">${usersOrderInfo.product_price * usersOrderInfo.order_quantity}</em>원
+															<em class="thm">${u.product_price * u.order_quantity}</em>원
 														</p>
 													</li>
 												</ul>
@@ -130,7 +130,7 @@
 												<ul class="price_list">
 													<li><strong>카드결제</strong>
 														<p>
-															<em class="thm">${usersOrderInfo.product_price * usersOrderInfo.order_quantity}</em>원
+															<em class="thm">${u.product_price * u.order_quantity}</em>원
 														</p>
 													</li>
 												</ul>
@@ -146,11 +146,11 @@
 											<ul>
 												<li class="final_payment_price"><strong>주문금액</strong>
 													<p>
-														<em class="thm">${usersOrderInfo.product_price * usersOrderInfo.order_quantity}</em>원
+														<em class="thm">${u.product_price * u.order_quantity}</em>원
 													</p></li>
 												<li><strong>카드결제</strong>
 													<p>
-														<em class="thm">${usersOrderInfo.product_price * usersOrderInfo.order_quantity}</em>원
+														<em class="thm">${u.product_price * u.order_quantity}</em>원
 													</p>
 												</li>
 											</ul>
@@ -184,15 +184,15 @@
 								<tbody>
 									<tr class="gap">
 										<th scope="row">수령인</th>
-										<td>${usersOrderInfo.order_receiver_name}</td>
+										<td>${u.order_receiver_name}</td>
 									</tr>
 									<tr>
 										<th scope="row">연락처</th>
-										<td><span class="tel">${usersOrderInfo.order_receiver_phonenumber}</span></td>
+										<td><span class="tel">${u.order_receiver_phonenumber}</span></td>
 									</tr>
 									<tr>
 										<th scope="row">배송지</th>
-										<td class="address">${usersOrderInfo.order_receiver_address}<br>
+										<td class="address">${u.order_receiver_address}<br>
 										</td>
 									</tr>
 								</tbody>
@@ -206,9 +206,9 @@
 									<!--N=a:odd.changeinfo-->
 								</dt>
 								<dd class="pdb">
-									<strong>${usersOrderInfo.order_name}</strong>
+									<strong>${u.order_name}</strong>
 									<p>
-										${usersOrderInfo.user_phonenumber}<br>
+										${u.user_phonenumber}<br>
 									</p>
 								</dd>
 							</dl>
