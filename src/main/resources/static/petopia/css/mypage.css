@@ -1,6 +1,11 @@
+body, main{
+	position: relative; 
+	z-index: -100;
+}
+
 .mypage-main{
   margin-top: 100px;
-  margin-left: 350px;
+  margin-left: 500px;
   margin-bottom: 200px;
   max-width: 1050px;
 }

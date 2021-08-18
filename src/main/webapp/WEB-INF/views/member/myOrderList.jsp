@@ -28,9 +28,9 @@
 				<c:forEach var="o" items="${orderList }">
 					<div class="box">
 						<div class="date">
-							<h4>${o.order_date }2021.08.31</h4>
+							<h6>${o.order_date_str }</h6>
 							<a href="myOrderDetail">
-								<h5>주문 상세 보기 ></h5>
+								<h6>주문 상세 보기 ></h6>
 							</a>
 						</div>
 						<div class="box2">
@@ -51,30 +51,10 @@
 								<a href="#">
 									<button class="Btn1">배송조회</button>
 								</a>
-								<button class="Btn" id="show">후기 작성하기</button>
+								<a href="#">
+									<button class="Btn">후기 작성하기</button>
+								</a>
 
-								<div class="background">
-									<div class="window">
-										<div class="popup">
-
-											<div class="modal-header">
-												<h3 class="modal-title" id="insertModalLabel">후기 작성</h3>
-												<span class="close">&times;</span>
-											</div>
-											<div class="form-group">
-												<label for="message-text" class="control-label">내용</label>
-												<textarea class="form-control" name="content_text"
-													id="insertContentText" placeholder="200자 이내로 작성 가능합니다."
-													style="resize: none" maxlength="200"></textarea>
-												<br>
-											</div>
-											<div class="modal-footer">
-												<button type="submit" id="insertSubmit">등록하기</button>
-
-											</div>
-										</div>
-									</div>
-								</div>
 							</div>
 						</div>
 
@@ -92,24 +72,7 @@
 		<%@include file="../include/default_footer.jsp"%>
 	</footer>
 
-	<script>
-		
-	<%@include file="../include/default_sidebar_js.jsp"%>
-		
-	</script>
 
-	<script>
-		function show() {
-			document.querySelector(".background").className = "background show";
-		}
-
-		function close() {
-			document.querySelector(".background").className = "background";
-		}
-
-		document.querySelector("#show").addEventListener('click', show);
-		document.querySelector("#close").addEventListener('click', close);
-	</script>
 
 </body>
 
