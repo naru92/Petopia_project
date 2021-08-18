@@ -71,14 +71,21 @@
 	</insert>
 	
 	<update id = "updateMemberPoint">
-		UPDATE member SET member_point = member_point + 100
+		UPDATE member SET member_point = member_point + 1000
 	      WHERE member_id = #{member_id}
 	</update>
 	
 	<update id = "updatePoint">
-		UPDATE point SET member_point_savepoint = member_point_savepoint + 100
+		UPDATE point SET member_point_savepoint = member_point_savepoint + 1000
 	      WHERE member_id = #{member_id}
 	</update>
+	
+	 <!-- 배송 테이블 정보 추가 -->
+	<insert id= "insertDelivery">
+		INSERT INTO delivery (delivery_idx, order_idx, delivery_state, delivery_date)
+			   VALUES (delivery_seq.nextval, #{order_idx}, #{delivery_state}, sysdate)
+		
+	</insert>
 	
 	<!-- 비회원 -->
 	
@@ -144,4 +151,7 @@
 		AND u.order_idx = d.order_idx 
 		AND d.order_idx = #{order_idx}
 	</select>
+	
+	
+	
 </mapper>

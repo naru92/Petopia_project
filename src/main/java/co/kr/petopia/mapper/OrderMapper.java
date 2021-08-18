@@ -50,6 +50,9 @@ public interface OrderMapper {
 	// 포인트 업데이트
 	void updatePoint(OrderVO orderVO);
 	
+	// 배송 정보 추가
+	void insertDelivery(OrderVO orderVO);
+	
 	// 비회원
 	// 회원의 장바구니 목록 가져오기
 	
