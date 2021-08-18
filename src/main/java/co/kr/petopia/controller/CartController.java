@@ -101,7 +101,7 @@ public class CartController {
 			//모델에 이름 넘기기
 			model.addAttribute("member", memberVO);
 			
-			}else {
+			} else {
 				String member_id = httpSession.getId();
 				log.info("비훠왼 아이디 : " +  member_id);
 				List<CartVO> cartList = cartService.goCart(member_id);
@@ -125,6 +125,7 @@ public class CartController {
 				
 				log.info("세션에 저장된 상품가격: " + httpSession.getAttribute("totalPrice"));
 				log.info("세션에 저장된 카트정보: " + httpSession.getAttribute("cart"));
+				
 				
 			}
 		
@@ -174,7 +175,7 @@ public class CartController {
 	@ResponseBody
 	public ResponseEntity<String> deleteCartItem(@RequestBody int cart_id) {
 		
-		log.info("cartID = " + cart_id);
+		log.info("삭제할 카트 cartID = " + cart_id);
 		int count = cartService.deleteCartItem(cart_id);
 		
 		return count == 1
