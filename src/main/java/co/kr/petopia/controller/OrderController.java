@@ -133,6 +133,16 @@ public class OrderController {
 	@GetMapping("/users/checkout")
 	public String getOrderForm(Model model, HttpSession session) {
 		log.info("getOrderForm()..");
+		
+		
+		log.info("총가격 : " + session.getAttribute("totalPrice"));		
+		String member_id = session.getId();
+		List<CartVO> cartInfo = cartService.goCart(member_id);
+		log.info("카트정보: " + cartInfo);
+		
+		model.addAttribute("cartInfo", cartInfo);
+		
+		
 
 		return "/order/checkout_users";
 	}

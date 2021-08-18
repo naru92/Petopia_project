@@ -1032,14 +1032,14 @@ color: : red !important;
 
       <a id="backtotop"></a>
 
-
       <script type="text/javascript">
+		$.cookie('itemList',null);
   
          $(document).ready(function() {
         	   var member_id = "${not_member}";
                var product_no ="";
                var imageName="";
-              
+         
                if($.cookie('itemList') == null){
                var itemList = [];   
                }else{

@@ -105,9 +105,8 @@
  		delete from 
  			cart
  		where
- 			c.cart_id = ct.cart_id and
- 			cart_id = #{cart_id} and
- 			ct.cart_name = '장바구니' 			
+ 			cart_id = #{cart_id} 
+ 						
  	</delete>
  	<!-- 위시 날리기 -->
  		<delete id="deleteWishList">
