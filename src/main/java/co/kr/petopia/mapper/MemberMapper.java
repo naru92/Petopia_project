@@ -1,5 +1,6 @@
 package co.kr.petopia.mapper;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
@@ -7,6 +8,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import co.kr.petopia.vo.BoardVO;
 import co.kr.petopia.vo.MemberVO;
+import co.kr.petopia.vo.PointVO;
 import co.kr.petopia.vo.ReplyVO;
 
 @Mapper
@@ -51,6 +53,8 @@ public interface MemberMapper {
     
     // 비밀번호 찾기 (수정)
     int resetMemberPw(MemberVO member);
+    
+   
 }
 
 

@@ -152,10 +152,10 @@ display :inline;
                            <strong class="label-txt product_detail_text">상품설명</strong>
 						  <textarea class="input" rows="3"  name='product_detail_info'></textarea>
 						
-						    <strong class="pull-left" id="checkProductDetailInfo"></strong>
 						     <div class="line-box">
 						   <div class="line"></div>
 						    </div>
+						    <strong class="pull-left" id="checkProductDetailInfo"></strong>
 						  </label>
                         </div>
                         
@@ -355,7 +355,7 @@ display :inline;
 
 					        // 파일 용량, 확장자 체크
 					        var regex = new RegExp("(.*?)\.(exe\sh\zip\alz)$");
-					        var maxSize = 5424880; //5MB
+					        var maxSize = 43399040; //20MB
 
 					        function checkExtension(fileName, fileSize) {
 

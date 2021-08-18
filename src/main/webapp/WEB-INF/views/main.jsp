@@ -709,7 +709,7 @@ color: : red !important;
                <c:when test="${!empty md}">
                <div class="col-lg-6 col-md-6 mb-4 nopaddingcard ">
                   <div class="card h-40 itembox1">
-                     <a href="#"><img class="card-img-top" id="listAttach${status.index}" src="#" alt="상품이미지"></a>
+                     <a href="product"><img class="card-img-top" id="listAttach${status.index}" src="#" alt="상품이미지"></a>
                         <input type="hidden" name="product_idx" value="${md.product_idx}">
                         <input type="hidden" class="cookiefileName" value="${md.productVOList.get(0).fileName}" />
                         
@@ -727,6 +727,7 @@ color: : red !important;
                            <i class="fa fa-shopping-cart"></i> 장바구니</button>
                         
                   </div>
+                  
                </div>
                
                <form>
@@ -785,7 +786,7 @@ color: : red !important;
                                     alt="테스트 이미지" class="class-image" id="listAttach2${status.index}"  width= />
                               <div class="class-skill">
                                  <div class="class-type">${popular_product.product_name}</div>
-                                 <div class="class-format">♡</div>
+                                    <div class="class-format"><button id="addWish"><i class="fas fa-heart cursor-heart"></i></button></div>
                               </div>
                               <div class="class-desc col-10">
                                  <div class="class-title popular">${popular_product.product_price} 원</div>
@@ -856,7 +857,7 @@ color: : red !important;
                                  alt="테스트 이미지" class="class-image" id="listAttach3${status.index}" width= />
                            <div class="class-skill">
                               <div class="class-type">${new_product.product_name}</div>
-                              <div class="class-format">♡</div>
+                              <div class="class-format"><button id="addWish"><i class="fas fa-heart cursor-heart"></i></button></div>
                            </div>
                            <div class="class-desc col-10">
                               <div class="class-title new">${new_product.product_price} 원</div>
@@ -916,7 +917,7 @@ color: : red !important;
                                  alt="테스트 이미지" class="class-image" id="listAttach4${status.index}" width= />
                            <div class="class-skill">
                               <div class="class-type">${single_product.product_name}</div>
-                              <div class="class-format">♡</div>
+                                <div class="class-format"><button id="addWish"><i class="fas fa-heart cursor-heart"></i></button></div>
                            </div>
                            <div class="class-desc col-10">
                               <div class="class-title single">${single_product.product_price} 원</div>
@@ -1034,33 +1035,25 @@ color: : red !important;
 
 
       <script type="text/javascript">
-      $.cookie('itemList', null);
-      
+  
          $(document).ready(function() {
-            
-
-            
                var product_no ="";
                var imageName="";
-               var itemList = [];
-            
-            
-
-               var product_no ="";
-               var imageName="";
+              
                if($.cookie('itemList') == null){
                var itemList = [];   
                }else{
-               var itemList = JSON.parse($.cookie('itemList'));
+            	var itemList = [];    
+                itemList = JSON.parse($.cookie('itemList'));
                }
                
+               console.log(itemList);
             if($("#noData").length == 0 && itemList == "null" ){
-               
                $("#right_zzim ul").append('<p class="noData">최근 본 상품이<br> 없습니다.</p>');
                $("#paging").hide();
                $("#recentCnt").text('');
                
-            }else if(itemList.length >= 1) {
+            }else if(itemList !=  "null") {
                var itemList = JSON.parse($.cookie('itemList'));
                var Cpage;   // 현재 페이지 
                var pagingSize = 1;   // 원하는 페이지 사이즈로 조정하세용 
@@ -1068,7 +1061,6 @@ color: : red !important;
                function chkRecent(a){
 
                var itemID = JSON.parse($.cookie('itemList'));
-               console.log(itemID.product_idx);
 
                $("#right_zzim ul").html('');    // 일단 Ul 내용 지우기... 
 
@@ -1184,12 +1176,11 @@ color: : red !important;
                }
                checkCookie();
             }
-
+            
          $(".class-detail").on('click', function(e){
-         
                product_no = $(this).parent().parent().children('input').val();
                imageName = $(this).parent().parent().children('.cookiefileName').val();
-               
+              
                var product = {
                   "product_idx" : product_no,
                   "fileName" : imageName
@@ -1305,13 +1296,13 @@ color: : red !important;
                      if (itemList != "" && itemList != null) {
 
                         if ( itemList.length < 1 ){ //값이 없으면 
-                              itemlist.push(product)
+                              itemlist.push(product);
                          }
 
                      } else {
 
                         if (itemList == "" || itemList == null) {
-                           itemlist.push(product)
+                           itemlist.push(product);
    
                         }
 
@@ -1486,7 +1477,24 @@ color: : red !important;
                console.log(price);
                $(".single").html(numberFormat(price));
             }
-
+			
+        	$(".ctgli:has(.ctgulChild)").click(function(e) {
+        		e.preventDefault();
+        		//li_HAVE_Child-hasShowed-hasSlideD
+        		if ($(this).hasClass('showed')) {
+        			//-x-hasSlideD
+        			$(this).children('.ctgulChild');
+        		} else {
+        			$('.ctgulChild');
+        			$('.ctgli').removeClass('showed');
+        			$(this).addClass('showed');
+        			$(this).children('.ctgulChild').slideToggle();
+        		}
+        	});
+        	$('.ctgli').click(function() {
+        		$(this).toggleClass('wtok');
+        	});
+            
          });
       </script>
 

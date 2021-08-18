@@ -1,6 +1,7 @@
 package co.kr.petopia.mapper;
 
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
@@ -39,6 +40,8 @@ public interface PointMapper {
     // 기부횟수 조회
     int countDonation(String member_id);
     
+    //월별 기부
+   	List<PointVO> getSelectOptionList(HashMap<String, Object> optionMap);
 }
 
 

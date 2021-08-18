@@ -343,6 +343,36 @@ public class AdminServiceImpl implements AdminService {
 		
 		return DateDescList;
 	}
+
+	@Override
+	public int getDonationTotalCount() {
+		return adminMapper.getDonationTotalCount();
+	}
+
+	
+
+	@Override
+	public int getDonationTodayCount() {
+		return adminMapper.getDonationTodayCount();
+	}
+
+
+
+	@Override
+	public int getDonationMonthCount() {
+		return adminMapper.getDonationMonthCount();
+	}
+
+	@Override
+	public DonationVO getAllDonationSum() {
+		DonationVO donation = new DonationVO();
+		
+		donation.setDonation_month(adminMapper.getMonthDonationSum());
+		donation.setDonation_total(adminMapper.getTotalDonationSum());
+		donation.setDonation_today(adminMapper.getTodayDonationSum());
+		
+		return donation;
+	}
 	
 
 }

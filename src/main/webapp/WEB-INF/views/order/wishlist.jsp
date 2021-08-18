@@ -181,6 +181,7 @@ footer {
 </div>
 
 	</div>
+	
 	<footer>
 		<%@include file="../include/default_footer.jsp"%>
 	</footer>
