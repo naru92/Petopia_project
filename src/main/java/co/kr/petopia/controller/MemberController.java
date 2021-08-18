@@ -208,13 +208,8 @@ public class MemberController {
 
         return gson.toJson(key);
     }
-    
-    // 비회원/ 회원 주문조회 페이지
-    @GetMapping("member/orderCheck")
-    public String orderCheck() {
-        return "order/orderCheck";
-    }
 
+    
     // 마이페이지 메인
     @GetMapping("member/mypage")
     public String mypage(Model model, Principal principal) {
@@ -268,22 +263,12 @@ public class MemberController {
     }
      
 
-
-    // 회원정보수정 비밀번호 확인
-    @GetMapping("member/passwordConfirm")
-    public String passwordConfirm() {
-
-        return "member/passwordConfirm";
-    }
-
     // 회원정보수정
     @GetMapping("member/modify")
     public String memberModify() {
 
         return "member/memberModify";
     }
-
-
 
 	// 회원 탈퇴
 	@GetMapping("member/withdrawal_agree")
@@ -299,12 +284,6 @@ public class MemberController {
 	@GetMapping("member/withdrawal_success")
 	public String withdrawal_success() {
 		return "member/withdrawal_success";
-	}
-
-	// 기부 메인
-	@GetMapping("/donation")
-	public String donation() {
-		return "member/donation";
 	}
 
 	// 마이펫 등록

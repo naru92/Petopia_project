@@ -1,9 +1,7 @@
 package co.kr.petopia.vo;
 
 import java.util.Date;
-
 import java.util.List;
-
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -25,6 +23,7 @@ public class OrderVO {
 	private int product_idx;
 	private String member_id;
 	private Date order_date;
+	private String order_date_str;
 	private int payment_method;
 	private String product_name;
 	private String product_coloroption;
@@ -45,7 +44,8 @@ public class OrderVO {
 	private int order_price;
 	private List<ProductVO> productList;
 	
-
+	private List<FileUploadVO> productAttach;
+	private String delivery_state;
 	
 
 	

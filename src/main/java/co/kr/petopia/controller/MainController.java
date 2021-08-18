@@ -34,102 +34,53 @@ public class MainController {
 	@GetMapping("/main")
 	public String mainPage(Model model, Principal principal) {
 
-//		
-//		Random random = new Random();
-//		ArrayList<ProductVO> md = new ArrayList<>();
-//		/*
-//		 * 메인에 필요한것들
-//		 * 상품정보 
-//		 * 게시판정보
-//		 *  
-//		*/
-//		
-//		
-//		List<ProductVO> AllProductList = adminService.getAllProductList();
-//	
-//		//MD추천제품
-//		List<ProductVO> allList= adminService.getAllProductList();
-//		int[] mdNumber = new int[2];
-//		
-//		for(int i=0; i < 2; i++) {
-//			
-//			mdNumber[i] = random.nextInt(allList.size());
-//		}	
-//		while(mdNumber[0] == mdNumber[1]) {
-//			mdNumber[1] = random.nextInt(allList.size());
-//		}
-//			
-//		
-//		//MD추천 두개만
-//		md.add(allList.get(mdNumber[0]));
-//		md.add(allList.get(mdNumber[1]));
-//		 
-//		
-//		
-//		
-//		model.addAttribute("productVO", AllProductList);
-//		model.addAttribute("single_product", AllProductList);
-//		model.addAttribute("popular_product" , adminService.productListBestDesc());
-//		model.addAttribute("new_product" , adminService.productListDateDesc());
-//		model.addAttribute("md_product", md);
-//		model.addAttribute("notice_info" , boardService.getAllBoardInfo().get(0));//공지사항 게시판정보
-//		model.addAttribute("qna_info" , boardService.getAllBoardInfo().get(1)); //문의사항 게시판정보
-//		model.addAttribute("event_info" , boardService.getAllBoardInfo().get(2));//이벤트게시판 정보
-//		model.addAttribute("petsta_info" , boardService.getAllBoardInfo().get(3));//펫스타그램 게시판 정보
-//		
-//		log.info("md : " + md);
 		
-		
-		
-		
-
 		Random random = new Random();
 		ArrayList<ProductVO> md = new ArrayList<>();
 		/*
-		 * 메인에 필요한것들 상품정보 게시판정보
-		 * 
-		 */
-
+		 * 메인에 필요한것들
+		 * 상품정보 
+		 * 게시판정보
+		 *  
+		*/
+		
+		
 		List<ProductVO> AllProductList = adminService.getAllProductList();
-
+	
+		//MD추천제품
+		List<ProductVO> allList= adminService.getAllProductList();
+		int[] mdNumber = new int[2];
 		
-		  //MD추천제품 
-			List<ProductVO> allList= adminService.getAllProductList();
-		  
-		  int[] mdNumber = new int[2];
-		  
-		  for(int i=0; i < 2; i++) {
-		  
-		  mdNumber[i] = random.nextInt(allList.size());
-		  } while(mdNumber[0] ==  mdNumber[1]) {
-			  mdNumber[1] = random.nextInt(allList.size());
+		for(int i=0; i < 2; i++) {
+			
+			mdNumber[i] = random.nextInt(allList.size());
+		}	
+		while(mdNumber[0] == mdNumber[1]) {
+			mdNumber[1] = random.nextInt(allList.size());
+		}
+			
 		
-		  }
-		  
-		  
-		  //MD추천 두개만 md.add(allList.get(mdNumber[0]));
-		  md.add(allList.get(mdNumber[1]));
-		  
+		//MD추천 두개만
+		md.add(allList.get(mdNumber[0]));
+		md.add(allList.get(mdNumber[1]));
 		 
-		  
-		  
-		  model.addAttribute("productVO", AllProductList);
-		  model.addAttribute("single_product", AllProductList);
-		 model.addAttribute("popular_product" , adminService.productListBestDesc());
-		  model.addAttribute("new_product" , adminService.productListDateDesc());
-		  model.addAttribute("md_product", md); 
-		  model.addAttribute("notice_info" ,boardService.getAllBoardInfo().get(0));//공지사항 게시판정보
-		  model.addAttribute("qna_info" , boardService.getAllBoardInfo().get(1));
-		  //문의사항 게시판정보 
-		  model.addAttribute("event_info" ,
-		  boardService.getAllBoardInfo().get(2));//이벤트게시판 정보
-		 model.addAttribute("petsta_info" ,
-		  boardService.getAllBoardInfo().get(3));//펫스타그램 게시판 정보
-		  
-		  log.info("md : " + md);
-		 
-
-
+		
+		
+		
+		model.addAttribute("productVO", AllProductList);
+		model.addAttribute("single_product", AllProductList);
+		model.addAttribute("popular_product" , adminService.productListBestDesc());
+		model.addAttribute("new_product" , adminService.productListDateDesc());
+		model.addAttribute("md_product", md);
+		model.addAttribute("notice_info" , boardService.getAllBoardInfo().get(0));//공지사항 게시판정보
+		model.addAttribute("qna_info" , boardService.getAllBoardInfo().get(1)); //문의사항 게시판정보
+		model.addAttribute("event_info" , boardService.getAllBoardInfo().get(2));//이벤트게시판 정보
+		model.addAttribute("petsta_info" , boardService.getAllBoardInfo().get(3));//펫스타그램 게시판 정보
+		
+		log.info("md : " + md);
+		
+		
+		
 		return "main";
 	}
 
