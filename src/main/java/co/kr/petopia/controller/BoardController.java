@@ -412,9 +412,10 @@ public class BoardController {
 	
 	/****************** 기부 **********************/
 	
-    // 기부 메인
-    @GetMapping("/donation")
-    public String donation() {
-        return "board/donation";
-    }
+	/*
+	 * // 기부 메인
+	 * 
+	 * @GetMapping("/donation") public String donation() { return "board/donation";
+	 * }
+	 */
 }

@@ -261,22 +261,12 @@ public class MemberController {
         return "member/point";
     }
      
-
-
-    // 회원정보수정 비밀번호 확인
-    @GetMapping("member/passwordConfirm")
-    public String passwordConfirm() {
-
-        return "member/passwordConfirm";
-    }
-
     // 회원정보수정
     @GetMapping("member/modify")
     public String memberModify() {
 
         return "member/memberModify";
     }
-
 
 
 	// 회원 탈퇴
@@ -294,12 +284,13 @@ public class MemberController {
 	public String withdrawal_success() {
 		return "member/withdrawal_success";
 	}
-
-	// 기부 메인
-	@GetMapping("/donation")
-	public String donation() {
-		return "member/donation";
-	}
+	
+	
+	/* // 기부 메인
+	 * 
+	 * @GetMapping("/donation") public String donation() { return "member/donation";
+	 * }
+	 */
 
 	// 마이펫 등록
 	@GetMapping("member/myPet1")

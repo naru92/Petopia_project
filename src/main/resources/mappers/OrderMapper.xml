@@ -46,12 +46,17 @@
 	
 	<!-- 포인트-->
 	<insert id = "insertPoint">
-		INSERT INTO point (member_id, member_point_savedetail
-         	   VALUES (#{member_id}, 100)
+		INSERT INTO point (member_id, member_point_savepoint, member_point_savedetail, member_point_savedate)
+         	   VALUES (#{member_id}, #{member_point_savepoint}, #{member_point_savedetail}, sysdate)
 	</insert>
 	
+	<update id = "updateMemberPoint">
+		UPDATE member SET member_point = member_point + 100
+	      WHERE member_id = #{member_id}
+	</update>
+	
 	<update id = "updatePoint">
-		UPDATE point SET sum(member_point_save_point + 100)
+		UPDATE point SET member_point_savepoint = member_point_savepoint + 100
 	      WHERE member_id = #{member_id}
 	</update>
 	
