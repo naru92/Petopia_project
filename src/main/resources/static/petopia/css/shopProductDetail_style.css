@@ -3,10 +3,9 @@
 
 body, main{
 	position: relative; 
-	height: 1300px; 
+	height: 3000px; 
 	z-index: -100;
 	overflow-x: hidden;
-	overflow-y: auto; 
 }
 
 .article{
@@ -137,3 +136,50 @@ body, main{
 #QnA{
 	color: #2AC1BC;
 }
+
+
+
+/*------------------------------------------*/
+
+.qt, .qt-plus, .qt-minus {
+	position: relative;
+	display: inline-block;
+	float: right;
+	right: 160px;
+	top: -7px;
+}
+
+.qt {
+	width: 70px;
+	font-size: 19px;
+	line-height: 50px;
+	text-align: center;
+}
+
+.qt-plus, .qt-minus {
+	background: #fff;
+	border: none;
+	font-size: 30px;
+	font-weight: 300;
+	padding: 0 20px;
+	-webkit-transition: background .2s linear;
+	-moz-transition: background .2s linear;
+	-ms-transition: background .2s linear;
+	-o-transition: background .2s linear;
+	transition: background .2s linear;
+}
+
+.qt-plus:hover, .qt-minus:hover {
+	background: #53b5aa;
+	color: #fff;
+	cursor: pointer;
+}
+
+.qt-plus {
+	line-height: 50px;
+}
+
+.qt-minus {
+	line-height: 47px;
+}
+
