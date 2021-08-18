@@ -12,6 +12,7 @@ import co.kr.petopia.mapper.AattachMapper;
 import co.kr.petopia.mapper.BoardMapper;
 import co.kr.petopia.utils.Criteria;
 import co.kr.petopia.vo.BoardVO;
+import co.kr.petopia.vo.FileUploadVO;
 import jdk.internal.org.jline.utils.Log;
 import lombok.RequiredArgsConstructor;
 import lombok.ToString;
@@ -70,6 +71,12 @@ public class BoardServiceImpl implements BoardService{
     public List<BoardVO> getContentList(Long board_id) {
         
         return boardMapper.getContentList(board_id);
+    }
+    
+    @Override
+    public List<FileUploadVO> getImgList(BoardVO boardVO) {
+        
+        return aattachMapper.findByContent(boardVO);
     }
 
     @Override
@@ -135,6 +142,8 @@ public class BoardServiceImpl implements BoardService{
 		count++;
 		return count;
 	}
+
+
 
 	
 }

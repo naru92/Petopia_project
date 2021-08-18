@@ -121,5 +121,13 @@ public class OrderServiceImpl implements OrderService {
 
 	}
 
+	
+	// 비회원 상세정보 조회
+    @Override
+    public OrderVO usersOrderInfo(OrderVO orderVO) {
+        
+        return orderMapper.usersOrderInfo(orderVO);
+    }
+
 
 }

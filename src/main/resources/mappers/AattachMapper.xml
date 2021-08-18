@@ -34,7 +34,7 @@
 	</delete>
 	
 	<!-- 첨부파일 가져오기 -->
-	<select id = "findByContent" parameterType="int" resultType="co.kr.petopia.vo.FileUploadVO">
-	select * from tbl_attach where content_idx = #{content_idx}
+	<select id = "findByContent" resultType="co.kr.petopia.vo.FileUploadVO">
+	select * from tbl_attach where board_id = #{board_id} AND content_idx = #{content_idx}
 	</select>		 
 </mapper>

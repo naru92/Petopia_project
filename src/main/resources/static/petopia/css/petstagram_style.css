@@ -210,10 +210,19 @@ img {
     transform: rotateY(180deg);
 }
 
-.gallery-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+.gallery-item .gallery-ul{
+	display: block; 
+	overflow: hidden; 
+	height: 300px; 
+	width: 300px;
+	margin-bottom: 10px;
+}
+
+.gallery-item .gallery-image{
+	display: block; /* Otherwise it keeps some space around baseline */ 
+	max-width: 100%; /* Scale up to fill container width */ 
+	min-height: 100%; /* Scale up to fill container height */ 
+	-ms-interpolation-mode: bicubic;
 }
 
 .contentGetbtn{
@@ -476,6 +485,7 @@ Remove or comment-out the code block below to see how the browser will fall-back
 	outline:none;
 }
 
+
 .uploadResult ul{
 	display: block; 
 	overflow: hidden; 
@@ -485,10 +495,10 @@ Remove or comment-out the code block below to see how the browser will fall-back
 }
 
 .uploadResult img{
-display: block; /* Otherwise it keeps some space around baseline */ 
-max-width: 100%; /* Scale up to fill container width */ 
-min-height: 100%; /* Scale up to fill container height */ -ms-interpolation-mode: bicubic;
-
+	display: block; /* Otherwise it keeps some space around baseline */ 
+	max-width: 100%; /* Scale up to fill container width */ 
+	min-height: 100%; /* Scale up to fill container height */ 
+	-ms-interpolation-mode: bicubic;
 }
 
 #replyRegister{

@@ -352,7 +352,15 @@ public class BoardController {
 
 		log.info("petstagramList...........");
 		
-		model.addAttribute("contentList", boardService.getContentList(board_id));
+		List<BoardVO> contentList = boardService.getContentList(board_id);
+		
+		for (BoardVO boardVO : contentList) {
+            List<FileUploadVO> imgList = boardService.getImgList(boardVO);
+            boardVO.setAttachList(imgList);
+            log.info("boardVO..........." + boardVO);
+         }
+		
+		model.addAttribute("contentList", contentList);
 		
 		if (principal != null) {
 		String member_id = principal.getName();

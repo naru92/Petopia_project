@@ -84,6 +84,7 @@ public class FileUploadController {
 		
 		String uploadFolder = "C:\\upload\\";
 		// "C:\\upload"
+		// "C:\\..\\Petopia_project\\src\\main\\resources\\static\\upload"???
 		// "/usr/local/apache-tomcat-9.0.29/webapps/upload"
 		
 

@@ -223,6 +223,7 @@ public class MemberController {
         return gson.toJson(key);
     }
 
+    
     // 마이페이지 메인
     @GetMapping("member/mypage")
     public String mypage(Model model, Principal principal) {
@@ -322,8 +323,6 @@ public class MemberController {
     public String reviewList() {
         return "member/reviewList";
     }
-    
-
 
     // 회원정보수정
     @GetMapping("member/modify")
@@ -331,8 +330,6 @@ public class MemberController {
 
         return "member/memberModify";
     }
-
-
 
 	// 회원 탈퇴
 	@GetMapping("member/withdrawal_agree")
@@ -350,7 +347,6 @@ public class MemberController {
 		return "member/withdrawal_success";
 	}
 
-	
 
 	// 마이펫 등록
 	@GetMapping("member/myPet1")
