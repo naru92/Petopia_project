@@ -445,8 +445,6 @@ color: : red !important;
             <div class="container-fluid">
                <div class="menu-wrapper">
                   <div class="links">
-
-
                      <sec:authorize access="isAnonymous()">
                         <a href="/joinAgree" class="link_text">회원가입</a>
                         <a href="/login" class="link_text">로그인</a>
@@ -545,6 +543,8 @@ color: : red !important;
 
    <hr />
    <div class="row">
+ 	
+ 
                   <div class="container-side">
                      <div class="grid">
                         <div class="row">
@@ -1011,7 +1011,6 @@ color: : red !important;
          </div>
 
       </div>
-         
       <footer>
          <div class="container-fluid">
 
@@ -1037,6 +1036,7 @@ color: : red !important;
       <script type="text/javascript">
   
          $(document).ready(function() {
+        	   var member_id = "${not_member}";
                var product_no ="";
                var imageName="";
               
@@ -1403,10 +1403,22 @@ color: : red !important;
             $("#addCart").on("click", function(e) {
 
                e.preventDefault();
-
+				var cartVO = null;
+               if(member_id == null){
+               
                var cartVO = {
                   product_idx : $("input[name=product_idx]").val(),
-               /* amount : $("#productsAmount").val() */
+              	  amount : $("#productsAmount").val()
+               }
+               
+               }else{
+            	   console.log(member_id);
+            	   var cartVO ={
+            			product_idx : $("input[name=product_idx]").val(),
+            			amount : $("#productsAmount").val(),
+            			member_id: member_id
+            			   
+            	   }
                }
 
                $.ajax({
@@ -1503,7 +1515,6 @@ color: : red !important;
       <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
       <script src="/petopia/js/mainindex.js"></script>
       <script src="/petopia/js/petopia.js"></script>
-
    </body>
 
 </html>
