@@ -65,7 +65,7 @@ public class MemberMapperTests {
     
     @Test
     public void testGetMyContentList() {
-        memberMapper.getMyContentList("dummy56");
+        memberMapper.getMyContentList("dummy1");
     }
     
     @Test
@@ -83,5 +83,6 @@ public class MemberMapperTests {
         vo.setMember_password("2222");
         memberMapper.resetMemberPw(vo);
     }
+    
     
 }

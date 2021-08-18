@@ -32,6 +32,7 @@ import com.google.gson.Gson;
 import co.kr.petopia.service.AdminService;
 import co.kr.petopia.service.MemberService;
 import co.kr.petopia.service.MypetService;
+import co.kr.petopia.service.OrderService;
 import co.kr.petopia.service.PointService;
 import co.kr.petopia.utils.Criteria;
 import co.kr.petopia.utils.PageVO;
@@ -50,10 +51,9 @@ public class MemberController {
     private PointService pointService;
     @Autowired
     private MypetService mypetService;
- 
-    
-	// @Autowired
-	// private PointService pointService;
+
+    @Autowired
+    private OrderService orderService;
     
     @GetMapping("/login")
     public String loginPage() {
@@ -249,6 +249,9 @@ public class MemberController {
     public String mypage_donation(Model model, Principal principal) {
 
         String member_id = principal.getName();
+        
+        
+        
         MemberVO memberVO = memberService.getMemberInfo(member_id);
         model.addAttribute("member", memberVO);
         
@@ -258,6 +261,11 @@ public class MemberController {
 //        model.addAttribute("d_count", pointService.countDonation(member_id));
 
         return "member/myDonation";
+    }
+    // 포인트 기부 페이지
+    @GetMapping("member/donate")
+    public String donate() {
+        return "member/donate";
     }
 
     // 마이페이지 포인트
@@ -279,7 +287,15 @@ public class MemberController {
 
     // 주문 내역
     @GetMapping("member/myOrderList")
-    public String orderList() {
+    public String orderList(Model model, Principal principal) {
+        
+        log.info("my order list..");
+        
+        String member_id = principal.getName();
+        log.info("맴버아이디 = " + member_id);
+        log.info("orderList " + orderService.readMemberOrderList(member_id));
+        model.addAttribute("orderList", orderService.readMemberOrderList(member_id));
+        
         return "member/myOrderList";
     }
 	// 월별 회원 기부 조회
@@ -307,22 +323,60 @@ public class MemberController {
     
     
     
-    // 주문 상세 내역
-    @GetMapping("member/myOrderDetail")
-    public String myOrderDetail() {
-        return "member/myOrderDetail";
-    }
     
     // 등급 혜택
     @GetMapping("member/grade")
     public String grade() {
         return "member/grade";
     }
+    
     // 후기 내역
     @GetMapping("member/reviewList")
-    public String reviewList() {
+    public String reviewList(Model model, Principal principal) {
+        log.info("my reply list...");
+        
+        String member_id = principal.getName();
+        model.addAttribute("replyList", memberService.getMyReplyList(member_id));
+        
         return "member/reviewList";
     }
+    
+    // 취소/반품/교환
+    @GetMapping("member/exchange_refund")
+    public String exchange_refund() {
+        return "member/exchange_refund";
+    }
+    // 내 문의 내역
+    @GetMapping("member/qna_my_qna")
+    public String qna_main() {
+        return "board/qna_my_qna";
+    }
+    // 장바구니
+    @GetMapping("member/cart")
+    public String cart() {
+        return "order/cart";
+    }
+    // 위시리스트
+    @GetMapping("member/wishlist")
+    public String wishlist() {
+        return "order/wishlist";
+    }
+    
+    // 펫스타그램 게시글 리스트
+    @GetMapping("member/contentList")
+    public String postList(Model model, Principal principal) {
+        log.info("my content list..");
+        
+        String member_id = principal.getName();
+        model.addAttribute("contentList", memberService.getMyContentList(member_id));
+       
+
+        return "member/contentList";
+    }
+    
+
+
+  
 
     // 회원정보수정
     @GetMapping("member/modify")
@@ -346,6 +400,7 @@ public class MemberController {
 	public String withdrawal_success() {
 		return "member/withdrawal_success";
 	}
+
 
 
 	// 마이펫 등록

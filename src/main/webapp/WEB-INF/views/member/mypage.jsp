@@ -120,65 +120,56 @@
 
 					<!--취소/반품/교환-->
 					<div class="profile-box">
-						<a href="#">
+						<a href="exchange_refund">
 							<img class="myimg" src="/petopia/images/return.png">
 						</a>
 						<div>
-							<a href="#">
+							<a href="exchange_refund">
 								<h4>취소/반품/교환</h4>
 							</a>
 						</div>
 					</div>
 					
-					<!--최근 본 상품-->
-					<div class="profile-box">
-						<a href="#">
-							<img class="myimg" src="/petopia/images/recent_view.png">
-						</a>
-						<div>
-							<a href="#">
-								<h4>최근 본 상품</h4>
-							</a>
-						</div>
-					</div>
-				</div>
-
-				<div class="line">
-
 					<!--장바구니-->
 					<div class="profile-box">
-						<a href="#">
+						<a href="cart">
 							<img class="myimg" src="/petopia/images/cart.png">
 						</a>
 						<div>
-							<a href="#">
+							<a href="cart">
 								<h4>장바구니</h4>
 							</a>
 						</div>
 					</div>
+					
+				
+				</div>
 
+				<div class="line">
 					<!--위시리스트-->
 					<div class="profile-box">
-						<a href="#">
+						<a href="wishlist">
 							<img class="myimg" src="/petopia/images/wishlist.png">
 						</a>
 						<div>
-							<a href="#">
+							<a href="wishlist">
 								<h4>위시리스트</h4>
 							</a>
 						</div>
 					</div>
 				</div>
 
+
+
 				<h3 class="mypage-subtitle">MY 발자국</h3>
 				<div class="line">
 					<!--QnA-->
 					<div class="profile-box">
-						<a href="board/qna_main">
+						<a href="qna_my_qna">
 							<img class="myimg" src="/petopia/images/QnA.png">
 						</a>
 						<div>
-							<a href="board/qna_main">
+							<a href="qna_my_qna">
 								<h4>QnA</h4>
 							</a>
 						</div>
@@ -194,14 +185,14 @@
 							</a>
 						</div>
 					</div>
-					<!--댓글 내역-->
+					<!--게시글 내역-->
 					<div class="profile-box">
-						<a href="#">
+						<a href="contentList">
 							<img class="myimg" src="/petopia/images/comments.png">
 						</a>
 						<div>
-							<a href="#">
-								<h4>댓글 내역</h4>
+							<a href="contentList">
+								<h4>작성 글 내역</h4>
 							</a>
 						</div>
 					</div>

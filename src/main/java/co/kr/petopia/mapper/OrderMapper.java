@@ -32,6 +32,9 @@ public interface OrderMapper {
 
 	// 주문 상세 정보 가져오기
 	OrderVO readMemberOrderInfo();
+	
+	// 주문 리스트 가져오기
+	List<OrderVO> readMemberOrderList(String member_id);
 
 	
 	

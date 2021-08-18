@@ -23,6 +23,8 @@ public interface OrderService {
 	int getMemberOrderFormCurrVal();
 	// 주문 상세 정보 가져오기
 	OrderVO readMemberOrderInfo();
+	// 주문 리스트 가져오기
+	List<OrderVO> readMemberOrderList(String member_id);
 
 	// 비회원
 	// 장바구니 목록 불러오기

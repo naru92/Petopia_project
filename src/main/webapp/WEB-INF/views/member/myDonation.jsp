@@ -21,7 +21,7 @@
 		<div class="donation-main">
 			<div class="content">
 				<h2>기부</h2>
-				<a href="#">
+				<a href="donate">
 					<button class="donationBtn">기부하기</button>
 				</a>
 			</div>
@@ -69,21 +69,20 @@
 							<tr>
 								<th>기부 내역 &nbsp</th>
 								<th class="info">*1년 이내의 기부 내역만 조회 가능합니다.</th>
-								<th>&nbsp &nbsp &nbsp</th>
 								<th>기부 포인트</th>
 							</tr>
 						</thead>
 
 						<tbody>
+						<c:forEach var="d" items="${donationList}">
 							<tr>
-								<td>${d_history.member_point_usedate }2021.06.02</td>
-								<td>&nbsp &nbsp &nbsp</td>
+								<td>${d.member_point_usedate }</td>
 								<td></td>
-								<td>${d_history.member_point_usepoint }1000 point</td>
+								<td></td>
 							</tr>
+						</c:forEach>
 <!-- 							<tr>
 								<td>2021.06.02</td>
-								<td>&nbsp &nbsp &nbsp</td>
 								<td></td>
 								<td>1000 point</td>
 							</tr> -->

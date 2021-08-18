@@ -12,5 +12,7 @@ public class ReplyVO {
     private String member_id;
     private String reply_text;
     private Date reply_date;
+    private int product_idx;
+    private String product_name;
 
 }

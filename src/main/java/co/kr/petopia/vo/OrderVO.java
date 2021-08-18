@@ -19,13 +19,14 @@ public class OrderVO {
 	private String member_phoneNumber;
 	private String member_address;
 	
+
 	private int order_idx;
 	private int product_idx;
 	private String member_id;
 	private Date order_date;
 	private String order_date_str;
+
 	private int payment_method;
-	private String product_name;
 	private String product_coloroption;
 	private String product_price;	
 	private int cart_id;
@@ -40,13 +41,27 @@ public class OrderVO {
 	private String order_receiver_name;
 	private String order_receiver_phonenumber;
 	private String order_receiver_address;
-	private int order_quantity;
 	private int order_price;
 	private List<ProductVO> productList;
 	
 	private List<FileUploadVO> productAttach;
-	private String delivery_state;
+
 	
+
+	
+	private String fileName;
+	
+
+
+	
+	private String delivery_state;
+	private int delivery_idx;
+
+	private int order_quantity;
+	private String product_name;
+
+	
+
 
 	
 }

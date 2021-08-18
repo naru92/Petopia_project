@@ -74,16 +74,21 @@
 	
 	<!-- 회원별 쓴 게시물 불러오는 쿼리문 -->
 	<select id="getMyContentList" resultType="co.kr.petopia.vo.BoardVO">
-		SELECT * FROM content 
-		WHERE member_id = #{member_id} 
-		ORDER BY content_idx DESC
+		select content_idx, content_date, content_title, member_id
+    		from content
+        		where member_id = #{member_id}
+            		ORDER BY content_idx DESC
 	</select>
 	
 	<!-- 회원별 쓴 댓글 불러오는 쿼리문 -->
 	<select id="getMyReplyList" resultType="co.kr.petopia.vo.ReplyVO">
-		SELECT * FROM reply 
-		WHERE member_id = #{member_id} 
-		ORDER BY reply_idx DESC
+		select
+				r.member_id, r.reply_text, r.reply_date, r.reply_idx, r.product_idx,
+        		p.product_name,
+        		t.filename
+    		from reply r, product p, tbl_attach t
+        		where member_id = #{member_id}
+            		order by reply_idx desc
 	</select>
 	
 	<!-- 회원 등급 확인 -->

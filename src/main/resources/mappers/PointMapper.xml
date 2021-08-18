@@ -62,7 +62,7 @@
 	
 	<!-- 기부 내역 조회 -->
 	<select id="donationHistory" resultType="String">
-		select member_id, member_point_usepoint, member_point_usedate, member_point_usedetail
+		select member_id, member_point_usepoint, member_point_usedate
 			from point
 				where member_id = #{member_id}
 						and member_point_usedetail = '기부'
@@ -70,7 +70,7 @@
 	</select>
 	
 	<!-- 기부횟수 보기 -->
-	<select id="countDonation" resultType="int">
+	<select id="countDonation" resultType="String">
 		select member_point_usedetail, count(*) 
     		from point
         		where member_point_usedetail = '기부' and member_id = #{member_id}

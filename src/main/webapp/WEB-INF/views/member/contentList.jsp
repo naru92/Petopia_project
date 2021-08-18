@@ -6,10 +6,10 @@
 
 <head>
 <meta charset="UTF-8" />
-<title>후기내역 | Petopia</title>
+<title>작성 글 내역 | Petopia</title>
 <!-- CSS here -->
 <link rel="stylesheet" href="/petopia/css/menu_test.css">
-<link rel="stylesheet" href="/petopia/css/reviewList.css">
+<link rel="stylesheet" href="/petopia/css/contentList.css">
 <!-- default_css -->
 <%@include file="../include/default_css.jsp"%>
 </head>
@@ -21,24 +21,26 @@
 	<main>
 		<div class="review-main">
 			<div class="content" style="border-bottom: 1px solid black;">
-				<h2>후기 관리</h2>
+				<h2>작성 글 내역</h2>
 			</div>
 
 			<div class="content">
-				<c:forEach var="r" items="${replyList}">
+				<c:forEach var="c" items="${contentList}">
 					<div class="box">
-						<div class="pro" style="display: flex;">
+						<div class="post" style="display: flex;">
 							<div>
 								<a href="#"> <img class="p-img"
-									src="/petopia/images/product_1.jpg">
+									src="/petopia/images/cat2.jpg">
 								</a>
 							</div>
-							<div class="pro-name">
+							<div>
 								<a href="#">
-									<p>${r.product_name }</p>
+									<h4>${c.content_title }</h4>
+									<p>${c.content_date }</p>
 								</a>
 							</div>
-							<div style="display: flex;">
+
+							<div class="u-d" style="display: flex;">
 								<div class="modify">
 									<a href="#">
 										<p>수정</p>
@@ -51,17 +53,6 @@
 								</div>
 							</div>
 						</div>
-
-						<div>
-							<div>
-								<div style="display: flex;">
-									<p>${r.reply_date }</p>
-								</div>
-								<div>
-									<h5>${r.reply_text }</h5>
-								</div>
-							</div>
-						</div>
 					</div>
 				</c:forEach>
 
@@ -70,10 +61,15 @@
 
 
 
-
-
-
 			</div>
+
+
+
+
+
+			<div class="content"></div>
+
+		</div>
 	</main>
 
 	<footer>
