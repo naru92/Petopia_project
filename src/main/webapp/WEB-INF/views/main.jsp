@@ -494,7 +494,7 @@ color: : red !important;
                               <li><a href="petstagram?board_id=${petsta_info.board_id}">펫★그램</a></li>
                               <li><a href="main">펫shop</a></li>
                               <li><a href="donation">기부</a></li>
-                              <li><a href="mypage"><i class="fas fa-paw"></i> MY</a></li>
+                              <li><a href="/member/mypage"><i class="fas fa-paw"></i> MY</a></li>
                            </div>
                         </ul>
                      </div>
@@ -511,7 +511,7 @@ color: : red !important;
                            <li><a href="petstagram?board_id=${petsta_info.board_id}">펫★그램</a></li>
                            <li><a href="main">펫shop</a></li>
                            <li><a href="donation">기부</a></li>
-                           <li><a href="mypage"><i class="fas fa-paw"></i> MY</a></li>
+                           <li><a href="/member/mypage"><i class="fas fa-paw"></i> MY</a></li>
                         </ul>
                      </nav>
                   </div>

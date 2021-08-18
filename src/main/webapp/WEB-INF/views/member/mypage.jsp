@@ -60,12 +60,12 @@
 
 					<!--등급 정보-->
 					<div class="profile-box">
-						<a href="#">
-							<img class="profile-pic" src="/petopia/images/grade.png">
+						<a href="grade">
+							<img class="myimg" src="/petopia/images/bronze_medal.png">
 						</a>
 						<div>
 							<p>등급</p>
-							<a href="#">
+							<a href="grade">
 								<h4>${member.member_grade}</h4>
 							</a>
 						</div>
@@ -76,7 +76,7 @@
 					<!--포인트-->
 					<div class="profile-box">
 						<a href="point">
-							<img class="profile-pic" src="/petopia/images/point.png">
+							<img class="myimg" src="/petopia/images/point.png">
 						</a>
 						<div>
 							<p>포인트</p>
@@ -90,7 +90,7 @@
 					<div class="profile-box">
 						<!-- <h4>기부 내역</h4> -->
 						<a href="myDonation">
-							<img class="profile-pic" src="/petopia/images/donation.png">
+							<img class="myimg" src="/petopia/images/donation.png">
 						</a>
 						<div>
 							<a href="myDonation">
@@ -105,32 +105,23 @@
 				<div class="line">
 					<!--주문내역-->
 					<div class="profile-box">
-						<a href="#">
-							<img class="profile-pic" src="/petopia/images/order.png">
+						<a href="myOrderList">
+							<img class="myimg" src="/petopia/images/order.png">
 						</a>
 						<div>
-							<a href="#">
+							<a href="myOrderList">
 								<h4>주문내역</h4>
 							</a>
 						</div>
 					</div>
 
 					<!--배송조회-->
-					<div class="profile-box">
-						<a href="#">
-							<img class="profile-pic" src="/petopia/images/delivery.png">
-						</a>
-						<div>
-							<a href="#">
-								<h4>배송조회</h4>
-							</a>
-						</div>
-					</div>
+					
 
 					<!--취소/반품/교환-->
 					<div class="profile-box">
 						<a href="#">
-							<img class="profile-pic" src="/petopia/images/return.png">
+							<img class="myimg" src="/petopia/images/return.png">
 						</a>
 						<div>
 							<a href="#">
@@ -138,13 +129,11 @@
 							</a>
 						</div>
 					</div>
-				</div>
-
-				<div class="line">
+					
 					<!--최근 본 상품-->
 					<div class="profile-box">
 						<a href="#">
-							<img class="profile-pic" src="/petopia/images/recent_view.png">
+							<img class="myimg" src="/petopia/images/recent_view.png">
 						</a>
 						<div>
 							<a href="#">
@@ -152,11 +141,14 @@
 							</a>
 						</div>
 					</div>
+				</div>
+
+				<div class="line">
 
 					<!--장바구니-->
 					<div class="profile-box">
 						<a href="#">
-							<img class="profile-pic" src="/petopia/images/cart.png">
+							<img class="myimg" src="/petopia/images/cart.png">
 						</a>
 						<div>
 							<a href="#">
@@ -168,7 +160,7 @@
 					<!--위시리스트-->
 					<div class="profile-box">
 						<a href="#">
-							<img class="profile-pic" src="/petopia/images/wishlist.png">
+							<img class="myimg" src="/petopia/images/wishlist.png">
 						</a>
 						<div>
 							<a href="#">
@@ -182,30 +174,30 @@
 				<div class="line">
 					<!--QnA-->
 					<div class="profile-box">
-						<a href="#">
-							<img class="profile-pic" src="/petopia/images/QnA.png">
+						<a href="board/qna_main">
+							<img class="myimg" src="/petopia/images/QnA.png">
 						</a>
 						<div>
-							<a href="#">
+							<a href="board/qna_main">
 								<h4>QnA</h4>
 							</a>
 						</div>
 					</div>
 					<!--후기 내역-->
 					<div class="profile-box">
-						<a href="#">
-							<img class="profile-pic" src="/petopia/images/review.png">
+						<a href="reviewList">
+							<img class="myimg" src="/petopia/images/review.png">
 						</a>
 						<div>
-							<a href="#">
-								<h4>후기 내역</h4>
+							<a href="reviewList">
+								<h4>후기 관리</h4>
 							</a>
 						</div>
 					</div>
 					<!--댓글 내역-->
 					<div class="profile-box">
 						<a href="#">
-							<img class="profile-pic" src="/petopia/images/comments.png">
+							<img class="myimg" src="/petopia/images/comments.png">
 						</a>
 						<div>
 							<a href="#">
