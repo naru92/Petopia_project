@@ -111,16 +111,17 @@
 				</div>
 
 				<div class="spacing"></div>
-
+				
+				<sec:authorize access="hasRole('ROLE_MEMBER')">
 				<div class="point">
 					<p>POINT</p>
-					<strong>250P가 적립되었습니다.</strong> <strong>기부하시겠습니까?</strong>
+					<strong>1000P가 적립되었습니다.</strong> <strong>기부하시겠습니까?</strong>
 					<div class="donation_btn">
 						<br> 
-						<a href="donation.html"><button class="donationBtn">기부하기</button></a>
+						<a href="/member/myDonation"><button class="donationBtn">기부하기</button></a>
 					</div>
 				</div>
-
+				</sec:authorize>
 
 				<div class="productinfo">
 					<p>주문 상품 정보</p>
@@ -161,7 +162,7 @@
 
 				<div class="spacing"></div>
 				<!-- order detail ent -->
-				<a href="main.html"><button class="homeBtn">홈으로 가기</button></a>
+				<a href="/main"><button class="homeBtn">홈으로 가기</button></a>
 				
 			</div>
 		</div>

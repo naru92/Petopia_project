@@ -58,6 +58,8 @@ public class OrderController {
 			log.info(member_id);
 			
 		}
+		
+		
 
 		return "/order/checkout_member";
 	}
@@ -77,6 +79,8 @@ public class OrderController {
 		log.info("orderVO = " + orderService.readMemberOrderInfo());
 		model.addAttribute("confirmation_deposit", orderService.readMemberOrderInfo());
 		model.addAttribute("order", orderService.getMemberCartList(member_id));
+		
+		
 
 		return "/order/confirmation_deposit";
 	}
@@ -89,7 +93,7 @@ public class OrderController {
 
 		String member_id = principal.getName();
 
-		model.addAttribute("confirmation_deposit", orderService.readMemberOrderInfo());
+		model.addAttribute("confirmation_card", orderService.readMemberOrderInfo());
 		model.addAttribute("order", orderService.getMemberCartList(member_id));
 
 		return "/order/confirmation_card";
@@ -107,13 +111,17 @@ public class OrderController {
 
 		orderVO.setOrder_idx(orderService.getOrderFormCurrVal());
 
-		orderService.memberOrderDetailInsert(orderVO.getOrder_idx(), orderVO.getProduct_idx(),
-											orderVO.getOrder_name(), orderVO.getOrder_receiver_name(),
-											orderVO.getOrder_receiver_phonenumber(), orderVO.getOrder_receiver_address(),
-											orderVO.getOrder_quantity(), orderVO.getPayment_method(), orderVO.getOrder_date());
+		orderService.memberOrderDetailInsert(
+								orderVO.getOrder_idx(), orderVO.getProduct_idx(),
+								orderVO.getOrder_name(), orderVO.getOrder_receiver_name(),
+							    orderVO.getOrder_receiver_phonenumber(), orderVO.getOrder_receiver_address(),
+								orderVO.getOrder_quantity(), orderVO.getPayment_method(), orderVO.getOrder_date());
 
 		rttr.addFlashAttribute("result", "success");
 
+		orderService.insertPoint(orderVO);
+		orderService.updatePoint(orderVO);
+		
 		return "success";
 	}
 

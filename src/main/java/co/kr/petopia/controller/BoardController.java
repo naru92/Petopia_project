@@ -429,4 +429,10 @@ public class BoardController {
     public String game() {
     	return "/board/gameEvent";
     }
+	/*
+	 * // 기부 메인
+	 * 
+	 * @GetMapping("/donation") public String donation() { return "board/donation";
+	 * }
+	 */
 }

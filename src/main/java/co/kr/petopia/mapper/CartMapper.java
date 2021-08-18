@@ -11,7 +11,7 @@ import co.kr.petopia.vo.OrderVO;
 public interface CartMapper {
 	
 	public List<CartVO> goCart(String member_id);
-
+	
 	public CartVO checkProductsInCart(CartVO cartVO);
 
 	public int updateCartItem(CartVO originalCart);

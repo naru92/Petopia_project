@@ -9,12 +9,14 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@Getter 
+@Getter
 @Setter
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
 public class OrderVO {
+	
+	// MEMBER
 	private String member_name;
 	private String member_phoneNumber;
 	private String member_address;
@@ -28,15 +30,21 @@ public class OrderVO {
 
 	private int payment_method;
 	private String product_coloroption;
-	private String product_price;	
+	private String product_price;
 	private int cart_id;
 	private String product_detail_info;
-	
-	// users
+
+	// POINT
+	private int member_point_savepoint; // 적립 포인트
+	private String member_point_savedetail; // 적립 내역
+	private Date member_point_savedate; // 적립 날짜
+	private int member_point;
+
+	// USERS
 	private String user_name;
 	private String user_phonenumber;
 	private String user_address;
-	
+
 	private String order_name;
 	private String order_receiver_name;
 	private String order_receiver_phonenumber;
@@ -64,4 +72,5 @@ public class OrderVO {
 
 
 	
+
 }
