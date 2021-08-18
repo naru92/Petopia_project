@@ -8,7 +8,7 @@
 <%@include file="../include/default_css.jsp"%>
 <link rel="stylesheet" href="/petopia/css/menu_test.css">
 <!-- CSS here -->
-<link rel="stylesheet" href="/petopia/css/orderCheck_style.css">
+<link rel="stylesheet" href="/petopia/css/orderdetail_style.css">
 
 </head>
 <body>
@@ -30,7 +30,7 @@
 							<dl>
 								<dt>주문일자</dt>
 								<dd>
-									<strong>2021.07.04</strong>
+									<strong>${usersOrderInfo.order_date_str}</strong>
 								</dd>
 							</dl>
 						</li>
@@ -38,7 +38,7 @@
 							<dl>
 								<dt>주문번호</dt>
 								<dd class="ordnum">
-									<strong class="pointcol">2021070469446881</strong> 
+									<strong class="pointcol">${usersOrderInfo.order_idx}</strong> 
 								</dd>
 							</dl>
 						</li>
@@ -65,7 +65,7 @@
 					</thead>
 					<tbody>
 						<tr class="group">
-							<td><span class="thm ordernum2">2021070478398431</span></td>
+							<td><span class="thm ordernum2">${usersOrderInfo.order_idx}</span></td>
 							<td class="product">
 								<div>
 									<div class="thmb">
@@ -73,23 +73,19 @@
 											<a href="https://inflow.pay.naver.com/rd?no=510425330&tr=ppc&pType=P&retUrl=https%3A%2F%2Fsmartstore.naver.com%2Fmain%2Fproducts%2F5072418195&vcode=DfRoYBanSIkBtBUCF6L7IumF0g3tI732njFSPgWUWcSpFxsxHa1RcRwHVJhfAV0ov7ilUSoYDzaPwlp%2Fa%2BrUNghSkWU9am%2FJ4dXT%2FLmXOyq6pbJn22nY9CA8H%2FtbNt9V"
 												target="_blank">
 											<img src="https://order.pay.naver.com/proxy/phinf/shop1/20210620_13/1624176497501Bzmsl_PNG/25312331315102778_519104205.png?type=m80"></a>
-											<!--N=a:odd.product-->
 										</div>
 									</div>
 									<dl>
-										<!-- NV_MID:82616939846 -->
 										<dt>
-											<strong class="name_seller">카테고리명</strong> <a
-												href="https://inflow.pay.naver.com/rd?no=510425330&tr=ppc&pType=P&retUrl=https%3A%2F%2Fsmartstore.naver.com%2Fmain%2Fproducts%2F5072418195&vcode=DfRoYBanSIkBtBUCF6L7IumF0g3tI732njFSPgWUWcSpFxsxHa1RcRwHVJhfAV0ov7ilUSoYDzaPwlp%2Fa%2BrUNghSkWU9am%2FJ4dXT%2FLmXOyq6pbJn22nY9CA8H%2FtbNt9V"
-												target="_blank"> 상품명</a>
-											<!--N=a:odd.product-->
+											<strong class="name_seller">${usersOrderInfo.product_detail_info}</strong> 
+											<a href="#"	target="_blank">${usersOrderInfo.product_name}</a>
 										</dt>
 									</dl>
 								</div>
 							</td>
-							<td class="money"><em class="thm">11,900</em>원<br> <span>(1개)</span></td>
+							<td class="money"><em class="thm">${usersOrderInfo.product_price * usersOrderInfo.order_quantity}</em>원<br> <span>(${usersOrderInfo.order_quantity}개)</span></td>
 							<td class="bg_point state">무료배송<br />
-							<td class="bg_point state">배송중<br />
+							<td class="bg_point state">${usersOrderInfo.delivery_state}<br />
 							<td class="bg_point state">구매미확정<br />
 							</td>
 
@@ -98,10 +94,7 @@
 				</table>
 
 
-				<form class="_payForm" action="/orderStatus/2021070469446881/pay" method="post">
-					<input type="hidden" name="orderId" value="2021070469446881" />
-
-
+				<form>
 					<div class="heading heading2 mgt6">
 						<h4>주문/결제 금액 정보</h4>
 						<div class="fr_section"></div>
@@ -124,13 +117,9 @@
 												<ul class="price_list">
 													<li><strong>상품금액</strong>
 														<p>
-															<em class="thm">11,900</em>원
-														</p></li>
-													<li><strong>포인트사용</strong>
-														<p>
-															-<em class="thm">6,000</em>원
+															<em class="thm">${usersOrderInfo.product_price * usersOrderInfo.order_quantity}</em>원
 														</p>
-														</li>
+													</li>
 												</ul>
 											</dd>
 										</dl>
@@ -141,8 +130,9 @@
 												<ul class="price_list">
 													<li><strong>카드결제</strong>
 														<p>
-															<em class="thm">8,400</em>원
-														</p></li>
+															<em class="thm">${usersOrderInfo.product_price * usersOrderInfo.order_quantity}</em>원
+														</p>
+													</li>
 												</ul>
 											</dd>
 										</dl>
@@ -156,17 +146,58 @@
 											<ul>
 												<li class="final_payment_price"><strong>주문금액</strong>
 													<p>
-														<em class="thm">8,400</em>원
+														<em class="thm">${usersOrderInfo.product_price * usersOrderInfo.order_quantity}</em>원
 													</p></li>
 												<li><strong>카드결제</strong>
 													<p>
-														<em class="thm">8,400</em>원
-													</p></li>
+														<em class="thm">${usersOrderInfo.product_price * usersOrderInfo.order_quantity}</em>원
+													</p>
+												</li>
 											</ul>
 										</dd>
 									</dl>
 								</td>
 							</tr>
+								<tr>
+		<td>
+            <dl class="spot_benefit_pay benefit_fold_panel _toggleBenefit on">
+                <dt class="fold_heading">
+					<a href="#" class="_click(nmp.front.order.order_status.order_detail.pay.toggleBenefit()) _stopDefault">
+						<strong>포인트 혜택</strong>
+						<span class="p_color_green">최대 409원 적립</span>
+						<span class="sp_order toggle_arrow">적립자세히보기</span>
+					</a>
+				</dt>
+                <dd class="fold_body">
+                    <div class="fold_inner">
+                        <div class="saving_info">
+								<div class="saving_item">
+									<div class="benefit_summary">
+										<strong class="saving_title">구매적립<a href="#" class="sp_order ico_que _click(nmp.front.order.order_status.order_detail.openMileageBenefitLayer()) _stopDefault" title="?">도움말</a><!--N=a:odd.buybenefit--></strong>
+										<em class="summary_num">총 <span>59</span>원</em>
+									</div>
+									<ul class="inner_list">
+											<li>
+												<span class="benefit_name">기본적립</span>
+												<span class="benefit_sum"><span>59</span>원</span>
+											</li>
+									</ul>
+								</div>
+								<div class="saving_item">
+									<div class="benefit_summary">
+										<strong class="saving_title">리뷰적립<a href="#" class="sp_order ico_que _click(nmp.front.order.order_status.order_detail.openReviewMileageBenefitLayer()) _stopDefault" title="?">도움말</a><!--N=a:odd.reviewbenefit--></strong>
+										<em class="summary_num">최대 350</span>원</em>
+									</div>
+									<div class="desc_text">
+												<p class="desc_text">동일 상품의 상품리뷰/한달사용리뷰 적립은 각각 1회로 제한됩니다.</p>
+									</div>
+								</div>
+                        </div>
+                    </div>
+				</dd>
+            </dl>
+		</td>
+	</tr>
 						</tbody>
 					</table>
 
@@ -193,15 +224,15 @@
 								<tbody>
 									<tr class="gap">
 										<th scope="row">수령인</th>
-										<td>수령인이름</td>
+										<td>${usersOrderInfo.order_receiver_name}</td>
 									</tr>
 									<tr>
 										<th scope="row">연락처</th>
-										<td><span class="tel">수령인번호</span></td>
+										<td><span class="tel">${usersOrderInfo.order_receiver_phonenumber}</span></td>
 									</tr>
 									<tr>
 										<th scope="row">배송지</th>
-										<td class="address">우편번호<br>주소<br>상세주소
+										<td class="address">${usersOrderInfo.order_receiver_address}<br>
 										</td>
 									</tr>
 								</tbody>
@@ -215,9 +246,9 @@
 									<!--N=a:odd.changeinfo-->
 								</dt>
 								<dd class="pdb">
-									<strong>주문자이름</strong>
+									<strong>${usersOrderInfo.order_name}</strong>
 									<p>
-										주문자연락처 <br>
+										${usersOrderInfo.user_phonenumber}<br>
 									</p>
 								</dd>
 							</dl>
@@ -236,7 +267,6 @@
 	<footer>
 		<%@include file="../include/default_footer.jsp"%>
 	</footer>
-
 
 </body>
 </html>

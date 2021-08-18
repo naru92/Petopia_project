@@ -1,6 +1,9 @@
 package co.kr.petopia.controller;
 
 import java.security.Principal;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -162,5 +165,32 @@ public class OrderController {
 
 		return "success";
 	}
+	
+	
+	
+    // 비회원 주문상세조회 페이지
+    @PostMapping("users/orderdetail")
+    public String usersOrderDetail(OrderVO orderVO, Model model) throws Exception {
+
+        System.out.println(orderVO);
+        
+        OrderVO usersOrderInfo = orderService.usersOrderInfo(orderVO);
+
+        System.out.println("날짜: " + usersOrderInfo.getOrder_date_str());
+        
+        model.addAttribute("usersOrderInfo", usersOrderInfo);
+      
+        return "order/usersOrderDetail";
+    }
+
+    // 회원 주문상세조회 페이지
+    @PostMapping("member/orderdetail")
+    public String memberOrderDetail(OrderVO orderVO, Model model) throws Exception {
+
+        System.out.println(orderVO);
+
+      
+        return "order/memberOrderDetail";
+    }
 
 }

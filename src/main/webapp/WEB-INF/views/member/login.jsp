@@ -56,17 +56,17 @@
 						<b>or</b>
 					</div>
 				
-				<form>	
+				<form action="/users/orderdetail" method="POST">	
 					<h3>비회원 주문조회</h3>
 					<div class="form-group">
-						<input type="text" name="user_name" placeholder="주문자이름"> 
+						<input type="text" name="order_name" placeholder="주문자이름"> 
 						<span class="input-icon"><i class="fa fa-user-circle"aria-hidden="true"></i></span>
 					</div>
 					<div class="form-group">
-						<input type="password" name="order_idx" placeholder="주문번호"> 
+						<input type="text" name="order_idx" placeholder="주문번호"> 
 						<span class="input-icon"><i class="fa fa-lock"></i></span>
 					</div>
-					<button id ="userlogin-button" class="login-btn" type="submit" name="submit">주문조회하기</button>
+					<button id ="userlogin-button" class="login-btn" type="submit">주문조회하기</button>
 				</form>
 				
 			</div>

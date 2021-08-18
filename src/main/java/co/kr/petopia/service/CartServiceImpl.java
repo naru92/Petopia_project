@@ -69,34 +69,34 @@ public class CartServiceImpl implements CartService {
 
 
 	@Override
-	public int insertOrderLog(List<OrderVO> orderVO) {
-		log.info("insert order log");
+    public int insertOrderLog(List<OrderVO> orderVO) {
+        log.info("insert order log");
 
-		Date date = new Date();
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		String payDate = sdf.format(date);
-		
-		for(int i = 0; i < orderVO.size(); i++) {
-			//카드결제 '2'
-			orderVO.get(i).setPayment_method(2);
-			orderVO.get(i).setOrder_date(date);
-			
-		}
-		
-		log.info("orderVO = " + orderVO);
-		
-		int count = 0;
-		
-		for(int i = 0; i < orderVO.size(); i++) {
-			log.info("orderVO 정보  = " + orderVO.get(i));
-			count += cartMapper.insertOrderLog(orderVO.get(i));
-		}
-		
-		log.info("count : " + count);
-		
-		return count;
-	}
-
+        Date date = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String payDate = sdf.format(date);
+        
+        for(int i = 0; i < orderVO.size(); i++) {
+            //카드결제 '2'
+            orderVO.get(i).setPayment_method(2);
+            orderVO.get(i).setOrder_date(date);
+            
+        }
+        
+        log.info("orderVO = " + orderVO);
+        
+        int count = 0;
+        
+        for(int i = 0; i < orderVO.size(); i++) {
+            log.info("orderVO 정보  = " + orderVO.get(i));
+            count += cartMapper.insertOrderLog(orderVO.get(i));
+        }
+        
+        log.info("count : " + count);
+        
+        return count;
+    }
+	
 
 	@Override
 	public List<OrderVO> orderLogInfo(String member_id) {
