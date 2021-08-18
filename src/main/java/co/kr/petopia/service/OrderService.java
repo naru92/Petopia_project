@@ -34,6 +34,8 @@ public interface OrderService {
 	void updateMemberPoint(OrderVO orderVO);
 	// 포인트 업데이트
 	void updatePoint(OrderVO orderVO);
+	// 배송 데이터 추가
+	void insertDelivery(OrderVO orderVO);
 	
 	// 비회원
 	// 장바구니 목록 불러오기

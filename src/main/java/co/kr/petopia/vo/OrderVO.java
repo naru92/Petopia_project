@@ -40,6 +40,7 @@ public class OrderVO {
 	private Date member_point_savedate; // 적립 날짜
 	private int member_point;
 
+	
 	// USERS
 	private String user_name;
 	private String user_phonenumber;
@@ -54,16 +55,11 @@ public class OrderVO {
 	
 	private List<FileUploadVO> productAttach;
 
-	
-
-	
 	private String fileName;
-	
-
-
 	
 	private String delivery_state;
 	private int delivery_idx;
+	private Date delivery_date;
 
 	private int order_quantity;
 	private String product_name;

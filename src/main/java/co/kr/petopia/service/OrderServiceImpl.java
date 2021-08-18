@@ -107,12 +107,24 @@ public class OrderServiceImpl implements OrderService {
 	  }
 	 
 	  @Override
-		public void updateMemberPoint(OrderVO orderVO) {
+	  public void updateMemberPoint(OrderVO orderVO) {
 		
 		  orderVO.setMember_id(orderVO.getMember_id());
 		  
 		  orderMapper.updateMemberPoint(orderVO);
 			
+		}
+	  
+	  
+	  // 배송 데이터 추가
+	  @Override
+	  public void insertDelivery(OrderVO orderVO) {
+			
+		  orderVO.setOrder_idx(orderVO.getOrder_idx());
+		  orderVO.setDelivery_state("상품준비중");
+		  orderVO.setDelivery_date(orderVO.getOrder_date());
+		  
+			orderMapper.insertDelivery(orderVO);
 		}
 	  
 	// 비회원
@@ -184,6 +196,12 @@ public class OrderServiceImpl implements OrderService {
 
         return orderMapper.memberOrderInfo(orderVO);
     }
+
+	
+
+	
+	
+	
 
 
 }
