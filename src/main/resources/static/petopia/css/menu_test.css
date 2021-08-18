@@ -341,6 +341,7 @@ footer {
   color: #fff;
   padding:0 40px;
   clear : both;
+  width: 100%;
 }
 
 footer .container-fluid {

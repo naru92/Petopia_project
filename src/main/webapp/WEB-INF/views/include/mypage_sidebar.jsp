@@ -9,83 +9,88 @@
 				<!-- category -->
 				<nav class="category">
 					<div class="ctghead">
-						<h3><i class="ti-list"></i>MY</h3>
+						<h3><i class="ti-list"></i>마이페이지</h3>
 					</div>
 
 					<ul class="ctgul">
 						<li class="ctgli">
 							<a href="#" class="ctga ">
 								<i class="ti-write"></i>
-								MY 정보
+								마이펫 관리
 								<i class="ti-angle-down down "></i>
 							</a>
-							<ul class="ctgulChild">
-								<li class="ctgliChild">
-									<a href="" class="ctgaChild">내 정보 수정</a>
-								</li>
-								<li class="ctgliChild">
-									<a href="" class="ctgaChild">마이펫 관리</a>
-								</li>
-								<li class="ctgliChild">
-									<a href="" class="ctgaChild">내 등급</a>
-								</li>
-								<li class="ctgliChild">
-									<a href="" class="ctgaChild">포인트</a>
-								</li>
-								<li class="ctgliChild">
-									<a href="mypage_donation" class="ctgaChild">기부 내역</a>
-								</li>
-							</ul>
 						</li>
 
 						<li class="ctgli">
 							<a href="#" class="ctga ">
 								<i class="ti-write"></i>
-								MY 쇼핑
+								주문/배송 조회
 								<i class="ti-angle-down down "></i>
 							</a>
-							<ul class="ctgulChild">
-								<li class="ctgliChild">
-									<a href="" class="ctgaChild">주문 내역</a>
-								</li>
-								<li class="ctgliChild">
-									<a href="" class="ctgaChild">배송 조회</a>
-								</li>
-								<li class="ctgliChild">
-									<a href="" class="ctgaChild">취소/반품/교환</a>
-								</li>
-								<li class="ctgliChild">
-									<a href="" class="ctgaChild">최근 본 상품</a>
-								</li>
-								<li class="ctgliChild">
-									<a href="" class="ctgaChild">장바구니</a>
-								</li>
-								<li class="ctgliChild">
-									<a href="" class="ctgaChild">위시리스트</a>
-								</li>
-							</ul>
 						</li>
-
+						
 						<li class="ctgli">
 							<a href="#" class="ctga ">
 								<i class="ti-write"></i>
-								MY 발자국
+								취소/반품 조회
 								<i class="ti-angle-down down "></i>
 							</a>
-							<ul class="ctgulChild">
-								<li class="ctgliChild">
-									<a href="" class="ctgaChild">QnA</a>
-								</li>
-								<li class="ctgliChild">
-									<a href="" class="ctgaChild">후기 관리</a>
-								</li>
-								<li class="ctgliChild">
-									<a href="" class="ctgaChild">댓글 내역</a>
-								</li>
-								<li class="ctgliChild">
-									<a href="withdrawal_agree" class="ctgaChild">회원 탈퇴</a>
-								</li>
-							</ul>
+						</li>
+						
+						<li class="ctgli">
+							<a href="#" class="ctga ">
+								<i class="ti-write"></i>
+								내 포인트 조회
+								<i class="ti-angle-down down "></i>
+							</a>
+						</li>
+						
+						<li class="ctgli">
+							<a href="#" class="ctga ">
+								<i class="ti-write"></i>
+								나의 기부 내역
+								<i class="ti-angle-down down "></i>
+							</a>
+						</li>
+						
+						<li class="ctgli">
+							<a href="#" class="ctga ">
+								<i class="ti-write"></i>
+								나의 후기 관리
+								<i class="ti-angle-down down "></i>
+							</a>
+						</li>
+						
+						<li class="ctgli">
+							<a href="#" class="ctga ">
+								<i class="ti-write"></i>
+								나의 게시물 관리
+								<i class="ti-angle-down down "></i>
+							</a>
+						</li>
+						
+						<li class="ctgli">
+							<a href="#" class="ctga ">
+								<i class="ti-write"></i>
+								1:1 문의하기
+								<i class="ti-angle-down down "></i>
+							</a>
+						</li>
+						
+						<li class="ctgli">
+							<a href="#" class="ctga ">
+								<i class="ti-write"></i>
+								회원정보 수정
+								<i class="ti-angle-down down "></i>
+							</a>
+						</li>
+						
+						<li class="ctgli">
+							<a href="#" class="ctga ">
+								<i class="ti-write"></i>
+								회원탈퇴
+								<i class="ti-angle-down down "></i>
+							</a>
 						</li>
 						
 					</ul>
