@@ -23,7 +23,7 @@
 			</div>
 			<!-- 이미지 출력 부분 -->
 			<div class="main-img">
-				<img src="https://via.placeholder.com/500x500?text=main img(500x500)" alt="" class="big-img">
+				<img id="listAttach" src="https://via.placeholder.com/500x500?text=main img(500x500)" alt="" class="big-img">
 				<br>
 			</div>
 			<!-- 우측 상품명 및 가격 -->
@@ -71,7 +71,6 @@
 				<ul class="ulTab">
 					<li><a class="tabBtn" id="productDetail">상품정보</a></li>
 					<li><a class="tabBtn" href="#">후기</a></li>
-					<li><a class="tabBtn" href="#">Q&A</a></li>
 				</ul>
 			</div>
 			
@@ -83,15 +82,6 @@
 				<ul class="ulTab">
 					<li><a class="tabBtn" href="#">상품정보</a></li>
 					<li><a class="tabBtn" id="review">후기</a></li>
-					<li><a class="tabBtn" href="#">Q&A</a></li>
-				</ul>
-			</div>
-			<!-- Q&A 영역 -->
-			<div class="tabMenu">
-				<ul class="ulTab">
-					<li><a class="tabBtn" href="#">상품정보</a></li>
-					<li><a class="tabBtn" href="#">후기</a></li>
-					<li><a class="tabBtn" id="QnA">Q&A</a></li>
 				</ul>
 			</div>
 
@@ -104,5 +94,21 @@
 	<footer>
 		<%@include file="../include/default_footer.jsp"%>
 	</footer>
+	<script type="text/javascript">
+          var imgSrci = null;
+          var uuid = $("#md_uuid" + i).val();
+          var uploadPath = $("#md_uploadPath").val();
+          var fileName = $("#md_fileName").val();
+          if($("#md_filetype").val()) {
+             imgSrci = encodeURIComponent(uploadPath + "/" + uuid + "_" + fileName);
+             imgSrci = "/display?fileName=" + imgSrci;
+          } else {
+             imgSrci = '../../resources/images/attach.png';
+          }
+       
+          
+          $("#listAttach").attr("src", imgSrci);
+          
+	</script>
 </body>
 </html>

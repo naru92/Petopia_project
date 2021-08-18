@@ -58,7 +58,6 @@ public class CartController {
 	public void goCart(Principal principal, Model model, HttpSession httpSession) {
 		
 	
-		principal.getName();
 		MemberVO memberInfo = new MemberVO();
 		
 		if(principal != null) {
@@ -102,6 +101,31 @@ public class CartController {
 			//모델에 이름 넘기기
 			model.addAttribute("member", memberVO);
 			
+			}else {
+				String member_id = httpSession.getId();
+				log.info("비훠왼 아이디 : " +  member_id);
+				List<CartVO> cartList = cartService.goCart(member_id);
+				
+				log.info("cartList = " + cartList);
+				model.addAttribute("cart", cartList);
+				
+				// 총 가격
+				int totalPrice = 0;
+				//카트 총가격 구하기
+				for(int i = 0; i < cartList.size(); i++) {
+				
+					totalPrice += cartList.get(i).getProductList().get(0).getProduct_price() * cartList.get(i).getAmount();
+				} 
+				
+				log.info("TotalPrice : " + totalPrice);
+				
+				model.addAttribute("totalPrice", totalPrice);
+				httpSession.setAttribute("totalPrice", totalPrice);
+				httpSession.setAttribute("cart", cartList);
+				
+				log.info("세션에 저장된 상품가격: " + httpSession.getAttribute("totalPrice"));
+				log.info("세션에 저장된 카트정보: " + httpSession.getAttribute("cart"));
+				
 			}
 		
 		
@@ -113,7 +137,7 @@ public class CartController {
 			MediaType.APPLICATION_JSON_VALUE})
 	@ResponseBody
 	public ResponseEntity<String> addCart(@RequestBody CartVO cartVO, Principal principal) {
-		
+		if(principal != null) {
 		log.info("add cart " + cartVO);
 
 		MemberVO memberInfo= memberService.getMemberInfo(principal.getName());
@@ -121,7 +145,10 @@ public class CartController {
 		cartVO.setMember_id(memberInfo.getMember_id());
 		
 		log.info(cartVO.getMember_id()+ " " + cartVO.getProduct_idx());
-		
+		}else {
+			log.info("비회원 : " + cartVO.getMember_id());
+			cartVO.setMember_id(cartVO.getMember_id());
+		}
 		CartVO originalCart = cartService.checkProductsInCart(cartVO);
 		
 		int count = 0;

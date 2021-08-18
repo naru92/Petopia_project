@@ -5,10 +5,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import com.nimbusds.oauth2.sdk.http.HTTPRequest;
 
 import co.kr.petopia.service.AdminService;
 import co.kr.petopia.service.BoardService;
@@ -30,11 +34,18 @@ public class MainController {
 	MemberService memberService;
 	@Autowired
 	BoardService boardService;
-
+	
+	
 	@GetMapping("/main")
-	public String mainPage(Model model, Principal principal) {
+	public String mainPage(Model model, HttpSession httpSession,Principal principal) {
+		if(principal == null) {
+			log.info("httpSession.getId() : " + httpSession.getId());
+			model.addAttribute("not_member" , httpSession.getId());
+		}
+		
 		Random random = new Random();
 		ArrayList<ProductVO> md = new ArrayList<>();
+	
 		/*
 		 * 메인에 필요한것들
 		 * 상품정보 
@@ -55,7 +66,8 @@ public class MainController {
 		while(mdNumber[0] == mdNumber[1]) {
 			mdNumber[1] = random.nextInt(allList.size());
 		}
-			
+		
+		
 		
 		//MD추천 두개만
 		md.add(allList.get(mdNumber[0]));
