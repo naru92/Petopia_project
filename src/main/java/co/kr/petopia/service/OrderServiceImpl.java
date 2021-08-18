@@ -171,18 +171,19 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	
-	// 비회원 상세정보 조회
+	// 비회원 주문 상세정보 조회
     @Override
     public OrderVO usersOrderInfo(OrderVO orderVO) {
         
         return orderMapper.usersOrderInfo(orderVO);
     }
+    
+    // 회원 주문 상세정보 조회
+    @Override
+    public OrderVO memberOrderInfo(OrderVO orderVO) {
 
-	
-
-	
-	
-	
+        return orderMapper.memberOrderInfo(orderVO);
+    }
 
 
 }

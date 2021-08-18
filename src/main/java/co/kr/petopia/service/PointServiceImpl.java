@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import co.kr.petopia.mapper.PointMapper;
-import co.kr.petopia.vo.MemberVO;
 import co.kr.petopia.vo.PointVO;
 import lombok.extern.log4j.Log4j2;
 
@@ -83,10 +82,5 @@ public class PointServiceImpl implements PointService {
 	public List<PointVO> getSelectOptionList(HashMap<String, Object> optionMap) {
 		return pointMapper.getSelectOptionList(optionMap);
 	}
-	
-	
-
-	
-
-	
+		
 }
