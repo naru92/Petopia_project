@@ -119,8 +119,10 @@ public class OrderController {
 
 		rttr.addFlashAttribute("result", "success");
 
+		orderService.insertDelivery(orderVO);
 		orderService.insertPoint(orderVO);
 		orderService.updatePoint(orderVO);
+		
 		
 		return "success";
 	}
@@ -171,6 +173,8 @@ public class OrderController {
 
 		rttr.addFlashAttribute("result", "success");
 
+		orderService.insertDelivery(orderVO);
+		
 		return "success";
 	}
 	
