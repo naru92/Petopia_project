@@ -1,0 +1,56 @@
+.grade-main{
+	width: 1070px;
+  margin-top: 200px;
+  margin-left: 300px;
+  margin-bottom: 100px;
+  text-align: center;
+}
+.grade-main h1{
+	margin-bottom: 20px;
+}
+.grade-main p{
+	margin: 0px;
+}
+
+
+.content{
+	width: 1060px;
+	margin-top: 50px;
+	display: flex;
+}
+.content img{
+	margin-left: 10px;
+    margin-right: 20px;
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+    object-fit: cover;
+}
+.grade-box {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  width: 338px;
+  border: 1px solid #bbb;
+  align-items: center;
+  margin-right: 15px;
+  margin-bottom: 50px;
+  border-radius: 5px;
+}
+.grade-subtitle{
+	color: #385663;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid #bbb;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+}
+.grade-info{
+  justify-content: center;
+  align-items: center;
+}
+.grade-info h3{
+	margin-top: 40px;
+}
+.blue{
+	color: #2AC1BC;
+}

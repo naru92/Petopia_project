@@ -260,7 +260,30 @@ public class MemberController {
 
         return "member/point";
     }
-     
+    
+    // 주문 내역
+    @GetMapping("member/myOrderList")
+    public String orderList() {
+        return "member/myOrderList";
+    }
+    
+    // 주문 상세 내역
+    @GetMapping("member/myOrderDetail")
+    public String myOrderDetail() {
+        return "member/myOrderDetail";
+    }
+    
+    // 등급 혜택
+    @GetMapping("member/grade")
+    public String grade() {
+        return "member/grade";
+    }
+    // 후기 내역
+    @GetMapping("member/reviewList")
+    public String reviewList() {
+        return "member/reviewList";
+    }
+    
 
 
     // 회원정보수정 비밀번호 확인
