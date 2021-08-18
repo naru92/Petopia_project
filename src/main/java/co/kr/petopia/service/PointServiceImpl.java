@@ -1,5 +1,6 @@
 package co.kr.petopia.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -78,6 +79,10 @@ public class PointServiceImpl implements PointService {
         
         return pointMapper.countDonation(member_id);
     }
+	@Override
+	public List<PointVO> getSelectOptionList(HashMap<String, Object> optionMap) {
+		return pointMapper.getSelectOptionList(optionMap);
+	}
 	
 	
 

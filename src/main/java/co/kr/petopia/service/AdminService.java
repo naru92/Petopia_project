@@ -100,8 +100,12 @@ public interface AdminService {
 	public List<ProductVO> order_statistics_3month();
 	
 	
+	//도네이션용//
+	public int getDonationTotalCount();
+	public int getDonationTodayCount();
+	public int getDonationMonthCount();
 	
-	
+	public DonationVO getAllDonationSum();
 	
 	
 	

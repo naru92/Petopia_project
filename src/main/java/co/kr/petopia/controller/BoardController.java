@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import co.kr.petopia.service.AdminService;
 import co.kr.petopia.service.BoardService;
 import co.kr.petopia.service.MemberService;
 import co.kr.petopia.service.ReplyService;
@@ -48,7 +49,9 @@ public class BoardController {
 	
 	@Autowired
 	private final ReplyService replyService; 
-
+	
+	@Autowired
+	private AdminService adminService;
 //****************** 공지사항 **********************
 
 	// 리스트 불러오기(페이징 처리)
@@ -420,9 +423,10 @@ public class BoardController {
 	
 	/****************** 기부 **********************/
 	
-    // 기부 메인
-    @GetMapping("/donation")
-    public String donation() {
-        return "board/donation";
+ 
+    
+    @GetMapping("/game")
+    public String game() {
+    	return "/board/gameEvent";
     }
 }

@@ -116,4 +116,12 @@ public interface AdminMapper{
 	public List<ProductVO> productListBestDesc();
 	//전체등록순
 	public List<ProductVO> productListDateDesc();
+	
+	//도네이션용//
+	public int getDonationTotalCount();
+	public int getTotalDonationSum();
+	public int getDonationTodayCount();
+	public int getTodayDonationSum();
+	public int getDonationMonthCount();
+	public int getMonthDonationSum();
 }

@@ -1,9 +1,11 @@
 package co.kr.petopia.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import co.kr.petopia.vo.BoardVO;
 import co.kr.petopia.vo.MemberVO;
+import co.kr.petopia.vo.PointVO;
 import co.kr.petopia.vo.ReplyVO;
 
 public interface MemberService {
@@ -43,4 +45,5 @@ public interface MemberService {
 
     // 비밀번호 찾기 (수정)
     int resetMemberPw(MemberVO member);
+    
 }
