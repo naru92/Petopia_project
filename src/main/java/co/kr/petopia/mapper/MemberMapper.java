@@ -33,7 +33,7 @@ public interface MemberMapper {
     // 회원탈퇴 시 권한삭제
     int memberAuthDelete (String member_id);
     
-    // member 기준으로 댓글 list 불러오기
+    // member 기준으로 작성글 list 불러오기
     List<BoardVO> getMyContentList(String member_id);
     
     // member 기준으로 댓글 list 불러오기

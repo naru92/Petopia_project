@@ -57,30 +57,13 @@
 	color: #2AC1BC;
 	font-size: 16px;
 	padding: 6px 15px;
-	margin: 5px;
+	margin: 25px 10px;
 	background-color: white;
 }
 
 .Btn1:hover {
 	background-color: #e3f9f9;
 	color: #2AC1BC;
-}
-
-.Btn {
-	height: 25px;
-	width: 140px;
-	background-color: white;
-	border-radius: 4px;
-	border: 1px solid black;
-	cursor: pointer;
-	color: black;
-	font-size: 16px;
-	padding: 6px 15px;
-	margin: 5px;
-}
-
-.Btn:hover {
-	background-color: #e3f9f9;
 }
 
 .date {

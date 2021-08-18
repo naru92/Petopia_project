@@ -9,6 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import co.kr.petopia.vo.CartVO;
 import co.kr.petopia.vo.OrderVO;
 import co.kr.petopia.vo.PointVO;
+import jdk.internal.org.jline.utils.Log;
 
 @SpringBootTest
 class OrderMapperTests {
@@ -74,6 +75,12 @@ class OrderMapperTests {
 		orderMapper.readMemberOrderInfo();
 	
 	}
+	
+	@Test
+    public void testMemberOrderList() {
+        orderMapper.readMemberOrderList("dummy23");
+    
+    }
 	
 	@Test
 	public void testGetMemberCartList() {

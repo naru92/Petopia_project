@@ -65,6 +65,13 @@ public class OrderServiceImpl implements OrderService {
 		return orderMapper.readMemberOrderInfo();
 
 	}
+	
+	// 주문 리스트 가져오기
+	@Override
+	public List<OrderVO> readMemberOrderList(String member_id) {
+	    
+	    return orderMapper.readMemberOrderList(member_id);
+	}
 
 	// 비회원
 	// 결제 시 장바구니 목록 처리 함수

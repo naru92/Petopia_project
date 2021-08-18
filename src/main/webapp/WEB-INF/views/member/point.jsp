@@ -21,7 +21,7 @@
 		<div class="point-main">
 			<div class="content">
 				<h2>포인트</h2>
-				<a href="#">
+				<a href="donate">
 					<button class="donationBtn">기부하기</button>
 				</a>
 			</div>

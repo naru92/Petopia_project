@@ -1,0 +1,28 @@
+.grade-main{
+	width: 1070px;
+  margin-top: 200px;
+  margin-left: 300px;
+  margin-bottom: 100px;
+  text-align: center;
+}
+.grade-main h1{
+	margin-bottom: 20px;
+}
+
+
+.content{
+	width: 1060px;
+	margin-top: 50px;
+	text-align: center;
+	
+}
+.box {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  width: 500px;
+  align-items: center;
+  margin-right: 15px;
+  margin-bottom: 50px;
+  border-radius: 5px;
+  display: inline-block;
+}

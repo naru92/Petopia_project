@@ -1,0 +1,36 @@
+.review-main{
+	width: 1070px;
+  margin-top: 100px;
+  margin-left: 350px;
+  margin-bottom: 100px;
+}
+
+
+.p-img {
+    margin-right: 20px;
+    width: 120px;
+    height: 120px;
+    overflow: hidden;
+    object-fit: cover;
+}
+
+.box {
+	padding: 20px;
+  	width: 1028px;
+  	border-bottom: 1px solid #bbb;
+}
+.post {
+	 display: flex;
+}
+.u-d{
+	margin-left: 680px;
+}
+.u-d p{
+	padding: 0px 5px;
+}
+
+.modify{
+	border-right: 1px solid #bbb;
+	height: 25px;
+	
+}
