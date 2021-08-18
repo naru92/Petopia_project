@@ -128,7 +128,14 @@
 											<dd>
 												<!-- 주결제수단 정보 -->
 												<ul class="price_list">
-													<li><strong>카드결제</strong>
+													<li>
+														<c:set var="pay" value="${u.payment_method}"/>
+														<c:if test="${pay eq '1'}">
+															<strong>무통장입금</strong>
+														</c:if>
+														<c:if test="${pay eq '2'}">
+															<strong>카드결제</strong>
+														</c:if>
 														<p>
 															<em class="thm">${m.product_price * m.order_quantity}</em>원
 														</p>
@@ -148,7 +155,14 @@
 													<p>
 														<em class="thm">${m.product_price * m.order_quantity}</em>원
 													</p></li>
-												<li><strong>카드결제</strong>
+												<li>
+													<c:set var="pay" value="${u.payment_method}"/>
+													<c:if test="${pay eq '1'}">
+														<strong>무통장입금</strong>
+													</c:if>
+													<c:if test="${pay eq '2'}">
+														<strong>카드결제</strong>
+													</c:if>
 													<p>
 														<em class="thm">${m.product_price * m.order_quantity}</em>원
 													</p>

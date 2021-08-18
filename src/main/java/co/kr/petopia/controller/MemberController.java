@@ -51,7 +51,6 @@ public class MemberController {
     private PointService pointService;
     @Autowired
     private MypetService mypetService;
-
     @Autowired
     private OrderService orderService;
  
@@ -288,12 +287,13 @@ public class MemberController {
         return "member/point";
     }
 
+    
     // 주문 내역
     @GetMapping("member/myOrderList")
     public String orderList(Model model, Principal principal) {
         
         log.info("my order list..");
-        
+
         String member_id = principal.getName();
         log.info("맴버아이디 = " + member_id);
         log.info("orderList " + orderService.readMemberOrderList(member_id));
@@ -301,6 +301,8 @@ public class MemberController {
         
         return "member/myOrderList";
     }
+    
+    
 	// 월별 회원 기부 조회
 	@ResponseBody
 	@PostMapping(value = "/member/donation_month", consumes = "application/json", produces = { MediaType.APPLICATION_XML_VALUE,
