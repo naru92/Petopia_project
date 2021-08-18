@@ -2,6 +2,9 @@ package co.kr.petopia.controller;
 
 import java.io.PrintWriter;
 import java.security.Principal;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
@@ -9,12 +12,16 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -22,10 +29,15 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.google.gson.Gson;
 
+import co.kr.petopia.service.AdminService;
 import co.kr.petopia.service.MemberService;
 import co.kr.petopia.service.MypetService;
 import co.kr.petopia.service.PointService;
+import co.kr.petopia.utils.Criteria;
+import co.kr.petopia.utils.PageVO;
 import co.kr.petopia.vo.MemberVO;
+import co.kr.petopia.vo.PointVO;
+import co.kr.petopia.vo.ProductVO;
 import lombok.extern.log4j.Log4j2;
 
 @Log4j2
@@ -38,6 +50,8 @@ public class MemberController {
     private PointService pointService;
     @Autowired
     private MypetService mypetService;
+ 
+    
 	// @Autowired
 	// private PointService pointService;
     
@@ -261,11 +275,36 @@ public class MemberController {
         return "member/point";
     }
     
+
     // 주문 내역
     @GetMapping("member/myOrderList")
     public String orderList() {
         return "member/myOrderList";
     }
+	// 월별 회원 기부 조회
+	@ResponseBody
+	@PostMapping(value = "/member/donation_month", consumes = "application/json", produces = { MediaType.APPLICATION_XML_VALUE,
+			MediaType.APPLICATION_JSON_VALUE })
+	public ResponseEntity<List<PointVO>> selectOptionProductList(@RequestBody Map<String, Object> month,
+			Criteria cri, Model model) {
+		
+		HashMap<String, Object> optionMap = new HashMap<String, Object>();
+
+		String donation_date_month = (String) month.get("donation_date_month");
+		String member_id = (String)month.get("member_id");
+		
+		
+		log.info("조회할 월 : " + donation_date_month);
+		log.info("조회할 맴버 : " + member_id);
+
+		optionMap.put("selected_month", donation_date_month);
+		optionMap.put("member_id", donation_date_month);
+		List<PointVO> pointList = pointService.getSelectOptionList(optionMap);
+		
+		return new ResponseEntity<>(pointList, HttpStatus.OK);
+	}
+    
+    
     
     // 주문 상세 내역
     @GetMapping("member/myOrderDetail")
@@ -285,13 +324,6 @@ public class MemberController {
     }
     
 
-
-    // 회원정보수정 비밀번호 확인
-    @GetMapping("member/passwordConfirm")
-    public String passwordConfirm() {
-
-        return "member/passwordConfirm";
-    }
 
     // 회원정보수정
     @GetMapping("member/modify")
@@ -318,11 +350,7 @@ public class MemberController {
 		return "member/withdrawal_success";
 	}
 
-	// 기부 메인
-	@GetMapping("/donation")
-	public String donation() {
-		return "member/donation";
-	}
+	
 
 	// 마이펫 등록
 	@GetMapping("member/myPet1")

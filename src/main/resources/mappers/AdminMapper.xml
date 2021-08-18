@@ -321,6 +321,53 @@
 	select count(*)
 	from donation
 	</select>
+	<!-- 도네이션수 토탈 -->
+	<select id="getDonationTotalCount" resultType="int">
+	select count(*) as totalCount
+	from point 
+	where member_point_usedetail = '기부'
+	</select>
+	<!-- 토탈 도네액 -->
+	<select id="getTotalDonationSum"  resultType="int">
+	select NVL(SUM(member_point_usepoint),0) as total
+	from point
+	where member_point_usedetail = '기부'
+	</select>
+	
+	<!-- 오늘 기부 수 -->
+	<select id="getDonationTodayCount"  resultType="int">
+	select count(*) as todayCount
+	from point
+	where member_point_usedetail = '기부' AND
+	 TO_DATE(member_point_usedate, 'YYYYMMDD') = TO_DATE(sysdate, 'YYYYMMDD') 
+	</select>
+	<!-- 오늘 도네액 -->
+	<select id="getTodayDonationSum"  resultType="int">
+	select NVL(SUM(member_point_usepoint),0) as today
+	from point
+	where member_point_usedetail = '기부' AND
+	TO_DATE(member_point_usedate, 'YYYYMMDD') = TO_DATE(sysdate, 'YYYYMMDD') 
+	</select>
+	
+	<!-- 월 기부 수 -->
+	<select id="getDonationMonthCount"  resultType="int">
+	select count(*) as MonthCount
+	from point
+	where member_point_usedetail = '기부' AND
+	EXTRACT(MONTH FROM member_point_usedate) = EXTRACT(MONTH FROM SYSDATE)
+	</select>
+	<!-- 월 도네액 -->
+	<select id="getMonthDonationSum"  resultType="int">
+	select NVL(SUM(member_point_usepoint),0) as month
+	from point
+	where member_point_usedetail = '기부' AND
+	EXTRACT(MONTH FROM member_point_usedate) = EXTRACT(MONTH FROM SYSDATE)
+	
+
+	</select>
+
+	
+	
 	<!-- 도네이션 페이징 -->
 	<select id="getDonationWithPaging" parameterType="int" resultType="co.kr.petopia.vo.DonationVO">
 	 <![CDATA[

@@ -1,5 +1,6 @@
 package co.kr.petopia.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 import co.kr.petopia.mapper.MemberMapper;
 import co.kr.petopia.vo.BoardVO;
 import co.kr.petopia.vo.MemberVO;
+import co.kr.petopia.vo.PointVO;
 import co.kr.petopia.vo.ReplyVO;
 import lombok.RequiredArgsConstructor;
 import lombok.ToString;
@@ -129,6 +131,8 @@ public class MemberServiceImpl implements MemberService{
         
         return memberMapper.resetMemberPw(member);
     }
+
+	
     
     
 }

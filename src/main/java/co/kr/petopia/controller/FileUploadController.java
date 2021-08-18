@@ -107,10 +107,7 @@ public class FileUploadController {
 			
 			String uploadFileName = multipartFile.getOriginalFilename();
 			
-			uploadFileName = uploadFileName
-
-			.substring(uploadFileName.lastIndexOf("\\") + 1);
-			
+			uploadFileName = uploadFileName.substring(uploadFileName.lastIndexOf("\\") + 1);
 			attachVO.setFileName(uploadFileName);
 		
 			UUID uuid = UUID.randomUUID();

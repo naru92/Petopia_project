@@ -54,16 +54,20 @@
  		<select id="goCart" resultMap="cartMap">
 	 		select 
 	 			p.product_idx, p.product_name, p.product_price, 
-	 			cart_id, c.amount,
+	 			c.cart_id, c.amount,
 	 			a.uuid, a.uploadPath, a.fileName, a.filetype
 	 		from 
-	 			product p, cart c, tbl_attach a
+	 			product p, cart c, tbl_attach a, carttype ct
 	 		where 
 	 			p.product_idx = c.product_idx
 	 			and
 	 			c.product_idx = a.product_idx
 	 			and
 	 			c.member_id = #{member_id}
+	 			and
+	 			c.cart_id = ct.cart_id
+	 			and
+	 			ct.cart_name = '장바구니'
  		</select>
  		
  		
@@ -154,7 +158,7 @@
  </insert>
  <insert id="addWishType">
  insert into 
- 			cart (cart_id, product_idx, cart_name)
+ 			carttype (cart_id, product_idx, cart_name)
  		values 
  			(${cart_id}, #{product_idx}, '위시리스트')
  	

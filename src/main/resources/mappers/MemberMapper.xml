@@ -106,4 +106,6 @@
 	<select id="checkMemberPhoneNumber" parameterType="String" resultType="int">
 		SELECT count(*) FROM member WHERE member_phoneNumber = #{member_phoneNumber}
 	</select>
+	
+	
 </mapper>
