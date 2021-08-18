@@ -314,7 +314,7 @@ public class SocialController {
         model.addAttribute("url", "/");
         
         
-        return "redirect:/main";        
+        return "redirect:/main";
         
     }
 

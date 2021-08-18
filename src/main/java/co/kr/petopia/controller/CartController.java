@@ -43,7 +43,7 @@ public class CartController {
 	
 	@GetMapping("/cart1")
 	public String showPage() {
-		return "order/cart";
+		return "order/Cart";
 	}
 	
 	/*카트개요

@@ -76,8 +76,11 @@
 						data-content_text="${c.content_text}"
 						data-content_date="${c.content_date}"
 						data-content_idx="${c.content_idx}"
+						data-attachList="${c.attachList[0].fileName}"
 						data-target="contentModalLabel">
-					<img src="https://images.unsplash.com/photo-1511765224389-37f0e77cf0eb?w=500&h=500&fit=crop" class="gallery-image">
+					<ul class="gallery-ul">	
+					<li><img src="/petopia/images/${c.attachList[0].fileName}" class="gallery-image"></li>
+					</ul>
 					<div class="gallery-item-info">
 						<ul>
 							<li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart" aria-hidden="true"></i> 56</li>
@@ -156,7 +159,7 @@
 			<form>
 				<div class="img-group">
 					<div class="img_wrap">
-						<img id="contentGetImg">
+						<img src="/petopia/images/${c.attachList[0].fileName}" id="getContentImg">
 					</div>
 				</div>
 				<div class="form-group">
@@ -168,13 +171,13 @@
 					<hr>
 					<i class="fa fa-comments fa-fw"></i> 댓글
 					<c:forEach items="${replyList}" var="r" varStatus="status">
-						<c:out value="${r.reply_text}"/>
 						<ul class="reply">
 							<li class="left clearfix">
 						</ul>
 					</c:forEach>
 					<br>
-					<input type="text" class="form-control" id="replyRegister" >
+					<input type="text" class="form-control" id="replyRegister">
+					<input type="hidden" id="replyContentIdx">
 					<button type="submit" id="replySubmit"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
 				</div>
 			</form>

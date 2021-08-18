@@ -203,10 +203,32 @@ $('.contentGetImg').click(function(){
 			modal.style.display = "none";
 		}
 	}
+	
+	var content_idx = $(this).data('content_idx');
+	
+	$('#replySubmit').click(function(){
 
+	var reply_text =  $("#replyRegister").val();
+	console.log(content_idx);
+	
+	var reply= {
+		reply_text : reply_text, 
+		content_idx : content_idx
+	}
+	
 	/* 댓글달기 */
-
-
+	$.ajax({
+		url: '/replies/new',
+		data : JSON.stringify(reply),
+		type: 'POST',
+		contentType: "application/json; charset=utf-8",
+		success: function(result) {
+			alert('댓글이 등록되었습니다.')
+		}, error: function(result){
+			console.log(result)
+		}
+	});  // $.ajax
 });
-
+	
+});
 

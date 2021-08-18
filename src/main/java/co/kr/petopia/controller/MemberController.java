@@ -208,6 +208,12 @@ public class MemberController {
 
         return gson.toJson(key);
     }
+    
+    // 비회원/ 회원 주문조회 페이지
+    @GetMapping("member/orderCheck")
+    public String orderCheck() {
+        return "order/orderCheck";
+    }
 
     // 마이페이지 메인
     @GetMapping("member/mypage")

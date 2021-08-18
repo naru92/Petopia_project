@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import co.kr.petopia.mapper.AattachMapper;
 import co.kr.petopia.utils.Criteria;
 import co.kr.petopia.vo.BoardVO;
+import co.kr.petopia.vo.FileUploadVO;
 
 public interface BoardService {
     
@@ -26,6 +27,7 @@ public interface BoardService {
     
     // list
     List<BoardVO> getContentList(Long board_id);
+    List<FileUploadVO> getImgList(BoardVO boardVO);
     
     // list + paging
     List<BoardVO> getContentListPaging(Criteria cri, Long board_id);
