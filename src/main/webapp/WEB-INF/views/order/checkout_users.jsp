@@ -160,15 +160,15 @@
 								</tr>
 							</thead>
 
-							<c:forEach var='o' items="${order}">
+							<c:forEach var='c' items="${cartInfo}">
 								<tbody>
 									<tr>
-										<td id = "product_idx">${o.product_idx}</td>
+										<td id = "product_idx">${c.product_idx}</td>
 										<!-- <td>${sessionScope.TotalPrice}</td> -->
-										<td>${sessionScope.cart[0].productList[0].product_name}</td>
-										<td>${sessionScope.cart[0].productList[0].product_coloroption}</td>
-										<td id ="quantity">${sessionScope.cart[0].amount}</td>
-										<td>${sessionScope.cart[0].productList[0].product_price}</td>
+										<td>${c.productList[0].product_name}</td>
+										<td>${c.productList[0].product_coloroption}</td>
+										<td id ="quantity">${c.amount}</td>
+										<td>${c.productList[0].product_price}</td>
 									</tr>
 
 								</tbody>

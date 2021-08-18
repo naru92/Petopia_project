@@ -3,6 +3,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib prefix="sec"
+   uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 
 <head>
@@ -458,7 +460,13 @@ translateX
 		<div class="container">
 			<div class="row">
 				<div class="pull-right" align="right">
+				
+				<sec:authorize access="hasRole('ROLE_MEMBER')">
 					<a class="btn btn-info check_out" href="/member/checkout" id="checkOut">주문서 작성</a>
+                </sec:authorize>
+                <sec:authorize access="isAnonymous()">
+                <a class="btn btn-info check_out" href="/users/checkout" id="checkOut">주문서 작성</a>
+				</sec:authorize>
 				</div>
 			</div>
 		</div>
