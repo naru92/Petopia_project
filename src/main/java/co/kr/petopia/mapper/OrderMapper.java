@@ -37,6 +37,18 @@ public interface OrderMapper {
 	List<OrderVO> readMemberOrderList(String member_id);
 
 	
+	// 포인트 테이블 멤버 아이디 찾기
+	@Select("select count(*) from member where member_id = #{member_id}")
+	int readMemberId(OrderVO orderVO);
+	
+	// 포인트 추가
+	void insertPoint(OrderVO orderVO);
+	
+	// 멤버 테이블 포인트 업데이트
+	void updateMemberPoint(OrderVO orderVO);
+	
+	// 포인트 업데이트
+	void updatePoint(OrderVO orderVO);
 	
 	// 비회원
 	// 회원의 장바구니 목록 가져오기

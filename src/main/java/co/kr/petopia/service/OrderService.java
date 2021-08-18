@@ -26,6 +26,15 @@ public interface OrderService {
 	// 주문 리스트 가져오기
 	List<OrderVO> readMemberOrderList(String member_id);
 
+	// 포인트 테이블 멤버 아이디 찾기
+	int readMemberId(OrderVO orderVO);
+	// 포인트
+	void insertPoint(OrderVO orderVO);
+	// 멤버 테이블 포인트 업데이트
+	void updateMemberPoint(OrderVO orderVO);
+	// 포인트 업데이트
+	void updatePoint(OrderVO orderVO);
+	
 	// 비회원
 	// 장바구니 목록 불러오기
 	// List<CartVO> getCartList();
@@ -43,4 +52,5 @@ public interface OrderService {
 	
 	// 비회원 주문 상세정보 조회
     OrderVO usersOrderInfo(OrderVO orderVO);
+	
 }

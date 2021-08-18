@@ -20,7 +20,7 @@ public class OrderServiceImpl implements OrderService {
 	// 회원 정보 조회
 	@Override
 	public OrderVO getMemberInfoRead(String member_id) {
-		// TODO Auto-generated method stub
+		
 		return orderMapper.getMemberInfoRead(member_id);
 	}
 
@@ -73,6 +73,48 @@ public class OrderServiceImpl implements OrderService {
 	    return orderMapper.readMemberOrderList(member_id);
 	}
 
+	@Override
+	public int readMemberId(OrderVO orderVO) {
+		
+		 return orderMapper.readMemberId(orderVO);
+	}
+	
+	// 포인트 적립내역 추가
+	@Override
+	public void insertPoint (OrderVO orderVO) {
+		
+		  orderVO.setMember_id(orderVO.getMember_id());
+		  orderVO.setMember_point_savepoint(1000);
+		  orderVO.setMember_point_savedetail("구매적립금");
+		  orderVO.setMember_point_savedate(orderVO.getOrder_date());
+		 
+		if(orderMapper.readMemberId(orderVO) > 0 ) {
+			orderMapper.updateMemberPoint(orderVO);
+			orderMapper.updatePoint(orderVO);
+		}else {
+			orderMapper.insertPoint(orderVO);
+		}
+	}
+	
+	  // 포인트 업데이트
+	  @Override 
+	  public void updatePoint(OrderVO orderVO) {
+	  
+	  orderVO.setMember_id(orderVO.getMember_id());
+	  
+	  orderMapper.updatePoint(orderVO);
+	  
+	  }
+	 
+	  @Override
+		public void updateMemberPoint(OrderVO orderVO) {
+		
+		  orderVO.setMember_id(orderVO.getMember_id());
+		  
+		  orderMapper.updateMemberPoint(orderVO);
+			
+		}
+	  
 	// 비회원
 	// 결제 시 장바구니 목록 처리 함수
 //	@Override
@@ -135,6 +177,12 @@ public class OrderServiceImpl implements OrderService {
         
         return orderMapper.usersOrderInfo(orderVO);
     }
+
+	
+
+	
+	
+	
 
 
 }

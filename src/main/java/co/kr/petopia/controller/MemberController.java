@@ -378,12 +378,14 @@ public class MemberController {
 
   
 
+     
     // 회원정보수정
     @GetMapping("member/modify")
     public String memberModify() {
 
         return "member/memberModify";
     }
+
 
 	// 회원 탈퇴
 	@GetMapping("member/withdrawal_agree")
@@ -402,6 +404,13 @@ public class MemberController {
 	}
 
 
+	
+	
+	/* // 기부 메인
+	 * 
+	 * @GetMapping("/donation") public String donation() { return "member/donation";
+	 * }
+	 */
 
 	// 마이펫 등록
 	@GetMapping("member/myPet1")
