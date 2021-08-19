@@ -16,6 +16,7 @@
 <body>
 	<header> </header>
 	<%@include file="../include/default_header.jsp"%>
+	<%@include file="../include/mypage_sidebar.jsp"%>
 	<main>
 		<div class="grade-main">
 			<h1>등급별 혜택 안내</h1>

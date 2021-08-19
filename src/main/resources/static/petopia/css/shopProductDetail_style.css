@@ -3,7 +3,7 @@
 
 body, main{
 	position: relative; 
-	height: 30000px; 
+	height: 8000px; 
 	z-index: -100;
 	overflow-x: hidden;
 }
@@ -184,5 +184,15 @@ body, main{
 }
 
 #productDetailMain {
-	margin-left:130px;
+	margin-left:120px;
+}
+
+.reviewList{
+	display: block;
+	font-size: 25px;
+	position: relative;
+    float: left;
+    top: 100px;
+    left: 350px;
+    
 }

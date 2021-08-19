@@ -71,12 +71,12 @@
 						<i class="fas fa-search"></i>
 					</button>
 					
-					<button class="wishBtn" type="link">
-						<i class="fas fa-heart"></i>
-					</button>
-					<button class="cartBtn" type="link">
-						<i class="fas fa-shopping-cart"></i>
-					</button>
+                     <button class="wishBtn" onclick="location.href='order/wishList';">
+                        <i class="fas fa-heart"></i>
+                     </button>
+                     <button class="cartBtn" onclick="location.href='order/Cart';">
+                        <i class="fas fa-shopping-cart"></i>
+                     </button>
 					</form>
 				</div>
 

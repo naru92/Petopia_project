@@ -1,4 +1,7 @@
-
+body, main{
+	position: relative; 
+	z-index: -100;
+}
 .container{
   height: 950px;
 }
