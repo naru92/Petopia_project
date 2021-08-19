@@ -19,7 +19,7 @@
 		<!-- 상품 상세 보기 -->
 		<div class="article">
 			<div class=categorymenu>
-			카테고리영역
+
 			</div>
 			<!-- 이미지 출력 부분 -->
 			<div class="main-img">
@@ -29,7 +29,7 @@
 			<!-- 우측 상품명 및 가격 -->
 			<div class="product-detail">
 				<div class="product-heading">
-					<h3>상품명</h3>
+					<h3>${product.product_name}</h3>
 					<div class="rating-price">
 						<span class="fa fa-star checked"></span> 
 						<span class="fa fa-star checked"></span> 
@@ -38,7 +38,7 @@
 						<span class="fa fa-star checked"></span> 
 						<span id="review-no">(5.0)</span> 
 						<span style="color: #757575">review 250</span>
-						<h4 class="price">3</h4>
+						<h4 class="price">${product.product_price} 원</h4>
 					</div>
 				</div>
 				<div class="product-seller">
@@ -89,6 +89,7 @@
 					<li><a class="tabBtn" href="#review">후기</a></li>
 				</ul>
 			</div>
+			<br>
 			<!-- 상품 상세 이미지 영억 -->
 			<div id="productDetailMain">
 				<img src="/petopia/images/d_${product.productVOList[0].fileName}" alt="상세정보">
@@ -100,6 +101,10 @@
 					<li><a class="tabBtn" href="#productDetail">상품정보</a></li>
 					<li><a class="tabBtn" id="review">후기</a></li>
 				</ul>
+			</div>
+			<br>
+			<div class="reviewList">
+				<p>아직 작성된 후기가 없습니다.</p>
 			</div>
 			<form>
 			  	<input name="product_idx" type="hidden" id="p_filetype" value="${product.product_idx}" />
@@ -121,6 +126,14 @@
 	<!-- 스크롤 -->
 	$(document).ready(function($) {
 		
+		 function numberFormat(inputNumber) {
+	         return inputNumber.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	    }
+		 
+	    // 가격 콤마삽입
+	    var price1 = $(".price").html()
+	    console.log(price1);
+	    $(".price").html(numberFormat(price1));
 		  
         $(".tabBtn").click(function(event){         
                 event.preventDefault();
@@ -143,6 +156,8 @@
 	  changeTotal();			
 	}
 
+	
+	
 	function changeTotal() {
 	  var price = ${product.product_price};
 	  console.log(price);

@@ -1,7 +1,12 @@
+body, main{
+	position: relative; 
+	z-index: -100;
+}
+
 .grade-main{
 	width: 1070px;
-  margin-top: 200px;
-  margin-left: 300px;
+  margin-top: 150px;
+  margin-left: 550px;
   margin-bottom: 100px;
   text-align: center;
 }
