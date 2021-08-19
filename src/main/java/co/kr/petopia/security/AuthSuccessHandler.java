@@ -41,7 +41,7 @@ public class AuthSuccessHandler implements AuthenticationSuccessHandler {
 	private RequestCache requestCache = new HttpSessionRequestCache(); //원래 요청한주소
 	private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy(); //원래 가야할 url위치
 	
-	
+
 	/* super.setDefaultTargetUrl("/main"); */
 	 //super.onAuthenticationSuccess(request,response, authentication);
 	  
@@ -50,6 +50,7 @@ public class AuthSuccessHandler implements AuthenticationSuccessHandler {
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
 			Authentication auth) throws IOException, ServletException {
+		log.info("원래 요청 주소" + requestCache);
 		
 		logger.info("로그인 성공");
 		logger.info("로그인 아이디 : " + auth);
@@ -81,8 +82,10 @@ public class AuthSuccessHandler implements AuthenticationSuccessHandler {
 		
 		SavedRequest savedRequest = requestCache.getRequest(request, response);
 		
+		log.info("요청저장된곳 : " + savedRequest);
 		if(savedRequest != null) {
 			String targetUrl = savedRequest.getRedirectUrl();
+			log.info("타겟위치  " + targetUrl);
 			//로그인전 요청한 url이 있다면 보낼곳
 			redirectStrategy.sendRedirect(request, response, targetUrl);
 		} else {
