@@ -101,8 +101,8 @@
 				</section>
 				<section>
 					<div class="w-bt">
-						<a href="mypage.html"><button class="bnt-main">탈퇴취소</button></a>
-						<a href="withdrawal"><button class="bnt-next">다음단계</button></a>
+						<a href="mypage"><button class="bnt-main">탈퇴취소</button></a>
+						<a href="withdrawal_success"><button class="bnt-next">다음단계</button></a>
 					</div>
 		</div>
 		</section>

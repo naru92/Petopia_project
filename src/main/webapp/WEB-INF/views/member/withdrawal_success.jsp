@@ -26,7 +26,7 @@
 					보다 나은 펫토피아로 다시 만나뵐 수 있기를 바랍니다.
 				</div>
 				<section id="content">
-					<a href="main"><button class="shop-btn">메인으로</button></a>
+					<a href="/main"><button class="shop-btn">메인으로</button></a>
 				</section>
 			</article>
 		</div>
