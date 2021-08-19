@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var='root' value="${pageContext.request.contextPath }/" />
 
@@ -18,8 +17,13 @@
 <title>Petopia - Admin</title>
 
 <!-- css -->
-<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.4.1/chart.min.js"></script>
+<script
+
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<script
+
+	src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.js"></script>
 		
 <c:import url="/WEB-INF/views/include/admin_list_css.jsp" />
 
@@ -82,8 +86,9 @@ margin-top: 10px;
 		</div>
 
 				<div class="col-xl-12" id= statistics>
-					<canvas id="userChart" width="1200" height="600"></canvas>
+					<canvas id="chart" width="1200" height="600"></canvas>
 				</div>
+				
 			
 
 
@@ -140,176 +145,312 @@ margin-top: 10px;
 	
 	
 <script type="text/javascript">
+$( document ).ready(function() {
+    console.log( "ready!" );
 
 
 
-$(document).ready(
-		$("#item1").hide();
-		$("#item2").hide();
-		$("#item3").hide();
-$(function() {
-	function randomColor(labels) {
-		var colors = [];
-		for (let i = 0; i < labels.length; i++) {
-			colors.push("#" + Math.round(Math.random() * 0xffffff).toString(16));
-		}
-		return colors;
+
+
+
+
+
+$("#item1").on('click' ,function(){
+	var chartLabels1 = [];
+	var chartData1 = [];
+	if($('#chart').val() != null) {
+		console.log('차트 제거 작업 실행')
+	$('#chart').remove();
+	console.log($('#chart').val());
+	$('#statistics').eq(0).append('<canvas id ="chart"  width="1200" height="600"> </canvas>');
+	
 	}
-	function makeChart(ctx, type, labels, data) {
-		var myChart = new Chart(ctx, {
-		    type: type,
-		    data: {
-		        labels: labels,
-		        datasets: [{
-		            label: '날짜별 게시글 등록 수',
-		            data: data,
-		            backgroundColor: randomColor(labels)
-		        }]
-		    },
-		    options: {
-			    responsive: false,
-		        scales: {
-		            yAxes: [{
-		                ticks: {
-		                    beginAtZero: true
-		                }
-		            }]
-		        }
-		    }
+	
+	var lineChartData1 = {
+
+			labels : chartLabels1,
+
+			datasets : [
+
+				{
+
+					label : "회원수",
+
+					fillColor : "rbga(151,187,205,0.2)",
+
+					strokeColor : "rbga(151,187,205,1)",
+
+					pointColor : "rbga(151,187,205,1)",
+
+					pointStrokeColor : "#fff",
+
+					pointHighlightFill : "#fff",
+
+					pointHighlightStroke : "rbga(151,187,205,1)",
+
+					data : chartData1
+
+
+			}
+
+				]
+
+	}
+
+	
+	$.getJSON("http://localhost:8282/admin/getStatistics1", function(data){
+
+		
+
+		$.each(data, function(inx, obj){
+
+			chartLabels1.push(obj.member_joindate);
+			chartData1.push(obj.member_joincount);
+			console.log(obj.member_joindate);
+
 		});
+
+		createChart();
+
+		console.log("create Chart1")
+
+	});
+
+
+
+
+	function createChart(){
+
+		var ctx = document.getElementById("chart").getContext("2d");
+
+		LineChartDemo = Chart.Line(ctx,{
+
+			data : lineChartData1,
+
+			options :{
+
+				scales : {
+
+					yAxes : [{
+
+						ticks :{
+
+							beginAtZero : true
+
+						}
+
+					}]
+
+				}
+
+			}
+
+		})
+
+
+
+	}
+
+});
+
+$("#item2").on('click' ,function(){
+	console.log('item2');
+	var chartLabels2 = [];
+	var chartData2 = [];
+	var lineChartData2 = {
+
+			labels : chartLabels2,
+
+			datasets : [
+
+				{
+
+					label : "기부액",
+
+					fillColor : "rbga(151,187,205,0.2)",
+
+					strokeColor : "rbga(151,187,205,1)",
+
+					pointColor : "rbga(151,187,205,1)",
+
+					pointStrokeColor : "#fff",
+
+					pointHighlightFill : "#fff",
+
+					pointHighlightStroke : "rbga(151,187,205,1)",
+
+					data : chartData2
+
+				
+
+			}
+
+				]
+
 	}
 	
-	$.ajax({
-		
-		
-		
-		type: "GET",
-		url: "/admin/statistics",
-		dataType : "json",
-		success: function(data, status, xhr) {
-			
-			console.log(data);
-			
-			
-			var labels = [];
-			var myData = [];
-			
-			//맵안에 list 였으니 for문으로 돌린다
-			$.each(data.list,function (k,v){
-				
-				labels.push(v.reg_date);
-				myData.push(v.count);
-			});
-
-			var newLabels = labels.slice(-5);
-			var newMyData = myData.slice(-5);
-			// Chart.js 막대그래프 그리기
-			var ctx = $('#myChart');
-			makeChart(ctx, 'bar', newLabels, newMyData);
-			// Chart.js 선그래프 그리기
-			ctx = $('#myChart2');
-			makeChart(ctx, 'line', newLabels, newMyData);
-			// Chart.js 원그래프 그리기
-			ctx = $('#myChart3');
-			makeChart(ctx, 'pie', newLabels, newMyData);
-			ctx = $('#myChart4');
-			makeChart(ctx, 'doughnut', newLabels, newMyData);
-		}
-	});
+	$("#chart").remove();
+	$('#statistics').eq(0).append('<canvas id ="chart"> </canvas>');
 	
+	$.getJSON("http://localhost:8282/admin/getStatistics2", function(data){
+
+		console.log(data)
+
+		$.each(data, function(inx, obj){
+
+			chartLabels2.push(obj.member_point_usedate);
+			chartData2.push(obj.member_point_usepoint);
+
+		});
+
+		createChart();
+
+		console.log("create Chart2")
+
+	});
+
+
+
+
+	function createChart(){
+
+		var ctx = document.getElementById("chart").getContext("2d");
+
+		LineChartDemo = Chart.Line(ctx,{
+
+			data : lineChartData2,
+
+			options :{
+
+				scales : {
+
+					yAxes : [{
+
+						ticks :{
+
+							beginAtZero : true
+
+						}
+
+					}]
+
+				}
+
+			}
+
+		})
+
+
+
+	}
+
 });
-	var test1 = ${"test1"};
-	var test2 = ${"test2"};
-	console.log(test1);
-	console.log(test2);
-	
-	//통계 회원
-	var context1 = document.getElementById('userChart').getContext('2d');
-	var userChart = new Chart(context1, {
-		type : 'bar',
-		data : {
-		labels : ["Red" , "Blue", "Yellow", "Green", "Orange"],
-		datasets : [ {
-			 backgroundColor: [
-	                'rgba(255, 99, 132, 0.2)',
-	                'rgba(54, 162, 235, 0.2)',
-	                'rgba(255, 206, 86, 0.2)',
-	                'rgba(75, 192, 192, 0.2)',
-	                'rgba(153, 102, 255, 0.2)',
-	                'rgba(255, 159, 64, 0.2)'
-	            ],
-		hoverBackgroundColor :["#2AC1BC", "#FDD272"],
-		data : [10, 23, 20, 30, 50]
-		} ]
-		},
-			options : {
-				responsive : false
-			}
-	});
 
-	//통계 기부
-	var context2 = document.getElementById('donationChart').getContext('2d');
-	var userChart = new Chart(context2, {
-		type : 'bar',
-		data : {
-		labels : ["Red" , "Blue", "Yellow", "Green", "Orange"],
-		datasets : [ {
-			 backgroundColor: [
-	                'rgba(255, 99, 132, 0.2)',
-	                'rgba(54, 162, 235, 0.2)',
-	                'rgba(255, 206, 86, 0.2)',
-	                'rgba(75, 192, 192, 0.2)',
-	                'rgba(153, 102, 255, 0.2)',
-	                'rgba(255, 159, 64, 0.2)'
-	            ],
-		hoverBackgroundColor :["#2AC1BC", "#FDD272"],
-		data : [10, 23, 20, 30, 50]
-		} ]
-		},
-			options : {
-				responsive : false
+$("#item3").on('click' ,function(){
+	//상품
+	var chartLabels3 = [];
+	var chartData3 = [];
+
+	console.log('item3');
+	console.log($("#chart").remove());
+
+	
+	$("#chart").remove();
+	$('#statistics').eq(0).append('<canvas id ="chart"> </canvas>');
+	
+	var barChartData3 = {
+
+			labels : chartLabels3,
+
+			datasets : [
+
+				{
+
+					label : '상품',
+
+					fillColor : "rbga(151,187,205,0.2)",
+
+					strokeColor : "rbga(151,187,205,1)",
+
+					pointColor : "rbga(151,187,205,1)",
+
+					pointStrokeColor : "#fff",
+
+					pointHighlightFill : "#fff",
+
+					pointHighlightStroke : "rbga(151,187,205,1)",
+
+					data : chartData3
+
+				
+
 			}
-	});
-	//통계 주문
-	var context3 = document.getElementById('orderChart').getContext('2d');
-	var userChart = new Chart(context3, {
-		type : 'bar',
-		data : {
-		labels : ["Red" , "Blue", "Yellow", "Green", "Orange"],
-		datasets : [ {
-			 backgroundColor: [
-	                'rgba(255, 99, 132, 0.2)',
-	                'rgba(54, 162, 235, 0.2)',
-	                'rgba(255, 206, 86, 0.2)',
-	                'rgba(75, 192, 192, 0.2)',
-	                'rgba(153, 102, 255, 0.2)',
-	                'rgba(255, 159, 64, 0.2)'
-	            ],
-		hoverBackgroundColor :["#2AC1BC", "#FDD272"],
-		data : [10, 23, 20, 30, 50]
-		} ]
-		},
-			options : {
-				responsive : false
-			}
-	});
+
+				]
+
+	}
 	
 	
-	
-	
-	
-	   $('#item1').on('click', function(event) { 
-			  console.log('click')
-          
+	$.getJSON("http://localhost:8282/admin/getStatistics3", function(data){
+
+		
+
+		$.each(data, function(inx, obj){
+
+			chartLabels3.push(obj.product_name);
+			chartData3.push(obj.sales);
 			
-			 
+			console.log(obj.product_name);
 
-   });
-	
-	   });
+		});
 
+		createChart();
+
+		console.log("create Chart3")
+
+	});
+
+
+
+
+	function createChart(){
+
+		var ctx = document.getElementById("chart").getContext("2d");
+
+		LineChartDemo = Chart.Bar(ctx,{
+
+			data : barChartData3,
+
+			options :{
+
+				scales : {
+
+					yAxes : [{
+
+						ticks :{
+
+							beginAtZero : true
+
+						}
+
+					}]
+
+				}
+
+			}
+
+		})
+
+
+
+	}
+
+});
+
+
+
+});
 </script>
-
 	<c:import url="/WEB-INF/views/include/admin_list_js.jsp" />
 	
 

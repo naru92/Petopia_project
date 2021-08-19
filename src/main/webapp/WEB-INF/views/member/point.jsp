@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!Doctype html>
 <html>
@@ -25,7 +26,7 @@
 					<button class="donationBtn">기부하기</button>
 				</a>
 			</div>
-			
+
 			<div class="content">
 				<div class="my-box">
 					<div class="point-info">
@@ -41,40 +42,36 @@
 					</div>
 				</div>
 			</div>
-			
+
 			<div class="table">
 				<div class="table-box">
 
 					<table class="point-table">
 						<thead>
 							<tr>
-								<th>포인트 내역 &nbsp</th>
+								<th>날짜 &nbsp</th>
 								<th class="info">*1년 이내의 내역만 조회 가능합니다.</th>
-								<th>&nbsp &nbsp &nbsp</th>
-								<th>사용 내역</th>
+								<th></th>
+								<th>포인트</th>
 							</tr>
 						</thead>
 
-						<tbody>
-							<tr>
-								<td>${p_history.member_point_usedate || p_history.member_point_savedate }2021.06.02</td>
-								<td>${p_history.member_point_usedetail || p_history.member_point_savedetail }</td>
-								<td></td>
-								<td>${p_history.member_point_usepoint || p_history.member_point_savepoint }1000 point</td>
-							</tr>
-<!-- 							<tr>
-								<td>2021.06.02</td>
-								<td>&nbsp &nbsp &nbsp</td>
-								<td></td>
-								<td>1000 point</td>
-							</tr> -->
-						</tbody>
+						<c:forEach var="p" items="${point }">
+							<tbody>
+								<tr>
+									<td>${p.member_date}</td>
+									<td>${p.member_detail}</td>
+									<td></td>
+									<td>${p.member_point}point</td>
+								</tr>
+							</tbody>
+						</c:forEach>
 					</table>
 
 				</div>
 			</div>
 
-			
+
 
 
 			<div class="content"></div>
@@ -86,9 +83,8 @@
 		<%@include file="../include/default_footer.jsp"%>
 	</footer>
 
-	
-	<%@include file="../include/default_sidebar_js.jsp"%>
-		
+
+
 </body>
 
 </html>

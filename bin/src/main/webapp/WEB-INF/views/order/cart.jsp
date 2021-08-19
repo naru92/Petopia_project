@@ -1,287 +1,639 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib prefix="sec"
+   uri="http://www.springframework.org/security/tags"%>
+<!DOCTYPE html>
 
-<%@include file="../includes/header.jsp" %>
+<head>
 
-<section>
-    <div class="container">
-        <div class="row">
+<title>Petopia</title>
 
-            <%@include file="../includes/leftSideBar.jsp" %>
 
-            <div class="col-sm-9 padding-right">
-                <div class="product-information">
-                    <!--/product-information-->
-                    <form id="addForm" action="/products/add" method="post">
-                        <h2><b>카테고리</b></h2>
-                        <div class="row">
+<style type="text/css">
+.check_out{
+background-color:  #2AC1BC !important;
+color: white !important;
+}
+#cart_title{
+color: black !important;
+margin-left: 13px;
+margin-bottom: 20px;
+}
+.pull-right{
+text-align: end;
+margin-left : 75%;
+color: black !important;
+}
+.cart_menu{
+color: black !important;
+}
+.ss {
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
 
-                            <div class="form-group col-sm-2">
-                                <select id="animalType" name="animalType">
-                                    <option value="개">개</option>
-                                    <option value="고양이">고양이</option>
-                                    <option value="파충류">파충류</option>
-                                    <option value="조류">조류</option>
-                                    <option value="기타">기타</option>
-                                </select>
-                            </div>
+.girdscc {
+	margin-right: 15% !important;
+}
 
-                            <div class="form-group col-sm-2">
-                                <select id="productsType" name="productsType">
-                                    <option value="사료">사료</option>
-                                    <option value="장난감">장난감</option>
-                                    <option value="배변 패드">배변 패드</option>
-                                    <option value="건강 관리">건강 관리</option>
-                                    <option value="미용/목욕">미용/목욕</option>
-                                    <option value="급식기/급수기">급식기/급수기</option>
-                                    <option value="하우스/울타리">하우스/울타리</option>
-                                    <option value="이동장">이동장</option>
-                                    <option value="의류">의류</option>
-                                    <option value="기타">기타</option>
-                                </select>
-                            </div>
+.girdscc2 {
+	margin-right: 14% !important;
+}
 
-                            <div class="form-group col-sm-2">
-                                <select id="brand" name="brand">
-                                    <option value="로열캐닌">로열캐닌</option>
-                                    <option value="네츄럴코어">네츄럴코어</option>
-                                    <option value="CJ">CJ</option>
-                                    <option value="뉴트로초이스">뉴트로초이스</option>
-                                    <option value="퓨리나">퓨리나</option>
-                                    <option value="동원">동원</option>
-                                    <option value="네이쳐스 버라이어티">네이쳐스 버라이어티</option>
-                                    <option value="기타">기타</option>
-                                </select>
-                            </div>
-                        </div>
+.girdscc3 {
+	margin-right: 16% !important;
+}
 
-                        <div class="form-group">
-                            <h2><b>상품명 : </b></h2>
-                            <input class="form-control" name='productsName'>
-                        </div>
+.swiper-button-next {
+	top: 35% !important
+}
 
-                        <div class="form-group">
-                            <h2><b>가격 : </b></h2>
-                            <input class="form-control" name='price'>
-                        </div>
+.swiper-button-prev {
+	top: 35% !important
+}
 
-                        <div class="form-group">
-                            <h2><b>상품 설명</b></h2>
-                            <textarea class="form-control" rows="3" name='explain'></textarea>
-                        </div>
-                        
-                        <div class="form-group">
-                        	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-                        </div>
+.swiper-container {
+	color: black;
+	width: 100%;
+	height: 100%;
+}
 
-                        <button id="addBtn" type="submit" class="btn btn-default">등록</button>
-                        <button type="reset" class="btn btn-default">초기화</button>
+.swiper-slide {
+	text-align: center;
+	font-size: 18px;
+	background: #fff;
+	/* Center slide text vertically */
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	-webkit-justify-content: center;
+	justify-content: center;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	-webkit-align-items: center;
+	align-items: center;
+}
 
-                        <!-- 
-                        <input type='hidden' id="animalTypeHidden" name='animalType' value='<c:out value="${products.animalType}" />' >
-                		<input type='hidden' id="productsTypeHidden" name='productsType' value='<c:out value="${products.productsType}" />' >
-                		<input type='hidden' id="brandHidden" name='brand' value='<c:out value="${products.brand}" />' >
-                					 -->
-                    </form>
-                </div>
-                <!--/product-information-->
-            </div>
+.swiper-slide img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
 
-            <div class="col-sm-9 padding-right">
-                <div class="panel panel-default" style="margin-top:5px; border-radius:5px;">
-                    <div class="panel-heading">파일 첨부</div>
+.price {
+color: black;
+}
 
-                    <div class="panel-body">
-                        <div class="form-group uploadDiv">
-                            <input type="file" name='uploadFile' id="uploadInput" multiple>
-                        </div>
+.quantity {
+font-size : 16px;
+color: black;
+}
+.cart_quantity{
+padding-top: 3px !important; 
+}
+.amountPrice {
+color: black;
+}
 
-                        <div class='uploadResult'>
-                            <ul>
+.page-wrapper {
+	min-height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center; button { padding : 20px;
+	border: none;
+	background: lighten(#292d48, 65);
+	position: relative;
+	outline: none;
+	border-radius: 5px;
+	color: #292d48;
+	font-size: 18px; . cart-item { position : absolute;
+	height: 24px;
+	width: 24px;
+	top: -10px;
+	right: -10px; &: before { content : '1';
+	display: block;
+	line-height: 24px;
+	height: 24px;
+	width: 24px;
+	font-size: 12px;
+	font-weight: 600;
+	background: #2bd156;
+	color: white;
+	border-radius: 20px;
+	text-align: center;
+}
 
-                            </ul>
-                        </div>
-                    </div>
-                    <!-- ./panel-body -->
-                </div>
-                <!-- ./panel -->
-            </div>
+}
+&
+.sendtocart { .cart-item { display:block;
+	animation: xAxis 1s forwards cubic-bezier(1.000, 0.440, 0.840, 0.165);
+	&:
+	before
+	{
+	animation
+	:
+	yAxis
+	1s
+	alternate
+	forwards
+	cubic-bezier(
+	0.165
+	,
+	0.840
+	,
+	0.440
+	,
+	1.000
+	);
+}
 
-        </div>
-    </div>
-</section>
+}
+}
+}
+}
+.total_pirce_word{
+color:#385663;
+}
+.cart {
+	position: fixed;
+	top: 20px;
+	right: 20px;
+	width: 50px;
+	height: 50px;
+	background: #292d48;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 5px; i { font-size : 25px;
+	color: white;
+}
+
+&
+:before {
+	content: attr(data-totalitems);
+	font-size: 12px;
+	font-weight: 600;
+	position: absolute;
+	top: -12px;
+	right: -12px;
+	background: #2bd156;
+	line-height: 24px;
+	padding: 0 5px;
+	height: 24px;
+	min-width: 24px;
+	color: white;
+	text-align: center;
+	border-radius: 24px;
+}
+
+&
+.shake {
+	animation: shakeCart .4s ease-in-out forwards;
+}
+
+}
+@
+keyframes xAxis { 100% {
+	transform: translateX(calc(50vw - 105px));
+}
+
+}
+@
+keyframes yAxis { 100% {
+	transform: translateY(calc(-50vh + 75px));
+}
+
+}
+@
+keyframes shakeCart { 25% {
+	transform: translateX(6px)
+}
+50
+
+
+%
+{
+transform
+
+
+:
+
+
+translateX
+(
+
+
+-4px
+
+
+)
+;
+
+
+}
+75
+
+
+%
+{
+transform
+
+
+:
+
+
+translateX
+(
+
+
+2px
+
+
+)
+;
+
+
+}
+100
+
+
+%
+{
+transform
+
+
+:
+
+
+translateX
+(
+
+
+0
+
+
+)
+;
+
+
+}
+}
+
+
+</style>
+<!-- Bootstrap core CSS -->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/css/swiper.min.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+<link rel="stylesheet" href="/petopia/css/menu_test2.css">
+<link rel="stylesheet" href="/petopia/css/nomalize.css">
+<link rel="stylesheet" href="/petopia/css/index.css">
+<link rel="stylesheet" href="/petopia/css/main-homepage.css">
+<!-- Custom styles for this template -->
+<script src="https://kit.fontawesome.com/f1def33959.js"
+	crossorigin="anonymous"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/js/swiper.min.js"></script>
+<link rel="shortcut icon" type="image/x-icon"
+	href="/petopia/images/petopia_logomini.png">
+
+</head>
+
+<body>
+
+		<!-- Header Start -->
+	<header>
+		<%@include file="../include/default_header.jsp"%>
+	</header>
+	<!-- Header End -->
+
+	<hr />
+	<div class="container-fluid">
+
+		<div class="container-fluid maginContainer">
+
+
+			<div class="row">
+				<div class="container-side">
+					<div class="grid">
+						<div class="row">
+							<div class="col-3">
+								<!-- category -->
+								<nav class="category">
+									<div class="ctghead">
+										<h3>
+											<i class="ti-list"></i>펫shop
+										</h3>
+									</div>
+
+									<ul class="ctgul">
+										<li class="ctgli"><a href="#" class="ctga"><i
+												class="ti-user"></i>신상품</a></li>
+
+										<li class="ctgli"><a href="#" class="ctga"><i
+												class="ti-user"></i>베스트</a></li>
+
+										<li class="ctgli"><a href="#" class="ctga"><i
+												class="ti-user"></i>이벤트</a></li>
+
+										<li class="ctgli"><a href="#" class="ctga "> <i
+												class="ti-write"></i> 카테고리 <i class="ti-angle-down down "></i>
+										</a>
+											<ul class="ctgulChild">
+												<li class="ctgliChild"><a href="" class="ctgaChild">사료</a></li>
+												<li class="ctgliChild"><a href="" class="ctgaChild">간식</a></li>
+												<li class="ctgliChild"><a href="" class="ctgaChild">위생/배변</a></li>
+												<li class="ctgliChild"><a href="" class="ctgaChild">미용/목욕</a></li>
+												<li class="ctgliChild"><a href="" class="ctgaChild">급식/급수기</a></li>
+												<li class="ctgliChild"><a href="" class="ctgaChild">장난감/훈련</a></li>
+												<li class="ctgliChild"><a href="" class="ctgaChild">하우스/이동장</a></li>
+												<li class="ctgliChild"><a href="" class="ctgaChild">패션/의류</a></li>
+												<li class="ctgliChild"><a href="" class="ctgaChild">목줄/하네스</a></li>
+											</ul></li>
+									</ul>
+								</nav>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+
+
+			</div>
+
+		
+
+
+							
+		<!-- 첫번째 컨테이너 플루이드 끝-->
+
+		<!-- 중단시작 -->
+
+		<div class="container-fluid">
+			<div class="container girdscc2">
+				<div class="row col-sm-12">
+					
+<section id="cart_items">
+		<h2 id="cart_title">장바구니</h2>
+		<div class="container">
+			<div class="table-responsive cart_info">
+				<table class="table table-condensed">
+					<thead>
+						<tr class="cart_menu">
+							<td class="image">품목</td>
+							<td class="description">상품명</td>
+							<td class="price">가격</td>
+							<td class="quantity">개수</td>
+							<td class="total">가격</td>
+							<td></td>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach var="item" items="${cart}" varStatus="status"> 
+							<tr>
+								<td class="cart_product">
+									<div id="img-side">
+										<a href="#"><img src="#" id="cartAttach${status.index}"></a>
+									</div>
+								</td>
+                                <td class="cart_description">
+                                    <h4><a href="/product/get?product_idx=${item.productList.get(0).product_idx}"><c:out value="${item.productList.get(0).product_name}"/></a></h4> 
+                                        <p id="pno${status.index}" class=pno></p>
+                                </td>
+                                <td class="cart_price">
+                                    <p id="price${status.index}" class=price><c:out value="${item.productList.get(0).product_price}"/></p>
+                                </td>
+                                <td class="cart_quantity">
+                                    <div class="cart_quantity_button">
+                                       <h2 id="quantity${status.index}" class="quantity" >${item.amount}</h2>
+                                    </div>
+                                </td>
+                                <td class="cart_total">
+                                    <p class="cart_total_price amountPrice" id="amountPrice${status.index}"></p>
+                                </td>
+                                <td class="cart_delete">
+                                    <a class="cart_quantity_delete" href="#">
+                                    	<i class="fa fa-times">
+                                        </i>
+                                        	<input type="hidden" name="cart_id" id="cartNo${status.index}" value="<c:out value='${item.cart_id}'/>">
+                                    </a>
+                                </td>
+                           </tr>
+                           <input type="hidden" id="imageType${status.index}" value="${item.productList.get(0).productVOList.get(0).filetype}" />
+                           <input type="hidden" id="uuid${status.index}" value="${item.productList.get(0).productVOList.get(0).uuid}" />
+                           <input type="hidden" id="uploadPath${status.index}" value="${item.productList.get(0).productVOList.get(0).uploadPath}" />
+                           <input type="hidden" id="fileName${status.index}" value="${item.productList.get(0).productVOList.get(0).fileName}" />
+                       </c:forEach>
+                       <tr class="pull-right-parent">
+                       	   <td class="pull-right" colspan="6">
+                       	   		<p><strong class="total_pirce_word">총 가격  </strong><p id="totalPrice"></p></p>
+                       	   </td>
+                       </tr>
+					</tbody>
+				</table>
+				 <div>
+				 	<input type="hidden" id="size" value="${fn:length(cart)}" />
+				 	<input type="hidden" id=member_id value="${memberVO.member_id}" />
+                    <input type="hidden" id="name" value="${memberVO.member_name}" />
+                    <input type="hidden" id="address" value="${memberVO.member_address}" />
+                    <input type="hidden" id="email" value="${memberVO.member_email}" />
+                    <input type="hidden" id="point" value="${memberVO.member_point}" />        	
+                 </div>
+			</div>
+		</div>
+	</section> <!--/#cart_items-->
+
+	<section id="do_action">
+		<div class="container">
+			<div class="row">
+				<div class="pull-right" align="right">
+				
+				<sec:authorize access="hasRole('ROLE_MEMBER')">
+					<a class="btn btn-info check_out" href="/member/checkout" id="checkOut">주문서 작성</a>
+                </sec:authorize>
+                <sec:authorize access="isAnonymous()">
+                <a class="btn btn-info check_out" href="/users/checkout" id="checkOut">주문서 작성</a>
+				</sec:authorize>
+				</div>
+			</div>
+		</div>
+	</section>
+			
+
+
+				</div>
+			</div>
+		</div>
+
+<!-- 
+		<div class="quick">
+
+			<div class="icon4">
+				<span>장바구니</span> <span><a href="#">0</a></span>
+				<div "class=cart_item"></div>
+			</div>
+			<div class="icon5">
+				<span>최근 본 상품</span> <br> <a href="#"><img
+					src="http://vivienne.kr/web/upload/goodymall40/layout/btn_recent_prev.gif"
+					alt=""><img
+					src="http://vivienne.kr/web/upload/goodymall40/layout/btn_recent_next.gif"
+					alt=""></a>
+			</div>
+
+		</div> -->
+	</div>
+</div>
+
+
+	<div class="container-fluid footercontainer">
+
+
+
+		<!-- footer -->
+
+		<!--// footer -->
+
+	</div>
+	<footer>
+		<div class="container-fluid">
+
+			<img src="/petopia/images/petopia_logomini.png"> </br>
+			<p>PETOPIA</p>
+			</br>
+			<p>서비스 이용약관 | 개인정보 처리방침 | 입점/제휴 문의</p>
+			</br>
+			<p>Naru Juhee Gunwoo Ahram Hansol Hana</p>
+			<p>Bitcamp Jongno</p>
+			</br>
+			<p>&copy Creative 2021-08</p>
+
+
+		</div>
+	</footer>
+
+
+
+	<a id="backtotop"></a>
+
+	<!-- Bootstrap core JavaScript -->
+	
+
+
+	<script src="/petopia/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+	<script src="/petopia/js/mainindex.js"></script>
+	<script src="/petopia/js/petopia.js"></script>
+
 
 <script type="text/javascript">
-    <!--
 
-    //-->
+$(document).ready(function() {
 
-    $(document).ready(function(e) {
-
-        var formObj = $("#addForm");
-
-        $("#addBtn").on("click", function(e) {
-
-            e.preventDefault();
-
-            console.log("submit clicked");
-
-            var str = "";
-
-            $(".uploadResult ul li").each(function(i, obj) {
-
-                var jobj = $(obj);
-
-                console.dir(jobj);
-                console.log(jobj.data("filename"));
-
-                str += "<input type='hidden' name='attachList[" + i + "].fileName' value='" + jobj.data('filename') + "'>";
-                str += "<input type='hidden' name='attachList[" + i + "].uuid' value='" + jobj.data('uuid') + "'>";
-                str += "<input type='hidden' name='attachList[" + i + "].uploadPath' value='" + jobj.data('path') + "'>";
-                str += "<input type='hidden' name='attachList[" + i + "].imageType' value='" + jobj.data('type') + "'>";
-            });
-
-            console.log(str);
-
-            formObj.append(str).submit();
-
-            console.log(formObj);
-        });
-
-        // 파일 용량, 확장자 체크
-        var regex = new RegExp("(.*?)\.(exe\sh\zip\alz)$");
-        var maxSize = 5424880; //5MB
-
-        function checkExtension(fileName, fileSize) {
-
-            if (fileSize >= maxSize) {
-                alert("파일 사이즈 초과");
-
-                return false;
-            }
-
-            if (regex.test(fileName)) {
-                alert("해당 종류의 파일은 업로드 할 수 없습니다");
-
-                return false;
-            }
-
-            return true;
-        }
-
-        // 파일 업로드 결과
-        function showUploadResult(uploadResultArr) {
-
-            if (!uploadResultArr || uploadResultArr.length == 0) {
-                return;
-            }
-
-            var uploadUL = $(".uploadResult ul");
-
-            var str = "";
-
-            $(uploadResultArr).each(function(i, obj) {
-                if (obj.imageType) {
-                    var fileCallPath = encodeURIComponent(obj.uploadPath + "/s_" + obj.uuid + "_" + obj.fileName);
-
-                    str += "<li data-path='" + obj.uploadPath + "' data-uuid='" +
-                        obj.uuid + "' data-filename='" + obj.fileName +
-                        "' data-type='" + obj.imageType + "' ><div>";
-                    str += "<span> " + obj.fileName + "</span>";
-                    str += "<button type='button' data-file=\'" + fileCallPath +
-                        "\' data-type='image' class='btn btn-warning btm-circle'> <i class='fa fa-times'></i></button><br>";
-                    str += "<img src='/display?fileName=" + fileCallPath + "'>";
-                    str += "</div>";
-                    str + "</li>";
-                } else {
-                    var fileCallPath = encodeURIComponent(obj.uploadPath + "/s_" + obj.uuid + "_" + obj.fileName);
-                    var fileLink = fileCallPath.replace(new RegExp(/\\/g), "/");
-
-                    str += "<li data-path='" + obj.uploadPath + "' data-uuid='" +
-                        obj.uuid + "' data-filename='" + obj.fileName +
-                        "' data-type='" + obj.imageType + "' ><div>";
-                    str += "<span> " + obj.fileName + "</span>";
-                    str += "<button type='button' data-file=\'" + fileCallPath +
-                        "\' data-type='file' class='btn btn-warning btm-circle'> <i class='fa fa-times'></i></button><br>";
-                    str += "<img src='../../resources/images/attach.png'>";
-                    str += "</div>";
-                    str + "</li>";
-                }
-            });
-
-            uploadUL.append(str);
-        }
-
-        var csrfHeaderName = "${_csrf.headerName}";
-        var csrfTokenValue = "${_csrf.token}";
-        
-        $(document).ajaxSend(function(e, xhr, options) {
+/* 	var csrfHeaderName = "${_csrf.headerName}";
+    var csrfTokenValue = "${_csrf.token}";
+    
+    $(document).ajaxSend(function(e, xhr, options) {
 			xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
 		});
+	 */
+	// 장바구니 상품 이미지
+	for(var i = 0; i < $("#size").val(); i++) {
+		var imgSrci = null;
+		var uuid = $("#uuid" + i).val();
+		var uploadPath = $("#uploadPath" + i).val();
+		var fileName = $("#fileName" + i).val();
+		
+		if($("#imageType" + i).val()) {
+			imgSrci = encodeURIComponent(uploadPath + "/s_" + uuid + "_" + fileName);
+			imgSrci = "/display?fileName=" + imgSrci;
+		} else {
+			imgSrci = '../../resources/images/attach.png';
+		}
+	
+		console.log(imgSrci);
+		
+		$("#cartAttach" + i).attr("src", imgSrci);
+	}
+	
+	function numberFormat(inputNumber) {
+		  return inputNumber.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	}
 
-        $(".uploadResult").on("click", "button", function(e) {
+	// 각 항목 합계 가격
+	for(var i = 0; i < $("#size").val(); i++) {
+		var price = $("#price" + i).html();
+		var amount = $("#quantity" + i).html();
+		
+		var amountPrice = price*amount;
+		
+		$("#amountPrice" + i).html(amountPrice);
+	}
+	
+	$(".cart_delete").on("click", "a", function(e) {
+	
+		var cartNumber = $(this).find("input[name=cart_id]").val();
+		
+		console.log(cartNumber);
+		
+		 $.ajax({
+			type: 'post',
+			url: '/deleteCartItem',
+			data: JSON.stringify(cartNumber),
+			contentType: "application/json; charset=utf-8",
+			dataType: 'text',
+			success: function(result, status, xhr) {
+			  	console.log('delete cart item ' + result);
 
-            console.log("delete file");
+			  	alert("상품이 장바구니에서 삭제 되었습니다");
+			  	
+			  	location.replace("/order/Cart");
+			  }
+		}); 
+	});
+	
+	// price comma
+	for(var i = 0; i < $("#size").val(); i++) {
+		var price = $("#price" + i).html()
+		console.log(price);
+		$("#price" + i).html(numberFormat(price));
+	}
+	
+	// total price
+	var totalPrice = 0;
+	
+	for(var i = 0; i < $("#size").val(); i++) {
+		totalPrice += Number($("#amountPrice" + i).html());
+	}
+	
+	$("#totalPrice").html(numberFormat(totalPrice)+"&nbsp원");
+	
+	console.log($("#totalPrice").html() +"원");
+	
+	//amount price comma
+	for(var i = 0; i < $("#size").val(); i++) {
+		$("#amountPrice" + i).html(numberFormat($("#amountPrice" + i).html()));
+	}
+	
+	
+	
 
-            var targetFile = $(this).data("file");
-            var type = $(this).data("type");
 
-            var targetLi = $(this).closest("li");
-
-            $.ajax({
-                url: '/deleteFile',
-                data: {
-                    fileName: targetFile,
-                    type: type
-                },
-                dataType: 'text',
-                type: 'POST',
-                success: function(result) {
-                    alert(result);
-                    targetLi.remove();
-                    $("#uploadInput").val("");
-                }
-            });
-            // $.ajax
-        });
-        
-        $("input[type='file']").change(function(e) {
-
-            var formData = new FormData();
-
-            var inputFile = $("input[name='uploadFile']");
-
-            var files = inputFile[0].files;
-
-            console.log(files);
-
-            for (var i = 0; i < files.length; i++) {
-
-                if (!checkExtension(files[i].name, files[i].size)) {
-                    return false;
-                }
-
-                formData.append("uploadFile", files[i]);
-            }
-
-            $.ajax({
-                url: '/uploadAjaxAction',
-                processData: false,
-                contentType: false,
-                data: formData,
-                type: 'POST',
-                dataType: 'json',
-                success: function(result) {
-                    console.log("success" + result);
-                    showUploadResult(result);
-                }
-            });
-
-        });
-
-    });
+});
 </script>
 
-<%@include file="../includes/footer.jsp" %>
+</body>
+
+</html>

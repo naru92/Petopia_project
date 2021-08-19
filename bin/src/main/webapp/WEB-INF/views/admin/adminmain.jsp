@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
@@ -305,20 +304,24 @@ font-size: 13px;
 									cellspacing="0">
 									
 									<c:if test="${fn:length(getUnprocessedOrderList) == 0}">
-									<tbody>
-											<h4 align="center">데이터가 존재하지 않습니다.</h4>
-									</tbody>		
+									
 									</c:if>
+									<thead>
+										<tr>
+											<th>배송번호</th>
+											<th>주문번호</th>
+											<th>배송상태</th>
+										</tr>
+									</thead>	
 								<c:if test="${fn:length(getUnprocessedOrderList) > 0}">	
 										<c:forEach var='guol' items="${getUnprocessedOrderList}">
 								
 										<tbody>
-										
-											<td>${guol.delivery.idx }</td>
+										<tr>
+											<td>${guol.delivery_idx }</td>
 											<td>${guol.order_idx }</td>
-											<td>${guol.delivery_sate }</td>
-										
-										
+											<td>${guol.delivery_state }</td>
+										</tr>
 										</tbody>
 								</c:forEach>
 								</c:if>
@@ -367,11 +370,11 @@ font-size: 13px;
 						<span aria-hidden="true">×</span>
 					</button>
 				</div>
-				<div class="modal-body">"로그아웃"시 Petopia 메인으로 돌아갑니다.</div>
+				<div class="modal-body">로그아웃시 Petopia 메인으로 돌아갑니다.</div>
 				<div class="modal-footer">
 					<button class="btn btn-secondary" type="button"
 						data-dismiss="modal">취소</button>
-					<a class="btn btn-primary" href="${root }main">로그아웃</a>
+					<a class="btn btn-primary" href="/login/logoutProcess">로그아웃</a>
 				</div>
 			</div>
 		</div>

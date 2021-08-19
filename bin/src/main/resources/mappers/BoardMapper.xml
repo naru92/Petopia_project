@@ -5,17 +5,102 @@
 
 <mapper namespace="co.kr.petopia.mapper.BoardMapper">
 
+ 
+ 	<resultMap type="co.kr.petopia.vo.BoardVO" id="contentMap">
+ 		<id property="content_idx" column="content_idx" />
+ 		<result property="board_id" column="board_id" />
+ 		<result property="content_date" column="content_date" />
+ 		<result property="content_title" column="content_title" />
+ 		<result property="content_text" column="content_text" />
+ 		<result property="content_hit" column="content_hit" />
+ 		<result property="content_update" column="content_update" />
+ 		
+ 		<association property="memberList" resultMap="memberMap" />
+ 	</resultMap>
+ 
+ 	<resultMap type="co.kr.petopia.vo.FileUploadVO" id="attachMap">
+ 		<id property="uuid" column="uuid" />
+ 		<result property="uploadPath" column="uploadPath" />
+ 		<result property="fileName" column="fileName" />
+ 		<result property="filetype" column="filetype" />
+ 		<result property="content_idx" column="content_idx" />
+ 	</resultMap>
+ 
+ 	<resultMap type="co.kr.petopia.vo.MemberVO" id="memberMap">
+ 		<id property="member_id" column="member_id" />
+ 		<result property="member_name" column="member_name" />
+ 		<result property="member_phoneNumber" column="member_phoneNumber" />
+ 		<result property="member_address" column="member_email" />
+ 		<result property="member_joindate" column="member_joindate" />
+ 		<result property="member_grade" column="member_grade" />
+ 		<result property="member_point" column="member_point" />
+ 		<result property="member_donation" column="member_donation" />
+ 		<result property="member_oauth" column="member_oauth" />
+ 		
+ 		<collection property="contentList" resultMap="contentMap" />
+ 	</resultMap>
+
+
 	<!-- 해당 게시판에 게시글 불러오는 쿼리문 / idx 내림차순 (최신게 위로) -->
 	<select id="getContentList" resultType="co.kr.petopia.vo.BoardVO">
-		select * from content where
+		SELECT content_idx, content_title, content_text,
+				TO_CHAR(content_date , 'yyyy-mm-dd') as content_date, content_hit, content_update, member_id, board_id 
+		FROM content where
 		board_id = #{board_id} order by content_idx DESC
+	</select>
+		
+	
+	<!-- 해당 게시판에 게시글 불러오는 쿼리문 + 페이징 -->
+	<select id="getContentListPaging"  resultType="co.kr.petopia.vo.BoardVO">
+		<![CDATA[
+		SELECT * FROM
+		(
+		select /*+ INDEX_DESC(content pk_content) */ rownum rn, content_idx, content_title, content_text,
+		content_date, content_hit, content_update, member_id, board_id from content 
+		where content_idx > 0 and rownum <= (#{pageNum} * #{amount})
+		)
+		where rn > (#{pageNum}-1) * 10 and board_id = #{board_id}
+		]]>
+	</select>
+	
+	<select id="getContentListPaging1"  parameterType="java.util.HashMap" resultType="co.kr.petopia.vo.BoardVO">
+		
+  		 <![CDATA[
+  		SELECT * FROM (
+              SELECT ROWNUM AS RNUM, A.* FROM (
+                       SELECT
+                           content_idx, content_title, content_text,
+		TO_CHAR(content_date , 'yyyy-mm-dd') as content_date, content_hit, content_update, member_id, board_id
+                         FROM
+                             content
+                         where board_id = #{board_id}
+                         order by board_id
+             ) A WHERE ROWNUM <= #{cri.pageNum , jdbcType=VARCHAR} * #{cri.amount, jdbcType=VARCHAR}
+         ) WHERE RNUM > (#{cri.pageNum , jdbcType=VARCHAR}-1) * #{cri.amount, jdbcType=VARCHAR} 
+  		 ]]>
+	</select>
+	
+	
+	
+	<!-- count -->
+	<select id="getTotalCount" resultType="int">
+		select count(*) from content where board_id = #{board_id}
+	</select>
+	
+	<!-- count -->
+	<select id="getTotalCount2" resultType="int" >
+		select count(*) from content where board_id = #{cri.board_id , jdbcType=VARCHAR}
 	</select>
 
 	<insert id="contentInsert">
+	<selectKey keyProperty="content_idx" order="BEFORE" resultType="int">
+ 			select content_seq.nextval from dual
+ 	</selectKey>
+	
 		insert into content(content_idx, board_id, member_id,
 		CONTENT_DATE,CONTENT_TITLE,CONTENT_TEXT,CONTENT_HIT)
 		values
-		(CONTENT_SEQ.nextval, #{board_id}, #{member_id}, SYSDATE,
+		(#{content_idx}, #{board_id}, #{member_id}, SYSDATE,
 		#{content_title}, #{content_text}, 0)
 	</insert>
 
@@ -34,7 +119,48 @@
 		content_update = sysdate
 		where content_idx = #{content_idx}
 	</update>
-
+	
+	<update id="modifyContentInfo">
+		UPDATE content
+		SET content_title = #{content_title},
+			content_text = #{content_text},
+			content_date = sysdate
+		WHERE board_id=#{board_id} and content_idx = #{content_idx}
+	</update>
+	
+	
+	<select id="getBoardInfo" resultType="String" >
+	<![CDATA[
+		select board_name, board_id 
+		from board
+		where board_id =${board_id}
+	]]>
+	</select>
+	
+	<select id="getAllBoardInfo" resultType="co.kr.petopia.vo.BoardVO">
+	select *
+	from board
+	</select>
+	
+	<delete id="deleteContentInfo">
+	delete from content where content_idx = #{content_idx}
+	</delete>
+	
+	<select id="getQnaList" resultMap="contentMap">
+	SELECT b.board_id , c.content_idx, c.content_title, c.content_date,
+        content_text,m.member_id, m.member_name, m.member_email
+	FROM board b , content c , member m
+	<choose>
+	<when test="authority.equals('ROLE_ADMIN')">
+	WHERE c.member_id = m.member_id AND
+		  b.board_id = c.board_id AND b.board_id = 2
+	</when>
+	<otherwise>
+	WHERE c.member_id = #{member_id} AND
+		  b.board_id = c.board_id
+	</otherwise>
+	</choose>	
+	</select>
 	
 
 </mapper>

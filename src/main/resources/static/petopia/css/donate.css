@@ -32,11 +32,11 @@
   position: relative;
 }
 .withdrawal-form input {
-    width: 100%;
+    width: 80%;
     padding: 5px;
     height: 56px;
-    border-radius: 74px;
-    border: 1px solid #ccc;
+    border: 1px solid white;
+    border-bottom: 1px solid #bbb;
     box-sizing: border-box;
     font-size: 15px;
     padding-left: 75px;
@@ -53,8 +53,8 @@
   border-radius: 44px;
   height: 56px;
   cursor: pointer;
-  width: 150px;
-  margin: 10px 110px;
+  width: 50%;
+  margin-left:30px;
 }
 input:focus {
   outline:none;
@@ -62,3 +62,7 @@ input:focus {
 .withdrawal-form button:hover{
   opacity: 0.9;
 }
+
+.tbl_edit01    { width:100%; border-top:1px solid #BBB; box-sizing:border-box; }
+.tbl_edit01 tr { height:46px;  box-sizing:border-box; }
+.tbl_edit01 td { height:46px; font-size:14px; box-sizing:border-box; padding:5px; }

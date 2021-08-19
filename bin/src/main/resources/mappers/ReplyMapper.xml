@@ -35,7 +35,11 @@
 		reply_text = #{reply_text}
 		where reply_idx = #{reply_idx}
 	</update>
-
 	
+	<!-- ADMIN답변 VO로 반환-->
+	<select id="getMyAnswerList" resultType="co.kr.petopia.vo.ReplyVO">
+	select * from reply where
+	content_idx = #{content_idx} order by reply_idx
+	</select>
 
 </mapper>

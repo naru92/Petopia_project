@@ -1,0 +1,80 @@
+.orderList-main {
+	width: 1070px;
+	margin-top: 100px;
+	margin-left: 350px;
+	margin-bottom: 100px;
+}
+
+.box {
+	padding: 20px;
+	margin-bottom: 30px;
+	width: 1028px;
+	border: 1px solid #bbb;
+	border-radius: 5px;
+}
+
+.orderList {
+	border: 1px solid #bbb;
+	padding: 20px;
+	width: 750px;
+}
+
+.orderList-info {
+	display: flex;
+	align-items: center;
+}
+
+.orderList-info img {
+	margin-left: 10px;
+	margin-right: 20px;
+	width: 100px;
+	height: 100px;
+	overflow: hidden;
+	object-fit: cover;
+}
+
+.BtnList {
+	padding: 40px;
+	border-top: 1px solid #bbb;
+	border-right: 1px solid #bbb;
+	border-bottom: 1px solid #bbb;
+	width: 200px;
+	align-items: center;
+	text-align: center;
+}
+
+.box2 {
+	display: flex;
+	margin-top: 15px;
+}
+
+.Btn1 {
+	height: 25px;
+	width: 140px;
+	border-radius: 4px;
+	border: 1px solid #2AC1BC;
+	cursor: pointer;
+	color: #2AC1BC;
+	font-size: 16px;
+	padding: 6px 15px;
+	margin: 25px 10px;
+	background-color: white;
+}
+
+.Btn1:hover {
+	background-color: #e3f9f9;
+	color: #2AC1BC;
+}
+
+.date {
+	display: flex;
+	width: 1000px;
+}
+
+.date a {
+	margin-left: 700px;
+}
+
+.date a:hover {
+	color: #2AC1BC;
+}

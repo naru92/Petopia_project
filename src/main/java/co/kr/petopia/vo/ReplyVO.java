@@ -14,5 +14,7 @@ public class ReplyVO {
     private Date reply_date;
     private int product_idx;
     private String product_name;
+    
+    private String reply_date_str;
 
 }

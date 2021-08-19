@@ -1,7 +1,7 @@
 /* ORDERFORM */
 body, main {
 	position: relative;
-	height: 1300px;
+	height: 1500px;
 	z-index: -100;
 }
 
@@ -10,6 +10,7 @@ body, main {
 	width: 1090px;
 	margin: 0px auto;
 	overflow: hidden;
+	padding : 0 30px 0 0;
 }
 
 .thanks {
@@ -30,13 +31,33 @@ body, main {
 }
 
 .thanks2 p {
-	font-size: 25px;
+	font-size: 28px;
 	font-weight: bold;
 	color: #393939;
 	margin-bottom: 4px;
 	letter-spacing: 3px;
 	text-transform: uppercase;
 	text-align: left;
+	margin-left: 105px;
+}
+
+.infoInsert p {
+	font-size: 20px;
+	font-weight: bold;
+	color: #393939;
+	letter-spacing: 3px;
+	text-transform: uppercase;
+}
+
+.memberInfo p {
+	font-size: 20px;
+	font-weight: bold;
+	color: #393939;
+	letter-spacing: 3px;
+	text-transform: uppercase;
+}
+
+.memberInfoForm{
 	margin-left: 105px;
 }
 
@@ -48,7 +69,7 @@ body, main {
 	width: 85%;
 	margin-top: 10px;
 	margin-bottom: 20px;
-	margin-left: 110px;
+	margin-left: 105px;
 	display: inline-block;
 	border-bottom: 3px solid #393939;
 	z-index: -1;
@@ -93,6 +114,7 @@ a {
 }
 
 .container {
+	padding-top : 10px;
 	margin: 0 auto
 }
 
@@ -488,11 +510,6 @@ select {
 	padding: 150px 0 150px 0;
 }
 
-.joinStepWrap .joinStep_Img {
-	display: block;
-	margin: 0 auto 50px
-}
-
 /* table css start  */
 .tableWrap {
 	border-top: 2px solid #464646;
@@ -520,8 +537,18 @@ select {
 	line-height: 34px;
 }
 
+.tableNumber2 {
+	width: 15%;
+	border-top: 1px solid #b6ada8;
+	text-align: left;
+	vertical-align: middle;
+	padding: 0 10px;
+	font-size: 15px;
+	line-height: 34px;
+}
+
 .tableTitle {
-	width: 100%;
+	width: 99.5%;
 	border-top: 1px solid #b6ada8;
 	vertical-align: middle;
 	padding: 15px 0;
@@ -563,7 +590,7 @@ select {
 }
 
 input.inputBox {
-	width: 695px;
+	width: 780px;
 	margin-bottom: 3px;
 }
 
@@ -573,10 +600,50 @@ input.inputBox2 {
 	border: 1px solid #dfdfdf;
 }
 
+input.readId {
+	width: 780px;
+	margin-bottom: 3px;
+	border: 1px solid white;		
+	pointer-events : none;
+}
+
+input.readName {
+	width: 780px;
+	margin-bottom: 3px;
+	border: 1px solid white;		
+	pointer-events : none;
+}
+
+input.inputName1{
+	width: 780px;
+	margin-bottom: 3px;
+	border: 1px solid #dfdfdf;	
+	
+}
+
+input.inputName2{
+	width: 780px;
+	margin-bottom: 3px;
+	border: 1px solid #dfdfdf;	
+}
+
+input.inputTel{
+	width: 780px;
+	margin-bottom: 3px;
+	border: 1px solid #dfdfdf;	
+}
+
+input.inputPost{
+	width: 780px;
+	margin-bottom: 3px;
+	border: 1px solid #dfdfdf;	
+}
+
 span.text {
 	display: block;
 	color: #aaa;
 	line-height: 20px
+	margin-top: 15px;
 }
 
 span.txtInput {
@@ -628,49 +695,39 @@ span.emailAt {
 	line-height: 32px
 }
 
+.content {
+	padding: 90px 30px 0px 0px;
+	margin-left:30px;
+}
 
-	.content {
-		padding: 50px 30px 0px 0px;
-		margin-left:30px;
-	}
-	.joinStep_Img {
-		width: 90%;
-	}
-	.content .btn01 {
-		font-size: 14px;
-	}
-	.content .btn2 {
-		font-size: 14px;
-	}
-	.tableNumber {
-		width: 200px;
-	}
+.content .btn01 {
+	font-size: 14px;
+}
 
-
+.content .btn2 {
+	font-size: 14px;
+}
+	
 @media screen and (max-width:720px) {
 	.content {
-		padding: 30px 15px 100px;
+		padding: 0px 15px 100px;
 	}
-	.joinStepWrap .joinStep_Img {
-		width: 100%;
-		margin-bottom: 20px;
-	}
-	.personalInfo .tableNumber {
+	/* .personalInfo .tableNumber {
 		display: block;
 		width: auto;
 		text-align: left;
 		font-size: 13px;
 		line-height: 18px;
 		padding: 8px 5px 4px;
-	}
-	.personalInfo .tableTitle {
+	} */
+	/* .personalInfo .tableTitle {
 		border-top: none;
 		padding: 4px 5px 8px;
 		line-height: 18px;
 		font-size: 12px;
 		margin: 0;
 		text-align: left;
-	}
+	} */
 	.personalInfo .tableTitle span.txtInput {
 		font-size: 13px;
 		line-height: 18px;
@@ -774,13 +831,12 @@ span.emailAt {
 	text-align: center;
 }
 
-.homeBtn {
+#paymentBtn {
 	box-shadow:inset 0px 1px 0px 0px #ffffff;
 	background:linear-gradient(to bottom, #ffffff 5%, #f6f6f6 100%);
 	background-color:#ffffff;
 	border-radius:6px;
 	border:1px solid #dcdcdc;
-	display:inline-block;
 	cursor:pointer;
 	color:#666666;
 	font-size:15px;
@@ -789,17 +845,14 @@ span.emailAt {
 	text-decoration:none;
 	text-shadow:0px 1px 0px #ffffff;
   	float: right;
-  	position : absolute;
-  	top : 90%;
-  	left: 47.5%;
 }
 
-.homeBtn:hover {
+#paymentBtn:hover {
 	background:linear-gradient(to bottom, #f6f6f6 5%, #ffffff 100%);
 	background-color:#f6f6f6;
 }
 
-.homeBtn:active {
+#paymentBtn:active {
 	position:relative;
 	top:1px;
 }
@@ -831,6 +884,7 @@ span.emailAt {
  	border: 1px solid #b6ada8;
  }
 
+/* 수정 금지 */
 
 /* font nexon lv1 gothic */
 @font-face {
@@ -1018,7 +1072,7 @@ ul {
 	font-family: 'NEXON Lv1 Gothic OTF';
 	color: #141517;
 	font-weight: 600;
-	padding: 41px 21px;
+	padding: 0px 21px;
 	display: inline-block;
 	text-transform: capitalize;
 	display: block;

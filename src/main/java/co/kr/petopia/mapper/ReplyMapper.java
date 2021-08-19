@@ -24,6 +24,9 @@ public interface ReplyMapper {
 
     // insert
     int replyInsert(ReplyVO reply);
+    
+    // 리뷰 insert
+    int productReviewInsert(ReplyVO reply);
    
     // update
     int replyUpdate (ReplyVO reply);

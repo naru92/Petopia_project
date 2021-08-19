@@ -4,43 +4,187 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="co.kr.petopia.mapper.OrderMapper">
+	<!-- 회원 -->
+	<!-- 해당 멤버 정보 가지고 오기 -->
+	<select id="getMemberInfoRead" resultType="co.kr.petopia.vo.OrderVO">
+		SELECT * FROM member WHERE member_id = #{member_id}
+	</select>
+	
+	<!-- 결제 시 회원 별 장바구니(구매) 리스트 -->
+	<select id="getMemberCartList" resultType="co.kr.petopia.vo.OrderVO">
+		SELECT 
+		c.member_id as member_id, 
+		c.product_idx as product_idx, 
+		p.product_detail_info as product_detail_info, 
+		p.product_name as product_name, 
+		p.product_coloroption as product_coloroption, 
+		p.product_price as product_price 
+		FROM cart c, product p 
+		WHERE c.product_idx = p.product_idx and c.member_id = #{member_id} 
+	</select> 
 
+	<!-- 주문자 정보 입력 후 DB로 정보 넘기기(주문서 폼) -->
+	<insert id="memberOrderFormInsert">
+  		 INSERT INTO order_form (order_idx, product_idx, member_id, order_date) 
+		 VALUES (order_seq.nextval, #{product_idx}, #{member_id}, sysdate)
+	</insert>
+
+	<!-- 주문자 정보 입력 후 DB로 정보 넘기기(주문 상세) -->
+	<insert id="memberOrderDetailInsert">
+	     INSERT INTO order_detail (order_idx, product_idx, order_name, order_receiver_name, 
+	     						   order_receiver_phonenumber, order_receiver_address, order_quantity, 
+	     						   payment_method, order_date)
+		 	    VALUES (#{order_idx}, #{product_idx}, #{order_name}, #{order_receiver_name}, 
+		 	            #{order_receiver_phonenumber}, #{order_receiver_address}, #{order_quantity}, 
+		 	            #{payment_method}, sysdate) 
+	</insert>
+	
+	<!-- 멤버 별 주문 상세 읽어오기 -->
+	<select id = "readMemberOrderInfo" resultType="co.kr.petopia.vo.OrderVO">
+		SELECT * FROM ORDER_DETAIL WHERE order_idx = (select max(order_idx) from order_form)
+	</select>
+	
+	<!-- 멤버 별 주문 리스트 읽어오기 -->
+	<select id = "readMemberOrderList" resultType="co.kr.petopia.vo.OrderVO">
+	<![CDATA[
+		select distinct
+				d.delivery_state as delivery_state, 
+				d.delivery_idx as delivery_idx,
+         		f.member_id as member_id, 
+         		f.order_date as order_date_str, 
+         		f.product_idx as product_idx,
+        		o.order_idx as order_idx, 
+        		o.order_quantity as order_quantity,
+        		p.product_name as product_name, 
+        		p.product_price as product_price,
+        		t.filename as filename
+    		from delivery d, order_form f, order_detail o, product p, tbl_attach t
+        		where f.member_id=member_id
+                    and p.product_idx = t.product_idx
+        			and member_id = #{member_id}
+        			and p.product_idx = o.product_idx
+        			and o.product_idx = t.product_idx
+                    and o.order_idx = f.order_idx
+                    and d.order_idx = o.order_idx
+            	order by o.order_idx desc
+     ]]>
+	</select>
+	
+	<!-- 포인트-->
+	<insert id = "insertPoint">
+		INSERT INTO point (member_id, member_point_savepoint, member_point_savedetail, member_point_savedate)
+         	   VALUES (#{member_id}, #{member_point_savepoint}, #{member_point_savedetail}, sysdate)
+	</insert>
+	
+	<update id = "updateMemberPoint">
+		UPDATE member SET member_point = member_point + 1000
+	      WHERE member_id = #{member_id}
+	</update>
+	
+	<update id = "updatePoint">
+		UPDATE point SET member_point_savepoint = member_point_savepoint + 1000
+	      WHERE member_id = #{member_id}
+	</update>
+	
+	 <!-- 배송 테이블 정보 추가 -->
+	<insert id= "insertDelivery">
+		INSERT INTO delivery (delivery_idx, order_idx, delivery_state, delivery_date)
+			   VALUES (delivery_seq.nextval, #{order_idx}, #{delivery_state}, sysdate)
+		
+	</insert>
+	
+	<!-- 비회원 -->
+	
 	<!-- 결제 시 회원 별 장바구니(구매) 리스트 -->
 	<select id="getCartList" resultType="co.kr.petopia.vo.OrderVO">
-		select member.member_id, product_name, product_coloroption, product_price
-		from cart left join member on cart.member_id = member.member_id
-		left join order_form on member.member_id = order_form.member_id
-		left join product on cart.product_idx = product.product_idx 
-		where member_id = 'dummy20'
+		SELECT 
+		product_detail_info, product.product_idx, product.product_name, 
+		product.product_coloroption, product_price
+		FROM cart, product 
+		WHERE cart.product_idx = product.product_idx and member_id = 'dummy20'
 		<!-- where member_id = #{member.id} -->
 	</select> 
 
-	<!-- 주문자 정보 입력 후 DB로 정보 넘기기 -->
+	<!-- 주문자 정보 입력 후 DB로 정보 넘기기(주문서 폼) -->
 	<insert id="orderFormInsert">
-  		 insert into order_form (order_idx, product_idx, member_id, order_date) 
-		 values (order_seq.nextval, #{product_idx}, #{member_id}, sysdate)
+  		 INSERT INTO order_form (order_idx, product_idx, user_name, order_date) 
+		 		VALUES (order_seq.nextval, #{product_idx}, #{user_name}, sysdate)
 	</insert>
 
+	<!-- 주문자 정보 입력 후 DB로 정보 넘기기(주문 상세) -->
 	<insert id="orderDetailInsert">
-	     <!-- insert into order_detail (order_idx, product_idx, order_name, order_receiver_name, order_receiver_phonenumber, order_receiver_address, order_quantity, payment_method)
-		 values (#{order_idx}, #{product_idx}, #{order_name}, #{order_receiver_name}, #{order_receiver_phonenumber}, #{order_receiver_address}, #{order_quantity}, #{payment_method}) 
-	 -->
-	 
-<!-- 	 	<selectKey order = "BEFORE" keyProperty = "order_idx" resultType = "int">
-	 		select order_seq.nextVal from dual
-	 	</selectKey> -->
-	 	
-	     insert into order_detail (order_idx, product_idx, order_name, order_receiver_name, order_receiver_phonenumber, order_receiver_address, order_quantity, payment_method)
-		 values (#{order_idx}, #{product_idx}, #{order_name}, #{order_receiver_name}, #{order_receiver_phonenumber}, #{order_receiver_address}, #{order_quantity}, #{payment_method}) 
-		 <!--  -->
+	     INSERT INTO order_detail (order_idx, product_idx, order_name, order_receiver_name, 
+	     						   order_receiver_phonenumber, order_receiver_address, order_quantity, 
+	     						   payment_method, order_date)
+		 		VALUES (#{order_idx}, #{product_idx}, #{user_name}, #{order_receiver_name}, 
+		 			    #{order_receiver_phonenumber}, #{order_receiver_address}, #{order_quantity}, 
+		 			    #{payment_method}, sysdate) 
 	</insert>
 	
-<!-- 	<select id="getOrderFormCurrVal" >
-		select order_seq.currval from dual
-	</select> -->
+	<!--  users 테이블로 DB 정보 넘기기 -->
+	<insert id="orderUserInsert">
+		INSERT INTO users (order_idx, user_name, user_phonenumber, user_address)
+			   VALUES (#{order_idx}, #{order_name}, #{order_receiver_phonenumber}, #{order_receiver_address})
 	
-	<delete id = "deleteOrderIdx">
-		delete from order_form (order_idx) where order_idx = #{order_idx}
-	</delete>
+	</insert>
+	
+	<!-- 멤버 별 주문 상세 읽어오기 -->
+	<select id = "readOrderInfo" resultType="co.kr.petopia.vo.OrderVO">
+		select * from ORDER_DETAIL where order_idx = (select max(order_idx) from order_form)
+	</select>
+	
+	<!-- 비회원 주문 상세 조회 -->
+	<select id = "usersOrderInfo" resultType="co.kr.petopia.vo.OrderVO">
+		SELECT d.order_date as order_date_str,
+			d.order_idx as order_idx,
+			d.product_idx as product_idx,
+			d.order_quantity as order_quantity,
+			d.payment_method as payment_method,
+			d.order_receiver_name as  order_receiver_name,
+			d.order_receiver_phonenumber as order_receiver_phonenumber,
+			d.order_receiver_address as order_receiver_address,
+			d.order_name as order_name,
+			u.user_phonenumber as user_phonenumber,
+			p.product_name as product_name,
+			p.product_detail_info as product_detail_info,
+			p.product_price as product_price,
+			v.delivery_state as delivery_state,
+			t.filename as filename
+		FROM users u, order_form f, order_detail d, product p, tbl_attach t, delivery v
+		WHERE p.product_idx = t.product_idx 
+		AND u.user_name = d.order_name 
+		AND d.order_name = #{order_name}
+		AND u.order_idx = d.order_idx 
+		AND d.order_idx = #{order_idx}
+	</select>
+	
+	<!-- 회원 주문 상세 조회 -->
+	<select id = "memberOrderInfo" resultType="co.kr.petopia.vo.OrderVO">
+		SELECT d.order_date as order_date_str,
+			d.order_idx as order_idx,
+			d.product_idx as product_idx,
+			d.order_quantity as order_quantity,
+			d.payment_method as payment_method,
+			d.order_receiver_name as  order_receiver_name,
+			d.order_receiver_phonenumber as order_receiver_phonenumber,
+			d.order_receiver_address as order_receiver_address,
+			d.order_name as order_name,
+			m.member_phonenumber as member_phonenumber,
+			m.member_id as member_id,			
+			p.product_name as product_name,
+			p.product_detail_info as product_detail_info,
+			p.product_price as product_price,
+			v.delivery_state as delivery_state,
+			t.filename as filename
+		FROM member m, order_form f, order_detail d, product p, tbl_attach t, delivery v
+		WHERE p.product_idx = t.product_idx 
+		AND v.order_idx = d.order_idx
+		AND m.member_name = d.order_name
+		AND f.member_id = m.member_id
+		AND f.member_id = #{member_id}
+		AND f.order_idx = d.order_idx 
+		AND d.order_idx = #{order_idx}
+	</select>
+	
 	
 </mapper>

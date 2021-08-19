@@ -41,9 +41,9 @@
 								<div class="orderList-info">
 									<img src="/petopia/images/product_1.jpg">
 									<div class="info">
+										<p>주문번호: ${o.order_idx}</p>
 										<h5>${o.product_name }</h5>
-										<p>${o.product_price }원 &nbsp &nbsp
-											${o.order_quantity }개</p>
+										<p>${o.product_price }원&nbsp&nbsp ${o.order_quantity }개</p>
 									</div>
 								</div>
 							</div>
