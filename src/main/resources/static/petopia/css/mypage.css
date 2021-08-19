@@ -58,14 +58,27 @@ body, main{
 	cursor:pointer;
 	font-size:11px;
 	padding:3px 10px;
+	margin-right: 5px;
+	margin-top: 120px;
 }
 .ModifyBtn:active {
 	position:relative;
 	top:1px;
 }
-.modifybutton{
+
+.insertBtn{
+	border-radius:4px;
+	border:1px solid #bbb;
+	cursor:pointer;
+	font-size:11px;
+	padding:3px 10px;
 	margin-right: 5px;
 	margin-top: 120px;
+	
+}
+.insertBtn:active {
+	position:relative;
+	top:1px;
 }
 
 .profile-box h4:hover{

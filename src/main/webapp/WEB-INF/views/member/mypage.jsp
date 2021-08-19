@@ -30,14 +30,14 @@
 					<!--내 정보-->
 					<div class="profile-box">
 						<img class="profile-pic" src="/petopia/images/petstagram_profile1.jpg">
-						<div>
+						<div style="width: 120px;">
 							<p>내 정보</p>
 							<h4>${member.member_name} </h4>
 							<p>님</p>
 						</div>
-						<div class="modifybutton">
+						<div class="modifybutton" >
 							<a href="passwordConfirm">
-								<button class="ModifyBtn">수정</button>
+								<button class="ModifyBtn" style="width: 25px;">수정</button>
 							</a>
 						</div>
 					</div>
@@ -45,15 +45,14 @@
 					<!--마이펫 정보-->
 					<div class="profile-box">
 							<img class="profile-pic" src="/petopia/images/icon_bar_save_on1.png">
-							<div>
+							<div style="width: 120px;">
 								<h4>${mypet.mypet_name}</h4>
-								<p>${mypet.mypet_gender}</p>
 								<p>${mypet.mypet_age} 살</p>
 								<p>${mypet.mypet_weight} kg</p>
 							</div>
-							<div class="modifybutton">
+							<div class="modifybutton" >
 								<a href="#">
-									<button class="ModifyBtn">관리</button>
+									<button class="insertBtn" style="width: 25px;">등록</button>
 								</a>
 							</div>
 					</div>
@@ -63,7 +62,7 @@
 						<a href="grade">
 							<img class="myimg" src="/petopia/images/bronze_medal.png">
 						</a>
-						<div>
+						<div style="width: 120px;">
 							<p>등급</p>
 							<a href="grade">
 								<h4>${member.member_grade}</h4>
@@ -78,7 +77,7 @@
 						<a href="point">
 							<img class="myimg" src="/petopia/images/point.png">
 						</a>
-						<div>
+						<div style="width: 120px;">
 							<p>포인트</p>
 							<a href="point">
 								<h4>${member.member_point} &nbsp Point</h4>
@@ -92,7 +91,7 @@
 						<a href="myDonation">
 							<img class="myimg" src="/petopia/images/donation.png">
 						</a>
-						<div>
+						<div style="width: 120px;">
 							<a href="myDonation">
 								<h4>기부 내역</h4>
 							</a>
@@ -108,7 +107,7 @@
 						<a href="myOrderList">
 							<img class="myimg" src="/petopia/images/order.png">
 						</a>
-						<div>
+						<div style="width: 120px;">
 							<a href="myOrderList">
 								<h4>주문내역</h4>
 							</a>
@@ -119,11 +118,11 @@
 					
 
 					<!--취소/반품/교환-->
-					<div class="profile-box">
+					<div class="profile-box" >
 						<a href="exchange_refund">
 							<img class="myimg" src="/petopia/images/return.png">
 						</a>
-						<div>
+						<div style="width: 120px;">
 							<a href="exchange_refund">
 								<h4>취소/반품/교환</h4>
 							</a>
@@ -135,7 +134,7 @@
 						<a href="cart">
 							<img class="myimg" src="/petopia/images/cart.png">
 						</a>
-						<div>
+						<div style="width: 120px;">
 							<a href="cart">
 								<h4>장바구니</h4>
 							</a>
@@ -151,7 +150,7 @@
 						<a href="wishlist">
 							<img class="myimg" src="/petopia/images/wishlist.png">
 						</a>
-						<div>
+						<div style="width: 120px;">
 							<a href="wishlist">
 								<h4>위시리스트</h4>
 							</a>
@@ -179,7 +178,7 @@
 						<a href="reviewList">
 							<img class="myimg" src="/petopia/images/review.png">
 						</a>
-						<div>
+						<div style="width: 120px;">
 							<a href="reviewList">
 								<h4>후기 관리</h4>
 							</a>
@@ -190,7 +189,7 @@
 						<a href="contentList">
 							<img class="myimg" src="/petopia/images/comments.png">
 						</a>
-						<div>
+						<div style="width: 120px;">
 							<a href="contentList">
 								<h4>작성 글 내역</h4>
 							</a>
