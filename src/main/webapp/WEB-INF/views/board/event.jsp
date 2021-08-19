@@ -28,27 +28,24 @@
                     	<div class="event-box">
                             <a href="/member/gameplay"><img src="/petopia/images/event_img_4.png"></a>
                             <div class="event-caption">
-                            	<br>
-                                <a href="event_detail"><h3>포인트 쏟아진다😜 하루 한번! 맞추면 포인트!!</h3></a>
-                                <a href="event_detail"><p>2021.08.01 ~ 2021.08.31</p></a>
+                                <a href="/member/gameplay"><h3>포인트 쏟아진다😜 하루 한번! 맞추면 포인트!!</h3></a>
+                                <a href="/member/gameplay"><p>2021.08.01 ~ 2021.08.31</p></a>
                             </div>
                         </div>
                         
                         <div class="event-box">
-                            <a href="event_detail"><img src="/petopia/images/event_img_1.jpg"></a>
+                            <a href="#"><img src="/petopia/images/event_img_1.jpg"></a>
                             <div class="event-caption">
-                            	<br>
-                                <a href="event_detail"><h3>#더위비켜 여름용품 할인 이벤트</h3></a>
-                                <a href="event_detail"><p>2021.08.01 ~ 2021.08.31</p></a>
+                                <a href="#"><h3>#더위비켜 여름용품 할인 이벤트</h3></a>
+                                <a href="#"><p>2021.08.01 ~ 2021.08.31</p></a>
                             </div>
                         </div>
 
                         <div class="event-box">
-                            <a href="event_detail"><img src="/petopia/images/event_img_2.jpg"></a>
+                            <a href="#"><img src="/petopia/images/event_img_2.jpg"></a>
                             <div class="event-caption">
-                            	<br>
-                                <a href="event_detail"><h3>금요일마다 버프 받자! 버디 프라이스 혜택</h3></a>
-                                <a href="event_detail"><p>2021.08.01 ~ 2021.08.31</p></a>
+                                <a href="#"><h3>금요일마다 버프 받자! 버디 프라이스 혜택</h3></a>
+                                <a href="#"><p>2021.08.01 ~ 2021.08.31</p></a>
                             </div>
                         </div>
                     </div>
@@ -58,18 +55,18 @@
                     <label for="event-tab2">종료된 이벤트</label>
                     <div class="tabCon">
                         <div class="event-box">
-                            <a href="event_detail"><img src="/petopia/images/event_img_3.jpg"></a>
+                            <a><img src="/petopia/images/event_img_3.jpg"></a>
                             <div class="event-caption">
-                                <a href="event_detail"><h3>요즘 대세는 홈캉스! 집콕 필수템 할인전</h3></a>
-                                <a href="event_detail"><p>2021.07.01 ~ 2021.07.31</p></a>
+                                <a><h3>요즘 대세는 홈캉스! 집콕 필수템 할인전</h3></a>
+                                <a><p>2021.07.01 ~ 2021.07.31</p></a>
                             </div>
                         </div>
 
                         <div class="event-box">
-                            <a href="event_detail"><img src="/petopia/images/event_img_2.jpg"></a>
+                            <a><img src="/petopia/images/event_img_2.jpg"></a>
                             <div class="event-caption">
-                                <a href="event_detail"><h3>금요일마다 버프 받자! 버디 프라이스 혜택</h3></a>
-                                <a href="event_detail"><p>2021.07.01 ~ 2021.07.31</p></a>
+                                <a><h3>금요일마다 버프 받자! 버디 프라이스 혜택</h3></a>
+                                <a><p>2021.07.01 ~ 2021.07.31</p></a>
                             </div>
                         </div>
                     </div>
