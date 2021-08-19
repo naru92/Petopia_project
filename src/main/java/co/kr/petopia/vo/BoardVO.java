@@ -25,4 +25,5 @@ public class BoardVO {
     private String authority;
     private List<FileUploadVO> attachList;
     private List<MemberVO> memberList;
+    
 }

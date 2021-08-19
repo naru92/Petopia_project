@@ -57,7 +57,7 @@
 	<header>
 		<%@include file="../include/default_header.jsp"%>
 	</header>
-
+		<%@include file="../include/mypage_sidebar.jsp"%>
 	<main>
 		<div class="main">
 			<h3>비밀번호 확인</h3>

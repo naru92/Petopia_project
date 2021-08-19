@@ -218,12 +218,21 @@ img {
 	margin-bottom: 10px;
 }
 
-.gallery-item .gallery-image{
+.img-group .gallery-ul{
+	display: block; 
+	overflow: hidden; 
+	height: 400px; 
+	width: 400px;
+	margin-bottom: 10px;
+}
+.gallery-image,
+#getContentImg{
 	display: block; /* Otherwise it keeps some space around baseline */ 
 	max-width: 100%; /* Scale up to fill container width */ 
 	min-height: 100%; /* Scale up to fill container height */ 
 	-ms-interpolation-mode: bicubic;
 }
+
 
 .contentGetbtn{
 	border: none;

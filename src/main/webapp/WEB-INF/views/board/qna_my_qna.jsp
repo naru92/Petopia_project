@@ -22,6 +22,14 @@
 
 
 <style type="text/css">
+
+body, main{
+	position: relative; 
+	z-index: -100;
+	background-color: #fff;
+	height: 1300px;
+}
+
 @import
 	url('https://fonts.googleapis.com/css?family=Black+Han+Sans:400');
 
@@ -737,9 +745,8 @@ footer section>:nth-child(3)>:nth-child(2) {
 	</header>
 
 
-	<div>
 		<div class="col-2">
-			<%@include file="../include/default_sidebar.jsp"%>
+			<%@include file="../include/mypage_sidebar.jsp"%>
 		</div>
 
 
@@ -812,8 +819,6 @@ footer section>:nth-child(3)>:nth-child(2) {
 	<footer>
 		<%@include file="../include/default_footer.jsp"%>
 	</footer>
-
-	<%@include file="../include/default_sidebar_js.jsp"%>
 
 	<script type="text/javascript">
 		$(document).ready(function() {

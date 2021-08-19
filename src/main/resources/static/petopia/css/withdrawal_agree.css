@@ -1,4 +1,9 @@
-
+body, main{
+	position: relative; 
+	z-index: -100;
+	background-color: #fff;
+	height: 1300px;
+}
 
 /* 상단 약관동의 문구 */
 .result {
@@ -20,7 +25,6 @@ main{
 	position: relative; 
 	height: 1200px; 
 	z-index: -100;
-    background: #fafafa;
     font-size: 90%;
   }
 

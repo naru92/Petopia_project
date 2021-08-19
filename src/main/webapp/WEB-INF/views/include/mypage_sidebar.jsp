@@ -22,7 +22,7 @@
 						</li>
 
 						<li class="ctgli">
-							<a href="#" class="ctga ">
+							<a href="myOrderList" class="ctga ">
 								<i class="ti-write"></i>
 								주문/배송 조회
 								<i class="ti-angle-down down "></i>
@@ -30,7 +30,7 @@
 						</li>
 						
 						<li class="ctgli">
-							<a href="#" class="ctga ">
+							<a href="exchange_refund" class="ctga ">
 								<i class="ti-write"></i>
 								취소/반품 조회
 								<i class="ti-angle-down down "></i>
@@ -38,7 +38,7 @@
 						</li>
 						
 						<li class="ctgli">
-							<a href="#" class="ctga ">
+							<a href="point" class="ctga ">
 								<i class="ti-write"></i>
 								내 포인트 조회
 								<i class="ti-angle-down down "></i>
@@ -46,7 +46,7 @@
 						</li>
 						
 						<li class="ctgli">
-							<a href="#" class="ctga ">
+							<a href="myDonation" class="ctga ">
 								<i class="ti-write"></i>
 								나의 기부 내역
 								<i class="ti-angle-down down "></i>
@@ -54,15 +54,7 @@
 						</li>
 						
 						<li class="ctgli">
-							<a href="#" class="ctga ">
-								<i class="ti-write"></i>
-								나의 후기 관리
-								<i class="ti-angle-down down "></i>
-							</a>
-						</li>
-						
-						<li class="ctgli">
-							<a href="#" class="ctga ">
+							<a href="contentList" class="ctga ">
 								<i class="ti-write"></i>
 								나의 게시물 관리
 								<i class="ti-angle-down down "></i>
@@ -70,7 +62,15 @@
 						</li>
 						
 						<li class="ctgli">
-							<a href="#" class="ctga ">
+							<a href="reviewList" class="ctga ">
+								<i class="ti-write"></i>
+								나의 후기 관리
+								<i class="ti-angle-down down "></i>
+							</a>
+						</li>
+						
+						<li class="ctgli">
+							<a href="qna_my_qna" class="ctga ">
 								<i class="ti-write"></i>
 								1:1 문의하기
 								<i class="ti-angle-down down "></i>
@@ -78,7 +78,7 @@
 						</li>
 						
 						<li class="ctgli">
-							<a href="#" class="ctga ">
+							<a href="passwordConfirm" class="ctga ">
 								<i class="ti-write"></i>
 								회원정보 수정
 								<i class="ti-angle-down down "></i>
@@ -86,7 +86,7 @@
 						</li>
 						
 						<li class="ctgli">
-							<a href="#" class="ctga ">
+							<a href="withdrawal_agree" class="ctga ">
 								<i class="ti-write"></i>
 								회원탈퇴
 								<i class="ti-angle-down down "></i>
@@ -99,3 +99,24 @@
 		</div>
 	</div>
 </div>
+
+
+    <script>
+	/* sidebar js */
+	$(".ctgli:has(.ctgulChild)").click(function(e) {
+		e.preventDefault();
+		//li_HAVE_Child-hasShowed-hasSlideD
+		if ($(this).hasClass('showed')) {
+			//-x-hasSlideD
+			$(this).children('.ctgulChild');
+		} else {
+			$('.ctgulChild');
+			$('.ctgli').removeClass('showed');
+			$(this).addClass('showed');
+			$(this).children('.ctgulChild').slideToggle();
+		}
+	});
+	$('.ctgli').click(function() {
+		$(this).toggleClass('wtok');
+	});
+	</script>

@@ -9,7 +9,7 @@
 <title>후기내역 | Petopia</title>
 <!-- CSS here -->
 <link rel="stylesheet" href="/petopia/css/menu_test.css">
-<link rel="stylesheet" href="/petopia/css/reviewList.css">
+<link rel="stylesheet" href="/petopia/css/myReviewList.css">
 <!-- default_css -->
 <%@include file="../include/default_css.jsp"%>
 </head>
@@ -80,11 +80,7 @@
 		<%@include file="../include/default_footer.jsp"%>
 	</footer>
 
-	<script>
-		
-	<%@include file="../include/default_sidebar_js.jsp"%>
-		
-	</script>
+
 </body>
 
 </html>
