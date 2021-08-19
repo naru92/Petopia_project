@@ -24,12 +24,13 @@
 				<h2>주문 내역</h2>
 			</div>
 
+
 			<div class="content">
 				<c:forEach var="o" items="${orderList }">
 					<div class="box">
 						<div class="date">
 							<h6>${o.order_date_str }</h6>
-							<a href="/member/orderdetail?order_idx=${o.order_idx}">
+							<a href="myOrderDetail">
 								<h6>주문 상세 보기 ></h6>
 							</a>
 						</div>
@@ -41,7 +42,6 @@
 								<div class="orderList-info">
 									<img src="/petopia/images/product_1.jpg">
 									<div class="info">
-										<p>주문번호: ${o.order_idx}</p>
 										<h5>${o.product_name }</h5>
 										<p>${o.product_price }원&nbsp &nbsp
 											${o.order_quantity }개</p>
@@ -49,10 +49,10 @@
 								</div>
 							</div>
 							<div class="BtnList">
-								<a href="/member/orderdetail?order_idx=${o.order_idx}">
+								<a href="#">
 									<button class="Btn1">배송조회</button>
 								</a>
-								<a href="#">
+								<a href="reviewRegister">
 									<button class="Btn">후기 작성하기</button>
 								</a>
 
@@ -72,6 +72,11 @@
 	<footer>
 		<%@include file="../include/default_footer.jsp"%>
 	</footer>
+
+		
+	<%@include file="../include/default_sidebar_js.jsp"%>
+	
+	
 
 
 
