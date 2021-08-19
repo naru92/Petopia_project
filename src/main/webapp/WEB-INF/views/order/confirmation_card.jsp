@@ -140,7 +140,7 @@
 								<td class="detail">${sessionScpoe.cart[0].productList[0].product_detail_info}</td>
 								<td class="qty">${sessionScope.cart[0].amount}</td>
 								<td class="qty">${sessionScope.cart[0].productList[0].product_coloroption}</td>
-								<td class="cost">${sessionScope.cart[0].productList[0].product_price}</td>
+								<td class="cost">${sessionScope.cart[0].productList[0].product_price}원</td>
 							</tr>
 						</tbody>
 					</c:forEach>

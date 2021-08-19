@@ -558,7 +558,8 @@ color: : red !important;
                                     <h3>
                                        <i class="ti-list"></i>펫shop
                                  </div>
-
+								<form id="category_form" action="/shop/category" method="get">
+								<input id="category_hidden" name=category type="hidden" value="">
                                  <ul class="ctgul">
                                     <li class="ctgli"><a href="#" class="ctga"><i
                                           class="ti-user"></i>신상품</a></li>
@@ -568,22 +569,24 @@ color: : red !important;
 
                                     <li class="ctgli"><a href="#" class="ctga"><i
                                           class="ti-user"></i>이벤트</a></li>
-
-                                    <li class="ctgli"><a href="#" class="ctga "> <i
+			
+                                   	 <li class="ctgli"><a href="#" class="ctga "> <i
                                           class="ti-write"></i> 카테고리 <i class="ti-angle-down down "></i>
                                     </a>
-                                       <ul class="ctgulChild">
-                                          <li class="ctgliChild"><a href="" class="ctgaChild">사료</a></li>
-                                          <li class="ctgliChild"><a href="" class="ctgaChild">간식</a></li>
-                                          <li class="ctgliChild"><a href="" class="ctgaChild">위생/배변</a></li>
-                                          <li class="ctgliChild"><a href="" class="ctgaChild">미용/목욕</a></li>
-                                          <li class="ctgliChild"><a href="" class="ctgaChild">급식/급수기</a></li>
-                                          <li class="ctgliChild"><a href="" class="ctgaChild">장난감/훈련</a></li>
-                                          <li class="ctgliChild"><a href="" class="ctgaChild">하우스/이동장</a></li>
-                                          <li class="ctgliChild"><a href="" class="ctgaChild">패션/의류</a></li>
-                                          <li class="ctgliChild"><a href="" class="ctgaChild">목줄/하네스</a></li>
+                                    
+                                       <ul id="category_list" class="ctgulChild">
+                                          <li class="ctgliChild"><a type="submit" class="ctgaChild" id="a">사료</a></li>
+                                          <li class="ctgliChild"><a type="submit" class="ctgaChild" id="b">간식</a></li>
+                                          <li class="ctgliChild"><a type="submit" class="ctgaChild" id="c">위생/배변</a></li>
+                                          <li class="ctgliChild"><a type="submit" class="ctgaChild" id="d">미용/목욕</a></li>
+                                          <li class="ctgliChild"><a type="submit" class="ctgaChild" id="e">급식/급수기</a></li>
+                                          <li class="ctgliChild"><a type="submit" class="ctgaChild" id="f">장난감/훈련</a></li>
+                                          <li class="ctgliChild"><a type="submit" class="ctgaChild" id="g">하우스/이동장</a></li>
+                                          <li class="ctgliChild"><a type="submit" class="ctgaChild" id="h">패션/의류</a></li>
+                                          <li class="ctgliChild"><a type="submit" class="ctgaChild" id="i">목줄/하네스</a></li>
                                        </ul></li>
                                  </ul>
+                                 </form>
                               </nav>
                            </div>
                         </div>
@@ -1032,11 +1035,10 @@ color: : red !important;
       </footer>
 
 
-
       <a id="backtotop"></a>
 
+
       <script type="text/javascript">
-		$.cookie('itemList',null);
   
          $(document).ready(function() {
         	   var member_id = "${not_member}";
@@ -1414,7 +1416,18 @@ color: : red !important;
         			alert("검색할 제품의 이름을 입력해주세요");
         			return false;
         		}
-        		});
+        	});
+        	
+        	
+        	$("#category_list li").on("click", function(e) {
+        		var category = $(this).children('a').attr('id');
+        		console.log(category);
+				var srt ="";
+				$("#category_hidden").val(category);
+				$("#category_form").submit();
+        		
+        	});
+        	
          });
       </script>
 

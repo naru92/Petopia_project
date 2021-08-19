@@ -30,5 +30,58 @@
 	WHERE product_name like '%'||#{keyword}||'%'
 	</select>
 	
+<select id="getCateGoryProductList" resultType="co.kr.petopia.vo.ProductVO" parameterType="String">
+
+	<choose>
+	<when test='category != null and category.equals("a")'>
+	select *
+	from product
+	where product_category_id = 1
+	</when>
+	<when test='category != null and category.equals("b")'>
+	select *
+	from product
+	where product_category_id = 2
+	</when>
+	<when test='category != null and category.equals("c")'>
+	select *
+	from product
+	where product_category_id = 3
+	</when>
+	<when test='category != null and category.equals("d")'>
+	select *
+	from product
+	where product_category_id = 4
+	</when>
+	<when test='category != null and category.equals("e")'>
+	select *
+	from product
+	where product_category_id = 5
+	</when>
+	<when test='category != null and category.equals("f")'>
+	select *
+	from product
+	where product_category_id = 6
+	</when>
+	<when test='category != null and category.equals("g")'>
+	select *
+	from product
+	where product_category_id = 7
+	</when>
+	<when test='category != null and category.equals("h")'>
+	select *
+	from product
+	where product_category_id = 8
+	</when>
+	<when test='category != null and category.equals("i")'>
+	select *
+	from product
+	where product_category_id = 9
+	</when>
+	
+	</choose>
+	
+	
+	</select>
 	
 </mapper>

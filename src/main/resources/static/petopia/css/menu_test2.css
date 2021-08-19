@@ -423,7 +423,7 @@ a {
   align-items: center;
   cursor: pointer;
   line-height: 2.3rem;
-  color: #333;
+  color: #333 !important;
   text-decoration: none;
   padding: 7px 0px 7px 30px;
   position: relative;

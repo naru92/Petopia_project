@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import co.kr.petopia.mapper.OrderMapper;
+import co.kr.petopia.vo.CartVO;
 import co.kr.petopia.vo.OrderVO;
 
 @Service
@@ -129,11 +130,11 @@ public class OrderServiceImpl implements OrderService {
 	  
 	// 비회원
 	// 결제 시 장바구니 목록 처리 함수
-//	@Override
-//	public List<CartVO> getCartList() {
-//
-//		return orderMapper.getCartList();
-//	}
+	 @Override
+		public List<CartVO> getCartList(String member_id) {
+			
+			return orderMapper.getCartList(member_id);
+		}
 
 	// 주문자 정보 입력 처리 함수
 	@Override
@@ -196,6 +197,8 @@ public class OrderServiceImpl implements OrderService {
 
         return orderMapper.memberOrderInfo(orderVO);
     }
+
+	
 
 	
 

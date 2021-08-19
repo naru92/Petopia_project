@@ -97,11 +97,9 @@
 	
 	<!-- 결제 시 회원 별 장바구니(구매) 리스트 -->
 	<select id="getCartList" resultType="co.kr.petopia.vo.OrderVO">
-		SELECT 
-		product_detail_info, product.product_idx, product.product_name, 
-		product.product_coloroption, product_price
-		FROM cart, product 
-		WHERE cart.product_idx = product.product_idx and member_id = 'dummy20'
+		SELECT *
+		FROM cart c, product p 
+		WHERE cart.product_idx = product.product_idx and member_id = #{member_id}
 		<!-- where member_id = #{member.id} -->
 	</select> 
 
@@ -124,7 +122,7 @@
 	<!--  users 테이블로 DB 정보 넘기기 -->
 	<insert id="orderUserInsert">
 		INSERT INTO users (order_idx, user_name, user_phonenumber, user_address)
-			   VALUES (#{order_idx}, #{order_name}, #{order_receiver_phonenumber}, #{order_receiver_address})
+			   VALUES (#{order_idx}, #{user_name}, #{user_phonenumber}, #{user_address})
 	
 	</insert>
 	

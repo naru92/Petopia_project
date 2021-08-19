@@ -48,6 +48,21 @@ public class ReplyController {
         return insertCount == 1 ? new ResponseEntity<>("success", HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
+    
+    // 문의글 등록
+    @PostMapping(value = "/new/qnaAnswer", consumes = "application/json", produces = { MediaType.TEXT_PLAIN_VALUE })
+    public ResponseEntity<String> qnaAnswer(@RequestBody ReplyVO reply, Principal principal) {
+
+        log.info("ReplyVO: " + reply);
+        reply.setMember_id(principal.getName());
+        
+        int insertCount = replyService.replyAnswerRegister(reply);
+
+        log.info("Reply INSERT COUNT: " + insertCount);
+
+        return insertCount == 1 ? new ResponseEntity<>("success", HttpStatus.OK)
+                : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+    }
 
     // 특정 게시물의 댓글 목록 확인
     @GetMapping(value = "/pages/{content_idx}", produces = { MediaType.APPLICATION_XML_VALUE })

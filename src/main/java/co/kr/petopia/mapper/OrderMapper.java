@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
+import co.kr.petopia.vo.CartVO;
 import co.kr.petopia.vo.OrderVO;
 
 @Mapper
@@ -55,7 +56,7 @@ public interface OrderMapper {
 	
 	// 비회원
 	// 회원의 장바구니 목록 가져오기
-	
+	List<CartVO> getCartList(String member_id);
 
 	// 결제 시 정보 입력하기 메소드(order_form)
 	void orderFormInsert(OrderVO orderVO);
@@ -79,4 +80,6 @@ public interface OrderMapper {
 	
 	// 회원 주문 상세정보 조회
     OrderVO memberOrderInfo(OrderVO orderVO);
+
+	
 }

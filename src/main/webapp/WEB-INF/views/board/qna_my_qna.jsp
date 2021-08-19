@@ -887,7 +887,7 @@ footer section>:nth-child(3)>:nth-child(2) {
 				//등록 에이젝스
 				$.ajax({
 					type: 'POST',
-					url : '/replies/new',
+					url : '/replies/new/qnaAnswer',
 					data : JSON.stringify(reply),
 					contentType : "application/json; charset=utf-8",
 					success : function(result , status, xhr){

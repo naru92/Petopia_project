@@ -343,7 +343,7 @@
 	    	  
 	    	  var payment_method = $(':input:radio[name="selectPayment"]:checked').val();
 	    	  
-	    	  var quantity = Number($('#quantity').val());
+	    	  var quantity = Number($('#quantity').text());
 	    	  
 	    	  console.log('click')
 	    	  console.log($("#checkId").val());
@@ -366,7 +366,7 @@
 	  	                  "order_receiver_phonenumber": $('#checkTel').val(),
 	  	                  "order_receiver_address": $('#postcode').val() + " " + $('#roadAddress').val() + " " + $('#detailAddress').val(),
 	  	                  "payment_method": $('#select1').val(),
-	  	                  "order_quantity": parseInt.quantity,
+	  	                  "order_quantity": quantity,
 	  	                  "product_idx" : $('#product_idx').text()
 	  	            },
 	  	                  

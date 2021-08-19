@@ -18,5 +18,6 @@ public interface ProductMapper {
     List<FileUploadVO> getProductImgList(int product_idx);
     
 	List<ProductVO> getSerachProductList(String keyword);
+	List<ProductVO> getCateGoryProductList(String category);
     
 }

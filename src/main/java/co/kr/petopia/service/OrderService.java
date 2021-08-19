@@ -4,6 +4,7 @@ package co.kr.petopia.service;
 import java.util.Date;
 import java.util.List;
 
+import co.kr.petopia.vo.CartVO;
 import co.kr.petopia.vo.OrderVO;
 
 public interface OrderService {
@@ -39,7 +40,7 @@ public interface OrderService {
 	
 	// 비회원
 	// 장바구니 목록 불러오기
-	// List<CartVO> getCartList();
+	List<CartVO> getCartList(String member_id);
 	// 결제시 주문자 정보 입력(order_form)
 	void orderFormInsert(OrderVO orderVO);
 	// 결제시 주문자 정보 입력(order_detail)
@@ -57,4 +58,5 @@ public interface OrderService {
     
     // 회원 주문 상세정보 조회
     OrderVO memberOrderInfo(OrderVO orderVO);
+	
 }

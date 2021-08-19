@@ -48,4 +48,18 @@ public class ProductServiceImpl implements ProductService{
 		return list;
 	}
 
+	@Override
+	public List<ProductVO> getCateGoryProductList(String category) {
+		List<ProductVO> list = productMapper.getCateGoryProductList(category);
+		
+		if(list.size() != 0) {
+		for(int i=0 ; i<list.size(); i++) {
+			list.get(i).setProductVOList(attachMapper.findByProduct(list.get(i).getProduct_idx()));
+			}
+		}
+		
+		return list;
+	
+	}
+
 }

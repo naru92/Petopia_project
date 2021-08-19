@@ -33,6 +33,8 @@ public class ProductVO {
 
 	private int amount;
 	
+	private String category;
+	
 	private List<FileUploadVO> productVOList;
 	private String product_image; //file name
 	private int sales;
