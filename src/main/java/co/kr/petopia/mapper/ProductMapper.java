@@ -17,4 +17,6 @@ public interface ProductMapper {
     // 파일첨부도 불러와야 하는데..?! 
     List<FileUploadVO> getProductImgList(int product_idx);
     
+	List<ProductVO> getSerachProductList(String keyword);
+    
 }

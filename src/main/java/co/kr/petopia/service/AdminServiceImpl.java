@@ -29,6 +29,7 @@ public class AdminServiceImpl implements AdminService {
 
 	@Autowired
 	AdminMapper adminMapper;
+	
 
 	@Autowired
 	AattachMapper productAattachMapper;
@@ -238,8 +239,10 @@ public class AdminServiceImpl implements AdminService {
 
 	@Override
 	public ProductVO getProductOne(int product_idx) {
-
-		return adminMapper.getProductOne(product_idx);
+		ProductVO productVO = new ProductVO();
+		productVO = adminMapper.getProductOne(product_idx);
+		productVO.setProductVOList(productAattachMapper.findByProduct(product_idx));
+		return productVO;
 	}
 
 	@Override
@@ -373,6 +376,8 @@ public class AdminServiceImpl implements AdminService {
 		
 		return donation;
 	}
+
+	
 	
 
 }

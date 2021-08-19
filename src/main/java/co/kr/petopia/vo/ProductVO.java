@@ -17,11 +17,8 @@ public class ProductVO {
 	
 	private int product_idx;
 	
-	@NotBlank
-	@Size(min=1, max=20)
 	private String product_name;
 	
-	@NotBlank
 	private int product_category_id;
 	
 	private int product_price;
@@ -30,11 +27,11 @@ public class ProductVO {
 	
 	private String product_stock;
 	
-	@NotBlank
 	private String product_detail_info;
 	
 	private String product_review;
 
+	private int amount;
 	
 	private List<FileUploadVO> productVOList;
 	private String product_image; //file name
