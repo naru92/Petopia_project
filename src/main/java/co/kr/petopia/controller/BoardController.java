@@ -363,10 +363,10 @@ public class BoardController {
             boardVO.setAttachList(imgList);
             log.info("boardVO..........." + boardVO);
             
-            if(! principal.getName().trim().equals(boardVO.getMember_id().trim())) {
-                idChk = false;
-                log.info("비교" + principal.getName() + "::" + boardVO.getMember_id());
-            }
+//            if(! principal.getName().trim().equals(boardVO.getMember_id().trim())) {
+//                idChk = false;
+//                log.info("비교" + principal.getName() + "::" + boardVO.getMember_id());
+//            }
 		}
 		
 		model.addAttribute("contentList", contentList);
