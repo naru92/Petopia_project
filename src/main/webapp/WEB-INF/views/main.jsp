@@ -544,21 +544,20 @@ color: : red !important;
 
    <hr />
    <div class="row">
-                  <div class="container-side">
-                     <div class="grid">
-                        <div class="row">
-                           <div class="col-3">
-                              <!-- category -->
-                              <nav class="category">
-                                 <div class="ctghead">
-                                    <h3>
-                                       <i class="ti-list"></i>펫shop
-                                 </div>
+		<div class="container-side">
+        	<div class="grid">
+            	<div class="row">
+                	<div class="col-3">
+                    	<!-- category -->
+                        <nav class="category">
+                        	<div class="ctghead">
+                            	<h3><i class="ti-list"></i>펫shop</h3>
+                            </div>
 								<form id="category_form" action="/shop/category" method="get">
-								<input id="category_hidden" name=category type="hidden" value="">
-                                 <ul class="ctgul">
-                                    <li class="ctgli"><a href="#" class="ctga"><i
-                                          class="ti-user"></i>신상품</a></li>
+									<input id="category_hidden" name=category type="hidden" value="">
+                                 		<ul class="ctgul">
+                                    		<li class="ctgli"><a href="#" class="ctga">
+                                    		<i class="ti-user"></i>신상품</a></li>
 
                                     <li class="ctgli"><a href="#" class="ctga"><i
                                           class="ti-user"></i>베스트</a></li>
@@ -582,76 +581,13 @@ color: : red !important;
                                           <li class="ctgliChild"><a type="submit" class="ctgaChild" id="i">목줄/하네스</a></li>
                                        </ul></li>
                                  </ul>
-                                 </form>
-                              </nav>
-                           </div>
-<!-----------------------------------------sidebar-------------------------------------->
-    <div class="container-side">
-        <div class="grid">
-            <div class="row">
-                <div class="col-3">
-                    <!-- category -->
-                    <nav class="category">
-                        <div class="ctghead">
-                            <h3><a href="/main"><i class="ti-list"></i>펫shop</a></h3>
-                        </div>
-
-                        <ul class="ctgul">
-                            <li class="ctgli">
-                                <a href="#" class="ctga"><i class="ti-user"></i>신상품</a>
-                            </li>
-
-                            <li class="ctgli">
-                                <a href="#" class="ctga"><i class="ti-user"></i>베스트</a>
-                            </li>
-
-                            <li class="ctgli">
-                                <a href="/event" class="ctga"><i class="ti-user"></i>이벤트</a>
-                            </li>
-
-                            <li class="ctgli">
-                                <a href="#" class="ctga ">
-                                    <i class="ti-write"></i>
-                                    카테고리
-                                    <i class="ti-angle-down down "></i>
-                                </a>
-                                <ul class="ctgulChild">
-                                    <li class="ctgliChild">
-                                        <a href="" class="ctgaChild">사료</a>
-                                    </li>
-                                    <li class="ctgliChild">
-                                        <a href="" class="ctgaChild">간식</a>
-                                    </li>
-                                    <li class="ctgliChild">
-                                        <a href="" class="ctgaChild">위생/배변</a>
-                                    </li>
-                                    <li class="ctgliChild">
-                                        <a href="" class="ctgaChild">미용/목욕</a>
-                                    </li>
-                                    <li class="ctgliChild">
-                                        <a href="" class="ctgaChild">급식/급수기</a>
-                                    </li>
-                                    <li class="ctgliChild">
-                                        <a href="" class="ctgaChild">장난감/훈련</a>
-                                    </li>
-                                    <li class="ctgliChild">
-                                        <a href="" class="ctgaChild">하우스/이동장</a>
-                                    </li>
-                                    <li class="ctgliChild">
-                                        <a href="" class="ctgaChild">패션/의류</a>
-                                    </li>
-                                    <li class="ctgliChild">
-                                        <a href="" class="ctgaChild">목줄/하네스</a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
-        </div>
-    </div>
-   </div>
+                        	</form>
+                    	</nav>
+                	</div>
+            	</div>
+        	</div>
+    	</div>
+	</div>
 
    
 
