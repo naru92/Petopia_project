@@ -17,6 +17,8 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -435,13 +437,16 @@ public class MemberController {
 		return "member/withdrawal_agree";
 	}
 	@GetMapping("member/withdrawal_success")
-	public String withdrawal_success(Principal principal) {
+	public String withdrawal_success(Principal principal, HttpSession session){
 	    log.info("remove ..");
 	    
 	    String member_id = principal.getName();
 	    log.info("remove id .." + member_id);
-	    
 	    memberService.memberRemove(member_id);
+	    
+	    session.invalidate(); // 회원탈퇴하고나면 로그아웃 안댐... 계속 로그인 상태 유지중..
+
+	    
 	    
 		return "member/withdrawal_success";
 	}

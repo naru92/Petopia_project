@@ -6,7 +6,7 @@
 <mapper namespace="co.kr.petopia.mapper.PointMapper">
 	
 	<!-- 포인트 적립 -->
-	<insert id="savePoint">
+	<insert id="savePoint" >
 		insert into point (member_id, member_point_savepoint, member_point_savedetail, member_point_savedate)
 			values (#{member_id}, #{member_point_savepoint}, #{member_point_savedetail}, #{member_point_savedate})
 	</insert>	
