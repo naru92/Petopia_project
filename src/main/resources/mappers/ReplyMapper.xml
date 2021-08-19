@@ -46,5 +46,21 @@
 	select * from reply where
 	content_idx = #{content_idx} order by reply_idx
 	</select>
+	
+	<update id="updateQnaState">
+	UPDATE qna_state
+	SET state = '처리완료'
+	WHERE board_id = 2 and
+	content_idx =#{content_idx} AND
+	reply_idx = #{reply_idx}
+	</update>
+	
+	<select id="getQnaState" resultType="String" parameterType="co.kr.petopia.vo.ReplyVO">
+	select state
+	from qna_state
+	WHERE board_id = 2 and
+	content_idx =#{content_idx} AND
+	reply_idx = #{reply_idx}
+	</select>
 
 </mapper>

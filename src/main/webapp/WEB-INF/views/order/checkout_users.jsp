@@ -164,7 +164,6 @@
 								<tbody>
 									<tr>
 										<td id = "product_idx">${c.product_idx}</td>
-										<!-- <td>${sessionScope.TotalPrice}</td> -->
 										<td>${c.productList[0].product_name}</td>
 										<td>${c.productList[0].product_coloroption}</td>
 										<td id ="quantity">${c.amount}</td>
@@ -345,7 +344,7 @@
 	    	  
 	    	  var payment_method = $(':input:radio[name="selectPayment"]:checked').val();
 	    	  
-	    	  var quantity = Number($('#quantity').val());
+	    	  var quantity = Number($('#quantity').text());
 	    	  
 	    	  console.log('click')
 			  console.log($("#checkName1").val());	

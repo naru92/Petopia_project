@@ -51,4 +51,13 @@ public class ProductController {
         return "product/shopProductDetail";
     }
     
+    @GetMapping("/shop/category")
+    public String getCategoryDetail(Model model , @RequestParam String category) {
+    	
+    	List<ProductVO> productList = productService.getCateGoryProductList(category);
+        log.info("검색리스트 : " + productList);
+        model.addAttribute("productList" , productList);
+        
+        return "product/shopProductList";
+    }
 }

@@ -82,9 +82,6 @@
 	<footer>
 		<%@include file="../include/default_footer.jsp"%>
 	</footer>
-
-
-
 </body>
 
 </html>

@@ -363,9 +363,10 @@ public class BoardController {
             boardVO.setAttachList(imgList);
             log.info("boardVO..........." + boardVO);
             
-            if(! principal.getName().trim().equals(boardVO.getMember_id().trim())) {
-                idChk = false;
-                log.info("비교" + principal.getName() + "::" + boardVO.getMember_id());
+            if (principal != null) {
+                if(! principal.getName().trim().equals(boardVO.getMember_id().trim())) {
+                    idChk = false;
+                }
             }
 		}
 		
@@ -373,7 +374,7 @@ public class BoardController {
 		
 		if (principal != null) {
     		String member_id = principal.getName();
-    		model.addAttribute("loginId",member_id);
+    		model.addAttribute("member_id",member_id);
     		model.addAttribute("idChk",idChk);
     		log.info(member_id);
 		}
@@ -435,7 +436,7 @@ public class BoardController {
 	
  
     
-    @GetMapping("/game")
+    @GetMapping("member/gameplay")
     public String game() {
     	return "/board/gameEvent";
     }

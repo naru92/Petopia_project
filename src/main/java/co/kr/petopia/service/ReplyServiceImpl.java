@@ -81,4 +81,15 @@ public class ReplyServiceImpl implements ReplyService{
 		return replyMapper.getMyAnswerList(content_idx);
 	}
 
+	@Override
+	public int replyAnswerRegister(ReplyVO reply) {
+		replyMapper.updateQnaState(reply);
+		return replyMapper.replyInsert(reply);
+	}
+
+	@Override
+	public String getQnaState(ReplyVO reply) {
+		return replyMapper.getQnaState(reply);
+	}
+
 }

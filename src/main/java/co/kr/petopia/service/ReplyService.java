@@ -30,4 +30,7 @@ public interface ReplyService {
 	// 리뷰 insert
     int productReviewInsert(ReplyVO reply);
 
+	int replyAnswerRegister(ReplyVO reply);
+	
+	String getQnaState(ReplyVO reply);
 }

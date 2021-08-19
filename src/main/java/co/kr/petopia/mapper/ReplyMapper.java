@@ -36,5 +36,9 @@ public interface ReplyMapper {
     
     //QnA
 	ReplyVO getMyAnswerList(int content_idx);
+	
+	void updateQnaState(ReplyVO reply);
+	
+	String getQnaState(ReplyVO reply);
 
 }

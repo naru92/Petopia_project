@@ -40,9 +40,6 @@
 		<%@include file="../include/default_footer.jsp"%>
 	</footer>
 
-	<script>
-		<%@include file="../include/default_sidebar_js.jsp"%>
-	</script>
 </body>
 
 </html>

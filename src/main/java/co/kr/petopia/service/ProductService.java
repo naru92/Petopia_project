@@ -10,7 +10,9 @@ public interface ProductService {
     List<ProductVO> getCategoryProductList(int product_category_id, int product_idx);
     // 상품 상세 정보
     ProductVO getProductDetail(int product_idx);
-    
+    //검색
     public List<ProductVO> getSerachProductList(String keyword);
+    //카테고리
+	List<ProductVO> getCateGoryProductList(String category);
 
 }

@@ -205,7 +205,6 @@ color: red;
 				<%@include file="../include/default_footer.jsp"%>
 			</footer>
 
-			<%@include file="../include/default_sidebar_js.jsp"%>
 
 			<script type="text/javascript">
 			

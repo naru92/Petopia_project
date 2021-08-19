@@ -356,7 +356,7 @@ public class MemberController {
         String member_id = principal.getName();
         model.addAttribute("replyList", memberService.getMyReplyList(member_id));
         
-        return "member/reviewList";
+        return "member/myReviewList";
     }
     
     // 후기 작성하기
@@ -417,14 +417,10 @@ public class MemberController {
         model.addAttribute("contentList", memberService.getMyContentList(member_id));
        
 
-        return "member/contentList";
+        return "member/myContentList";
     }
     
 
-
-  
-
-     
     // 회원정보수정
     @GetMapping("member/modify")
     public String memberModify() {

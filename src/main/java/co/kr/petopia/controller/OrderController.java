@@ -144,7 +144,7 @@ public class OrderController {
 		log.info("카트정보: " + cartInfo);
 		
 		model.addAttribute("cartInfo", cartInfo);
-		
+		model.addAttribute("order", orderService.getCartList(member_id));
 		
 
 		return "/order/checkout_users";
