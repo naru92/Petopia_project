@@ -85,19 +85,13 @@
 			
 			<div class="tabMenu">
 				<ul class="ulTab">
-					<li><a class="tabBtn" id="productDetail">상품정보</a>
-					<div>
-					<img src="/petopia/images/d_${product.productVOList[0].fileName}" alt="상세정보">
-					</div>
-					</li>
-				</ul>
-				<ul>
-				<li><a class="tabBtn" href="#">후기</a></li>
+					<li><a class="tabBtn" id="productDetail">상품정보</a></li>
+					<li><a class="tabBtn" href="#review">후기</a></li>
 				</ul>
 			</div>
 			<!-- 상품 상세 이미지 영억 -->
 			<div id="productDetailMain">
-
+				<img src="/petopia/images/d_${product.productVOList[0].fileName}" alt="상세정보">
 			</div>
 			
 			<!-- 후기 영역 -->
@@ -105,7 +99,6 @@
 				<ul class="ulTab">
 					<li><a class="tabBtn" href="#productDetail">상품정보</a></li>
 					<li><a class="tabBtn" id="review">후기</a></li>
-
 				</ul>
 			</div>
 			<form>
