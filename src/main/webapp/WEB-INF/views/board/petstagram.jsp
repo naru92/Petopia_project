@@ -68,18 +68,18 @@
 		<div class="container">
 
 			<div class="gallery">
-				<c:forEach items="${contentList}" var="c" varStatus="status">
+				<c:forEach items="${contentList}" var="list" varStatus="status">
 				<div class="gallery-item contentGetImg"
 						data-toggle="modal" 
-						data-member_id="${c.member_id}" 
-						data-content_title="${c.content_title}"
-						data-content_text="${c.content_text}"
-						data-content_date="${c.content_date}"
-						data-content_idx="${c.content_idx}"
-						data-attachList="${c.attachList[0].fileName}"
+						data-member_id="${list.member_id}" 
+						data-content_title="${list.content_title}"
+						data-content_text="${list.content_text}"
+						data-content_date="${list.content_date}"
+						data-content_idx="${list.content_idx}"
+						data-attachList="${list.attachList[0].fileName}"
 						data-target="contentModalLabel">
 					<ul class="gallery-ul">	
-					<li><img src="/petopia/images/${c.attachList[0].fileName}" class="gallery-image"></li>
+					<li><img src="/petopia/images/${list.attachList[0].fileName}" class="gallery-image"></li>
 					</ul>
 					<div class="gallery-item-info">
 						<ul>
@@ -88,7 +88,9 @@
 						</ul>
 					</div>
 				</div>
+				
 				</c:forEach>
+				<input type="hidden" id="size" value="${fn:length(list)}" />
 			</div>
 			<!-- End of gallery -->
 		</div>
@@ -158,9 +160,9 @@
 		<div class="modal-body">
 			<form>
 				<div class="img-group">
-					<div class="img_wrap">
-						<img src="/petopia/images/${c.attachList[0].fileName}" id="getContentImg">
-					</div>
+					<ul class="gallery-ul">	
+						<li><img src="" id="getContentImg"></li>
+					</ul>
 				</div>
 				<div class="form-group">
 					<input type="text" class="form-control" id="getMemberId" readonly="readonly">
@@ -182,16 +184,16 @@
 				</div>
 			</form>
 		</div>
+		
+		<c:if test="${idChk}">
 		<div class="modal-footer">
 			<button type="submit" id="modifySubmit">삭제하기</button>
 			<button type="submit" id="deleteSubmit">수정하기</button>
 		</div>
+		</c:if>
  	</div>
     </div>
     <script src="/petopia/js/petstagramModal.js"></script>
-    
-   
-
 	
 	
 </body>

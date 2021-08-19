@@ -25,123 +25,44 @@
 			</div>
 
 			<div class="content">
-				<div class="box">
-					<div class="date">
-						<h4>2021.08.31</h4>
-						<a href="myOrderDetail">
-							<h5>주문 상세 보기 ></h5>
-						</a>
-					</div>
-					<div class="box2">
-						<div class="orderList">
-							<div>
-								<h4>배송 완료</h4>
-							</div>
-							<div class="orderList-info">
-								<img src="/petopia/images/product_1.jpg">
-								<div class="info">
-									<h5>상품 이름이 먇ㅍ;ㅣ쿠ㅑ두 어마 어마하게 길지만 여기 옵니당</h5>
-									<p>5000원 &nbsp &nbsp 1개</p>
-								</div>
-							</div>
-						</div>
-						<div class="BtnList">
-							<a href="#">
-								<button class="Btn1">교환/환불</button>
+				<c:forEach var="o" items="${orderList }">
+					<div class="box">
+						<div class="date">
+							<h6>${o.order_date_str }</h6>
+							<a href="/member/orderdetail?order_idx=${o.order_idx}">
+								<h6>주문 상세 보기 ></h6>
 							</a>
 						</div>
-					</div>
-					<div class="box2">
-						<div class="orderList">
-							<div>
-								<h4>배송 완료</h4>
-							</div>
-							<div class="orderList-info">
-								<img src="/petopia/images/product_1.jpg">
-								<div class="info">
-									<h5>상품 이름이 먇ㅍ;ㅣ쿠ㅑ두 어마 어마하게 길지만 여기 옵니당</h5>
-									<p>5000원 &nbsp &nbsp 1개</p>
+						<div class="box2">
+							<div class="orderList">
+								<div>
+									<h4>${o.delivery_state }</h4>
+								</div>
+								<div class="orderList-info">
+									<img src="/petopia/images/product_1.jpg">
+									<div class="info">
+										<p>주문번호: ${o.order_idx}</p>
+										<h5>${o.product_name }</h5>
+										<p>${o.product_price }원&nbsp &nbsp
+											${o.order_quantity }개</p>
+									</div>
 								</div>
 							</div>
-						</div>
-						<div class="BtnList">
-							<a href="#">
-								<button class="Btn1">교환/환불</button>
-							</a>
-						</div>
-					</div>
-
-				</div>
-				
-				<div class="box">
-					<div class="date">
-						<h4>2021.08.31</h4>
-						<a href="myOrderDetail">
-							<h5>주문 상세 보기 ></h5>
-						</a>
-					</div>
-					<div class="box2">
-						<div class="orderList">
-							<div>
-								<h4>배송 완료</h4>
-							</div>
-							<div class="orderList-info">
-								<img src="/petopia/images/product_1.jpg">
-								<div class="info">
-									<h5>상품 이름이 먇ㅍ;ㅣ쿠ㅑ두 어마 어마하게 길지만 여기 옵니당</h5>
-									<p>5000원 &nbsp &nbsp 1개</p>
-								</div>
+							<div class="BtnList">
+								<a href="#">
+									<button class="Btn1">교환/환불</button>
+								</a>
 							</div>
 						</div>
-						<div class="BtnList">
-							<a href="#">
-								<button class="Btn1">교환/환불</button>
-							</a>
-						</div>
 					</div>
-					<div class="box2">
-						<div class="orderList">
-							<div>
-								<h4>배송 완료</h4>
-							</div>
-							<div class="orderList-info">
-								<img src="/petopia/images/product_1.jpg">
-								<div class="info">
-									<h5>상품 이름이 먇ㅍ;ㅣ쿠ㅑ두 어마 어마하게 길지만 여기 옵니당</h5>
-									<p>5000원 &nbsp &nbsp 1개</p>
-								</div>
-							</div>
-						</div>
-						<div class="BtnList">
-							<a href="#">
-								<button class="Btn1">교환/환불</button>
-							</a>
-						</div>
-					</div>
-
-				</div>
-
-
+				</c:forEach>
 			</div>
-
-
-
-
-
-			<div class="content"></div>
-
 		</div>
 	</main>
 
 	<footer>
 		<%@include file="../include/default_footer.jsp"%>
 	</footer>
-
-	<script>
-		
-	<%@include file="../include/default_sidebar_js.jsp"%>
-		
-	</script>
 
 	<script>
 		function show() {
@@ -152,8 +73,8 @@
 			document.querySelector(".background").className = "background";
 		}
 
-		document.querySelector("#show").addEventListener('click', show);
-		document.querySelector("#close").addEventListener('click', close);
+		<!-- document.querySelector("#show").addEventListener('click', show);-->
+		<!-- document.querySelector("#close").addEventListener('click', close);-->
 	</script>
 
 </body>

@@ -6,7 +6,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -347,25 +349,33 @@ public class BoardController {
 
 	// 리스트 불러오기
 	@GetMapping("/petstagram")
-	public String petstagramList(Model model, Principal principal,
+	public String petstagramList(Model model, Principal principal, HttpServletRequest request,
 	                            @RequestParam(value = "board_id", defaultValue = "4") Long board_id) {
 
 		log.info("petstagramList...........");
 		
 		List<BoardVO> contentList = boardService.getContentList(board_id);
+		boolean idChk = true;
 		
 		for (BoardVO boardVO : contentList) {
+		    
             List<FileUploadVO> imgList = boardService.getImgList(boardVO);
             boardVO.setAttachList(imgList);
             log.info("boardVO..........." + boardVO);
-         }
+            
+            if(! principal.getName().trim().equals(boardVO.getMember_id().trim())) {
+                idChk = false;
+                log.info("비교" + principal.getName() + "::" + boardVO.getMember_id());
+            }
+		}
 		
 		model.addAttribute("contentList", contentList);
 		
 		if (principal != null) {
-		String member_id = principal.getName();
-		model.addAttribute("member_id",member_id);
-		log.info(member_id);
+    		String member_id = principal.getName();
+    		model.addAttribute("loginId",member_id);
+    		model.addAttribute("idChk",idChk);
+    		log.info(member_id);
 		}
 		
 		return "board/petstagram";

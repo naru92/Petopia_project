@@ -15,6 +15,7 @@
 <body>
 	<header>
 		<%@include file="../include/default_header.jsp"%>
+		<%@include file="../include/mypage_sidebar.jsp"%>
 	</header>
 
 	<h5>[필수] 게시판형 서비스에 등록한 게시글 삭제 불가 안내</h5>

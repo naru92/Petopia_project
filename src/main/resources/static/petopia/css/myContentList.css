@@ -1,7 +1,14 @@
+body, main{
+	position: relative; 
+	z-index: -100;
+	background-color: #fff;
+	height: 1300px;
+}
+
 .review-main{
 	width: 1070px;
   margin-top: 100px;
-  margin-left: 350px;
+  margin-left: 500px;
   margin-bottom: 100px;
 }
 
@@ -23,7 +30,7 @@
 	 display: flex;
 }
 .u-d{
-	margin-left: 680px;
+	margin-left: 600px;
 }
 .u-d p{
 	padding: 0px 5px;

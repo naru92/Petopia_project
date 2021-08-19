@@ -48,10 +48,15 @@
 	<select id = "readMemberOrderList" resultType="co.kr.petopia.vo.OrderVO">
 	<![CDATA[
 		select distinct
-				d.delivery_state as delivery_state, d.delivery_idx as delivery_idx,
-         		f.member_id as member_id, f.order_date as order_date, f.product_idx as product_idx,
-        		o.order_idx as order_idx, o.order_quantity as order_quantity,
-        		p.product_name as product_name, p.product_price as product_price,
+				d.delivery_state as delivery_state, 
+				d.delivery_idx as delivery_idx,
+         		f.member_id as member_id, 
+         		f.order_date as order_date_str, 
+         		f.product_idx as product_idx,
+        		o.order_idx as order_idx, 
+        		o.order_quantity as order_quantity,
+        		p.product_name as product_name, 
+        		p.product_price as product_price,
         		t.filename as filename
     		from delivery d, order_form f, order_detail o, product p, tbl_attach t
         		where f.member_id=member_id
@@ -60,6 +65,7 @@
         			and p.product_idx = o.product_idx
         			and o.product_idx = t.product_idx
                     and o.order_idx = f.order_idx
+                    and d.order_idx = o.order_idx
             	order by o.order_idx desc
      ]]>
 	</select>
@@ -164,6 +170,7 @@
 			d.order_receiver_address as order_receiver_address,
 			d.order_name as order_name,
 			m.member_phonenumber as member_phonenumber,
+			m.member_id as member_id,			
 			p.product_name as product_name,
 			p.product_detail_info as product_detail_info,
 			p.product_price as product_price,
@@ -171,9 +178,11 @@
 			t.filename as filename
 		FROM member m, order_form f, order_detail d, product p, tbl_attach t, delivery v
 		WHERE p.product_idx = t.product_idx 
-		AND m.member_name = d.order_name 
+		AND v.order_idx = d.order_idx
+		AND m.member_name = d.order_name
+		AND f.member_id = m.member_id
 		AND f.member_id = #{member_id}
-		AND u.order_idx = d.order_idx 
+		AND f.order_idx = d.order_idx 
 		AND d.order_idx = #{order_idx}
 	</select>
 	
