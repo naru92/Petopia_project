@@ -387,10 +387,6 @@ public class MemberController {
     }
     
 
-
-  
-
-     
     // 회원정보수정
     @GetMapping("member/modify")
     public String memberModify() {
