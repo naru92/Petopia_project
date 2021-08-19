@@ -22,8 +22,6 @@
 
 <style type="text/css">
 
-	
-
 .d-block {
   padding-top: 64px;
   display: block;
@@ -406,6 +404,11 @@ color: : red !important;
   display: inline-block;
 }
 
+#addWish {
+  border-style: none;
+  background: white;
+}
+
 
 </style>
 <!-- Bootstrap core CSS -->
@@ -586,7 +589,6 @@ color: : red !important;
 						</div>
 					</div>
 				</div>
-			</div>
 
    
 
