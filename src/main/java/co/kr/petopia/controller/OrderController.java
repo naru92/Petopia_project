@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -22,9 +23,11 @@ import co.kr.petopia.service.OrderService;
 import co.kr.petopia.vo.CartVO;
 import co.kr.petopia.vo.MemberVO;
 import co.kr.petopia.vo.OrderVO;
+import lombok.extern.log4j.Log4j2;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
+@Log4j2
 @Controller
 public class OrderController {
 
@@ -207,13 +210,15 @@ public class OrderController {
 
     // 회원 주문상세조회 페이지
     @GetMapping("member/orderdetail")
-    public String memberOrderDetail(OrderVO orderVO, Model model, Principal principal) throws Exception {
+    public String memberOrderDetail(@RequestParam("order_idx") int order_idx, OrderVO orderVO, Model model, Principal principal) throws Exception {
 
         System.out.println(orderVO);
+        String member_id = principal.getName();
+        orderVO.setMember_id(member_id);
         
         OrderVO memberOrderInfo = orderService.memberOrderInfo(orderVO);
-        String member_id = principal.getName();
         memberOrderInfo.setMember_id(member_id);
+        log.info("orderVO"+orderVO);
         
         model.addAttribute("m", memberOrderInfo);
 

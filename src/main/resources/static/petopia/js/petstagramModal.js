@@ -180,13 +180,15 @@ $('#insertSubmit').click(function(){
        
 /*----------------게시물 보기 Modal----------------------*/
 
-$('.contentGetImg').click(function(){
 
+
+$('.contentGetImg').click(function(){
 	$("#getMemberId").val("작성자: " + $(this).data('member_id'));
 	$("#getContentDate").val("작성일자: " + $(this).data('content_date'));
 	$("#getContentTitle").val("제목: " + $(this).data('content_title'));
 	$("#getContentText").val($(this).data('content_text'));
 	$("#getContentIdx").val("글번호: " + $(this).data('content_idx'));
+	$("#getContentImg").attr('src', "/petopia/images/" + $(this).data('attachlist'));
 	
 	var modal = document.getElementById('contentModal');
 	var img = document.getElementById("contentGetImg");

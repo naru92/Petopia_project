@@ -343,12 +343,19 @@ public class MemberController {
         String member_id = principal.getName();
         model.addAttribute("replyList", memberService.getMyReplyList(member_id));
         
-        return "member/reviewList";
+        return "member/myReviewList";
     }
     
     // 취소/반품/교환
     @GetMapping("member/exchange_refund")
-    public String exchange_refund() {
+    public String exchange_refund(Model model, Principal principal) {
+        log.info("my order list..");
+
+        String member_id = principal.getName();
+        log.info("맴버아이디 = " + member_id);
+        log.info("orderList " + orderService.readMemberOrderList(member_id));
+        model.addAttribute("orderList", orderService.readMemberOrderList(member_id));
+        
         return "member/exchange_refund";
     }
     // 내 문의 내역
@@ -376,7 +383,7 @@ public class MemberController {
         model.addAttribute("contentList", memberService.getMyContentList(member_id));
        
 
-        return "member/contentList";
+        return "member/myContentList";
     }
     
 

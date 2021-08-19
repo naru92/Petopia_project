@@ -14,6 +14,7 @@
 <body>
 	<header>
 		<%@include file="../include/default_header.jsp"%>
+		<%@include file="../include/mypage_sidebar.jsp"%>
 	</header>
 	<main>
 		<section>
@@ -70,9 +71,7 @@
 								<div>
 									<div class="thmb">
 										<div class="img_center">
-											<a href="https://inflow.pay.naver.com/rd?no=510425330&tr=ppc&pType=P&retUrl=https%3A%2F%2Fsmartstore.naver.com%2Fmain%2Fproducts%2F5072418195&vcode=DfRoYBanSIkBtBUCF6L7IumF0g3tI732njFSPgWUWcSpFxsxHa1RcRwHVJhfAV0ov7ilUSoYDzaPwlp%2Fa%2BrUNghSkWU9am%2FJ4dXT%2FLmXOyq6pbJn22nY9CA8H%2FtbNt9V"
-												target="_blank">
-											<img src="https://order.pay.naver.com/proxy/phinf/shop1/20210620_13/1624176497501Bzmsl_PNG/25312331315102778_519104205.png?type=m80"></a>
+											<img id="orderProductImg" src="">
 										</div>
 									</div>
 									<dl>
@@ -129,7 +128,7 @@
 												<!-- 주결제수단 정보 -->
 												<ul class="price_list">
 													<li>
-														<c:set var="pay" value="${u.payment_method}"/>
+														<c:set var="pay" value="${m.payment_method}"/>
 														<c:if test="${pay eq '1'}">
 															<strong>무통장입금</strong>
 														</c:if>
@@ -156,7 +155,7 @@
 														<em class="thm">${m.product_price * m.order_quantity}</em>원
 													</p></li>
 												<li>
-													<c:set var="pay" value="${u.payment_method}"/>
+													<c:set var="pay" value="${m.payment_method}"/>
 													<c:if test="${pay eq '1'}">
 														<strong>무통장입금</strong>
 													</c:if>
@@ -228,7 +227,7 @@
 								<dd class="pdb">
 									<strong>${m.order_name}</strong>
 									<p>
-										${m.user_phonenumber}<br>
+										${m.member_phoneNumber}<br>
 									</p>
 								</dd>
 							</dl>
@@ -247,6 +246,21 @@
 	<footer>
 		<%@include file="../include/default_footer.jsp"%>
 	</footer>
-
+	
+	<script type="text/javascript">
+	$(document).ready(function() {
+		 var imgSrci = null;
+		 var src = '${m.fileName}';
+		 console.log(src);
+		 var filetype = true;
+	     if(filetype) {
+	        imgSrci = "/petopia/images/"+src;
+	     } else {
+	        imgSrci = '../../resources/images/attach.png';
+	     }
+	  
+	     $("#orderProductImg").attr("src", imgSrci);
+	});
+	</script>
 </body>
 </html>
