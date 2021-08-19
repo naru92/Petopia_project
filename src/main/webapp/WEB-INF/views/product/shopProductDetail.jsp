@@ -1,4 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<c:set var='root' value="${pageContext.request.contextPath }/" />
+<%@ taglib prefix="sec"
+   uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,6 +22,7 @@
 	</header>
 
 	<main>
+	
 		<!-- 상품 상세 보기 -->
 		<div class="article">
 			<div class=categorymenu>
@@ -76,8 +83,14 @@
 				</div>
 				<div class="addbtn">
 					<br>
-					<button id="addcart-btn" type="button" class="btn">장바구니 담기</button>
-					<button id="order-btn" type="button" class="btn">바로 구매하기</button>
+					
+					<button id="addcart-btn" type="button" class="btn" formtarget="">장바구니 담기</button>
+				    <sec:authorize access="isAnonymous()">
+					<button id="order-btn" type="button" class="btn user_direct" >바로 구매하기</button>
+	 			    </sec:authorize>
+	  			   <sec:authorize access="hasRole('ROLE_MEMBER')">
+	 			    <button id="order-btn" type="button" class="btn member_direct">바로 구매하기</button>
+	 			   </sec:authorize>
 				</div>
 			</div>
 				
@@ -102,7 +115,7 @@
 				</ul>
 			</div>
 			<form>
-			  	<input name="product_idx" type="hidden" id="p_filetype" value="${product.product_idx}" />
+			  	<input name="product_idx" type="hidden" id="p_product_idx" value="${product.product_idx}" />
                <input type="hidden" id="p_filetype" value="${product.productVOList[0].filetype}" />
                <input type="hidden" id="p_uuid" value="${product.productVOList[0].uuid}" />
                <input type="hidden" id="p_uploadPath" value="${product.productVOList[0].uploadPath}" />
@@ -171,7 +184,20 @@
 	}
 
 	$(document).ready(function(){
+		var product_idx =parseInt($("#p_product_idx").val());
+		var qt = parseInt($(".qt").html());
 		
+				
+		$(".user_direct").on('click',function(){
+			var url="/users/direct/checkout?product_idx=" + product_idx +"&amount=" + qt
+			location.href = url;
+		});	
+		
+		$(".member_direct").on('click',function(){
+			var url="/member/direct/checkout?product_idx=" + product_idx +"&amount=" + qt
+			location.href = url;
+		});	
+				
 		 function numberFormat(inputNumber) {
 	         return inputNumber.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 	    }

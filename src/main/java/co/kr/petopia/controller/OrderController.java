@@ -66,6 +66,26 @@ public class OrderController {
 
 		return "/order/checkout_member";
 	}
+	//회원 다이렉트
+	@GetMapping("/member/direct/checkout")
+	public String getMemberDirectOrderForm(Model model, Principal principal, HttpSession session,@RequestParam int product_idx,
+			@RequestParam int amount) {
+		log.info("getOrderForm()..");
+		log.info("OrderService.getCartList()..");
+
+		MemberVO memberInfo;
+	
+			String member_id = principal.getName();
+			
+			memberInfo = memberService.getMemberInfo(member_id);
+			
+			model.addAttribute("memberInfo", memberInfo);
+			log.info(member_id);
+			
+		
+
+		return "/order/checkout_member";
+	}
 
 	// 회원 주문 상세 페이지(무통장입금)
 	@GetMapping("/member/confirmation_deposit")
@@ -145,6 +165,20 @@ public class OrderController {
 		
 		model.addAttribute("cartInfo", cartInfo);
 		model.addAttribute("order", orderService.getCartList(member_id));
+		
+
+		return "/order/checkout_users";
+	}
+	//비회원 바로구매
+	@GetMapping("/users/direct/checkout")
+	public String getUsersDirectOrderForm(Model model, HttpSession session, @RequestParam int product_idx, @RequestParam int amount) {
+		log.info("getOrderForm()..");
+		
+		
+		log.info("총가격 : " + session.getAttribute("totalPrice"));		
+		String member_id = session.getId();
+	
+		
 		
 
 		return "/order/checkout_users";

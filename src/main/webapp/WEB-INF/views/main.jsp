@@ -504,7 +504,7 @@ color: : red !important;
                      <nav>
                         <ul id="navigation">
                            <li><a href="petstagram?board_id=${petsta_info.board_id}">펫★그램</a></li>
-                           <li><a href="main">펫shop</a></li>
+                           <li><a href="shop">펫shop</a></li>
                            <li><a href="donation">기부</a></li>
                            <li><a href="/member/mypage"><i class="fas fa-paw"></i> MY</a></li>
                         </ul>
@@ -520,10 +520,10 @@ color: : red !important;
                         <i class="fas fa-search"></i>
                      </button>
                    
-                     <button class="wishBtn" onclick="location.href='order/wishList';">
+                     <button type="button" class="wishBtn" onclick="location.href='order/wishList';">
                         <i class="fas fa-heart"></i>
                      </button>
-                     <button class="cartBtn" onclick="location.href='order/Cart';">
+                     <button type="button" class="cartBtn" onclick="location.href='order/Cart';">
                         <i class="fas fa-shopping-cart"></i>
                      </button>
                      </form>
@@ -677,7 +677,7 @@ color: : red !important;
                <c:when test="${!empty md}">
                <div class="col-lg-6 col-md-6 mb-4 nopaddingcard ">
                   <div class="card h-40 itembox1">
-                     <a href="product"><img class="card-img-top" id="listAttach${status.index}" src="#" alt="상품이미지"></a>
+                     <a href="/shopDetail?product_idx=${md.product_idx}"><img class="card-img-top" id="listAttach${status.index}" src="#" alt="상품이미지"></a>
                         <input type="hidden" name="product_idx" value="${md.product_idx}">
                         <input type="hidden" class="cookiefileName" value="${md.productVOList.get(0).fileName}" />
                         
@@ -689,7 +689,7 @@ color: : red !important;
                            </div>
                            <div class="class-desc col-10">
                               <div class="class-title md">${md.product_price } 원</div>
-                              <div class="class-detail">${md.product_detail_info }</div>
+                             <div class="class-detail"><a href="/shopDetail?product_idx=${md.product_idx}">${md.product_detail_info }</a></div> 
                            </div>
                            <button class="btn btn-3 btn-3a icon-cart" id="addCart">
                            <i class="fa fa-shopping-cart"></i> 장바구니</button>
@@ -750,15 +750,14 @@ color: : red !important;
                               <input type="hidden" name="product_idx" value="${popular_product.product_idx}"> 
                               <input type="hidden" class="cookiefileName" name="fileName" value="${popular_product.productVOList.get(0).fileName}" />
                                  
-                              <img src="#"
-                                    alt="테스트 이미지" class="class-image" id="listAttach2${status.index}"  width= />
+                            <a href="/shopDetail?product_idx=${popular_product.product_idx}"><img class="card-img-top" id="listAttach2${status.index}" src="#" alt="상품이미지"></a>
                               <div class="class-skill">
                                  <div class="class-type">${popular_product.product_name}</div>
                                     <div class="class-format"><button id="addWish"><i class="fas fa-heart cursor-heart"></i></button></div>
                               </div>
                               <div class="class-desc col-10">
                                  <div class="class-title popular">${popular_product.product_price} 원</div>
-                                 <div class="class-detail">${popular_product.product_detail_info}</div>
+                                 <div class="class-detail"><a href="/shopDetail?product_idx=${popular_product.product_idx}">${popular_product.product_detail_info }</a></div>
                               </div>
                            <button class="btn btn-3 btn-3a icon-cart" id="addCart">
                                     <i class="fa fa-shopping-cart"></i> 장바구니</button>
@@ -821,15 +820,14 @@ color: : red !important;
                         <input type="hidden" name="product_idx" value="${new_product.product_idx}"> 
                         <input type="hidden" class="cookiefileName" name="fileName" value="${new_product.productVOList.get(0).fileName}" />
                         
-                           <img src="/petopia/images/product_1.jpg"
-                                 alt="테스트 이미지" class="class-image" id="listAttach3${status.index}" width= />
+                            <a href="/shopDetail?product_idx=${new_product.product_idx}"><img class="card-img-top" id="listAttach3${status.index}" src="#" alt="상품이미지"></a>
                            <div class="class-skill">
                               <div class="class-type">${new_product.product_name}</div>
                               <div class="class-format"><button id="addWish"><i class="fas fa-heart cursor-heart"></i></button></div>
                            </div>
                            <div class="class-desc col-10">
                               <div class="class-title new">${new_product.product_price} 원</div>
-                              <div class="class-detail">${new_product.product_detail_info}</div>
+                              <div class="class-detail"><a href="/shopDetail?product_idx=${new_product.product_idx}">${new_product.product_detail_info }</a></div>
                            </div>
                            <button class="btn btn-3 btn-3a icon-cart" id="addCart">
                                  <i class="fa fa-shopping-cart"></i> 장바구니</button>
@@ -881,15 +879,14 @@ color: : red !important;
                         <input type="hidden" name="product_idx" value="${single_product.product_idx}"> 
                         <input type="hidden" class="cookiefileName" name="fileName" value="${single_product.productVOList.get(0).fileName}" />
                         
-                           <img src="/petopia/images/11356_originalView_01802971.jpg"
-                                 alt="테스트 이미지" class="class-image" id="listAttach4${status.index}" width= />
+          			   <a href="/shopDetail?product_idx=${single_product.product_idx}"><img class="card-img-top" id="listAttach4${status.index}" src="#" alt="상품이미지"></a>
                            <div class="class-skill">
                               <div class="class-type">${single_product.product_name}</div>
                                 <div class="class-format"><button id="addWish"><i class="fas fa-heart cursor-heart"></i></button></div>
                            </div>
                            <div class="class-desc col-10">
                               <div class="class-title single">${single_product.product_price} 원</div>
-                              <div class="class-detail">${single_product.product_detail_info}</div>
+                               <div class="class-detail"><a href="/shopDetail?product_idx=${single_product.product_idx}">${single_product.product_detail_info }</a></div>
                            </div>
                               <input type="hidden" id="cart_product_idx"
                                  value="<c:out value='${single_product.product_idx}' />">
@@ -1099,7 +1096,6 @@ color: : red !important;
                checkCookie();
             }
             
-         var itemList =[];
          $(".class-detail").on('click', function(e){
                product_no = $(this).parent().parent().children('input').val();
                imageName = $(this).parent().parent().children('.cookiefileName').val();
