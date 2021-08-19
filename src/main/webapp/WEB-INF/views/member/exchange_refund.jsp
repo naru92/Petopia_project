@@ -25,11 +25,11 @@
 			</div>
 
 			<div class="content">
-				<div class="box">
-					<c:forEach var="o" items="${orderList }">
+				<c:forEach var="o" items="${orderList }">
+					<div class="box">
 						<div class="date">
 							<h6>${o.order_date_str }</h6>
-							<a href="myOrderDetail">
+							<a href="/member/orderdetail?order_idx=${o.order_idx}">
 								<h6>주문 상세 보기 ></h6>
 							</a>
 						</div>
@@ -41,8 +41,9 @@
 								<div class="orderList-info">
 									<img src="/petopia/images/product_1.jpg">
 									<div class="info">
+										<p>주문번호: ${o.order_idx}</p>
 										<h5>${o.product_name }</h5>
-										<p>${o.product_price }원 &nbsp &nbsp
+										<p>${o.product_price }원&nbsp &nbsp
 											${o.order_quantity }개</p>
 									</div>
 								</div>
@@ -53,32 +54,15 @@
 								</a>
 							</div>
 						</div>
-					</c:forEach>
-				</div>
-
-
-
-
+					</div>
+				</c:forEach>
 			</div>
-
-
-
-
-
-			<div class="content"></div>
-
 		</div>
 	</main>
 
 	<footer>
 		<%@include file="../include/default_footer.jsp"%>
 	</footer>
-
-	<script>
-		
-	<%@include file="../include/default_sidebar_js.jsp"%>
-		
-	</script>
 
 	<script>
 		function show() {
@@ -89,8 +73,8 @@
 			document.querySelector(".background").className = "background";
 		}
 
-		document.querySelector("#show").addEventListener('click', show);
-		document.querySelector("#close").addEventListener('click', close);
+		<!-- document.querySelector("#show").addEventListener('click', show);-->
+		<!-- document.querySelector("#close").addEventListener('click', close);-->
 	</script>
 
 </body>

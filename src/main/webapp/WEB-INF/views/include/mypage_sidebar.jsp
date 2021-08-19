@@ -72,7 +72,7 @@
 						<li class="ctgli">
 							<a href="qna_my_qna" class="ctga ">
 								<i class="ti-write"></i>
-								1:1 문의하기
+								나의 문의 내역
 								<i class="ti-angle-down down "></i>
 							</a>
 						</li>

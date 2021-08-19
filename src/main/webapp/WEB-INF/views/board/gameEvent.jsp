@@ -71,6 +71,8 @@ a {
   margin: 0 auto;
   text-align: center;
   padding: 10px;
+  position: relative;
+  top: 100px;
  }
 
 h1 {
@@ -119,8 +121,9 @@ p {
   margin: 20px auto 0;
   input, .guessButton {
     font-family: "Londrina Solid", cursive;
-  }
-  input[type="text"] {
+ }
+
+input[type="text"] {
     outline: none;
     padding: 10px;
     font-size: 30px;
@@ -128,18 +131,19 @@ p {
     margin-right: 5px;
     border: 1px solid #aaa;
     color: gray;
-  }
+}
   
-  .guessButton {
+.guessButton {
     border: none;
     font-size: 30px;
     padding: 10px 20px;
     cursor: pointer;
-    background: #3eb2a2;
+    background: #fff;
     color: white;
     transition: .3s;
     margin: 10px 0;
     text-shadow: 1px 2px 0 $drk-blue;
+    }
     &:hover {
       background: #2AC1BC;
     }
@@ -172,8 +176,8 @@ p {
   right: 0;
   bottom: 0;
   width: 100%;
-  height: 100%;
-  background: #FF7F60;
+  height: 270px;
+  background: #FDD272;
   z-index: 12402402;
   
   h1 {
@@ -211,16 +215,39 @@ p {
     font-size: 30px;
     padding: 10px 20px;
     cursor: pointer;
-    background: lighten($green, 5%);
+    background: #ffb26d;
     color: white;
     transition: .3s;
     text-shadow: 1px 2px 0 $green;
-    font-family: "Londrina Solid", cursive;
-    &:hover {
-      background: lighten($green, 20%);
-      
-    }
 }
+.button:hover {
+    background: #ff7f60; 
+}
+
+#insertBtn{
+	border: none;
+    cursor: pointer;
+    background: #fdd272;
+    color: black;
+}
+
+#historyBtn{
+	position: relative;
+	left: 550px;
+	top: 100px;
+	margin-top: 70px; 
+	width: 170px; 
+	height: 50px;
+	background: #fff;
+	color: #2AC1BC;
+	border-color: #2AC1BC;
+	text-align: center;
+	border: 1px solid #fff;
+	cursor: pointer;
+  	border-radius: 10px;
+  	font-weight: bold;
+}
+
 </style>
 </head>
 <body>
@@ -229,32 +256,32 @@ p {
 	</header>
 
 
-
-
 	<div class="container col-10 board" style="margin-top: 120px">
 		<div class="hangman">
-  <div class="guess"></div>
-  <form class="guessForm">
-  <input type="text" class="guessLetter" maxlength="1"  placeholder="알파벳 하나씩 입력!   &#x23ce;"/> <button type="submit" class="guessButton">Guess</button>
-  </form>  
-  <p id="hint">Hint: 국내 최고의 펫샵 이름은?<br/><a href="https://codepen.io/natewiley"></a></p>
-  <div class="wrong">
-    <div class="wrongLetters"></div>
-  </div>
-  <div class="message">
-    <h1 class="title"></h1>
-    <p class="text"></p>
-    <button class="restart button">Play Again?</button>
-    
-  </div>
-</div>
-		
+  			<div class="guess"></div>
+			<form class="guessForm">
+ 				<input type="text" class="guessLetter" maxlength="1"  placeholder="알파벳 하나씩 입력!   &#x23ce;"/> 
+ 				<button type="submit" id="insertBtn" class="guessButton">입력하기!</button>
+  			</form>
+  			<br>
+  			<p id="hint">Hint🙄 국내 최고의 펫샵 이름은❔ <br/><a href="https://codepen.io/natewiley"></a></p>
+  			<div class="wrong">
+    			<div class="wrongLetters"></div>
+  			</div>
+	  		<div class="message">
+	    		<h1 class="title"></h1>
+	    		<p class="text"></p>
+	   			<button class="restart button">포인트 적립</button>
+			</div>
+		</div>
+		<div>
+			<input type="button" id="historyBtn" value="이전페이지" onClick="history.go(-1)"> 
+		</div>	
 	</div>
+
 	<footer>
 		<%@include file="../include/default_footer.jsp"%>
 	</footer>
-
-	<%@include file="../include/default_sidebar_js.jsp"%>
 
 	<script type="text/javascript">
 		$(document).ready(function() {
@@ -493,9 +520,9 @@ p {
 
 			    win: function(){
 			      var rating = this.rating();
-			      this.msgTitle.html("Awesome, You Won!");
+			      this.msgTitle.html("🎉정답입니다!🎉");
 			      // this is messy
-			      this.msgText.html("You solved the word in <span class='highlight'>" + rating.guesses + "</span> Guesses!<br>Score: <span class='highlight'>" + rating.rating + "%</span>");
+			      this.msgText.html("PETOPIA 알파벳을 모두 맞추셨어요! <br> 정답을 맞추신 분들에겐 상품구매와 기부에 사용가능한 <br> 1000 포인트를 지급해드립니다. ");
 			      this.showMsg();
 			      this.playSound("winSound");
 
