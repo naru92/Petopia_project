@@ -228,6 +228,29 @@ public class BoardController {
 	}
 	
 	
+			
+	//마이페이지에서 온 글작성
+			@GetMapping("/board/mypage_qna_register")
+			public String mypageInquiryRegister(@RequestParam int board_id, @RequestParam(value = "request", defaultValue="exchange" ) String exchange, Model model,
+										  @ModelAttribute("qnaContentVO") BoardVO qnaContentVO, Principal principal ) {
+				log.info("board: " + qnaContentVO);
+				qnaContentVO.setMember_id(principal.getName());
+				model.addAttribute("exchage", "[교환/환불 문의]");
+				
+				return "/board/qna_register";
+			}
+			
+			@PostMapping("/board/mypage_qna_register")
+			public String mypageInquiryRegister_pro(@RequestParam int board_id, Model model,
+										  @ModelAttribute("qnaContentVO") BoardVO qnaContentVO, Principal principal ) {
+				log.info("board: " + qnaContentVO);
+			
+				qnaContentVO.setMember_id(principal.getName());
+				boardService.contentRegister(qnaContentVO);
+				return "/board/mypage_register_success";
+			}		
+			
+			
 	@GetMapping("/board/my_qna/update")
 	public String myQnamodify(@RequestParam("board_id") int board_info_id,
 							@RequestParam("content_idx") int content_idx,

@@ -186,10 +186,15 @@ color: red;
 	<!-- 게시글 리스트 -->
 	<div class="container col-10 board" style="margin-top: 120px">
 		<section id="contact-form">
-  <h2>문의하기</h2>
+  <h2>${exchange}</h2>
   <form:form id="contact" action='${root }board/qna_register?board_id=${param.board_id}' method ='post' modelAttribute="qnaContentVO">
     <form:label path="member_id" class="label"><span><i class="fas fa-user-tag"></i></span><form:input path="member_id" class="input" readonly="true" /></form:label>
+    <c:if test="${empty exchage}">
     <form:label path="content_title" class="label"><span></span><form:input path="content_title" class="input" placeholder="문의사항을 입력해주세요."/></form:label>
+    </c:if>
+    <c:if test="${!empty exchage}">
+    <form:label path="content_title" class="label"><span></span><form:input path="content_title" class="input"   /></form:label>
+    </c:if>
     <form:label path="content_text" class="lavel"><span></span><form:textarea path="content_text" class="textarea"  placeholder="문의 내용을 입력해주세요."></form:textarea></form:label>
     <input class="input" id="startSubmit" name="submit" type="submit" value="작성하기"/>
   </form:form>
