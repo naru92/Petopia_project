@@ -418,7 +418,7 @@ translateX
                                 </td>
                                 <td class="cart_quantity">
                                     <div class="cart_quantity_button">
-                                       <h2 id="quantity${status.index}" class="quantity" >${item.amount}</h2>
+                                       <h2 id="quantity${status.index}" class="quantity" ><input type="text" value="${item.amount}"></input></h2>
                                     </div>
                                 </td>
                                 <td class="cart_total">

@@ -49,7 +49,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     //정적 파일은 시큐리티 검열 무시
     @Override
     public void configure(WebSecurity web) throws Exception {
+<<<<<<< HEAD
         web.ignoring().antMatchers("/petopia/**", "/petopia/css/**", "/petopia/js/**", "/petopia/images/**","/petoia/images/**","/petopia/font","/display");
+=======
+        web.ignoring().antMatchers("/petopia/**", "/petopia/css/**", "/petopia/js/**", "/petopia/images/**","/petopia/images/**","/petopia/font","/display","/main");
+>>>>>>> admin34
     }
     
     
@@ -81,7 +85,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         
                                 
                         .antMatchers("/main","/error","/cartpage","/donation","/login","/loginProcess","/joinAgree","/joinForm","/welcome","/joinProcess",
-                                "/help/**","/idCheck","/pnCheck","/CheckMail","/notice/**","/petstagram","/shop/**","/shopDetail/**").permitAll() //공개 할 url
+                                "/help/**","/idCheck","/pnCheck","/CheckMail","/notice/**","/petstagram","/shop","/shopDetail","/users/**").permitAll() //공개 할 url
+
                         .antMatchers("/member/**").access("hasRole('ROLE_MEMBER')")//맴버만 접근
                         .antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')")//어드민만접근근
                         .antMatchers("/**").authenticated(); //그 밖의 기타경로 인증필요
