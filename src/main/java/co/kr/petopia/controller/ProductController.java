@@ -20,8 +20,6 @@ import lombok.extern.log4j.Log4j2;
 public class ProductController {
     @Autowired
     AdminService adminService;
-    
-    
 	
     @Autowired
     public final ProductService productService;
@@ -33,9 +31,21 @@ public class ProductController {
     return "product/shopProductList";
     }
     
+    @GetMapping("/shop/search")
+    public String getSearchProductList(Model model, @RequestParam String keyword) {
+    List<ProductVO> productList = productService.getSerachProductList(keyword);
+    log.info("검색리스트 : " + productList);
+    model.addAttribute("productList" , productList);
+    return "product/shopProductList";
+    }
+    
     @GetMapping("/shopDetail")
     public String getProductDetail(@RequestParam("product_idx") int product_idx, Model model) {
         
+    	ProductVO product= adminService.getProductOne(product_idx);
+    	log.info("상품 : " + product);
+    	
+    	model.addAttribute("product", product);
         //model.addAttribute("product", productService.getProductDetail(product_idx));
 
         return "product/shopProductDetail";

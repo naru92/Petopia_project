@@ -23,7 +23,7 @@
 			</div>
 			<!-- 이미지 출력 부분 -->
 			<div class="main-img">
-				<img id="listAttach" src="https://via.placeholder.com/500x500?text=main img(500x500)" alt="" class="big-img">
+				<img id="imageSection" src="https://via.placeholder.com/500x500?text=main img(500x500)" alt="" class="big-img">
 				<br>
 			</div>
 			<!-- 우측 상품명 및 가격 -->
@@ -43,16 +43,23 @@
 				</div>
 				<div class="product-seller">
 					<hr>
-					<span class="minititle">상품설명</span>
-					<span class="miniinfo">Product detail info</span>
+					<span class="minititle">
+					상품설명
+					</span>
+					<span class="miniinfo">${product.product_detail_info}</span>
 					<hr>
 					<span class="minititle">상품컬러</span>
-					<span class="miniinfo">Product color</span>
+					<c:if test="${empty product.product_coloroption}">
+					<span class="miniinfo">해당없음</span>
+					</c:if>
+					<c:if test="${!empty product.product_coloroption}">
+					<span class="miniinfo">${product.product_coloroption}</span>
+					</c:if>
 					<hr>
 					<span class="minititle">상품수량</span>
 					<span class="miniinfo">
 						<span class="qt-plus">+</span>
-						<span class="qt">0</span>
+						<span id="amount" class="qt">1</span>
 						<span class="qt-minus">-</span>
 					</span>
 					<hr style="width: 100%">					
@@ -64,7 +71,7 @@
 				</div>
 				<div class="content">
 					<h2 class="full-price">
-						3원
+						${product.product_price} 원
 					</h2>
 				</div>
 				<div class="addbtn">
@@ -78,9 +85,14 @@
 			
 			<div class="tabMenu">
 				<ul class="ulTab">
-					<li><a class="tabBtn" id="productDetail">상품정보</a></li>
-
-					<li><a class="tabBtn" href="#">후기</a></li>
+					<li><a class="tabBtn" id="productDetail">상품정보</a>
+					<div>
+					<img src="/petopia/images/d_${product.productVOList[0].fileName}" alt="상세정보">
+					</div>
+					</li>
+				</ul>
+				<ul>
+				<li><a class="tabBtn" href="#">후기</a></li>
 				</ul>
 			</div>
 			<!-- 상품 상세 이미지 영억 -->
@@ -96,7 +108,12 @@
 
 				</ul>
 			</div>
-
+			<form>
+               <input type="hidden" id="p_filetype" value="${product.productVOList[0].filetype}" />
+               <input type="hidden" id="p_uuid" value="${product.productVOList[0].uuid}" />
+               <input type="hidden" id="p_uploadPath" value="${product.productVOList[0].uploadPath}" />
+               <input type="hidden" id="p_fileName" name="fileName" value="${product.productVOList[0].fileName}" />
+            </form>      
 
 		</div>
 	</main>
@@ -109,7 +126,8 @@
 	<script type="text/javascript">
 	<!-- 스크롤 -->
 	$(document).ready(function($) {
-
+	
+		  
         $(".tabBtn").click(function(event){         
                 event.preventDefault();
                 $('html,body').animate({scrollTop:$(this.hash).offset().top}, 500);
@@ -121,18 +139,19 @@
 	var check = false;
 
 	function changeVal(el) {
-	  var qt = parseFloat(el.parent().children(".qt").html());
-	  var price = parseFloat(el.parent().children(".price").html());
-	  var eq = Math.round(price * qt * 100) / 100;
+	  var qt = $(".qt").html();
+	  var price = ${product.product_price}
+	  console.log(price);
+	  var eq = parseInt(price) * parseInt(qt);
 	  
-	  el.parent().children(".full-price").html( eq + "€" );
+	  console.log($(".full-price").html( eq + "원" ));
 	  
 	  changeTotal();			
 	}
 
 	function changeTotal() {
-	  
-	  var price = 0;
+	  var price = ${product.product_price};
+	  console.log(price);
 	  
 	  $(".full-price").each(function(index){
 	    price += parseFloat($(".full-price").eq(index).html());
@@ -140,16 +159,33 @@
 	  
 	  price = Math.round(price * 100) / 100;
 
-	  var fullPrice = Math.round((price + tax + shipping) *100) / 100;
-	  
+	  var fullPrice = Math.round((price) *100 / 100);
+		 $(".full-price").val(fullPrice);
 	  if(price == 0) {
 	    fullPrice = 0;
 	  }
-	  
+	 
+		 function numberFormat(inputNumber) {
+	         return inputNumber.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	    }
+	    
+	    // 가격 콤마삽입
+	       var price = $(".full-price").html()
+	       console.log(price);
+	       $(".full-price").html(numberFormat(price));
 
 	}
 
 	$(document).ready(function(){
+		
+		 function numberFormat(inputNumber) {
+	         return inputNumber.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	    }
+	    
+	    // 가격 콤마삽입
+	       var price = $(".full-price").html()
+	       console.log(price);
+	       $(".full-price").html(numberFormat(price));
 	  
 	  $(".remove").click(function(){
 	    var el = $(this);
@@ -188,21 +224,25 @@
 
 
 	});
+
+    
 	
-	<script type="text/javascript">
+		 //단일이미지
           var imgSrci = null;
-          var uuid = $("#md_uuid" + i).val();
-          var uploadPath = $("#md_uploadPath").val();
-          var fileName = $("#md_fileName").val();
-          if($("#md_filetype").val()) {
+          var d_imgSrci = null;
+          var uuid = $("#p_uuid").val();
+          var uploadPath = $("#p_uploadPath").val();
+          var fileName = $("#p_fileName").val();
+          console.log(fileName);
+          var filetype = true
+          if(filetype) {
              imgSrci = encodeURIComponent(uploadPath + "/" + uuid + "_" + fileName);
              imgSrci = "/display?fileName=" + imgSrci;
           } else {
              imgSrci = '../../resources/images/attach.png';
           }
-       
           
-          $("#listAttach").attr("src", imgSrci);
+          $("#imageSection").attr("src", imgSrci);
           
 	</script>
 </body>

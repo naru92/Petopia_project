@@ -34,11 +34,11 @@
 						<a href=""><i class="fa fa-shopping-cart addCart"></i></a>
 					</div>
 					<div class="product-tumb">
-						<a href="/shop?product_idx=${p.product_idx }"><img id="listAttach${status.index}" src="/petopia/images/product_43.jpg" alt=""></a>
+						<a href="/shopDetail?product_idx=${p.product_idx }"><img id="listAttach${status.index}" src="/petopia/images/product_43.jpg" alt=""></a>
 					</div>
 					<div class="product-details">
 						<h5>
-							<a href="/shop?product_idx=${p.product_idx }">${p.product_name}</a>
+							<a href="/shopDetail?product_idx=${p.product_idx }">${p.product_name}</a>
 						</h5>
 						<div class="product-bottom-details">
 							<div id="price${status.index}"class="product-price">${p.product_price}원</div>
@@ -53,7 +53,7 @@
                <input type="hidden" id="s_uploadPath${status.index}"
                               value="${p.productVOList.get(0).uploadPath}" />
                <input type="hidden" id="s_fileName${status.index}" name="fileName" value="${p.productVOList.get(0).fileName}" />
-                         
+                </form>        
 			</c:forEach>
 			 <input type="hidden" id="size" value="${fn:length(productList)}" />
 		</div>

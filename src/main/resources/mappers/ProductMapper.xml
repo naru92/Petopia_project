@@ -22,4 +22,13 @@
 		SELECT * FROM tbl_attach WHERE product_idx = #{product_idx}
 	</select>
 	
+	<select id="getSerachProductList" resultType="co.kr.petopia.vo.ProductVO">
+	SELECT 	product_idx, product_name, product_price,
+			product_detail_info, product_review, product_coloroption,
+			product_stock
+	FROM product 
+	WHERE product_name like '%'||#{keyword}||'%'
+	</select>
+	
+	
 </mapper>
