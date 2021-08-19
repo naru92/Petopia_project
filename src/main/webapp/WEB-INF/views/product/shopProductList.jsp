@@ -24,7 +24,7 @@
 
 	<main>
 		<div class="article">
-			<div class="filter">필터부분</div>
+			<div class="filter"></div>
 			<c:forEach var='p' items="${productList}" varStatus="status">
 				<div class="product-card">
 				<input name="product_idx" type="hidden" value="${p.product_idx }">
