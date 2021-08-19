@@ -672,58 +672,26 @@ color: : red !important;
                      <div class="carousel-inner" role="listbox">
 
                         <div class="carousel-item active">
-                           <a href="https://bootstrapcreative.com/"> <img
-                              src="https://dummyimage.com/1000x400/444/"
+                           <a href="/member/gameplay"> 
+                           <img src="/petopia/images/event_img_4.png"
                               alt="responsive image" class="d-block img-fluid" width="100%">
-
-                              <div class="carousel-caption">
-                                 <div>
-                                    <h2>Digital Craftsmanship</h2>
-                                    <p>We meticously build each site to get results</p>
-                                    <span class="btn btn-sm btn-outline-secondary">Learn
-                                       More</span>
-                                 </div>
-                              </div>
                            </a>
                         </div>
-                        <!-- 상단 끝 -->
-
 
                         <div class="carousel-item">
-                           <a href="https://bootstrapcreative.com/"> <img
-                              src="https://dummyimage.com/1000x400/444/"
+                           <a href="#"> 
+                           <img src="/petopia/images/main_1.jpg"
                               alt="responsive image" class="d-block img-fluid" width="100%">
-
-                              <div
-                                 class="carousel-caption justify-content-center align-items-center">
-                                 <div>
-                                    <h2>Every project begins with a sketch</h2>
-                                    <p>We work as an extension of your business to explore
-                                       solutions</p>
-                                    <span class="btn btn-sm btn-outline-secondary">Our
-                                       Process</span>
-                                 </div>
-                              </div>
                            </a>
                         </div>
                         <!-- /.carousel-item -->
                         <div class="carousel-item">
-                           <a href="https://bootstrapcreative.com/"> <img
-                              src="https://dummyimage.com/1000x400/444/"
+                           <a href="#"> 
+                           <img src="/petopia/images/main_2.jpg"
                               alt="responsive image" class="d-block img-fluid" width="100%">
-
-
-                              <div
-                                 class="carousel-caption justify-content-center align-items-center">
-                                 <div>
-                                    <h2>Performance Optimization</h2>
-                                    <p>We monitor and optimize your site's long-term
-                                       performance</p>
-                                    <span class="btn btn-sm btn-secondary">Learn How</span>
-                                 </div>
-                              </div>
                            </a>
                         </div>
+                         <!-- 상단 끝 -->
                         <!-- /.carousel-item -->
                      </div>
                      <!-- /.carousel-inner -->

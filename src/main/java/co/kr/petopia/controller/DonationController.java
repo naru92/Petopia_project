@@ -23,7 +23,9 @@ public class DonationController {
 		  int month = adminService.getDonationMonthCount(); 
 		  int total = adminService.getDonationTotalCount(); 
 		  
-		  model.addAttribute("member_id", principal.getName());
+		  if(principal != null) {
+		      model.addAttribute("member_id", principal.getName());
+		  }
 		  model.addAttribute("donation", adminService.getAllDonationSum());
 		  model.addAttribute("today", today);
 		  model.addAttribute("month", month);
