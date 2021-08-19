@@ -3,7 +3,7 @@
 
 body, main{
 	position: relative; 
-	height: 3000px; 
+	height: 30000px; 
 	z-index: -100;
 	overflow-x: hidden;
 }
@@ -183,3 +183,6 @@ body, main{
 	line-height: 47px;
 }
 
+#productDetailMain {
+	margin-left:130px;
+}
