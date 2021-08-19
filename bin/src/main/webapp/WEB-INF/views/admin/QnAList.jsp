@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
@@ -58,7 +57,7 @@
 
 						<div class="card-body filterBox">
 							<div class="boxtr">
-								<form action="#"
+								<form action="${contextPath }/admin/membmer/listMembers.do"
 									method="post" id="frm_search">
 									<table>
 
@@ -79,10 +78,10 @@
 										<tr>
 											<td colspan="2">문의 분류&nbsp;&nbsp;</td>
 											<td colspan="5" class="pleft"><select
-												id="qna" name="qna_lately_date">
+												id="qna_lately_date" name="qna_lately_date">
 													<option value="" selected>--문의내역 분류 선택--</option>
-													<option value="qna_lately__asc">최근 문의 순</option>
-													<option value="qna_lately__desc">오래된 문의 순</option>
+													<option value="qna_lately_asc">최근 문의 순</option>
+													<option value="qna_lately_desc">오래된 문의 순</option>
 											</select></td>
 										</tr>
 
@@ -114,7 +113,7 @@
 								<c:forEach var='q' items="${QnAList}">
 										<tbody>
 											<tr>
-											<td>${q.content_idx }</td>
+											<td><a href="${root}board/my_qna?board_id=2">${q.content_idx }</a></td>
 											<td>${q.member_id}</td>
 											<td>${q.content_text}</td>
 											<td>
@@ -128,7 +127,7 @@
 								</c:forEach>
 							</table>
 					  	 </div>
-<!-- 					  <form id='pageActionForm' action="/admin/QnA" method='get'> -->
+					  <form id='pageActionForm' action="/admin/QnA" method='get'>
 												<input type='hidden' name='pageNum'
 													value='${pageMaker.cri.pageNum}' /> <input type='hidden'
 													name='amount' value='${pageMaker.cri.amount}' />
@@ -284,7 +283,7 @@
 								
 								
 								$(list).each(function(){
-									console.log(this.content_idx);
+									console.log(this.order_idx);
 				                    htmls += '<tr>';
 				                    htmls += '<td>'+ this.content_idx + '</td>';
 				                    htmls += '<td>'+ this.member_id + '</td>';

@@ -51,6 +51,14 @@ public class ReplyServiceImpl implements ReplyService{
         
         return replyMapper.replyInsert(reply);
     }
+    
+    @Override
+    public int productReviewInsert(ReplyVO reply) {
+        
+        log.info("review register......." + reply);
+        
+        return replyMapper.productReviewInsert(reply);
+    }
 
 
     @Override

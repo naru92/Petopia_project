@@ -1,0 +1,260 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>주문/배송조회 | Petopia</title>
+<!-- default_css -->
+<%@include file="../include/default_css.jsp"%>
+<link rel="stylesheet" href="/petopia/css/menu_test.css">
+<!-- CSS here -->
+<link rel="stylesheet" href="/petopia/css/orderdetail_style.css">
+
+</head>
+<body>
+	<header>
+		<%@include file="../include/default_header.jsp"%>
+	</header>
+	<main>
+		<section>
+			<!-- Latest Products Start -->
+			<div class="article">
+				<div class="heading heading3">
+					<h3 class="text">주문 상세정보</h3>
+				</div>
+				<!-- 결제 대기중 -->
+				<!-- 결제 실패 -->
+				<div class="bx bx_padding vsb">
+					<ul class="fl order_info2">
+						<li class="first">
+							<dl>
+								<dt>주문일자</dt>
+								<dd>
+									<strong>${u.order_date_str}</strong>
+								</dd>
+							</dl>
+						</li>
+						<li>
+							<dl>
+								<dt>주문번호</dt>
+								<dd class="ordnum">
+									<strong class="pointcol">${u.order_idx}</strong> 
+								</dd>
+							</dl>
+						</li>
+					</ul>
+				</div>
+
+
+
+				<table cellspacing="0" border="1" class="tb_list mgt">
+					<col width="110">
+					<col width="">
+					<col width="97">
+					<col width="99">
+					<col width="90">
+					<col width="108">
+					<thead>
+						<tr>
+							<th scope="col"><strong>상품주문번호</strong></th>
+							<th scope="col">상품정보</th>
+							<th scope="col">상품금액<br>(수량)</th>
+							<th scope="col" class="bg_point">배송비</th>
+							<th scope="col" colspan="2" class="bg_point">진행상태</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class="group">
+							<td><span class="thm ordernum2">${u.order_idx}</span></td>
+							<td class="product">
+								<div>
+									<div class="thmb">
+										<div class="img_center">
+											<img id="orderProductImg" src="">
+										</div>
+									</div>
+									<dl>
+										<dt>
+											<strong class="name_seller">${u.product_detail_info}</strong> 
+											<a href="#"	target="_blank">${u.product_name}</a>
+										</dt>
+									</dl>
+								</div>
+							</td>
+							<td class="money"><em class="thm">${u.product_price * u.order_quantity}</em>원<br> <span>(${u.order_quantity}개)</span></td>
+							<td class="bg_point state">무료배송<br />
+							<td class="bg_point state">${u.delivery_state}<br />
+							<td class="bg_point state">구매미확정<br />
+							</td>
+
+						</tr>
+					</tbody>
+				</table>
+
+
+				<form>
+					<div class="heading heading2 mgt6">
+						<h4>주문/결제 금액 정보</h4>
+						<div class="fr_section"></div>
+					</div>
+
+					<table cellspacing="0" border="1" class="tb_list2">
+						<colgroup>
+							<col>
+							<col width="297">
+						</colgroup>
+						<tbody>
+
+							<tr class="first">
+								<td class="money">
+									<div class="l_none">
+										<dl class="first">
+											<dt>주문금액</dt>
+											<dd>
+												<!-- 주문금액 -->
+												<ul class="price_list">
+													<li><strong>상품금액</strong>
+														<p>
+															<em class="thm">${u.product_price * u.order_quantity}</em>원
+														</p>
+													</li>
+												</ul>
+											</dd>
+										</dl>
+										<dl class="end">
+											<dt>결제상세</dt>
+											<dd>
+												<!-- 주결제수단 정보 -->
+												<ul class="price_list">
+													<li>
+														<c:set var="pay" value="${u.payment_method}"/>
+														<c:if test="${pay eq '1'}">
+															<strong>무통장입금</strong>
+														</c:if>
+														<c:if test="${pay eq '2'}">
+															<strong>카드결제</strong>
+														</c:if>
+														<p>
+															<em class="thm">${u.product_price * u.order_quantity}</em>원
+														</p>
+													</li>
+												</ul>
+											</dd>
+										</dl>
+									</div>
+								</td>
+								<!-- [D] 나중에 결제가 있는 경우 rowspan="4"으로 변경 부탁드립니다. -->
+								<td rowspan="4" class="amount bg_point">
+									<dl class="">
+										<dt class="blind">결제정보</dt>
+										<dd>
+											<ul>
+												<li class="final_payment_price"><strong>주문금액</strong>
+													<p>
+														<em class="thm">${u.product_price * u.order_quantity}</em>원
+													</p></li>
+												<li>
+													<c:set var="pay" value="${u.payment_method}"/>
+													<c:if test="${pay eq '1'}">
+														<strong>무통장입금</strong>
+													</c:if>
+													<c:if test="${pay eq '2'}">
+														<strong>카드결제</strong>
+													</c:if>
+													<p>
+														<em class="thm">${u.product_price * u.order_quantity}</em>원
+													</p>
+												</li>
+											</ul>
+										</dd>
+									</dl>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+
+				</form>
+
+
+
+
+				<form class="_deliveryForm" action="/orderStatus/2021070469446881/delivery" method="post">
+					<input type="hidden" name="orderId" value="2021070469446881" />
+					<div class="heading heading2 mgt6">
+						<h4 id="DELIVERY">배송지 정보</h4>
+						<div class="fr_section"></div>
+					</div>
+					<div class="input_section2 _input_section">
+						<div class="inp_area _deliveryPlace">
+							<table cellspacing="0" border="1" class="tb_input2">
+								<col width="91">
+								<col>
+								<thead class="blind">
+									<th scope="col">배송지 정보</th>
+									<th scope="col">배송지 정보입력</th>
+								</thead>
+								<tbody>
+									<tr class="gap">
+										<th scope="row">수령인</th>
+										<td>${u.order_receiver_name}</td>
+									</tr>
+									<tr>
+										<th scope="row">연락처</th>
+										<td><span class="tel">${u.order_receiver_phonenumber}</span></td>
+									</tr>
+									<tr>
+										<th scope="row">배송지</th>
+										<td class="address">${u.order_receiver_address}<br>
+										</td>
+									</tr>
+								</tbody>
+
+							</table>
+						</div>
+						<div class="view_area pdb3">
+							<dl>
+								<dt>
+									<strong class="fl">주문자 정보</strong>
+									<!--N=a:odd.changeinfo-->
+								</dt>
+								<dd class="pdb">
+									<strong>${u.order_name}</strong>
+									<p>
+										${u.user_phonenumber}<br>
+									</p>
+								</dd>
+							</dl>
+						</div>
+					</div>
+				</form>
+				<br>
+				<p class="notice_txt">* 판매자 상황에 따라 배송 일정이 변경될 수 있으며, 정확한 일정은 고객센터에 문의해주시기 바랍니다.</p>
+				<div>
+					<input type="button" id="historyBtn" value="이전페이지" onClick="history.go(-1)"> 
+				</div>			
+			</div>
+		</section>
+	</main>
+
+	<footer>
+		<%@include file="../include/default_footer.jsp"%>
+	</footer>
+	
+	<script type="text/javascript">
+	$(document).ready(function() {
+		 var imgSrci = null;
+		 var src = '${m.fileName}';
+		 console.log(src);
+		 var filetype = true;
+	     if(filetype) {
+	        imgSrci = "/petopia/images/"+src;
+	     } else {
+	        imgSrci = '../../resources/images/attach.png';
+	     }
+	  
+	     $("#orderProductImg").attr("src", imgSrci);
+
+	});
+	</script>
+</body>
+</html>

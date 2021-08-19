@@ -34,11 +34,14 @@ import co.kr.petopia.service.MemberService;
 import co.kr.petopia.service.MypetService;
 import co.kr.petopia.service.OrderService;
 import co.kr.petopia.service.PointService;
+import co.kr.petopia.service.ReplyService;
 import co.kr.petopia.utils.Criteria;
 import co.kr.petopia.utils.PageVO;
 import co.kr.petopia.vo.MemberVO;
+import co.kr.petopia.vo.OrderVO;
 import co.kr.petopia.vo.PointVO;
 import co.kr.petopia.vo.ProductVO;
+import co.kr.petopia.vo.ReplyVO;
 import lombok.extern.log4j.Log4j2;
 
 @Log4j2
@@ -51,6 +54,8 @@ public class MemberController {
     private PointService pointService;
     @Autowired
     private MypetService mypetService;
+    @Autowired
+    private ReplyService replyService;
 
     @Autowired
     private OrderService orderService;
@@ -250,23 +255,31 @@ public class MemberController {
 
         String member_id = principal.getName();
         
-        
-        
         MemberVO memberVO = memberService.getMemberInfo(member_id);
         model.addAttribute("member", memberVO);
         
-//        model.addAttribute("d_update", pointService.donationUpdate(member_id));
-//        model.addAttribute("d_total", pointService.donationPoint(member_id));
-//        model.addAttribute("d_history", pointService.donationHistory(member_id));
-//        model.addAttribute("d_count", pointService.countDonation(member_id));
+        model.addAttribute("donation", pointService.donationHistory(member_id));
 
         return "member/myDonation";
     }
-    // 포인트 기부 페이지
+    // 포인트 기부하기
     @GetMapping("member/donate")
     public String donate() {
         return "member/donate";
     }
+    // 포인트 기부 완료
+    @GetMapping("member/donateSuccess")
+    public String donateSuccess(Model model, Principal principal, PointVO pointVO) {
+        
+//        pointVO.setMember_id(principal.getName());
+        
+        
+        
+        return "member/donateSuccess";
+    }
+    
+    
+    
 
     // 마이페이지 포인트
 
@@ -275,12 +288,15 @@ public class MemberController {
 
         String member_id = principal.getName();
         MemberVO memberVO = memberService.getMemberInfo(member_id);
+        PointVO pointVO = new PointVO();
+        pointVO.setMember_id(member_id);
         model.addAttribute("member", memberVO);
         
-//        model.addAttribute("p_update", pointService.pointUpdate(member_id));
-//        model.addAttribute("p_total", pointService.retentionPoint(member_id));
-//        model.addAttribute("p_history", pointService.pointHistory(member_id));
-
+        List<PointVO> pointList = pointService.pointHistory(member_id);
+        log.info("사용날짜 : " + pointList); 
+       
+        model.addAttribute("point", pointList);
+     
         return "member/point";
     }
     
@@ -345,13 +361,24 @@ public class MemberController {
     
     // 후기 작성하기
     @GetMapping("member/reviewRegister")
-    public String reviewRegister(Model model, Principal principal) {
-        log.info("review register...");
-        
-        String member_id = principal.getName();
-        
+    public String reviewRegister() {
+       
         return "member/reviewRegister";
     }
+
+    // 후기 작성 완료
+    @PostMapping("member/reviewSuccess")
+    public String reviewSuccess(Model model, Principal principal, ReplyVO replyVO) {
+        log.info("reply register...." + replyVO);
+        replyVO.setMember_id(principal.getName());
+    
+        int insertCount = replyService.productReviewInsert(replyVO);
+
+        log.info("Reply INSERT COUNT: " + insertCount);
+    
+        return "member/reviewSuccess";
+    }
+    
     
     // 취소/반품/교환
     @GetMapping("member/exchange_refund")

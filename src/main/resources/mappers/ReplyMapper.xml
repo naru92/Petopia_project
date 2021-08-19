@@ -26,6 +26,11 @@
 		values (reply_seq.nextval, #{content_idx}, #{member_id}, #{reply_text}, SYSDATE)
 	</insert>
 	
+	<insert id="productReviewInsert">
+		insert into reply(reply_idx, product_idx, member_id, reply_text, reply_date)
+		values (reply_seq.nextval, #{product_idx}, #{member_id}, #{reply_text}, SYSDATE)
+	</insert>
+	
 	<delete id="replyDelete">
 		delete from reply where reply_idx = #{reply_idx}
 	</delete>

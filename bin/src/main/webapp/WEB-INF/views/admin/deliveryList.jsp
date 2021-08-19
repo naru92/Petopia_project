@@ -1,14 +1,14 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <c:set var='root' value="${pageContext.request.contextPath }/" />
+
 <!DOCTYPE html>
+
 <html lang="ko">
 
 <head>
-
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport"
@@ -20,6 +20,9 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <c:import url="/WEB-INF/views/include/admin_list_css.jsp" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.css"/>
 
 </head>
 
@@ -127,15 +130,21 @@
 								<c:forEach var='d' items="${deliveryList}">
 							<!-- 배송번호 상품이름  주문자이름 수신자이름 수신자전화번호 수신자주소 배송일자 배송처리상태 -->
 										<tbody>
-											<tr>
-											<td>${d.delivery_idx }</td>
+											<tr id = deliveryTr>
+											<td id="delivery_idx" >${d.delivery_idx }</td>
 											<td>${d.product_name }</td>
 											<td>${d.order_name }</td>
 											<td>${d.order_receiver_name }</td>
 											<td>${d.order_receiver_phonenumber }</td>
 											<td>${d.order_receiver_address }</td>
 											<td>${d.delivery_date }</td>
-											<td>${d.delivery_state }</td>
+											<td id="delivery_process"> 
+											<select id='delivery_state' name='delivery_state'>
+		                                	<option value="배송준비중" <c:if test='${d.delivery_state == "배송준비중" }'>selected</c:if>>배송준비중</option>
+		                                	<option value="배송완료" <c:if test='${d.delivery_state == "배송완료" }'>selected</c:if>>배송완료</option>
+                         	   				</select>
+                         	   				</td>
+											
 											
 											
 											</tr>
@@ -155,7 +164,7 @@
 								<input type="hidden" id="size" value="${fn:length(list)}" />
 								<div class="row">
 									<div class="col-sm-12 col-md-5 paginationdiv">
-										<div class="d-none d-md-block page-div">
+										<div id="masterDiv" class="d-none d-md-block page-div" >
 											<ul class="pagination justify-content-center">
 												<li class="page-item"><c:if test="${pageMaker.prev}">
 												<li class="page-item"><a
@@ -233,10 +242,47 @@
 		<script type="text/javascript">
 		$(document).ready(
 				function() {
+					//배송처리변경
+					$("#deliveryTr").on('change', function(e){
+					e.preventDefault();
+					
+					var delivery_state = $(this).children().children("#delivery_state").val();
+					var delivery_idx =parseInt($(this).children().first().text());
+					console.log(delivery_state);
+ 					console.log(delivery_idx);
+					
+					var options = {
+			    			
+							delivery_state : delivery_state,
+							delivery_idx : delivery_idx
+			    			
+			    			
+			    	}
+					
+
+			        
+					if(window.confirm('배송상태를 변경 하시겠습니까?') == true) {
+						
+						console.log("ajax송신 시작");
+						 $.ajax({
+						        type:"POST",
+						        url: "/admin/delivery/update",
+						        cache: false,
+						        data: JSON.stringify(options),
+						        contentType:"application/json; charset=utf-8",
+						        dataType: 'text', 
+						        success : function(status) {
+						        	alert('변경이 완료 됐습니다.')
+						       	}
+						       
+
+						 });
+					}
+					
+					});	
 					
 					// 페이징 버튼 이벤트
 					var actionForm = $("#pageActionForm");
-					
 					
 					
 					$(".numberitem a").on(
@@ -263,8 +309,6 @@
 				    	
 				    	
 
-				    			
-
 				    	
 				    	console.log($('#select1').val());
 				    	console.log($('#select2').val());
@@ -277,6 +321,8 @@
 				    			
 				    	}
 						
+				    	const list= "";
+				    	
 				    	$.ajax({
 			    			type: 'post',
 			    			url: '/admin/delivery',
@@ -285,7 +331,8 @@
 			    			contentType: "application/json; charset=utf-8",
 			    			dataType: 'json',
 			    			success: function(list, status) {
-			    				
+			    				list = $(list);
+			    			
 			    			  	var htmls = "";
 								
 								$("#dataTable").html("");
@@ -308,7 +355,7 @@
 								} else {
 									
 									$(list).each(function(){
-										console.log(this.product_idx);
+										console.log(this.delivery_idx);
 					                    htmls += '<tr>';
 					                    htmls += '<td>'+ this.delivery_idx + '</td>';
 					                    htmls += '<td>'+ this.product_name + '</td>';
@@ -321,8 +368,92 @@
 					                    htmls += '</tr>';
 					                
 				                	});	//each end
-
+				                	
+				                	var deliveryValue = '<c:out value="${d.delivery_idx}" />';
+				                	console.log(deliveryValue);
+				                	
+				                	
+				                	showList(1);
+				                	
+				                	var pageNum = 1;
+				            		var pageDiv = $("#masterDiv");
+				                	
+				                	// 배달평 페이징
+									function showdeliverysPage(deliveryCnt) {
+				                		console.log('showdeliverysPage');
+										var endNum = Math.ceil(pageNum / 10.0) * 10;
+										var startNum = endNum - 9;
+										
+										var prev = startNum != 1;
+										var next = false;
+										
+										if(endNum * 10 >= deliveryCnt) {
+											endNum = Math.ceil(deliveryCnt/10.0);
+										}
+										
+										if(endNum * 10 < deliveryCnt) {
+											next = true;
+										}
+										//일단 부모 div 날리기
+										$('#masterDiv').empty();
+										
+										var str = "<ul class='pagination pull-right'>";
+										//이전
+										if(prev) {
+											str += "<li class='page-item'><a class='page-link' href='" + (startNum - 1) + "'>Previous</a></li>";
+										}
+										//중단
+										for(var i = startNum; i <= endNum; i++) {
+											var active = pageNum == i ? "active" : "";
+											
+											str += "<li class='page-item numberitem" + active + "'> <a class='page-link' href='" + i + "'>" + i +"</a></li>";
+										}
+										//끝
+										if(next) {
+											str += "<li class='page-item'> <a class='page-link' href='" + (endNum + 1) + "'>Next</a></li>";
+										}
+										
+										str +="</ul></div>";
+										
+										//console.log(str);
+										
+										//페이지버튼
+										pageDiv.appendTo(str);
+									} 
 									
+						 	function showList(page) {
+										
+										console.log("show reivews list " + page);
+
+										list.get({delivery_idx:deliveryValue, page: page || 1}, function(deliveryCnt, list) {
+											console.log("deliveryCnt: " + deliveryCnt);
+											
+											if(page == -1) {
+												pageNum = Math.ceil(deliveryCnt/10.0);
+												showList(pageNum);
+												
+												return
+											}
+											
+											var str = "";
+											
+										
+										});
+									} // /showList 
+
+									// 페이지 버튼
+									$(".numberitem a").on("click", "li a", function(e) {
+										e.preventDefault();
+										console.log("page click");
+										
+										var targetPageNum = $(this).attr("href");
+										
+										console.log("targetPageNum : " + targetPageNum);
+										
+										pageNum = targetPageNum;
+										
+										showList(pageNum);
+									}); // /reviewsPageFooter
 								}
 								
 								$("#dataTable").append(htmls);
@@ -331,12 +462,15 @@
 			    			         alert("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
 			    			        }
 			    		});
+				    	
+				    	
 					});
 
 				});
 		
 		
 	</script>
+	
 		<c:import url="/WEB-INF/views/include/admin_list_js.jsp" />
 
 </body>

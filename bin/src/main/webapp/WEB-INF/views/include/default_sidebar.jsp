@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!-----------------------------------------sidebar-------------------------------------->
@@ -10,7 +10,7 @@
                     <!-- category -->
                     <nav class="category">
                         <div class="ctghead">
-                            <h3><i class="ti-list"></i>펫shop</h3>
+                            <h3><a href="/main"><i class="ti-list"></i>펫shop</a></h3>
                         </div>
 
                         <ul class="ctgul">
@@ -23,7 +23,7 @@
                             </li>
 
                             <li class="ctgli">
-                                <a href="#" class="ctga"><i class="ti-user"></i>이벤트</a>
+                                <a href="/event" class="ctga"><i class="ti-user"></i>이벤트</a>
                             </li>
 
                             <li class="ctgli">
@@ -68,3 +68,24 @@
             </div>
         </div>
     </div>
+
+
+    <script>
+	/* sidebar js */
+	$(".ctgli:has(.ctgulChild)").click(function(e) {
+		e.preventDefault();
+		//li_HAVE_Child-hasShowed-hasSlideD
+		if ($(this).hasClass('showed')) {
+			//-x-hasSlideD
+			$(this).children('.ctgulChild');
+		} else {
+			$('.ctgulChild');
+			$('.ctgli').removeClass('showed');
+			$(this).addClass('showed');
+			$(this).children('.ctgulChild').slideToggle();
+		}
+	});
+	$('.ctgli').click(function() {
+		$(this).toggleClass('wtok');
+	});
+	</script>

@@ -20,5 +20,10 @@ public class PointVO {
     private int member_point_usepoint;
     private String member_point_usedetail;
     private String member_point_usedate;
-
+    
+    private String member_point_usedate_str;
+    
+    private int member_point;
+    private String member_date;
+    private String member_detail;
 }

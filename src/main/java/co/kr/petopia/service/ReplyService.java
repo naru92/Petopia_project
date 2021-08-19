@@ -27,6 +27,9 @@ public interface ReplyService {
 
 	ReplyVO getMyAnswerList(int content_idx);
 
+	// 리뷰 insert
+    int productReviewInsert(ReplyVO reply);
+
 	int replyAnswerRegister(ReplyVO reply);
 	
 	String getQnaState(ReplyVO reply);

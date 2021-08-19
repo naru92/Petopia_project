@@ -34,13 +34,13 @@
 	</select>
 	
 	<!-- 포인트 적립/사용 내역 조회 -->
-	<select id="pointHistory" resultType="String">
-		select greatest(member_point_savepoint, member_point_usepoint),
-				member_point_usedate || member_point_savedate,
-        		member_point_usedetail || member_point_savedetail
+	<select id="pointHistory" resultType="co.kr.petopia.vo.PointVO">
+		select greatest(member_point_savepoint, member_point_usepoint) as member_point,
+				(member_point_usedate || member_point_savedate) as member_date,
+        		(member_point_usedetail || member_point_savedetail) as member_detail
     		from point
         		where member_id = #{member_id}
-            		ORDER BY member_point_usedate || member_point_savedate desc
+            		ORDER BY member_date desc
 	</select>
 
 	<!-- 총 기부 금액 업데이트 -->
@@ -61,8 +61,8 @@
 	</select>
 	
 	<!-- 기부 내역 조회 -->
-	<select id="donationHistory" resultType="String">
-		select member_id, member_point_usepoint, member_point_usedate
+	<select id="donationHistory" resultType="co.kr.petopia.vo.PointVO">
+		select member_id, member_point_usepoint, to_char(member_point_usedate, 'yyyy-mm-dd') as member_point_usedate
 			from point
 				where member_id = #{member_id}
 						and member_point_usedetail = '기부'
