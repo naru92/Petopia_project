@@ -102,6 +102,7 @@
 				</ul>
 			</div>
 			<form>
+			  	<input name="product_idx" type="hidden" id="p_filetype" value="${product.product_idx}" />
                <input type="hidden" id="p_filetype" value="${product.productVOList[0].filetype}" />
                <input type="hidden" id="p_uuid" value="${product.productVOList[0].uuid}" />
                <input type="hidden" id="p_uploadPath" value="${product.productVOList[0].uploadPath}" />
@@ -119,7 +120,7 @@
 	<script type="text/javascript">
 	<!-- 스크롤 -->
 	$(document).ready(function($) {
-	
+		
 		  
         $(".tabBtn").click(function(event){         
                 event.preventDefault();
@@ -192,6 +193,7 @@
 	      }, 200);
 	  });
 	  
+	  
 	  $(".qt-plus").click(function(){
 	    $(this).parent().children(".qt").html(parseInt($(this).parent().children(".qt").html()) + 1);
 	    
@@ -218,8 +220,6 @@
 
 	});
 
-    
-	
 		 //단일이미지
           var imgSrci = null;
           var d_imgSrci = null;
@@ -236,6 +236,41 @@
           }
           
           $("#imageSection").attr("src", imgSrci);
+          
+          $("#addCart").on("click", function(e) {
+        	  var member_id = "${not_member}";
+              e.preventDefault();
+				var cartVO = null;
+              if(member_id == null){
+              
+              var cartVO = {
+                 product_idx : $("input[name=product_idx]").val(),
+             	  amount : $("#productsAmount").val()
+              }
+              
+              }else{
+           	   console.log(member_id);
+           	   var cartVO ={
+           			product_idx : $("input[name=product_idx]").val(),
+           			amount : $(".qt").val(),
+           			member_id: member_id
+           			   
+           	   }
+              }
+              $.ajax({
+                 type : 'post',
+                 url : '/addCart',
+                 data : JSON.stringify(cartVO),
+                 contentType : "application/json; charset=utf-8",
+                 dataType : 'text',
+                 success : function(result, status, xhr) {
+                    console.log('add cart ' + result);
+                    alert("상품이 장바구니에 추가되었습니다");
+                 }
+              });
+              
+          
+           });
           
 	</script>
 </body>

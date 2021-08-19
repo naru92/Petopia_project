@@ -22,7 +22,7 @@
 
 <style type="text/css">
 
-
+	
 
 .d-block {
   padding-top: 64px;
@@ -156,7 +156,7 @@
     color: #292d48;
     font-size: 18px;
 
-    . cart-item {
+    .cart-item {
       position: absolute;
       height: 24px;
       width: 24px;
@@ -543,16 +543,15 @@ color: : red !important;
    <!-- Header End -->
 
    <hr />
-   <div class="row">
-		<div class="container-side">
-        	<div class="grid">
-            	<div class="row">
-                	<div class="col-3">
-                    	<!-- category -->
-                        <nav class="category">
-                        	<div class="ctghead">
-                            	<h3><i class="ti-list"></i>펫shop</h3>
-                            </div>
+                  <div class="container-side">
+                     <div class="grid">
+                        <div class="row">
+                           <div class="col-3">
+                              <!-- category -->
+                              <nav class="category">
+                                 <div class="ctghead">
+                                 <h3><a href="/main"><i class="ti-list"></i>펫shop</a></h3>
+                                 </div>
 								<form id="category_form" action="/shop/category" method="get">
 									<input id="category_hidden" name=category type="hidden" value="">
                                  		<ul class="ctgul">
@@ -562,7 +561,7 @@ color: : red !important;
                                     <li class="ctgli"><a href="#" class="ctga"><i
                                           class="ti-user"></i>베스트</a></li>
 
-                                    <li class="ctgli"><a href="#" class="ctga"><i
+                                    <li class="ctgli"><a href="/event" class="ctga"><i
                                           class="ti-user"></i>이벤트</a></li>
 			
                                    	 <li class="ctgli"><a href="#" class="ctga "> <i
@@ -581,13 +580,13 @@ color: : red !important;
                                           <li class="ctgliChild"><a type="submit" class="ctgaChild" id="i">목줄/하네스</a></li>
                                        </ul></li>
                                  </ul>
-                        	</form>
-                    	</nav>
-                	</div>
-            	</div>
-        	</div>
-    	</div>
-	</div>
+                                 </form>
+                              </nav>
+                           </div>
+						</div>
+					</div>
+				</div>
+			</div>
 
    
 

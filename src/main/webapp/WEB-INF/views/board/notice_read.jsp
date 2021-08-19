@@ -145,10 +145,11 @@ button, input {
 					<div class="form-group">
 						
 							<div class="text-right">
-								
+								 <sec:authorize access="hasRole('ROLE_ADMIN')">
 								<a href="${root }notice/modify?board_id=1&content_idx=${board.content_idx}"><button class="btn btn-warning notice_button1">수정</button></a>
 								<a id=removeButton href="${root}notice/remove?board_id=1&content_idx=${board.content_idx}">
 								<button class="btn btn-danger notice_button2">삭제</button></a>
+								</sec:authorize>
 								<a href="/notice?board_id=1"><button class="btn notice_button3">목록으로</button></a>
 							</div>
 					</div>
@@ -160,7 +161,6 @@ button, input {
 		<%@include file="../include/default_footer.jsp"%>
 	</footer>
 
-	<%@include file="../include/default_sidebar_js.jsp"%>
 
 	<script type="text/javascript">
 		$(document).ready(function() {
