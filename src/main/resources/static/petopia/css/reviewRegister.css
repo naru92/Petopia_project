@@ -9,14 +9,13 @@
 	padding: 20px;
 	margin-bottom: 30px;
 	width: 1028px;
-	border: 1px solid #bbb;
-	border-radius: 5px;
+	border-top: 1px solid black;
 }
 
 .orderList {
-	border: 1px solid #bbb;
+	border-bottom: 1px solid #bbb;
 	padding: 20px;
-	width: 750px;
+	width: 980px;
 }
 
 .orderList-info {
@@ -27,25 +26,21 @@
 .orderList-info img {
 	margin-left: 10px;
 	margin-right: 20px;
-	width: 100px;
-	height: 100px;
+	width: 130px;
+	height: 130px;
 	overflow: hidden;
 	object-fit: cover;
 }
 
-.BtnList {
-	padding: 40px;
-	border-top: 1px solid #bbb;
-	border-right: 1px solid #bbb;
-	border-bottom: 1px solid #bbb;
-	width: 200px;
-	align-items: center;
-	text-align: center;
+.text-box {
+	margin-left: 20px;
+	width: 700px;
+	height: 250px;
 }
 
-.box2 {
-	display: flex;
-	margin-top: 15px;
+.r-Btn{
+	margin-top: 20px;
+	text-align: center;
 }
 
 .Btn1 {
@@ -60,13 +55,11 @@
 	margin: 5px;
 	background-color: white;
 }
-
 .Btn1:hover {
 	background-color: #e3f9f9;
 	color: #2AC1BC;
 }
-
-.Btn {
+.Btn2 {
 	height: 25px;
 	width: 140px;
 	background-color: white;
@@ -78,21 +71,6 @@
 	padding: 6px 15px;
 	margin: 5px;
 }
-
-.Btn:hover {
+.Btn2:hover {
 	background-color: #e3f9f9;
 }
-
-.date {
-	display: flex;
-	width: 1000px;
-}
-
-.date a {
-	margin-left: 700px;
-}
-
-.date a:hover {
-	color: #2AC1BC;
-}
-

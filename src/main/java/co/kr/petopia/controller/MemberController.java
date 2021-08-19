@@ -51,12 +51,9 @@ public class MemberController {
     private PointService pointService;
     @Autowired
     private MypetService mypetService;
+
     @Autowired
     private OrderService orderService;
- 
-    
-	// @Autowired
-	// private PointService pointService;
     
     @GetMapping("/login")
     public String loginPage() {
@@ -286,14 +283,14 @@ public class MemberController {
 
         return "member/point";
     }
-
     
+
     // 주문 내역
     @GetMapping("member/myOrderList")
     public String orderList(Model model, Principal principal) {
         
         log.info("my order list..");
-
+        
         String member_id = principal.getName();
         log.info("맴버아이디 = " + member_id);
         log.info("orderList " + orderService.readMemberOrderList(member_id));
@@ -343,21 +340,31 @@ public class MemberController {
         String member_id = principal.getName();
         model.addAttribute("replyList", memberService.getMyReplyList(member_id));
         
-        return "member/myReviewList";
+        return "member/reviewList";
+    }
+    
+    // 후기 작성하기
+    @GetMapping("member/reviewRegister")
+    public String reviewRegister(Model model, Principal principal) {
+        log.info("review register...");
+        
+        String member_id = principal.getName();
+        
+        return "member/reviewRegister";
     }
     
     // 취소/반품/교환
     @GetMapping("member/exchange_refund")
     public String exchange_refund(Model model, Principal principal) {
         log.info("my order list..");
-
+        
         String member_id = principal.getName();
-        log.info("맴버아이디 = " + member_id);
         log.info("orderList " + orderService.readMemberOrderList(member_id));
         model.addAttribute("orderList", orderService.readMemberOrderList(member_id));
         
         return "member/exchange_refund";
     }
+    
     // 내 문의 내역
     @GetMapping("member/qna_my_qna")
     public String qna_main() {
@@ -383,7 +390,7 @@ public class MemberController {
         model.addAttribute("contentList", memberService.getMyContentList(member_id));
        
 
-        return "member/myContentList";
+        return "member/contentList";
     }
     
 
@@ -404,17 +411,26 @@ public class MemberController {
 	public String withdrawal_agree() {
 		return "member/withdrawal_agree";
 	}
-
-	@GetMapping("member/withdrawal")
-	public String withdrawal() {
-		return "member/withdrawal";
-	}
-
 	@GetMapping("member/withdrawal_success")
-	public String withdrawal_success() {
+	public String withdrawal_success(Principal principal) {
+	    log.info("remove ..");
+	    
+	    String member_id = principal.getName();
+	    log.info("remove id .." + member_id);
+	    
+	    memberService.memberRemove(member_id);
+	    
 		return "member/withdrawal_success";
 	}
 
+
+	
+	
+	/* // 기부 메인
+	 * 
+	 * @GetMapping("/donation") public String donation() { return "member/donation";
+	 * }
+	 */
 
 	// 마이펫 등록
 	@GetMapping("member/myPet1")

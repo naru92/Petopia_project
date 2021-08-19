@@ -14,10 +14,9 @@
 </head>
 
 <body>
-	<header> 
-		<%@include file="../include/default_header.jsp"%>
-	</header>
-		<%@include file="../include/mypage_sidebar.jsp"%>
+	<header> </header>
+	<%@include file="../include/default_header.jsp"%>
+	<%@include file="../include/mypage_sidebar.jsp"%>
 	<main>
 		<div class="point-main">
 			<div class="content">
@@ -87,6 +86,9 @@
 		<%@include file="../include/default_footer.jsp"%>
 	</footer>
 
+	
+	<%@include file="../include/default_sidebar_js.jsp"%>
+		
 </body>
 
 </html>
