@@ -3,15 +3,18 @@
 ![maintheme](/assets/maintheme.png)
 
 ---
-##개발일자
-![일정](/assets/일정.png)![테이블 및 속성](/assets/테이블%20및%20속성.png)
----
+## 개발일자
+![일정](/assets/일정.png)
 
+---
+## 테이블 및 속성
+![테이블 및 속성](/assets/테이블%20및%20속성.png)
+---
 ## 사용기술
 ![사용기술](/assets/사용기술.png)
 
 ---
-##ERD
+## ERD
 ![petopia_ERD](/assets/petopia_ERD.png)
 ---
 ## 개념스키마
